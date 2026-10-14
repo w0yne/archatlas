@@ -16,8 +16,14 @@
         "label": "Outside our control",
         "style": "external",
         "symbol": "box"
+      },
+      {
+        "label": "Arrow: what flows between layers",
+        "kind": "call",
+        "dir": "->"
       }
-    ]
+    ],
+    "legend_mode": "replace"
   },
   "layout": {
     "template": "layered",

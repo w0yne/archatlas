@@ -1,6 +1,5 @@
 {
   "Online shop: logical data model": "网店：逻辑数据模型",
-  "Cardinality at each end: minimum..maximum": "每端基数：最小..最大",
   "Customer": "顾客",
   "customer ID (PK)": "顾客编号（主键）",
   "name": "姓名",
@@ -18,7 +17,8 @@
   "Product": "商品",
   "product ID (PK)": "商品编号（主键）",
   "price": "价格",
-  "places": "下",
+  "places": "下单",
   "contains": "包含",
-  "is sold as": "售出为"
+  "is sold as": "售出为",
+  "Cardinality at each end: minimum..maximum (* = many)": "每端基数：最小..最大（* 表示多）"
 }

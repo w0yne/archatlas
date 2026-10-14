@@ -8,7 +8,7 @@
     "state": "as-is",
     "legend": [
       {
-        "label": "Cardinality at each end: minimum..maximum",
+        "label": "Cardinality at each end: minimum..maximum (* = many)",
         "kind": "assoc",
         "dir": "--"
       }
@@ -81,8 +81,8 @@
       "to": "order",
       "label": "places",
       "cardinality": {
-        "from": "1",
-        "to": "0..N"
+        "from": "1..1",
+        "to": "0..*"
       },
       "dir": "--"
     },
@@ -91,8 +91,8 @@
       "to": "orderline",
       "label": "contains",
       "cardinality": {
-        "from": "1",
-        "to": "1..N"
+        "from": "1..1",
+        "to": "1..*"
       },
       "dir": "--"
     },
@@ -101,8 +101,8 @@
       "to": "orderline",
       "label": "is sold as",
       "cardinality": {
-        "from": "1",
-        "to": "0..N"
+        "from": "1..1",
+        "to": "0..*"
       },
       "dir": "--"
     }

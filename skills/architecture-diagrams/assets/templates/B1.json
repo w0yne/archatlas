@@ -23,7 +23,7 @@
   "nodes": [
     {
       "id": "browse",
-      "kind": "task",
+      "kind": "use_case",
       "label": "Browse catalogue",
       "parent": "g_s",
       "size_hint": {
@@ -32,7 +32,7 @@
     },
     {
       "id": "order",
-      "kind": "task",
+      "kind": "use_case",
       "label": "Place order",
       "parent": "g_s",
       "size_hint": {
@@ -41,7 +41,7 @@
     },
     {
       "id": "track",
-      "kind": "task",
+      "kind": "use_case",
       "label": "Track order",
       "parent": "g_s",
       "size_hint": {
@@ -50,7 +50,7 @@
     },
     {
       "id": "payu",
-      "kind": "task",
+      "kind": "use_case",
       "label": "Pay for order",
       "parent": "g_s",
       "size_hint": {

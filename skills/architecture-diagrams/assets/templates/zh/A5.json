@@ -1,6 +1,5 @@
 {
   "Online shop: handle a return (as-is)": "网店：处理退货（现状）",
-  "Return requested": "提出退货",
   "Check return": "核对退货",
   "Eligible?": "可退吗？",
   "Send return label": "发送退货标签",
@@ -17,5 +16,6 @@
   "No": "否",
   "Return request": "退货申请",
   "Return label": "退货标签",
-  "Parcel": "包裹"
+  "Parcel": "包裹",
+  "Request received": "收到退货申请"
 }

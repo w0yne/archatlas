@@ -5,7 +5,13 @@
     "title": "Online shop: 4+1 views",
     "lang": "en",
     "audience": "architects",
-    "state": "as-is"
+    "state": "as-is",
+    "legend_labels": {
+      "edges": {
+        "dependency": "Scenario validates view",
+        "assoc": "Mapping between views"
+      }
+    }
   },
   "layout": {
     "template": "layered",

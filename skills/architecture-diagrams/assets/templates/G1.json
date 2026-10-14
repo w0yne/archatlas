@@ -5,7 +5,13 @@
     "title": "Online shop: production deployment (current)",
     "lang": "en",
     "audience": "operations and developers",
-    "state": "as-is"
+    "state": "as-is",
+    "legend": [
+      {
+        "label": "Solid frame: hosting node",
+        "symbol": "box"
+      }
+    ]
   },
   "layout": {
     "template": "nested",

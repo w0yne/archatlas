@@ -152,4 +152,4 @@ Model template: `assets/templates/C4.json` · Layout template: `nested` · one `
 ## Sample {#sample}
 <!-- skill: path only -->
 ![C4 sample: components of the order API](/samples/C4-component-diagram.svg)
-*Components of the order API: controller, service, repository and payment gateway client inside the boundary. The repository reads and writes the shop database, and the gateway client calls the external payment provider.*
+*Components of the order API: controller, service and repository inside the boundary. The controller calls the service, the service stores orders through the repository, which reads and writes the shop database, and the service charges cards at the external payment provider.*

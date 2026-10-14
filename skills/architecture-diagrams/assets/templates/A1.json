@@ -22,7 +22,8 @@
         "style": "planned",
         "symbol": "box"
       }
-    ]
+    ],
+    "legend_mode": "replace"
   },
   "layout": {
     "template": "layered",

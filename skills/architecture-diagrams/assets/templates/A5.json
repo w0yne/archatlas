@@ -48,11 +48,12 @@
     {
       "id": "st",
       "kind": "event",
-      "label": "Return requested",
+      "label": "Request received",
       "parent": "l_s",
       "size_hint": {
-        "width": 108
-      }
+        "width": 116
+      },
+      "event_type": "start"
     },
     {
       "id": "chk",
@@ -115,7 +116,8 @@
       "parent": "l_s",
       "size_hint": {
         "width": 108
-      }
+      },
+      "event_type": "end"
     },
     {
       "id": "no",
@@ -124,7 +126,8 @@
       "parent": "l_s",
       "size_hint": {
         "width": 108
-      }
+      },
+      "event_type": "end"
     }
   ],
   "edges": [

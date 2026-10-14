@@ -5,7 +5,12 @@
     "title": "Online shop: handle a new order",
     "lang": "en",
     "audience": "developers and operations",
-    "state": "as-is"
+    "state": "as-is",
+    "legend_labels": {
+      "edges": {
+        "call": "Control flow"
+      }
+    }
   },
   "layout": {
     "template": "lanes",

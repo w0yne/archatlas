@@ -6,7 +6,13 @@
     "lang": "en",
     "audience": "operations",
     "state": "as-is",
-    "description": "Illustrative totals: lead time 32.8 h, sum of process times 20 min, activity ratio about 1 %."
+    "description": "Illustrative totals: lead time 32.8 h, sum of process times 20 min, activity ratio about 1 %.",
+    "legend_labels": {
+      "edges": {
+        "call": "Material flow",
+        "async": "Information flow"
+      }
+    }
   },
   "layout": {
     "template": "tree",

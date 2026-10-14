@@ -52,16 +52,6 @@
       }
     },
     {
-      "id": "pgc",
-      "kind": "component",
-      "label": "Payment gateway client",
-      "sub": "Talks to the provider",
-      "parent": "g_api",
-      "size_hint": {
-        "width": 150
-      }
-    },
-    {
       "id": "db",
       "kind": "store",
       "label": "Shop database",
@@ -91,17 +81,12 @@
       "label": "Stores orders"
     },
     {
-      "from": "svc",
-      "to": "pgc",
-      "label": "Charges"
-    },
-    {
       "from": "repo",
       "to": "db",
       "label": "Reads and writes [SQL]"
     },
     {
-      "from": "pgc",
+      "from": "svc",
       "to": "pay",
       "label": "Charges cards [HTTPS]"
     }
