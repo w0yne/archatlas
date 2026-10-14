@@ -57,7 +57,7 @@ Keep it to one paragraph in the reply. Update it when the user corrects somethin
 ## 5. Question bank (ask only the relevant ones, in this order)
 
 Each question comes with a recommendation. In guided mode, follow this checklist for every question:
-1. Ask exactly one question per message, with its recommended default.
+1. Ask exactly one question per message, with its recommended default. Never bundle questions ("I need two answers first" is two questions: ask one).
 2. Stop and wait for the answer; do not add a second question, a draft or a render to that message.
 3. Record the answer in the decision log, then ask the next question or show the wireframe.
 **Budget:** skip anything the request, the chosen type or an earlier answer already settles. Ask the type-specific questions first, then the generic ones below; at most five questions before the wireframe. Fold the rest into the wireframe as stated defaults the user can correct.
