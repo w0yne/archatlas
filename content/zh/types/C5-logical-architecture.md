@@ -95,7 +95,7 @@ reviewed: false
 - [Capella / Arcadia method](https://mbse-capella.org/arcadia.html) — 一套完整的方法，把逻辑架构作为独立的工程层级（开源工具；许可未核查）。
 - [C4 model, Component](https://c4model.com/abstractions/component) — 本身不是 C5，但对什么是组件、什么不是组件给出了最清楚的公开说明；可作对照。
 
-## 绘图步骤 {#recipe}
+## 绘制步骤 {#recipe}
 <!-- skill: keep (≤25 lines) -->
 
 1. 确定定义和范围：针对一个系统或解决方案，“逻辑 = 与技术无关的职责块和接口”。
@@ -139,7 +139,7 @@ reviewed: false
 
 模型模板：`assets/templates/C5.json` · 布局模板：`layered` · 类型为 `frame` 的分组成为一个 `boundary` 内由职责块组成的水平带；外部方位于其外部，类型为 `dependency` 的 `edges` 带操作标签。
 
-## 参考来源 {#sources}
+## 来源 {#sources}
 <!-- skill: omit -->
 
 1. Kruchten, "Architectural Blueprints – The 4+1 View Model of Software Architecture" (1995) — https://www.cs.ubc.ca/~gregor/teaching/papers/4+1view-architecture.pdf — 访问于 2026-10-14

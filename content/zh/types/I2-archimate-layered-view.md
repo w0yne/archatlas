@@ -23,7 +23,7 @@ translationOf: en/types/I2-archimate-layered-view.md
 reviewed: false
 ---
 
-# ArchiMate 分层视图
+# ArchiMate 分层视图（ArchiMate layered view）
 
 ## 含义 {#meaning}
 <!-- skill: condense (4–6 lines) -->
@@ -36,9 +36,9 @@ reviewed: false
 ## 何时使用与如何选择 {#choose}
 <!-- skill: condense (bullets, ≤12 lines) -->
 - **受众：** 企业、业务、应用和技术架构师，以及评审特定范围内支撑关系链的负责人。
-- **变更影响：** 识别商店中依赖某项技术服务的业务操作。
+- **变更影响：** 识别网店中依赖某项技术服务的业务操作。
 - **共享服务：** 展示支撑结账和退货的应用。
-- **整合：** 比较商店在基线与目标态下的支撑关系链。
+- **整合：** 比较网店在基线与目标态下的支撑关系链。
 - **服务评审：** 发现尚无明确使用方或实现方式的客服聊天机器人服务。
 - **不适用：** 详细请求顺序、API 载荷、完整清单，或缺乏领域证据时推断出的业务结构。
 - 只需较小范围的依赖切片时，选应用使用视点（Application Usage）或技术使用视点（Technology Usage）；关注实现行为时选服务实现视点（Service Realization）；关注制品分配时选实现与部署视点（Implementation and Deployment）[1]。
@@ -75,7 +75,7 @@ reviewed: false
 
 已通过文本和搜索索引摘录定位范例，尚未进行图片视觉复核。工具范例可能沿用标准中的示例模型，因此不将它们称为独立案例研究。改编图稿前应核实权利；应创作新场景，而非复制原图。
 
-## 绘图步骤 {#recipe}
+## 绘制步骤 {#recipe}
 <!-- skill: keep (≤25 lines) -->
 1. 明确关注点、边界、基线/目标态及 ArchiMate 版本。
 2. 清点有证据支持的业务行为、应用服务和技术支撑。

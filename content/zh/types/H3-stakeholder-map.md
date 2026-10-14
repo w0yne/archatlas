@@ -23,7 +23,7 @@ translationOf: en/types/H3-stakeholder-map.md
 reviewed: false
 ---
 
-# 干系人地图
+# 干系人地图（Stakeholder map）
 
 ## 含义 {#meaning}
 <!-- skill: condense (4–6 lines) -->

@@ -48,7 +48,7 @@ reviewed: false
 ## 表示法与元素 {#notation}
 <!-- skill: condense (bullets, ≤15 lines) -->
 - **C4 model 不强制任何表示法**：形状和颜色可以自由选择，但必须有图例，且图必须能独立成立 [7]。
-- **必需项：** **容器**，每个都有名称、明确的类型（“Container”）、技术和一句话职责 [7]；**数据存储**，同样具备这四个字段（常用圆柱体，在图例中说明）；可见的**系统边界**，并标注系统名称；**关系**；**标题**“Container diagram for `<System>`”；**图例**（形状、颜色、边框、线条、箭头、缩写）[2][24]。
+- **必需项：** **容器**，每个都有名称、明确的类型（“Container”）、技术和一句话职责 [7]；**数据存储**，同样具备这四个字段（常用圆柱体，在图例中说明）；可见的**系统边界**，并标注系统名称；**关系**；**标题**“`<系统名>`：容器图”；**图例**（形状、颜色、边框、线条、箭头、缩写）[2][24]。
 - **辅助元素：** C2 中与容器直接相连的人员和外部系统；绝不画外部系统的内部 [2][15]。
 - **关系：** 每条线一个方向；意图标签与方向一致（“读写”“向……发布订单事件”）；容器之间的连线要加上协议或技术（JSON/HTTPS、SQL、AMQP）[7][8]。依赖方向或数据流方向都可以，只要保持一致 [16]；不用双向箭头 [5]。
 - **建模规则 [8][17][18]：** 浏览器中的单页应用及其后端是两个容器；你拥有的托管云数据库和存储桶是容器，而不是外部系统；同一团队的微服务是容器（API 加其存储，归为一组），而由不同团队拥有的服务则成为单独的软件系统；把每个队列或主题建模为独立的容器，而不是一个“消息总线”方框（这是作者的建议），或者只在箭头标签上标出。
@@ -80,14 +80,14 @@ reviewed: false
 - [Simon Brown: Diagramming distributed architectures with the C4 model](https://dev.to/simonbrown/diagramming-distributed-architectures-with-the-c4-model-51cm) — 如何围绕一个服务及其邻居截取视图。
 - [godatadriven/c4-model-example](https://github.com/godatadriven/c4-model-example) — 一个小型 Structurizr DSL 工作区，从同一模型生成上下文、容器和组件视图（许可：请查看仓库）。
 
-## 绘图步骤 {#recipe}
+## 绘制步骤 {#recipe}
 <!-- skill: keep (≤25 lines) -->
 1. 确认系统边界和 C2 中的邻居；如果没有 C2，先把它们列出来。
-2. 盘点运行单元和存储（例如网店：Web Shop 单页应用、Mobile App、Shop API、Order Worker、Order Database、Search Index、Product Image Bucket，以及一个“order placed”主题）。
+2. 盘点运行单元和存储（例如网店：网店单页应用（Web Shop）、移动应用（Mobile App）、网店 API（Shop API）、订单处理程序（Order Worker）、订单数据库（Order Database）、搜索索引（Search Index）、商品图片存储桶（Product Image Bucket），以及“订单已下达”（order placed）主题）。
 3. 与用户一起确定：同一团队的服务 = 容器；由不同团队拥有的服务 = 单独的系统。
 4. 每个容器写四个字段：名称、类型、技术、一句话职责。
-5. 每条关系写成动词短语 + 协议（“Sends payment requests to — JSON/HTTPS”）；全图使用同一种方向约定。
-6. 布局自上而下或自左向右：先是人员和客户端应用，中间是应用容器，最后是存储和主题；外部系统（Payment Provider、Warehouse System、Customer Support System、Email Service）放在边界之外、与其连接方向相对应的一侧。
+5. 每条关系写成动词短语 + 协议（“向……发送支付请求（Sends payment requests to）— JSON/HTTPS”）；全图使用同一种方向约定。
+6. 布局自上而下或自左向右：先是人员和客户端应用，中间是应用容器，最后是存储和主题；外部系统（支付服务商（Payment Provider）、仓储系统（Warehouse System）、客服系统（Customer Support System）、邮件服务（Email Service））放在边界之外、与其连接方向相对应的一侧。
 7. 文字预算：名称 2–4 个词，技术一行，描述约 12 个词以内，箭头标签约 6 个词以内再加协议。
 8. 颜色：3–4 种语义色（容器、存储、外部系统、人员），再加形状提示；在图例中说明。
 9. 加上标题、图例和日期；不写状态备注或 TODO；方框超过约 12 个 → 拆成多个视图。
@@ -123,7 +123,7 @@ reviewed: false
 <!-- skill: keep (≤3 lines) -->
 模型模板：`assets/templates/C3.json` · 布局模板：`nested` · 系统用一个 `boundary` 分组，内含 `container`、`store` 和 `queue` 节点；`person` 和 `external` 节点在其外部；连线带标签和协议。
 
-## 参考来源 {#sources}
+## 来源 {#sources}
 <!-- skill: omit -->
 1. C4 model — Home — https://c4model.com/ — 访问于 2026-10-14
 2. C4 model — Container diagram — https://c4model.com/diagrams/container — 访问于 2026-10-14

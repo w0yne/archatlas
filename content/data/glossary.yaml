@@ -1,6 +1,7 @@
 # Bilingual glossary: the fixed Chinese rendering of each English term used on the site and in diagram labels.
 # Translators use `zh` exactly; `avoid` lists renderings that must not be used (wrong sense or inconsistent);
-# `note` explains the sense when a term is overloaded. Terms listed under `keep` are written as-is in Chinese text.
+# `note` explains the sense when a term is overloaded; `note_zh` is its Chinese counterpart.
+# Context-qualified entries apply only in that context. Terms under `keep` stay as-is in Chinese text.
 version: 1
 
 keep:
@@ -47,8 +48,8 @@ keep:
 
 terms:
   # --- general / viewpoint vocabulary
-  - {en: architecture description, zh: 架构描述, note: "ISO/IEC/IEEE 42010 term"}
-  - {en: viewpoint, zh: 视点, note: "42010: the conventions for a kind of view; 视角 only in its everyday sense (perspective)"}
+  - {en: architecture description, zh: 架构描述, note: "ISO/IEC/IEEE 42010 term", note_zh: "ISO/IEC/IEEE 42010 中的术语。"}
+  - {en: viewpoint, zh: 视点, note: "42010: the conventions for a kind of view; 视角 only in its everyday sense (perspective)", note_zh: "ISO/IEC/IEEE 42010 中指一类视图的约定；“视角”仅用于日常所说的观察角度（perspective）。"}
   - {en: view, zh: 视图}
   - {en: concern, zh: 关注点}
   - {en: stakeholder, zh: 干系人, avoid: [持份者]}
@@ -60,13 +61,13 @@ terms:
   - {en: abstraction level, zh: 抽象层级}
   - {en: as-is, zh: 现状}
   - {en: to-be, zh: 目标态}
-  - {en: baseline architecture, zh: 基线架构, note: TOGAF}
-  - {en: target architecture, zh: 目标架构, note: TOGAF}
-  - {en: transition architecture, zh: 过渡架构, note: TOGAF}
+  - {en: baseline architecture, zh: 基线架构, note: TOGAF, note_zh: "TOGAF 中的术语。"}
+  - {en: target architecture, zh: 目标架构, note: TOGAF, note_zh: "TOGAF 中的术语。"}
+  - {en: transition architecture, zh: 过渡架构, note: TOGAF, note_zh: "TOGAF 中的术语。"}
   - {en: gap analysis, zh: 差距分析}
   - {en: architecture roadmap, zh: 架构路线图}
-  - {en: implementation and migration plan, zh: 实施与迁移计划, note: TOGAF Phase F}
-  - {en: plateau, zh: 稳定态, note: "ArchiMate Implementation & Migration element; write 稳定态（Plateau） on first use"}
+  - {en: implementation and migration plan, zh: 实施与迁移计划, note: TOGAF Phase F, note_zh: "TOGAF 的 F 阶段。"}
+  - {en: plateau, zh: 稳定态, note: "ArchiMate Implementation & Migration element; write 稳定态（Plateau） on first use", note_zh: "ArchiMate 实施与迁移类别中的元素；首次出现时写作“稳定态（Plateau）”。"}
   - {en: work package, zh: 工作包}
   - {en: deliverable, zh: 交付物}
   - {en: definition used here, zh: 本站采用的定义}
@@ -76,17 +77,17 @@ terms:
   - {en: self-check, zh: 自检清单}
   - {en: guided mode, zh: 引导模式}
   - {en: autonomous mode, zh: 自主模式}
-  - {en: evidence, zh: 证据, note: "repo mode: a file/line that supports a claim"}
+  - {en: evidence, zh: 证据, note: "repo mode: a file/line that supports a claim", note_zh: "仓库分析模式下，指支持某项描述的文件或具体行。"}
   - {en: verified, zh: 已核实}
   - {en: inferred, zh: 推断}
   - {en: wireframe, zh: 线框图}
 
   # --- A: business architecture
   - {en: business architecture, zh: 业务架构}
-  - {en: capability, zh: 能力, note: "business capability: what the business can do, not how"}
+  - {en: capability, zh: 能力, note: "business capability: what the business can do, not how", note_zh: "业务能力：业务能够做什么，而非如何去做。"}
   - {en: business capability map, zh: 业务能力图}
   - {en: heat map, zh: 热力图}
-  - {en: value stream, zh: 价值流, note: "business-architecture sense (TOGAF/BIZBOK), no times"}
+  - {en: value stream, zh: 价值流, note: "business-architecture sense (TOGAF/BIZBOK), no times", note_zh: "采用业务架构中的含义（TOGAF/BIZBOK），不包含时间数据。"}
   - {en: value stream stage, zh: 价值流阶段}
   - {en: triggering stakeholder, zh: 触发干系人}
   - {en: value proposition, zh: 价值主张}
@@ -96,15 +97,15 @@ terms:
   - {en: lean value-stream map, zh: 精益价值流图}
   - {en: process time, zh: 处理时间}
   - {en: wait time, zh: 等待时间}
-  - {en: lead time, zh: 前置时间, avoid: [提前期], note: "Lean: total elapsed time incl. waiting"}
+  - {en: lead time, zh: 前置时间, avoid: [提前期], note: "Lean: total elapsed time incl. waiting", note_zh: "精益语境下，指包含等待时间在内的总历时。"}
   - {en: flow efficiency, zh: 流动效率}
   - {en: business context diagram, zh: 业务上下文图}
   - {en: stakeholder map, zh: 干系人地图}
   - {en: power-interest grid, zh: 权力-利益矩阵}
   - {en: business scenario matrix, zh: 业务场景矩阵}
   - {en: business process, zh: 业务流程}
-  - {en: pool, zh: 池, note: "BPMN: one participant; write 池（Pool） on first use"}
-  - {en: lane, zh: 泳道, note: "BPMN: a partition inside one pool"}
+  - {en: pool, zh: 池, note: "BPMN: one participant; write 池（Pool） on first use", note_zh: "BPMN 中表示一个参与方；首次出现时写作“池（Pool）”。"}
+  - {en: lane, zh: 泳道, note: "BPMN: a partition inside one pool", note_zh: "BPMN 中指一个池内的分区。"}
   - {en: swimlane, zh: 泳道}
   - {en: participant, zh: 参与方}
   - {en: sequence flow, zh: 顺序流}
@@ -115,16 +116,16 @@ terms:
   - {en: gateway, zh: 网关}
   - {en: task, zh: 任务}
   - {en: sub-process, zh: 子流程}
-  - {en: collaboration diagram, zh: 协作图, note: BPMN}
+  - {en: collaboration diagram, zh: 协作图, note: BPMN, note_zh: "BPMN 中的术语。"}
   - {en: customer journey map, zh: 客户旅程图}
   - {en: user journey map, zh: 用户旅程图}
   - {en: persona, zh: 用户画像}
   - {en: touchpoint, zh: 触点}
   - {en: pain point, zh: 痛点}
   - {en: service blueprint, zh: 服务蓝图}
-  - {en: experience map, zh: 体验地图, note: "product-agnostic; not a synonym of journey map"}
+  - {en: experience map, zh: 体验地图, note: "product-agnostic; not a synonym of journey map", note_zh: "不针对特定产品；不是旅程图的同义词。"}
   - {en: conceptual architecture, zh: 概念架构}
-  - {en: solution concept diagram, zh: 方案构想图, note: TOGAF Phase A}
+  - {en: solution concept diagram, zh: 方案构想图, note: TOGAF Phase A, note_zh: "TOGAF 的 A 阶段。"}
 
   # --- C: application / system
   - {en: application landscape, zh: 应用全景图}
@@ -132,15 +133,15 @@ terms:
   - {en: system context diagram, zh: 系统上下文图}
   - {en: software system, zh: 软件系统}
   - {en: external system, zh: 外部系统}
-  - {en: person, zh: 人员, note: "C4 model element (a role, not a named individual)"}
-  - {en: container, zh: 容器, note: "C4 model: a separately running application or data store; not a Docker container"}
+  - {en: person, zh: 人员, note: "C4 model element (a role, not a named individual)", note_zh: "C4 model 中的元素，表示角色，而非具名个人。"}
+  - {en: container, zh: 容器, note: "C4 model: a separately running application or data store; not a Docker container", note_zh: "C4 model 中指独立运行的应用或数据存储，不是 Docker 容器。"}
   - {en: container diagram, zh: 容器图}
-  - {en: component, zh: 组件, note: "C4 model: grouping behind an interface inside one container; UML and vendor senses differ"}
+  - {en: component, zh: 组件, note: "C4 model: grouping behind an interface inside one container; UML and vendor senses differ", note_zh: "C4 model 中指一个容器内由接口封装的一组功能；UML 和不同厂商语境下的含义可能不同。"}
   - {en: component diagram, zh: 组件图}
   - {en: logical architecture, zh: 逻辑架构}
   - {en: layered architecture, zh: 分层架构}
-  - {en: layer, zh: 层, note: "logical code layer; not a tier"}
-  - {en: tier, zh: 层级, note: "physical/deployment tier; add （物理分层） on first use when it could be read as a code layer"}
+  - {en: layer, zh: 层, note: "logical code layer; not a tier", note_zh: "逻辑上的代码分层，不是物理或部署层级（tier）。"}
+  - {en: tier, zh: 层级, note: "physical/deployment tier; add （物理分层） on first use when it could be read as a code layer", note_zh: "指物理或部署层级；若可能被误解为代码分层，首次出现时加注“（物理分层）”。"}
   - {en: hexagonal architecture, zh: 六边形架构}
   - {en: onion architecture, zh: 洋葱架构}
   - {en: clean architecture, zh: 整洁架构}
@@ -176,13 +177,13 @@ terms:
   - {en: data flow diagram, zh: 数据流图}
   - {en: external entity, zh: 外部实体}
   - {en: data store, zh: 数据存储}
-  - {en: process (DFD), zh: 加工, note: "DFD process bubble; use 处理 in plain prose if clearer"}
+  - {en: process (DFD), zh: 加工, note: "DFD process bubble; use 处理 in plain prose if clearer", note_zh: "指 DFD 中的加工气泡；普通说明文字中，若“处理”更清楚，也可使用。"}
   - {en: data lineage, zh: 数据血缘}
   - {en: data owner, zh: 数据所有者}
   - {en: data steward, zh: 数据管理员}
 
   # --- E: behaviour
-  - {en: sequence diagram, zh: 时序图, note: "UML 'sequence diagram'; 序列图 is an accepted alias, use 时序图 consistently"}
+  - {en: sequence diagram, zh: 时序图, note: "UML 'sequence diagram'; 序列图 is an accepted alias, use 时序图 consistently", note_zh: "对应 UML 的 sequence diagram；“序列图”是可接受的别名，正文统一使用“时序图”。"}
   - {en: lifeline, zh: 生命线}
   - {en: activation, zh: 激活条}
   - {en: synchronous message, zh: 同步消息}
@@ -197,7 +198,7 @@ terms:
   - {en: join, zh: 汇合}
   - {en: state machine diagram, zh: 状态机图}
   - {en: state, zh: 状态}
-  - {en: transition, zh: 迁移, note: "state transition; not 转换, which stays available for transform/convert"}
+  - {en: transition, zh: 迁移, note: "state transition; not 转换, which stays available for transform/convert", note_zh: "指状态迁移；不译作“转换”，后者留用于 transform/convert。"}
   - {en: guard, zh: 守卫条件}
   - {en: initial state, zh: 初始状态}
   - {en: final state, zh: 终止状态}
@@ -228,8 +229,8 @@ terms:
   - {en: deployment diagram, zh: 部署图}
   - {en: node, zh: 节点}
   - {en: execution environment, zh: 执行环境}
-  - {en: artifact, zh: 制品, note: "deployable build output; also the usual rendering of TOGAF artifacts"}
-  - {en: artefact (document), zh: 成果物, note: "a work product in general prose (not a build output, not a TOGAF artifact)"}
+  - {en: artifact, zh: 制品, note: "deployable build output; also the usual rendering of TOGAF artifacts", note_zh: "可部署的构建输出；也是 TOGAF artifacts 的常见译法。"}
+  - {en: artefact (document), zh: 成果物, note: "a work product in general prose (not a build output, not a TOGAF artifact)", note_zh: "普通说明文字中的工作成果，不指构建输出，也不指 TOGAF 制品。"}
   - {en: cloud architecture diagram, zh: 云架构图}
   - {en: region, zh: 区域}
   - {en: availability zone, zh: 可用区}
@@ -245,90 +246,97 @@ terms:
   - {en: rollback, zh: 回滚}
 
   # --- added from translation (terms the pages use consistently)
-  - {en: building block, zh: 构建块, note: "arc42 building block view = 构建块视图"}
+  - {en: building block, zh: 构建块, note: "arc42 building block view = 构建块视图", note_zh: "arc42 中的 building block view 译为“构建块视图”。"}
   - {en: provided interface, zh: 提供接口}
   - {en: required interface, zh: 需求接口}
   - {en: system of interest, zh: 关注系统}
   - {en: modular monolith, zh: 模块化单体}
-  - {en: system landscape diagram, zh: 系统全景图, note: "C4 model supplementary diagram"}
+  - {en: system landscape diagram, zh: 系统全景图, note: "C4 model supplementary diagram", note_zh: "C4 model 的补充图类型。"}
   - {en: message broker, zh: 消息代理}
   - {en: idempotency, zh: 幂等}
   - {en: dead-letter queue, zh: 死信队列}
-  - {en: aggregate, zh: 聚合, note: DDD}
+  - {en: aggregate, zh: 聚合, note: DDD, note_zh: "DDD 中的术语。"}
   - {en: associative entity, zh: 关联实体}
   - {en: pseudostate, zh: 伪状态}
   - {en: superstate, zh: 超状态}
   - {en: history state, zh: 历史状态}
   - {en: activity partition, zh: 活动分区}
   - {en: runbook, zh: 运维手册}
-  - {en: choreography diagram, zh: 编排图, note: BPMN}
-  - {en: black-box pool, zh: 黑盒池, note: BPMN}
+  - {en: choreography diagram, zh: 编排图, note: BPMN, note_zh: "BPMN 中的术语。"}
+  - {en: black-box pool, zh: 黑盒池, note: BPMN, note_zh: "BPMN 中的术语。"}
   - {en: empathy map, zh: 同理心地图}
   - {en: strangler fig, zh: 绞杀者模式}
   - {en: takt time, zh: 节拍时间}
   - {en: changeover time, zh: 换型时间}
   - {en: kaizen burst, zh: 改善爆炸点}
   - {en: walking skeleton, zh: 行走骨架}
-  - {en: user-goal level, zh: 用户目标级, note: Cockburn}
+  - {en: user-goal level, zh: 用户目标级, note: Cockburn, note_zh: "Cockburn 用例方法中的术语。"}
   - {en: step-up authentication, zh: 升级认证}
   - {en: bearer token, zh: 持有者令牌}
   - {en: policy enforcement, zh: 策略执行}
   - {en: attestation, zh: 证明}
   - {en: provenance, zh: 来源证明}
-  - {en: promotion, zh: 晋级, note: "moving a build between environments"}
+  - {en: promotion, zh: 晋级, note: "moving a build between environments", note_zh: "将构建产物从一个环境晋级到另一个环境。"}
   - {en: roll-forward, zh: 前滚}
   - {en: hub-and-spoke, zh: 中心辐射}
   - {en: peering, zh: 对等连接}
-  - {en: stereotype, zh: 构造型, note: UML}
+  - {en: stereotype, zh: 构造型, note: UML, note_zh: "UML 中的术语。"}
   - {en: accessed (source date), zh: 访问于}
-  - {en: building block view, zh: 构建块视图, note: arc42}
+  - {en: building block view, zh: 构建块视图, note: arc42, note_zh: "arc42 中的术语。"}
   - {en: pass-through layer, zh: 透传层}
   - {en: composition root, zh: 组合根}
-  - {en: driving adapter, zh: 驱动方适配器, note: "hexagonal architecture"}
-  - {en: driven adapter, zh: 被驱动方适配器, note: "hexagonal architecture"}
-  - {en: interaction diagram, zh: 交互图, note: UML}
-  - {en: behavioural state machine, zh: 行为状态机, note: UML}
-  - {en: protocol state machine, zh: 协议状态机, note: UML}
+  - {en: driving adapter, zh: 驱动方适配器, note: "hexagonal architecture", note_zh: "六边形架构中的术语。"}
+  - {en: driven adapter, zh: 被驱动方适配器, note: "hexagonal architecture", note_zh: "六边形架构中的术语。"}
+  - {en: interaction diagram, zh: 交互图, note: UML, note_zh: "UML 中的术语。"}
+  - {en: behavioural state machine, zh: 行为状态机, note: UML, note_zh: "UML 中的术语。"}
+  - {en: protocol state machine, zh: 协议状态机, note: UML, note_zh: "UML 中的术语。"}
   - {en: data mesh, zh: 数据网格}
-  - {en: doc-only, zh: 仅文档, note: "evidence status: stated in docs, not found in code"}
-  - {en: conflict, zh: 冲突, note: "evidence status: docs and code disagree"}
-  - {en: agent, zh: 智能体, note: "an AI coding agent; product names (Claude Code, Codex, Pi) stay as-is"}
-  - {en: skill, zh: skill, note: "the installable Agent Skill; kept in English"}
+  - {en: doc-only, zh: 仅文档, note: "evidence status: stated in docs, not found in code", note_zh: "证据状态：文档中有所说明，但未在代码中找到。"}
+  - {en: conflict, zh: 冲突, note: "evidence status: docs and code disagree", note_zh: "证据状态：文档与代码不一致。"}
+  - {en: agent, zh: 智能体, note: "an AI coding agent; product names (Claude Code, Codex, Pi) stay as-is", note_zh: "指 AI 编程智能体；产品名称（Claude Code、Codex、Pi）保留原文。"}
+  - {en: skill, zh: skill, note: "the installable Agent Skill; kept in English", note_zh: "指可安装的 Agent Skill；保留英文写法。"}
   - {en: visual review pending, zh: 视觉复核待做}
   # --- B (requirements), H (collaboration/operations), I (views) pages
   - {en: use case, zh: 用例}
   - {en: use-case diagram, zh: 用例图}
-  - {en: actor (UML), zh: 参与者, note: "UML actor; the role outside the system boundary"}
-  - {en: include (use case), zh: 包含, note: "UML «include» relationship"}
-  - {en: extend (use case), zh: 扩展, note: "UML «extend» relationship"}
+  - {en: actor (UML), zh: 参与者, note: "UML actor; the role outside the system boundary", note_zh: "UML 的 actor，指系统边界之外的角色。"}
+  - {en: include (use case), zh: 包含, note: "UML «include» relationship", note_zh: "UML 的 «include» 关系。"}
+  - {en: extend (use case), zh: 扩展, note: "UML «extend» relationship", note_zh: "UML 的 «extend» 关系。"}
   - {en: functional decomposition, zh: 功能分解}
   - {en: feature model, zh: 特性模型}
   - {en: variability, zh: 可变性}
   - {en: open arrowhead, zh: 开口箭头}
   - {en: observability, zh: 可观测性}
   - {en: telemetry, zh: 遥测}
-  - {en: accountability, zh: 最终责任, note: "the A in RACI: the one who answers for the outcome"}
+  - {en: accountability, zh: 最终责任, note: "the A in RACI: the one who answers for the outcome", note_zh: "RACI 中的 A：对结果承担最终责任。"}
   - {en: tail sampling, zh: 尾部采样}
   - {en: burn rate, zh: 错误预算消耗速率}
   - {en: redaction, zh: 敏感信息遮蔽}
-  - {en: logical view, zh: 逻辑视图, note: "4+1 view"}
-  - {en: process view, zh: 进程视图, note: "4+1 view"}
-  - {en: development view, zh: 开发视图, note: "4+1 view"}
-  - {en: physical view, zh: 物理视图, note: "4+1 view"}
-  - {en: scenario (4+1), zh: 场景, note: "the +1 of the 4+1 views"}
+  - {en: logical view, zh: 逻辑视图, note: "4+1 view", note_zh: "4+1 视图模型中的视图。"}
+  - {en: process view, zh: 进程视图, note: "4+1 view", note_zh: "4+1 视图模型中的视图。"}
+  - {en: development view, zh: 开发视图, note: "4+1 view", note_zh: "4+1 视图模型中的视图。"}
+  - {en: physical view, zh: 物理视图, note: "4+1 view", note_zh: "4+1 视图模型中的视图。"}
+  - {en: scenario (4+1), zh: 场景, note: "the +1 of the 4+1 views", note_zh: "4+1 视图模型中的“+1”。"}
   - {en: dedicated layer, zh: 专用层}
   - {en: service layer, zh: 服务层}
-  - {en: serving, zh: 服务于, note: "ArchiMate relationship"}
-  - {en: realization, zh: 实现, note: "ArchiMate relationship"}
-  - {en: assignment, zh: 分配, note: "ArchiMate relationship"}
+  - {en: serving, zh: 服务于, note: "ArchiMate relationship", note_zh: "ArchiMate 中的关系。"}
+  - {en: realization, zh: 实现, note: "ArchiMate relationship", note_zh: "ArchiMate 中的关系。"}
+  - {en: assignment, zh: 分配, note: "ArchiMate relationship", note_zh: "ArchiMate 中的关系。"}
   # --- provisional renderings from the first translation round
-  - {en: "%C&A", zh: 完整准确率, note: "percent complete and accurate (Lean office VSM)"}
-  - {en: black hole (DFD), zh: 黑洞, note: "a process with inputs only"}
-  - {en: miracle (DFD), zh: 奇迹, note: "a process with outputs only"}
-  - {en: reconcile, zh: 调和, note: "GitOps controller aligning actual state with declared state"}
-  - {en: implementation event, zh: 实施事件, note: "ArchiMate element"}
-  - {en: assessment, zh: 评估, note: "ArchiMate element"}
-  - {en: gap (ArchiMate), zh: 差距, note: "ArchiMate element; 差距分析 stays for gap analysis"}
+  - {en: "%C&A", zh: 完整准确率, note: "percent complete and accurate (Lean office VSM)", note_zh: "完整且准确的工作项所占比例，用于精益办公价值流图。"}
+  - {en: black hole (DFD), zh: 黑洞, note: "a process with inputs only", note_zh: "只有输入的加工。"}
+  - {en: miracle (DFD), zh: 奇迹, note: "a process with outputs only", note_zh: "只有输出的加工。"}
+  - {en: reconcile, zh: 调和, note: "GitOps controller aligning actual state with declared state", note_zh: "GitOps 控制器使实际状态与声明状态保持一致。"}
+  - {en: implementation event, zh: 实施事件, note: "ArchiMate element", note_zh: "ArchiMate 中的元素。"}
+  - {en: assessment, zh: 评估, note: "ArchiMate element", note_zh: "ArchiMate 中的元素。"}
+  - {en: gap (ArchiMate), zh: 差距, note: "ArchiMate element; 差距分析 stays for gap analysis", note_zh: "ArchiMate 中的元素；“差距分析”仍用于 gap analysis。"}
   # --- tool vocabulary used in the Template sections
   - {en: model template, zh: 模型模板}
   - {en: layout template, zh: 布局模板, avoid: [版式模板]}
+
+  # --- context-specific senses for diagram bands and authored examples
+  - {en: "container (visual grouping)", zh: "分组框", note: "A visual grouping frame, not a C4 model container or a runtime container; use 虚线框 when describing its dashed outline.", note_zh: "指用于视觉分组的框，不是 C4 model 容器或运行时容器；描述其虚线边框时使用“虚线框”。"}
+  - {en: "tier (capability map)", zh: "层带", note: "A horizontal band grouping capabilities in a capability map, not a physical/deployment tier or a hierarchy level.", note_zh: "指能力图中用于归组能力的横向层带，不是物理或部署层级，也不是能力分解的级别。"}
+  - {en: "level (capability hierarchy)", zh: "第 N 级", note: "A numbered depth in a capability decomposition hierarchy; replace N with the actual level number, not a band or deployment tier.", note_zh: "指能力分解层次中有编号的深度；将 N 替换为实际级别编号，不用于层带或部署层级。"}
+  - {en: "shop (example)", zh: "网店", note: "The online shop in authored examples; not a blanket replacement for every store or commerce-related term.", note_zh: "指原创示例中的线上商店；不用于统一替换所有商店或商业相关用语。"}
+  - {en: "customer (example)", zh: "顾客", note: "The shopper/customer role in the online-shop examples; do not replace client in protocol/software contexts or customer in other domain terms globally.", note_zh: "指网店示例中的购物者或顾客角色；不得全局替换协议或软件语境中的 client，也不得替换其他领域术语中的 customer。"}

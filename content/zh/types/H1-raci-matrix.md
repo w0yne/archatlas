@@ -23,7 +23,7 @@ translationOf: en/types/H1-raci-matrix.md
 reviewed: false
 ---
 
-# RACI 责任矩阵
+# RACI 责任矩阵（RACI matrix）
 
 ## 含义 {#meaning}
 <!-- skill: condense (4–6 lines) -->
@@ -99,7 +99,7 @@ Asana 正文建议只设一个 R，但其常见问题部分允许多个 R [4]。
 - 运维手册和发布流程可识别活动、职责及升级处理路径。
 - `CODEOWNERS` 和审批配置确定评审规则，而非组织层面的 A。
 - 提交频率、管理员权限和事项指派不能确立最终责任。
-- 记录每项描述的路径、修订版本及已核实/推断/仅文档记载/冲突状态；责任归属存在缺口时，应向相关人员确认。
+- 记录每项描述的路径、修订版本及已核实/推断/仅文档/冲突状态；责任归属存在缺口时，应向相关人员确认。
 
 ## 引导模式问题 {#questions}
 <!-- skill: keep (≤8 lines) -->
@@ -110,7 +110,7 @@ Asana 正文建议只设一个 R，但其常见问题部分允许多个 R [4]。
 
 ## 模板 {#template}
 <!-- skill: keep (≤3 lines) -->
-模型模板：`assets/templates/H1.json` · 布局模板：`grid_table` · 一个 `tables[]` 条目：活动为行 × 参与方为列，单元格填 R/A/C/I（每行恰好一个 A）；图例写在表格的 `title` 中。
+模型模板：`assets/templates/H1.json` · 布局模板：`grid_table` · 一个 `tables[]` 条目：活动为行 × 参与方为列，单元格填 R/A/C/I（默认每行一个 A；共同承担 A 时须注明权限边界或分歧解决规则）；图例写在表格的 `title` 中。
 
 ## 来源 {#sources}
 <!-- skill: omit -->

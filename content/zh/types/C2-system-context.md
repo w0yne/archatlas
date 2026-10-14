@@ -47,7 +47,7 @@ reviewed: false
 
 ## 表示法与元素 {#notation}
 <!-- skill: condense (bullets, ≤15 lines) -->
-- **必需项 [2][3]：** 标明类型和范围的标题（“System Context diagram for `<System>`”）；**恰好一个**在范围内的系统，标注类型并附一句话描述；**人员**以角色表示，而非具名个人；直接相连的**外部系统**，标注类型并附描述；**关系**各自只有一个方向，并带有与方向一致的意图标签（动词短语）；说明形状、颜色、边框、线型和箭头的**图例**；解释所有缩写。
+- **必需项 [2][3]：** 标明类型和范围的标题（“`<系统名>`：系统上下文图”）；**恰好一个**在范围内的系统，标注类型并附一句话描述；**人员**以角色表示，而非具名个人；直接相连的**外部系统**，标注类型并附描述；**关系**各自只有一个方向，并带有与方向一致的意图标签（动词短语）；说明形状、颜色、边框、线型和箭头的**图例**；解释所有缩写。
 - **第 1 层的连线上不写协议或技术。** 上下文图关注的是人员和系统，而不是技术或协议 [1]。协议写在 C3 的连线上，或放在单独的技术上下文表（arc42 [8]）或接口表（C6）中。
 - **标签：** “向……下订单”“向……发送支付请求”“向……报告库存水平”；避免只写“使用” [2]。力求不超过六个词（这是经验法则，不是硬性规则 [18]）。
 - **箭头语义：** 要么是“发起方 → 依赖方”（C4 model、Azure 指南 [9]），要么是“数据从 → 流向”（arc42 业务上下文提示 [8]）。选定一种，在图例中写明，绝不混用。不使用未加说明的双向箭头；改画两条线或注明请求/响应 [9]。
@@ -80,11 +80,11 @@ reviewed: false
 - [Azure Well-Architected: Create architecture design diagrams](https://learn.microsoft.com/en-us/azure/well-architected/architect-role/design-diagrams) — 关于上下文图的厂商中立建议：黑盒、用户角色、明确边界、通用形状。
 - [C4-PlantUML](https://github.com/plantuml-stdlib/C4-PlantUML) — 用文本宏忠实绘制带图例的第 1 层（MIT）。Mermaid 的 C4 model 语法标为实验性，只宜作为草稿途径。
 
-## 绘图步骤 {#recipe}
+## 绘制步骤 {#recipe}
 <!-- skill: keep (≤25 lines) -->
-1. 用一句话写明系统名称，以及所属团队构建和拥有的内容（例如“Online Shop：浏览商品目录、填充购物车、结账”）。
-2. 以角色列出人员（Shopper、Customer Support Agent、Catalogue Manager）；将相似角色分组。
-3. 列出直接相连的外部系统（Payment Provider、Warehouse System、带支持聊天机器人的 Customer Support System、Email Service）；去掉所有不直接相连的系统；把相似系统归组。
+1. 用一句话写明系统名称，以及所属团队构建和拥有的内容（例如“网店（Online Shop）：浏览商品目录、加入购物车、结账”）。
+2. 以角色列出人员（顾客（Shopper）、客服人员（Customer Support Agent）、商品目录管理员（Catalogue Manager））；将相似角色分组。
+3. 列出直接相连的外部系统（支付服务商（Payment Provider）、仓储系统（Warehouse System）、带客服聊天机器人的客服系统（Customer Support System）、邮件服务（Email Service））；去掉所有不直接相连的系统；把相似系统归组。
 4. 按所选的箭头约定为每条连线确定方向，并写一个不超过六个词的意图标签。不写协议。
 5. 布局：系统方框居中且更大；人员在上方；上游来源在一侧，下游消费方在另一侧；共享服务（身份、邮件）在下方。默认自上而下，宽幅幻灯片用自左向右。连线短而直；宁可移动方框，也不要绕线。
 6. 样式：范围内系统用饱和色，外部系统用灰色，人员样式有区分；三种字号（标题 > 名称 > 描述）。
@@ -122,7 +122,7 @@ reviewed: false
 <!-- skill: keep (≤3 lines) -->
 模型模板：`assets/templates/C2.json` · 布局模板：`nested` · 中心是一个样式为 `primary` 的 `system` 节点（不显示子节点），周围是 `person` 和 `external` 节点，`edges` 带意图标签且没有技术字段。
 
-## 参考来源 {#sources}
+## 来源 {#sources}
 <!-- skill: omit -->
 1. C4 model — System context diagram — https://c4model.com/diagrams/system-context — 访问于 2026-10-14
 2. C4 model — Notation — https://c4model.com/diagrams/notation — 访问于 2026-10-14
