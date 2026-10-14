@@ -34,11 +34,16 @@ python3 evals/run_eval.py --hosts evals/hosts.local.yaml --scenario S6 --mode au
 python3 evals/run_eval.py --hosts evals/hosts.local.yaml --scenario S6 --mode autonomous \
     --host claude --host codex --host pi --arm skill --arm noskill
 python3 evals/run_eval.py --hosts evals/hosts.local.yaml --scenario T --host claude   # trigger set
+python3 evals/run_eval.py --hosts evals/hosts.local.yaml --scenario T5 --host pi    # one trigger item
 # Install the skill from a release zip instead of the working tree, and stop at a spend limit:
 python3 evals/run_eval.py --hosts evals/hosts.local.yaml --scenario all --host pi --arm skill \
     --skill-bundle dist/archatlas-skill-<version>.zip --skill-rev <sha> --budget-usd 5
 # Grade with a different model than the one graded, then aggregate:
 python3 evals/grade.py --hosts evals/hosts.local.yaml evals/results/<run-dir> ...
+# Re-score with a changed grader without overwriting grade.json (filters: --host, --scenario);
+# report.py --grade-file prefers that file and marks the rows "(rescored)":
+python3 evals/grade.py --hosts evals/hosts.local.yaml --grade-file grade.rescored.json --host codex evals/results/<run-dir>
+python3 evals/report.py evals/results/<run-dir> --grade-file grade.rescored.json --out evals/reports/<name>-rescored
 python3 evals/report.py evals/results/<run-dir> ... --out evals/reports/<name> --defects <notes.md>
 # Re-evaluation: compare with an earlier report (its no-skill rows are reused when not re-run):
 python3 evals/report.py evals/results/<run-dir> ... --out evals/reports/<name> --baseline evals/reports/<earlier>.json

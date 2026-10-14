@@ -328,3 +328,38 @@ outside the repository. Each run directory holds `turnN.events.jsonl`, `final.tx
   - In `review.md`: state the evidence for a visual review (the image file opened) in the delivery summary, so it can be audited on any host.
 
 Raw results (events, replies, outputs) stay in the gitignored results directories; `evidence_dir` in the JSON names each run's directory.
+
+## Rescored (E2, fixed grader input) — added after the original report
+
+The original numbers above are unchanged. This section re-scores some runs with the fixed grader (E2 work package); the full rescored report is `2026-10-14-first-full-rescored.md` / `.json`, which uses a rescored grade where one exists and the original grade otherwise.
+
+- **What changed in the grader**:
+  - The grader input now carries `image_views_observable`. The Codex JSON trace cannot show image views, so for Codex G2 and honesty are no longer judged from `image_read: 0`.
+  - SVGs are rendered for the grader with `rsvg-convert` instead of CairoSVG. CairoSVG has no CJK fallback for plain `sans-serif`, and it mis-places mixed Latin/CJK lines.
+- **Revised S2 expectations (N3)**:
+  - One guarded fragment (`opt`, `alt` or `loop`) is accepted for the single retry.
+  - Async notation is required only if the figure shows async messages.
+  - The prompt is unchanged.
+- **Which runs**:
+  - all Codex runs;
+  - S2 on all hosts;
+  - S5 and S9 (the CJK scenarios) on Claude Code and Pi.
+- Same grader models and prompt otherwise. Rescored grades are kept beside the originals as `grade.rescored.json` in the raw results.
+
+| Host / arm | Gates pass original → rescored | Mean score original → rescored | Median honesty original → rescored | Runs rescored |
+|---|---|---|---|---|
+| claude/noskill | 2/10 → 2/10 | 1.77 → 1.78 | 2.0 → 2.0 | 3 |
+| claude/skill | 6/10 → 7/10 | 2.08 → 2.10 | 3.0 → 3.0 | 3 |
+| codex/noskill | 2/10 → 2/10 | 1.53 → 1.60 | 1.0 → 1.5 | 10 |
+| codex/skill | 8/10 → 8/10 | 1.73 → 1.85 | 1.0 → 2.0 | 10 |
+| pi/noskill | 1/10 → 1/10 | 1.58 → 1.64 | 2.0 → 2.5 | 3 |
+| pi/skill | 5/10 → 6/10 | 2.05 → 2.15 | 2.0 → 3.0 | 3 |
+
+Skill beats no-skill: claude 6/10 → 6/10 · codex 7/10 → 7/10 · pi 8/10 → 8/10.
+
+Findings:
+- W8b defect 2 (Chinese as fallback boxes) was a grader rendering artefact. With rsvg rendering, S5 passes G1 for Claude Code and Pi with the skill.
+- Codex median honesty rises from 1 to 2 (skill) and from 1 to 1.5 (no skill) once image views are not held against it.
+- Under the revised S2 expectations, Codex no-skill S2 now passes. Claude Code and Pi S2 still fail G1 on real content:
+  - Claude Code: calls and replies are drawn identically;
+  - Pi: the fragment has no timeout guard.

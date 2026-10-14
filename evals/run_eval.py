@@ -409,8 +409,14 @@ def main(argv=None) -> int:
     out_root = (args.out or HERE / "results" / run_id).resolve()
     out_root.mkdir(parents=True, exist_ok=True)
     records = []
+    # A single trigger item (e.g. T5) can be selected by its id; "T" selects the whole set.
+    trigger_items = {it["id"]: sc for sc in scenarios.values() if sc.get("kind") == "trigger" for it in sc["items"]}
     for sid in ids:
-        for item in expand(scenarios[sid], args.mode):
+        if sid not in scenarios and sid not in trigger_items:
+            raise SystemExit(f"unknown scenario {sid!r} (see --list)")
+        items = (expand(scenarios[sid], args.mode) if sid in scenarios
+                 else [i for i in expand(trigger_items[sid], None) if i["id"] == sid])
+        for item in items:
             item_arms = ["skill"] if item["trigger"] and not args.arm else arms
             for host in hosts:
                 for arm in item_arms:

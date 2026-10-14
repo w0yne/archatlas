@@ -1,15 +1,20 @@
 id: S2
 title: Checkout sequence with one retry
-focus: sequence diagram with a loop frame
+focus: sequence diagram with a guarded retry frame
 expected_types: [E1]
 modes: [autonomous]
 lang: en
 prompt: >-
   For our developers, show how checkout talks to the payment service and the inventory
   service. Payment can be retried once if the provider times out. Save the diagram under out/.
+# Expectations revised after the second evaluation (W8c, finding N3). The prompt stays
+# unchanged so earlier runs remain comparable. A single conditional retry is a guarded
+# combined fragment: `opt [timeout]`, `alt [timeout]` and `loop(1) [timeout]` are all valid
+# UML, so none is singled out. The prompt names no asynchronous step, so asynchronous
+# notation is only required if the figure shows one.
 expect:
   - Uses a sequence diagram with 4-7 lifelines and numbered messages.
-  - Shows the retry as a loop or alt frame with a guard, not as extra arrows.
-  - Distinguishes synchronous calls, replies and asynchronous messages.
+  - Shows the retry as one combined fragment (opt, alt or loop) with a guard naming the timeout, not as extra unframed arrows.
+  - Distinguishes synchronous calls from replies; asynchronous messages, if the figure shows any, use their own notation.
   - Keeps the main figure on the happy path plus the one retry; no unrelated error branches.
 deliverables: ["out/*.svg"]

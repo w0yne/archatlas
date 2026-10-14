@@ -26,7 +26,8 @@ DIMS = ("semantic", "structure", "flow", "readability", "compliance", "honesty")
 GATES = ("G1", "G2", "G3", "G4", "G5")
 
 
-def load_runs(dirs: list[Path], markers: list[str] | None = None) -> tuple[list[dict], list[dict]]:
+def load_runs(dirs: list[Path], markers: list[str] | None = None,
+              grade_file: str = "grade.json") -> tuple[list[dict], list[dict]]:
     runs, metas = [], []
     for d in dirs:
         res = d / "results.json"
@@ -36,7 +37,10 @@ def load_runs(dirs: list[Path], markers: list[str] | None = None) -> tuple[list[
             rec = json.loads(rec_path.read_text())
             # Relative to the results root's parent, so reports never carry local absolute paths.
             rec["_dir"] = str(rec_path.parent.relative_to(d.parent))
-            g = rec_path.parent / "grade.json"
+            g = rec_path.parent / grade_file
+            rec["_rescored"] = g.exists() and grade_file != "grade.json"
+            if not g.exists():
+                g = rec_path.parent / "grade.json"
             rec["_grade"] = json.loads(g.read_text()) if g.exists() else None
             # Recompute trace facts from the saved events with the current adapters.
             events = "".join(p.read_text(encoding="utf-8", errors="replace")
@@ -91,12 +95,14 @@ def main(argv=None) -> int:
     ap.add_argument("--defects", type=Path, help="hand-written defects section to append")
     ap.add_argument("--title", default="Evaluation report")
     ap.add_argument("--skill-dir", type=Path, help="recompute skill-load evidence with this skill's SKILL.md")
+    ap.add_argument("--grade-file", default="grade.json",
+                    help="prefer this grade file per run (e.g. a re-score), falling back to grade.json")
     ap.add_argument("--baseline", type=Path,
                     help="an earlier report's JSON: adds before/after tables, and supplies the no-skill rows "
                          "for scenario/host pairs this run did not repeat")
     args = ap.parse_args(argv)
     scenarios = load_scenarios()
-    runs, metas = load_runs(args.results, skill_markers(args.skill_dir) if args.skill_dir else None)
+    runs, metas = load_runs(args.results, skill_markers(args.skill_dir) if args.skill_dir else None, args.grade_file)
     tasks = [r for r in runs if not r["scenario"].startswith("T")]
     trig = [r for r in runs if r["scenario"].startswith("T")]
 
@@ -113,7 +119,7 @@ def main(argv=None) -> int:
             "gates": gs, "gates_pass": all(v is not False for v in gs.values()), "scores": sc, "mean_score": total(sc),
             "type_chosen": grade.get("type_chosen"), "expected_types": scenarios[r["scenario"]].get("expected_types"),
             "grader_model": (r.get("_grade") or {}).get("grader_model"), "notes": grade.get("notes"),
-            "defects": grade.get("defects"), "evidence_dir": r["_dir"],
+            "defects": grade.get("defects"), "evidence_dir": r["_dir"], "rescored": r["_rescored"],
         })
 
     by = defaultdict(list)
@@ -250,7 +256,7 @@ def main(argv=None) -> int:
           "|" + "---|" * (9 + len(DIMS))]
     for x in rows:
         gates = " ".join(f"{k}:{'✓' if v is True else ('✗' if v is False else '–')}" for k, v in x["gates"].items())
-        L.append(f"| {x['run']} | {fmt(x['exit_codes'])} | {gates} | " + " | ".join(fmt(x["scores"][d]) for d in DIMS) +
+        L.append(f"| {x['run']}{' (rescored)' if x['rescored'] else ''} | {fmt(x['exit_codes'])} | {gates} | " + " | ".join(fmt(x["scores"][d]) for d in DIMS) +
                  f" | {fmt(x['type_chosen'])} ({','.join(x['expected_types'] or [])}) | {fmt(x['skill_loaded'])} | {'yes' if x['renderer_used'] else 'no'} | {fmt(x['clarification_turns'])} | {fmt(x['cost_usd'])} | {fmt(x['wall_s'])} |")
     fails = [x for x in rows if not x["gates_pass"]]
     L += ["", "## Hard-gate failures", ""]
