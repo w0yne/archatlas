@@ -51,6 +51,7 @@ class Text:
     anchor: str = "start"
     style: str = "peer"
     runs: list = field(default_factory=list)
+    source: str = ""
 
     @property
     def left(self):

@@ -29,6 +29,8 @@ class EstimateTests(unittest.TestCase):
         self.assertEqual(metrics.padding_factor, 1.12)
         self.assertEqual(metrics.family, "sans-serif")
         self.assertGreater(metrics.width("中文 API"), 0)
+        self.assertTrue(metrics.family.startswith('"Noto Sans CJK SC",'))
+        self.assertIn("cjk-glyph-coverage", [w["rule"] for w in metrics.warnings])
         self.assertTrue(metrics.warnings)
         json.dumps(metrics.doctor())
 
@@ -45,6 +47,26 @@ class EstimateTests(unittest.TestCase):
                 self.assertGreater(metrics.width("Example 中文"), 0)
                 self.assertEqual(metrics.measured_with, "estimate")
                 self.assertIn("font-dependency", [w["rule"] for w in metrics.warnings])
+                self.assertIn("cjk-glyph-coverage", [w["rule"] for w in metrics.warnings])
+                self.assertTrue(metrics.family.startswith('"Noto Sans CJK SC",'))
+                self.assertTrue(metrics.runs("中")[0]["family"].startswith('"Noto Sans CJK SC",'))
+                zh = FontMetrics(paths=[], lang="zh-CN")
+                self.assertTrue(zh.family.startswith('"Noto Sans CJK SC",'))
+
+    def test_language_and_detected_cjk_select_explicit_stack(self):
+        zh = FontMetrics(paths=[], lang="zh")
+        for family in ("Noto Sans CJK SC", "Source Han Sans SC",
+                       "PingFang SC", "Microsoft YaHei"):
+            self.assertIn(f'"{family}"', zh.family)
+        for text in ("中文", "中文 API", "甲，乙", "𠀀"):
+            for method in ("width", "wrap", "runs", "required_width"):
+                with self.subTest(text=text, method=method):
+                    metrics = FontMetrics(paths=[])
+                    args = (text, 32) if method == "wrap" else (text,)
+                    getattr(metrics, method)(*args)
+                    self.assertTrue(metrics.family.startswith('"Noto Sans CJK SC",'))
+                    self.assertEqual(metrics.measured_with, "estimate")
+                    self.assertIn("cjk-glyph-coverage", [w["rule"] for w in metrics.warnings])
 
     def test_wrap_preserves_words_and_newlines(self):
         metrics = FontMetrics(paths=[])
@@ -53,7 +75,7 @@ class EstimateTests(unittest.TestCase):
         self.assertEqual(metrics.wrap("one\n\n二三\n", 100), ["one", "", "二三", ""])
         self.assertEqual(metrics.wrap("", 100), [""])
 
-    def test_kinsoku_and_word_splitting(self):
+    def test_kinsoku_and_intact_words(self):
         metrics = FontMetrics(paths=[])
         for text in ("甲乙，丙丁。戊己", "甲（乙丙）丁", "甲乙 ，丙丁"):
             lines = metrics.wrap(text, 48)
@@ -63,13 +85,43 @@ class EstimateTests(unittest.TestCase):
                 self.assertFalse(line.endswith("（"))
                 self.assertLessEqual(metrics.width(line), 48)
         lines = metrics.wrap("abcdefghij", 30)
-        self.assertEqual("".join(lines), "abcdefghij")
-        self.assertTrue(all(metrics.width(line) <= 30 for line in lines))
+        self.assertEqual(lines, ["abcdefghij"])
+        for word in ("Checkout", "Shipped", "PaymentReceived", "vet_specialties",
+                     "hard-hyphen-word", "e\u0301x"):
+            self.assertEqual(metrics.wrap(word, 1), [word])
+            self.assertEqual(metrics.wrap(f"before {word} after", 1),
+                             ["before", word, "after"])
+            self.assertEqual(metrics.required_width(word), metrics.width(word))
+
+    def test_soft_hyphens_are_the_only_latin_hyphenation(self):
+        metrics = FontMetrics(paths=[])
+        text = "Pay\u00adment\u00adReceived"
+        self.assertEqual(metrics.width(text), metrics.width("PaymentReceived"))
+        self.assertEqual(metrics.wrap(text, 1000), ["PaymentReceived"])
+        self.assertEqual(metrics.wrap(text, 80), ["Pay-", "ment-", "Received"])
+        self.assertEqual(metrics.wrap(text, 1), ["Pay-", "ment-", "Received"])
+        self.assertEqual(metrics.runs(text), [{"text": "PaymentReceived", "family": "sans-serif"}])
+        self.assertEqual(metrics.required_width(text), metrics.width("Received"))
+        self.assertEqual(metrics.required_width("abcd\u00ade"), metrics.width("abcd-"))
+        self.assertEqual(metrics.wrap("a\u00ad", 1), ["a"])
+        self.assertEqual(metrics.wrap("甲（乙\u00ad）丙", 32), ["甲", "（乙）", "丙"])
+
+    def test_required_width_matches_wrap_boundaries(self):
+        metrics = FontMetrics(paths=[])
+        for text, widest in (("a PaymentReceived b", "PaymentReceived"),
+                             ("甲，乙", "甲，"), ("甲（乙）丙", "（乙）"),
+                             ("a\nvet_specialties", "vet_specialties"),
+                             ("", ""), ("  \n ", "")):
+            with self.subTest(text=text):
+                required = metrics.required_width(text)
+                self.assertEqual(required, metrics.width(widest))
+                lines = metrics.wrap(text, max(1, required))
+                self.assertTrue(all(metrics.width(line) <= max(1, required) for line in lines))
 
     def test_indivisible_units_warn_without_losing_text(self):
         metrics = FontMetrics(paths=[])
         self.assertEqual(metrics.wrap("甲，乙", 1), ["甲，", "乙"])
-        self.assertEqual(metrics.wrap("e\u0301x", 1), ["e\u0301", "x"])
+        self.assertEqual(metrics.wrap("e\u0301x", 1), ["e\u0301x"])
         self.assertIn("font-wrap-overflow", [w["rule"] for w in metrics.warnings])
 
     def test_numeric_validation_and_width_contract(self):
@@ -82,6 +134,8 @@ class EstimateTests(unittest.TestCase):
                 metrics.width("x", invalid)
             with self.assertRaises(ValueError):
                 metrics.wrap("x", invalid)
+            with self.assertRaises(ValueError):
+                metrics.required_width("x", invalid)
 
     def test_missing_fontconfig_uses_os_paths(self):
         with patch("archatlas.fonts.discover.subprocess.run", side_effect=FileNotFoundError), \
@@ -144,7 +198,11 @@ class MeasuredTests(unittest.TestCase):
         self.assertAlmostEqual(metrics.width("API中文", 12.5), 43.75, places=2)
         self.assertEqual(metrics.measured_with, "pillow")
         self.assertEqual(metrics.padding_factor, 1)
-        self.assertEqual(metrics.family, '"Noto Sans", "Noto Sans CJK SC", sans-serif')
+        self.assertTrue(metrics.family.startswith('"Noto Sans CJK SC",'))
+        self.assertIn('"Noto Sans"', metrics.family)
+        self.assertEqual(metrics.runs("API中文"),
+                         [{"text": "API", "family": "Noto Sans"},
+                          {"text": "中文", "family": "Noto Sans CJK SC"}])
         report = metrics.doctor()
         self.assertTrue(report["cjk_coverage"]["complete"])
         self.assertEqual(report["mode"], "pillow")
@@ -159,6 +217,9 @@ class MeasuredTests(unittest.TestCase):
         self.assertEqual(metrics.width("中", 16), 16)
         self.assertEqual(metrics.measured_with, "estimate")
         self.assertEqual(metrics.padding_factor, 1.12)
+        self.assertTrue(metrics.runs("中")[0]["family"].startswith('"Noto Sans CJK SC",'))
+        self.assertEqual(metrics.runs("API")[0]["family"], "Noto Sans")
+        self.assertIn("cjk-glyph-coverage", [w["rule"] for w in metrics.warnings])
         metrics.width("中", 16)
         self.assertEqual(len([w for w in metrics.warnings
                               if w["rule"] == "font-missing-glyph"]), 1)
@@ -170,6 +231,40 @@ class MeasuredTests(unittest.TestCase):
         self.assertEqual("".join(lines), "甲乙，丙丁。戊己")
         self.assertTrue(all(metrics.width(line) <= 48 for line in lines))
         self.assertTrue(all(not line.startswith(("，", "。")) for line in lines))
+        for word in ("Checkout", "Shipped", "PaymentReceived", "vet_specialties",
+                     "hard-hyphen"):
+            self.assertEqual(metrics.wrap(word, 1), [word])
+            self.assertEqual(metrics.required_width(word), metrics.width(word))
+        self.assertEqual(metrics.wrap("Check\u00adout", 48), ["Check-", "out"])
+        self.assertEqual(metrics.required_width("Check\u00adout"), 48)
+
+    def test_cjk_measurement_failure_warns_even_with_verified_coverage(self):
+        metrics = FontMetrics(paths=[self.latin, self.cjk])
+        face = metrics._choice("中")
+        with patch.object(metrics._font_cache[(face, 16)], "getlength",
+                          side_effect=OSError("measurement unavailable")):
+            self.assertEqual(metrics.width("中"), 16)
+        self.assertEqual(metrics.measured_with, "estimate")
+        self.assertIn("cjk-glyph-coverage", [w["rule"] for w in metrics.warnings])
+        self.assertEqual(metrics.runs("中"), [{"text": "中", "family": "Noto Sans CJK SC"}])
+
+    def test_probe_coverage_does_not_hide_missing_actual_cjk(self):
+        metrics = FontMetrics(paths=[self.latin, self.cjk])
+        self.assertTrue(metrics.doctor()["cjk_coverage"]["complete"])
+        self.assertEqual(metrics.wrap("中文𠀀", 16), ["中", "文", "𠀀"])
+        self.assertEqual(metrics.measured_with, "estimate")
+        self.assertIn("cjk-glyph-coverage", [w["rule"] for w in metrics.warnings])
+        self.assertEqual(metrics.runs("中")[0]["family"], "Noto Sans CJK SC")
+        self.assertTrue(metrics.runs("𠀀")[0]["family"].startswith('"Noto Sans CJK SC",'))
+
+    def test_measured_cjk_run_keeps_its_actual_family(self):
+        han = self.make_font("han.ttf", "Fixture Han", {ord(c) for c in CJK_SAMPLE}, 750)
+        metrics = FontMetrics(paths=[han, self.latin], lang="zh")
+        self.assertEqual(metrics.width("中文"), 24)
+        self.assertEqual(metrics.runs("中文"), [{"text": "中文", "family": "Fixture Han"}])
+        self.assertTrue(metrics.family.startswith('"Noto Sans CJK SC",'))
+        self.assertEqual(metrics.measured_with, "pillow")
+        self.assertEqual(metrics.warnings, [])
 
     def test_collection_selects_sc_face_and_matches_svg_family(self):
         from fontTools.ttLib import TTCollection, TTFont

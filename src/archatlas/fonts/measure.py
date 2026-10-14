@@ -8,6 +8,19 @@ from .discover import discover
 
 _NO_START = frozenset("，。、）；：！？】》〉」』〕］｝,.;:!?)]}")
 _NO_END = frozenset("（【《〈「『〔［｛([{")
+_SOFT_HYPHEN = "\u00ad"
+_CJK_FAMILIES = (
+    "Noto Sans CJK SC", "Source Han Sans SC", "PingFang SC",
+    "Microsoft YaHei", "WenQuanYi Zen Hei",
+)
+
+
+def _family_stack(names):
+    # CSS quoted-string escaping; XML escaping remains the SVG writer's job.
+    quoted = ['"' + name.replace("\\", "\\\\").replace('"', '\\"')
+              .replace("\n", "\\a ").replace("\r", "\\d ") + '"'
+              for name in dict.fromkeys(names)]
+    return ", ".join(quoted + ["sans-serif"])
 
 
 def _clusters(text):
@@ -22,8 +35,16 @@ def _clusters(text):
     return clusters
 
 
-def _wide(char):
-    return unicodedata.east_asian_width(char) in ("W", "F")
+def _cjk(char):
+    code = ord(char)
+    return (0x1100 <= code <= 0x11FF or 0x2E80 <= code <= 0xA4CF
+            or 0xAC00 <= code <= 0xD7FF or 0xF900 <= code <= 0xFAFF
+            or 0xFE30 <= code <= 0xFE4F or 0xFF00 <= code <= 0xFFEF
+            or 0x20000 <= code <= 0x323AF)
+
+
+def _paragraphs(text):
+    return text.replace("\r\n", "\n").replace("\r", "\n").expandtabs(4).split("\n")
 
 
 def _positive(value, name):
@@ -35,12 +56,16 @@ class FontMetrics:
     """Measure with installed fonts in the same order as the SVG font stack.
 
     ``paths=None`` discovers system fonts; ``paths=[]`` forces estimates.
+    ``lang="zh"`` (including zh region tags), or observing actual CJK text,
+    enables an explicit CJK family stack even without optional dependencies.
+    Verified runs retain their measured family; missing CJK runs use the stack.
     Missing dependencies or glyphs produce warnings, ``measured_with=estimate``
     and ``padding_factor=1.12``. Width itself does not include this box padding.
     Subset embedding is deferred; this API never downloads or embeds fonts.
     """
 
-    def __init__(self, paths=None):
+    def __init__(self, paths=None, lang="en"):
+        self._cjk_text = lang.lower().replace("_", "-").split("-")[0] == "zh"
         self.warnings = []
         self.measured_with = "pillow"
         self.padding_factor = 1
@@ -57,6 +82,8 @@ class FontMetrics:
         except ImportError:
             self._estimate("font-dependency", "Pillow and fontTools are required "
                            "for verified measurement; using conservative estimates.")
+            if self._cjk_text:
+                self._cjk_estimate()
             return
         # Prime Latin and Chinese fallback before callers read .family.
         required = {ord(c) for c in "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
@@ -69,6 +96,9 @@ class FontMetrics:
         elif not all(ord(c) in self._coverage for c in CJK_SAMPLE):
             self._warn("font-cjk-coverage", "Installed fonts do not cover the full "
                        "CJK probe; missing glyphs will use conservative estimates.")
+        if self._cjk_text and not all(ord(c) in self._coverage for c in CJK_SAMPLE):
+            self._warn("cjk-glyph-coverage", "CJK glyph coverage is unverified "
+                       "or CJK measurement used conservative estimates.")
 
     def _warn(self, rule, message):
         warning = {"rule": rule, "message": message}
@@ -79,6 +109,10 @@ class FontMetrics:
         self.measured_with = "estimate"
         self.padding_factor = 1.12
         self._warn(rule, message)
+
+    def _cjk_estimate(self):
+        self._estimate("cjk-glyph-coverage", "CJK glyph coverage is unverified "
+                       "or CJK measurement used conservative estimates.")
 
     def _load_next(self):
         for face in self._pending:
@@ -100,21 +134,29 @@ class FontMetrics:
 
     @property
     def family(self):
-        names = list(dict.fromkeys(family for _, family, _ in self._faces))
-        # CSS quoted-string escaping; XML escaping remains the SVG writer's job.
-        quoted = ['"' + name.replace("\\", "\\\\").replace('"', '\\"')
-                  .replace("\n", "\\a ").replace("\r", "\\d ") + '"' for name in names]
-        return ", ".join(quoted + ["sans-serif"])
+        """SVG/CSS family stack; CJK detection is retained for this instance."""
+        names = list(_CJK_FAMILIES) if self._cjk_text else []
+        names.extend(family for _, family, _ in self._faces)
+        return _family_stack(names)
 
     def runs(self, text):
         """Resolve explicit font runs for SVG readers lacking font fallback.
 
         Family names, never local font paths, enter the exported document.
+        Missing CJK runs contain a CSS family stack beginning with Noto Sans
+        CJK SC, for readers that only honor the first family.
         """
+        self._cjk_text = self._cjk_text or any(_cjk(c) for c in text)
         runs = []
-        for char in text:
+        for char in text.replace(_SOFT_HYPHEN, ""):
             face = self._choice(char)
-            family = self._faces[face][1] if face is not None else "sans-serif"
+            if face is not None:
+                family = self._faces[face][1]
+            elif _cjk(char):
+                family = _family_stack(_CJK_FAMILIES)
+                self._cjk_estimate()
+            else:
+                family = "sans-serif"
             if runs and runs[-1]["family"] == family:
                 runs[-1]["text"] += char
             else:
@@ -160,13 +202,16 @@ class FontMetrics:
         else:
             self._estimate("font-missing-glyph", "Some text has no verified font "
                            "coverage; using conservative estimates.")
+        if any(_cjk(c) for c in text):
+            self._cjk_estimate()
         return self._estimated_width(text, size)
 
     def width(self, text, size=16) -> float:
         """Return the maximum line advance in pixels (without box padding)."""
         _positive(size, "size")
+        self._cjk_text = self._cjk_text or any(_cjk(c) for c in text)
         widths = []
-        for line in text.expandtabs(4).split("\n"):
+        for line in _paragraphs(text.replace(_SOFT_HYPHEN, "")):
             total, run, previous = 0.0, "", None
             for char in line.rstrip("\r"):
                 selected = self._choice(char)
@@ -183,46 +228,76 @@ class FontMetrics:
     def wrap(self, text, max_width, size=16) -> list[str]:
         """Greedily wrap words/CJK; preserve explicit newlines.
 
-        Break long words only when needed. An indivisible grapheme or kinsoku
-        group may exceed the limit, with a warning, instead of losing text or
-        creating a line that begins with closing punctuation.
+        Only whitespace, CJK boundaries and explicit soft hyphens permit a
+        break. Oversized words/kinsoku groups remain intact, with a warning.
+        Unused soft hyphens are hidden; a used one renders as a hyphen.
         """
         _positive(max_width, "max_width")
         _positive(size, "size")
         lines = []
-        for paragraph in text.replace("\r\n", "\n").replace("\r", "\n").expandtabs(4).split("\n"):
+        for paragraph in _paragraphs(text):
             chars = _clusters(paragraph.strip())
             if not chars:
                 lines.append("")
                 continue
             start = 0
+            boundaries = self._break_positions(chars)
             while start < len(chars):
-                best, fitted = None, None
-                stop = start + 1
-                while stop <= len(chars):
-                    candidate = "".join(chars[start:stop]).rstrip()
-                    if self.width(candidate, size) > max_width:
+                best = None
+                remaining = [end for end in boundaries if end > start]
+                for end in remaining:
+                    candidate = self._line_text(chars, start, end)
+                    if self.width(candidate, size) <= max_width:
+                        best = end
+                    elif chars[end - 1] != _SOFT_HYPHEN:
+                        # A discretionary hyphen can be wider than the rest
+                        # of the word; try the next boundary before giving up.
                         break
-                    if self._kinsoku_boundary(chars, stop):
-                        fitted = stop
-                        if (stop == len(chars) or chars[stop - 1].isspace()
-                                or chars[stop].isspace()
-                                or _wide(chars[stop - 1][0]) or _wide(chars[stop][0])
-                                or chars[stop - 1] == "-"):
-                            best = stop
-                    stop += 1
-                end = best or fitted
-                if end is None:
-                    end = max(start + 1, stop)
-                    while end < len(chars) and not self._kinsoku_boundary(chars, end):
-                        end += 1
+                end = best or remaining[0]
+                if best is None:
                     self._warn("font-wrap-overflow", "An indivisible text unit "
                                "exceeds the wrap width.")
-                lines.append("".join(chars[start:end]).rstrip())
+                lines.append(self._line_text(chars, start, end))
                 start = end
                 while start < len(chars) and chars[start].isspace():
                     start += 1
         return lines
+
+    def required_width(self, text, size=16) -> float:
+        """Longest unbreakable unit in pixels, without box padding.
+
+        Uses the same word, soft-hyphen and kinsoku boundaries as ``wrap``.
+        A discretionary break includes the visible hyphen's advance.
+        """
+        _positive(size, "size")
+        widths = [0.0]
+        for paragraph in _paragraphs(text):
+            chars = _clusters(paragraph.strip())
+            start = 0
+            for end in self._break_positions(chars):
+                widths.append(self.width(self._line_text(chars, start, end).strip(), size))
+                start = end
+        return float(max(widths))
+
+    @staticmethod
+    def _line_text(chars, start, end):
+        visible = "".join(chars[start:end]).replace(_SOFT_HYPHEN, "").rstrip()
+        if (visible and end < len(chars) and chars[end - 1] == _SOFT_HYPHEN
+                and not chars[end].isspace()):
+            visible += "-"
+        return visible
+
+    @classmethod
+    def _break_positions(cls, chars):
+        return [
+            end for end in range(1, len(chars) + 1)
+            if (end == len(chars) or (
+                chars[end] != _SOFT_HYPHEN
+                and (chars[end - 1].isspace() or chars[end].isspace()
+                     or chars[end - 1] == _SOFT_HYPHEN
+                     or _cjk(chars[end - 1][0]) or _cjk(chars[end][0]))
+                and cls._kinsoku_boundary(chars, end)))
+        ]
 
     @staticmethod
     def _kinsoku_boundary(chars, end):
@@ -231,9 +306,9 @@ class FontMetrics:
         # Ignore whitespace at the break when checking opening/closing marks.
         left = end - 1
         right = end
-        while left >= 0 and chars[left].isspace():
+        while left >= 0 and (chars[left].isspace() or chars[left] == _SOFT_HYPHEN):
             left -= 1
-        while right < len(chars) and chars[right].isspace():
+        while right < len(chars) and (chars[right].isspace() or chars[right] == _SOFT_HYPHEN):
             right += 1
         return ((left < 0 or chars[left][-1] not in _NO_END)
                 and (right == len(chars) or chars[right][0] not in _NO_START))

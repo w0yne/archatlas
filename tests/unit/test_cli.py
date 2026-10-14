@@ -1,3 +1,4 @@
+import builtins
 import contextlib
 import io
 import json
@@ -7,10 +8,88 @@ import unittest
 from unittest.mock import patch
 
 from archatlas.cli import main, initial
+from archatlas.fonts import FontMetrics
 from archatlas.model import load
 
 
+INSTALL_COMMAND = ("python3 -m venv .atlas-venv && "
+                   ".atlas-venv/bin/python -m pip install -r scripts/requirements.txt")
+
+
 class CLITests(unittest.TestCase):
+    def test_render_missing_dependencies_reports_setup_and_preserves_exit_codes(self):
+        original_import = builtins.__import__
+
+        def without_pillow(name, *args, **kwargs):
+            if name == "PIL" or name.startswith("PIL."):
+                raise ImportError("Pillow unavailable")
+            return original_import(name, *args, **kwargs)
+
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            model = root / "model.json"
+            model.write_text(json.dumps(initial("nested")))
+            for level, expected_code in (("error", 0), ("warning", 1)):
+                stdout, stderr = io.StringIO(), io.StringIO()
+                with self.subTest(level=level), patch("builtins.__import__", without_pillow), \
+                        contextlib.redirect_stdout(stdout), contextlib.redirect_stderr(stderr):
+                    code = main(["render", str(model), "-o", str(root), "--fail-on", level])
+                    self.assertEqual(code, expected_code)
+                summary = json.loads(stdout.getvalue())
+                self.assertEqual(summary["measured_with"], "estimate")
+                self.assertEqual(summary["install_hint"], INSTALL_COMMAND)
+                self.assertIn("from the skill folder", stderr.getvalue())
+                self.assertIn(INSTALL_COMMAND, stderr.getvalue())
+                self.assertNotIn(str(root), stderr.getvalue())
+                report = json.loads((root / "diagram.findings.json").read_text())
+                self.assertEqual(report["measured_with"], "estimate")
+                self.assertIn("font-dependency", [f["rule"] for f in report["findings"]])
+
+    def test_render_reports_hint_when_glyph_coverage_falls_back_during_layout(self):
+        from fontTools.fontBuilder import FontBuilder
+        from fontTools.pens.ttGlyphPen import TTGlyphPen
+
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            # A deterministic Latin-only font keeps this independent of host fonts.
+            cmap = {code: f"uni{code:04X}" for code in range(32, 127)}
+            names = [".notdef", *cmap.values()]
+            builder = FontBuilder(1000, isTTF=True)
+            builder.setupGlyphOrder(names)
+            builder.setupCharacterMap(cmap)
+            builder.setupGlyf({name: TTGlyphPen(None).glyph() for name in names})
+            builder.setupHorizontalMetrics({name: (500, 0) for name in names})
+            builder.setupHorizontalHeader(ascent=800, descent=-200)
+            builder.setupNameTable({"familyName": "Test Latin", "styleName": "Regular"})
+            builder.setupOS2(sTypoAscender=800, sTypoDescender=-200,
+                            usWinAscent=800, usWinDescent=200)
+            builder.setupPost()
+            builder.setupMaxp()
+            font = root / "latin.ttf"
+            builder.save(font)
+            for label, expected_mode in (("Client", "pillow"), ("中文", "estimate")):
+                metrics = FontMetrics(paths=[font])
+                self.assertEqual(metrics.measured_with, "pillow")
+                model = initial("nested")
+                model["nodes"][0]["label"] = label
+                source = root / "model.json"
+                source.write_text(json.dumps(model))
+                stdout, stderr = io.StringIO(), io.StringIO()
+                with self.subTest(label=label), patch("archatlas.cli.FontMetrics", return_value=metrics), \
+                        contextlib.redirect_stdout(stdout), contextlib.redirect_stderr(stderr):
+                    self.assertEqual(main(["render", str(source), "-o", str(root)]), 0)
+                summary = json.loads(stdout.getvalue())
+                self.assertEqual(summary["measured_with"], expected_mode)
+                if expected_mode == "estimate":
+                    self.assertEqual(summary["install_hint"], INSTALL_COMMAND)
+                    self.assertIn(INSTALL_COMMAND, stderr.getvalue())
+                    self.assertIn("do not install system fonts", stderr.getvalue())
+                    self.assertIn("glyph coverage", stderr.getvalue())
+                    self.assertIn("font-missing-glyph", [w["rule"] for w in metrics.warnings])
+                else:
+                    self.assertNotIn("install_hint", summary)
+                    self.assertEqual(stderr.getvalue(), "")
+
     def test_offline_render_check_and_explicit_optional_limit(self):
         with tempfile.TemporaryDirectory() as temp, contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
             root = Path(temp)
@@ -85,7 +164,9 @@ class CLITests(unittest.TestCase):
             (root / "labels.zh.json").write_text(json.dumps({"title": "系统", "client": "用户"}))
             svg = root / "diagram.svg"
             report_path = root / "findings.json"
-            self.assertEqual(main(["render", str(model_path), "--lang", "zh", "-o", str(svg)]), 0)
+            with patch("archatlas.cli.FontMetrics", wraps=FontMetrics) as metrics:
+                self.assertEqual(main(["render", str(model_path), "--lang", "zh", "-o", str(svg)]), 0)
+                metrics.assert_called_once_with(lang="zh")
             args = ["check", str(svg), "--model", str(model_path), "--report", str(report_path)]
             with patch("archatlas.cli.load", wraps=load) as loader:
                 self.assertEqual(main(args + ["--lang", "zh"]), 0)

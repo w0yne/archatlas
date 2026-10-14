@@ -18,9 +18,10 @@ def intersects(a, b, pad=0):
 
 
 def text_box(metrics, id, value, x, y, width, size=16, owner="", role="label", anchor="start", style="peer"):
+    width = max(width, metrics.required_width(value, size))
     lines = metrics.wrap(value, width, size) or [""]
     measured = max(metrics.width(line, size) for line in lines)
-    return Text(id, lines, x, y, measured, len(lines) * size * 1.4, size, owner, role, anchor, style)
+    return Text(id, lines, x, y, measured, len(lines) * size * 1.4, size, owner, role, anchor, style, source=value)
 
 
 class Layout:
@@ -46,6 +47,9 @@ class Layout:
         if labels:
             self.gap = max(self.gap, min(max(labels), self.spacing["label_width"]) +
                            2 * self.spacing["label_clearance"])
+            self.gap = max(self.gap, max(metrics.required_width(e["label"], 12)
+                                        for e in model.get("edges", []) if e.get("label")) +
+                           2 * self.spacing["label_clearance"])
         self.rank_gap = max(self.gap, self.spacing["rank_gap"])
         self.pad, self.header = self.spacing["group_padding"], self.spacing["group_header"]
         self.document_width = self.spacing["document_width"]
@@ -68,6 +72,7 @@ class Layout:
         self.dimensions = {}
         self.offsets = {}
         self.node_text = {}
+        self.node_sources = {}
         meta = model["meta"]
         self.scene = Scene(meta["title"], meta.get("description") or meta["title"], 1120, 810,
                            meta.get("theme", "neutral"), family=metrics.family,
@@ -87,6 +92,12 @@ class Layout:
                 # Keep short words whole in compact event/gateway symbols.
                 word_width = max((metrics.width(word, 16) for word in node["label"].split()), default=0)
                 width = max(width, min(140, word_width + 2 * padding))
+        wrap_width = max(24, width - 2 * padding)
+        fields = [(node["label"], 16), (node.get("sub", ""), 12)]
+        fields += [(value, 12) for value in node.get("attributes", [])]
+        fields += [(" · ".join(node.get("tags", [])), 11)]
+        width = max(width, max((metrics.required_width(value, size) + 2 * padding
+                               for value, size in fields if value), default=width))
         wrap_width = max(24, width - 2 * padding)
         lines = []
         for role, value, size in [("name", node["label"], 16), ("sub", node.get("sub", ""), 12)]:
@@ -116,6 +127,9 @@ class Layout:
                 width = max(width, math.sqrt(2) * (text_w + 2 * padding))
                 height = max(height, math.sqrt(2) * (text_h + 2 * padding))
         self.node_text[node["id"]] = lines
+        self.node_sources[node["id"]] = {"name": node["label"], "sub": node.get("sub", ""),
+            "tags": " · ".join(node.get("tags", [])),
+            **{f"attribute-{i}": value for i, value in enumerate(node.get("attributes", []))}}
         return width, height
 
     def arrange(self, ids, vertical=False, columns=None):
@@ -155,7 +169,7 @@ class Layout:
         else:
             offsets, (w, h) = self.arrange(ids, vertical=vertical)
         title_width = self.metrics.width(group["title"], 16)
-        w = max(w, min(title_width, 700))
+        w = max(w, min(title_width, 700), self.metrics.required_width(group["title"], 16))
         title = self.metrics.wrap(group["title"], w, 16)
         header = max(self.header, len(title) * 22.4 + 24)
         self.dimensions[id] = (w + 2 * self.pad, h + header + self.pad)
@@ -188,7 +202,8 @@ class Layout:
                 tw = max(self.metrics.width(line, size) for line in lines)
                 self.scene.texts.append(Text(id + "-" + role, lines, max(tw / 2 + 8, x + w / 2), ty, tw,
                                              len(lines) * size * 1.4, size, "" if small_state else id,
-                                             "state-label" if small_state else role, "middle", style))
+                                             "state-label" if small_state else role, "middle", style,
+                                             source=self.node_sources[id][role]))
                 ty += len(lines) * size * 1.4 + 6
 
     def graph(self):
@@ -266,6 +281,11 @@ class Layout:
                 cursor -= self.gap
             cross_size = max(cursor + self.pad, 96)
             along_size = flow + (maximum_depth - depth + 1) * axis_padding + self.pad
+            title_width = self.metrics.required_width(self.groups[id]["title"], 16) + 2 * self.pad
+            if horizontal:
+                along_size = max(along_size, title_width)
+            else:
+                cross_size = max(cross_size, title_width)
             self.dimensions[id] = coordinates(along_size, cross_size)
             self.offsets[id] = offsets
 
@@ -422,7 +442,7 @@ class Layout:
 
     def add_edge(self, id, edge, points):
         status = edge.get("evidence", {}).get("status", "verified")
-        dashed = edge.get("dashed", status != "verified" or edge.get("kind") == "message")
+        dashed = edge.get("dashed", status != "verified" or edge.get("kind") in ("message", "reply"))
         self.scene.edges.append(Connector(id, points, edge["from"], edge["to"], edge.get("style", "peer"),
                                            edge.get("dir", "--" if self.template == "er" else "->"),
                                            dashed, edge.get("kind", "call")))
@@ -481,23 +501,76 @@ class Layout:
             self.place(id, 40 + i * (width + self.gap), self.top)
             centers[id] = 40 + i * (width + self.gap) + width / 2
         edges = sorted(enumerate(self.model.get("edges", [])), key=lambda pair: pair[1].get("step", pair[0] + 1))
-        ys, y = {}, self.top + height + 100
+        frames = sorted(enumerate(self.model.get("frames", [])),
+                        key=lambda pair: (pair[1]["from_step"], -pair[1]["to_step"], pair[0]))
+        bands, frame_info = {}, {}
+        right = max(centers.values()) + width / 2 + 24
+        frame_words = [self.metrics.required_width(value, 12)
+                       for _, frame in frames
+                       for value in [frame.get("label", ""), frame.get("guard", ""),
+                                     *(operand["guard"] for operand in frame.get("operands", []))]]
+        right = max(right, max(frame_words, default=0) + 48 + 24 * len(frames))
+        for _, frame in frames:
+            parents = [info for info in frame_info.values()
+                       if info["frame"]["from_step"] <= frame["from_step"] and
+                       info["frame"]["to_step"] >= frame["to_step"]]
+            parent = parents[-1] if parents else None
+            depth = len(parents)
+            left, frame_right = 24 + depth * 12, right - depth * 12
+            title = frame.get("operator", "")
+            if frame.get("guard"):
+                title += " [" + frame["guard"].strip("[]") + "]"
+            if frame.get("label"):
+                title += (" · " if title else "") + frame["label"]
+            heading = text_box(self.metrics, frame["id"] + "-title", title,
+                               left + 12, 0, frame_right - left - 24, 12, frame["id"], "group-title")
+            info = {"frame": frame, "left": left, "right": frame_right, "heading": heading,
+                    "parent": parent, "guards": []}
+            frame_info[frame["id"]] = info
+            bands.setdefault(frame["from_step"], []).append((info, heading, False))
+            for index, operand in enumerate(frame.get("operands", [])):
+                guard = text_box(self.metrics, frame["id"] + f"-guard-{index + 1}",
+                                 "[" + operand["guard"].strip("[]") + "]", left + 12, 0,
+                                 frame_right - left - 24, 12, frame["id"], "operand-guard")
+                info["guards"].append(guard)
+                bands.setdefault(operand["from_step"], []).append((info, guard, index > 0))
+        ys, cursor = {}, self.top + height + 32
         for i, edge in edges:
             step = edge.get("step", i + 1)
-            ys[step] = y
-            y += max(96, len(self.metrics.wrap(edge.get("label", ""), width + self.gap - 40, 12)) * 16.8 + 55)
-        bottom = y + 24
+            for info, text, separator in bands.get(step, []):
+                text.y = cursor + 8
+                if text is info["heading"]:
+                    info["top"] = cursor
+                if separator:
+                    self.scene.edges.append(Connector(text.id + "-separator",
+                        [(info["left"], cursor), (info["right"], cursor)], "", "",
+                        direction="--", dashed=True, kind="frame-separator"))
+                self.scene.texts.append(text)
+                cursor += text.h + 16
+            label = f"{step}. {edge.get('label', '')}".strip()
+            label_height = len(self.metrics.wrap(label, max(self.metrics.required_width(label, 12),
+                                                          min(120, width + self.gap - 24)), 12)) * 16.8
+            ys[step] = cursor + label_height + 24
+            ending = sum(info["frame"]["to_step"] == step for info in frame_info.values())
+            cursor = ys[step] + max(64 if edge["from"] == edge["to"] else 48, 32 + ending * 12 + 12)
+        bottom = cursor + 24
         for node in nodes:
             x = centers[node["id"]]
             self.scene.edges.append(Connector(node["id"] + "-lifeline",
                                                [(x, self.top + height), (x, bottom)],
                                                node["id"], node["id"], direction="--", dashed=True, kind="lifeline"))
-        for frame in self.model.get("frames", []):
-            top, end = ys[frame["from_step"]] - 64, ys[frame["to_step"]] + 38
-            box = Box(frame["id"], 24, top, max(centers.values()) + width / 2, end - top, "group", "frame")
-            self.scene.boxes.insert(0, box)
-            self.scene.texts.append(text_box(self.metrics, box.id + "-title", frame["label"],
-                                            box.x + 12, top + 8, box.w - 24, 12, box.id, "group-title"))
+        for info in reversed(list(frame_info.values())):
+            last = next(edge for i, edge in edges if edge.get("step", i + 1) == info["frame"]["to_step"])
+            info["bottom"] = max(ys[info["frame"]["to_step"]] + (64 if last["from"] == last["to"] else 32),
+                                 max((child["bottom"] + 12 for child in frame_info.values()
+                                      if child["parent"] is info), default=0))
+        frame_boxes = []
+        for info in frame_info.values():
+            frame_boxes.append(Box(info["frame"]["id"], info["left"], info["top"],
+                                   info["right"] - info["left"], info["bottom"] - info["top"],
+                                   "group", "frame", parent=info["parent"]["frame"]["id"] if info["parent"] else ""))
+        self.scene.boxes = frame_boxes + self.scene.boxes
+        self.scene.edges.sort(key=lambda e: 0 if e.kind == "lifeline" else 1)
         for index, activation in enumerate(self.model.get("activations", [])):
             top, end = ys[activation["from_step"]] - 6, ys[activation["to_step"]] + 6
             self.scene.boxes.append(Box(f"__activation-{index + 1}", centers[activation["node"]] - 5,
@@ -529,24 +602,31 @@ class Layout:
                 self.scene.texts.append(title)
                 y += title.h + 16
             count = len(table["columns"])
-            cell_w = max(110, min(250, width / count))
+            rows = [table["columns"], *table["rows"]]
+            widths = [max(110, min(250, width / count),
+                          max(self.metrics.required_width(row[c], 13) + 24 for row in rows))
+                      for c in range(count)]
             for r, row in enumerate([table["columns"], *table["rows"]]):
-                wrapped = [self.metrics.wrap(value, cell_w - 24, 13) for value in row]
+                wrapped = [self.metrics.wrap(value, widths[c] - 24, 13) for c, value in enumerate(row)]
                 h = max(48, max(len(lines) for lines in wrapped) * 18.2 + 24)
                 for c, lines in enumerate(wrapped):
                     id = f"__{table['id']}-r{r}-c{c}"
-                    x = 40 + c * cell_w
+                    x = 40 + sum(widths[:c])
+                    cell_w = widths[c]
                     style = "primary" if r == 0 else "peer"
                     self.scene.boxes.append(Box(id, x, y, cell_w, h, "cell", style=style))
                     w = max(self.metrics.width(line, 13) for line in lines)
                     self.scene.texts.append(Text(id + "-text", lines, x + 12, y + 12, w, len(lines) * 18.2,
-                                                13, id, "cell-text", style=style))
+                                                13, id, "cell-text", style=style, source=row[c]))
                 y += h
             y += 48
 
     def mixed_table(self):
         available = (self.document_width - self.gap - 80) * 0.6
-        table_width = max((len(t["columns"]) * max(110, min(250, available / len(t["columns"])))
+        table_width = max((sum(max(110, min(250, available / len(t["columns"])),
+                                  max(self.metrics.required_width(row[c], 13) + 24
+                                      for row in [t["columns"], *t["rows"]]))
+                              for c in range(len(t["columns"])))
                            for t in self.model.get("tables", [])), default=0)
         self.graph()
         shift = table_width + self.gap
@@ -586,10 +666,10 @@ class Layout:
         scene.height = 810 if profile in ("slide", "slide-16x9") else max(300, y + 68)
         if profile in ("doc", "doc-1120xN") and scene.width > self.document_width * self.spacing["wide_view_ratio"]:
             scene.warnings.append({"rule": "wide-view", "message": "Content exceeds the theme's wide-view limit; split the view or configure the target width"})
-        scene.warnings.extend(self.metrics.warnings)
-        scene.family, scene.measured_with = self.metrics.family, self.metrics.measured_with
         for text in scene.texts:
             text.runs = [self.metrics.runs(line) for line in text.lines]
+        scene.warnings.extend(self.metrics.warnings)
+        scene.family, scene.measured_with = self.metrics.family, self.metrics.measured_with
         for node in self.nodes.values():
             if node.get("evidence", {}).get("status") not in (None, "verified"):
                 scene.warnings.append({"rule": "evidence", "message": node["evidence"]["status"], "elements": [node["id"]]})
@@ -598,7 +678,7 @@ class Layout:
 
 def layout(model, metrics=None):
     validate(model)
-    engine = Layout(model, metrics or FontMetrics())
+    engine = Layout(model, metrics or FontMetrics(lang=model["meta"].get("lang", "en")))
     if engine.template == "sequence":
         engine.sequence()
     elif engine.template == "grid_table":

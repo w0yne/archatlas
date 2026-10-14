@@ -53,7 +53,7 @@ def edge_label(edge, model):
     source = next((e for i, e in enumerate(model.get("edges", []))
                    if e.get("id", f"edge-{i + 1}") == edge.id), {})
     uncertain = source.get("evidence", {}).get("status", "verified") != "verified"
-    reply = family == "sequence" and edge.kind == "call" and edge.dashed and not uncertain
+    reply = edge.kind == "reply" or (family == "sequence" and edge.kind == "call" and edge.dashed and not uncertain)
     semantic = "reply" if reply else edge.kind
     default = EDGES[semantic]
     contextual = (edge.kind == "call" or

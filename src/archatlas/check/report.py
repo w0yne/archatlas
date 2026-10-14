@@ -5,8 +5,8 @@ import re
 from xml.etree import ElementTree as ET
 
 from .contrast import ratio
-from ..fonts.measure import FontMetrics
-from ..layout.route import segment_hits_rect, crosses
+from ..fonts.measure import FontMetrics, _cjk
+from ..layout.route import segment_hits_rect, crosses, _overlap
 
 
 def overlap(a, b, tolerance=1):
@@ -84,7 +84,6 @@ def on_shape(point, element, tolerance=1):
 
 
 def check_svg(svg, metrics=None):
-    metrics = metrics or FontMetrics()
     findings = []
 
     def add(rule, message, elements=(), boxes=(), severity="error"):
@@ -99,6 +98,7 @@ def check_svg(svg, metrics=None):
     except ET.ParseError as error:
         add("structure", str(error))
         return {"schemaVersion": 1, "findings": findings, "errors": 1, "warnings": 0}
+    metrics = metrics or FontMetrics(lang=root.get("lang", "en"))
     elements = list(root.iter())
     if root.get("data-archatlas") != "0.1":
         add("unsupported-geometry", "Static ownership checks require an Archatlas SVG; external SVG needs a browser/manual review")
@@ -147,6 +147,27 @@ def check_svg(svg, metrics=None):
         if e.tag.rsplit("}", 1)[-1] == "text":
             size = float(e.get("font-size", 16))
             spans = list(e) or [e]
+            lines = ["".join(span.itertext()) for span in spans]
+            source = e.get("data-source", "")
+            soft_breaks = {len(source[:i].replace("\u00ad", "")) for i, c in enumerate(source) if c == "\u00ad"}
+            source = source.replace("\u00ad", "")
+            offset = 0
+            words = list(re.finditer(r"[A-Za-z0-9_]+(?:[-'][A-Za-z0-9_]+)*", source))
+            for line in lines[:-1]:
+                start = source.find(line, offset)
+                if start < 0 and line.endswith("-"):
+                    start = source.find(line[:-1], offset)
+                    if start >= 0 and start + len(line) - 1 in soft_breaks:
+                        offset = start + len(line) - 1
+                        continue
+                if start < 0:
+                    break
+                offset = start + len(line)
+                if offset not in soft_breaks and any(word.start() < offset < word.end() for word in words):
+                    add("intra-word-break", "A Latin word or identifier is split across lines", [id], severity="warning")
+                    break
+            if root.get("data-measured-with") == "estimate" and any(_cjk(c) for c in "".join(lines)):
+                add("cjk-measurement-estimate", "CJK text was laid out using estimated glyph widths", [id], severity="warning")
             boxes = []
             for span in spans:
                 value = "".join(span.itertext())
@@ -216,6 +237,14 @@ def check_svg(svg, metrics=None):
             continue
         if not points:
             continue
+        segments = list(zip(points, points[1:]))
+        if any((b[0] - a[0]) * (c[0] - b[0]) + (b[1] - a[1]) * (c[1] - b[1]) < 0
+               for a, b, c in zip(points, points[1:], points[2:])):
+            add("edge-u-turn", "Connector reverses direction and retraces its stroke", [id], severity="warning")
+        direct = abs(points[-1][0] - points[0][0]) + abs(points[-1][1] - points[0][1])
+        length = sum(abs(b[0] - a[0]) + abs(b[1] - a[1]) for a, b in segments)
+        if source != target and direct > 0 and length > 2 * direct + 1:
+            add("edge-detour", "Connector is longer than twice its endpoint Manhattan distance", [id], severity="warning")
         for endpoint, point in ((source, points[0]), (target, points[-1])):
             if endpoint not in shapes:
                 add("edge-endpoint", "Connector endpoint has no declared shape", [id, endpoint])
@@ -246,12 +275,19 @@ def check_svg(svg, metrics=None):
                 if segment_hits_rect(a, b, rect, padding=2):
                     add("arrow-through-box", "Connector crosses an unrelated box", [id, sid], [rect])
             for tid, rect, text in text_nodes:
-                if (text.get("data-role") == "group-title" and text.get("data-owner") not in (source, target)) or \
+                if (text.get("data-role") in ("group-title", "operand-guard") and text.get("data-owner") not in (source, target)) or \
                    (text.get("data-role") == "edge-label" and text.get("data-owner") != id) or \
                    (text.get("data-owner") in shapes and shapes[text.get("data-owner")][1].get("data-kind") == "actor"):
                     if segment_hits_rect(a, b, rect, padding=2):
                         add("arrow-through-label", "Connector crosses unrelated text", [id, tid], [rect])
             edge_segments.append((id, a, b))
+    shared_pairs = set()
+    for i, (id, a, b) in enumerate(edge_segments):
+        for other, c, d in edge_segments[i + 1:]:
+            if _overlap(a, b, c, d) > 1:
+                shared_pairs.add(tuple(sorted({id, other})))
+    for pair in sorted(shared_pairs):
+        add("edge-overlap", "Connector strokes share a collinear segment", pair, severity="warning")
     crossing_count = sum(1 for i, (id, a, b) in enumerate(edge_segments)
                          for other, c, d in edge_segments[i + 1:] if id != other and crosses(a, b, c, d))
     if crossing_count > 2:

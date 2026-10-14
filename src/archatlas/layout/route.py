@@ -157,6 +157,14 @@ def _overlap(a: Point, b: Point, c: Point, d: Point) -> float:
                max(min(a[axis], b[axis]), min(c[axis], d[axis])))
 
 
+def _rank(points, previous):
+    # Shared strokes obscure which relationship a reader is following. Prefer
+    # a separate corridor whenever the candidate set offers one.
+    shared = sum(_overlap(a, b, c, d) for a, b in zip(points, points[1:])
+                 for c, d in previous)
+    return shared > 1, _score(points, previous), points
+
+
 def _axes(a: Point, b: Point, boxes: Sequence[Rect], margin: float):
     xs = {a[0], b[0], (a[0] + b[0]) / 2, a[0] - margin, a[0] + margin,
           b[0] - margin, b[0] + margin}
@@ -281,13 +289,29 @@ def route(
         points = tuple(_numbers(point, 2) for point in polyline)
         old_segments.extend((a, b) for a, b in zip(points, points[1:]) if a != b)
     manual = tuple(_numbers(point, 2) for point in waypoints)
+
+    def available_port(box, side, fraction):
+        point = _port(box, side, fraction)
+        if manual or source == target or point not in {p for segment in old_segments for p in segment}:
+            return point
+        axis = 1 if side in ("e", "w") else 0
+        occupied = {0.0, 1.0}
+        for segment in old_segments:
+            for p in segment:
+                f = (p[axis] - box[axis]) / box[axis + 2]
+                if 0 < f < 1 and _port(box, side, f) == p:
+                    occupied.add(f)
+        bounds = sorted(occupied)
+        low, high = max(zip(bounds, bounds[1:]), key=lambda pair: (pair[1] - pair[0], -pair[0]))
+        return _port(box, side, (low + high) / 2)
+
     pairs = []
     for start in _NORMAL if from_port == "auto" else (from_port,):
         for end in _NORMAL if to_port == "auto" else (to_port,):
             f = g = (slot + 1) / (slots + 1)
             if source == target and start == end:
                 f, g = (slot + 0.65) / (slots + 1), (slot + 1.35) / (slots + 1)
-            a, b = _port(source, start, f), _port(target, end, g)
+            a, b = available_port(source, start, f), available_port(target, end, g)
             if a != b:
                 pairs.append((a, b, start, end))
     if manual:
@@ -325,11 +349,11 @@ def route(
                 if not any(_hits(p, q, box) for p, q in zip(points, points[1:]) for box in boxes):
                     valid.append(points)
         if valid:
-            return min(valid, key=lambda points: (_score(points, old_segments), points))
+            return min(valid, key=lambda points: _rank(points, old_segments))
         for a, b, start, end, xs, ys in grids:
             points = _visibility_route(a, b, start, end, boxes, old_segments, xs, ys)
             if points:
                 valid.append(points)
         if valid:
-            return min(valid, key=lambda points: (_score(points, old_segments), points))
+            return min(valid, key=lambda points: _rank(points, old_segments))
     raise ValueError("No obstacle-free route connects the requested ports")

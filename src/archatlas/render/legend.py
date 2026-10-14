@@ -25,9 +25,9 @@ def entries(scene, model):
         return result
     variants = {}
     for edge in scene.edges:
-        if edge.kind in ("lifeline", "legend"):
+        if edge.kind in ("lifeline", "legend", "frame-separator"):
             continue
-        key = (theme[edge.style][1], edge.dashed, edge.kind in ("async", "message"),
+        key = (theme[edge.style][1], edge.dashed, edge.kind in ("async", "message", "reply"),
                edge.direction, edge.kind == "message")
         variants.setdefault(key, []).append(edge)
     auto_colours = set()
@@ -65,4 +65,21 @@ def entries(scene, model):
             if signature("peer", dashed, "box") not in covered:
                 append({"label": " / ".join(dict.fromkeys(group_label(b.kind, model) for b in boxes)),
                         "dashed": dashed, "symbol": "box"})
+    evidence_labels = {
+        "inferred": ("Inferred, not verified", "推断，未经核实"),
+        "doc-only": ("Documented only, not verified", "仅文档记载，未经核实"),
+        "conflict": ("Conflicting evidence", "证据存在冲突"),
+    }
+    # Even an otherwise uniform view must explain evidence dashes.
+    for collection, symbol in (("nodes", "box"), ("edges", "line")):
+        statuses = {}
+        for item in model.get(collection, []):
+            status = item.get("evidence", {}).get("status")
+            if status in evidence_labels:
+                statuses.setdefault((status, item.get("style", "peer")), item)
+        for (status, style), item in statuses.items():
+            append({"label": local(model, evidence_labels[status]) +
+                    local(model, (" — elements" if symbol == "box" else " — relationships",
+                                  "（元素）" if symbol == "box" else "（关系）")),
+                    "style": style, "dashed": item.get("dashed", True), "symbol": symbol}, cover=False)
     return result

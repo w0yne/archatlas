@@ -19,7 +19,7 @@ def resolve(model, labels):
             model["meta"][key] = text(model["meta"][key])
     for collection in ("nodes", "groups", "edges", "tables", "frames"):
         for item in model.get(collection, []):
-            for key in ("label", "title", "sub"):
+            for key in ("label", "title", "sub", "guard"):
                 if key in item:
                     item[key] = text(item[key])
             for key in ("tags", "attributes", "columns"):
@@ -27,6 +27,8 @@ def resolve(model, labels):
                     item[key] = list(map(text, item[key]))
             if "rows" in item:
                 item["rows"] = [list(map(text, row)) for row in item["rows"]]
+            for operand in item.get("operands", []):
+                operand["guard"] = text(operand["guard"])
     for entry in model["meta"].get("legend", []):
         entry["label"] = text(entry["label"])
     for mapping in model["meta"].get("legend_labels", {}).values():
