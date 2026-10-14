@@ -51,7 +51,7 @@
       "label": "Return requested",
       "parent": "l_s",
       "size_hint": {
-        "width": 88
+        "width": 108
       }
     },
     {
@@ -69,7 +69,7 @@
       "label": "Eligible?",
       "parent": "l_s",
       "size_hint": {
-        "width": 84
+        "width": 100
       }
     },
     {
@@ -114,7 +114,7 @@
       "label": "Refund issued",
       "parent": "l_s",
       "size_hint": {
-        "width": 88
+        "width": 108
       }
     },
     {
@@ -123,7 +123,7 @@
       "label": "Return declined",
       "parent": "l_s",
       "size_hint": {
-        "width": 88
+        "width": 108
       }
     }
   ],
