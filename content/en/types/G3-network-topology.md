@@ -34,6 +34,16 @@ status: draft
 
 ## When to use and how to choose {#choose}
 <!-- skill: condense (bullets, ≤12 lines) -->
+<!-- skill-text
+- **Audience:** network and security engineers, platform operators, architects, partners who must connect to the estate.
+- **Scenarios:** a private link between head office and the cloud network; hub-and-spoke or peering between storefront, back-office and data networks; private egress to a payment provider; troubleshooting why the chatbot service cannot reach the order API; reviewing segmentation and failover between zones.
+- **When not to use:** to claim application permissions, service health or measured traffic without evidence; to answer a cloud routing question with a cabling drawing.
+- **vs neighbours:**
+  - **G1** for which software runs where.
+  - **G2** for cloud services and trade-offs.
+  - **F2** for trust boundaries and threats.
+  - **E1** for request sequencing over time.
+-->
 - **Audience:** network and security engineers, platform operators, architects, and partners who must connect to the estate.
 - **Classic scenarios:**
   1. Onboarding a private link between the shop's head office and its cloud network.
@@ -122,7 +132,7 @@ status: draft
 
 ## Template {#template}
 <!-- skill: keep (≤3 lines) -->
-Model template: `assets/templates/G3.json` · Layout template: `nested` · networks and segments become nested `boundary` groups, gateways and endpoints become nodes, connectivity uses `assoc` edges (`--`) and a traffic path uses `call` or `data` edges with `step` numbers; CIDRs go in `sub` and the view type is a title field.
+Model template: `assets/templates/G3.json` · Layout template: `nested` · networks and segments become nested `boundary` groups, gateways and endpoints become `component` nodes, connectivity uses `assoc` edges (`dir` `--`) and a traffic path uses `call` or `data` edges with `step` numbers; CIDRs go in `sub` and the view type goes in the title.
 
 ## Sources {#sources}
 <!-- skill: omit -->

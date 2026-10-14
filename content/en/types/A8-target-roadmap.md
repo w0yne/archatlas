@@ -115,7 +115,7 @@ A roadmap answers "where are we, where are we going, what are the stable steps i
 
 ## Template {#template}
 <!-- skill: keep (≤3 lines) -->
-Model template: `assets/templates/A8.json` · Layout template: `tree` · states are ranked left to right (baseline → transitions → target); work packages hang between adjacent states, with `dependency` edges between them; block state comes from style tokens (`planned`, `shared`, `external`).
+Model template: `assets/templates/A8.json` · Layout template: `tree` · states are `state` nodes in one left-to-right chain (baseline → target), work packages are `task` nodes between adjacent states linked by `dependency` edges; node `style` (`planned`, `shared`, `external`) marks the block state.
 
 ## Sources {#sources}
 <!-- skill: omit -->

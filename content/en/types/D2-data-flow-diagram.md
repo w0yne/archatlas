@@ -34,6 +34,16 @@ status: draft
 
 ## When to use and how to choose {#choose}
 <!-- skill: condense (bullets, ≤12 lines) -->
+<!-- skill-text
+- **Audience:** architects, analysts, security reviewers, privacy and audit staff.
+- **Scenarios:** how the order service takes an order, checks stock and payment and stores the result (logical, technology-free); threat-modelling workshop with trust boundaries (internet, edge, internal, payment provider); privacy mapping of personal data; integration analysis of what crosses between orders, payment and shipping.
+- **When not to use:** order of calls or retries (E1); branching logic (E2); hand-offs between teams (E4, A5); runtime infrastructure (G1).
+- **vs neighbours:**
+  - **C2 System Context** when people and systems matter; a level-0 DFD when the data items matter.
+  - **D3 Lineage** for concrete datasets across jobs and runs; a DFD is a design-time model.
+  - **F2 Threat Model** for the security workflow; it uses this dialect plus threat annotations.
+  - **E2 Activity Flowchart** for control flow; a DFD arrow is data, never "then".
+-->
 - **Audience:** architects, analysts, security reviewers, privacy and audit staff.
 - **Classic scenarios:**
   1. Analysing how the shop's order service takes an order, checks stock and payment, and stores the result (logical, technology-free).
@@ -49,6 +59,18 @@ status: draft
 
 ## Notation and elements {#notation}
 <!-- skill: condense (bullets, ≤15 lines) -->
+<!-- skill-text
+- **Convention, not standard:** choose one symbol set and keep it. Yourdon/DeMarco: circle = process, two parallel lines = store, rectangle = external entity. Gane & Sarson: rounded rectangle with id = process, open-ended rectangle with id (D1) = store, square = external entity.
+- **Required elements:** *external entity* (source or sink outside scope); *process* (verb plus object, "Validate order", numbered 1, 2, 2.1); *data store* (plural noun with id, "Orders", D1); *data flow* (arrow labelled with the data item, a noun such as "order form", never an action).
+- **Threat-model additions:** a trust boundary (dashed line or box) wherever privilege or ownership changes; optionally protocol and authentication on boundary-crossing flows.
+- **Validity rules:**
+  - Balancing: a child diagram's external inputs and outputs equal its parent process's flows.
+  - Every process has at least one input and one output (no black hole, no miracle).
+  - No flow store-to-store, entity-to-entity or entity-to-store; a process sits between them.
+  - Flows are one-way; draw two arrows for request data and response data.
+- **Legend:** symbol set, level convention, how trust boundaries look. Do not mix symbol sets.
+- **Size:** 5–9 processes per diagram (practitioner rule of thumb); decompose instead of crowding.
+-->
 - **Formal or informal:** a method convention; choose one symbol set and keep it [4][5].
   - **Yourdon/DeMarco:** circle (bubble) = process; two parallel lines = data store; rectangle = external entity.
   - **Gane & Sarson:** rounded rectangle = process (with id); open-ended rectangle = data store (with id such as D1); square = external entity.
@@ -131,7 +153,7 @@ status: draft
 
 ## Template {#template}
 <!-- skill: keep (≤3 lines) -->
-Model template: `assets/templates/D2.json` · Layout template: `nested` · external entities, processes and stores are `nodes` (kind external, process, store; stores carry their id in `sub`), trust boundaries are `boundary` groups around zones, data flows are `data` edges whose `label` is the data noun and whose `dir` is `->`.
+Model template: `assets/templates/D2.json` · Layout template: `nested` · external entities are `external` nodes, processes are `component` nodes, stores are `store` nodes (the store id such as D1 in `sub`), trust boundaries are `boundary` groups around zones, data flows are `data` edges whose `label` is the data noun and whose `dir` is `->`.
 
 ## Sources {#sources}
 <!-- skill: omit -->

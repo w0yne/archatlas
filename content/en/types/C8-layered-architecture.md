@@ -26,6 +26,12 @@ status: draft
 
 ## Meaning {#meaning}
 <!-- skill: condense (4–6 lines) -->
+<!-- skill-text
+- **Question:** how is this application's code divided into responsibility layers, and which dependencies are allowed? It states a rule ("allowed-to-use"), not just a grouping; exceptions (skipping a layer, upward use) must be shown.
+- **Viewpoint:** a module "uses" view inside one container, at about component level; concerns are modifiability, testability, separation of concerns.
+- **Definition used here:** *layer* = logical partition of code responsibility (this type); *tier* = deployment location (G1); *ArchiMate layered viewpoint* = enterprise business/application/technology overview (I2). A capability stack with no dependency rule is C5.
+- **Leaves out:** servers and networks (G1), call sequences (E1), data model (D1), integration between systems (C6), individual classes.
+-->
 
 A layered architecture diagram answers: *how is this application's code divided into responsibility layers, and which dependencies are allowed?* It states a **rule**, not just a grouping; without a stated rule it degenerates into a coloured stack of boxes. The SEI defines the relation between layers as **"allowed-to-use"**. Exceptions such as bridging (skipping a layer) or upward use must be shown, and many of them signal a poorly structured system [1]. In ISO/IEC/IEEE 42010 terms it belongs to a module "uses" viewpoint, with concerns of modifiability, testability and separation of concerns [14]. In C4 model terms it sits *inside one container*, at roughly the component level [12].
 
@@ -140,7 +146,7 @@ Two further look-alikes: a "capability stack" (bands of functional blocks with n
 ## Template {#template}
 <!-- skill: keep (≤3 lines) -->
 
-Model template: `assets/templates/C8.json` · Layout template: `layered` · Each `groups[]` entry of kind `layer` becomes a band with module chips; `edges` of kind `dependency` show allowed (solid) or runtime (dashed) dependencies; `meta` holds the variant and the rule sentence.
+Model template: `assets/templates/C8.json` · Layout template: `layered` · each `groups[]` entry of kind `layer` becomes a band with `component` nodes as module chips; `edges` of kind `dependency` show allowed (solid) or runtime (`dashed`) dependencies; `meta.description` holds the variant and the rule sentence.
 
 ## Sources {#sources}
 <!-- skill: omit -->

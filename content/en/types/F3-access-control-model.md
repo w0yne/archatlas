@@ -26,6 +26,12 @@ status: draft
 
 ## Meaning {#meaning}
 <!-- skill: condense (4–6 lines) -->
+<!-- skill-text
+- **Question:** under what rules can a subject perform an action on a resource in a given scope? It describes authority, not network reachability or call order.
+- **Three model kinds, three questions:** RBAC — which roles hold which permissions (matrix or hierarchy); ABAC — which attributes satisfy which rule (decision table); ReBAC — which relationships imply access (typed relation graph).
+- **Definition used here:** a grant has action, resource and scope. Matrix, table and graph are not variants of one thing; choose by policy, not fashion.
+- **Leaves out:** real user rosters, full policy code, every exception, enforcement points (F1).
+-->
 - **Question:** under what rules can a subject perform an action on a resource in a given scope or context? It describes authority and its administration, not network reachability or the order of calls. A "can edit" relation and an arrow carrying document content have different meanings.
 - **Three model kinds, three questions:**
   - **RBAC:** which roles hold which permissions, and who holds the roles? A matrix or hierarchy [1].
@@ -37,6 +43,17 @@ status: draft
 
 ## When to use and how to choose {#choose}
 <!-- skill: condense (bullets, ≤12 lines) -->
+<!-- skill-text
+- **Audience:** business owners, security and governance staff, developers, administrators.
+- **Scenarios:** scoped team collaboration (support, warehouse, finance); multi-tenant authorisation (merchants see only their orders); document sharing with inheritance; delegation and separation of duties (who creates and who approves a refund); comparing a proposed role model with what is enforced.
+- **When not to use:** a role matrix alone when relationships, time or resource attributes decide access. Do not introduce an authorisation engine just because its documentation has good examples.
+- **vs neighbours:**
+  - **F1** for where identity is verified and decisions enforced.
+  - **F2** for what can go wrong.
+  - **D1** for persistence relationships, not permission relations.
+  - **H1 RACI** for project responsibility.
+  - **C5** to show where a policy component sits.
+-->
 - **Audience:** business owners, security and governance staff, developers, administrators.
 - **Classic scenarios:**
   1. Scoped team collaboration: shop staff in support, warehouse and finance teams.
@@ -125,7 +142,7 @@ status: draft
 
 ## Template {#template}
 <!-- skill: keep (≤3 lines) -->
-Model template: `assets/templates/F3.json` · Layout template: `grid_table` · roles (or subjects) become rows, resource-action pairs become grouped columns, and each cell holds allow, deny, conditional or not-applicable from a fixed legend; for ABAC and ReBAC the same `tables` carry attribute rules or relation definitions, with nodes and `assoc` edges only for a small illustrative graph.
+Model template: `assets/templates/F3.json` · Layout template: `grid_table` · roles (or subjects) become rows, resource-action pairs become grouped columns, and each cell holds allow, deny, conditional or not-applicable from a fixed legend; for ABAC and ReBAC the same `tables` carry attribute rules or relation definitions (a relation graph needs a second model, because `grid_table` takes tables only).
 
 ## Sources {#sources}
 <!-- skill: omit -->

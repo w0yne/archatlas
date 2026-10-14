@@ -34,6 +34,16 @@ status: draft
 
 ## When to use and how to choose {#choose}
 <!-- skill: condense (bullets, ≤12 lines) -->
+<!-- skill-text
+- **Audience:** developers, release and platform engineers, operators, reviewers, change-control owners.
+- **Scenarios:** the build-and-release path of the storefront and order service; finding why feedback or approval is slow; promoting one tested image from staging to production; progressive delivery and recovery for a risky release; a GitOps flow where a controller applies manifests.
+- **When not to use:** presenting a simple build workflow as the full delivery system when deployment, authorisation or verification happen elsewhere.
+- **vs neighbours:**
+  - **G1** for where the result runs.
+  - **E3** for release states and transitions.
+  - **H1** for who is accountable for each step.
+  - If build identities and attestations dominate, use a separate supply-chain trust view.
+-->
 - **Audience:** developers, release and platform engineers, operators, reviewers and change-control owners.
 - **Classic scenarios:**
   1. Explaining the build-and-release path for the shop's storefront and order service.
@@ -126,7 +136,7 @@ status: draft
 
 ## Template {#template}
 <!-- skill: keep (≤3 lines) -->
-Model template: `assets/templates/G4.json` · Layout template: `tree` · the trigger is the root, stages and jobs are nodes laid out left to right along `dependency` edges, artifacts and registries use `data` edges, deploy or reconcile steps use `call` edges, and controllers or approvers become `lane` groups; gate status maps to node `evidence`.
+Model template: `assets/templates/G4.json` · Layout template: `tree` · the trigger is an `event` node, stages and jobs are `task` nodes laid out left to right along `dependency` edges, artifacts and registries are `store` nodes reached by `data` edges, deploy or reconcile steps use `call` edges, controllers or approvers become `lane` groups; gate status is shown with node `style` (`planned` for not yet passed) or `tags`.
 
 ## Sources {#sources}
 <!-- skill: omit -->

@@ -34,6 +34,16 @@ status: draft
 
 ## When to use and how to choose {#choose}
 <!-- skill: condense (bullets, ≤12 lines) -->
+<!-- skill-text
+- **Audience:** cloud and platform architects, operators, security reviewers, partners, decision-makers who need the main trade-offs.
+- **Scenarios:** evaluating a landing pattern for the storefront and API; moving order processing and background jobs to managed services; choosing a production baseline for an availability target; how a chatbot, a vector store and a model endpoint compose; comparing cost and resilience options.
+- **When not to use:** as a business overview, or as proof of deployment, compliance, availability or a quantified SLA.
+- **vs neighbours:**
+  - **G1** for which software instances run on which hosts.
+  - **G3** for routing, segmentation, reachability.
+  - **C3** or **C5** for provider-neutral structure.
+  - **G4** for the delivery machinery.
+-->
 - **Audience:** cloud and platform architects, operators, security reviewers, partners, and decision-makers who need the main trade-offs.
 - **Classic scenarios:**
   1. Evaluating a landing pattern for the online shop's storefront and API.

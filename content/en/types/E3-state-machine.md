@@ -26,6 +26,13 @@ status: draft
 
 ## Meaning {#meaning}
 <!-- skill: condense (4–6 lines) -->
+<!-- skill-text
+- **Question:** what states can one thing be in, which events or conditions move it between states, what happens on each move, and which moves are impossible? Everything not drawn is implicitly forbidden, so the diagram finds gaps (no way out of "Failed").
+- **Origin:** finite-state machines; Harel statecharts add nested states, parallel regions and broadcast. UML 2.5.1 state machines, W3C SCXML and XState follow them.
+- **Definition used here:** *behavioural* state machine = how an entity reacts to events (default); *protocol* state machine = legal order of operations, labels `[pre] operation / [post]`.
+- **Leaves out:** steps inside a state (E2), message exchange (E1), other entities' states (one diagram each), data structure (D1).
+- **Unverified:** UML 2.5.1 clause numbers; pseudostate rules come from secondary sources.
+-->
 - **Question:** what states can this one thing be in, which events or conditions move it between states, what happens on each move, and which moves are impossible?
 - **Viewpoint:** a behavioural view centred on one entity over its whole life, i.e. its protocol. Everything not drawn is implicitly forbidden, so the diagram finds gaps (no way out of "Failed") and supports idempotent, recoverable workflows [1][3].
 - **Origin:** finite-state machines are classic automata theory. David Harel's statecharts (1987) added nested states, parallel regions and broadcast communication, because flat state diagrams explode in size [1][2][3]. UML state machines are based on Harel's statecharts; the current specification is UML 2.5.1 [4]. W3C published SCXML, an executable statechart notation, as a Recommendation on 1 September 2015 [7]; XState is a widely used statecharts-as-code library [8].
@@ -42,6 +49,16 @@ status: draft
 
 ## When to use and how to choose {#choose}
 <!-- skill: condense (bullets, ≤12 lines) -->
+<!-- skill-text
+- **Audience:** developers and testers (transitions, guards), product owners (business lifecycles in plain events), operations (job or connection states).
+- **Scenarios:** a business object lifecycle (order `Created → Paid → Shipped → Delivered`, plus `Cancelled`, `Refunded`); asynchronous jobs (`Queued → Running → Succeeded/Failed` with retry, pause, cancel); protocol or connection behaviour; UI component behaviour (idle, typing, sending, error); finding impossible transitions and missing terminal states.
+- **When not to use:** a procedure with no persistent state (E2); several unrelated objects on one page (draw several); states that are really workflow steps owned by different people (A5 or E4, plus a small E3 for the case object).
+- **vs neighbours:**
+  - **E2 Activity** for a run-to-completion procedure.
+  - **E1 Sequence** for one scenario's messages.
+  - **A5 BPMN** / **E4 Swimlane** for work across actors.
+  - Pair with **D1 ER**: every entity with a `status` column deserves a small E3.
+-->
 - **Audience:** developers and testers (transitions, guards), product owners (business lifecycles in plain events), operations (job or connection states).
 - **Classic scenarios:**
   1. Business object lifecycle: an order `Created → Paid → Shipped → Delivered`, plus `Cancelled` and `Refunded`.
@@ -138,7 +155,7 @@ status: draft
 
 ## Template {#template}
 <!-- skill: keep (≤3 lines) -->
-Model template: `assets/templates/E3.json` · Layout template: `statechart` · states become nodes (kind `state`, final and initial as pseudostate kinds), composite states become `frame` groups, each transition is an edge with `label` = `event [guard] / effect` and kind `call`; evidence status marks verified versus inferred transitions.
+Model template: `assets/templates/E3.json` · Layout template: `statechart` · states are `state` nodes (`initial` and `final` for the pseudostates), composite states are `frame` groups, each transition is an edge of kind `call` with `label` = `event [guard] / effect`; `evidence.status` marks verified versus inferred transitions.
 
 ## Sources {#sources}
 <!-- skill: omit -->

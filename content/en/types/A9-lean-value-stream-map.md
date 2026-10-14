@@ -35,6 +35,17 @@ status: draft
 
 ## When to use and how to choose {#choose}
 <!-- skill: condense (bullets, ≤12 lines) -->
+<!-- skill-text
+- **Audience:** process owners, operations and improvement teams and the people who do the work, plus suppliers and customers.
+- **Scenarios:** order to doorstep (why a 20-minute job takes a day and a half: sum PT and waits, lead time, activity ratio); support query to resolution; returns; software delivery from ticket and pipeline timestamps; a future-state map with kaizen bursts.
+- **When not to use:** without real observations or data ("go and see"); strategy-level value and capabilities (A2); system structure (C family); exceptions and branching logic (A5, E family).
+- **vs neighbours:**
+  - **A2 Value Stream** for how value reaches a stakeholder; never put times there.
+  - **A5 BPMN Process** for task order, decisions, exceptions.
+  - **E4 Swimlane** for who or which system does each step; A9 shows how long work sits.
+  - **G4 Delivery Pipeline** for the build and release stages; A9 measures the waiting around them.
+  - **A8 Roadmap** for a multi-step change plan.
+-->
 - **Audience:** process owners, operations and improvement teams and the people who do the work; LEI advises involving the "value-creators" plus suppliers and customers [4].
 - **Classic scenarios:**
   1. Order to doorstep in an online shop: checkout, payment authorisation by the payment provider, fraud review, picking, packing and carrier hand-over, to see why a 20-minute job takes a day and a half (illustrative numbers: PT 3 + 5 + 6 + 4 + 2 = 20 min, waits 0.5 + 6 + 10 + 2 + 14 = 32.5 h, lead time ≈ 32.8 h, activity ratio ≈ 1 %).
@@ -125,7 +136,7 @@ status: draft
 
 ## Template {#template}
 <!-- skill: keep (≤3 lines) -->
-Model template: `assets/templates/A9.json` · Layout template: `tree` · process steps are rank-ordered nodes left to right with data boxes as child nodes, queues as nodes between them, and the timeline as a final row of ranked wait/PT segments with totals.
+Model template: `assets/templates/A9.json` · Layout template: `tree` · process steps are `task` nodes in one left-to-right row with a `queue` node between steps; the process data box goes in the node `sub` or `attributes`; totals (lead time, processing time, activity ratio) go in `meta.description` because the renderer draws no timeline row yet.
 
 ## Sources {#sources}
 <!-- skill: omit -->

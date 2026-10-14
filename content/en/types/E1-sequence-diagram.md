@@ -35,6 +35,17 @@ status: draft
 
 ## When to use and how to choose {#choose}
 <!-- skill: condense (bullets, ≤12 lines) -->
+<!-- skill-text
+- **Audience:** developers, testers, architects, integration partners, security reviewers; a simplified version with fewer lifelines suits business readers.
+- **Scenarios:** agreeing an API integration (storefront, gateway, order service, payment provider); authentication or authorisation flows with redirects and tokens; how a chatbot answers one question (UI, orchestrator, model, product search, with a retrieval loop); incident reconstruction; asynchronous processing with a later callback.
+- **When not to use:** all behaviours on one sheet; human workflows with many decisions (A5, E4); one object's lifecycle (E3); more than about 8–10 lifelines or 25 messages (split with `ref` or raise the level).
+- **vs neighbours:**
+  - **E4 Swimlane** or **A5 BPMN** for hand-offs between people or organisations.
+  - **E2 Activity** for one participant's decision logic.
+  - A communication diagram when spatial relationships matter more than time order.
+  - **F1** for OAuth/OIDC-style flows (a specialised sequence diagram).
+  - **C3/C4** when the question is structure, not behaviour.
+-->
 - **Audience:** developers, testers, architects, integration partners and security reviewers. Business readers can follow a simplified version with fewer lifelines and plain-language messages.
 - **Classic scenarios:**
   1. Agreeing an API integration: storefront, gateway, order service, external payment provider.
@@ -132,7 +143,7 @@ status: draft
 
 ## Template {#template}
 <!-- skill: keep (≤3 lines) -->
-Model template: `assets/templates/E1.json` · Layout template: `sequence` · lifelines are `nodes` ordered left to right (optionally inside `boundary` groups); messages are `edges` with `step` numbers and kind `call`, `async` or `message` (replies use `dir: "--"`); `frames` hold `alt` / `loop` / `opt` / `par` regions and `activations` the execution bars.
+Model template: `assets/templates/E1.json` · Layout template: `sequence` · lifelines are `lifeline` nodes ordered left to right; messages are `edges` with `step` numbers and kind `call`, `async` or `message` (a reply is the same edge reversed with `dashed: true`); `frames` mark `alt` / `loop` / `opt` / `par` regions as a `label` over a step range (`from_step`, `to_step`) and `activations` the execution bars.
 
 ## Sources {#sources}
 <!-- skill: omit -->

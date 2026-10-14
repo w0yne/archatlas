@@ -35,6 +35,17 @@ status: draft
 
 ## When to use and how to choose {#choose}
 <!-- skill: condense (bullets, ≤12 lines) -->
+<!-- skill-text
+- **Audience:** developers, testers, analysts; business readers if it stays simple.
+- **Scenarios:** request-handling logic (validate, check stock, query quotes in parallel, merge, confirm or fall back); a batch or ETL step with error routes; a rule such as automatic refund approval; deriving test paths (each branch is a test case); a runbook.
+- **When not to use:** many actors handing work over (E4, A5); an entity's status (E3); a whole system on one page (split by use case); trivial linear steps (use a numbered list).
+- **vs neighbours:**
+  - **E3 State Machine** for a long-lived reactive thing; E2 for a procedure that runs to completion.
+  - **E4 Swimlane** when hand-offs are the point (E4 is essentially E2 with partitions; a few partitions are fine here).
+  - **A5 BPMN** for business audiences, business events or automation.
+  - **E1 Sequence** when who talks to whom, in what order, matters more than decision logic.
+  - **D2 Data Flow** when the arrows are data, not control.
+-->
 - **Audience:** developers, testers and analysts; business readers if the diagram stays simple.
 - **Classic scenarios:**
   1. Request-handling logic: validate the order, check stock, query pricing and shipping quotes in parallel, merge, confirm or fall back.
@@ -129,7 +140,7 @@ status: draft
 
 ## Template {#template}
 <!-- skill: keep (≤3 lines) -->
-Model template: `assets/templates/E2.json` · Layout template: `lanes` · actions, decisions, forks and finals are `nodes` (`kind` carries the UML shape) laid out in top-to-bottom flow; partitions are `lane` groups; control flows are `edges` of kind `call` with the guard as `label`, and object flows use kind `data`.
+Model template: `assets/templates/E2.json` · Layout template: `lanes` · actions are `task` nodes, decisions and merges are `gateway` nodes, forks and joins are `band` nodes, `initial` and `final` mark start and end; partitions are `lane` groups; control flows are edges of kind `call` with the guard as `label`, and object flows use kind `data`.
 
 ## Sources {#sources}
 <!-- skill: omit -->

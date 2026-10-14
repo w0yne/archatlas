@@ -26,6 +26,13 @@ status: draft
 
 ## Meaning {#meaning}
 <!-- skill: condense (4–6 lines) -->
+<!-- skill-text
+- **Question:** what abilities does the business need, regardless of who performs them, how, or with which system? With a heat overlay: which are weak, missing or strategic?
+- **Viewpoint:** ArchiMate Capability Map viewpoint; TOGAF Phase B artefact (Business Capability Map). It shows the enterprise "at rest"; value streams (A2) and processes show it "in motion".
+- **Value:** a capability model is stable against org structure, processes and applications, so it anchors cross-maps to org units, value-stream stages, applications and initiatives.
+- **Leaves out:** sequence, org units, roles, systems, technology, product catalogue.
+- **Definition used here:** the *model* is the full set of capabilities (often 3–6 levels); the *map* is its one-page picture (2–3 levels). Follows ArchiMate 3.2.
+-->
 - **Question:** what abilities does the business need, regardless of who performs them, how, or with which system? With an overlay: which abilities are weak, missing, strategic or over-invested?
 - **Viewpoint:** ArchiMate *Capability Map viewpoint* (stakeholders: business managers, enterprise and business architects; purpose: designing and deciding; scope: Strategy) [3]. TOGAF places it in Phase B, with use in Phase A for vision and prioritisation, and names the artifacts *Business Capability Map* (diagram) and *Business Capabilities catalog* [1][2][11]. There is no C4 model level for it: the map sits above any system.
 - **Deeper meaning:** the map shows the enterprise "at rest"; value streams and processes show it "in motion" [4][3]. Its value is stability: a capability model is independent of org structure, processes, applications and product portfolio [1], so it can anchor cross-maps to org units, value-stream stages, applications and initiatives. A capability only says that something must exist, not how well; "how well" is added by a heat-map overlay [1].
@@ -43,6 +50,18 @@ status: draft
 
 ## When to use and how to choose {#choose}
 <!-- skill: condense (bullets, ≤12 lines) -->
+<!-- skill-text
+- **Audience:** executives and sponsors (Level 1 only), strategy and portfolio leads, enterprise and business architects (more depth).
+- **Scenarios:** annual planning with a heat map; rationalisation after an acquisition (duplicate capabilities); scoping a transformation (new vs existing); application portfolio overlay (a derived view); team design around capabilities.
+- **When not to use:** the question is sequence, timing or hand-offs (A2, A5, E4), system structure (C family) or one project's backlog (B family). Without agreed definitions, a one-level map with definitions beats a deep, contested one.
+- **vs neighbours:**
+  - **A2 Value Stream** for how value reaches a stakeholder; usually cross-mapped with A1.
+  - **A5 BPMN Process** for steps, gateways, hand-offs.
+  - **A3 Business Context** for "who"; capability × org is a matrix, not a merged picture.
+  - **C1 Application Landscape** when the reader needs systems; the overlay is a derived view.
+  - **A7 Conceptual Architecture** for "what are the parts"; a feature list is a capability map.
+  - **A8 Roadmap** for when change happens.
+-->
 - **Audience:** executives and sponsors (usually Level 1 only), strategy and portfolio leads, enterprise and business architects (more depth) [1].
 - **Classic scenarios:**
   1. Annual planning: an online shop heat-maps capability maturity against strategic importance and funds the weak, important tiles [1].
@@ -137,7 +156,7 @@ status: draft
 
 ## Template {#template}
 <!-- skill: keep (≤3 lines) -->
-Model template: `assets/templates/A1.json` · Layout template: `layered` · tiers become `layer` groups (bands), Level 1 capabilities become header-banded groups inside them, Level 2 capabilities are equal-size nodes in a grid; heat values map to style tokens plus an auto-generated legend.
+Model template: `assets/templates/A1.json` · Layout template: `layered` · tiers become `layer` groups (bands), Level 1 capabilities become `frame` groups inside them, Level 2 capabilities are equal-size `component` nodes in a grid; heat values map to node `style` tokens (`primary`, `peer`, `planned`, `shared`) plus an auto-generated legend.
 
 ## Sources {#sources}
 <!-- skill: omit -->
