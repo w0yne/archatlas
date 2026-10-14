@@ -9,6 +9,10 @@
 #             are refused.
 #   copy      {dest-in-host-config-dir: source-file}: minimal auth/model files
 #             copied into the sandbox (mode 0600) and deleted with it
+#   price     {input, output, cache_read, cache_write} USD per million tokens, used
+#             when the host does not report cost (Codex). input_includes_cache: true
+#             when the host's input count already contains cached tokens.
+#   max_budget_usd  per-run spend cap passed to Claude Code (--max-budget-usd)
 # Never point anything at a live session directory.
 
 claude:
@@ -42,3 +46,9 @@ pi:
   # Pi only uses ambient AWS credentials (e.g. an instance role) when a
   # credential variable such as AWS_PROFILE is set:
   # env: {AWS_REGION: us-west-2, AWS_PROFILE: default}
+
+# Model grader for grade.py: one grader model per graded host, never the same model.
+# grader:
+#   provider: amazon-bedrock
+#   models: {claude: <other-model>, codex: <other-model>, pi: <other-model>}
+#   env: {AWS_REGION: us-west-2, AWS_PROFILE: default}

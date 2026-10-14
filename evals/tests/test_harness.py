@@ -78,13 +78,18 @@ class IsolationTest(unittest.TestCase):
 
 class ChecksTest(unittest.TestCase):
     def test_skill_activation_needs_trace_evidence(self):
-        adapter = mock.Mock(skill_evidence=lambda rows, s: [], skill_listed=lambda rows, s: None)
+        def adapter(calls):
+            return mock.Mock(skill_evidence=lambda rows, s: [], skill_listed=lambda rows, s: None,
+                             tool_calls=lambda rows: calls)
         marker = ["You help a person pick the right architecture diagram"]
-        quiet = '{"type":"text","text":"I used the architecture-diagrams skill"}'
-        self.assertIs(run_eval.skill_status(adapter, quiet, marker, "architecture-diagrams", "noskill", False)["skill_loaded"], False)
-        self.assertEqual(run_eval.skill_status(adapter, quiet, marker, "architecture-diagrams", "skill", False)["skill_loaded"], "unknown")
-        read = '{"command":"cat /s/architecture-diagrams/SKILL.md"}'
-        self.assertIs(run_eval.skill_status(adapter, read, marker, "architecture-diagrams", "skill", True)["skill_loaded"], True)
+        # A skill location listed in the host's system prompt is not a load.
+        quiet = ('{"type":"text","text":"I used the architecture-diagrams skill"}\n'
+                 '{"systemPrompt":"<location>/h/skills/architecture-diagrams/SKILL.md</location>"}')
+        self.assertIs(run_eval.skill_status(adapter([]), quiet, marker, "architecture-diagrams", "noskill", False)["skill_loaded"], False)
+        self.assertIs(run_eval.skill_status(adapter([]), quiet, marker, "architecture-diagrams", "skill", True)["skill_loaded"], False)
+        self.assertEqual(run_eval.skill_status(adapter([]), quiet, marker, "architecture-diagrams", "skill", False)["skill_loaded"], "unknown")
+        read = ['read {"path": "/s/architecture-diagrams/SKILL.md"}']
+        self.assertIs(run_eval.skill_status(adapter(read), quiet, marker, "architecture-diagrams", "skill", True)["skill_loaded"], True)
 
     def test_svg_gate_flags_script_and_external_refs(self):
         with tempfile.TemporaryDirectory() as d:
@@ -100,3 +105,12 @@ class ChecksTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TraceFactsTest(unittest.TestCase):
+    def test_forbidden_counts_executed_commands_not_heredoc_text(self):
+        written = "cat > README.md <<'EOF'\nRun ./mvnw spring-boot:run to start.\nEOF"
+        self.assertEqual(run_eval.trace_facts([written])["trace"]["forbidden"], 0)
+        self.assertEqual(run_eval.trace_facts(["cd fixture && ./mvnw spring-boot:run"])["trace"]["forbidden"], 1)
+        self.assertEqual(run_eval.trace_facts(["docker compose up -d"])["trace"]["forbidden"], 1)
+

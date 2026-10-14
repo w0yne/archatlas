@@ -1,9 +1,10 @@
 """Pi 1.1: `pi -p --mode json` with its own PI_CODING_AGENT_DIR."""
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
-from .base import Adapter, Sandbox, Turn, copy_state_files, jsonl
+from .base import Adapter, Sandbox, Turn, copy_state_files, install_skill, jsonl
 
 
 class PiAdapter(Adapter):
@@ -21,7 +22,10 @@ class PiAdapter(Adapter):
     def prepare(self, sb: Sandbox, skill_dir: Path | None) -> None:
         self.state_dir(sb).mkdir(parents=True, exist_ok=True)
         copy_state_files(self.cfg.get("copy", {}), self.state_dir(sb))
-        self.skill_path = skill_dir  # passed explicitly with --skill; discovery stays off
+        self.skill_path = None
+        if skill_dir:  # copied into the sandbox, passed explicitly with --skill; discovery stays off
+            self.skill_path = self.state_dir(sb) / "skills" / skill_dir.name
+            install_skill(skill_dir, self.skill_path)
 
     def host_env(self, sb: Sandbox) -> dict:
         env = {"PI_CODING_AGENT_DIR": str(self.state_dir(sb)), "PI_SKIP_VERSION_CHECK": "1",
@@ -45,6 +49,25 @@ class PiAdapter(Adapter):
         else:
             argv.append("--no-session")
         return argv + ["--", prompt]
+
+    def tool_calls(self, events):
+        calls = []
+        for ev in events:
+            if ev.get("type") == "tool_execution_start":
+                args = ev.get("args") or {}
+                body = args.get("command") if isinstance(args.get("command"), str) else json.dumps(args, ensure_ascii=False)
+                calls.append(f"{ev.get('toolName')} {body}")
+        return calls
+
+    def assistant_texts(self, events):
+        out = []
+        for ev in events:
+            msg = ev.get("message") or {}
+            if ev.get("type") == "message_end" and msg.get("role") == "assistant":
+                t = "".join(c.get("text", "") for c in msg.get("content", []) if isinstance(c, dict) and c.get("type") == "text")
+                if t.strip():
+                    out.append(t)
+        return out
 
     def parse(self, events, sb, tag, out_dir) -> Turn:
         t = Turn(exit_code=0, wall_s=0)

@@ -16,6 +16,9 @@ installed and once without it (DESIGN §8).
 | `rubric.md` | Hard gates and 0–3 scores per dimension |
 | `run_eval.py` | Runner: sandbox, fixtures, turns, metrics, `results.json` and `report.md` |
 | `adapters/{claude,codex,pi}.py` | One adapter per host: config, command line, event parsing |
+| `grade.py`, `grader/prompt.md` | Model grader: scores each finished run against `rubric.md`, writes `grade.json` |
+| `report.py` | Aggregates runs and grades into `reports/<name>.md` and `.json` |
+| `reports/` | Committed reports; raw results stay outside the repository |
 | `hosts.example.yaml` | Template for your local hosts file |
 | `tests/` | Harness invariants (`python3 -m unittest discover -s evals/tests`) |
 
@@ -31,7 +34,16 @@ python3 evals/run_eval.py --hosts evals/hosts.local.yaml --scenario S6 --mode au
 python3 evals/run_eval.py --hosts evals/hosts.local.yaml --scenario S6 --mode autonomous \
     --host claude --host codex --host pi --arm skill --arm noskill
 python3 evals/run_eval.py --hosts evals/hosts.local.yaml --scenario T --host claude   # trigger set
+# Install the skill from a release zip instead of the working tree, and stop at a spend limit:
+python3 evals/run_eval.py --hosts evals/hosts.local.yaml --scenario all --host pi --arm skill \
+    --skill-bundle dist/archatlas-skill-<version>.zip --skill-rev <sha> --budget-usd 5
+# Grade with a different model than the one graded, then aggregate:
+python3 evals/grade.py --hosts evals/hosts.local.yaml evals/results/<run-dir> ...
+python3 evals/report.py evals/results/<run-dir> ... --out evals/reports/<name> --defects <notes.md>
 ```
+
+`--budget-usd` stops before the next run once the runs already in the output directory
+reached the limit. Cost is the host-reported cost, or tokens × the host's `price` entry.
 
 Results go to `evals/results/<timestamp>/` (gitignored). Each run has these files:
 
