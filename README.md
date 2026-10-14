@@ -4,11 +4,11 @@
 
 **Choose the right architecture view. Draw it from evidence.**
 
-archatlas combines a diagram-type atlas with an English-language Agent Skill named architecture-diagrams. The documentation is English-primary with a Chinese mirror in progress.
+archatlas combines a diagram-type atlas with an English-language Agent Skill named architecture-diagrams. The documentation is English-primary with Chinese reference pages.
 
 ## Status
 
-Pre-release. The site scaffold builds; catalogue content, renderer integration, packaged skill and cross-agent evaluation are separate work in progress. No published package, production readiness or full Chinese coverage is claimed.
+0.1.0 pre-release: the repository contains 40 diagram types in English and Chinese, the skill, working SVG renderer, packer and evaluation harness. Sample refinements, cross-host smoke tests and the first comparative evaluation remain pending. No PyPI package or public release bundle is published.
 
 ## What it does
 
@@ -21,7 +21,16 @@ SVG plus model JSON is the initial target. Native draw.io/PowerPoint export and 
 
 ## Install the skill
 
-From a complete, reviewed checkout or release bundle, copy the architecture-diagrams folder into **one** discovery location:
+From a reviewed clone, install the renderer first:
+
+    make setup
+    . .venv/bin/activate
+    atlas init C2 -o model.json
+    atlas render model.json -o out/
+
+For a renderer-only setup use a virtual environment and python -m pip install -e . instead of make setup. Keep the environment active when starting the agent, then copy skills/architecture-diagrams into **one** discovery location below. Do not install an unpublished package by name.
+
+Alternatively, generate a verified ZIP with python tools/pack_skill.py --out dist --verify. Its unpacked root is architecture-diagrams/ (not skills/architecture-diagrams/), including scripts/lib. Install its scripts/requirements.txt in a virtual environment, then copy that whole root folder.
 
 | Host | Personal location | Explicit invocation |
 |---|---|---|
@@ -48,9 +57,9 @@ The site-only package and lockfile live in content/.vitepress; the root package 
 
 For a script-free reading export after building, run npm run preview:static --prefix content/.vitepress. It writes flat, relocatable pages under the ignored dist/static-preview directory. Search and dialog controls are intentionally absent from that export; the regular site build retains them.
 
-The language menu returns to the selected locale homepage while the Chinese mirror is incomplete. The default base is /archatlas/. Set SITE_BASE for another repository/custom hosting path. English source pages in content/en are rewritten to root URLs; Chinese stays under /zh/. Catalogue/sidebar links come from content/data/types.yaml; until it exists, a clearly labeled three-entry fixture is used. Missing type pages are not linked.
+The language menu returns to the selected locale homepage; each locale has its own navigation. The default base is /archatlas/. Set SITE_BASE for another repository/custom hosting path. English source pages in content/en are rewritten to root URLs; Chinese stays under /zh/. Catalogue/sidebar links use the 40-type registry in content/data/types.yaml. Reader recommendations come from content/data/selection-tree.yaml. Missing future type pages are not linked.
 
-VitePress 1.6.4 is required for this scaffold. Its dependency audit currently reports upstream development-server advisories; keep dev/preview local, do not expose them to untrusted networks, and review dependency upgrades before a public release. Pages deploys static files, not the Vite development server.
+The site uses VitePress 1.6.4. Its dependency audit currently reports upstream development-server advisories; keep dev/preview local, do not expose them to untrusted networks, and review dependency upgrades before a public release. Pages deploys static files, not the Vite development server.
 
 ## Compatibility and limits
 

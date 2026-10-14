@@ -3,13 +3,13 @@ title: Autonomous or guided
 ---
 # Autonomous or guided
 
-Both modes use the same evidence and quality standards. They differ in who makes the intermediate choices.
+Both modes use the same evidence and quality standards. They differ in who makes the intermediate choices. If no mode is given, an interactive session asks once; a non-interactive run defaults to autonomous. [Choose a view](/choose) if the diagram type is unclear.
 
 ## Autonomous
 
 The agent chooses sensible defaults, states assumptions and proceeds. It still asks if a wrong guess would change an important boundary, deployment target or interpretation. Non-interactive runs default to autonomous unless told otherwise.
 
-> Autonomous mode. Draw a logical view of this service for developers. Use the declared configuration, and distinguish inferred connections.
+> Autonomous mode. Draw a C3 container view of this system for developers. Use the declared configuration, and distinguish inferred connections.
 
 ## Guided
 

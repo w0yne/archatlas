@@ -3,65 +3,71 @@ title: Install and use the skill
 ---
 # Install and use the skill
 
-The portable skill is named **architecture-diagrams**. It contains instructions, references and local helper entry points. The site is not required to use an installed skill.
+archatlas 0.1.0 is a **pre-release in this repository**: the English skill, 40 diagram references, SVG renderer, packer and evaluation harness exist. No PyPI release is available. Cross-host release smoke tests and the first comparative evaluation are still pending.
 
-::: warning Pre-release instructions
-These steps describe installation from a complete, reviewed checkout or release bundle. This scaffold alone does not contain the renderer or packaged skill. Do not install an unrelated package just because it has a similar name.
-:::
+## Option A: use a reviewed clone
 
-## Review before installing
+From the repository root, the complete development setup is:
 
-Inspect the skill and scripts before allowing them to run. Use a trusted release, keep a copy of its version, and avoid duplicate installations under multiple discovery paths. The renderer targets Python 3.10+; a browser is optional for visual QA. Follow the bundle's dependency instructions.
+    make setup
+    . .venv/bin/activate
+    atlas --help
 
-## Claude Code
+For the renderer only (without site development dependencies):
 
-From the root of a complete bundle:
+    python3 -m venv .venv
+    . .venv/bin/activate
+    python -m pip install -e .
+
+Then copy the skill folder as shown below. **Start the agent from this activated environment** so its helper can import the installed renderer. Copying the source skill folder alone does not install Python dependencies or the renderer library. Do not run pip install archatlas: the package name is not published by this project.
+
+## Option B: use a verified bundle
+
+A bundle is produced from a reviewed clone with:
+
+    python tools/pack_skill.py --out dist --verify
+
+Unzip the chosen archive and enter the unpacked directory. Its top-level folder is **architecture-diagrams/**, not skills/architecture-diagrams/. It includes scripts/lib; third-party Python packages are installed separately:
+
+    python3 -m venv .venv
+    . .venv/bin/activate
+    python -m pip install -r architecture-diagrams/scripts/requirements.txt
+
+Copy that entire architecture-diagrams folder into one host location below. Keep the environment active when starting the agent. Review source, archive checksum and scripts before installation; do not substitute a similarly named registry package.
+
+## Choose one host location
+
+| Host | Personal location | Explicit invocation |
+|---|---|---|
+| Claude Code | ~/.claude/skills/architecture-diagrams/ | /architecture-diagrams |
+| Codex | ~/.agents/skills/architecture-diagrams/ | $architecture-diagrams |
+| Pi | ~/.pi/agent/skills/architecture-diagrams/ | /skill:architecture-diagrams |
+
+For example, from a clone after installing its renderer:
 
     mkdir -p ~/.claude/skills
     cp -R skills/architecture-diagrams ~/.claude/skills/
 
-Start a new session and invoke:
+From an unpacked bundle, use cp -R architecture-diagrams ~/.claude/skills/ instead. Use the corresponding destination for Codex or Pi; avoid duplicate discovery locations. Restart the agent after installation; Pi can use /reload.
 
-    /architecture-diagrams mode=guided Help me choose a view for an online shop.
+## First request and first render
 
-## Codex
+[Not sure which diagram? Choose a view first.](/choose)
 
-    mkdir -p ~/.agents/skills
-    cp -R skills/architecture-diagrams ~/.agents/skills/
+> Guided mode. Help a new developer understand checkout, payment and inventory. Recommend one view and explain what it leaves out. Use English labels.
 
-Start a new session and invoke:
+To exercise the installed renderer from the clone:
 
-    $architecture-diagrams mode=autonomous Draw a system context for an online shop.
+    atlas init C2 -o model.json
+    atlas render model.json -o out/
+    atlas check out/diagram.svg --model model.json --report out/findings.json
 
-## Pi
-
-    mkdir -p ~/.pi/agent/skills
-    cp -R skills/architecture-diagrams ~/.pi/agent/skills/
-
-Use /reload in an existing session, then invoke:
-
-    /skill:architecture-diagrams mode=guided Show me the important architecture choices.
-
-To try a complete skill folder for one run without copying it:
-
-    pi --skill ./skills/architecture-diagrams
-
-## Your first request
-
-Say who will read the diagram, which question it should answer, whether it is current or proposed, the system boundary, and the output language. For example:
-
-> Guided mode. Help a new developer understand how checkout communicates with payment and inventory. Use English labels. Do not infer a deployment topology.
-
-Expect a type recommendation, wireframe, source model, rendered SVG and an explicit review status. If missing information changes the architecture's meaning, the agent should ask rather than silently invent it.
+The renderer accepts type codes from shipped templates. Review findings and the actual image; a command finishing is not a quality guarantee. [Commands and limits](./formats) explain optional preview dependencies and exit codes.
 
 ## Updating and removing
 
-Replace only the installed architecture-diagrams folder with a reviewed release. To uninstall, remove that folder from the selected discovery location and restart/reload the host. Never remove the host's whole skills directory.
+Replace only this skill's folder with a reviewed version, update its Python environment, then restart/reload the host. Do not remove the host's entire skills directory.
 
 ## Compatibility status
 
-Documentation and CLI-help research covered Claude Code 2.1.285, Codex 0.160.1 and Pi 1.1.0. **These are not completed installation or output-quality certifications.** Cross-host release smoke tests remain pending.
-
-Official host references: [Claude Code skills](https://code.claude.com/docs/en/skills), [Codex skills](https://developers.openai.com/codex/skills), [Pi skills](https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/docs/skills.md).
-
-Next: [choose an interaction mode](./modes) or [derive views from code](./code-to-diagram).
+Documentation/help research covered Claude Code 2.1.285, Codex 0.160.1 and Pi 1.1.0. These are not completed cross-host output-quality certifications. Official references: [Claude Code](https://code.claude.com/docs/en/skills), [Codex](https://developers.openai.com/codex/skills), [Pi](https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/docs/skills.md).

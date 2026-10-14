@@ -1,8 +1,8 @@
 ---
 title: 评估改动
 translationOf: en/improve/evals.md
-sourceRev: 8ea75e8
-reviewed: false
+sourceRev: bca58c9299c22a5a05f98bf81e38393e6e1d1713
+reviewed: true
 ---
 # 评估改动
 
@@ -32,4 +32,4 @@ reviewed: false
 
 拉取请求检查不需要模型凭据。付费的模型评估应放在可信、经人工批准且有预算控制的作业中。不要向不可信的贡献暴露密钥，也不要提交私有的模型对话记录。
 
-首次发布评估尚未进行；本脚手架不展示编造的基准分数。
+评测框架已经在仓库中。首次跨代理对比评测与发布冒烟测试仍待完成；此处不宣称已有基准分数。

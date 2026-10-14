@@ -4,6 +4,12 @@ SVG is the primary format. You write a **model** (what the diagram means); the r
 
 > Status: the model schema below is frozen at `archatlas: "0.1"` (file `src/archatlas/model/schema.json`; the schema is the authority — validate with it, do not trust this summary over it). If `scripts/atlas --help` disagrees with this page, the real output wins.
 
+## Installation before using these commands
+
+This repository is pre-release; no project package is published on PyPI. From a reviewed clone, run `make setup` and activate `.venv`, or create a virtual environment and run `python -m pip install -e .`. Keep that environment active when starting the agent, then copy the source skill folder. Copying that folder alone does not install the renderer.
+
+For a verified packed ZIP, the unpacked root is `architecture-diagrams/`, with `scripts/lib` inside it. Install `python -m pip install -r architecture-diagrams/scripts/requirements.txt` in a virtual environment before copying the complete folder to the host. Do not substitute an unrelated registry package.
+
 ## 1. Workflow
 ```
 scripts/atlas init <code> -o model.json        # copies assets/templates/<code>.json (e.g. C2, E1)

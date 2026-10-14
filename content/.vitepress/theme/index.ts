@@ -4,6 +4,7 @@ import Figure from './Figure.vue';
 import TypeCard from './TypeCard.vue';
 import DecisionTree from './DecisionTree.vue';
 import Catalogue from './Catalogue.vue';
+import GlossaryTerms from './GlossaryTerms.vue';
 import './style.css';
 import './content.css';
-export default { extends: DefaultTheme, Layout, enhanceApp({ app }) { app.component('Figure', Figure); app.component('TypeCard', TypeCard); app.component('DecisionTree', DecisionTree); app.component('Catalogue', Catalogue); } };
+export default { extends: DefaultTheme, Layout, enhanceApp({ app }) { app.component('Figure', Figure); app.component('TypeCard', TypeCard); app.component('DecisionTree', DecisionTree); app.component('Catalogue', Catalogue); app.component('GlossaryTerms', GlossaryTerms); } };

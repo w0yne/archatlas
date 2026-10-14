@@ -44,10 +44,17 @@ A context diagram explains a system's surroundings. A sequence explains one inte
 
 > Guided mode. Help a new developer understand checkout, payment and inventory. Recommend one view and explain what it leaves out.
 
-Copy the complete architecture-diagrams skill folder to your host's discovery directory. The [installation guide](/use/) covers Claude Code, Codex and Pi without requiring the site at runtime.
+From a reviewed clone, install the renderer before copying the skill:
+
+    make setup
+    . .venv/bin/activate
+    atlas init C2 -o model.json
+    atlas render model.json -o out/
+
+The [installation guide](/use/) distinguishes clone and bundle layouts for Claude Code, Codex and Pi. Keep the Python environment active when starting the agent; the site is not required at runtime.
 
 ## SVG first. Honest about limits.
 
 The initial target is editable-text SVG plus model JSON. draw.io and native PowerPoint exports are future interfaces, not available features. A clean geometry check does not replace semantic or visual review.
 
-This is a pre-release atlas. Missing reference pages show “coming soon” instead of dead links. Original sample illustrations, the full Chinese mirror and cross-agent release evaluation are still being integrated. [See formats and current limits](/use/formats).
+Version 0.1.0 is a pre-release in this repository: 40 diagram types in English and Chinese, the skill, SVG renderer, packer and evaluation harness are present. No PyPI package or public release bundle is published. Sample refinements, cross-host smoke tests and the first comparative evaluation remain pending. [See commands and current limits](/use/formats).

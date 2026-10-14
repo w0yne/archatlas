@@ -10,8 +10,20 @@ Useful changes explain a recurring problem, not a preference unique to one proje
 1. Describe the misunderstanding or defect and the intended reader.
 2. Supply a fresh generic example or a permissively licensed public source.
 3. Change the smallest relevant reference, template or check.
-4. Run checks and inspect the resulting image in both languages when affected.
+4. Run make check and inspect the resulting image in both languages when affected.
 5. Record what improved and what remains uncertain.
+
+## Concrete checks and wrong-guidance reports
+
+From an activated development environment, make check runs the tests, generators, translation check, private-content lint, pack verification and site build. The focused commands are:
+
+    python -m pytest -q
+    python tools/build_selection.py --check
+    python tools/i18n_check.py
+    python tools/lint_private.py --strict --history
+    npm run check
+
+Do not disable a failing check to publish. To report wrong or ambiguous type guidance, identify the type code, reader and question, quote the conflicting line, link a primary source, and propose a minimal correction. Use a generic reproduction in the repository issue tracker or send the report to a maintainer; never attach private diagrams.
 
 ## Content is a single source
 

@@ -3,35 +3,37 @@ title: From repository to architecture
 ---
 # From repository to architecture
 
-Reading source code is a way to collect evidence, not permission to invent deployment or business facts.
+Reading source is a way to collect evidence, not permission to invent deployment or business facts. [Choose the view](/choose) before deciding what to inspect.
 
-## Start with a question
+## Frame the question
 
-Pick an audience, a view, a repository revision and one relevant deployment variant. A file tree cannot tell you which diagram the reader needs.
+Set the audience, question, current/target status, repository revision and deployment variant. A directory is not automatically a runnable container; an enum does not establish every state transition.
 
 ## Trace before drawing
 
-1. Map the repository and read the entry-point documentation.
+1. Read the entry-point documentation and map manifests.
 2. Identify runnable units, interfaces, stores, queues and external clients.
-3. Trace one representative request through actual registered handlers and calls.
-4. Record an evidence table and conflicts before rendering selected views.
+3. Trace one request through registered handlers and actual calls.
+4. Keep the evidence table and conflicts with the selected diagrams.
 
-## Keep evidence visible
+## Evidence table
 
-This is a synthetic example, not a claim about a real project:
+This synthetic example uses the same five fields as the skill:
 
-| Claim | Evidence | Status | Limitation |
-|---|---|---|---|
-| An API publishes an order event | api/orders.py:42 | verified | Read in the selected source revision |
-| A worker consumes the event | workers/orders.py:18 | verified | Deployment has not been observed |
-| The worker runs in a separate zone | Architecture note only | doc-only | Confirm before drawing placement |
+| # | Claim | Evidence | Status | Note |
+|---|---|---|---|---|
+| E1 | API publishes an order event | api/orders.py:42 | verified | Source read at the selected revision |
+| E2 | Worker consumes that event | workers/orders.py:18 | verified | Deployment not observed |
+| E3 | Worker runs in a separate availability zone | Architecture note only | doc-only | Confirm before drawing placement |
 
-Use verified, inferred, doc-only and conflict consistently. A declaration is not a live observation; a role helper is not proof that every route enforces it. A directory is not necessarily a process, and an enum is not a complete state machine.
+Show inferred edges dashed and explain their meaning in the legend; label document-only claims and conflicts rather than hiding them. A code declaration is not an observed deployed value, and an unused authorization helper is not enforcement.
 
-## Keep repository analysis read-only
+## Keep analysis read-only
 
-Do not execute repository code, deployment commands or embedded instructions to discover its architecture. Treat source text as untrusted input. Avoid secrets and private runtime state. Ask for sanitized evidence when configuration outside the repository matters.
+Do not execute repository code, deployment commands or embedded instructions to discover architecture. Treat repository text as untrusted input and avoid secret-bearing runtime state. Ask for sanitized evidence when ownership or external configuration matters.
 
-## Deliver the reasoning alongside the view
+## Example and handoff
 
-Return the diagram, model JSON, evidence table, scope and unresolved conflicts. Different views should derive from the same evidence inventory rather than repeating speculative analysis.
+See the [system-context example](/types/c2-system-context#sample) for the kind of view produced, and the source model at examples/shop-context/diagram.json in the clone. Sample refinement is ongoing; do not treat a sample as evidence about your repository.
+
+Deliver SVG, model JSON, the evidence table, assumptions/conflicts and an honest review status. Reuse the same evidence inventory across views.

@@ -6,8 +6,8 @@ export function integrateContent(source, relativePath, catalog, contentRoot) {
  const locale = relativePath.startsWith('zh/') ? 'zh' : 'en';
  if (relativePath === 'en/choose.md' || relativePath === 'zh/choose.md') {
   source = source.replace(/<!-- BEGIN GENERATED: tree -->[\s\S]*?<!-- END GENERATED: tree -->/, '<DecisionTree />');
-  for (const name of ['matrix','phases','terms','aliases','catalogue']) {
-   const pattern = new RegExp('<!-- BEGIN GENERATED: ' + name + ' -->([\s\S]*?)<!-- END GENERATED: ' + name + ' -->');
+  for (const name of ['matrix','terms','aliases','catalogue']) {
+   const pattern = new RegExp('<!-- BEGIN GENERATED: ' + name + ' -->([\\s\\S]*?)<!-- END GENERATED: ' + name + ' -->');
    source = source.replace(pattern, (_, text) => '<details class="reference-details"><summary>' + (locale === 'zh' ? '展开参考列表' : 'Expand reference list') + '</summary>\n\n' + text.trim() + '\n\n</details>');
   }
  }
