@@ -1,0 +1,278 @@
+# Bilingual glossary: the fixed Chinese rendering of each English term used on the site and in diagram labels.
+# Translators use `zh` exactly; `avoid` lists renderings that must not be used (wrong sense or inconsistent);
+# `note` explains the sense when a term is overloaded. Terms listed under `keep` are written as-is in Chinese text.
+version: 1
+
+keep:
+  - C4 model
+  - UML
+  - BPMN
+  - ArchiMate
+  - TOGAF
+  - arc42
+  - ISO/IEC/IEEE 42010
+  - DDD
+  - RACI
+  - RBAC
+  - ABAC
+  - ReBAC
+  - OAuth 2.0
+  - OpenID Connect
+  - SSO
+  - JWT
+  - SAML
+  - STRIDE
+  - API
+  - OpenAPI
+  - AsyncAPI
+  - ERD
+  - DFD
+  - VSM
+  - SLA
+  - SLO
+  - CI/CD
+  - VPC
+  - DNS
+  - CDN
+  - SVG
+  - draw.io
+  - Mermaid
+  - PlantUML
+  - Structurizr
+
+terms:
+  # --- general / viewpoint vocabulary
+  - {en: architecture description, zh: 架构描述, note: "ISO/IEC/IEEE 42010 term"}
+  - {en: viewpoint, zh: 视点, note: "42010: the conventions for a kind of view; 视角 only in its everyday sense (perspective)"}
+  - {en: view, zh: 视图}
+  - {en: concern, zh: 关注点}
+  - {en: stakeholder, zh: 干系人, avoid: [持份者]}
+  - {en: audience, zh: 受众}
+  - {en: notation, zh: 表示法}
+  - {en: legend, zh: 图例}
+  - {en: boundary, zh: 边界}
+  - {en: scope, zh: 范围}
+  - {en: abstraction level, zh: 抽象层级}
+  - {en: as-is, zh: 现状}
+  - {en: to-be, zh: 目标态}
+  - {en: baseline architecture, zh: 基线架构, note: TOGAF}
+  - {en: target architecture, zh: 目标架构, note: TOGAF}
+  - {en: transition architecture, zh: 过渡架构, note: TOGAF}
+  - {en: gap analysis, zh: 差距分析}
+  - {en: architecture roadmap, zh: 架构路线图}
+  - {en: implementation and migration plan, zh: 实施与迁移计划, note: TOGAF Phase F}
+  - {en: plateau, zh: 稳定态, note: "ArchiMate Implementation & Migration element; write 稳定态（Plateau） on first use"}
+  - {en: work package, zh: 工作包}
+  - {en: deliverable, zh: 交付物}
+  - {en: definition used here, zh: 本站采用的定义}
+  - {en: anti-pattern, zh: 反模式}
+  - {en: best practice, zh: 最佳实践}
+  - {en: exemplar, zh: 范例}
+  - {en: self-check, zh: 自检清单}
+  - {en: guided mode, zh: 引导模式}
+  - {en: autonomous mode, zh: 自主模式}
+  - {en: evidence, zh: 证据, note: "repo mode: a file/line that supports a claim"}
+  - {en: verified, zh: 已核实}
+  - {en: inferred, zh: 推断}
+  - {en: wireframe, zh: 线框图}
+
+  # --- A: business architecture
+  - {en: business architecture, zh: 业务架构}
+  - {en: capability, zh: 能力, note: "business capability: what the business can do, not how"}
+  - {en: business capability map, zh: 业务能力图}
+  - {en: heat map, zh: 热力图}
+  - {en: value stream, zh: 价值流, note: "business-architecture sense (TOGAF/BIZBOK), no times"}
+  - {en: value stream stage, zh: 价值流阶段}
+  - {en: triggering stakeholder, zh: 触发干系人}
+  - {en: value proposition, zh: 价值主张}
+  - {en: value item, zh: 价值项}
+  - {en: entrance criteria, zh: 进入条件}
+  - {en: exit criteria, zh: 退出条件}
+  - {en: lean value-stream map, zh: 精益价值流图}
+  - {en: process time, zh: 处理时间}
+  - {en: wait time, zh: 等待时间}
+  - {en: lead time, zh: 前置时间, avoid: [提前期], note: "Lean: total elapsed time incl. waiting"}
+  - {en: flow efficiency, zh: 流动效率}
+  - {en: business context diagram, zh: 业务上下文图}
+  - {en: stakeholder map, zh: 干系人地图}
+  - {en: power-interest grid, zh: 权力-利益矩阵}
+  - {en: business scenario matrix, zh: 业务场景矩阵}
+  - {en: business process, zh: 业务流程}
+  - {en: pool, zh: 池, note: "BPMN: one participant; write 池（Pool） on first use"}
+  - {en: lane, zh: 泳道, note: "BPMN: a partition inside one pool"}
+  - {en: swimlane, zh: 泳道}
+  - {en: participant, zh: 参与方}
+  - {en: sequence flow, zh: 顺序流}
+  - {en: message flow, zh: 消息流}
+  - {en: start event, zh: 开始事件}
+  - {en: end event, zh: 结束事件}
+  - {en: intermediate event, zh: 中间事件}
+  - {en: gateway, zh: 网关}
+  - {en: task, zh: 任务}
+  - {en: sub-process, zh: 子流程}
+  - {en: collaboration diagram, zh: 协作图, note: BPMN}
+  - {en: customer journey map, zh: 客户旅程图}
+  - {en: user journey map, zh: 用户旅程图}
+  - {en: persona, zh: 用户画像}
+  - {en: touchpoint, zh: 触点}
+  - {en: pain point, zh: 痛点}
+  - {en: service blueprint, zh: 服务蓝图}
+  - {en: experience map, zh: 体验地图, note: "product-agnostic; not a synonym of journey map"}
+  - {en: conceptual architecture, zh: 概念架构}
+  - {en: solution concept diagram, zh: 方案构想图, note: TOGAF Phase A}
+
+  # --- C: application / system
+  - {en: application landscape, zh: 应用全景图}
+  - {en: application portfolio, zh: 应用组合}
+  - {en: system context diagram, zh: 系统上下文图}
+  - {en: software system, zh: 软件系统}
+  - {en: external system, zh: 外部系统}
+  - {en: person, zh: 人员, note: "C4 model element (a role, not a named individual)"}
+  - {en: container, zh: 容器, note: "C4 model: a separately running application or data store; not a Docker container"}
+  - {en: container diagram, zh: 容器图}
+  - {en: component, zh: 组件, note: "C4 model: grouping behind an interface inside one container; UML and vendor senses differ"}
+  - {en: component diagram, zh: 组件图}
+  - {en: logical architecture, zh: 逻辑架构}
+  - {en: layered architecture, zh: 分层架构}
+  - {en: layer, zh: 层, note: "logical code layer; not a tier"}
+  - {en: tier, zh: 层级, note: "physical/deployment tier; add （物理分层） on first use when it could be read as a code layer"}
+  - {en: hexagonal architecture, zh: 六边形架构}
+  - {en: onion architecture, zh: 洋葱架构}
+  - {en: clean architecture, zh: 整洁架构}
+  - {en: dependency rule, zh: 依赖规则}
+  - {en: integration diagram, zh: 集成关系图}
+  - {en: interface catalog, zh: 接口目录}
+  - {en: integration style, zh: 集成方式}
+  - {en: bounded context, zh: 限界上下文}
+  - {en: context map, zh: 上下文映射图}
+  - {en: upstream, zh: 上游}
+  - {en: downstream, zh: 下游}
+  - {en: shared kernel, zh: 共享内核}
+  - {en: customer/supplier, zh: 客户/供应商}
+  - {en: conformist, zh: 遵奉者}
+  - {en: anticorruption layer, zh: 防腐层}
+  - {en: open host service, zh: 开放主机服务}
+  - {en: published language, zh: 发布语言}
+  - {en: separate ways, zh: 各行其道}
+  - {en: partnership, zh: 合作关系}
+  - {en: big ball of mud, zh: 大泥球}
+  - {en: ubiquitous language, zh: 通用语言}
+
+  # --- D: data
+  - {en: entity, zh: 实体}
+  - {en: attribute, zh: 属性}
+  - {en: relationship, zh: 关系}
+  - {en: cardinality, zh: 基数}
+  - {en: crow's foot notation, zh: 鸦脚表示法}
+  - {en: entity-relationship diagram, zh: 实体关系图}
+  - {en: conceptual data model, zh: 概念数据模型}
+  - {en: logical data model, zh: 逻辑数据模型}
+  - {en: physical data model, zh: 物理数据模型}
+  - {en: data flow diagram, zh: 数据流图}
+  - {en: external entity, zh: 外部实体}
+  - {en: data store, zh: 数据存储}
+  - {en: process (DFD), zh: 加工, note: "DFD process bubble; use 处理 in plain prose if clearer"}
+  - {en: data lineage, zh: 数据血缘}
+  - {en: data owner, zh: 数据所有者}
+  - {en: data steward, zh: 数据管理员}
+
+  # --- E: behaviour
+  - {en: sequence diagram, zh: 时序图, note: "UML 'sequence diagram'; 序列图 is an accepted alias, use 时序图 consistently"}
+  - {en: lifeline, zh: 生命线}
+  - {en: activation, zh: 激活条}
+  - {en: synchronous message, zh: 同步消息}
+  - {en: asynchronous message, zh: 异步消息}
+  - {en: return message, zh: 返回消息}
+  - {en: combined fragment, zh: 组合片段}
+  - {en: interaction frame, zh: 交互框}
+  - {en: activity diagram, zh: 活动图}
+  - {en: flowchart, zh: 流程图}
+  - {en: decision node, zh: 判断节点}
+  - {en: fork, zh: 分叉}
+  - {en: join, zh: 汇合}
+  - {en: state machine diagram, zh: 状态机图}
+  - {en: state, zh: 状态}
+  - {en: transition, zh: 迁移, note: "state transition; not 转换, which stays available for transform/convert"}
+  - {en: guard, zh: 守卫条件}
+  - {en: initial state, zh: 初始状态}
+  - {en: final state, zh: 终止状态}
+  - {en: cross-functional flowchart, zh: 跨职能流程图}
+  - {en: happy path, zh: 主成功路径}
+
+  # --- F: security and identity
+  - {en: authentication, zh: 认证}
+  - {en: authorization, zh: 授权}
+  - {en: identity provider, zh: 身份提供方}
+  - {en: relying party, zh: 依赖方}
+  - {en: access token, zh: 访问令牌}
+  - {en: refresh token, zh: 刷新令牌}
+  - {en: token exchange, zh: 令牌交换}
+  - {en: authorization code flow, zh: 授权码流程}
+  - {en: trust boundary, zh: 信任边界}
+  - {en: threat model, zh: 威胁模型}
+  - {en: attack surface, zh: 攻击面}
+  - {en: mitigation, zh: 缓解措施}
+  - {en: access control model, zh: 访问控制模型}
+  - {en: role, zh: 角色}
+  - {en: permission, zh: 权限}
+  - {en: policy, zh: 策略}
+  - {en: least privilege, zh: 最小权限}
+  - {en: tenant, zh: 租户}
+
+  # --- G: technology and infrastructure
+  - {en: deployment diagram, zh: 部署图}
+  - {en: node, zh: 节点}
+  - {en: execution environment, zh: 执行环境}
+  - {en: artifact, zh: 制品, note: "deployable build output; also the usual rendering of TOGAF artifacts"}
+  - {en: artefact (document), zh: 成果物, note: "a work product in general prose (not a build output, not a TOGAF artifact)"}
+  - {en: cloud architecture diagram, zh: 云架构图}
+  - {en: region, zh: 区域}
+  - {en: availability zone, zh: 可用区}
+  - {en: subnet, zh: 子网}
+  - {en: load balancer, zh: 负载均衡器}
+  - {en: network topology, zh: 网络拓扑}
+  - {en: firewall, zh: 防火墙}
+  - {en: delivery pipeline, zh: 交付流水线}
+  - {en: stage, zh: 阶段}
+  - {en: environment, zh: 环境}
+  - {en: blue-green deployment, zh: 蓝绿部署}
+  - {en: canary release, zh: 金丝雀发布}
+  - {en: rollback, zh: 回滚}
+
+  # --- added from translation (terms the pages use consistently)
+  - {en: building block, zh: 构建块, note: "arc42 building block view = 构建块视图"}
+  - {en: provided interface, zh: 提供接口}
+  - {en: required interface, zh: 需求接口}
+  - {en: system of interest, zh: 关注系统}
+  - {en: modular monolith, zh: 模块化单体}
+  - {en: system landscape diagram, zh: 系统全景图, note: "C4 model supplementary diagram"}
+  - {en: message broker, zh: 消息代理}
+  - {en: idempotency, zh: 幂等}
+  - {en: dead-letter queue, zh: 死信队列}
+  - {en: aggregate, zh: 聚合, note: DDD}
+  - {en: associative entity, zh: 关联实体}
+  - {en: pseudostate, zh: 伪状态}
+  - {en: superstate, zh: 超状态}
+  - {en: history state, zh: 历史状态}
+  - {en: activity partition, zh: 活动分区}
+  - {en: runbook, zh: 运维手册}
+  - {en: choreography diagram, zh: 编排图, note: BPMN}
+  - {en: black-box pool, zh: 黑盒池, note: BPMN}
+  - {en: empathy map, zh: 同理心地图}
+  - {en: strangler fig, zh: 绞杀者模式}
+  - {en: takt time, zh: 节拍时间}
+  - {en: changeover time, zh: 换型时间}
+  - {en: kaizen burst, zh: 改善爆炸点}
+  - {en: walking skeleton, zh: 行走骨架}
+  - {en: user-goal level, zh: 用户目标级, note: Cockburn}
+  - {en: step-up authentication, zh: 升级认证}
+  - {en: bearer token, zh: 持有者令牌}
+  - {en: policy enforcement, zh: 策略执行}
+  - {en: attestation, zh: 证明}
+  - {en: provenance, zh: 来源证明}
+  - {en: promotion, zh: 晋级, note: "moving a build between environments"}
+  - {en: roll-forward, zh: 前滚}
+  - {en: hub-and-spoke, zh: 中心辐射}
+  - {en: peering, zh: 对等连接}
+  - {en: stereotype, zh: 构造型, note: UML}
+  - {en: accessed (source date), zh: 访问于}
