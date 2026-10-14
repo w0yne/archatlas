@@ -1,5 +1,6 @@
 """Check the actual SVG primitives, not a trusted precomputed pass flag."""
 import json
+import math
 import re
 from xml.etree import ElementTree as ET
 
@@ -25,11 +26,61 @@ def shape_box(element):
         return f("x"), f("y"), f("width"), f("height")
     if tag == "ellipse":
         return f("cx") - f("rx"), f("cy") - f("ry"), 2 * f("rx"), 2 * f("ry")
-    if tag == "polygon":
+    if tag == "circle":
+        return f("cx") - f("r"), f("cy") - f("r"), 2 * f("r"), 2 * f("r")
+    if tag in ("polygon", "polyline"):
         points = [tuple(map(float, point.split(","))) for point in element.get("points", "").split()]
+        if not points:
+            return None
         xs, ys = zip(*points)
         return min(xs), min(ys), max(xs) - min(xs), max(ys) - min(ys)
+    if tag == "g":
+        boxes = [box for child in element if (box := shape_box(child)) is not None]
+        if boxes:
+            x, y = min(b[0] for b in boxes), min(b[1] for b in boxes)
+            return x, y, max(b[0] + b[2] for b in boxes) - x, max(b[1] + b[3] for b in boxes) - y
     return None
+
+
+def owner_fits(shape, text, kind="", tag=""):
+    """Check glyph interiors, or the centered exterior label of a UML actor."""
+    x, y, w, h = shape
+    if kind == "actor":
+        return text[1] >= y + h + 4 - 1 and abs(text[0] + text[2] / 2 - x - w / 2) <= 1
+    if tag in ("ellipse", "circle"):
+        rx, ry = w / 2 - 4, h / 2 - 4
+        if rx <= 0 or ry <= 0:
+            return False
+        return all(((px - x - w / 2) / rx) ** 2 + ((py - y - h / 2) / ry) ** 2 <= 1.001
+                   for px in (text[0], text[0] + text[2]) for py in (text[1], text[1] + text[3]))
+    return contains((x + 4, y + 4, w - 8, h - 8), text)
+
+
+def on_shape(point, element, tolerance=1):
+    """Test actual SVG strokes, including the children of an actor group."""
+    tag = element.tag.rsplit("}", 1)[-1]
+    if tag == "g":
+        return any(on_shape(point, child, tolerance) for child in element)
+    box = shape_box(element)
+    if box is None:
+        return False
+    x, y, w, h = box
+    if tag in ("ellipse", "circle"):
+        if min(w, h) <= 0:
+            return False
+        radius = math.hypot((point[0] - x - w / 2) / (w / 2), (point[1] - y - h / 2) / (h / 2))
+        return abs(radius - 1) * min(w, h) / 2 <= tolerance
+    if tag == "polyline":
+        points = [tuple(map(float, p.split(","))) for p in element.get("points", "").split()]
+        for a, b in zip(points, points[1:]):
+            dx, dy = b[0] - a[0], b[1] - a[1]
+            length = dx * dx + dy * dy
+            t = max(0, min(1, ((point[0] - a[0]) * dx + (point[1] - a[1]) * dy) / length)) if length else 0
+            if math.hypot(point[0] - a[0] - t * dx, point[1] - a[1] - t * dy) <= tolerance:
+                return True
+        return False
+    return ((abs(point[0] - x) < tolerance or abs(point[0] - x - w) < tolerance) and y - tolerance <= point[1] <= y + h + tolerance) or \
+           ((abs(point[1] - y) < tolerance or abs(point[1] - y - h) < tolerance) and x - tolerance <= point[0] <= x + w + tolerance)
 
 
 def check_svg(svg, metrics=None):
@@ -88,9 +139,11 @@ def check_svg(svg, metrics=None):
                 shapes[id] = (box, e)
                 if not contains(view, box):
                     add("canvas-overflow", "Shape extends outside the canvas", [id], [box])
-                stroke_background = canvas if e.get("data-kind") in ("initial", "final") else e.get("fill", canvas)
+                stroke_background = canvas if e.get("data-kind") in ("initial", "final", "actor") else e.get("fill", canvas)
                 if e.get("stroke", "none") != "none" and ratio(e.get("stroke"), stroke_background) < 3:
                     add("stroke-contrast", "Stroke contrast is below 3:1", [id], [box])
+            else:
+                add("unsupported-geometry", "Declared shape has no measurable primitives", [id])
         if e.tag.rsplit("}", 1)[-1] == "text":
             size = float(e.get("font-size", 16))
             spans = list(e) or [e]
@@ -114,10 +167,17 @@ def check_svg(svg, metrics=None):
     for id, box, e in text_nodes:
         owner = e.get("data-owner", "")
         bg = shapes.get(owner)
-        if bg and not contains((bg[0][0] + 4, bg[0][1] + 4, bg[0][2] - 8, bg[0][3] - 8), box):
+        if bg and not owner_fits(bg[0], box, bg[1].get("data-kind"), bg[1].tag.rsplit("}", 1)[-1]):
             add("text-overflow", "Measured text does not fit its owner padded interior", [id, owner], [box, bg[0]])
-        if ratio(e.get("fill", "#000000"), bg[1].get("fill", canvas) if bg else canvas) < (3 if float(e.get("font-size", 16)) >= 24 else 4.5):
+        background = bg[1].get("fill", canvas) if bg else canvas
+        if background == "none":
+            background = canvas
+        if ratio(e.get("fill", "#000000"), background) < (3 if float(e.get("font-size", 16)) >= 24 else 4.5):
             add("text-contrast", "Text contrast is too low", [id], [box])
+        if bg and bg[1].get("data-kind") == "actor" and bg[1].get("data-parent"):
+            parent = bg[1].get("data-parent")
+            if parent not in shapes or not contains(shapes[parent][0], box):
+                add("boundary-membership", "Actor label is outside its declared group", [id, parent], [box])
         if e.get("data-role") == "edge-label":
             backgrounds = [(sid, rect) for sid, (rect, shape) in shapes.items()
                            if shape.get("data-role") == "label-bg" and shape.get("data-parent") == owner]
@@ -165,8 +225,7 @@ def check_svg(svg, metrics=None):
                 # A message may end at the centre lifeline or its 10px activation.
                 on_port = min(abs(point[0] - (x + w / 2 + delta)) for delta in (-5, 0, 5)) < 1
             else:
-                on_port = ((abs(point[0] - x) < 1 or abs(point[0] - x - w) < 1) and y - 1 <= point[1] <= y + h + 1) or \
-                          ((abs(point[1] - y) < 1 or abs(point[1] - y - h) < 1) and x - 1 <= point[0] <= x + w + 1)
+                on_port = on_shape(point, shapes[endpoint][1])
             if not on_port:
                 add("edge-port", "Connector does not terminate on its endpoint port", [id, endpoint], [shapes[endpoint][0]])
         excluded = {source, target}
@@ -188,7 +247,8 @@ def check_svg(svg, metrics=None):
                     add("arrow-through-box", "Connector crosses an unrelated box", [id, sid], [rect])
             for tid, rect, text in text_nodes:
                 if (text.get("data-role") == "group-title" and text.get("data-owner") not in (source, target)) or \
-                   (text.get("data-role") == "edge-label" and text.get("data-owner") != id):
+                   (text.get("data-role") == "edge-label" and text.get("data-owner") != id) or \
+                   (text.get("data-owner") in shapes and shapes[text.get("data-owner")][1].get("data-kind") == "actor"):
                     if segment_hits_rect(a, b, rect, padding=2):
                         add("arrow-through-label", "Connector crosses unrelated text", [id, tid], [rect])
             edge_segments.append((id, a, b))

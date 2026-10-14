@@ -80,3 +80,21 @@ barycentre ordering. Statecharts retain feedback edges for routing; trees reject
 cycles. Lane tasks share the global rank axis, including nested groups. Rank
 ordering is heuristic, not globally optimal; long-edge crossing minimization and
 full UML/BPMN semantics remain out of scope.
+
+Semantic legend and notation regressions cover:
+
+- `meta.legend_mode: "replace"` uses only the authored legend. Default `auto`
+  supplements it with reader-facing meanings, never rendering style identifiers.
+- `meta.legend_labels.edges/styles/groups` maps encoding keys to text or
+  localization keys. A `reply` edge-label override denotes a dashed, verified
+  sequence reply; an inferred request is still labelled as unverified.
+- `kind: "actor"` is a stick figure with an owned label below it; `use_case` is
+  an ellipse. Text fit and connector attachment use the actual visible glyph.
+- `event_type: "start"|"end"` applies to BPMN `event` nodes; end events have a
+  thick border. Explicit pool models reject sequence flows across participants
+  and message flows within the same participant.
+- ER cardinality strings such as `1..1` and `0..*` retain minimum and maximum
+  participation; endpoint labels and relationship text must remain separate.
+
+Template corrections (guard branches, entity names, captions and business
+relationships) remain authored model content; the renderer does not invent them.

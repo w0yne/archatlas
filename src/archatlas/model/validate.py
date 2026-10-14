@@ -35,6 +35,9 @@ def validate(model):
     for edge in model.get("edges", []):
         if edge["from"] not in ids or edge["to"] not in ids:
             raise ModelError("Edge endpoints must name an existing node or group")
+    for node in model.get("nodes", []):
+        if "event_type" in node and node["kind"] != "event":
+            raise ModelError("event_type applies only to BPMN event nodes")
     for table in model.get("tables", []):
         if not table["columns"] or any(len(row) != len(table["columns"]) for row in table["rows"]):
             raise ModelError(f"{table['id']}: table rows must match non-empty columns")
@@ -55,4 +58,26 @@ def validate(model):
         raise ModelError("Frames and activations require the sequence template")
     if model.get("tables") and template != "grid_table":
         raise ModelError("Tables require the grid_table template")
+    if template == "lanes" and any(g["kind"] == "pool" for g in groups.values()):
+        items = {item["id"]: item for item in entities}
+
+        def pool(id):
+            while id:
+                item = items[id]
+                if item.get("kind") == "pool":
+                    return id
+                id = item.get("parent")
+            return None
+
+        for edge in model.get("edges", []):
+            a, b = pool(edge["from"]), pool(edge["to"])
+            kind = edge.get("kind", "call")
+            if kind == "message":
+                if a is None or b is None or a == b:
+                    raise ModelError("BPMN message flow must connect two different pools")
+                if edge.get("dashed") is False or edge.get("dir", "->") != "->":
+                    raise ModelError("BPMN message flow requires a dashed directed arrow")
+            elif kind == "call":
+                if a != b or any(items[id]["kind"] == "pool" for id in (edge["from"], edge["to"])):
+                    raise ModelError("BPMN sequence flow cannot cross or terminate on pool boundaries")
     return model

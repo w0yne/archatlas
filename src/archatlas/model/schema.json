@@ -92,6 +92,39 @@
             ],
             "additionalProperties": false
           }
+        },
+        "legend_mode": {
+          "enum": [
+            "auto",
+            "replace"
+          ]
+        },
+        "legend_labels": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "edges": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "styles": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "groups": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
         }
       },
       "required": [
@@ -348,7 +381,8 @@
             "process",
             "dataset",
             "job",
-            "pipeline"
+            "pipeline",
+            "use_case"
           ]
         },
         "label": {
@@ -410,6 +444,12 @@
           "minimum": 0,
           "maximum": 100,
           "description": "Minimum flow rank, propagated to downstream nodes."
+        },
+        "event_type": {
+          "enum": [
+            "start",
+            "end"
+          ]
         }
       },
       "required": [

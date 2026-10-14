@@ -83,6 +83,10 @@ class Layout:
         symbol = node["kind"] in ("event", "gateway")
         if symbol:
             width = node.get("size_hint", {}).get("width", 80 if node["kind"] == "gateway" else 64)
+            if "width" not in node.get("size_hint", {}):
+                # Keep short words whole in compact event/gateway symbols.
+                word_width = max((metrics.width(word, 16) for word in node["label"].split()), default=0)
+                width = max(width, min(140, word_width + 2 * padding))
         wrap_width = max(24, width - 2 * padding)
         lines = []
         for role, value, size in [("name", node["label"], 16), ("sub", node.get("sub", ""), 12)]:
@@ -101,6 +105,16 @@ class Layout:
             text_h = sum(len(wrapped) * size * 1.4 + 6 for _, wrapped, size in lines) - 6
             required = text_w + text_h if node["kind"] == "gateway" else math.hypot(text_w, text_h)
             width = height = max(width, node.get("size_hint", {}).get("height", 0), required + padding)
+        elif node["kind"] in ("actor", "use_case"):
+            text_w = max((metrics.width(line, size) for _, wrapped, size in lines for line in wrapped), default=0)
+            text_h = max(0, sum(len(wrapped) * size * 1.4 + 6 for _, wrapped, size in lines) - 6)
+            if node["kind"] == "actor":
+                width = max(width, 56 + 2 * padding, text_w + 2 * padding)
+                height = max(height, 80 + 10 + text_h + padding)
+            else:
+                # An inscribed rectangle occupies 1/sqrt(2) of each ellipse axis.
+                width = max(width, math.sqrt(2) * (text_w + 2 * padding))
+                height = max(height, math.sqrt(2) * (text_h + 2 * padding))
         self.node_text[node["id"]] = lines
         return width, height
 
@@ -161,12 +175,15 @@ class Layout:
                 self.place(child, x + dx, y + dy)
         else:
             box = Box(id, x, y, w, h, kind=item["kind"], style=style, parent=item.get("parent", ""),
-                      dashed=item.get("evidence", {}).get("status") not in (None, "verified"))
+                      dashed=item.get("evidence", {}).get("status") not in (None, "verified"),
+                      event_type=item.get("event_type", ""))
             self.scene.boxes.append(box)
             texts = self.node_text[id]
             total = sum(len(lines) * size * 1.4 + 6 for _, lines, size in texts) - 6
             small_state = item["kind"] in ("initial", "final")
             ty = y + h + 10 if small_state else y + (h - total) / 2
+            if item["kind"] == "actor":
+                ty = box.glyph_rect[1] + box.glyph_rect[3] + 10
             for role, lines, size in texts:
                 tw = max(self.metrics.width(line, size) for line in lines)
                 self.scene.texts.append(Text(id + "-" + role, lines, max(tw / 2 + 8, x + w / 2), ty, tw,
@@ -180,7 +197,7 @@ class Layout:
         # Peer nodes in a view have consistent dimensions within each style.
         for style in {n.get("style", "peer") for n in self.nodes.values()}:
             ids = [id for id, n in self.nodes.items() if n.get("style", "peer") == style
-                   and n["kind"] not in ("gateway", "event", "initial", "final")]
+                   and n["kind"] not in ("gateway", "event", "initial", "final", "actor", "use_case")]
             if ids:
                 size = tuple(max(self.dimensions[id][i] for id in ids) for i in (0, 1))
                 self.dimensions.update({id: size for id in ids})
@@ -315,11 +332,15 @@ class Layout:
                          and not (b.role == "group" and b.kind == "lane")]
             obstacles += [t.rect for t in self.scene.texts if t.role in ("group-title", "edge-label")
                           and t.owner not in (source.id, target.id)]
+            obstacles += [t.rect for t in self.scene.texts
+                          if t.owner in boxes and boxes[t.owner].kind == "actor"]
             same = [e for e in edges if (e["from"], e["to"]) == (edge["from"], edge["to"])]
             slot = sum(1 for e in edges[:i] if (e["from"], e["to"]) == (edge["from"], edge["to"]))
-            points = route(source.rect, target.rect, obstacles, from_port=edge.get("from_port", "auto"),
+            points = route(source.glyph_rect, target.glyph_rect, obstacles, from_port=edge.get("from_port", "auto"),
                            to_port=edge.get("to_port", "auto"), slot=slot, slots=len(same),
                            previous=previous, waypoints=edge.get("waypoints", ()))
+            points[0] = self.glyph_port(source, points[0], points[1])
+            points[-1] = self.glyph_port(target, points[-1], points[-2])
             previous.append(points)
             self.add_edge(id, edge, points)
             value = edge.get("label", "")
@@ -332,6 +353,42 @@ class Layout:
                         self.cardinality_label(id + "-" + end, cardinality, point, neighbour)
             if value:
                 self.edge_label(id, value, points)
+
+    @staticmethod
+    def glyph_port(box, point, neighbour):
+        """Extend the final orthogonal segment from bounds to the visible stroke."""
+        x, y, w, h = box.glyph_rect
+        cx, cy = x + w / 2, y + h / 2
+        vertical = point[0] == neighbour[0]
+        axis = 1 if vertical else 0
+        outward = neighbour[axis] > point[axis]
+        candidates = []
+        if box.kind in ("use_case", "event", "initial", "final"):
+            offset = (point[0] - cx) / (w / 2) if vertical else (point[1] - cy) / (h / 2)
+            radius = (h if vertical else w) / 2 * math.sqrt(max(0, 1 - offset ** 2))
+            center = cy if vertical else cx
+            candidates = [center - radius, center + radius]
+        elif box.kind == "actor":
+            (hx, hy, radius), parts = box.actor_parts
+            offset = point[0] - hx if vertical else point[1] - hy
+            if abs(offset) <= radius:
+                delta = math.sqrt(max(0, radius ** 2 - offset ** 2))
+                center = hy if vertical else hx
+                candidates.extend((center - delta, center + delta))
+            cross_axis = 1 - axis
+            for part in parts:
+                for a, b in zip(part, part[1:]):
+                    if a[cross_axis] == b[cross_axis]:
+                        if abs(point[cross_axis] - a[cross_axis]) < 1e-6:
+                            candidates.extend((a[axis], b[axis]))
+                    elif min(a[cross_axis], b[cross_axis]) <= point[cross_axis] <= max(a[cross_axis], b[cross_axis]):
+                        fraction = (point[cross_axis] - a[cross_axis]) / (b[cross_axis] - a[cross_axis])
+                        candidates.append(a[axis] + fraction * (b[axis] - a[axis]))
+        if not candidates:
+            return point
+        result = list(point)
+        result[axis] = max(candidates) if outward else min(candidates)
+        return tuple(result)
 
     def cardinality_label(self, id, value, point, neighbour):
         text = text_box(self.metrics, id, value, 0, 0, 70, 12, role="cardinality", anchor="middle")
@@ -350,7 +407,7 @@ class Layout:
                 for side in (1, -1):
                     candidates.append((point[0] + sign * distance,
                                        point[1] + (12 if side == 1 else -text.h - 12)))
-        occupied = [b.rect for b in self.scene.boxes if b.role != "group"]
+        occupied = [b.glyph_rect for b in self.scene.boxes if b.role != "group"]
         occupied += [t.rect for t in self.scene.texts]
         for x, y in candidates:
             if x - text.w / 2 >= 8 and y >= self.top - 10 and not any(
@@ -381,13 +438,15 @@ class Layout:
             for fraction in (0.5, 0.35, 0.65):
                 mx, my = a[0] + (b[0] - a[0]) * fraction, a[1] + (b[1] - a[1]) * fraction
                 if a[1] == b[1]:
-                    candidates.extend([(mx, my - text.h - 10), (mx, my + 10)])
+                    for offset in (1, 2, 3):
+                        clearance = self.spacing["label_clearance"] * offset
+                        candidates.extend([(mx, my - text.h - clearance), (mx, my + clearance)])
                 else:
                     for offset in (1, 2, 3):
                         clearance = self.spacing["label_clearance"] * offset
                         candidates.extend([(mx + text.w / 2 + clearance, my - text.h / 2),
                                            (mx - text.w / 2 - clearance, my - text.h / 2)])
-        occupied = [b.rect for b in self.scene.boxes if b.role != "group"]
+        occupied = [b.glyph_rect for b in self.scene.boxes if b.role != "group"]
         occupied += [t.rect for t in self.scene.texts]
         chosen = None
         for x, y in candidates:

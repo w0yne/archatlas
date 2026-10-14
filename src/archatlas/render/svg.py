@@ -13,7 +13,12 @@ def number(value):
 
 
 def render_svg(scene, namespace=None):
-    digest = hashlib.sha256(json.dumps(asdict(scene), sort_keys=True, ensure_ascii=False).encode()).hexdigest()[:12]
+    data = asdict(scene)
+    # Keep existing 0.1 SVG namespaces stable when the optional field is absent.
+    for box in data["boxes"]:
+        if not box["event_type"]:
+            del box["event_type"]
+    digest = hashlib.sha256(json.dumps(data, sort_keys=True, ensure_ascii=False).encode()).hexdigest()[:12]
     prefix = namespace or "atlas-" + digest
     if not re.fullmatch(r"[A-Za-z][A-Za-z0-9_-]*", prefix):
         raise ValueError("SVG namespace must be an identifier")
@@ -60,11 +65,21 @@ def render_svg(scene, namespace=None):
                  "data-box": " ".join(number(v) for v in box.rect)}
         if box.dashed:
             attrs["stroke-dasharray"] = "7 5"
-        if box.kind == "gateway":
+        if box.kind == "actor":
+            actor = SubElement(root, "g", {**attrs, "fill": "none", "stroke-linecap": "round"})
+            (cx, cy, r), parts = box.actor_parts
+            SubElement(actor, "circle", {"cx": number(cx), "cy": number(cy), "r": number(r),
+                                         "fill": theme["canvas"]})
+            for part in parts:
+                SubElement(actor, "polyline", {"points": " ".join(f"{number(x)},{number(y)}" for x, y in part)})
+        elif box.kind == "gateway":
             points = [(box.x + box.w / 2, box.y), (box.x + box.w, box.y + box.h / 2),
                       (box.x + box.w / 2, box.y + box.h), (box.x, box.y + box.h / 2)]
             SubElement(root, "polygon", {**attrs, "points": " ".join(f"{number(x)},{number(y)}" for x, y in points)})
-        elif box.kind in ("event", "initial", "final"):
+        elif box.kind in ("event", "initial", "final", "use_case"):
+            if box.kind == "event":
+                attrs["data-event-type"] = box.event_type
+                attrs["stroke-width"] = "4" if box.event_type == "end" else "1.5"
             if box.kind == "initial":
                 attrs["fill"] = theme[box.style][1]
             SubElement(root, "ellipse", {**attrs, "cx": number(box.x + box.w / 2), "cy": number(box.y + box.h / 2),
