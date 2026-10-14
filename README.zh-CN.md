@@ -8,7 +8,7 @@ archatlas 将架构图类型指南与名为 architecture-diagrams 的英文 Agen
 
 ## 状态
 
-目前为预发布阶段。站点骨架可以构建；完整目录内容、渲染器接入、skill 打包和跨代理评测仍在独立推进。不宣称已有公开软件包、生产就绪或完整中文覆盖。
+目前为预发布阶段。站点骨架可以构建；完整目录内容、渲染器接入、skill 打包和跨智能体评测仍在独立推进。不宣称已有公开软件包、生产就绪或完整中文覆盖。
 
 ## 能做什么
 
@@ -23,13 +23,13 @@ archatlas 将架构图类型指南与名为 architecture-diagrams 的英文 Agen
 
 从完整且经过审阅的源码或发布包中，把 architecture-diagrams 文件夹复制到**一个**发现目录：
 
-| 代理 | 个人目录 | 显式调用 |
+| 智能体 | 个人目录 | 显式调用 |
 |---|---|---|
 | Claude Code | ~/.claude/skills/architecture-diagrams/ | /architecture-diagrams |
 | Codex | ~/.agents/skills/architecture-diagrams/ | $architecture-diagrams |
 | Pi | ~/.pi/agent/skills/architecture-diagrams/ | /skill:architecture-diagrams |
 
-授予执行权限前先检查脚本。安装后重启代理，Pi 也可使用 /reload。保留整个文件夹，不要只复制 SKILL.md。参阅[安装与首次使用（英文）](content/en/use/index.md)。
+授予执行权限前先检查脚本。安装后重启宿主工具，Pi 也可使用 /reload。保留整个文件夹，不要只复制 SKILL.md。参阅[安装与首次使用](content/zh/use/index.md)。
 
 ## 模式
 

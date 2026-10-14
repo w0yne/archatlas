@@ -8,7 +8,7 @@ Inputs (single source):
 Outputs (generated, do not edit by hand):
   skills/architecture-diagrams/references/selection.md   skill reference (English)
   content/data/choose.json                               data for the site choose page (EN + ZH)
-  content/en/choose.md                                   blocks between GENERATED markers
+  content/en/choose.md, content/zh/choose.md             blocks between GENERATED markers
 
 Usage:
   python3 tools/build_selection.py           write outputs
@@ -29,7 +29,7 @@ TYPES_FILE = ROOT / "content/data/types.yaml"
 TREE_FILE = ROOT / "content/data/selection-tree.yaml"
 SELECTION_MD = ROOT / "skills/architecture-diagrams/references/selection.md"
 CHOOSE_JSON = ROOT / "content/data/choose.json"
-CHOOSE_MD = ROOT / "content/en/choose.md"
+CHOOSE_MD = {"en": ROOT / "content/en/choose.md", "zh": ROOT / "content/zh/choose.md"}
 
 REQUIRED = ("code", "slug", "family", "names", "aliases", "question", "asks", "audiences",
             "levels", "phases", "scope", "formal", "standards", "neighbours", "research", "status")
@@ -315,22 +315,24 @@ def render_selection_md(cat: dict, tree: dict) -> str:
 BLOCK_RE = re.compile(r"(<!-- BEGIN GENERATED: (\w+) -->\n)(.*?)(<!-- END GENERATED: \2 -->)", re.S)
 
 
-def render_choose_blocks(cat: dict, tree: dict) -> dict[str, str]:
+def render_choose_blocks(cat: dict, tree: dict, lang: str = "en") -> dict[str, str]:
     by_code = {t["code"]: t for t in cat["types"]}
+    prefix = "" if lang == "en" else f"/{lang}"
 
     def link(c: str) -> str:
-        return f"[{c}](/types/{page(by_code[c])})"
+        return f"[{c}]({prefix}/types/{page(by_code[c])})"
 
-    catalogue = ["| Code | Type | Answers |", "|---|---|---|"]
-    catalogue += [f"| {link(t['code'])} | {t['names']['en']} | {t['question']['en']} |"
+    head = "| Code | Type | Answers |" if lang == "en" else "| 代码 | 类型 | 回答的问题 |"
+    catalogue = [head, "|---|---|---|"]
+    catalogue += [f"| {link(t['code'])} | {t['names'][lang]} | {t['question'][lang]} |"
                   for t in sorted_types(cat)]
-    aliases = [f"- {r['text']} → {link(r['code'])}" for r in alias_index(cat) if r["lang"] == "en"]
+    aliases = [f"- {r['text']} → {link(r['code'])}" for r in alias_index(cat) if r["lang"] == lang]
     blocks = {
-        "questions": [f"{i}. {q['en']}" for i, q in enumerate(tree["first_questions"], 1)],
-        "tree": render_tree(cat, tree, "en", link),
-        "matrix": render_matrix(cat, "en", link),
-        "phases": render_phases(cat, "en", link),
-        "terms": render_terms(cat, "en", link),
+        "questions": [f"{i}. {q[lang]}" for i, q in enumerate(tree["first_questions"], 1)],
+        "tree": render_tree(cat, tree, lang, link),
+        "matrix": render_matrix(cat, lang, link),
+        "phases": render_phases(cat, lang, link),
+        "terms": render_terms(cat, lang, link),
         "aliases": aliases,
         "catalogue": catalogue,
     }
@@ -354,12 +356,15 @@ def fill_blocks(text: str, blocks: dict[str, str]) -> str:
     return result
 
 
-def build(cat: dict, tree: dict, choose_md_text: str) -> dict[Path, str]:
-    return {
+def build(cat: dict, tree: dict, choose_md_texts: dict[str, str]) -> dict[Path, str]:
+    """choose_md_texts: lang -> current choose page text (a language without a page is skipped)."""
+    out = {
         SELECTION_MD: render_selection_md(cat, tree),
         CHOOSE_JSON: json.dumps(choose_data(cat, tree), ensure_ascii=False, indent=2) + "\n",
-        CHOOSE_MD: fill_blocks(choose_md_text, render_choose_blocks(cat, tree)),
     }
+    for lang, text in choose_md_texts.items():
+        out[CHOOSE_MD[lang]] = fill_blocks(text, render_choose_blocks(cat, tree, lang))
+    return out
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -368,7 +373,8 @@ def main(argv: list[str] | None = None) -> int:
     args = ap.parse_args(argv)
     try:
         cat, tree = load()
-        outputs = build(cat, tree, CHOOSE_MD.read_text(encoding="utf-8"))
+        outputs = build(cat, tree, {lang: p.read_text(encoding="utf-8")
+                                    for lang, p in CHOOSE_MD.items() if p.exists()})
     except ModelError as e:
         print(f"content model errors:\n{e}", file=sys.stderr)
         return 1
