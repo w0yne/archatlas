@@ -16,7 +16,7 @@ scope: "One value stream: a triggering stakeholder, a value proposition and abou
 formal:
   kind: standard
   ref: "ArchiMate 3.2 Value Stream element and Value Stream viewpoint; TOGAF Series Guide: Value Streams (G178, republished 2022 for TOGAF 10); BIZBOK Guide"
-neighbours: [A1, A2b, A5, A6, A8]
+neighbours: [A1, A9, A5, A6, A8]
 status: draft
 ---
 
@@ -30,7 +30,7 @@ status: draft
 - **Viewpoint:** ArchiMate *Value Stream viewpoint*: "a structured overview of a value stream, the capabilities supporting the stages in that value stream, the value created, and the stakeholders involved" (business managers and architects; designing and deciding; scope Strategy) [6]. TOGAF Phase B; artifacts *Value Stream Map* (diagram), *Value Stream Stages catalog* and *Value Stream/Capability matrix* [1][5]. No C4 model level.
 - **Deeper meaning:** the enterprise "in motion" at business-model level, the partner of the A1 capability map ("at rest") [2][6]. One stage can map to many processes and one process can realise several stages [1][6]. After each stage the stakeholder may stop, so exit criteria matter more than arrows [1].
 - **Leaves out:** decisions and gateways, roles per step, systems, durations, wait times and exceptions.
-- **Definition used here:** a value stream is "an end-to-end collection of activities that create a result for a customer, who may be the ultimate customer or an internal end-user" (BIZBOK) [2]; ArchiMate: "a sequence of activities that create an overall result for a customer, stakeholder, or end user" [6]. The term "value stream map" has two other meanings: the **Lean value-stream map** with process and wait times, which has its own page ([A2b](./A2b-lean-value-stream-map.md)), and SAFe's operational and development value streams [9]. TOGAF and the Business Architecture Guild state that their value streams are not Lean value streams [1][2]. Never put times on this diagram.
+- **Definition used here:** a value stream is "an end-to-end collection of activities that create a result for a customer, who may be the ultimate customer or an internal end-user" (BIZBOK) [2]; ArchiMate: "a sequence of activities that create an overall result for a customer, stakeholder, or end user" [6]. The term "value stream map" has two other meanings: the **Lean value-stream map** with process and wait times, which has its own page ([A9](./A9-lean-value-stream-map.md)), and SAFe's operational and development value streams [9]. TOGAF and the Business Architecture Guild state that their value streams are not Lean value streams [1][2]. Never put times on this diagram.
 - **Version note:** the TOGAF guide is G178, republished in 2022 as part of TOGAF 10 [4]. The Value Stream element exists in ArchiMate since 3.1 (2019) [8]; this page follows 3.2. ArchiMate 4 (announced April 2026) is not verified against the current spec text.
 
 ## When to use and how to choose {#choose}
@@ -42,10 +42,10 @@ status: draft
   3. Customer support: "Resolve Customer Query", triggered by the customer, with the support chatbot and agents as participating stakeholders, ending in "Customer issue resolved".
   4. Internal value streams triggered by an employee or partner, such as "Onboard Supplier" for the warehouse (cf. TOGAF "Recruit Employee") [1].
   5. Capability-based planning: stages with heat-mapped capabilities feed an A8 roadmap.
-- **When not to use:** for detailed workflow, SLAs or one team's procedure (A5, E2); for time, waste or wait analysis (A2b); for system structure (C family); for exceptions and branches (A5, E family).
+- **When not to use:** for detailed workflow, SLAs or one team's procedure (A5, E2); for time, waste or wait analysis (A9); for system structure (C family); for exceptions and branches (A5, E family).
 - **vs neighbours:**
   - Choose **A1 Capability Map** for "what abilities, and how good are they"; combine the two through the cross-map [1][3].
-  - Choose **A2b Lean Value-Stream Map** when the question is where time and waste sit in today's operational flow.
+  - Choose **A9 Lean Value-Stream Map** when the question is where time and waste sit in today's operational flow.
   - Choose **A5 BPMN Process** for the order of tasks, decisions, roles or exceptions for a case [6].
   - Choose **A6 Journey Map** for the customer's experience (emotions, touchpoints); A2 is the enterprise's delivery of value, outside-in but not experiential.
   - Choose **A8 Target Architecture and Roadmap** for when change happens; A2 with a capability heat map feeds it.
@@ -73,7 +73,7 @@ status: draft
 5. **Draft value streams and capabilities together;** TOGAF: "one should not exist without the other for very long" [1].
 
 ### Anti-patterns
-1. **Lean times on business stages** (process time, wait, lead time). That is a different diagram (A2b); TOGAF says Lean VSM is unsuited to capability cross-mapping [1].
+1. **Lean times on business stages** (process time, wait, lead time). That is a different diagram (A9); TOGAF says Lean VSM is unsuited to capability cross-mapping [1].
 2. **Too many or task-level stages** (check, approve, send email), which turn the stream into a process [1][6].
 3. **Org units as stages** ("Finance step") or no triggering stakeholder [1][2].
 4. **Branches or gateways inside the value stream;** model the stop opportunity through exit criteria instead [1].
@@ -88,7 +88,7 @@ status: draft
 
 ## Drawing recipe {#recipe}
 <!-- skill: keep (≤25 lines) -->
-1. Confirm the type: stakeholders, value or capabilities → this page; time, waste or waiting → A2b. If unclear, ask.
+1. Confirm the type: stakeholders, value or capabilities → this page; time, waste or waiting → A9. If unclear, ask.
 2. Header: verb-noun name, triggering stakeholder, value proposition. The title carries the message, e.g. "Fulfil Customer Order: shopper receives paid goods in five stages".
 3. Draft 4–8 stages as a table (name, entrance, exit, value item, participants); check each exit equals the next entrance.
 4. Layout: one row of equal chevrons left to right; stakeholder at the left end, value proposition at the right end; 2–3 words per chevron, no bullets.
@@ -113,7 +113,7 @@ status: draft
 
 ## Guided-mode questions {#questions}
 <!-- skill: keep (≤8 lines) -->
-1. Is the question stakeholder value and enabling capabilities, or time and waste in a flow? (value and capabilities; otherwise switch to A2b)
+1. Is the question stakeholder value and enabling capabilities, or time and waste in a flow? (value and capabilities; otherwise switch to A9)
 2. Who triggers the value stream, and what does "done" mean for them? (the shopper; "receives the right goods, paid securely")
 3. Current state, target state, or both? (current)
 4. Cross-map capabilities, and against which capability list? (yes, against the A1 map if one exists)

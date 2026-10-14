@@ -16,7 +16,7 @@ scope: "One system, initiative or business unit drawn as a black box, with every
 formal:
   kind: convention
   ref: "Context-level DFD (Yourdon–DeMarco / Gane–Sarson); arc42 §3.1 business context; C4 model System Context at software level"
-neighbours: [A3b, B4, C2, A2, A7, C6]
+neighbours: [H3, B4, C2, A2, A7, C6]
 status: draft
 ---
 
@@ -28,18 +28,18 @@ status: draft
 <!-- skill: condense (4–6 lines) -->
 - **Question:** what is inside the system or initiative, and who or what outside it exchanges what with it (information, goods, money, decisions, obligations)?
 - **Concern:** it fixes the **boundary** and the **business interfaces**. In ISO/IEC/IEEE 42010 terms it frames purpose, scope and external dependencies [4][7]. In arc42 it is the *business context* of §3 [1]. The C4 model's System Context diagram is the same idea once the subject is a software system [2]. TOGAF has no artefact called "context diagram"; its Phase A Value Chain and Solution Concept diagrams are the nearest [6].
-- **Left out on purpose:** anything inside the box (A7, C3), protocols and channels (the arc42 *technical* context; C2/C6), process steps (A5), and stakeholder power or interest (A3b).
-- **Definition used here:** a business context diagram lists only parties that *exchange something with* the subject. Parties that only have power or interest (sponsor, budget holder, auditor with no exchange) belong in the Stakeholder Map (A3b), which is a separate figure.
+- **Left out on purpose:** anything inside the box (A7, C3), protocols and channels (the arc42 *technical* context; C2/C6), process steps (A5), and stakeholder power or interest (H3).
+- **Definition used here:** a business context diagram lists only parties that *exchange something with* the subject. Parties that only have power or interest (sponsor, budget holder, auditor with no exchange) belong in the Stakeholder Map (H3), which is a separate figure.
 
 ## When to use and how to choose {#choose}
 <!-- skill: condense (bullets, ≤12 lines) -->
 - **Audience:** executives, business owners, analysts, architects, and anyone new to the initiative.
 - **Scenarios:** project kick-off ("the online shop and the parties it trades with"); business-case review (who pays whom, who supplies what); onboarding new team members; agreeing which partners a target state adds or drops (as-is vs to-be pair).
-- **When not to use:** to explain internal structure (A7, C5); to specify integrations (C6); to rank stakeholders (A3b).
+- **When not to use:** to explain internal structure (A7, C5); to specify integrations (C6); to rank stakeholders (H3).
 - **vs neighbours:**
   - Choose **C2 System Context** once the subject is a software system and the readers are technical.
   - Choose **B4 Scope diagram** when the point is what is in or out of scope for a project phase.
-  - Choose **A3b Stakeholder Map** when the question is who must be engaged and how; it has axes, not flows.
+  - Choose **H3 Stakeholder Map** when the question is who must be engaged and how; it has axes, not flows.
   - Choose **A2 Value Stream** when you need the stages of delivering value, not just the boundary.
   - Choose **A7 Conceptual Architecture** when you need to open the box into major blocks.
 
@@ -67,7 +67,7 @@ status: draft
 
 ### Anti-patterns
 
-1. **One diagram, two questions:** a hub-and-spoke context with power/interest colouring sprayed on top. Split it into A3 and A3b.
+1. **One diagram, two questions:** a hub-and-spoke context with power/interest colouring sprayed on top. Split it into A3 and H3.
 2. Internal subsystems drawn as external parties, or as boxes inside the centre. Every element is either the subject or explicitly external.
 3. External parties connected to each other. Context-level DFDs forbid it [3][5]; if those hand-offs matter, draw A2 or E4.
 4. Only end users shown; regulators, finance, logistics and support forgotten.
@@ -98,7 +98,7 @@ status: draft
 - [ ] Regulators, finance, logistics and support were considered (included or deliberately left out).
 - [ ] No external-to-external flows.
 - [ ] Title states scope and as-is / to-be; no subtitle restating the type.
-- [ ] Stakeholder power or interest is not encoded here (that is A3b).
+- [ ] Stakeholder power or interest is not encoded here (that is H3).
 - [ ] A legend explains every line style and fill.
 
 ## Evidence in a code repository {#evidence}
@@ -108,7 +108,7 @@ status: draft
 
 ## Guided-mode questions {#questions}
 <!-- skill: keep (≤8 lines) -->
-1. Do you need who exchanges what with the subject (this diagram), who must be engaged and how (A3b), or both as two figures? (Context first, stakeholder grid separately.)
+1. Do you need who exchanges what with the subject (this diagram), who must be engaged and how (H3), or both as two figures? (Context first, stakeholder grid separately.)
 2. What is the subject in the centre: one system, a project or a business unit; current or target state? (The system the readers will discuss, as-is.)
 3. Here are candidate parties grouped as customers / partners / authorities / internal-out-of-scope; anything missing, such as a regulator? (Include payment, logistics and tax parties.)
 4. Should flows show only information, or also money and goods? (All three, by line style.)
