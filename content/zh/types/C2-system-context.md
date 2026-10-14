@@ -17,7 +17,7 @@ formal: {kind: method, ref: 'C4 model (Simon Brown), Level 1 System Context diag
 neighbours: [A3, A7, B4, C1, C3, C6, D2]
 status: draft
 translationOf: en/types/C2-system-context.md
-sourceRev: 88db750
+sourceRev: 4aff572
 reviewed: false
 ---
 

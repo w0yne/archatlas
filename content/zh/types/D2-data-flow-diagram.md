@@ -17,7 +17,7 @@ formal: {kind: method, ref: 'Structured Analysis: DeMarco 1978 (Yourdon/DeMarco 
 neighbours: [C2, D1, D3, E2, F2]
 status: draft
 translationOf: en/types/D2-data-flow-diagram.md
-sourceRev: 88db750
+sourceRev: 4aff572
 reviewed: false
 ---
 
