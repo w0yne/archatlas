@@ -2,13 +2,13 @@
 """Render one sample SVG per diagram type for the site and the skill references.
 
 Inputs (single source):
-  content/en/types/<code>-<slug>.md                         the list of types
-  examples/*/diagram.json                                   a worked example whose meta.type is the type code wins
-  skills/architecture-diagrams/assets/templates/<code>.json otherwise the model template is rendered
+  content/en/types/<code>-<slug>.md                          the list of types
+  skills/architecture-diagrams/assets/templates/<code>.json  the model that draws the sample
+  skills/architecture-diagrams/assets/templates/zh/<code>.json  optional Chinese labels: English label text -> Chinese
 
 Outputs (generated, do not edit by hand):
-  content/public/samples/<code>-<slug>.svg                  English
-  content/public/samples/<code>-<slug>.zh.svg               only when `labels.zh.json` sits beside the model
+  content/public/samples/<code>-<slug>.svg                   English
+  content/public/samples/<code>-<slug>.zh.svg                only when a Chinese label file exists
 
 Every sample is checked with the renderer's own checks (warnings count as failures) and against its model.
 SVG ids use a fixed namespace, so the output does not depend on the output path. Measured text depends on
@@ -23,7 +23,6 @@ from __future__ import annotations
 import argparse
 import contextlib
 import io
-import json
 import sys
 import tempfile
 from pathlib import Path
@@ -40,39 +39,36 @@ from archatlas.render import render_svg  # noqa: E402
 
 PAGES = ROOT / "content/en/types"
 TEMPLATES = ROOT / "skills/architecture-diagrams/assets/templates"
-EXAMPLES = ROOT / "examples"
 OUT = ROOT / "content/public/samples"
 
 
-def sources() -> dict[str, Path]:
-    """Map type code to the model that draws its sample."""
-    models = {path.stem: path for path in TEMPLATES.glob("*.json")}
-    for path in sorted(EXAMPLES.glob("*/diagram.json")):
-        models[json.loads(path.read_text(encoding="utf-8"))["meta"]["type"]] = path
-    return models
-
-
 def render_all(target: Path) -> list[str]:
-    problems, models, metrics = [], sources(), FontMetrics()
+    problems, metrics = [], FontMetrics()
     for page in sorted(PAGES.glob("*.md")):
         code, _, _ = page.stem.partition("-")
-        model = models.get(code)
-        if model is None:
-            problems.append(f"{page.name}: no model template or example for {code}")
+        source = TEMPLATES / f"{code}.json"
+        if not source.exists():
+            problems.append(f"{page.name}: no model template for {code}")
             continue
         for lang in ("en", "zh"):
-            if lang == "zh" and not (model.parent / "labels.zh.json").exists():
+            labels = TEMPLATES / "zh" / f"{code}.json"
+            if lang == "zh" and not labels.exists():
                 continue
-            svg = render_svg(layout(load(str(model), lang), metrics), f"{code.lower()}-{lang}")
-            path = target / (page.stem + (".zh" if lang == "zh" else "") + ".svg")
-            path.parent.mkdir(parents=True, exist_ok=True)
-            path.write_text(svg, encoding="utf-8")
-            report = check_svg(svg, metrics)
-            for finding in report["findings"]:
-                problems.append(f"{path.name}: {finding['severity']} {finding['rule']}: {finding['message']}")
-            with tempfile.TemporaryDirectory() as tmp, contextlib.redirect_stdout(io.StringIO()):
-                if atlas(["check", str(path), "--model", str(model), "--report", f"{tmp}/report.json"]):
-                    problems.append(f"{path.name}: the SVG does not match its model")
+            with tempfile.TemporaryDirectory() as tmp:
+                # The loader reads labels.<lang>.json beside the model, so give it a private copy of both.
+                model = Path(tmp) / "diagram.json"
+                model.write_bytes(source.read_bytes())
+                if lang == "zh":
+                    (Path(tmp) / "labels.zh.json").write_bytes(labels.read_bytes())
+                svg = render_svg(layout(load(str(model), lang), metrics), f"{code.lower()}-{lang}")
+                path = target / (page.stem + (".zh" if lang == "zh" else "") + ".svg")
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text(svg, encoding="utf-8")
+                for finding in check_svg(svg, metrics)["findings"]:
+                    problems.append(f"{path.name}: {finding['severity']} {finding['rule']}: {finding['message']}")
+                with contextlib.redirect_stdout(io.StringIO()):
+                    if atlas(["check", str(path), "--model", str(model), "--report", f"{tmp}/report.json"]):
+                        problems.append(f"{path.name}: the SVG does not match its model")
     return problems
 
 

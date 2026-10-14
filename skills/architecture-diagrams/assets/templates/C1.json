@@ -5,7 +5,19 @@
     "title": "Online shop: application landscape",
     "lang": "en",
     "audience": "IT and business leads",
-    "state": "as-is"
+    "state": "as-is",
+    "legend": [
+      {
+        "label": "Shared by every application",
+        "style": "shared",
+        "symbol": "box"
+      },
+      {
+        "label": "Outside our control",
+        "style": "external",
+        "symbol": "box"
+      }
+    ]
   },
   "layout": {
     "template": "layered",
@@ -23,6 +35,11 @@
       "kind": "layer"
     },
     {
+      "id": "g_pl",
+      "title": "Shared platform",
+      "kind": "layer"
+    },
+    {
       "id": "g_ex",
       "title": "External services",
       "kind": "layer"
@@ -36,6 +53,18 @@
       "parent": "g_ch"
     },
     {
+      "id": "mob",
+      "kind": "system",
+      "label": "Mobile app",
+      "parent": "g_ch"
+    },
+    {
+      "id": "chat",
+      "kind": "system",
+      "label": "Support chat widget",
+      "parent": "g_ch"
+    },
+    {
       "id": "shop",
       "kind": "system",
       "label": "Shop",
@@ -44,16 +73,56 @@
       "style": "primary"
     },
     {
+      "id": "back",
+      "kind": "system",
+      "label": "Back office",
+      "parent": "g_app"
+    },
+    {
       "id": "bot",
       "kind": "system",
       "label": "Support chatbot",
-      "parent": "g_app",
-      "style": "peer"
+      "parent": "g_app"
+    },
+    {
+      "id": "idp",
+      "kind": "system",
+      "label": "Identity",
+      "parent": "g_pl",
+      "style": "shared"
+    },
+    {
+      "id": "notif",
+      "kind": "system",
+      "label": "Notifications",
+      "parent": "g_pl",
+      "style": "shared"
+    },
+    {
+      "id": "search",
+      "kind": "system",
+      "label": "Search",
+      "parent": "g_pl",
+      "style": "shared"
     },
     {
       "id": "pay",
       "kind": "external",
       "label": "Payment provider",
+      "parent": "g_ex",
+      "style": "external"
+    },
+    {
+      "id": "car",
+      "kind": "external",
+      "label": "Carrier",
+      "parent": "g_ex",
+      "style": "external"
+    },
+    {
+      "id": "mail",
+      "kind": "external",
+      "label": "Email service",
       "parent": "g_ex",
       "style": "external"
     }
@@ -62,12 +131,19 @@
     {
       "from": "g_ch",
       "to": "g_app",
-      "label": "API",
+      "label": "orders and questions",
       "kind": "call"
     },
     {
       "from": "g_app",
+      "to": "g_pl",
+      "label": "sign-in, search, messages",
+      "kind": "call"
+    },
+    {
+      "from": "g_pl",
       "to": "g_ex",
+      "label": "payments, parcels, mail",
       "kind": "call"
     }
   ]

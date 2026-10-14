@@ -1,0 +1,16 @@
+{
+  "Checkout: trust boundaries": "结账：信任边界",
+  "Shopper's browser": "顾客浏览器",
+  "API gateway": "API 网关",
+  "Order service": "订单服务",
+  "Orders database": "订单数据库",
+  "Payment API": "支付接口",
+  "Internet": "互联网",
+  "Public edge": "公共入口",
+  "Payment provider": "支付服务商",
+  "Internal network": "内部网络",
+  "Order request": "下单请求",
+  "Validated request": "已校验请求",
+  "Order record": "订单记录",
+  "Card token": "卡令牌"
+}

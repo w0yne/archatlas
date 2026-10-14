@@ -2,14 +2,18 @@
   "archatlas": "0.1",
   "meta": {
     "type": "G4",
-    "title": "Online shop: delivery pipeline",
+    "title": "Online shop: delivery pipeline to production",
     "lang": "en",
     "audience": "developers and operations",
     "state": "as-is"
   },
   "layout": {
     "template": "tree",
-    "profile": "doc"
+    "profile": "doc",
+    "spacing": {
+      "rank_gap": 24,
+      "node_gap": 24
+    }
   },
   "nodes": [
     {
@@ -17,7 +21,7 @@
       "kind": "event",
       "label": "Merge to main",
       "size_hint": {
-        "width": 100
+        "width": 124
       }
     },
     {
@@ -25,7 +29,7 @@
       "kind": "task",
       "label": "Build",
       "size_hint": {
-        "width": 150
+        "width": 124
       }
     },
     {
@@ -33,7 +37,7 @@
       "kind": "task",
       "label": "Test",
       "size_hint": {
-        "width": 150
+        "width": 124
       }
     },
     {
@@ -41,43 +45,85 @@
       "kind": "store",
       "label": "Image registry",
       "size_hint": {
-        "width": 150
+        "width": 124
       }
     },
     {
-      "id": "dep",
-      "kind": "task",
-      "label": "Deploy",
+      "id": "gate",
+      "kind": "gateway",
+      "label": "Approved?",
       "size_hint": {
-        "width": 150
+        "width": 120
+      }
+    },
+    {
+      "id": "stg",
+      "kind": "task",
+      "label": "Deploy to staging",
+      "size_hint": {
+        "width": 124
+      }
+    },
+    {
+      "id": "prod",
+      "kind": "task",
+      "label": "Deploy to production",
+      "size_hint": {
+        "width": 124
+      }
+    },
+    {
+      "id": "stop",
+      "kind": "event",
+      "label": "Stop and notify author",
+      "size_hint": {
+        "width": 124
       }
     }
   ],
   "edges": [
     {
       "from": "trg",
-      "to": "bld"
+      "to": "bld",
+      "label": "trigger"
     },
     {
       "from": "bld",
       "to": "tst",
-      "label": "tests",
+      "label": "depends on",
       "kind": "dependency"
     },
     {
       "from": "bld",
       "to": "reg",
-      "label": "image",
+      "label": "produces image",
       "kind": "data"
     },
     {
       "from": "tst",
-      "to": "dep"
+      "to": "gate",
+      "label": "depends on",
+      "kind": "dependency"
     },
     {
-      "from": "reg",
-      "to": "dep",
-      "label": "pull",
+      "from": "tst",
+      "to": "stop",
+      "label": "fails"
+    },
+    {
+      "from": "gate",
+      "to": "stg",
+      "label": "yes"
+    },
+    {
+      "from": "gate",
+      "to": "stop",
+      "label": "no"
+    },
+    {
+      "from": "stg",
+      "to": "prod",
+      "label": "promotes digest",
       "kind": "call"
     }
   ]

@@ -2,7 +2,7 @@
   "archatlas": "0.1",
   "meta": {
     "type": "F3",
-    "title": "Online shop: access control matrix",
+    "title": "Shop back office: role-permission matrix (proposed)",
     "lang": "en",
     "audience": "security and product",
     "state": "as-is"
@@ -14,30 +14,34 @@
   "tables": [
     {
       "id": "acl",
-      "title": "Roles by resource and action",
+      "title": "Default deny. allow = always; if … = conditional; deny = never. Proposed design, enforcement not verified.",
       "columns": [
         "Role",
-        "Orders: read",
+        "Orders: view",
         "Orders: edit",
+        "Orders: refund",
         "Catalogue: edit"
       ],
       "rows": [
         [
           "Customer",
-          "own only",
-          "own only",
+          "if own order",
+          "if own order, before shipping",
+          "deny",
           "deny"
         ],
         [
           "Support agent",
           "allow",
-          "allow",
+          "if assigned to the case",
+          "if under the refund limit",
           "deny"
         ],
         [
           "Shop manager",
           "allow",
           "deny",
+          "allow",
           "allow"
         ]
       ]

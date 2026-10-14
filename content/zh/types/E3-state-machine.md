@@ -158,5 +158,5 @@ reviewed: false
 
 ## 示例图 {#sample}
 <!-- skill: path only -->
-![E3 示例：网店订单生命周期，从 Created 经 Paid、Shipped 到 Delivered，并有 Cancelled 和 Refunded 终止状态](/samples/E3-state-machine.svg)
-*示例图待生成（由渲染器根据 `examples/` 生成）。*
+![E3 示例：订单的状态机，含初始和终止状态](/samples/E3-state-machine.svg)
+*订单的状态：已下单、已支付、已发货和已取消，一个初始状态和一个终止状态。迁移按“事件 [守卫] / 效果”标注，例如“支付 [金额正确] / 预留库存”和“取消 [付款前]”；已送达的订单和已取消的订单都进入终止状态。*

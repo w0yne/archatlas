@@ -156,5 +156,5 @@ reviewed: false
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-![A1 示例：网店业务能力，按 Strategic、Core、Supporting 分层，叠加当前成熟度热力图](/samples/A1-capability-map.svg)
-*示例待生成（由渲染器根据 `examples/` 生成）。*
+![A1 示例：网店的能力地图，分三个层带并带成熟度视角](/samples/A1-capability-map.svg)
+*网店的业务能力分为战略、核心、支撑三个层带，每个层带含第 1 级分组和第 2 级能力方块，没有箭头。颜色只表示一个视角，即 2026-10 相对目标的成熟度：绿色为已达目标，琥珀色为低一级（标注“gap 1”），紫色为需要但尚不存在（标注“new”）。评级仅为示意。*

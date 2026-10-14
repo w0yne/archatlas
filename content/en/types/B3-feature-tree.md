@@ -125,4 +125,4 @@ Functional decomposition only: variability mode (group markers, constraints, sem
 ## Sample {#sample}
 <!-- skill: path only -->
 ![B3 sample: feature tree of an online shop](/samples/B3-feature-tree.svg)
-*An online shop's functions decompose into browsing, ordering, and fulfilment, with detailed functions grouped under each. This is a functional hierarchy, not a variability model.*
+*Feature tree of an online shop: the root, three functions (browse, order, fulfil) and six detailed functions below them. This is a functional hierarchy, not a variability model.*

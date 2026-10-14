@@ -20,6 +20,17 @@ class SamplesTest(unittest.TestCase):
             self.assertEqual(image.group(1), page.stem + ".svg", page.name)
             self.assertTrue((SAMPLES / image.group(1)).exists(), page.name)
 
+    def test_sample_sections_have_a_caption_and_no_pending_status(self):
+        for language in ("en", "zh"):
+            for page in sorted((ROOT / "content" / language / "types").glob("*.md")):
+                section = page.read_text(encoding="utf-8").split("{#sample}", 1)[1]
+                self.assertNotRegex(section, r"(?i)pending|not yet (available|provided)|待生成", page.name)
+                caption = [line for line in section.splitlines() if line.startswith("*")]
+                self.assertEqual(len(caption), 1, page.name)
+                if language == "zh":
+                    expected = page.stem + (".zh.svg" if (SAMPLES / (page.stem + ".zh.svg")).exists() else ".svg")
+                    self.assertIn("(/samples/" + expected + ")", section, page.name)
+
     def test_every_sample_has_a_page(self):
         stems = {page.stem for page in PAGES.glob("*.md")}
         for sample in SAMPLES.glob("*.svg"):

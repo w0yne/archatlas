@@ -2,14 +2,22 @@
   "archatlas": "0.1",
   "meta": {
     "type": "C5",
-    "title": "Online shop: logical architecture",
+    "title": "Logical view: online shop",
     "lang": "en",
     "audience": "architects",
-    "state": "as-is"
+    "state": "as-is",
+    "legend": [
+      {
+        "label": "Arrow: depends on (consumer → provider)",
+        "kind": "dependency",
+        "dir": "->"
+      }
+    ]
   },
   "layout": {
     "template": "layered",
-    "profile": "doc"
+    "profile": "doc",
+    "columns": 3
   },
   "groups": [
     {
@@ -18,51 +26,74 @@
       "kind": "boundary"
     },
     {
-      "id": "g_p",
-      "title": "Presentation",
+      "id": "f_sell",
+      "title": "Selling",
       "kind": "frame",
       "parent": "g_b"
     },
     {
-      "id": "g_d",
-      "title": "Domain",
+      "id": "f_ful",
+      "title": "Fulfilment",
       "kind": "frame",
       "parent": "g_b"
     },
     {
-      "id": "g_i",
-      "title": "Infrastructure",
+      "id": "f_pay",
+      "title": "Payments",
       "kind": "frame",
       "parent": "g_b"
     }
   ],
   "nodes": [
     {
-      "id": "ui",
+      "id": "cat",
       "kind": "component",
-      "label": "Storefront UI",
-      "parent": "g_p",
+      "label": "Catalogue",
+      "sub": "Presents products",
+      "parent": "f_sell",
       "size_hint": {
-        "width": 160
+        "width": 150
+      }
+    },
+    {
+      "id": "chk",
+      "kind": "component",
+      "label": "Checkout",
+      "sub": "Turns a cart into an order",
+      "parent": "f_sell",
+      "style": "primary",
+      "size_hint": {
+        "width": 150
       }
     },
     {
       "id": "ord",
       "kind": "component",
-      "label": "Order logic",
-      "parent": "g_d",
-      "style": "primary",
+      "label": "Order Management",
+      "sub": "Tracks orders",
+      "parent": "f_ful",
       "size_hint": {
-        "width": 160
+        "width": 150
+      }
+    },
+    {
+      "id": "stk",
+      "kind": "component",
+      "label": "Stock",
+      "sub": "Reserves items",
+      "parent": "f_ful",
+      "size_hint": {
+        "width": 150
       }
     },
     {
       "id": "pay",
       "kind": "component",
-      "label": "Payment gateway adapter",
-      "parent": "g_i",
+      "label": "Payment Handling",
+      "sub": "Requests payments",
+      "parent": "f_pay",
       "size_hint": {
-        "width": 160
+        "width": 150
       }
     },
     {
@@ -71,15 +102,39 @@
       "label": "Payment provider",
       "style": "external",
       "size_hint": {
-        "width": 160
+        "width": 150
       }
     }
   ],
   "edges": [
     {
+      "from": "chk",
+      "to": "cat",
+      "label": "reads products",
+      "kind": "dependency"
+    },
+    {
+      "from": "chk",
+      "to": "ord",
+      "label": "creates orders",
+      "kind": "dependency"
+    },
+    {
+      "from": "ord",
+      "to": "stk",
+      "label": "reserves items",
+      "kind": "dependency"
+    },
+    {
+      "from": "chk",
+      "to": "pay",
+      "label": "requests payment",
+      "kind": "dependency"
+    },
+    {
       "from": "pay",
       "to": "ext",
-      "label": "charge",
+      "label": "charges card",
       "kind": "dependency"
     }
   ]

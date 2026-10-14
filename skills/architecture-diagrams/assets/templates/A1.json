@@ -2,73 +2,175 @@
   "archatlas": "0.1",
   "meta": {
     "type": "A1",
-    "title": "Online shop: capability map",
+    "title": "Online shop: business capabilities, current maturity (2026-10)",
     "lang": "en",
-    "audience": "business leads",
-    "state": "as-is"
+    "audience": "executives and business architects",
+    "state": "as-is",
+    "legend": [
+      {
+        "label": "At desired maturity",
+        "style": "shared",
+        "symbol": "box"
+      },
+      {
+        "label": "One level below desired (gap 1)",
+        "style": "external",
+        "symbol": "box"
+      },
+      {
+        "label": "Desired, not yet existing",
+        "style": "planned",
+        "symbol": "box"
+      }
+    ]
   },
   "layout": {
     "template": "layered",
-    "profile": "doc"
+    "profile": "doc",
+    "columns": 3
   },
   "groups": [
     {
-      "id": "g_core",
+      "id": "t_str",
+      "title": "Strategic",
+      "kind": "layer"
+    },
+    {
+      "id": "t_core",
       "title": "Core",
       "kind": "layer"
     },
     {
-      "id": "g_enable",
-      "title": "Enabling",
+      "id": "t_sup",
+      "title": "Supporting",
       "kind": "layer"
+    },
+    {
+      "id": "l_prod",
+      "title": "Product Strategy",
+      "kind": "frame",
+      "parent": "t_str"
+    },
+    {
+      "id": "l_grow",
+      "title": "Customer Growth",
+      "kind": "frame",
+      "parent": "t_str"
+    },
+    {
+      "id": "l_ord",
+      "title": "Order Management",
+      "kind": "frame",
+      "parent": "t_core"
+    },
+    {
+      "id": "l_cust",
+      "title": "Customer Management",
+      "kind": "frame",
+      "parent": "t_core"
+    },
+    {
+      "id": "l_pay",
+      "title": "Payment Management",
+      "kind": "frame",
+      "parent": "t_sup"
+    },
+    {
+      "id": "l_inv",
+      "title": "Inventory Management",
+      "kind": "frame",
+      "parent": "t_sup"
     }
   ],
   "nodes": [
     {
-      "id": "cat",
+      "id": "assort",
       "kind": "component",
-      "label": "Catalogue",
-      "parent": "g_core"
+      "label": "Assortment Planning",
+      "parent": "l_prod",
+      "style": "shared"
     },
     {
-      "id": "ord",
+      "id": "price",
       "kind": "component",
-      "label": "Order handling",
-      "parent": "g_core",
-      "style": "primary"
+      "label": "Price Setting",
+      "parent": "l_prod",
+      "style": "external",
+      "sub": "gap 1"
     },
     {
-      "id": "ful",
+      "id": "campaign",
       "kind": "component",
-      "label": "Fulfilment",
-      "parent": "g_core"
+      "label": "Campaign Planning",
+      "parent": "l_grow",
+      "style": "external",
+      "sub": "gap 1"
     },
     {
-      "id": "sup",
+      "id": "capture",
       "kind": "component",
-      "label": "Customer support",
-      "parent": "g_enable",
-      "style": "planned"
+      "label": "Order Capture",
+      "parent": "l_ord",
+      "style": "shared"
     },
     {
-      "id": "fin",
+      "id": "fulfil",
       "kind": "component",
-      "label": "Finance",
-      "parent": "g_enable"
+      "label": "Order Fulfilment",
+      "parent": "l_ord",
+      "style": "external",
+      "sub": "gap 1"
     },
     {
-      "id": "mkt",
+      "id": "return",
       "kind": "component",
-      "label": "Marketing",
-      "parent": "g_enable"
-    }
-  ],
-  "edges": [
+      "label": "Return Handling",
+      "parent": "l_ord",
+      "style": "shared"
+    },
     {
-      "from": "g_core",
-      "to": "g_enable",
-      "label": "supported by",
-      "kind": "dependency"
+      "id": "cdef",
+      "kind": "component",
+      "label": "Customer Definition",
+      "parent": "l_cust",
+      "style": "shared"
+    },
+    {
+      "id": "assist",
+      "kind": "component",
+      "label": "Customer Assistance",
+      "parent": "l_cust",
+      "style": "planned",
+      "sub": "new"
+    },
+    {
+      "id": "collect",
+      "kind": "component",
+      "label": "Payment Collection",
+      "parent": "l_pay",
+      "style": "shared"
+    },
+    {
+      "id": "refund",
+      "kind": "component",
+      "label": "Refund Settlement",
+      "parent": "l_pay",
+      "style": "external",
+      "sub": "gap 1"
+    },
+    {
+      "id": "track",
+      "kind": "component",
+      "label": "Stock Tracking",
+      "parent": "l_inv",
+      "style": "shared"
+    },
+    {
+      "id": "replen",
+      "kind": "component",
+      "label": "Stock Replenishment",
+      "parent": "l_inv",
+      "style": "shared"
     }
   ]
 }

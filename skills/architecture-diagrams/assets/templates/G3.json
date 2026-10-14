@@ -33,21 +33,21 @@
       "id": "lb",
       "kind": "component",
       "label": "Load balancer",
-      "sub": "10.0.1.0/24",
+      "sub": "192.0.2.0/24",
       "parent": "g_pub"
     },
     {
       "id": "app",
       "kind": "component",
       "label": "App servers",
-      "sub": "10.0.2.0/24",
+      "sub": "198.51.100.0/24",
       "parent": "g_app"
     },
     {
       "id": "db",
       "kind": "store",
       "label": "Database",
-      "sub": "10.0.3.0/24",
+      "sub": "203.0.113.0/24",
       "parent": "g_db"
     }
   ],

@@ -121,5 +121,5 @@ Approximate: the renderer draws no UML actor figures, use-case ellipses or inclu
 
 ## Sample {#sample}
 <!-- skill: path only -->
-![B1 sample: shoppers use an online shop's use cases; a payment provider takes part in payment](/samples/B1-use-case-diagram.svg)
-*Shoppers place and track orders in an online shop; a payment provider participates in payment-related behavior.*
+![B1 sample: use cases of an online shop with shopper and payment provider](/samples/B1-use-case-diagram.svg)
+*Use cases of an online shop inside one system boundary: the shopper uses browse catalogue, place order and track order, and the payment provider takes part in pay for order. Actors and use cases are drawn as plain boxes, without stick figures or ellipses, and no include or extend relationships are shown.*

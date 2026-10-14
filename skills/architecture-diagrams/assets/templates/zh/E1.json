@@ -1,0 +1,17 @@
+{
+  "Place an order": "下单",
+  "Customer": "顾客",
+  "Order API": "订单接口",
+  "Inventory": "库存服务",
+  "Payment provider": "支付服务商",
+  "Place order": "提交订单",
+  "Reserve item": "预留商品",
+  "Reserved": "已预留",
+  "Charge card": "扣款",
+  "Payment confirmed": "支付成功",
+  "Order confirmed": "订单已确认",
+  "Payment declined": "支付被拒",
+  "Order rejected": "订单被拒绝",
+  "loop [each order line]": "循环 [每个订单行]",
+  "alt [card accepted] / [else] card declined": "分支 [扣款成功] / [否则] 扣款被拒"
+}

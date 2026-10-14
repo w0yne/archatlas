@@ -140,5 +140,5 @@ reviewed: false
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-![F1 示例：网上商城登录与订单历史 API 调用，订单 API 处校验令牌，并拒绝查看其他顾客订单的请求](/samples/F1-authentication-authorization-flow.svg)
-*示例待生成（由渲染器根据 `examples/` 生成）。*
+![F1 示例：已登录购物者的授权码流程，含拒绝分支](/samples/F1-authentication-authorization-flow.svg)
+*购物者查看订单历史的授权码流程（示意，未对照真实部署验证）：网页应用通过重定向把购物者带到身份提供方，经后端通道用授权码换取访问令牌，再带令牌调用订单 API。API 取得签名密钥后，要么返回订单列表（令牌有效），要么回答 401 未授权并在受保护操作之前停止。购物者始终拿不到访问令牌。*

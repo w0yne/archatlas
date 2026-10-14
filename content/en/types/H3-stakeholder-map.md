@@ -125,5 +125,5 @@ Approximate: the quadrants are plain table cells, not a drawn plane.
 
 ## Sample {#sample}
 <!-- skill: path only -->
-![H3 sample: stakeholder map for an online-shop checkout engagement](/samples/H3-stakeholder-map.svg)
-*An online-shop checkout engagement grid with generic roles and a companion action table. Placements are hypothetical and do not rank real people or organizations.*
+![H3 sample: stakeholder map on power and interest with a companion table](/samples/H3-stakeholder-map.svg)
+*Stakeholder map (hypothetical) on power and interest: shop manager manage closely, finance keep satisfied, customer keep informed, carrier monitor, with a companion table of attitude and next step. The placements are illustrative and rank no real people or organisations.*

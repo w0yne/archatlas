@@ -154,5 +154,5 @@ reviewed: false
 
 ## 示例图 {#sample}
 <!-- skill: path only -->
-![C4 示例：网店 Shop API 的组件图，包括各处理器、结账逻辑、仓储库以及连接支付服务商和仓储系统的客户端](/samples/C4-component-diagram.svg)
-*示例图待生成（由渲染器根据 `examples/` 生成）。*
+![C4 示例：订单 API 的组件图](/samples/C4-component-diagram.svg)
+*订单 API 的组件：边界内有控制器、服务、仓储和支付网关客户端。仓储读写商城数据库，网关客户端调用外部的支付服务商。*

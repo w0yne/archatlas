@@ -2,7 +2,7 @@
   "archatlas": "0.1",
   "meta": {
     "type": "A5",
-    "title": "Online shop: return process",
+    "title": "Online shop: handle a return (as-is)",
     "lang": "en",
     "audience": "business and operations",
     "state": "as-is"
@@ -11,51 +11,56 @@
     "template": "lanes",
     "profile": "doc",
     "direction": "LR",
-    "columns": 4
+    "spacing": {
+      "rank_gap": 24,
+      "node_gap": 24,
+      "gap_ratio": 0.1,
+      "boundary_gap": 40,
+      "label_clearance": 8,
+      "label_width": 40
+    }
   },
   "groups": [
     {
-      "id": "l_c",
+      "id": "p_c",
       "title": "Customer",
-      "kind": "lane"
+      "kind": "pool"
+    },
+    {
+      "id": "p_s",
+      "title": "Online shop",
+      "kind": "pool"
     },
     {
       "id": "l_s",
       "title": "Support",
-      "kind": "lane"
+      "kind": "lane",
+      "parent": "p_s"
     },
     {
       "id": "l_w",
       "title": "Warehouse",
-      "kind": "lane"
+      "kind": "lane",
+      "parent": "p_s"
     }
   ],
   "nodes": [
     {
-      "id": "s",
+      "id": "st",
       "kind": "event",
       "label": "Return requested",
-      "parent": "l_c",
-      "size_hint": {
-        "width": 110
-      }
-    },
-    {
-      "id": "t1",
-      "kind": "task",
-      "label": "Request return",
-      "parent": "l_c",
-      "size_hint": {
-        "width": 150
-      }
-    },
-    {
-      "id": "t2",
-      "kind": "task",
-      "label": "Check and approve",
       "parent": "l_s",
       "size_hint": {
-        "width": 150
+        "width": 88
+      }
+    },
+    {
+      "id": "chk",
+      "kind": "task",
+      "label": "Check return",
+      "parent": "l_s",
+      "size_hint": {
+        "width": 100
       }
     },
     {
@@ -64,36 +69,122 @@
       "label": "Eligible?",
       "parent": "l_s",
       "size_hint": {
-        "width": 110
+        "width": 84
       }
     },
     {
-      "id": "t5",
+      "id": "lab",
+      "kind": "task",
+      "label": "Send return label",
+      "parent": "l_s",
+      "size_hint": {
+        "width": 100
+      }
+    },
+    {
+      "id": "rcv",
+      "kind": "task",
+      "label": "Receive item",
+      "parent": "l_w",
+      "size_hint": {
+        "width": 100
+      }
+    },
+    {
+      "id": "ins",
       "kind": "task",
       "label": "Inspect item",
       "parent": "l_w",
       "size_hint": {
-        "width": 150
+        "width": 100
+      }
+    },
+    {
+      "id": "ref",
+      "kind": "task",
+      "label": "Refund payment",
+      "parent": "l_s",
+      "size_hint": {
+        "width": 100
+      }
+    },
+    {
+      "id": "ok",
+      "kind": "event",
+      "label": "Refund issued",
+      "parent": "l_s",
+      "size_hint": {
+        "width": 88
+      }
+    },
+    {
+      "id": "no",
+      "kind": "event",
+      "label": "Return declined",
+      "parent": "l_s",
+      "size_hint": {
+        "width": 88
       }
     }
   ],
   "edges": [
     {
-      "from": "s",
-      "to": "t1"
+      "from": "st",
+      "to": "chk"
     },
     {
-      "from": "t1",
-      "to": "t2"
-    },
-    {
-      "from": "t2",
+      "from": "chk",
       "to": "gw"
     },
     {
       "from": "gw",
-      "to": "t5",
-      "label": "yes"
+      "to": "lab",
+      "label": "Yes"
+    },
+    {
+      "from": "gw",
+      "to": "no",
+      "label": "No"
+    },
+    {
+      "from": "lab",
+      "to": "rcv"
+    },
+    {
+      "from": "rcv",
+      "to": "ins"
+    },
+    {
+      "from": "ins",
+      "to": "ref"
+    },
+    {
+      "from": "ref",
+      "to": "ok"
+    },
+    {
+      "from": "p_c",
+      "to": "st",
+      "label": "Return request",
+      "kind": "message",
+      "from_port": "s",
+      "to_port": "n"
+    },
+    {
+      "from": "lab",
+      "to": "p_c",
+      "label": "Return label",
+      "kind": "message",
+      "from_port": "n",
+      "to_port": "s"
+    },
+    {
+      "from": "p_c",
+      "to": "rcv",
+      "label": "Parcel",
+      "kind": "message",
+      "from_port": "s",
+      "to_port": "n"
     }
   ]
 }

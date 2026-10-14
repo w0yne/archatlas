@@ -126,4 +126,4 @@ Model template: `assets/templates/H1.json` · Layout template: `grid_table` · o
 ## Sample {#sample}
 <!-- skill: path only -->
 ![H1 sample: RACI matrix for a checkout release](/samples/H1-raci-matrix.svg)
-*An online-shop release matrix assigns preparation, approval, support handoff and rollback readiness to generic roles. The assignments are illustrative, not an inferred organizational policy.*
+*RACI matrix for a checkout release: four activities by four roles (product owner, shop manager, support lead, engineer). Every row has one accountable (A) and at least one responsible (R); A/R means one role holds both.*

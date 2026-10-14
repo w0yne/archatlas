@@ -147,5 +147,5 @@ reviewed: false
 
 ## 示例图 {#sample}
 <!-- skill: path only -->
-![E4 示例：网店订单履约，跨客户、网店 Web 应用、支付服务商和仓库四条泳道，交接均带标签](/samples/E4-swimlane-cross-functional.svg)
-*示例图待生成（由渲染器根据 `examples/` 生成）。*
+![E4 示例：顾客、客服和仓库之间的退货泳道图](/samples/E4-swimlane-cross-functional.svg)
+*顾客、客服和仓库之间的退货泳道图：顾客的申请交给客服，客服批准后产生退货标签，交给仓库检查。每次交接都标注传递的内容。*

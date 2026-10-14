@@ -9,7 +9,8 @@
   },
   "layout": {
     "template": "layered",
-    "profile": "doc"
+    "profile": "doc",
+    "columns": 3
   },
   "groups": [
     {
@@ -88,6 +89,12 @@
       "from": "g_ch",
       "to": "g_ap",
       "label": "uses",
+      "kind": "call"
+    },
+    {
+      "from": "ord",
+      "to": "pay",
+      "label": "Payment request",
       "kind": "call"
     }
   ]

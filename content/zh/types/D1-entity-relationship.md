@@ -148,5 +148,5 @@ reviewed: false
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-![D1 示例：网店逻辑模型，包含 Customer、Order、OrderLine、Product、Payment 和 Shipment，采用鸦脚表示法](/samples/D1-entity-relationship.svg)
-*示例待生成（由渲染器根据 `examples/` 生成）。*
+![D1 示例：网店的逻辑数据模型，基数含最小值和最大值](/samples/D1-entity-relationship.zh.svg)
+*网店的逻辑数据模型：顾客、订单、订单行和商品，每个实体带标识符和少量关键属性（主键、外键）。每个关系都有动词，两端标明“最小..最大”基数：一位顾客下 0..N 个订单，一个订单包含 1..N 个订单行，一件商品售出为 0..N 个订单行。基数以文字绘出，不是鸦脚符号。*

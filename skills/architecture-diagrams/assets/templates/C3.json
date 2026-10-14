@@ -2,7 +2,7 @@
   "archatlas": "0.1",
   "meta": {
     "type": "C3",
-    "title": "Online shop: containers",
+    "title": "Container diagram for Online shop",
     "lang": "en",
     "audience": "architects and developers",
     "state": "as-is"
@@ -10,6 +10,7 @@
   "layout": {
     "template": "nested",
     "profile": "doc",
+    "direction": "LR",
     "columns": 2
   },
   "groups": [
@@ -21,41 +22,51 @@
   ],
   "nodes": [
     {
-      "id": "cust",
-      "kind": "person",
-      "label": "Customer",
-      "size_hint": {
-        "width": 160
-      }
-    },
-    {
       "id": "web",
       "kind": "container",
       "label": "Web storefront",
-      "sub": "browser app",
+      "sub": "Shows catalogue and cart",
+      "tags": [
+        "Browser app"
+      ],
       "parent": "g_s",
       "size_hint": {
-        "width": 160
+        "width": 170
       }
     },
     {
       "id": "api",
       "kind": "container",
       "label": "Order API",
-      "sub": "REST service",
+      "sub": "Places and tracks orders",
+      "tags": [
+        "REST service"
+      ],
       "parent": "g_s",
       "style": "primary",
       "size_hint": {
-        "width": 160
+        "width": 170
       }
     },
     {
       "id": "db",
       "kind": "store",
       "label": "Shop database",
+      "sub": "Stores orders and products",
+      "tags": [
+        "Relational database"
+      ],
       "parent": "g_s",
       "size_hint": {
-        "width": 160
+        "width": 170
+      }
+    },
+    {
+      "id": "cust",
+      "kind": "person",
+      "label": "Customer",
+      "size_hint": {
+        "width": 170
       }
     },
     {
@@ -64,7 +75,7 @@
       "label": "Payment provider",
       "style": "external",
       "size_hint": {
-        "width": 160
+        "width": 170
       }
     }
   ],
@@ -77,7 +88,7 @@
     {
       "from": "web",
       "to": "api",
-      "label": "Places order [HTTPS]"
+      "label": "Places order [JSON/HTTPS]"
     },
     {
       "from": "api",
@@ -87,7 +98,7 @@
     {
       "from": "api",
       "to": "pay",
-      "label": "Charges [HTTPS]"
+      "label": "Charges cards [HTTPS]"
     }
   ]
 }

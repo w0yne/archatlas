@@ -135,4 +135,4 @@ Use `nested` with `boundary` groups for deployment boundaries instead.
 ## Sample {#sample}
 <!-- skill: path only -->
 ![H2 sample: observability of an online shop's checkout](/samples/H2-observability-view.svg)
-*Telemetry paths from checkout instrumentation to collection, analysis and an alert route with a named owner. The alert policy is proposed, not measured behavior.*
+*Observability of checkout: the storefront and the order API emit telemetry to a collector, which stores it in a metrics store and a trace store that feed a checkout dashboard. A proposed alert on order failures notifies the on-call team; the alert is marked as proposed, not as measured behaviour.*

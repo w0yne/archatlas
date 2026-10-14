@@ -1,0 +1,21 @@
+{
+  "System context diagram for Online shop": "网店：系统上下文图",
+  "Arrow: who starts the exchange": "箭头：由谁发起交互",
+  "Customer": "顾客",
+  "[Person] buys goods": "[人] 购买商品",
+  "Online shop": "网店系统",
+  "[Software system] sells goods to customers": "[软件系统] 向顾客销售商品",
+  "Payment provider": "支付服务商",
+  "[External system] takes card payments": "[外部系统] 处理银行卡支付",
+  "Support agent": "客服人员",
+  "[Person] answers questions": "[人] 回答咨询",
+  "Email service": "邮件服务",
+  "[External system] sends receipts": "[外部系统] 发送回执",
+  "Carrier": "物流承运商",
+  "[External system] delivers parcels": "[外部系统] 递送包裹",
+  "Browses and orders": "浏览并下单",
+  "Answers questions": "回答咨询",
+  "Charges cards": "扣款",
+  "Books shipments": "预约发货",
+  "Sends receipts": "发送回执"
+}

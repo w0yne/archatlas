@@ -2,7 +2,7 @@
   "archatlas": "0.1",
   "meta": {
     "type": "G1",
-    "title": "Online shop: deployment",
+    "title": "Online shop: production deployment (current)",
     "lang": "en",
     "audience": "operations and developers",
     "state": "as-is"
@@ -10,38 +10,43 @@
   "layout": {
     "template": "nested",
     "profile": "doc",
-    "columns": 3
+    "columns": 3,
+    "spacing": {
+      "node_gap": 72
+    }
   },
   "groups": [
     {
       "id": "g_c",
       "title": "Cluster",
-      "kind": "boundary"
+      "kind": "boundary",
+      "dashed": false
     },
     {
       "id": "g_h",
       "title": "Host A",
       "kind": "boundary",
-      "parent": "g_c"
+      "parent": "g_c",
+      "dashed": false
     }
   ],
   "nodes": [
-    {
-      "id": "api",
-      "kind": "component",
-      "label": "Order API",
-      "sub": "2 replicas",
-      "parent": "g_h",
-      "style": "primary",
-      "size_hint": {
-        "width": 150
-      }
-    },
     {
       "id": "web",
       "kind": "component",
       "label": "Storefront",
       "parent": "g_h",
+      "size_hint": {
+        "width": 150
+      }
+    },
+    {
+      "id": "api",
+      "kind": "component",
+      "label": "Order API",
+      "sub": "2 replicas (illustrative)",
+      "parent": "g_h",
+      "style": "primary",
       "size_hint": {
         "width": 150
       }

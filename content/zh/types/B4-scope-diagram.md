@@ -127,5 +127,5 @@ reviewed: false
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-![B4 示例：一次结账版本的范围](/samples/B4-scope-diagram.svg)
-*一次结账版本交付包含支付集成和订单确认，排除会员积分计划，并将外部服务商记录为依赖。*
+![B4 示例：结账版本的范围](/samples/B4-scope-diagram.svg)
+*结账版本的范围：支付集成和订单确认在范围内，会员计划在范围外，支付服务商记为外部依赖。*

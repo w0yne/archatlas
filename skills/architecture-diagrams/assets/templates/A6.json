@@ -2,7 +2,7 @@
   "archatlas": "0.1",
   "meta": {
     "type": "A6",
-    "title": "Online shop: customer journey",
+    "title": "Online shop: first purchase, persona first-time shopper (hypothesis, current state)",
     "lang": "en",
     "audience": "product team",
     "state": "as-is"
@@ -14,43 +14,56 @@
   "tables": [
     {
       "id": "j",
-      "title": "Journey of a first purchase",
+      "title": "One persona, one scenario: buy a first item",
       "columns": [
         "Row",
         "Discover",
+        "Compare",
         "Order",
         "Receive"
       ],
       "rows": [
         [
           "Action",
-          "Search",
+          "Search the shop",
+          "Compare two items",
           "Check out",
           "Unpack"
         ],
         [
           "Thought",
-          "Is it fair priced?",
+          "Is it fairly priced?",
+          "Which one lasts?",
           "Is paying safe?",
           "Is it as shown?"
         ],
         [
           "Emotion",
           "neutral",
+          "curious",
           "worried",
           "happy"
         ],
         [
           "Pain point",
           "Many similar results",
+          "No side-by-side view",
           "Long form",
           "Late delivery"
         ],
         [
           "Touchpoint",
           "Web storefront",
+          "Web storefront, chatbot",
           "Web storefront",
           "Parcel, email"
+        ],
+        [
+          "Opportunity (owner)",
+          "Better search (Product)",
+          "Comparison view (Product)",
+          "Shorter form (Checkout team)",
+          "Delivery tracking (Operations)"
         ]
       ]
     }

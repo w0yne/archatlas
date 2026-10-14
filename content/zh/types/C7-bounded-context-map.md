@@ -156,6 +156,5 @@ reviewed: false
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-
-![C7 示例：网店上下文映射图——Catalogue（OHS、PL）是 Ordering（CF）的上游；Ordering 与 Payments 为合作关系；Ordering 作为 Fulfilment 的供应方；Fulfilment 以 ACL 对接遗留仓储系统（大泥球）；Payments 以 ACL 对接外部支付服务商（OHS）；Customer Support 遵奉 Ordering](/samples/C7-bounded-context-map.svg)
-*示例待生成（由渲染器根据 `examples/` 生成）。*
+![C7 示例：含三个限界上下文的上下文映射](/samples/C7-bounded-context-map.svg)
+*含三个限界上下文的上下文映射：订单（订单模型，开放主机服务）、商品目录（商品模型）和客服（案例模型，防腐层）。商品目录是订单的供应方，订单向客服发布通用语言。*
