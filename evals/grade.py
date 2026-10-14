@@ -45,8 +45,15 @@ MAX_REPLY, MAX_SVG, MAX_SVGS, MAX_IMAGES = 14000, 9000, 4, 3
 
 
 def render_png(svg: Path, dest: Path) -> Path | None:
+    # rsvg-convert first: CairoSVG mis-places centred text whose line mixes font-family
+    # tspans (Latin + CJK), which made the grader see overflow that browsers do not show.
+    rsvg = shutil.which("rsvg-convert")
+    if rsvg:
+        proc = subprocess.run([rsvg, "-w", "1400", str(svg), "-o", str(dest)], capture_output=True, timeout=120)
+        if proc.returncode == 0 and dest.exists():
+            return dest
     try:
-        import cairosvg  # optional
+        import cairosvg  # optional fallback
     except ImportError:
         return None
     try:
@@ -90,6 +97,7 @@ def build_input(run_dir: Path, rec: dict, scenario: dict, tmp: Path) -> tuple[Pa
         "## SCENARIO\n```yaml\n" + yaml.safe_dump(sc, allow_unicode=True, sort_keys=False) + f"mode_run: {rec.get('mode')}\narm: {rec.get('arm')}\n```",
         "## RUBRIC\n" + RUBRIC.read_text(encoding="utf-8"),
         "## TRACE FACTS\n```json\n" + json.dumps({"trace": rec.get("trace"), "skill_loaded": rec.get("skill_loaded"),
+                                                    "image_views_observable": ADAPTERS[rec["host"]].traces_image_views,
                                                     "turns": rec.get("turns"), "exit_codes": rec.get("exit_codes"),
                                                     "timed_out": rec.get("timed_out")}, ensure_ascii=False) + "\n```",
         "## AUTOMATIC CHECKS\n```json\n" + json.dumps(rec.get("svg_checks"), ensure_ascii=False) + "\n```",

@@ -91,6 +91,9 @@ def main(argv=None) -> int:
     ap.add_argument("--defects", type=Path, help="hand-written defects section to append")
     ap.add_argument("--title", default="Evaluation report")
     ap.add_argument("--skill-dir", type=Path, help="recompute skill-load evidence with this skill's SKILL.md")
+    ap.add_argument("--baseline", type=Path,
+                    help="an earlier report's JSON: adds before/after tables, and supplies the no-skill rows "
+                         "for scenario/host pairs this run did not repeat")
     args = ap.parse_args(argv)
     scenarios = load_scenarios()
     runs, metas = load_runs(args.results, skill_markers(args.skill_dir) if args.skill_dir else None)
@@ -132,11 +135,17 @@ def main(argv=None) -> int:
             "tokens_cache_read": sum((x["usage"] or {}).get("cache_read") or 0 for x in xs),
             "renderer_used": sum(bool(x["renderer_used"]) for x in xs),
         }
+    baseline = json.loads(args.baseline.read_text(encoding="utf-8")) if args.baseline else None
+    base_rows = (baseline or {}).get("runs", [])
+
+    def find(xs, sid, h, arm):
+        return next((x for x in xs if x["scenario"] == sid and x["host"] == h and x["arm"] == arm), None)
+
     deltas = []
     for sid in sorted({x["scenario"] for x in rows}, key=lambda s: int(s[1:])):
         for h in sorted({x["host"] for x in rows}):
             s = next((x for x in rows if x["scenario"] == sid and x["host"] == h and x["arm"] == "skill"), None)
-            n = next((x for x in rows if x["scenario"] == sid and x["host"] == h and x["arm"] == "noskill"), None)
+            n = find(rows, sid, h, "noskill") or find(base_rows, sid, h, "noskill")
             if s and n and s["mean_score"] is not None and n["mean_score"] is not None:
                 deltas.append({"scenario": sid, "host": h, "skill": s["mean_score"], "noskill": n["mean_score"],
                                "delta": round(s["mean_score"] - n["mean_score"], 2),
@@ -160,12 +169,28 @@ def main(argv=None) -> int:
         wins[d["host"]][0] += d["delta"] > 0
         wins[d["host"]][1] += 1
 
+    compare = []
+    for x in rows:
+        b = find(base_rows, x["scenario"], x["host"], x["arm"])
+        if b:
+            compare.append({"scenario": x["scenario"], "host": x["host"], "arm": x["arm"],
+                            "before": b["mean_score"], "after": x["mean_score"],
+                            "delta": round(x["mean_score"] - b["mean_score"], 2)
+                            if x["mean_score"] is not None and b["mean_score"] is not None else None,
+                            "gates_before": b["gates_pass"], "gates_after": x["gates_pass"],
+                            "failed_before": [k for k, v in b["gates"].items() if v is False],
+                            "failed_after": [k for k, v in x["gates"].items() if v is False],
+                            "scores_before": b["scores"], "scores_after": x["scores"]})
+
     data = {"title": args.title, "meta": metas[:1] and {k: metas[0].get(k) for k in ("skill_rev", "host_versions")},
             "models": sorted({f"{x['host']}={x['model']}" for x in rows}), "summary": summary, "deltas": deltas,
             "skill_wins": {h: {"wins": w, "of": n} for h, (w, n) in wins.items()},
             "triggers": triggers, "cost": {"runs_usd": run_cost, "grading_usd": grading_cost,
                                           "total_usd": round(run_cost + grading_cost, 2)},
-            "live_dir_hits": sorted({h for m in metas for h in m.get("live_dir_hits", [])}), "runs": rows}
+            "live_dir_hits": sorted({h for m in metas for h in m.get("live_dir_hits", [])}),
+            "baseline": {"title": baseline.get("title"), "skill_rev": (baseline.get("meta") or {}).get("skill_rev"),
+                         "summary": baseline.get("summary"), "triggers": baseline.get("triggers")} if baseline else None,
+            "compare": compare, "runs": rows}
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.with_suffix(".json").write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
@@ -193,7 +218,30 @@ def main(argv=None) -> int:
     for h, t in triggers.items():
         items = " ".join(f"{k}:{'Y' if v is True else 'n'}" for k, v in t["items"].items())
         L.append(f"| {h} | {fmt(t['precision'])} | {fmt(t['recall'])} | {t['tp']}/{t['positives']} | {t['fp']}/{t['negatives']} | {fmt(t['gate_pass'])} | {items} |")
+    if baseline:
+        bt = baseline.get("triggers") or {}
+        L += ["", f"## Before / after (baseline: {baseline.get('title')}, skill `{(baseline.get('meta') or {}).get('skill_rev')}`)", "",
+              "All cells read before → after.", "",
+              "| Host / arm | Gates pass | Mean score | " + " | ".join(f"median {d}" for d in DIMS) + " |", "|" + "---|" * (3 + len(DIMS))]
+        for k, v in summary.items():
+            b = (baseline.get("summary") or {}).get(k)
+            if b:
+                L.append(f"| {k} | {b['gate_pass']}/{b['runs']} → {v['gate_pass']}/{v['runs']} | {fmt(b['mean_score'])} → {fmt(v['mean_score'])} | " +
+                         " | ".join(f"{fmt(b['median'][d], 1)} → {fmt(v['median'][d], 1)}" for d in DIMS) + " |")
+        L += ["", "| Host | Trigger TP before → after | FP before → after |", "|---|---|---|"]
+        for h, t in triggers.items():
+            b = bt.get(h)
+            if b:
+                L.append(f"| {h} | {b['tp']}/{b['positives']} → {t['tp']}/{t['positives']} | {b['fp']}/{b['negatives']} → {t['fp']}/{t['negatives']} |")
+        L += ["", "| Scenario | Host | Arm | Mean before | Mean after | Δ | Failed gates before | Failed gates after |",
+              "|---|---|---|---|---|---|---|---|"]
+        for c in sorted(compare, key=lambda c: (int(c["scenario"][1:]), c["host"], c["arm"])):
+            delta = "–" if c["delta"] is None else f"{c['delta']:+.2f}"
+            L.append(f"| {c['scenario']} | {c['host']} | {c['arm']} | {fmt(c['before'])} | {fmt(c['after'])} | {delta} | "
+                     f"{', '.join(c['failed_before']) or '–'} | {', '.join(c['failed_after']) or '–'} |")
     L += ["", "## Skill vs no skill, per scenario and host (mean of graded dimensions)", "",
+          *(["No-skill rows not repeated in this run come from the baseline report (same models and prompts).", ""]
+            if baseline else []),
           "| Scenario | Host | Skill | No skill | Δ | Gates skill / no skill |", "|---|---|---|---|---|---|"]
     for d in deltas:
         L.append(f"| {d['scenario']} | {d['host']} | {d['skill']} | {d['noskill']} | {d['delta']:+.2f} | {fmt(d['skill_gates'])} / {fmt(d['noskill_gates'])} |")
