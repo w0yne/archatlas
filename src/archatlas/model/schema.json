@@ -1,0 +1,563 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://archatlas.dev/schema/model-0.1.json",
+  "title": "Archatlas model 0.1",
+  "type": "object",
+  "properties": {
+    "archatlas": {
+      "const": "0.1"
+    },
+    "meta": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string"
+        },
+        "audience": {
+          "type": "string",
+          "minLength": 1
+        },
+        "state": {
+          "enum": [
+            "as-is",
+            "to-be"
+          ]
+        },
+        "lang": {
+          "type": "string",
+          "minLength": 1
+        },
+        "theme": {
+          "enum": [
+            "neutral",
+            "print",
+            "dark"
+          ]
+        },
+        "legend": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string",
+                "minLength": 1
+              },
+              "style": {
+                "enum": [
+                  "primary",
+                  "peer",
+                  "external",
+                  "shared",
+                  "planned"
+                ]
+              },
+              "dashed": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "label"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "type",
+        "title"
+      ],
+      "additionalProperties": false
+    },
+    "layout": {
+      "type": "object",
+      "properties": {
+        "template": {
+          "enum": [
+            "nested",
+            "layered",
+            "sequence",
+            "lanes",
+            "grid_table",
+            "er",
+            "statechart",
+            "tree"
+          ]
+        },
+        "direction": {
+          "enum": [
+            "LR",
+            "TB"
+          ]
+        },
+        "columns": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 8
+        },
+        "profile": {
+          "enum": [
+            "slide",
+            "doc",
+            "slide-16x9",
+            "doc-1120xN"
+          ]
+        }
+      },
+      "required": [
+        "template"
+      ],
+      "additionalProperties": false
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/node"
+      }
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/edge"
+      }
+    },
+    "groups": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/group"
+      }
+    },
+    "tables": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/table"
+      }
+    },
+    "labels": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "allow": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "element": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+          },
+          "rule": {
+            "type": "string",
+            "minLength": 1
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "element",
+          "rule",
+          "reason"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "frames": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1
+          },
+          "from_step": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "to_step": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "id",
+          "label",
+          "from_step",
+          "to_step"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "activations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "node": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+          },
+          "from_step": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "to_step": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "node",
+          "from_step",
+          "to_step"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "archatlas",
+    "meta",
+    "layout"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "node": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+        },
+        "kind": {
+          "enum": [
+            "person",
+            "system",
+            "container",
+            "component",
+            "store",
+            "queue",
+            "external",
+            "actor",
+            "lifeline",
+            "state",
+            "entity",
+            "task",
+            "event",
+            "gateway",
+            "band",
+            "initial",
+            "final",
+            "note"
+          ]
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sub": {
+          "type": "string"
+        },
+        "parent": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "style": {
+          "enum": [
+            "primary",
+            "peer",
+            "external",
+            "shared",
+            "planned"
+          ]
+        },
+        "size_hint": {
+          "type": "object",
+          "properties": {
+            "width": {
+              "type": "number",
+              "minimum": 80,
+              "maximum": 800
+            },
+            "height": {
+              "type": "number",
+              "minimum": 40,
+              "maximum": 1000
+            }
+          },
+          "required": [],
+          "additionalProperties": false
+        },
+        "evidence": {
+          "$ref": "#/$defs/evidence"
+        },
+        "attributes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "label"
+      ],
+      "additionalProperties": false
+    },
+    "edge": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+        },
+        "from": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+        },
+        "to": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+        },
+        "from_port": {
+          "enum": [
+            "n",
+            "e",
+            "s",
+            "w",
+            "auto"
+          ]
+        },
+        "to_port": {
+          "enum": [
+            "n",
+            "e",
+            "s",
+            "w",
+            "auto"
+          ]
+        },
+        "label": {
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "call",
+            "data",
+            "async",
+            "message",
+            "dependency",
+            "assoc"
+          ]
+        },
+        "dir": {
+          "enum": [
+            "->",
+            "<->",
+            "--"
+          ]
+        },
+        "step": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "dashed": {
+          "type": "boolean"
+        },
+        "style": {
+          "enum": [
+            "primary",
+            "peer",
+            "external",
+            "shared",
+            "planned"
+          ]
+        },
+        "evidence": {
+          "$ref": "#/$defs/evidence"
+        },
+        "waypoints": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 2,
+            "maxItems": 2
+          }
+        },
+        "cardinality": {
+          "type": "object",
+          "properties": {
+            "from": {
+              "type": "string",
+              "minLength": 1
+            },
+            "to": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "from",
+        "to"
+      ],
+      "additionalProperties": false
+    },
+    "group": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "enum": [
+            "boundary",
+            "layer",
+            "pool",
+            "lane",
+            "frame"
+          ]
+        },
+        "parent": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+        },
+        "style": {
+          "enum": [
+            "primary",
+            "peer",
+            "external",
+            "shared",
+            "planned"
+          ]
+        },
+        "dashed": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "kind"
+      ],
+      "additionalProperties": false
+    },
+    "table": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+        },
+        "title": {
+          "type": "string"
+        },
+        "columns": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "rows": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "required": [
+        "id",
+        "columns",
+        "rows"
+      ],
+      "additionalProperties": false
+    },
+    "evidence": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "enum": [
+            "verified",
+            "inferred",
+            "doc-only",
+            "conflict"
+          ]
+        },
+        "refs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "path": {
+                "type": "string",
+                "minLength": 1
+              },
+              "url": {
+                "type": "string"
+              },
+              "ref": {
+                "type": "string"
+              },
+              "line_start": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "line_end": {
+                "type": "integer",
+                "minimum": 1
+              }
+            },
+            "required": [
+              "path"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false
+    }
+  }
+}
