@@ -1,0 +1,12 @@
+{
+  "t": "Online shop: logical data model",
+  "customer": "customer",
+  "order": "order",
+  "order_line": "order_line",
+  "product": "product",
+  "payment": "payment",
+  "address": "address",
+  "r1": "places",
+  "r2": "contains",
+  "r3": "is for"
+}

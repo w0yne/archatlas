@@ -1,0 +1,78 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "C3",
+    "title": "Online shop: containers",
+    "lang": "en",
+    "audience": "architects and developers",
+    "state": "as-is"
+  },
+  "layout": {
+    "template": "nested",
+    "profile": "doc",
+    "columns": 3
+  },
+  "groups": [
+    {
+      "id": "g_s",
+      "title": "Online shop",
+      "kind": "boundary"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "cust",
+      "kind": "person",
+      "label": "Customer"
+    },
+    {
+      "id": "web",
+      "kind": "container",
+      "label": "Web storefront",
+      "sub": "browser app",
+      "parent": "g_s"
+    },
+    {
+      "id": "api",
+      "kind": "container",
+      "label": "Order API",
+      "sub": "REST service",
+      "parent": "g_s",
+      "style": "primary"
+    },
+    {
+      "id": "db",
+      "kind": "store",
+      "label": "Shop database",
+      "parent": "g_s"
+    },
+    {
+      "id": "pay",
+      "kind": "external",
+      "label": "Payment provider",
+      "style": "external"
+    }
+  ],
+  "edges": [
+    {
+      "from": "cust",
+      "to": "web",
+      "label": "Browses"
+    },
+    {
+      "from": "web",
+      "to": "api",
+      "label": "Places order [HTTPS]"
+    },
+    {
+      "from": "api",
+      "to": "db",
+      "label": "Reads and writes [SQL]"
+    },
+    {
+      "from": "api",
+      "to": "pay",
+      "label": "Charges [HTTPS]"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "t": "Handle a return",
+  "l_c": "Customer",
+  "l_s": "Support",
+  "l_w": "Warehouse",
+  "s": "Return requested",
+  "t1": "Request return",
+  "t2": "Check and approve",
+  "gw": "Eligible?",
+  "t4": "Ship item back",
+  "t5": "Inspect item",
+  "t6": "Refund payment",
+  "e1": "Refund received",
+  "e2": "Return declined",
+  "y": "yes",
+  "n": "no"
+}

@@ -1,0 +1,76 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "C4",
+    "title": "Order API: components",
+    "lang": "en",
+    "audience": "developers",
+    "state": "as-is"
+  },
+  "layout": {
+    "template": "nested",
+    "profile": "doc",
+    "columns": 3
+  },
+  "groups": [
+    {
+      "id": "g_api",
+      "title": "Order API",
+      "kind": "boundary"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "ctl",
+      "kind": "component",
+      "label": "Order controller",
+      "parent": "g_api"
+    },
+    {
+      "id": "svc",
+      "kind": "component",
+      "label": "Order service",
+      "parent": "g_api",
+      "style": "primary"
+    },
+    {
+      "id": "repo",
+      "kind": "component",
+      "label": "Order repository",
+      "parent": "g_api"
+    },
+    {
+      "id": "db",
+      "kind": "store",
+      "label": "Shop database"
+    },
+    {
+      "id": "pay",
+      "kind": "external",
+      "label": "Payment provider",
+      "style": "external"
+    }
+  ],
+  "edges": [
+    {
+      "from": "ctl",
+      "to": "svc",
+      "label": "Calls"
+    },
+    {
+      "from": "svc",
+      "to": "repo",
+      "label": "Stores orders"
+    },
+    {
+      "from": "repo",
+      "to": "db",
+      "label": "SQL"
+    },
+    {
+      "from": "svc",
+      "to": "pay",
+      "label": "Charges"
+    }
+  ]
+}

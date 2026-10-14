@@ -1,0 +1,70 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "A3",
+    "title": "Online shop: business context",
+    "lang": "en",
+    "audience": "business leads",
+    "state": "as-is"
+  },
+  "layout": {
+    "template": "nested",
+    "profile": "doc"
+  },
+  "nodes": [
+    {
+      "id": "shop",
+      "kind": "system",
+      "label": "Online shop",
+      "style": "primary"
+    },
+    {
+      "id": "cust",
+      "kind": "actor",
+      "label": "Customer"
+    },
+    {
+      "id": "sup",
+      "kind": "actor",
+      "label": "Supplier"
+    },
+    {
+      "id": "car",
+      "kind": "external",
+      "label": "Carrier",
+      "style": "external"
+    },
+    {
+      "id": "pay",
+      "kind": "external",
+      "label": "Payment provider",
+      "style": "external"
+    }
+  ],
+  "edges": [
+    {
+      "from": "cust",
+      "to": "shop",
+      "label": "Orders",
+      "kind": "data"
+    },
+    {
+      "from": "shop",
+      "to": "sup",
+      "label": "Replenishment request",
+      "kind": "data"
+    },
+    {
+      "from": "shop",
+      "to": "car",
+      "label": "Parcel",
+      "kind": "data"
+    },
+    {
+      "from": "pay",
+      "to": "shop",
+      "label": "Payment",
+      "kind": "data"
+    }
+  ]
+}

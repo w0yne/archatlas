@@ -1,0 +1,108 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "F2",
+    "title": "t",
+    "lang": "en",
+    "audience": "security and architects",
+    "state": "as-is"
+  },
+  "layout": {
+    "template": "nested",
+    "direction": "LR",
+    "profile": "doc",
+    "columns": 2
+  },
+  "groups": [
+    {
+      "id": "g_net",
+      "title": "g_net",
+      "kind": "frame",
+      "dashed": true
+    },
+    {
+      "id": "g_edge",
+      "title": "g_edge",
+      "kind": "frame",
+      "dashed": true
+    },
+    {
+      "id": "g_tp",
+      "title": "g_tp",
+      "kind": "frame",
+      "dashed": true,
+      "style": "external"
+    },
+    {
+      "id": "g_int",
+      "title": "g_int",
+      "kind": "frame",
+      "dashed": true
+    }
+  ],
+  "nodes": [
+    {
+      "id": "shopper",
+      "kind": "external",
+      "label": "shopper",
+      "parent": "g_net",
+      "style": "external"
+    },
+    {
+      "id": "gw",
+      "kind": "component",
+      "label": "gw",
+      "parent": "g_edge"
+    },
+    {
+      "id": "ord",
+      "kind": "component",
+      "label": "ord",
+      "parent": "g_int",
+      "style": "primary"
+    },
+    {
+      "id": "db",
+      "kind": "store",
+      "label": "db",
+      "parent": "g_int"
+    },
+    {
+      "id": "pay",
+      "kind": "external",
+      "label": "pay",
+      "parent": "g_tp",
+      "style": "external"
+    }
+  ],
+  "edges": [
+    {
+      "from": "shopper",
+      "to": "gw",
+      "label": "d1",
+      "step": 1,
+      "kind": "data"
+    },
+    {
+      "from": "gw",
+      "to": "ord",
+      "label": "d2",
+      "step": 2,
+      "kind": "data"
+    },
+    {
+      "from": "ord",
+      "to": "db",
+      "label": "d3",
+      "step": 3,
+      "kind": "data"
+    },
+    {
+      "from": "ord",
+      "to": "pay",
+      "label": "d4",
+      "step": 4,
+      "kind": "data"
+    }
+  ]
+}

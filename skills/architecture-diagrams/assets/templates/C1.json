@@ -1,0 +1,74 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "C1",
+    "title": "Online shop: application landscape",
+    "lang": "en",
+    "audience": "IT and business leads",
+    "state": "as-is"
+  },
+  "layout": {
+    "template": "layered",
+    "profile": "doc"
+  },
+  "groups": [
+    {
+      "id": "g_ch",
+      "title": "Channels",
+      "kind": "layer"
+    },
+    {
+      "id": "g_app",
+      "title": "Business applications",
+      "kind": "layer"
+    },
+    {
+      "id": "g_ex",
+      "title": "External services",
+      "kind": "layer"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "web",
+      "kind": "system",
+      "label": "Web storefront",
+      "parent": "g_ch"
+    },
+    {
+      "id": "shop",
+      "kind": "system",
+      "label": "Shop",
+      "sub": "orders and catalogue",
+      "parent": "g_app",
+      "style": "primary"
+    },
+    {
+      "id": "bot",
+      "kind": "system",
+      "label": "Support chatbot",
+      "parent": "g_app",
+      "style": "peer"
+    },
+    {
+      "id": "pay",
+      "kind": "external",
+      "label": "Payment provider",
+      "parent": "g_ex",
+      "style": "external"
+    }
+  ],
+  "edges": [
+    {
+      "from": "g_ch",
+      "to": "g_app",
+      "label": "API",
+      "kind": "call"
+    },
+    {
+      "from": "g_app",
+      "to": "g_ex",
+      "kind": "call"
+    }
+  ]
+}

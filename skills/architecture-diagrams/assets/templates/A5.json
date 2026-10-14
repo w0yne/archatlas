@@ -1,0 +1,99 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "A5",
+    "title": "Online shop: return process",
+    "lang": "en",
+    "audience": "business and operations",
+    "state": "as-is"
+  },
+  "layout": {
+    "template": "lanes",
+    "profile": "doc",
+    "direction": "LR",
+    "columns": 4
+  },
+  "groups": [
+    {
+      "id": "l_c",
+      "title": "Customer",
+      "kind": "lane"
+    },
+    {
+      "id": "l_s",
+      "title": "Support",
+      "kind": "lane"
+    },
+    {
+      "id": "l_w",
+      "title": "Warehouse",
+      "kind": "lane"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "s",
+      "kind": "event",
+      "label": "Return requested",
+      "parent": "l_c",
+      "size_hint": {
+        "width": 110
+      }
+    },
+    {
+      "id": "t1",
+      "kind": "task",
+      "label": "Request return",
+      "parent": "l_c",
+      "size_hint": {
+        "width": 150
+      }
+    },
+    {
+      "id": "t2",
+      "kind": "task",
+      "label": "Check and approve",
+      "parent": "l_s",
+      "size_hint": {
+        "width": 150
+      }
+    },
+    {
+      "id": "gw",
+      "kind": "gateway",
+      "label": "Eligible?",
+      "parent": "l_s",
+      "size_hint": {
+        "width": 110
+      }
+    },
+    {
+      "id": "t5",
+      "kind": "task",
+      "label": "Inspect item",
+      "parent": "l_w",
+      "size_hint": {
+        "width": 150
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "s",
+      "to": "t1"
+    },
+    {
+      "from": "t1",
+      "to": "t2"
+    },
+    {
+      "from": "t2",
+      "to": "gw"
+    },
+    {
+      "from": "gw",
+      "to": "t5",
+      "label": "yes"
+    }
+  ]
+}

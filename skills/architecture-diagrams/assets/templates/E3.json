@@ -1,0 +1,89 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "E3",
+    "title": "Order: states",
+    "lang": "en",
+    "audience": "developers and analysts",
+    "state": "as-is"
+  },
+  "layout": {
+    "template": "statechart",
+    "profile": "doc",
+    "columns": 5
+  },
+  "nodes": [
+    {
+      "id": "i",
+      "kind": "initial",
+      "label": "Start"
+    },
+    {
+      "id": "new",
+      "kind": "state",
+      "label": "Placed",
+      "size_hint": {
+        "width": 120
+      }
+    },
+    {
+      "id": "paid",
+      "kind": "state",
+      "label": "Paid",
+      "size_hint": {
+        "width": 120
+      }
+    },
+    {
+      "id": "shipped",
+      "kind": "state",
+      "label": "Shipped",
+      "size_hint": {
+        "width": 120
+      }
+    },
+    {
+      "id": "f",
+      "kind": "final",
+      "label": "End"
+    },
+    {
+      "id": "cancelled",
+      "kind": "state",
+      "label": "Cancelled",
+      "size_hint": {
+        "width": 120
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "i",
+      "to": "new"
+    },
+    {
+      "from": "new",
+      "to": "paid",
+      "label": "payment received",
+      "kind": "call"
+    },
+    {
+      "from": "paid",
+      "to": "shipped",
+      "label": "handed to carrier",
+      "kind": "call"
+    },
+    {
+      "from": "shipped",
+      "to": "f",
+      "label": "delivered",
+      "kind": "call"
+    },
+    {
+      "from": "new",
+      "to": "cancelled",
+      "label": "customer cancels",
+      "kind": "call"
+    }
+  ]
+}

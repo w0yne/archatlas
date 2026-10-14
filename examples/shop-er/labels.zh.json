@@ -1,0 +1,12 @@
+{
+  "t": "网店：逻辑数据模型",
+  "customer": "customer",
+  "order": "order",
+  "order_line": "order_line",
+  "product": "product",
+  "payment": "payment",
+  "address": "address",
+  "r1": "下单",
+  "r2": "包含",
+  "r3": "对应"
+}

@@ -1,0 +1,46 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "A4",
+    "title": "Online shop: scenario matrix",
+    "lang": "en",
+    "audience": "product and business leads",
+    "state": "as-is"
+  },
+  "layout": {
+    "template": "grid_table",
+    "profile": "doc"
+  },
+  "tables": [
+    {
+      "id": "m",
+      "title": "Roles by activities",
+      "columns": [
+        "Role",
+        "Browse",
+        "Order",
+        "Return"
+      ],
+      "rows": [
+        [
+          "Customer",
+          "Search catalogue [R1]",
+          "Check out [R1]",
+          "Request return [R2]"
+        ],
+        [
+          "Support agent",
+          "-",
+          "Edit order [R2]",
+          "Approve return [R2]"
+        ],
+        [
+          "Shop manager",
+          "Maintain catalogue [R1]",
+          "-",
+          "-"
+        ]
+      ]
+    }
+  ]
+}

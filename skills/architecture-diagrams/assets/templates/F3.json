@@ -1,0 +1,46 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "F3",
+    "title": "Online shop: access control matrix",
+    "lang": "en",
+    "audience": "security and product",
+    "state": "as-is"
+  },
+  "layout": {
+    "template": "grid_table",
+    "profile": "doc"
+  },
+  "tables": [
+    {
+      "id": "acl",
+      "title": "Roles by resource and action",
+      "columns": [
+        "Role",
+        "Orders: read",
+        "Orders: edit",
+        "Catalogue: edit"
+      ],
+      "rows": [
+        [
+          "Customer",
+          "own only",
+          "own only",
+          "deny"
+        ],
+        [
+          "Support agent",
+          "allow",
+          "allow",
+          "deny"
+        ],
+        [
+          "Shop manager",
+          "allow",
+          "deny",
+          "allow"
+        ]
+      ]
+    }
+  ]
+}

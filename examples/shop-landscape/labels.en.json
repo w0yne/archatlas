@@ -1,0 +1,23 @@
+{
+  "t": "Online shop: application landscape",
+  "g_ch": "Channels",
+  "g_app": "Business applications",
+  "g_pl": "Shared platform",
+  "g_ex": "External services",
+  "web": "Web storefront",
+  "mob": "Mobile app",
+  "chat": "Support chat widget",
+  "shop": "Shop",
+  "shop_s": "orders and catalogue",
+  "back": "Back office",
+  "bot": "Support chatbot",
+  "idp": "Identity",
+  "notif": "Notifications",
+  "search": "Search",
+  "pay": "Payment provider",
+  "car": "Carrier",
+  "mail": "Email service",
+  "api": "API",
+  "lg_pl": "Shared by every application",
+  "lg_ex": "Outside our control"
+}

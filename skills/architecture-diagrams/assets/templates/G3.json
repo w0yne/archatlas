@@ -1,0 +1,70 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "G3",
+    "title": "Online shop: network zones",
+    "lang": "en",
+    "audience": "network and security",
+    "state": "as-is"
+  },
+  "layout": {
+    "template": "nested",
+    "profile": "doc"
+  },
+  "groups": [
+    {
+      "id": "g_pub",
+      "title": "Public zone",
+      "kind": "boundary"
+    },
+    {
+      "id": "g_app",
+      "title": "App zone",
+      "kind": "boundary"
+    },
+    {
+      "id": "g_db",
+      "title": "Data zone",
+      "kind": "boundary"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "lb",
+      "kind": "component",
+      "label": "Load balancer",
+      "sub": "10.0.1.0/24",
+      "parent": "g_pub"
+    },
+    {
+      "id": "app",
+      "kind": "component",
+      "label": "App servers",
+      "sub": "10.0.2.0/24",
+      "parent": "g_app"
+    },
+    {
+      "id": "db",
+      "kind": "store",
+      "label": "Database",
+      "sub": "10.0.3.0/24",
+      "parent": "g_db"
+    }
+  ],
+  "edges": [
+    {
+      "from": "lb",
+      "to": "app",
+      "label": "443",
+      "step": 1,
+      "kind": "call"
+    },
+    {
+      "from": "app",
+      "to": "db",
+      "label": "5432",
+      "step": 2,
+      "kind": "data"
+    }
+  ]
+}

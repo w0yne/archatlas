@@ -1,0 +1,14 @@
+{
+  "t": "Place an order",
+  "cust": "Customer",
+  "api": "Order API",
+  "inv": "Inventory",
+  "pay": "Payment provider",
+  "m1": "Place order",
+  "m2": "Reserve item",
+  "m3": "Reserved",
+  "m4": "Charge card",
+  "m5": "Payment confirmed",
+  "m6": "Order confirmed",
+  "f1": "for each order line"
+}

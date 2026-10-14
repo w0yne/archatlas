@@ -1,0 +1,120 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "E1",
+    "title": "Place an order",
+    "lang": "en",
+    "audience": "developers",
+    "state": "as-is"
+  },
+  "layout": {
+    "template": "sequence",
+    "profile": "doc"
+  },
+  "nodes": [
+    {
+      "id": "cust",
+      "kind": "lifeline",
+      "label": "Customer",
+      "size_hint": {
+        "width": 150
+      }
+    },
+    {
+      "id": "api",
+      "kind": "lifeline",
+      "label": "Order API",
+      "size_hint": {
+        "width": 150
+      }
+    },
+    {
+      "id": "inv",
+      "kind": "lifeline",
+      "label": "Inventory",
+      "size_hint": {
+        "width": 150
+      }
+    },
+    {
+      "id": "pay",
+      "kind": "lifeline",
+      "label": "Payment provider",
+      "size_hint": {
+        "width": 150
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "cust",
+      "to": "api",
+      "label": "Place order",
+      "step": 1,
+      "kind": "call"
+    },
+    {
+      "from": "api",
+      "to": "inv",
+      "label": "Reserve item",
+      "step": 2,
+      "kind": "call"
+    },
+    {
+      "from": "inv",
+      "to": "api",
+      "label": "Reserved",
+      "step": 3,
+      "kind": "call",
+      "dashed": true
+    },
+    {
+      "from": "api",
+      "to": "pay",
+      "label": "Charge card",
+      "step": 4,
+      "kind": "call"
+    },
+    {
+      "from": "pay",
+      "to": "api",
+      "label": "Payment confirmed",
+      "step": 5,
+      "kind": "call",
+      "dashed": true
+    },
+    {
+      "from": "api",
+      "to": "cust",
+      "label": "Order confirmed",
+      "step": 6,
+      "kind": "call",
+      "dashed": true
+    }
+  ],
+  "frames": [
+    {
+      "id": "loop1",
+      "label": "for each order line",
+      "from_step": 2,
+      "to_step": 3
+    }
+  ],
+  "activations": [
+    {
+      "node": "api",
+      "from_step": 1,
+      "to_step": 6
+    },
+    {
+      "node": "inv",
+      "from_step": 2,
+      "to_step": 3
+    },
+    {
+      "node": "pay",
+      "from_step": 4,
+      "to_step": 5
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "C2",
+    "title": "t",
+    "lang": "en",
+    "audience": "everyone",
+    "state": "as-is"
+  },
+  "layout": {
+    "template": "nested",
+    "direction": "LR",
+    "profile": "doc"
+  },
+  "nodes": [
+    {
+      "id": "cust",
+      "kind": "person",
+      "label": "cust"
+    },
+    {
+      "id": "shop",
+      "kind": "system",
+      "label": "shop",
+      "sub": "shop_s",
+      "style": "primary"
+    },
+    {
+      "id": "pay",
+      "kind": "external",
+      "label": "pay",
+      "style": "external"
+    },
+    {
+      "id": "agent",
+      "kind": "person",
+      "label": "agent"
+    },
+    {
+      "id": "mail",
+      "kind": "external",
+      "label": "mail",
+      "style": "external"
+    },
+    {
+      "id": "car",
+      "kind": "external",
+      "label": "car",
+      "style": "external"
+    }
+  ],
+  "edges": [
+    {
+      "from": "cust",
+      "to": "shop",
+      "label": "e1"
+    },
+    {
+      "from": "agent",
+      "to": "shop",
+      "label": "e2"
+    },
+    {
+      "from": "shop",
+      "to": "pay",
+      "label": "e4"
+    },
+    {
+      "from": "shop",
+      "to": "car",
+      "label": "e5"
+    },
+    {
+      "from": "shop",
+      "to": "mail",
+      "label": "e6"
+    }
+  ]
+}

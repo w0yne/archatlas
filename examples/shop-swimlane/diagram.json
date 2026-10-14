@@ -1,0 +1,152 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "A5",
+    "title": "t",
+    "lang": "en",
+    "audience": "business and operations",
+    "state": "as-is"
+  },
+  "layout": {
+    "template": "lanes",
+    "direction": "LR",
+    "profile": "doc",
+    "columns": 4
+  },
+  "groups": [
+    {
+      "id": "l_c",
+      "title": "l_c",
+      "kind": "lane"
+    },
+    {
+      "id": "l_s",
+      "title": "l_s",
+      "kind": "lane"
+    },
+    {
+      "id": "l_w",
+      "title": "l_w",
+      "kind": "lane"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "s",
+      "kind": "event",
+      "label": "s",
+      "parent": "l_c",
+      "size_hint": {
+        "width": 110
+      }
+    },
+    {
+      "id": "t1",
+      "kind": "task",
+      "label": "t1",
+      "parent": "l_c",
+      "size_hint": {
+        "width": 150
+      }
+    },
+    {
+      "id": "t4",
+      "kind": "task",
+      "label": "t4",
+      "parent": "l_c",
+      "size_hint": {
+        "width": 150
+      }
+    },
+    {
+      "id": "e1",
+      "kind": "event",
+      "label": "e1",
+      "parent": "l_c",
+      "size_hint": {
+        "width": 110
+      }
+    },
+    {
+      "id": "t2",
+      "kind": "task",
+      "label": "t2",
+      "parent": "l_s",
+      "size_hint": {
+        "width": 150
+      }
+    },
+    {
+      "id": "gw",
+      "kind": "gateway",
+      "label": "gw",
+      "parent": "l_s",
+      "size_hint": {
+        "width": 110
+      }
+    },
+    {
+      "id": "t6",
+      "kind": "task",
+      "label": "t6",
+      "parent": "l_s",
+      "size_hint": {
+        "width": 150
+      }
+    },
+    {
+      "id": "e2",
+      "kind": "event",
+      "label": "e2",
+      "parent": "l_s",
+      "size_hint": {
+        "width": 110
+      }
+    },
+    {
+      "id": "t5",
+      "kind": "task",
+      "label": "t5",
+      "parent": "l_w",
+      "size_hint": {
+        "width": 150
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "s",
+      "to": "t1"
+    },
+    {
+      "from": "t1",
+      "to": "t2"
+    },
+    {
+      "from": "t2",
+      "to": "gw"
+    },
+    {
+      "from": "gw",
+      "to": "t4",
+      "label": "y"
+    },
+    {
+      "from": "gw",
+      "to": "e2",
+      "label": "n"
+    },
+    {
+      "from": "t4",
+      "to": "t5"
+    },
+    {
+      "from": "t5",
+      "to": "t6"
+    },
+    {
+      "from": "t6",
+      "to": "e1"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "A8",
+    "title": "Online shop: roadmap from as-is to target",
+    "lang": "en",
+    "audience": "business and IT leads",
+    "state": "to-be"
+  },
+  "layout": {
+    "template": "tree",
+    "profile": "doc"
+  },
+  "nodes": [
+    {
+      "id": "now",
+      "kind": "state",
+      "label": "Today: single shop"
+    },
+    {
+      "id": "wp1",
+      "kind": "task",
+      "label": "Add support chatbot",
+      "style": "planned"
+    },
+    {
+      "id": "mid",
+      "kind": "state",
+      "label": "Chatbot answers FAQs"
+    },
+    {
+      "id": "wp2",
+      "kind": "task",
+      "label": "Connect orders to chatbot",
+      "style": "planned"
+    },
+    {
+      "id": "end",
+      "kind": "state",
+      "label": "Chatbot handles order questions",
+      "style": "planned"
+    }
+  ],
+  "edges": [
+    {
+      "from": "now",
+      "to": "wp1"
+    },
+    {
+      "from": "wp1",
+      "to": "mid"
+    },
+    {
+      "from": "mid",
+      "to": "wp2"
+    },
+    {
+      "from": "wp2",
+      "to": "end"
+    }
+  ]
+}
