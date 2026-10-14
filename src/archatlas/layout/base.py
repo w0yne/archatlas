@@ -52,6 +52,7 @@ class Text:
     style: str = "peer"
     runs: list = field(default_factory=list)
     source: str = ""
+    line_widths: list = field(default_factory=list)
 
     @property
     def left(self):

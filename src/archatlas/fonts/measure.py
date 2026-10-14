@@ -157,7 +157,8 @@ class FontMetrics:
                 self._cjk_estimate()
             else:
                 family = "sans-serif"
-            if runs and runs[-1]["family"] == family:
+            if (runs and runs[-1]["family"] == family
+                    and runs[-1]["text"].isspace() == char.isspace()):
                 runs[-1]["text"] += char
             else:
                 runs.append({"text": char, "family": family})

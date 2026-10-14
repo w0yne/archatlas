@@ -121,15 +121,20 @@ def render_svg(scene, namespace=None):
                  "data-owner": text.owner, "x": number(text.x), "y": number(text.y + text.size),
                  "data-source": text.source,
                  "font-size": number(text.size), "font-family": scene.family,
-                 "text-anchor": text.anchor, "fill": theme["text"],
+                 "text-anchor": "start", "fill": theme["text"],
                  "data-text-box": " ".join(number(v) for v in text.rect)}
         element = SubElement(root, "text", attrs)
         for i, line in enumerate(text.lines):
-            span = SubElement(element, "tspan", {"x": number(text.x),
+            width = text.line_widths[i] if i < len(text.line_widths) else text.w
+            left = text.x - width * {"start": 0, "middle": 0.5, "end": 1}[text.anchor]
+            span = SubElement(element, "tspan", {"x": number(left),
                        "y": number(text.y + text.size + i * text.size * 1.4)})
             if text.runs and i < len(text.runs):
                 for run in text.runs[i]:
-                    SubElement(span, "tspan", {"font-family": run["family"]}).text = run["text"]
+                    run_attrs = {"font-family": run["family"]}
+                    if "offset" in run:
+                        run_attrs["x"] = number(left + run["offset"])
+                    SubElement(span, "tspan", run_attrs).text = run["text"]
             else:
                 span.text = line
     # Lifelines run behind execution bars; messages attach to the bar edges.

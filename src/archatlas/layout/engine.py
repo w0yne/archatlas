@@ -668,6 +668,12 @@ class Layout:
             scene.warnings.append({"rule": "wide-view", "message": "Content exceeds the theme's wide-view limit; split the view or configure the target width"})
         for text in scene.texts:
             text.runs = [self.metrics.runs(line) for line in text.lines]
+            text.line_widths = [self.metrics.width(line, text.size) for line in text.lines]
+            for runs in text.runs:
+                offset = 0
+                for run in runs:
+                    run["offset"] = offset
+                    offset += self.metrics.width(run["text"], text.size)
         scene.warnings.extend(self.metrics.warnings)
         scene.family, scene.measured_with = self.metrics.family, self.metrics.measured_with
         for node in self.nodes.values():

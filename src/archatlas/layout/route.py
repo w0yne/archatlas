@@ -4,8 +4,9 @@ Automatic routes avoid unrelated rectangles with eight units of clearance. If
 clearance is impossible, routing retries against their actual borders, then
 raises ValueError if no route exists. Manual waypoints are the exact internal
 points: they bypass obstacle avoidance but must form an orthogonal connector.
-Crossings and collinear shared lengths are penalized, so a return flow prefers
-a separate corridor instead of retracing an arrival when space permits.
+Crossings, substantial backtracking and collinear shared lengths are penalized.
+Occupied sides offer multiple free ports; a visibility search seeks separate
+corridors before accepting shared strokes when simple candidates overlap.
 """
 
 from __future__ import annotations
@@ -16,7 +17,7 @@ from typing import Iterable, Sequence
 
 Point = tuple[float, float]
 Rect = tuple[float, float, float, float]
-__all__ = ["route", "segment_hits_rect", "crosses"]
+__all__ = ["route", "segment_hits_rect", "crosses", "backtrack"]
 
 _CLEARANCE = 8.0
 _BEND = 40.0
@@ -130,6 +131,13 @@ def _outward(a: Point, b: Point, side: str) -> bool:
     return (b[0] - a[0]) * nx + (b[1] - a[1]) * ny > 0
 
 
+def backtrack(points: Sequence[Point]) -> float:
+    """Travel undone along either axis, including reversals across bends."""
+    return sum(min(sum(max(0, b[axis] - a[axis]) for a, b in zip(points, points[1:])),
+                   sum(max(0, a[axis] - b[axis]) for a, b in zip(points, points[1:])))
+               for axis in (0, 1))
+
+
 def _score(points: Sequence[Point], previous: Sequence[tuple[Point, Point]]) -> float:
     length = sum(abs(b[0] - a[0]) + abs(b[1] - a[1])
                  for a, b in zip(points, points[1:]))
@@ -142,14 +150,15 @@ def _score(points: Sequence[Point], previous: Sequence[tuple[Point, Point]]) -> 
     reused_ports = sum(point in occupied_ports for point in (points[0], points[-1]))
     # Reusing an arrival port for a departure can visually bypass the node,
     # even when only a short stub overlaps. Prefer another available port.
-    return length + _BEND * bends + _CROSSING * (crossings + reused_ports) + _OVERLAP * shared
+    return (length + _BEND * bends + _CROSSING * (crossings + reused_ports)
+            + _OVERLAP * (shared + max(0, backtrack(points) - 2 * _CLEARANCE)))
 
 
 def _overlap(a: Point, b: Point, c: Point, d: Point) -> float:
-    """Length of collinear overlap; endpoint touches cost nothing."""
-    if a[0] == b[0] == c[0] == d[0]:
+    """Shared length at SVG coordinate precision; endpoint touches cost nothing."""
+    if max(a[0], b[0], c[0], d[0]) - min(a[0], b[0], c[0], d[0]) <= .001:
         axis = 1
-    elif a[1] == b[1] == c[1] == d[1]:
+    elif max(a[1], b[1], c[1], d[1]) - min(a[1], b[1], c[1], d[1]) <= .001:
         axis = 0
     else:
         return 0.0
@@ -197,7 +206,8 @@ def _candidates(a: Point, b: Point, start: str, end: str,
 
 def _visibility_route(a: Point, b: Point, start: str, end: str,
                       boxes: Sequence[Rect], previous: Sequence[tuple[Point, Point]],
-                      xs: Sequence[float], ys: Sequence[float]) -> list[Point] | None:
+                      xs: Sequence[float], ys: Sequence[float], *,
+                      allow_shared: bool = True) -> list[Point] | None:
     """Dijkstra on adjacent visible grid intersections, with arrival-axis state."""
     origin, goal = (xs.index(a[0]), ys.index(a[1])), (xs.index(b[0]), ys.index(b[1]))
     initial = (*origin, -1)
@@ -231,6 +241,9 @@ def _visibility_route(a: Point, b: Point, start: str, end: str,
                 visibility[edge] = not any(_hits(p, q, box) for box in boxes)
             if not visibility[edge]:
                 continue
+            shared = sum(_overlap(p, q, c, d) for c, d in previous)
+            if shared > 1 and not allow_shared:
+                continue
             crossings = sum(_crosses(p, q, c, d) for c, d in previous)
             # A grid vertex may split a proper crossing across two graph edges.
             if incoming == axis:
@@ -241,7 +254,7 @@ def _visibility_route(a: Point, b: Point, start: str, end: str,
                         crossings += min(c[0], d[0]) < p[0] < max(c[0], d[0])
             extra = abs(q[0] - p[0]) + abs(q[1] - p[1])
             extra += _BEND * (incoming != -1 and incoming != axis) + _CROSSING * crossings
-            extra += _OVERLAP * sum(_overlap(p, q, c, d) for c, d in previous)
+            extra += _OVERLAP * shared
             following = (jx, jy, axis)
             next_cost = cost + extra
             if next_cost < distances.get(following, float("inf")):
@@ -268,8 +281,9 @@ def route(
     Ports are ``n|e|s|w|auto``. Zero-based slots evenly spread ports along a
     side. ``previous`` is a sequence of polylines (two-point segments work too).
     Inputs are never mutated. Ties use coordinate order, independent of obstacle
-    ordering. Automatic choices minimize length + 40*bends + 200*crossings among
-    simple candidates; a visibility graph handles otherwise blocked routes.
+    ordering. Automatic choices score length, bends, crossings, backtracking and
+    occupied ports, preferring separate strokes. A visibility graph handles
+    blocked routes and overlaps that simple candidates cannot avoid.
     Same-side self-loops use two distinct ports within their slot.
 
     ValueError indicates invalid geometry, nonorthogonal manual waypoints, or
@@ -290,10 +304,10 @@ def route(
         old_segments.extend((a, b) for a, b in zip(points, points[1:]) if a != b)
     manual = tuple(_numbers(point, 2) for point in waypoints)
 
-    def available_port(box, side, fraction):
+    def available_ports(box, side, fraction):
         point = _port(box, side, fraction)
         if manual or source == target or point not in {p for segment in old_segments for p in segment}:
-            return point
+            return [point]
         axis = 1 if side in ("e", "w") else 0
         occupied = {0.0, 1.0}
         for segment in old_segments:
@@ -302,8 +316,8 @@ def route(
                 if 0 < f < 1 and _port(box, side, f) == p:
                     occupied.add(f)
         bounds = sorted(occupied)
-        low, high = max(zip(bounds, bounds[1:]), key=lambda pair: (pair[1] - pair[0], -pair[0]))
-        return _port(box, side, (low + high) / 2)
+        return [_port(box, side, (low + high) / 2)
+                for low, high in zip(bounds, bounds[1:])]
 
     pairs = []
     for start in _NORMAL if from_port == "auto" else (from_port,):
@@ -311,9 +325,10 @@ def route(
             f = g = (slot + 1) / (slots + 1)
             if source == target and start == end:
                 f, g = (slot + 0.65) / (slots + 1), (slot + 1.35) / (slots + 1)
-            a, b = available_port(source, start, f), available_port(target, end, g)
-            if a != b:
-                pairs.append((a, b, start, end))
+            for a in available_ports(source, start, f):
+                for b in available_ports(target, end, g):
+                    if a != b:
+                        pairs.append((a, b, start, end))
     if manual:
         candidates = [[a, *manual, b] for a, b, _, _ in pairs]
         valid = [points for points in candidates if _orthogonal(points)]
@@ -348,12 +363,23 @@ def route(
                     continue
                 if not any(_hits(p, q, box) for p, q in zip(points, points[1:]) for box in boxes):
                     valid.append(points)
-        if valid:
-            return min(valid, key=lambda points: _rank(points, old_segments))
+        separate = [points for points in valid if not _rank(points, old_segments)[0]]
+        if separate:
+            return min(separate, key=lambda points: _rank(points, old_segments))
+        # A cheap candidate can share a short stroke while a clear path needs
+        # another bend. Search for that path before accepting ambiguous overlap.
         for a, b, start, end, xs, ys in grids:
-            points = _visibility_route(a, b, start, end, boxes, old_segments, xs, ys)
+            points = _visibility_route(a, b, start, end, boxes, old_segments, xs, ys,
+                                       allow_shared=False)
             if points:
-                valid.append(points)
+                separate.append(points)
+        if separate:
+            return min(separate, key=lambda points: _rank(points, old_segments))
+        if not valid:
+            for a, b, start, end, xs, ys in grids:
+                points = _visibility_route(a, b, start, end, boxes, old_segments, xs, ys)
+                if points:
+                    valid.append(points)
         if valid:
             return min(valid, key=lambda points: _rank(points, old_segments))
     raise ValueError("No obstacle-free route connects the requested ports")
