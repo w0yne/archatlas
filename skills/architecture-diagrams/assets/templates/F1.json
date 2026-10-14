@@ -132,9 +132,22 @@
   "frames": [
     {
       "id": "alt1",
-      "label": "alt [token valid] / [else] refuse",
+      "operator": "alt",
+      "label": "Token check",
       "from_step": 10,
-      "to_step": 11
+      "to_step": 11,
+      "operands": [
+        {
+          "guard": "token valid",
+          "from_step": 10,
+          "to_step": 10
+        },
+        {
+          "guard": "else: token invalid or expired",
+          "from_step": 11,
+          "to_step": 11
+        }
+      ]
     }
   ],
   "activations": [

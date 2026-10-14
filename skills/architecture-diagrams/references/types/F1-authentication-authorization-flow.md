@@ -83,7 +83,7 @@ Scope: One scenario (browser sign-in, service acting for a user, or machine-only
 5. Is renewal or revocation the main concern, or a separate scenario? (separate scenario)
 
 ## Template
-Model template: `assets/templates/F1.json` · Layout template: `sequence` · participants are `lifeline` nodes (person, client, identity provider, API, resource); proofs and requests are numbered `message` edges with `step`; the allow/refuse alternative is a `frames` entry labelled `alt` over its step range; verification and enforcement are `activations` on the identity provider and the API.
+Model template: `assets/templates/F1.json` · Layout template: `sequence` · participants are `lifeline` nodes (person, client, identity provider, API, resource); proofs and requests are numbered `message` edges with `step`; the allow/refuse alternative is an `alt` entry in `frames` with two `operands`, each with its own guard and step range; verification and enforcement are `activations` on the identity provider and the API.
 
 ## Sample
 Figure: `samples/F1-authentication-authorization-flow.svg` (published with the site)

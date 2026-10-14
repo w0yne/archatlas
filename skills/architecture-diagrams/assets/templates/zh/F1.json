@@ -1,0 +1,21 @@
+{
+  "Shop: signed-in order history, authorization code flow (current)": "商城：登录后的订单历史，授权码流程（现状）",
+  "Shopper": "顾客",
+  "Web app": "网页应用",
+  "Identity provider": "身份提供方",
+  "Order API": "订单接口",
+  "Open order history": "打开订单历史",
+  "Authorization request (redirect)": "授权请求（重定向）",
+  "Sign in": "登录",
+  "Authorization code (redirect)": "授权码（重定向）",
+  "Code and verifier (back channel)": "授权码与校验值（后端通道）",
+  "Access token": "访问令牌",
+  "Request orders with token": "携令牌请求订单",
+  "Fetch signing keys": "获取签名密钥",
+  "Keys": "密钥",
+  "Order list": "订单列表",
+  "401 Unauthorized": "401 未授权",
+  "Token check": "令牌校验",
+  "token valid": "令牌有效",
+  "else: token invalid or expired": "否则：令牌无效或已过期"
+}

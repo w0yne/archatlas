@@ -111,15 +111,29 @@
   "frames": [
     {
       "id": "loop1",
-      "label": "loop [each order line]",
+      "operator": "loop",
+      "guard": "each order line",
       "from_step": 2,
       "to_step": 3
     },
     {
       "id": "alt1",
-      "label": "alt [card accepted] / [else] card declined",
+      "operator": "alt",
+      "label": "Payment outcome",
       "from_step": 5,
-      "to_step": 8
+      "to_step": 8,
+      "operands": [
+        {
+          "guard": "card accepted",
+          "from_step": 5,
+          "to_step": 6
+        },
+        {
+          "guard": "else: card declined",
+          "from_step": 7,
+          "to_step": 8
+        }
+      ]
     }
   ],
   "activations": [

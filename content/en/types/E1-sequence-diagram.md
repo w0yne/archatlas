@@ -145,7 +145,7 @@ status: draft
 
 ## Template {#template}
 <!-- skill: keep (≤3 lines) -->
-Model template: `assets/templates/E1.json` · Layout template: `sequence` · lifelines are `lifeline` nodes ordered left to right; messages are `edges` with `step` numbers and kind `call`, `async` or `message` (a reply is the same edge reversed with `dashed: true`); `frames` mark `alt` / `loop` / `opt` / `par` regions as a `label` over a step range (`from_step`, `to_step`) and `activations` the execution bars.
+Model template: `assets/templates/E1.json` · Layout template: `sequence` · lifelines are `lifeline` nodes ordered left to right; messages are `edges` with `step` numbers and kind `call`, `async` or `message` (a reply is the same edge reversed with `dashed: true`); `frames` mark `loop` / `alt` / `opt` / `par` regions by `operator` over a step range (`from_step`, `to_step`) with a `guard`; an `alt` or `par` frame lists `operands`, each with its own guard and step range, drawn as regions split by a dashed separator; `activations` are the execution bars.
 
 ## Sources {#sources}
 <!-- skill: omit -->
@@ -171,4 +171,4 @@ Note: the UML 2.5.1 clause text was not read first-hand; element semantics come 
 ## Sample {#sample}
 <!-- skill: path only -->
 ![E1 sample: sequence of placing an order with a loop and an alt frame](/samples/E1-sequence-diagram.svg)
-*Sequence of placing an order: the customer places an order with the order API, which reserves each item with the inventory service (loop) and then charges the card at the payment provider. One alt frame covers both outcomes: payment confirmed leads to order confirmed, payment declined leads to order rejected.*
+*Sequence of placing an order: the customer places an order with the order API, which reserves each item with the inventory service (loop) and then charges the card at the payment provider. The alt frame has two operands split by a dashed line, each with its own guard: under [card accepted] the payment is confirmed and the order is confirmed; under [else: card declined] the payment is declined and the order is rejected. Only one operand runs for a given order.*

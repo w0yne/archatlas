@@ -17,7 +17,7 @@ formal: {kind: standard, ref: 'OMG UML 2.5.1 (formal/2017-12-05), interaction di
 neighbours: [A5, C3, C4, C6, E2, E3, E4, F1, I1]
 status: draft
 translationOf: en/types/E1-sequence-diagram.md
-sourceRev: 88db750
+sourceRev: 3e7f7c4
 reviewed: false
 ---
 
@@ -135,7 +135,7 @@ reviewed: false
 
 ## 模板 {#template}
 <!-- skill: keep (≤3 lines) -->
-模型模板：`assets/templates/E1.json` · 布局模板：`sequence` · 生命线是从左到右排列的 `lifeline` 节点；消息是带 `step` 编号的 `edges`，kind 为 `call`、`async` 或 `message`（返回消息是同一条边反向并加 `dashed: true`）；`frames` 用 `label` 加步骤范围（`from_step`、`to_step`）标出 `alt` / `loop` / `opt` / `par` 区域，`activations` 承载执行条。
+模型模板：`assets/templates/E1.json` · 布局模板：`sequence` · 生命线是从左到右排列的 `lifeline` 节点；消息是带 `step` 编号的 `edges`，kind 为 `call`、`async` 或 `message`（返回消息是同一条边反向并加 `dashed: true`）；`frames` 用 `operator` 加步骤范围（`from_step`、`to_step`）和 `guard` 标出 `loop` / `alt` / `opt` / `par` 区域；`alt` 或 `par` 框列出 `operands`，每个操作数有各自的守卫条件和步骤范围，以虚线分隔成独立区域；`activations` 承载执行条。
 
 ## 来源 {#sources}
 <!-- skill: omit -->
@@ -161,4 +161,4 @@ reviewed: false
 ## 示例图 {#sample}
 <!-- skill: path only -->
 ![E1 示例：下单的时序图，含循环和备选分支](/samples/E1-sequence-diagram.zh.svg)
-*下单的时序：顾客向订单接口提交订单，订单接口逐项向库存服务预留商品（循环），再向支付服务商扣款。一个备选分支框覆盖两种结果：支付成功则订单已确认，支付被拒则订单被拒绝。*
+*下单的时序：顾客向订单接口提交订单，订单接口逐项向库存服务预留商品（循环），再向支付服务商扣款。备选分支框有两个以虚线分隔的操作数，各带守卫条件：[扣款成功] 时支付成功、订单已确认；[否则：扣款被拒] 时支付被拒、订单被拒绝。同一订单只会走其中一个操作数。*
