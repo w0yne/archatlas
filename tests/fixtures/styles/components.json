@@ -1,0 +1,39 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "C3",
+    "title": "Order processing",
+    "subtitle": "Runtime responsibilities and supporting assets",
+    "lang": "en",
+    "legend": [{"label": "1: Request entry point"}]
+  },
+  "layout": {"template": "layered", "profile": "doc", "columns": 3},
+  "groups": [
+    {"id": "app", "kind": "layer", "title": "Application services", "tint": "app"},
+    {"id": "data", "kind": "layer", "title": "Data and messaging", "tint": "data", "band": true}
+  ],
+  "nodes": [
+    {"id": "api", "kind": "container", "label": "Order API", "sub": "Accepts order requests",
+     "style": "primary", "parent": "app", "badge": 1,
+     "chips": [{"label": "HTTPS", "style": "shared"}, "Stateless"]},
+    {"id": "worker", "kind": "container", "label": "Fulfilment worker", "sub": "Processes accepted orders",
+     "parent": "app", "style": "shared", "tags": ["Background jobs"]},
+    {"id": "provider", "kind": "external", "label": "Delivery provider", "sub": "Schedules parcel delivery",
+     "parent": "app", "style": "external", "chips": ["External API"]},
+    {"id": "orders", "kind": "store", "label": "Orders", "sub": "Order records",
+     "parent": "data", "chips": ["Relational"]},
+    {"id": "queue", "kind": "queue", "label": "Pending fulfilment", "parent": "data",
+     "chips": [{"label": "Async", "style": "highlight"}]},
+    {"id": "receipt", "kind": "document", "label": "Delivery receipt", "parent": "data",
+     "chips": ["Document"]},
+    {"id": "note", "kind": "callout", "label": "Idempotent requests",
+     "sub": "Repeated keys return the original order.", "style": "highlight"}
+  ],
+  "edges": [
+    {"from": "api", "to": "orders", "kind": "data", "label": "Stores"},
+    {"from": "api", "to": "queue", "kind": "async", "label": "Enqueues"},
+    {"from": "queue", "to": "worker", "kind": "async", "label": "Delivers work"},
+    {"from": "worker", "to": "provider", "kind": "call", "label": "Books delivery"},
+    {"from": "worker", "to": "receipt", "kind": "data", "label": "Records"}
+  ]
+}

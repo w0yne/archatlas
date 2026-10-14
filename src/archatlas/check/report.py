@@ -70,8 +70,10 @@ def on_shape(point, element, tolerance=1):
             return False
         radius = math.hypot((point[0] - x - w / 2) / (w / 2), (point[1] - y - h / 2) / (h / 2))
         return abs(radius - 1) * min(w, h) / 2 <= tolerance
-    if tag == "polyline":
+    if tag in ("polyline", "polygon"):
         points = [tuple(map(float, p.split(","))) for p in element.get("points", "").split()]
+        if tag == "polygon":
+            points += points[:1]
         for a, b in zip(points, points[1:]):
             dx, dy = b[0] - a[0], b[1] - a[1]
             length = dx * dx + dy * dy
@@ -133,7 +135,7 @@ def check_svg(svg, metrics=None):
     canvas = next((e.get("fill") for e in elements if e.get("data-role") == "canvas"), "#ffffff")
     for e in elements:
         role, id = e.get("data-role", ""), e.get("data-id", "")
-        if role in ("node", "group", "label-bg", "cell", "activation"):
+        if role in ("node", "group", "label-bg", "cell", "activation", "chip", "badge"):
             box = shape_box(e)
             if box:
                 shapes[id] = (box, e)
@@ -171,7 +173,7 @@ def check_svg(svg, metrics=None):
             boxes = []
             for span in spans:
                 value = "".join(span.itertext())
-                w = metrics.width(value, size)
+                w = metrics.width(value, size, weight=int(e.get("font-weight", "400")))
                 x, baseline = float(span.get("x", e.get("x", 0))), float(span.get("y", e.get("y", 0)))
                 x -= w * {"start": 0, "middle": 0.5, "end": 1}.get(e.get("text-anchor", "start"), 0)
                 boxes.append((x, baseline - size, w, size * 1.4))
@@ -188,6 +190,11 @@ def check_svg(svg, metrics=None):
     for id, box, e in text_nodes:
         owner = e.get("data-owner", "")
         bg = shapes.get(owner)
+        owners = {owner}
+        ancestor = owner
+        while ancestor in shapes and shapes[ancestor][1].get("data-parent"):
+            ancestor = shapes[ancestor][1].get("data-parent")
+            owners.add(ancestor)
         if bg and not owner_fits(bg[0], box, bg[1].get("data-kind"), bg[1].tag.rsplit("}", 1)[-1]):
             add("text-overflow", "Measured text does not fit its owner padded interior", [id, owner], [box, bg[0]])
         background = bg[1].get("fill", canvas) if bg else canvas
@@ -206,7 +213,7 @@ def check_svg(svg, metrics=None):
             if len(backgrounds) != 1 or any(abs(a - b) > 1 for a, b in zip(expected, backgrounds[0][1])):
                 add("label-background", "Label background does not match measured text and anchor", [id, owner], [box])
         for other, (rect, shape) in shapes.items():
-            if other != owner and shape.get("data-role") in ("node", "cell") and overlap(box, rect):
+            if other not in owners and shape.get("data-role") in ("node", "cell") and overlap(box, rect):
                 add("text-shape-overlap", "Text overlaps an unrelated shape", [id, other], [box, rect])
         value = " ".join(e.itertext())
         if e.get("data-role") == "name" and ("•" in value or len(value.split()) > 14):
@@ -215,7 +222,7 @@ def check_svg(svg, metrics=None):
                 add("working-note", "Working status belongs outside the figure", [id], severity="warning")
     for id, (box, e) in shapes.items():
         parent = e.get("data-parent")
-        if e.get("data-role") in ("node", "group") and parent:
+        if e.get("data-role") in ("node", "group", "chip", "badge") and parent:
             if parent not in shapes or not contains(shapes[parent][0], box):
                 add("boundary-membership", "Element is outside its declared group", [id, parent], [box])
     for i, (id, box, e) in enumerate(text_nodes):

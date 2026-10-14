@@ -45,7 +45,7 @@ _MEASURE = """async () => {
         return [Math.min(...xs), Math.min(...ys),
                 Math.max(...xs) - Math.min(...xs), Math.max(...ys) - Math.min(...ys)];
     }
-    const shapeRoles = new Set(['node', 'group', 'cell', 'label-bg', 'activation']);
+    const shapeRoles = new Set(['node', 'group', 'cell', 'label-bg', 'activation', 'chip', 'badge']);
     const shapes = [...svg.querySelectorAll('[data-role]')]
         .filter(e => shapeRoles.has(e.dataset.role))
         .map(e => ({id: e.dataset.id, role: e.dataset.role,
@@ -114,6 +114,11 @@ def check_browser(svg):
             add("canvas-overflow", "Browser bounds extend outside the canvas", [item["id"]], [item["box"]])
     for text in texts:
         box, owner = text["box"], owners.get(text["owner"])
+        ancestors = {text["owner"]}
+        ancestor = owner
+        while ancestor and ancestor.get("parent"):
+            ancestors.add(ancestor["parent"])
+            ancestor = owners.get(ancestor["parent"])
         if owner:
             if not owner_fits(owner["box"], box, owner.get("kind", ""), owner.get("tag", "")):
                 add("text-overflow", "Browser text bounds exceed the padded owner",
@@ -131,7 +136,7 @@ def check_browser(svg):
                 add("label-background", "Browser label bounds lack a covering background",
                     [text["id"], text["owner"]], [box] + [s["box"] for s in backgrounds])
         for shape in shapes:
-            if shape["id"] != text["owner"] and shape["role"] in ("node", "cell") and overlap(box, shape["box"]):
+            if shape["id"] not in ancestors and shape["role"] in ("node", "cell") and overlap(box, shape["box"]):
                 add("text-shape-overlap", "Browser text overlaps an unrelated shape",
                     [text["id"], shape["id"]], [box, shape["box"]])
     for i, text in enumerate(texts):

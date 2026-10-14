@@ -103,8 +103,12 @@ class CLITests(unittest.TestCase):
             builder.setupMaxp()
             font = root / "latin.ttf"
             builder.save(font)
+            bold = root / "latin-bold.ttf"
+            builder.font["OS/2"].usWeightClass = 700
+            builder.setupNameTable({"familyName": "Test Latin", "styleName": "Bold"})
+            builder.save(bold)
             for label, expected_mode in (("Client", "pillow"), ("中文", "estimate")):
-                metrics = FontMetrics(paths=[font])
+                metrics = FontMetrics(paths=[font, bold])
                 self.assertEqual(metrics.measured_with, "pillow")
                 model = initial("nested")
                 model["nodes"][0]["label"] = label

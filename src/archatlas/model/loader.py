@@ -14,7 +14,7 @@ def resolve(model, labels):
             raise ModelError(f"Missing translation: {key}")
         return labels.get(key, value)
 
-    for key in ("title", "description", "audience"):
+    for key in ("title", "subtitle", "description", "audience"):
         if key in model["meta"]:
             model["meta"][key] = text(model["meta"][key])
     for collection in ("nodes", "groups", "edges", "tables", "frames"):
@@ -29,6 +29,11 @@ def resolve(model, labels):
                 item["rows"] = [list(map(text, row)) for row in item["rows"]]
             for operand in item.get("operands", []):
                 operand["guard"] = text(operand["guard"])
+            if "chips" in item:
+                item["chips"] = [text(chip) if isinstance(chip, str) else
+                                 {**chip, "label": text(chip["label"])} for chip in item["chips"]]
+            if isinstance(item.get("badge"), str):
+                item["badge"] = text(item["badge"])
     for entry in model["meta"].get("legend", []):
         entry["label"] = text(entry["label"])
     for mapping in model["meta"].get("legend_labels", {}).values():

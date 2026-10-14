@@ -7,7 +7,7 @@ from .route import route, segment_hits_rect
 from .rank import rank_graph
 from ..fonts.measure import FontMetrics
 from ..model.validate import ModelError, validate
-from ..render.theme import THEMES
+from ..render.theme import THEMES, node_shape, node_style
 from ..render.legend import entries as legend_entries
 
 
@@ -17,11 +17,13 @@ def intersects(a, b, pad=0):
     return x < u + r + pad and u < x + w + pad and y < v + s + pad and v < y + h + pad
 
 
-def text_box(metrics, id, value, x, y, width, size=16, owner="", role="label", anchor="start", style="peer"):
-    width = max(width, metrics.required_width(value, size))
-    lines = metrics.wrap(value, width, size) or [""]
-    measured = max(metrics.width(line, size) for line in lines)
-    return Text(id, lines, x, y, measured, len(lines) * size * 1.4, size, owner, role, anchor, style, source=value)
+def text_box(metrics, id, value, x, y, width, size=16, owner="", role="label", anchor="start", style="peer", weight=None):
+    weight = weight or (700 if role in ("title", "name", "group-title", "table-title", "badge-text") else 400)
+    width = max(width, metrics.required_width(value, size, weight=weight))
+    lines = metrics.wrap(value, width, size, weight=weight) or [""]
+    measured = max(metrics.width(line, size, weight=weight) for line in lines)
+    return Text(id, lines, x, y, measured, len(lines) * size * 1.4, size, owner, role, anchor, style,
+                source=value, weight=weight)
 
 
 class Layout:
@@ -38,9 +40,18 @@ class Layout:
                 for child in value.values():
                     prime(child)
         prime(model)
+        bold_text = [model["meta"]["title"]]
+        bold_text += [node["label"] for node in model.get("nodes", [])]
+        bold_text += [str(node["badge"]) for node in model.get("nodes", []) if "badge" in node]
+        bold_text += [group["title"] for group in model.get("groups", [])]
+        bold_text += [table["title"] for table in model.get("tables", []) if table.get("title")]
+        bold_text += [frame[key] for frame in model.get("frames", []) for key in ("label", "guard") if frame.get(key)]
+        for value in bold_text:
+            metrics.width(value, 16, weight=700)
         self.template = model["layout"]["template"]
         self.spacing = {**THEMES[model["meta"].get("theme", "neutral")]["spacing"],
                         **model["layout"].get("spacing", {})}
+        self.components = THEMES[model["meta"].get("theme", "neutral")]["components"]
         widths = [n.get("size_hint", {}).get("width", 200) for n in model.get("nodes", [])]
         self.gap = max(self.spacing["node_gap"], median(widths or [200]) * self.spacing["gap_ratio"])
         labels = [metrics.width(e["label"], 12) for e in model.get("edges", []) if e.get("label")]
@@ -73,6 +84,7 @@ class Layout:
         self.offsets = {}
         self.node_text = {}
         self.node_sources = {}
+        self.node_chips, self.badges = {}, {}
         meta = model["meta"]
         self.scene = Scene(meta["title"], meta.get("description") or meta["title"], 1120, 810,
                            meta.get("theme", "neutral"), family=metrics.family,
@@ -80,10 +92,18 @@ class Layout:
         title = text_box(metrics, "figure-title", meta["title"], 32, 24, self.document_width - 80, 28, role="title")
         self.scene.texts.append(title)
         self.top = title.y + title.h + 36
+        if meta.get("subtitle"):
+            subtitle = text_box(metrics, "figure-subtitle", meta["subtitle"], 32,
+                                title.y + title.h + 10, self.document_width - 80, 14, role="subtitle")
+            self.scene.texts.append(subtitle)
+            self.top = subtitle.y + subtitle.h + 30
 
     def measure_node(self, node):
         metrics = self.metrics
-        width = node.get("size_hint", {}).get("width", 230 if node.get("style") == "primary" else 200)
+        chip_pad = self.components["chip_padding"]
+        chip_y_pad = self.components["chip_vertical_padding"]
+        chip_gap = self.components["chip_gap"]
+        width = node.get("size_hint", {}).get("width", 230 if node_style(node) == "primary" else 200)
         padding = 16 * metrics.padding_factor
         symbol = node["kind"] in ("event", "gateway")
         if symbol:
@@ -93,31 +113,61 @@ class Layout:
                 word_width = max((metrics.width(word, 16) for word in node["label"].split()), default=0)
                 width = max(width, min(140, word_width + 2 * padding))
         wrap_width = max(24, width - 2 * padding)
-        fields = [(node["label"], 16), (node.get("sub", ""), 12)]
-        fields += [(value, 12) for value in node.get("attributes", [])]
-        fields += [(" · ".join(node.get("tags", [])), 11)]
-        width = max(width, max((metrics.required_width(value, size) + 2 * padding
-                               for value, size in fields if value), default=width))
+        formal = node["kind"] in ("actor", "event", "gateway", "use_case", "initial", "final")
+        chips = [{"label": tag} for tag in node.get("tags", [])] if not formal else []
+        chips += [{"label": chip} if isinstance(chip, str) else chip for chip in node.get("chips", [])]
+        fields = [(node["label"], 16, 700), (node.get("sub", ""), 12, 400)]
+        fields += [(value, 12, 400) for value in node.get("attributes", [])]
+        width = max(width, max((metrics.required_width(value, size, weight=weight) + 2 * padding
+                               for value, size, weight in fields if value), default=width))
+        width = max(width, max((metrics.required_width(chip["label"], 11) + 2 * chip_pad + 2 * padding
+                                for chip in chips), default=width))
         wrap_width = max(24, width - 2 * padding)
         lines = []
         for role, value, size in [("name", node["label"], 16), ("sub", node.get("sub", ""), 12)]:
             if value:
-                lines.append((role, metrics.wrap(value, wrap_width, size), size))
+                lines.append((role, metrics.wrap(value, wrap_width, size, weight=700 if role == "name" else 400), size))
         for index, attribute in enumerate(node.get("attributes", [])):
             lines.append((f"attribute-{index}", metrics.wrap(attribute, width - 2 * padding, 12), 12))
-        if node.get("tags"):
-            lines.append(("tags", metrics.wrap(" · ".join(node["tags"]), width - 2 * padding, 11), 11))
-        height = max(76, sum(len(x[1]) * x[2] * 1.4 + 6 for x in lines) + padding * 2)
+        if formal and node.get("tags"):
+            lines.append(("tags", metrics.wrap(" · ".join(node["tags"]), wrap_width, 11), 11))
+        chip_rows, row, used, row_h = [], [], 0, 0
+        for chip in chips:
+            label = text_box(metrics, "", chip["label"], 0, 0, wrap_width - 2 * chip_pad, 11,
+                             role="chip-text", style=chip.get("style", "peer"))
+            cw, ch = label.w + 2 * chip_pad, label.h + 2 * chip_y_pad
+            if row and used + chip_gap + cw > wrap_width:
+                chip_rows.append((row, used, row_h))
+                row, used, row_h = [], 0, 0
+            row.append((label, cw, ch))
+            used += (chip_gap if used else 0) + cw
+            row_h = max(row_h, ch)
+        if row:
+            chip_rows.append((row, used, row_h))
+        self.node_chips[node["id"]] = chip_rows
+        chips_h = sum(row_h + chip_gap for _, _, row_h in chip_rows)
+        badge_h = 0
+        if node.get("badge") is not None:
+            label = str(node["badge"])
+            diameter = max(self.components["badge_diameter"],
+                           math.hypot(metrics.width(label, 11, weight=700), 15.4) + self.components["badge_padding"])
+            self.badges[node["id"]] = (label, diameter)
+            badge_h = diameter + 8
+        asset_padding = 2 * self.components["asset_cap"] if node_shape(node) in ("database", "document") else 0
+        height = max(76, sum(len(x[1]) * x[2] * 1.4 + 6 for x in lines) +
+                     chips_h + badge_h + padding * 2 + asset_padding)
         height = max(height, node.get("size_hint", {}).get("height", 0))
         if node["kind"] in ("initial", "final"):
             width = height = 32
         elif symbol:
-            text_w = max((metrics.width(line, size) for _, wrapped, size in lines for line in wrapped), default=0)
+            text_w = max((metrics.width(line, size, weight=700 if role == "name" else 400)
+                          for role, wrapped, size in lines for line in wrapped), default=0)
             text_h = sum(len(wrapped) * size * 1.4 + 6 for _, wrapped, size in lines) - 6
             required = text_w + text_h if node["kind"] == "gateway" else math.hypot(text_w, text_h)
             width = height = max(width, node.get("size_hint", {}).get("height", 0), required + padding)
         elif node["kind"] in ("actor", "use_case"):
-            text_w = max((metrics.width(line, size) for _, wrapped, size in lines for line in wrapped), default=0)
+            text_w = max((metrics.width(line, size, weight=700 if role == "name" else 400)
+                          for role, wrapped, size in lines for line in wrapped), default=0)
             text_h = max(0, sum(len(wrapped) * size * 1.4 + 6 for _, wrapped, size in lines) - 6)
             if node["kind"] == "actor":
                 width = max(width, 56 + 2 * padding, text_w + 2 * padding)
@@ -168,9 +218,9 @@ class Layout:
             h = max((y + self.dimensions[child][1] for child, (x, y) in offsets.items()), default=64)
         else:
             offsets, (w, h) = self.arrange(ids, vertical=vertical)
-        title_width = self.metrics.width(group["title"], 16)
-        w = max(w, min(title_width, 700), self.metrics.required_width(group["title"], 16))
-        title = self.metrics.wrap(group["title"], w, 16)
+        title_width = self.metrics.width(group["title"], 16, weight=700)
+        w = max(w, min(title_width, 700), self.metrics.required_width(group["title"], 16, weight=700))
+        title = self.metrics.wrap(group["title"], w, 16, weight=700)
         header = max(self.header, len(title) * 22.4 + 24)
         self.dimensions[id] = (w + 2 * self.pad, h + header + self.pad)
         self.offsets[id] = {child: (x + self.pad, y + header) for child, (x, y) in offsets.items()}
@@ -178,40 +228,69 @@ class Layout:
     def place(self, id, x, y):
         item = self.items[id]
         w, h = self.dimensions[id]
-        style = item.get("style", "peer")
+        style = item.get("style", "peer") if id in self.groups else node_style(item)
         if id in self.groups:
             box = Box(id, x, y, w, h, "group", item["kind"], style, item.get("parent", ""),
                       item.get("dashed", item["kind"] == "boundary"))
             self.scene.boxes.append(box)
-            self.scene.texts.append(text_box(self.metrics, id + "-title", item["title"],
-                                            x + self.pad, y + 12, w - 2 * self.pad, 16, id, "group-title"))
+            title = text_box(self.metrics, id + "-title", item["title"],
+                             x + self.pad, y + 12, w - 2 * self.pad, 16, id, "group-title")
+            box.tint = item.get("tint", {"shared": "tech", "planned": "data", "external": "neutral",
+                                        "highlight": "biz"}.get(style, "app"))
+            box.band, box.header_height = item.get("band", True), title.h + 24
+            self.scene.texts.append(title)
             for child, (dx, dy) in self.offsets[id].items():
                 self.place(child, x + dx, y + dy)
         else:
             box = Box(id, x, y, w, h, kind=item["kind"], style=style, parent=item.get("parent", ""),
                       dashed=item.get("evidence", {}).get("status") not in (None, "verified"),
-                      event_type=item.get("event_type", ""))
+                      event_type=item.get("event_type", ""), shape=node_shape(item))
             self.scene.boxes.append(box)
             texts = self.node_text[id]
-            total = sum(len(lines) * size * 1.4 + 6 for _, lines, size in texts) - 6
+            chips = self.node_chips[id]
+            chips_h = sum(row_h + self.components["chip_gap"] for _, _, row_h in chips)
+            badge_h = self.badges.get(id, ("", -8))[1] + 8
+            total = sum(len(lines) * size * 1.4 + 6 for _, lines, size in texts) - 6 + chips_h + badge_h
             small_state = item["kind"] in ("initial", "final")
             ty = y + h + 10 if small_state else y + (h - total) / 2
             if item["kind"] == "actor":
                 ty = box.glyph_rect[1] + box.glyph_rect[3] + 10
+            if id in self.badges:
+                label, diameter = self.badges[id]
+                badge_id = "__" + id + "-badge"
+                self.scene.boxes.append(Box(badge_id, x + (w - diameter) / 2, ty, diameter, diameter,
+                                            "badge", style="highlight", parent=id))
+                badge = text_box(self.metrics, badge_id + "-text", label, x + w / 2,
+                                 ty + (diameter - 15.4) / 2, diameter, 11, badge_id,
+                                 "badge-text", "middle", "highlight")
+                self.scene.texts.append(badge)
+                ty += diameter + 8
             for role, lines, size in texts:
-                tw = max(self.metrics.width(line, size) for line in lines)
+                weight = 700 if role == "name" else 400
+                tw = max(self.metrics.width(line, size, weight=weight) for line in lines)
                 self.scene.texts.append(Text(id + "-" + role, lines, max(tw / 2 + 8, x + w / 2), ty, tw,
                                              len(lines) * size * 1.4, size, "" if small_state else id,
                                              "state-label" if small_state else role, "middle", style,
-                                             source=self.node_sources[id][role]))
+                                             source=self.node_sources[id][role], weight=weight))
                 ty += len(lines) * size * 1.4 + 6
+            for row, row_w, row_h in chips:
+                tx = x + (w - row_w) / 2
+                for label, cw, ch in row:
+                    chip_id = "__" + id + "-chip-" + str(len(self.scene.boxes))
+                    self.scene.boxes.append(Box(chip_id, tx, ty, cw, ch, "chip",
+                                                style=label.style, parent=id))
+                    label.id, label.owner = chip_id + "-text", chip_id
+                    label.x, label.y = tx + self.components["chip_padding"], ty + self.components["chip_vertical_padding"]
+                    self.scene.texts.append(label)
+                    tx += cw + self.components["chip_gap"]
+                ty += row_h + self.components["chip_gap"]
 
     def graph(self):
         for id, node in self.nodes.items():
             self.dimensions[id] = self.measure_node(node)
         # Peer nodes in a view have consistent dimensions within each style.
-        for style in {n.get("style", "peer") for n in self.nodes.values()}:
-            ids = [id for id, n in self.nodes.items() if n.get("style", "peer") == style
+        for style in {node_style(n) for n in self.nodes.values()}:
+            ids = [id for id, n in self.nodes.items() if node_style(n) == style
                    and n["kind"] not in ("gateway", "event", "initial", "final", "actor", "use_case")]
             if ids:
                 size = tuple(max(self.dimensions[id][i] for id in ids) for i in (0, 1))
@@ -281,7 +360,7 @@ class Layout:
                 cursor -= self.gap
             cross_size = max(cursor + self.pad, 96)
             along_size = flow + (maximum_depth - depth + 1) * axis_padding + self.pad
-            title_width = self.metrics.required_width(self.groups[id]["title"], 16) + 2 * self.pad
+            title_width = self.metrics.required_width(self.groups[id]["title"], 16, weight=700) + 2 * self.pad
             if horizontal:
                 along_size = max(along_size, title_width)
             else:
@@ -374,8 +453,7 @@ class Layout:
             if value:
                 self.edge_label(id, value, points)
 
-    @staticmethod
-    def glyph_port(box, point, neighbour):
+    def glyph_port(self, box, point, neighbour):
         """Extend the final orthogonal segment from bounds to the visible stroke."""
         x, y, w, h = box.glyph_rect
         cx, cy = x + w / 2, y + h / 2
@@ -383,7 +461,27 @@ class Layout:
         axis = 1 if vertical else 0
         outward = neighbour[axis] > point[axis]
         candidates = []
-        if box.kind in ("use_case", "event", "initial", "final"):
+        if box.shape == "database":
+            cap = min(self.components["asset_cap"], h / 6)
+            if vertical:
+                radius = cap * math.sqrt(max(0, 1 - ((point[0] - cx) / (w / 2)) ** 2))
+                candidates = [y + cap - radius, y + h - cap + radius]
+            elif point[1] < y + cap or point[1] > y + h - cap:
+                center = y + cap if point[1] < cy else y + h - cap
+                radius = w / 2 * math.sqrt(max(0, 1 - ((point[1] - center) / cap) ** 2))
+                candidates = [cx - radius, cx + radius]
+        elif box.shape == "document":
+            fold = min(self.components["document_fold"], w / 5, h / 5)
+            if vertical and not outward and point[0] > x + w - fold:
+                candidates = [y + point[0] - (x + w - fold)]
+            elif not vertical and outward and point[1] < y + fold:
+                candidates = [x + w - fold + point[1] - y]
+        elif box.kind == "gateway":
+            offset = abs((point[0] - cx) / (w / 2)) if vertical else abs((point[1] - cy) / (h / 2))
+            radius = (h if vertical else w) / 2 * max(0, 1 - offset)
+            center = cy if vertical else cx
+            candidates = [center - radius, center + radius]
+        elif box.kind in ("use_case", "event", "initial", "final"):
             offset = (point[0] - cx) / (w / 2) if vertical else (point[1] - cy) / (h / 2)
             radius = (h if vertical else w) / 2 * math.sqrt(max(0, 1 - offset ** 2))
             center = cy if vertical else cx
@@ -505,7 +603,7 @@ class Layout:
                         key=lambda pair: (pair[1]["from_step"], -pair[1]["to_step"], pair[0]))
         bands, frame_info = {}, {}
         right = max(centers.values()) + width / 2 + 24
-        frame_words = [self.metrics.required_width(value, 12)
+        frame_words = [self.metrics.required_width(value, 12, weight=700)
                        for _, frame in frames
                        for value in [frame.get("label", ""), frame.get("guard", ""),
                                      *(operand["guard"] for operand in frame.get("operands", []))]]
@@ -633,7 +731,7 @@ class Layout:
         for box in self.scene.boxes:
             box.x += shift
         for text in self.scene.texts:
-            if text.role != "title":
+            if text.role not in ("title", "subtitle"):
                 text.x += shift
         for edge in self.scene.edges:
             edge.points = [(x + shift, y) for x, y in edge.points]
@@ -641,39 +739,54 @@ class Layout:
 
     def finish(self):
         scene = self.scene
+        for box in scene.boxes:
+            if box.role == "group" and not box.header_height:
+                title = next((t for t in scene.texts if t.owner == box.id and t.role == "group-title"), None)
+                if title:
+                    box.header_height = title.y + title.h - box.y + 8
         bottom = max([self.top] + [b.y + b.h for b in scene.boxes] + [t.y + t.h for t in scene.texts]
                      + [p[1] for e in scene.edges for p in e.points])
         right = max([self.document_width - 40] + [b.x + b.w for b in scene.boxes] + [t.left + t.w for t in scene.texts]
                     + [p[0] for e in scene.edges for p in e.points])
         legend = legend_entries(scene, self.model)
         x, y = 40, bottom + 40
+        legend_top = y
+        legend_boxes = len(scene.boxes)
         for i, entry in enumerate(legend):
-            label = text_box(self.metrics, f"legend-{i}", entry["label"], x + 40, y, 260, 11, role="legend")
+            inset = 0 if entry.get("symbol") == "text" else 40
+            label = text_box(self.metrics, f"legend-{i}", entry["label"], x + inset, y, 260, 11, role="legend")
             if x + label.w + 50 > right and x != 40:
                 x, y = 40, y + 48
-                label.x, label.y = x + 40, y
+                label.x, label.y = x + inset, y
             if entry.get("symbol") == "box":
                 scene.boxes.append(Box(f"__legend-swatch-{i}", x, y + 2, 28, 16, "legend-swatch",
-                                       style=entry.get("style", "peer"), dashed=entry.get("dashed", False)))
-            else:
+                                       style=entry.get("style", "peer"), dashed=entry.get("dashed", False),
+                                       shape=entry.get("shape", "card")))
+            elif entry.get("symbol") != "text":
                 scene.edges.append(Connector(f"legend-line-{i}", [(x, y + 10), (x + 28, y + 10)], "", "",
                                              entry.get("style", "peer"), entry.get("dir", "--"),
                                              entry.get("dashed", False), "legend", entry.get("kind", "")))
             scene.texts.append(label)
-            x += label.w + 76
+            x += label.w + inset + 36
+        if legend:
+            legend_right = max(t.left + t.w for t in scene.texts if t.role == "legend")
+            legend_bottom = max(t.y + t.h for t in scene.texts if t.role == "legend")
+            scene.boxes.insert(legend_boxes, Box("__legend-panel", 28, legend_top - 12,
+                                                max(200, legend_right - 12), legend_bottom - legend_top + 28,
+                                                "legend-panel", style="external"))
         profile = self.model["layout"].get("profile", "doc")
         scene.width = 1440 if profile in ("slide", "slide-16x9") else max(self.document_width, right + 40)
         scene.height = 810 if profile in ("slide", "slide-16x9") else max(300, y + 68)
         if profile in ("doc", "doc-1120xN") and scene.width > self.document_width * self.spacing["wide_view_ratio"]:
             scene.warnings.append({"rule": "wide-view", "message": "Content exceeds the theme's wide-view limit; split the view or configure the target width"})
         for text in scene.texts:
-            text.runs = [self.metrics.runs(line) for line in text.lines]
-            text.line_widths = [self.metrics.width(line, text.size) for line in text.lines]
+            text.runs = [self.metrics.runs(line, weight=text.weight) for line in text.lines]
+            text.line_widths = [self.metrics.width(line, text.size, weight=text.weight) for line in text.lines]
             for runs in text.runs:
                 offset = 0
                 for run in runs:
                     run["offset"] = offset
-                    offset += self.metrics.width(run["text"], text.size)
+                    offset += self.metrics.width(run["text"], text.size, weight=text.weight)
         scene.warnings.extend(self.metrics.warnings)
         scene.family, scene.measured_with = self.metrics.family, self.metrics.measured_with
         for node in self.nodes.values():

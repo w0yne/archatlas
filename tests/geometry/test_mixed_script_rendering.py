@@ -34,14 +34,14 @@ def test_mixed_lines_have_explicit_start_positions_and_independent_spaces(anchor
     element = next(e for e in root if e.tag.endswith("}text"))
     assert element.get("text-anchor") == "start"
     for i, span in enumerate(element):
-        left = text.x - metrics.width(text.lines[i], text.size) * {"start": 0, "middle": .5, "end": 1}[anchor]
+        left = text.x - metrics.width(text.lines[i], text.size, weight=text.weight) * {"start": 0, "middle": .5, "end": 1}[anchor]
         assert float(span.get("x")) == pytest.approx(left, abs=.001)
         assert "".join(span.itertext()) == text.lines[i]
         assert any(run.text == " " for run in span)
         offset = 0
         for run in span:
             assert float(run.get("x")) == pytest.approx(left + offset, abs=.001)
-            offset += metrics.width(run.text, text.size)
+            offset += metrics.width(run.text, text.size, weight=text.weight)
 
 
 @pytest.mark.parametrize("anchor", ["start", "middle", "end"])
@@ -67,7 +67,7 @@ def test_cairo_mixed_run_ink_matches_measured_positions_and_rsvg(anchor):
             png = subprocess.run([rsvg], input=svg, capture_output=True, check=True).stdout
             rendered.append(Image.open(BytesIO(png)).convert("L"))
         bounds = []
-        left, width = float(run.get("x")), metrics.width(run.text, text.size)
+        left, width = float(run.get("x")), metrics.width(run.text, text.size, weight=text.weight)
         for image in rendered:
             box = image.point(lambda value: 255 if value < 220 else 0).getbbox()
             assert box is not None

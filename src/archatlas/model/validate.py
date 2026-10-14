@@ -42,6 +42,9 @@ def validate(model):
     for node in model.get("nodes", []):
         if "event_type" in node and node["kind"] != "event":
             raise ModelError("event_type applies only to BPMN event nodes")
+        if node["kind"] in ("actor", "event", "gateway", "use_case", "initial", "final"):
+            if node.get("shape") or node.get("chips") or node.get("badge") is not None:
+                raise ModelError("Formal symbols keep their notation; use plain labels instead of shape/chips/badge")
     for table in model.get("tables", []):
         if not table["columns"] or any(len(row) != len(table["columns"]) for row in table["rows"]):
             raise ModelError(f"{table['id']}: table rows must match non-empty columns")

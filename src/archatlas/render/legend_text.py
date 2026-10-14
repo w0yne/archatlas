@@ -32,6 +32,7 @@ STYLES = {
     "primary": ("Element in focus", "重点展示的元素"),
     "external": ("External participant", "外部参与方"),
     "shared": ("Shared element", "共享元素"), "planned": ("Proposed element", "拟建元素"),
+    "highlight": ("Highlighted element", "重点提示元素"),
 }
 GROUPS = {
     "boundary": ("System boundary", "系统边界"), "frame": ("Grouping boundary", "分组边界"),

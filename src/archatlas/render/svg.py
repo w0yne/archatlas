@@ -23,6 +23,7 @@ def render_svg(scene, namespace=None):
     if not re.fullmatch(r"[A-Za-z][A-Za-z0-9_-]*", prefix):
         raise ValueError("SVG namespace must be an identifier")
     theme = THEMES[scene.theme]
+    tokens = theme["components"]
     root = Element("svg", {"xmlns": "http://www.w3.org/2000/svg",
                           "viewBox": f"0 0 {number(scene.width)} {number(scene.height)}",
                           "width": number(scene.width), "height": number(scene.height),
@@ -37,7 +38,7 @@ def render_svg(scene, namespace=None):
     variants = sorted({(e.style, (e.marker_kind or e.kind) in ("async", "message", "reply")) for e in scene.edges})
     for style, open_arrow in variants:
         marker_id = f"{prefix}-marker-{style}-{'open' if open_arrow else 'arrow'}"
-        colour = theme[style][1]
+        colour = theme["lines"][style]
         marker = SubElement(defs, "marker", {"id": marker_id, "viewBox": "0 0 10 10",
                             "refX": "10", "refY": "5", "markerWidth": "8", "markerHeight": "8",
                             "markerUnits": "userSpaceOnUse", "orient": "auto-start-reverse"})
@@ -60,12 +61,43 @@ def render_svg(scene, namespace=None):
             continue
         attrs = {"id": prefix + "-shape-" + box.role + "-" + box.id, "data-id": box.id, "data-role": box.role,
                  "data-parent": box.parent, "data-kind": box.kind,
-                 "fill": theme["boundary" if box.role == "group" else box.style][0],
-                 "stroke": theme["boundary" if box.role == "group" else box.style][1], "stroke-width": "1.5",
+                 "data-shape": box.shape,
+                 "fill": theme["zones"][box.tint][0] if box.role == "group" else theme[box.style][0],
+                 "stroke": theme["zones"][box.tint][2] if box.role == "group" else theme[box.style][1],
+                 "stroke-width": number(tokens["zone_stroke"] if box.role == "group" else
+                                         tokens["primary_stroke"] if box.style == "primary" else tokens["card_stroke"]),
                  "data-box": " ".join(number(v) for v in box.rect)}
         if box.dashed:
             attrs["stroke-dasharray"] = "7 5"
-        if box.kind == "actor":
+        if box.role == "legend-panel":
+            attrs.update(fill=theme["canvas"], stroke=theme["muted"],
+                         **{"stroke-width": "1", "stroke-opacity": "0.3"})
+        if box.role == "badge":
+            SubElement(root, "circle", {**attrs, "cx": number(box.x + box.w / 2),
+                                       "cy": number(box.y + box.h / 2), "r": number(box.w / 2)})
+        elif box.shape == "database":
+            asset = SubElement(root, "g", attrs)
+            cap = min(tokens["asset_cap"], box.h / 6)
+            for cy in (box.y + box.h - cap,):
+                SubElement(asset, "ellipse", {"cx": number(box.x + box.w / 2), "cy": number(cy),
+                                              "rx": number(box.w / 2), "ry": number(cap)})
+            SubElement(asset, "rect", {"x": number(box.x), "y": number(box.y + cap),
+                                       "width": number(box.w), "height": number(box.h - 2 * cap), "stroke": "none"})
+            for x in (box.x, box.x + box.w):
+                SubElement(asset, "polyline", {"points": f"{number(x)},{number(box.y + cap)} {number(x)},{number(box.y + box.h - cap)}",
+                                                "fill": "none"})
+            SubElement(asset, "ellipse", {"cx": number(box.x + box.w / 2), "cy": number(box.y + cap),
+                                          "rx": number(box.w / 2), "ry": number(cap)})
+        elif box.shape == "document":
+            fold = min(tokens["document_fold"], box.w / 5, box.h / 5)
+            asset = SubElement(root, "g", attrs)
+            points = [(box.x, box.y), (box.x + box.w - fold, box.y),
+                      (box.x + box.w, box.y + fold), (box.x + box.w, box.y + box.h), (box.x, box.y + box.h)]
+            SubElement(asset, "polygon", {"points": " ".join(f"{number(x)},{number(y)}" for x, y in points)})
+            SubElement(asset, "polyline", {"points": " ".join(f"{number(x)},{number(y)}" for x, y in
+                        [(box.x + box.w - fold, box.y), (box.x + box.w - fold, box.y + fold),
+                         (box.x + box.w, box.y + fold)]), "fill": "none"})
+        elif box.kind == "actor":
             actor = SubElement(root, "g", {**attrs, "fill": "none", "stroke-linecap": "round"})
             (cx, cy, r), parts = box.actor_parts
             SubElement(actor, "circle", {"cx": number(cx), "cy": number(cy), "r": number(r),
@@ -91,13 +123,29 @@ def render_svg(scene, namespace=None):
         else:
             SubElement(root, "rect", {**attrs, "x": number(box.x), "y": number(box.y),
                                       "width": number(box.w), "height": number(box.h),
-                                      "rx": "12" if box.kind in ("task", "state") else "4" if box.role == "node" else "0"})
+                                      "rx": number(0 if box.kind == "frame" else tokens["pill_radius"] if box.role == "chip" else
+                                                   tokens["zone_radius"] if box.role == "group" else
+                                                   12 if box.kind in ("task", "state") else tokens["card_radius"]
+                                                   if box.role in ("node", "legend-panel") else 2)})
+        if box.role == "group" and box.band and box.header_height:
+            SubElement(root, "rect", {"data-role": "header-band", "data-parent": box.id,
+                         "x": number(box.x + 2), "y": number(box.y + 2),
+                         "width": number(box.w - 4), "height": number(min(box.header_height, box.h) - 4),
+                         "rx": number(0 if box.kind == "frame" else tokens["card_radius"]), "fill": theme["zones"][box.tint][1]})
+        if box.shape == "queue":
+            inset = min(8, box.h / 4)
+            for offset in (8, 14):
+                SubElement(root, "polyline", {"points": f"{number(box.x + offset)},{number(box.y + inset)} {number(box.x + offset)},{number(box.y + box.h - inset)}",
+                                              "fill": "none", "stroke": attrs["stroke"], "stroke-width": "1"})
+        if box.shape == "callout":
+            SubElement(root, "rect", {"x": number(box.x + 3), "y": number(box.y + 10),
+                                      "width": "4", "height": number(box.h - 20), "rx": "2", "fill": attrs["stroke"]})
     for edge in scene.edges:
         attrs = {"id": prefix + "-edge-" + edge.id, "data-id": edge.id,
                  "data-role": "frame-separator" if edge.kind == "frame-separator" else "edge",
                  "data-from": edge.source, "data-to": edge.target, "data-kind": edge.kind,
                  "points": " ".join(f"{number(x)},{number(y)}" for x, y in edge.points),
-                 "fill": "none", "stroke": theme[edge.style][1], "stroke-width": "1.8",
+                 "fill": "none", "stroke": theme["lines"][edge.style], "stroke-width": number(tokens["edge_stroke"]),
                  "stroke-linejoin": "round"}
         marker_kind = edge.marker_kind or edge.kind
         marker = f"url(#{prefix}-marker-{edge.style}-{'open' if marker_kind in ('async', 'message', 'reply') else 'arrow'})"
@@ -115,13 +163,18 @@ def render_svg(scene, namespace=None):
             SubElement(root, "rect", {"id": prefix + "-shape-label-bg-" + box.id, "data-id": box.id,
                          "data-role": "label-bg", "data-parent": box.parent,
                          "x": number(box.x), "y": number(box.y), "width": number(box.w), "height": number(box.h),
-                         "fill": theme["canvas"], "fill-opacity": "0.92", "rx": "3"})
+                         "fill": theme["canvas"], "fill-opacity": "0.96", "rx": "7",
+                         "stroke": theme["muted"], "stroke-opacity": "0.35", "stroke-width": "0.6"})
+    owners = {box.id: box for box in scene.boxes}
     for text in scene.texts:
+        owner = owners.get(text.owner)
+        on_primary = owner and owner.role != "group" and owner.style == "primary"
+        fill = theme["on_primary"] if on_primary else theme["muted"] if text.role in ("sub", "subtitle", "legend") else theme["text"]
         attrs = {"id": prefix + "-text-" + text.role + "-" + text.id, "data-id": text.id, "data-role": text.role,
                  "data-owner": text.owner, "x": number(text.x), "y": number(text.y + text.size),
                  "data-source": text.source,
-                 "font-size": number(text.size), "font-family": scene.family,
-                 "text-anchor": "start", "fill": theme["text"],
+                 "font-size": number(text.size), "font-family": scene.family, "font-weight": str(text.weight),
+                 "text-anchor": "start", "fill": fill,
                  "data-text-box": " ".join(number(v) for v in text.rect)}
         element = SubElement(root, "text", attrs)
         for i, line in enumerate(text.lines):
