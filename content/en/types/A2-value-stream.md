@@ -3,20 +3,18 @@ code: A2
 slug: value-stream
 family: A
 names:
-  en: Value Stream (Business Architecture)
+  en: Value stream (business architecture)
   zh: 价值流（业务架构）
   aliases:
-    en: [value stream, value stream map (TOGAF artifact), value stream stages, value stream / capability cross-map]
-    zh: [价值流, 价值流阶段, 价值流—能力映射]
-question: "How does value accrue, stage by stage, for a triggering stakeholder, and which capabilities enable each stage?"
-audiences: [executives, business architects, enterprise architects, strategy and portfolio leads]
-level: strategy
-phases: [discovery, planning, review]
-scope: "One value stream: a triggering stakeholder, a value proposition and about 4–8 stages, optionally with capabilities cross-mapped under each stage"
-formal:
-  kind: standard
-  ref: "ArchiMate 3.2 Value Stream element and Value Stream viewpoint; TOGAF Series Guide: Value Streams (G178, republished 2022 for TOGAF 10); BIZBOK Guide"
-neighbours: [A1, A9, A5, A6, A8]
+    en: [value stream diagram, value stream stages, value stream capability cross-map, value stream, value stream map (TOGAF artifact), value stream / capability cross-map]
+    zh: [价值流阶段图, 价值流能力映射, 价值流, 价值流阶段, 价值流—能力映射]
+question: How does value accrue, stage by stage, for a triggering stakeholder, and which capabilities enable each stage?
+audiences: [leaders, business, architects]
+levels: [strategy]
+phases: [initiate]
+scope: 'One value stream: a triggering stakeholder, a value proposition and about 4–8 stages, optionally with capabilities cross-mapped under each stage'
+formal: {kind: standard, ref: 'ArchiMate 3.2 Value Stream element and Value Stream viewpoint; TOGAF Series Guide: Value Streams (G178, republished 2022 for TOGAF 10); BIZBOK Guide'}
+neighbours: [A1, A5, A6, A9]
 status: draft
 ---
 

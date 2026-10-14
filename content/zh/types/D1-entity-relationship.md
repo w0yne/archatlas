@@ -3,20 +3,18 @@ code: D1
 slug: entity-relationship
 family: D
 names:
-  en: Entity-Relationship Diagram
+  en: Entity-relationship diagram
   zh: 实体关系图
   aliases:
-    en: [ERD, ER diagram, data model diagram, conceptual data model, logical data model, information model, domain model (UML class style), crow's foot diagram]
-    zh: [E-R 图, ER 图, 数据模型图, 概念数据模型, 逻辑数据模型, 信息模型, 领域模型]
-question: "系统保存哪些业务事物的信息？它们之间如何关联？每种事物可以有多少个参与到一个关系中？"
-audiences: [架构师, 开发人员, 数据分析师和业务分析师, 数据治理负责人, 产品负责人（仅限概念层）]
-level: logical
-phases: [design, implementation, review]
-scope: "一个主题域或限界上下文，约 5-15 个实体，按一个明确声明的层级（概念或逻辑）绘制"
-formal:
-  kind: convention
-  ref: "Chen 1976; crow's foot (Everest 1976), Barker, IDEF1X (FIPS PUB 184, 1993) and UML 2.5.1 class diagrams are separate defined notations; the conceptual/logical/physical levels are a modelling convention"
-neighbours: [D2, D3, E3, C7, F3]
+    en: [ER diagram, ERD, data model diagram, conceptual data model, logical data model, information model, domain model (UML class style), crow's foot diagram]
+    zh: [ER 图, 数据模型图, 概念数据模型, 逻辑数据模型, E-R 图, 信息模型, 领域模型]
+question: 系统保存哪些业务事物的信息？它们之间如何关联？每个关系两端各允许多少个实例（基数）？
+audiences: [architects, developers, business]
+levels: [concept, logical]
+phases: [design, build]
+scope: 一个主题域或限界上下文，约 5-15 个实体，按一个明确声明的层级（概念或逻辑）绘制
+formal: {kind: method, ref: 'Chen 1976; crow''s foot (Everest 1976), Barker, IDEF1X (FIPS PUB 184, 1993) and UML 2.5.1 class diagrams are separate defined notations; the conceptual/logical/physical levels are a modelling convention'}
+neighbours: [D2, D3, E3, F3]
 status: draft
 translationOf: en/types/D1-entity-relationship.md
 sourceRev: 674f366
@@ -50,6 +48,7 @@ reviewed: false
   - 表达单个实体的生命周期时，选 **E3 状态机图**。常见搭配：D1，再为每个带状态字段的实体配一张 E3。
   - 要表达上下文之间如何关联时，选 **C7 限界上下文映射图**；每个上下文画一张 D1，而不是画一张企业级 ER 图。
   - 表达权限时，选 **F3 访问控制模型**；用户-角色-权限-资源这条链本身就是一张小 ER 图。
+  - 问题是数据从哪里来、派生出什么、归谁负责，而不是实体之间如何关联时，选 **D3 数据血缘与归属图**。
 
 ## 表示法与元素 {#notation}
 <!-- skill: condense (bullets, ≤15 lines) -->
@@ -71,7 +70,7 @@ reviewed: false
 2. **每张图一个主题域。** 按限界上下文或业务职能切分；共享实体用引用，而不是重复绘制。
 3. **与领域专家一起建模**，并把每个关系大声读出来（"每个 Order 恰好由一个 Customer 下达"）。
 4. **标出可选性**（最小值 0 还是 1）；它承载着否则会藏在代码里的业务规则。
-5. **只在逻辑层解析 N:M，** 并以真实事物命名关联实体（`Enrolment`，而不是 `StudentCourse`）。横切模式（租户键、软删除、审计）只注明一次，不要在每个实体上重复。
+5. **只在逻辑层解析 N:M，** 并以真实事物命名关联实体（`OrderLine`，而不是 `OrderProduct`）。横切模式（租户键、软删除、审计）只注明一次，不要在每个实体上重复。
 
 ### 反模式
 1. **数据库倒出：** 100 多张表连同所有列；面面俱到是可理解性的敌人 [15]。

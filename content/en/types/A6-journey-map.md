@@ -3,20 +3,18 @@ code: A6
 slug: journey-map
 family: A
 names:
-  en: Customer / User Journey Map
-  zh: 用户旅程图 / 客户旅程图
+  en: Customer or user journey map
+  zh: 用户旅程图
   aliases:
-    en: [customer journey map, CJM, user journey map, UX journey map, journey map]
-    zh: [用户旅程图, 客户旅程图, 顾客旅程地图, 体验旅程图]
-question: "What does one persona go through, phase by phase, to reach one goal; what do they do, think and feel; where are the pain points; and who owns each improvement?"
-audiences: [product managers, UX and service designers, marketing and CX teams, customer support, business owners and executives, engineering leads]
-level: concept
-phases: [discovery, planning, design, review]
-scope: "One persona, one scenario and goal, one product or service, 4–7 phases, from the customer's point of view."
-formal:
-  kind: convention
-  ref: "none (de-facto reference: Nielsen Norman Group journey-mapping guidance)"
-neighbours: [A5, A2, A4, B2]
+    en: [customer journey map, user journey map, UX journey map, CJM, journey map]
+    zh: [客户旅程图, 顾客旅程地图, 体验旅程图]
+question: What does one persona go through, phase by phase, to reach one goal; what do they do, think and feel; where are the pain points; and who owns each improvement?
+audiences: [product, business, leaders]
+levels: [strategy, concept]
+phases: [initiate, requirements]
+scope: One persona, one scenario and goal, one product or service, 4–7 phases, from the customer's point of view.
+formal: {kind: convention, ref: 'none (de-facto reference: Nielsen Norman Group journey-mapping guidance)'}
+neighbours: [A2, A4, A5, B2, E4]
 status: draft
 ---
 

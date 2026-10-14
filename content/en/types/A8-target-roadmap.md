@@ -3,20 +3,18 @@ code: A8
 slug: target-roadmap
 family: A
 names:
-  en: Target Architecture & Transition Roadmap
+  en: Target architecture and transition roadmap
   zh: 目标架构与演进路线图
   aliases:
-    en: [architecture roadmap, baseline / target / transition architecture, as-is / to-be roadmap, migration roadmap, migration view, plateau diagram, capability roadmap]
-    zh: [架构路线图, 演进路线图, 迁移路线图, 现状 / 目标 / 过渡架构, 迁移视图, 平台期图, 能力路线图]
-question: "Where are we, where are we going, which stable intermediate states lie between, and which bodies of work move us from one state to the next, in what order and why?"
-audiences: [executives and sponsors, architecture review boards, portfolio and programme managers, funding committees, delivery leads]
-level: strategy
-phases: [planning, review]
-scope: "One solution or domain from baseline to target over a stated horizon: the states, the work packages between them, their dependencies and the value each state delivers."
-formal:
-  kind: method
-  ref: "TOGAF ADM Architecture Roadmap and Transition Architectures (Phases E–F, TOGAF 9.1 text); ArchiMate 3.2 Implementation & Migration elements"
-neighbours: [A7, A1, C1]
+    en: [architecture roadmap, transition architecture, migration roadmap, as-is to-be roadmap, plateau diagram, baseline / target / transition architecture, as-is / to-be roadmap, migration view, capability roadmap]
+    zh: [演进路线图, 架构路线图, 迁移路线图, 过渡架构, 现状 / 目标 / 过渡架构, 迁移视图, 平台期图, 能力路线图, 稳定态图]
+question: Where are we, where are we going, which stable intermediate states lie between, and which bodies of work move us from one state to the next, in what order and why?
+audiences: [leaders, architects]
+levels: [strategy]
+phases: [initiate, design]
+scope: 'One solution or domain from baseline to target over a stated horizon: the states, the work packages between them, their dependencies and the value each state delivers.'
+formal: {kind: standard, ref: 'TOGAF ADM Architecture Roadmap and Transition Architectures (Phases E–F, TOGAF 9.1 text); ArchiMate 3.2 Implementation & Migration elements'}
+neighbours: [A1, A7, C1]
 status: draft
 ---
 

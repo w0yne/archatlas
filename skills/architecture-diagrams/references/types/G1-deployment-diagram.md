@@ -1,7 +1,7 @@
 # Deployment Diagram (部署图)
 <!-- Generated from content/en/types/G1-deployment-diagram.md by tools/build_skill_refs.py. Do not edit. -->
 > Where do the software instances and artifacts run, and how does that placement support operational needs such as capacity, failover and ownership?
-Scope: One named environment (for example production), showing hosting nodes and the software instances placed on them Neighbours: C3, G2, G3, G4, E1.
+Scope: One named environment (for example production), showing hosting nodes and the software instances placed on them Neighbours: C3, C8, G2, G3, G4, H2, I1.
 
 ## Meaning
 - **Question:** where does each piece of software run, and what does that placement imply for scaling, failure, ownership and location?
@@ -20,6 +20,9 @@ Scope: One named environment (for example production), showing hosting nodes and
   - **G3** for routing, segmentation, reachability.
   - **G4** for how a change reaches this environment.
   - **E1** (or arc42 runtime view) for behaviour over time.
+  - Choose **C8** when the layers are code layers with dependency rules; deployment tiers are not code layers.
+  - Choose **H2** when the question is how the running system is observed and who is alerted, not where it runs.
+  - Choose **I1** when this deployment view is the physical view of a 4+1 description and must stay consistent with the other views.
 
 ## Notation and elements
 - **Formal or informal:** UML 2.5.1 is formal; most practical diagrams are a convention. Do not decorate arbitrary boxes with UML stereotypes and imply conformance.

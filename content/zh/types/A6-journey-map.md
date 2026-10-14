@@ -3,20 +3,18 @@ code: A6
 slug: journey-map
 family: A
 names:
-  en: Customer / User Journey Map
-  zh: 用户旅程图 / 客户旅程图
+  en: Customer or user journey map
+  zh: 用户旅程图
   aliases:
-    en: [customer journey map, CJM, user journey map, UX journey map, journey map]
-    zh: [用户旅程图, 客户旅程图, 顾客旅程地图, 体验旅程图]
-question: "一个用户画像为达成一个目标，逐阶段经历了什么：做了什么、想了什么、感受如何；痛点在哪里；每项改进由谁负责？"
-audiences: [产品经理, 用户体验与服务设计师, 市场与客户体验团队, 客户支持, 业务负责人与高管, 工程负责人]
-level: concept
-phases: [discovery, planning, design, review]
-scope: "一个用户画像、一个场景与目标、一个产品或服务、4–7 个阶段，从客户视角出发。"
-formal:
-  kind: convention
-  ref: "none (de-facto reference: Nielsen Norman Group journey-mapping guidance)"
-neighbours: [A5, A2, A4, B2]
+    en: [customer journey map, user journey map, UX journey map, CJM, journey map]
+    zh: [客户旅程图, 顾客旅程地图, 体验旅程图]
+question: 一个用户画像为达成一个目标，逐阶段经历了什么：做了什么、想了什么、感受如何；痛点在哪里；每项改进由谁负责？
+audiences: [product, business, leaders]
+levels: [strategy, concept]
+phases: [initiate, requirements]
+scope: 一个用户画像、一个场景与目标、一个产品或服务、4–7 个阶段，从客户视角出发。
+formal: {kind: convention, ref: 'none (de-facto reference: Nielsen Norman Group journey-mapping guidance)'}
+neighbours: [A2, A4, A5, B2, E4]
 status: draft
 translationOf: en/types/A6-journey-map.md
 sourceRev: 674f366

@@ -3,20 +3,18 @@ code: C6
 slug: integration-interface
 family: C
 names:
-  en: Integration / Interface Diagram
-  zh: 集成 / 接口图
+  en: Integration and interface diagram
+  zh: 集成与接口图
   aliases:
-    en: [integration diagram, interface map, integration architecture, integration landscape, application communication diagram, interface catalog, application interaction matrix, event topology, API landscape]
-    zh: [集成架构图, 接口关系图, 系统集成图, 应用通信图, 接口清单, 应用交互矩阵, 事件拓扑图, API 全景图]
-question: "Which interfaces exist between systems, who initiates each, what is exchanged in which integration style, and under which contract, security, service level and ownership?"
-audiences: [integration architects, developers on both sides, counterpart system owners, operations, security reviewers, project managers]
-level: logical
-phases: [planning, design, build, review]
-scope: "The interfaces between a set of systems (or one hub or partner in close-up), drawn as a map plus a mandatory interface table."
-formal:
-  kind: convention
-  ref: "none for the diagram; vocabulary from Enterprise Integration Patterns (2003) and TOGAF 9.x Phase C artefacts; contracts in OpenAPI 3.2.x / AsyncAPI 3.1.0"
-neighbours: [C1, C2, C3, C5, C7, D2, D3, E1, F2, G1]
+    en: [integration diagram, interface map, integration architecture, interface catalog, API landscape, integration landscape, application interaction matrix, event topology]
+    zh: [集成架构图, 接口关系图, 系统集成图, 接口清单, 应用通信图, 应用交互矩阵, 事件拓扑图, API 全景图]
+question: Which interfaces exist between systems, who initiates each, what is exchanged in which integration style, and under which contract, security, service level and ownership?
+audiences: [architects, developers, operations]
+levels: [logical, physical]
+phases: [design, build]
+scope: The interfaces between a set of systems (or one hub or partner in close-up), drawn as a map plus a mandatory interface table.
+formal: {kind: convention, ref: none for the diagram; vocabulary from Enterprise Integration Patterns (2003) and TOGAF 9.x Phase C artefacts; contracts in OpenAPI 3.2.x / AsyncAPI 3.1.0}
+neighbours: [C1, C2, C3, C5, C7, E1, F2]
 status: draft
 ---
 
@@ -46,7 +44,7 @@ No single standard defines the diagram. It draws on four traditions:
 
 **Three variants under one type:** (a) **interface map + table** (default): systems as nodes, numbered interface lines and a table; (b) **event / asynchronous topology**: channels and topics as first-class nodes between producers and consumers [8]; (c) **API landscape / catalogue**: a portfolio table of many APIs by owner, lifecycle and consumers.
 
-**Deliberately left out:** field-level payloads (link the OpenAPI/AsyncAPI/schema file instead), system internals (C4/C5), call order in one scenario (E1), hosts and networks (G1), data lineage (D3).
+**Deliberately left out:** field-level payloads (link the OpenAPI/AsyncAPI/schema file instead), system internals (C3–C5), call order in one scenario (E1), hosts and networks (G1), data lineage (D3).
 
 ## When to use and how to choose {#choose}
 <!-- skill: condense (bullets, ≤12 lines) -->

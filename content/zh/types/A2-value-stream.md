@@ -3,20 +3,18 @@ code: A2
 slug: value-stream
 family: A
 names:
-  en: Value Stream (Business Architecture)
+  en: Value stream (business architecture)
   zh: 价值流（业务架构）
   aliases:
-    en: [value stream, value stream map (TOGAF artifact), value stream stages, value stream / capability cross-map]
-    zh: [价值流, 价值流阶段, 价值流—能力映射]
-question: "对一个触发干系人而言，价值如何逐阶段累积？每个阶段由哪些能力支撑？"
-audiences: [高管, 业务架构师, 企业架构师, 战略与投资组合负责人]
-level: strategy
-phases: [discovery, planning, review]
-scope: "一条价值流：一个触发干系人、一个价值主张和约 4–8 个阶段，可选在每个阶段下方交叉映射能力"
-formal:
-  kind: standard
-  ref: "ArchiMate 3.2 Value Stream element and Value Stream viewpoint; TOGAF Series Guide: Value Streams (G178, republished 2022 for TOGAF 10); BIZBOK Guide"
-neighbours: [A1, A9, A5, A6, A8]
+    en: [value stream diagram, value stream stages, value stream capability cross-map, value stream, value stream map (TOGAF artifact), value stream / capability cross-map]
+    zh: [价值流阶段图, 价值流能力映射, 价值流, 价值流阶段, 价值流—能力映射]
+question: 对一个触发干系人而言，价值如何逐阶段累积？每个阶段由哪些能力支撑？
+audiences: [leaders, business, architects]
+levels: [strategy]
+phases: [initiate]
+scope: 一条价值流：一个触发干系人、一个价值主张和约 4–8 个阶段，可选在每个阶段下方交叉映射能力
+formal: {kind: standard, ref: 'ArchiMate 3.2 Value Stream element and Value Stream viewpoint; TOGAF Series Guide: Value Streams (G178, republished 2022 for TOGAF 10); BIZBOK Guide'}
+neighbours: [A1, A5, A6, A9]
 status: draft
 translationOf: en/types/A2-value-stream.md
 sourceRev: a082cec

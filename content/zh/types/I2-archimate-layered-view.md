@@ -8,15 +8,13 @@ names:
   aliases:
     en: [ArchiMate layered viewpoint, business-application-technology view, cross-layer enterprise view]
     zh: [ArchiMate 分层视点, 业务-应用-技术视图, 跨层企业架构视图]
-question: "业务行为、应用与技术如何相互支撑？一处变化会影响哪些部分？"
+question: 业务行为、应用与技术如何相互支撑？一处变化会影响哪些部分？
 audiences: [architects, leaders]
-level: logical
+levels: [strategy, concept, logical]
 phases: [initiate, design]
 scope: enterprise
-formal:
-  kind: standard
-  ref: "The Open Group，ArchiMate 3.2（2022），附录 C.1.5 中的资料性分层视点；https://pubs.opengroup.org/architecture/archimate3-doc/ch-Example-Viewpoints.html"
-neighbours: [I1, A7, C8, C1]
+formal: {kind: standard, ref: 'The Open Group，ArchiMate 3.2（2022），附录 C.1.5 中的资料性分层视点；https://pubs.opengroup.org/architecture/archimate3-doc/ch-Example-Viewpoints.html'}
+neighbours: [A7, C1, C8, I1]
 status: draft
 sourceRev: a082cec
 translationOf: en/types/I2-archimate-layered-view.md
@@ -24,6 +22,8 @@ reviewed: false
 ---
 
 # ArchiMate 分层视图
+
+> 业务、应用、技术元素分层排布，用 ArchiMate 关系说明谁服务谁、谁实现谁。
 
 ## 含义 {#meaning}
 <!-- skill: condense (4–6 lines) -->

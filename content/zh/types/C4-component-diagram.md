@@ -3,20 +3,18 @@ code: C4
 slug: component-diagram
 family: C
 names:
-  en: Component Diagram
-  zh: 组件图
+  en: Component diagram (C4 model level 3)
+  zh: 组件图（C4 模型第 3 层）
   aliases:
-    en: [C4 model Level 3, White-box View of a Container, Building Block View Level 2 (arc42), Module Diagram, Internal Structure Diagram]
-    zh: [C4 模型第 3 层, 容器内部结构图, 模块图, 内部结构图]
-question: "在这一个容器内部，它由哪些组件构成？每个组件负责什么、用什么构建？它们彼此之间以及与其他容器之间如何依赖？"
-audiences: [软件架构师, 开发人员]
-level: logical
-phases: [design, build, review]
-scope: "恰好一个容器：容器边界内的各个组件，以及与它们直接相连的其他容器、人员和系统。"
-formal:
-  kind: method
-  ref: "C4 model (Simon Brown), Level 3 Component diagram; notation-independent, no versioned standard. Related: UML 2.5.1 component diagram (OMG), a different meaning of 'component'"
-neighbours: [C3, C5, C8, E1, D1, G1]
+    en: [component view, white-box view of a container, internal structure diagram, C4 model Level 3, Building Block View Level 2 (arc42)]
+    zh: [组件视图, 容器内部结构图, 内部结构图, C4 模型第 3 层]
+question: 在这一个容器内部，它由哪些组件构成？每个组件负责什么、用什么构建？它们彼此之间以及与其他容器之间如何依赖？
+audiences: [developers, architects]
+levels: [logical]
+phases: [design, build]
+scope: 恰好一个容器：容器边界内的各个组件，以及与它们直接相连的其他容器、人员和系统。
+formal: {kind: method, ref: 'C4 model (Simon Brown), Level 3 Component diagram; notation-independent, no versioned standard. Related: UML 2.5.1 component diagram (OMG), a different meaning of ''component'''}
+neighbours: [C3, C5, C8, E1]
 status: draft
 translationOf: en/types/C4-component-diagram.md
 sourceRev: 6857dea

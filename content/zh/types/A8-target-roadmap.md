@@ -3,20 +3,18 @@ code: A8
 slug: target-roadmap
 family: A
 names:
-  en: Target Architecture & Transition Roadmap
+  en: Target architecture and transition roadmap
   zh: 目标架构与演进路线图
   aliases:
-    en: [architecture roadmap, baseline / target / transition architecture, as-is / to-be roadmap, migration roadmap, migration view, plateau diagram, capability roadmap]
-    zh: [架构路线图, 演进路线图, 迁移路线图, 现状 / 目标 / 过渡架构, 迁移视图, 稳定态图, 能力路线图]
-question: "我们现在在哪里，要去哪里，中间有哪些稳定的过渡状态，哪些工作把我们从一个状态推进到下一个状态，按什么顺序，为什么？"
-audiences: [高管与发起人, 架构评审委员会, 项目组合与项目群经理, 资金审批委员会, 交付负责人]
-level: strategy
-phases: [planning, review]
-scope: "一个方案或领域在给定时间范围内从基线到目标的演进：各个状态、状态之间的工作包、它们的依赖关系以及每个状态交付的价值。"
-formal:
-  kind: method
-  ref: "TOGAF ADM Architecture Roadmap and Transition Architectures (Phases E–F, TOGAF 9.1 text); ArchiMate 3.2 Implementation & Migration elements"
-neighbours: [A7, A1, C1]
+    en: [architecture roadmap, transition architecture, migration roadmap, as-is to-be roadmap, plateau diagram, baseline / target / transition architecture, as-is / to-be roadmap, migration view, capability roadmap]
+    zh: [演进路线图, 架构路线图, 迁移路线图, 过渡架构, 现状 / 目标 / 过渡架构, 迁移视图, 平台期图, 能力路线图, 稳定态图]
+question: 我们现在在哪里，要去哪里，中间有哪些稳定的过渡状态，哪些工作把我们从一个状态推进到下一个状态，按什么顺序，为什么？
+audiences: [leaders, architects]
+levels: [strategy]
+phases: [initiate, design]
+scope: 一个方案或领域在给定时间范围内从基线到目标的演进：各个状态、状态之间的工作包、它们的依赖关系以及每个状态交付的价值。
+formal: {kind: standard, ref: 'TOGAF ADM Architecture Roadmap and Transition Architectures (Phases E–F, TOGAF 9.1 text); ArchiMate 3.2 Implementation & Migration elements'}
+neighbours: [A1, A7, C1]
 status: draft
 translationOf: en/types/A8-target-roadmap.md
 sourceRev: 674f366

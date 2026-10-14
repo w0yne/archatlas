@@ -1,7 +1,7 @@
 # Access-Control Model (访问控制模型)
 <!-- Generated from content/en/types/F3-access-control-model.md by tools/build_skill_refs.py. Do not edit. -->
 > Under what rules can a subject perform an action on a resource, in a given scope or context?
-Scope: One application or domain: its resource classes, a small set of actions, and one chosen model kind (RBAC, ABAC or ReBAC, possibly combined) Neighbours: F1, F2, D1, H1, C5.
+Scope: One application or domain: its resource classes, a small set of actions, and one chosen model kind (RBAC, ABAC or ReBAC, possibly combined) Neighbours: D1, F1, F2, H1.
 
 ## Meaning
 - **Question:** under what rules can a subject perform an action on a resource in a given scope? It describes authority, not network reachability or call order.

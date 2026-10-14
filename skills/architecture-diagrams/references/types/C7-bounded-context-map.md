@@ -1,7 +1,7 @@
 # Bounded Context Map (限界上下文映射图)
 <!-- Generated from content/en/types/C7-bounded-context-map.md by tools/build_skill_refs.py. Do not edit. -->
 > Which distinct models, each with its own consistent language, exist in and around this system, and what power, coordination or translation relationship holds across each boundary?
-Scope: The bounded contexts of one system or landscape (or the teams behind them) and the relationship on each boundary; about 5–12 contexts per map. Neighbours: C1, C2, C3, C5, C6, C8, D1.
+Scope: The bounded contexts of one system or landscape (or the teams behind them) and the relationship on each boundary; about 5–12 contexts per map. Neighbours: C5, C6, C8.
 
 ## Meaning
 A context map answers: *which models with their own language exist here, and who must adapt to whom across each boundary?* A bounded context is the boundary within which one model and its terms stay consistent. The map is as much **socio-technical** as technical: Evans notes that the relationship constraints show up mainly through non-technical channels, and Brandolini deliberately includes team structure and influence that a traditional analysis would leave out. In ISO/IEC/IEEE 42010 terms its concerns are language consistency, integration cost, team coupling and who adapts to whom. It is not a C4 model level: its elements are models or teams, not deployables.

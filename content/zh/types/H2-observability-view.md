@@ -8,14 +8,12 @@ names:
   aliases:
     en: [observability architecture diagram, monitoring architecture diagram, telemetry pipeline diagram]
     zh: [可观测性架构图, 监控架构图, 遥测流水线图]
-question: "服务行为的证据如何进入分析、检测，并传递给能够采取行动的人？"
+question: 服务行为的证据如何进入分析、检测，并传递给能够采取行动的人？
 audiences: [operations, developers, leaders]
-level: physical
+levels: [physical]
 phases: [operate]
-scope: "某个环境中的遥测路径及相关运维响应。"
-formal:
-  kind: convention
-  ref: "没有统一的图形标准；参考 OpenTelemetry 信号概念：https://opentelemetry.io/docs/concepts/signals/ 以及 SRE 监控实践：https://sre.google/sre-book/monitoring-distributed-systems/"
+scope: 某个环境中的遥测路径及相关运维响应。
+formal: {kind: convention, ref: '没有统一的图形标准；参考 OpenTelemetry 信号概念：https://opentelemetry.io/docs/concepts/signals/ 以及 SRE 监控实践：https://sre.google/sre-book/monitoring-distributed-systems/'}
 neighbours: [G1, G4, H1]
 status: draft
 sourceRev: a082cec
@@ -24,6 +22,8 @@ reviewed: false
 ---
 
 # 可观测性视图
+
+> 从运行中服务的遥测数据，到分析、告警，再到负责响应的人的完整路径。
 
 ## 含义 {#meaning}
 <!-- skill: condense (4–6 lines) -->
@@ -54,7 +54,7 @@ reviewed: false
 - **SLI/SLO：** 前者是测量定义，后者是某个时间窗口内的目标；告警条件与二者均不同。对于良好事件占比，允许的不良事件比例为 `1 − SLO` [6][7]。
 - **标签：** 采用简短的功能名称；信号与协议标在线上。使用独立的证据标记，避免虚线同时表示“异步”和“未核实”。
 
-目录中的物理层级分类适合以部署为重点的示例；逻辑流水线与服务级响应视图同样适用。这类视图没有统一版本。访问时，OpenTelemetry 的 Profiles 页面标注为 Alpha；baggage 携带上下文，不意味着需要另建一条存储流水线 [1][3][4]。
+以部署为重点的视图很常见，但逻辑遥测流水线与服务级响应视图同样适用。这类视图没有统一版本。访问时，OpenTelemetry 的 Profiles 页面标注为 Alpha；baggage 携带上下文，不意味着需要另建一条存储流水线 [1][3][4]。
 
 ## 最佳实践与反模式 {#practice}
 <!-- skill: condense (top 5 each, no citations) -->

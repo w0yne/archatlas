@@ -8,26 +8,26 @@ names:
   aliases:
     en: [observability architecture diagram, monitoring architecture diagram, telemetry pipeline diagram]
     zh: [可观测性架构图, 监控架构图, 遥测流水线图]
-question: "How does evidence of service behavior reach analysis, detection, and someone who can act?"
+question: How does evidence of service behavior reach analysis, detection, and someone who can act?
 audiences: [operations, developers, leaders]
-level: physical
+levels: [physical]
 phases: [operate]
-scope: "An environment's telemetry paths and relevant operational response."
-formal:
-  kind: convention
-  ref: "No diagram standard; OpenTelemetry signal concepts: https://opentelemetry.io/docs/concepts/signals/ and SRE monitoring practice: https://sre.google/sre-book/monitoring-distributed-systems/"
+scope: An environment's telemetry paths and relevant operational response.
+formal: {kind: convention, ref: 'No diagram standard; OpenTelemetry signal concepts: https://opentelemetry.io/docs/concepts/signals/ and SRE monitoring practice: https://sre.google/sre-book/monitoring-distributed-systems/'}
 neighbours: [G1, G4, H1]
 status: draft
-sourceRev: "2026-10-14"
+sourceRev: '2026-10-14'
 ---
 
-# Observability view
+# Observability view (可观测性视图)
+
+> The path from telemetry in the running service to analysis, alerts and the people who respond.
 
 ## Meaning {#meaning}
 <!-- skill: condense (4–6 lines) -->
-An observability view explains how evidence of service behavior becomes useful for diagnosis, detection, or response. Its deeper concern is the credibility of that path: missing context, dropped data, or an unowned alert can break it.
+An observability view explains how evidence of service behaviour becomes useful for diagnosis, detection, or response. Its deeper concern is the credibility of that path: missing context, dropped data, or an unowned alert can break it.
 
-**Definition used here:** an informal operational view, not a formal notation or fixed C4 model level. OpenTelemetry specifies telemetry behavior, not drawing symbols. A Collector alone is not a storage, visualization, or paging backend [1][2].
+**Definition used here:** an informal operational view, not a formal notation or fixed C4 model level. OpenTelemetry specifies telemetry behaviour, not drawing symbols. A Collector alone is not a storage, visualization, or paging backend [1][2].
 
 Metrics, logs, and traces are common signals, not a closed set of three pillars. Profiles and context propagation also matter; check component-specific support and maturity [1][3][4]. Omit unrelated business logic and exhaustive metric inventories.
 
@@ -52,13 +52,13 @@ Metrics, logs, and traces are common signals, not a closed set of three pillars.
 - **SLI/SLO:** measurement definition versus target over a window; an alert condition is neither. For good-event ratios, allowed bad-event fraction is `1 − SLO` [6][7].
 - **Labels:** short functional names; signal/protocol on edges. Use distinct evidence tags so dashed lines do not mean both “asynchronous” and “unverified.”
 
-The catalog's physical-level facet suits deployment-focused examples; logical pipelines and service-level response views remain valid. This family has no universal version. OpenTelemetry's Profiles page states Alpha at the access date; baggage carries context rather than requiring another storage pipeline [1][3][4].
+Deployment-focused views are common, but logical telemetry pipelines and service-level response views are equally valid. This family has no universal version. OpenTelemetry's Profiles page states Alpha at the access date; baggage carries context rather than requiring another storage pipeline [1][3][4].
 
 ## Best practices and anti-patterns {#practice}
 <!-- skill: condense (top 5 each, no citations) -->
 | Best practice | Anti-pattern |
 | --- | --- |
-| Start with user-visible behavior and actionable detection [7][8]. | Host-health dashboards presented as complete service coverage. |
+| Start with user-visible behaviour and actionable detection [7][8]. | Host-health dashboards presented as complete service coverage. |
 | Correlate evidence across services and message boundaries [1]. | Assuming an imported SDK proves a connected trace. |
 | Expose sampling, processor order, and routing assumptions [5][9]. | Arbitrary load balancing before stateful tail sampling. |
 | Show consequential telemetry loss and sensitive-data boundaries [10][11]. | A queue portrayed as lossless, or downstream redaction as preventing upstream exposure. |
@@ -82,7 +82,7 @@ These are linked architecture examples, not copied graphics. SRE workbook figure
 3. Add correlation, processing, sampling, and consequential trust/failure boundaries.
 4. For response scope, connect measurement → detection → notification → responder/runbook; distinguish SLO from alert policy.
 5. Lay out sources left, processing center, destinations right; put response below. Group by host only for deployment questions.
-6. Use short functional labels, labeled arrows, restrained color, and an evidence legend; compare against configuration.
+6. Use short functional labels, labeled arrows, restrained colour, and an evidence legend; compare against configuration.
 
 **Self-check**
 - [ ] Scope and environment are explicit.
@@ -106,7 +106,7 @@ These are linked architecture examples, not copied graphics. SRE workbook figure
 <!-- skill: keep (≤8 lines) -->
 1. Is the goal collection, diagnosis, readiness, or telemetry governance?
 2. Which environment/state and configuration are authoritative?
-3. Which user behavior and available signals must be explained?
+3. Which user behaviour and available signals must be explained?
 4. What targets, alert routes, response owners, and data constraints are agreed?
 
 ## Template {#template}

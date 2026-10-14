@@ -3,20 +3,18 @@ code: G2
 slug: cloud-infrastructure-architecture
 family: G
 names:
-  en: Cloud Infrastructure Architecture
+  en: Cloud infrastructure architecture
   zh: 云基础设施架构图
   aliases:
-    en: [cloud solution architecture, cloud architecture diagram, provider-specific infrastructure view, cloud reference architecture]
-    zh: [云解决方案架构图, 云服务架构图, 云架构图, 云参考架构]
-question: "Which cloud capabilities realise the workload, and which trade-offs make that arrangement fit its requirements?"
-audiences: [cloud and platform architects, operators, security reviewers, implementation partners, technical decision-makers]
-level: logical
-phases: [planning, design, review]
-scope: "One workload on one provider (or a stated multi-provider split), showing selected services, responsibilities, the main request and data path, and real location or failure boundaries"
-formal:
-  kind: convention
-  ref: "No single standard. Provider icon sets and provider architecture-centre guidance are conventions; Well-Architected frameworks are design-review guidance, not drawing notations"
-neighbours: [G1, G3, C3, C5, G4]
+    en: [cloud architecture diagram, cloud solution architecture, provider infrastructure view, provider-specific infrastructure view, cloud reference architecture]
+    zh: [云架构图, 云解决方案架构图, 云服务架构图, 云参考架构]
+question: Which cloud capabilities realise the workload, and which trade-offs make that arrangement fit its requirements?
+audiences: [architects, operations, security]
+levels: [physical]
+phases: [design, operate]
+scope: One workload on one provider (or a stated multi-provider split), showing selected services, responsibilities, the main request and data path, and real location or failure boundaries
+formal: {kind: convention, ref: 'No single standard. Provider icon sets and provider architecture-centre guidance are conventions; Well-Architected frameworks are design-review guidance, not drawing notations'}
+neighbours: [C3, C5, G1, G3, G4]
 status: draft
 ---
 

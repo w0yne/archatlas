@@ -1,7 +1,7 @@
 # Container Diagram (容器图)
 <!-- Generated from content/en/types/C3-container-diagram.md by tools/build_skill_refs.py. Do not edit. -->
 > Which separately running applications and data stores make up this system, what technology does each use, and how do they communicate?
-Scope: One software system: its containers inside a boundary, plus the people and external systems directly connected to them. Neighbours: C2, C4, C1, C5, C6, G1, E1, D2, F2, I2.
+Scope: One software system: its containers inside a boundary, plus the people and external systems directly connected to them. Neighbours: A7, C1, C2, C4, C5, C6, E1, F2, G1, G2.
 
 ## Meaning
 It answers: *which separately running applications and data stores make up this system, what technology does each use, and how do they communicate?* It is Level 2 of the C4 model, Simon Brown's notation-independent method (no versioned standard), and shows the overall shape of the architecture, how responsibilities are split and the key technology choices. In arc42 terms it is the building-block view, level 1. It leaves out deployment topology (replicas, zones, load balancers belong in G1), the inside of each container (C4), classes, sequences over time and data models.

@@ -6,22 +6,22 @@ names:
   en: RACI matrix
   zh: RACI 责任矩阵
   aliases:
-    en: [RACI chart, responsibility assignment matrix]
+    en: [RACI chart, responsibility assignment matrix, RASCI matrix]
     zh: [RACI 职责分配矩阵, 责任分配矩阵]
-question: "For each activity, who performs the work, owns the outcome, provides input, and receives updates?"
+question: For each activity, who performs the work, owns the outcome, provides input, and receives updates?
 audiences: [leaders, business, operations]
-level: concept
+levels: [strategy, concept]
 phases: [initiate, operate]
-scope: "Responsibilities for activities within one initiative or service."
-formal:
-  kind: convention
-  ref: "Responsibility-assignment practice; no versioned graphical standard. Atlassian, Understanding and using RACI charts: https://www.atlassian.com/work-management/project-management/raci-chart"
-neighbours: [H3, E4, D3, F3]
+scope: Responsibilities for activities within one initiative or service.
+formal: {kind: convention, ref: 'Responsibility-assignment practice; no versioned graphical standard. Atlassian, Understanding and using RACI charts: https://www.atlassian.com/work-management/project-management/raci-chart'}
+neighbours: [A4, D3, E4, F3, H2, H3]
 status: draft
-sourceRev: "2026-10-14"
+sourceRev: '2026-10-14'
 ---
 
-# RACI matrix
+# RACI matrix (RACI 责任矩阵)
+
+> A grid of activities against participants that states, for each activity, who does the work, who is accountable, who is consulted and who is informed.
 
 ## Meaning {#meaning}
 <!-- skill: condense (4–6 lines) -->
@@ -38,8 +38,11 @@ RACI has no universal notation version. A responsibility assignment matrix is th
 - **When not:** a simple task list already establishes ownership, or the real question is timing, dependencies, or technical access [1][4].
 - **H3 stakeholder map:** choose it for engagement priorities; RACI assigns responsibility per activity.
 - **E4 swimlane:** choose it for sequence and handoffs; link its activities to matrix rows.
-- **F3 access-control model:** choose it for permitted operations. Review permission is not business accountability; **D3** instead addresses data lineage and ownership.
-- **DACI:** choose it to organize a particular decision; use RACI for the resulting delivery responsibilities [3].
+- **F3 access-control model:** choose it for permitted operations; review permission is not business accountability.
+- **D3 data lineage and ownership map:** choose it for who owns and stewards a dataset; RACI assigns responsibility for activities.
+- **DACI:** choose it to organise a particular decision; use RACI for the resulting delivery responsibilities [3].
+- **A4 business scenario matrix:** choose it for which roles take part in which business activities; RACI assigns responsibility per activity, not coverage.
+- **H2 observability view:** choose it for how incidents are detected and routed; RACI names who owns the response.
 
 ## Notation and elements {#notation}
 <!-- skill: condense (bullets, ≤15 lines) -->
@@ -50,7 +53,7 @@ RACI has no universal notation version. A responsibility assignment matrix is th
 - **Optional:** phase groups, activity IDs, evidence references, effective date, and a role-to-person register. Label an added S as RASCI.
 - **Arrows:** none in the matrix. Cells are assignments, not data flow or sequence. Consultation can involve two-way communication without drawn connectors.
 - **Companion flow:** label escalation arrows with their trigger and meaning; keep them separate from the matrix.
-- **Detail:** use comparable activity granularity and explain mixed participant levels. Letters carry meaning; color is supplementary.
+- **Detail:** use comparable activity granularity and explain mixed participant levels. Letters carry meaning; colour is supplementary.
 
 ## Best practices and anti-patterns {#practice}
 <!-- skill: condense (top 5 each, no citations) -->
@@ -60,7 +63,7 @@ RACI has no universal notation version. A responsibility assignment matrix is th
 | State local A/R rules and explain shared authority [1][2]. | Claiming one A or one R is universally mandatory. |
 | Review row coverage and column workload [1]. | Checking letters while ignoring bottlenecks. |
 | Keep meaningful activities and necessary C/I assignments [1][5]. | Filling every cell or listing every implementation microtask. |
-| Revisit assignments when scope or staffing changes [2]. | Copying a template's ownership into a different organization. |
+| Revisit assignments when scope or staffing changes [2]. | Copying a template's ownership into a different organisation. |
 
 Asana's main instructions recommend one R, while its FAQ permits multiple R assignments [4]. Use its practical guidance with that inconsistency in mind; it is not a normative cardinality rule.
 
@@ -79,7 +82,7 @@ The government workbook and Essex cells were checked as text; PMI's example was 
 3. Draft rows against evidence; leave uncertain ownership unresolved.
 4. Review rows for gaps and columns for overload; split activities with conflicting outcomes.
 5. Lay out activities vertically and participants horizontally; group phases and repeat headers when splitting.
-6. Keep labels short, letters visible without color, and the legend adjacent; record effective date and update ownership.
+6. Keep labels short, letters visible without colour, and the legend adjacent; record effective date and update ownership.
 
 **Self-check**
 - [ ] Scope and state are explicit.
@@ -89,13 +92,13 @@ The government workbook and Essex cells were checked as text; PMI's example was 
 - [ ] Unknown differs from no involvement.
 - [ ] Columns and C/I assignments were reviewed.
 - [ ] Participants confirmed ownership; evidence supports the claims.
-- [ ] Headers, codes, and legend remain readable without color.
+- [ ] Headers, codes, and legend remain readable without colour.
 
 ## Evidence in a code repository {#evidence}
 <!-- skill: keep (≤10 lines) -->
 - Governance documents and approved decisions support documented responsibility assignments.
 - Runbooks and release procedures identify activities, duties, and escalation routes.
-- `CODEOWNERS` and approval configuration establish review rules, not organizational A.
+- `CODEOWNERS` and approval configuration establish review rules, not organisational A.
 - Commit frequency, administrator access, and issue assignment do not establish accountability.
 - Record each claim's path, revision, and verified/inferred/doc-only/conflict status; confirm ownership gaps with people.
 
@@ -108,7 +111,7 @@ The government workbook and Essex cells were checked as text; PMI's example was 
 
 ## Template {#template}
 <!-- skill: keep (≤3 lines) -->
-Model template: `assets/templates/H1.json` · Layout template: `grid_table` · one `tables[]` entry with activity rows × participant columns and R/A/C/I in the cells (exactly one A per row); the legend goes in the table `title`.
+Model template: `assets/templates/H1.json` · Layout template: `grid_table` · one `tables[]` entry with activity rows × participant columns and R/A/C/I in the cells (one A per row by default; a shared A needs a resolution note); the legend goes in the table `title`.
 
 ## Sources {#sources}
 <!-- skill: omit -->

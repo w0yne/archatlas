@@ -3,20 +3,18 @@ code: G2
 slug: cloud-infrastructure-architecture
 family: G
 names:
-  en: Cloud Infrastructure Architecture
+  en: Cloud infrastructure architecture
   zh: 云基础设施架构图
   aliases:
-    en: [cloud solution architecture, cloud architecture diagram, provider-specific infrastructure view, cloud reference architecture]
-    zh: [云解决方案架构图, 云服务架构图, 云架构图, 云参考架构]
-question: "哪些云能力实现了该工作负载，又是哪些取舍让这种编排符合其需求？"
-audiences: [云与平台架构师, 运维人员, 安全评审人员, 实施合作伙伴, 技术决策者]
-level: logical
-phases: [planning, design, review]
-scope: "一个云服务商上的一个工作负载（或已说明的多云划分），展示所选服务、职责、主要请求与数据路径，以及真实的位置边界或故障边界"
-formal:
-  kind: convention
-  ref: "No single standard. Provider icon sets and provider architecture-centre guidance are conventions; Well-Architected frameworks are design-review guidance, not drawing notations"
-neighbours: [G1, G3, C3, C5, G4]
+    en: [cloud architecture diagram, cloud solution architecture, provider infrastructure view, provider-specific infrastructure view, cloud reference architecture]
+    zh: [云架构图, 云解决方案架构图, 云服务架构图, 云参考架构]
+question: 哪些云能力实现了该工作负载，又是哪些取舍让这种编排符合其需求？
+audiences: [architects, operations, security]
+levels: [physical]
+phases: [design, operate]
+scope: 一个云服务商上的一个工作负载（或已说明的多云划分），展示所选服务、职责、主要请求与数据路径，以及真实的位置边界或故障边界
+formal: {kind: convention, ref: 'No single standard. Provider icon sets and provider architecture-centre guidance are conventions; Well-Architected frameworks are design-review guidance, not drawing notations'}
+neighbours: [C3, C5, G1, G3, G4]
 status: draft
 translationOf: en/types/G2-cloud-infrastructure-architecture.md
 sourceRev: 674f366

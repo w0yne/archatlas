@@ -3,20 +3,18 @@ code: E4
 slug: swimlane-cross-functional
 family: E
 names:
-  en: Swimlane / Cross-functional Flowchart
-  zh: 泳道流程图
+  en: Swimlane or cross-functional flowchart
+  zh: 泳道流程图（跨职能流程图）
   aliases:
-    en: [swimlane diagram, swim-lane flowchart, cross-functional flowchart, Rummler-Brache diagram, functional flowchart, functional bands (Visio 2007)]
-    zh: [泳道图, 跨职能流程图, 跨部门流程图, 职责流程图]
-question: "在这个流程中，每一步由哪个角色或系统执行？工作或信息在哪里从一方传递到另一方？"
-audiences: [流程负责人, 业务分析师, 开发人员, 测试人员, 运维人员]
-level: logical
-phases: [discovery, design, review]
-scope: "一个从触发到结果的流程，最多约 6 条泳道、20 个步骤，只画主成功路径"
-formal:
-  kind: convention
-  ref: "Informal cross-functional flowchart (Rummler-Brache tradition); formal equivalents are BPMN 2.0.2 pools and lanes and UML 2.5.1 activity partitions"
-neighbours: [A5, E1, E2, A6, C3]
+    en: [cross-functional flowchart, swimlane flowchart, Rummler-Brache diagram, swim-lane flowchart, functional flowchart, functional bands (Visio 2007)]
+    zh: [跨职能流程图, 泳道流程图, 跨部门流程图, 职责流程图]
+question: 在这个流程中，每一步由哪个角色或系统执行？工作或信息在哪里从一方传递到另一方？
+audiences: [developers, operations, business]
+levels: [logical]
+phases: [design, operate]
+scope: 一个从触发到结果的流程，最多约 6 条泳道、20 个步骤，只画主成功路径
+formal: {kind: convention, ref: Informal cross-functional flowchart (Rummler-Brache tradition); formal equivalents are BPMN 2.0.2 pools and lanes and UML 2.5.1 activity partitions}
+neighbours: [A5, A6, A9, E1, E2, H1]
 status: draft
 translationOf: en/types/E4-swimlane-cross-functional.md
 sourceRev: 674f366
@@ -52,6 +50,8 @@ reviewed: false
   - 泳道只是附带、逻辑才是重点时，选 **E2 活动图**；带分区的 E2 在形式上就是同一种图。
   - 客户情绪和触点重要时，选 **A6 旅程图**（它有自己的可见线）。
   - 表达静态结构而非流程时，选 **C3 容器图**。
+  - 问题是步骤之间的时间损耗（处理时间与等待时间），而不是每一步由谁完成时，选 **A9 精益价值流图**。
+  - 问题是每项活动由谁执行、谁最终负责、咨询谁、告知谁，与先后顺序无关时，选 **H1 RACI 责任矩阵**。
 
 ## 表示法与元素 {#notation}
 <!-- skill: condense (bullets, ≤15 lines) -->

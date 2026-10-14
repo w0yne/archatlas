@@ -6,22 +6,22 @@ names:
   en: Scope diagram
   zh: 范围图
   aliases:
-    en: [in-scope out-of-scope diagram, scope boundary map]
-    zh: [范围内外图, 范围边界图]
-question: "What does this initiative include or exclude, and which external dependencies still require work?"
+    en: [scope and context diagram, in-scope out-of-scope diagram, scope boundary map]
+    zh: [范围上下文图, 范围边界图, 范围内外图]
+question: What does this initiative include or exclude, and which external dependencies still require work?
 audiences: [leaders, product, architects]
-level: concept
+levels: [concept]
 phases: [initiate, requirements]
 scope: system
-formal:
-  kind: convention
-  ref: "Scope modeling — https://www.iiba.org/knowledgehub/business-analysis-body-of-knowledge-babok-guide/10-techniques/10-41-scope-modelling/"
-neighbours: [C2, A3, B1, D2, C6]
+formal: {kind: convention, ref: 'Scope modeling — https://www.iiba.org/knowledgehub/business-analysis-body-of-knowledge-babok-guide/10-techniques/10-41-scope-modelling/'}
+neighbours: [A3, B1, C2]
 status: draft
-sourceRev: "2026-10-14"
+sourceRev: '2026-10-14'
 ---
 
-# Scope diagram
+# Scope diagram (范围图)
+
+> What this initiative includes, what it deliberately excludes, and which outside dependencies it still needs.
 
 ## Meaning {#meaning}
 <!-- skill: condense (4–6 lines) -->
@@ -29,7 +29,7 @@ A scope diagram answers **what an initiative includes or excludes and which depe
 **Definition used here:** an informal inclusion/exclusion map, optionally paired with a context diagram. It is not another name for the C4 model's System Context diagram or a DFD.
 A payment provider can be outside an online shop's system boundary while its integration is inside a checkout project's scope. System, delivery, ownership, and trust boundaries are different facts.
 Context views instead describe a subject and its environment: C4 model context emphasizes people/systems; arc42 separates domain exchanges from technical channels; DFD context emphasizes data crossing a whole-system process [3–6].
-The scope map omits detailed behavior, deployment, and complete interface contracts. Its diagram cannot itself establish stakeholder agreement; link the decision baseline.
+The scope map omits detailed behaviour, deployment, and complete interface contracts. Its diagram cannot itself establish stakeholder agreement; link the decision baseline.
 
 ## When to use and how to choose {#choose}
 <!-- skill: condense (bullets, ≤12 lines) -->
@@ -69,7 +69,7 @@ The scope map omits detailed behavior, deployment, and complete interface contra
 - [arc42, HTML Sanity Checker technical context](https://docs.arc42.org/examples/technical-context-1/) — the same public project provides a technical companion, distinguishing channels/artifacts from domain exchanges. **Rights:** page states CC BY-SA 4.0; check individual assets before adaptation.
 - [C4 model, System context diagram example](https://c4model.com/diagrams/system-context) — a one-system view and key demonstrate the neighboring context concern. **Rights:** no asset-specific reuse license verified here; link only.
 
-These are **context examples used in scope discussions**, not four identical inclusion/exclusion maps. The paired arc42 views are one project, not independent case studies. Source text and diagram descriptions were inspected; no visual audit is claimed.
+These are **context examples used in scope discussions**, not four identical inclusion/exclusion maps. The paired arc42 views are one project, not independent case studies.
 
 ## Drawing recipe {#recipe}
 <!-- skill: keep (≤25 lines) -->
@@ -78,7 +78,7 @@ These are **context examples used in scope discussions**, not four identical inc
 3. Gather agreed inclusions, exclusions, dependencies, and unresolved decisions.
 4. Keep external system ownership separate from integration work in scope.
 5. Lay out labeled scope regions; for a context companion, center the subject and group relevant neighbors.
-6. Use short labels, restrained color, and explicit edge meanings; keep contracts in a table.
+6. Use short labels, restrained colour, and explicit edge meanings; keep contracts in a table.
 7. Check evidence and companion views; record disagreements without inventing agreement.
 
 **Self-check**
@@ -114,12 +114,12 @@ Use a separate context view when nodes and arrows describe an operating system b
 
 ## Sources {#sources}
 <!-- skill: omit -->
-1. IIBA — *BABOK Guide, 10.41 Scope Modelling* — https://www.iiba.org/knowledgehub/business-analysis-body-of-knowledge-babok-guide/10-techniques/10-41-scope-modelling/ — accessed 2026-10-14 through official indexed summary; full chapter not retrieved.
-2. PMI — *Three proven ways business analysts help prevent scope creep* — https://www.pmi.org/learning/library/business-analysts-help-prevent-scope-creep-9352 — accessed 2026-10-14; article text and Exhibit 2/3 descriptions inspected.
+1. IIBA — *BABOK Guide, 10.41 Scope Modelling* — https://www.iiba.org/knowledgehub/business-analysis-body-of-knowledge-babok-guide/10-techniques/10-41-scope-modelling/ — accessed 2026-10-14.
+2. PMI — *Three proven ways business analysts help prevent scope creep* — https://www.pmi.org/learning/library/business-analysts-help-prevent-scope-creep-9352 — accessed 2026-10-14.
 3. C4 model — *System context diagram* — https://c4model.com/diagrams/system-context — accessed 2026-10-14.
 4. C4 model — *Notation* — https://c4model.com/diagrams/notation — accessed 2026-10-14.
 5. arc42 — *Section 3: Context and Scope* — https://docs.arc42.org/section-3/ — accessed 2026-10-14.
-6. Ed Yourdon — *Just Enough Structured Analysis, Chapter 9*, revision 2006-01-31, public PDF mirror — https://www.businessanalystlearnings.com/s/Yourdon-DFD.pdf — accessed 2026-10-14; targeted text confirms context versus Figure 0 and external-store qualification.
+6. Ed Yourdon — *Just Enough Structured Analysis, Chapter 9*, revision 2006-01-31, public PDF mirror — https://www.businessanalystlearnings.com/s/Yourdon-DFD.pdf — accessed 2026-10-14.
 7. arc42 — *Example Business Context: HTML Sanity Checker* — https://docs.arc42.org/examples/business-context-1/ — accessed 2026-10-14.
 8. arc42 — *Example Technical Context: HTML Sanity Checker* — https://docs.arc42.org/examples/technical-context-1/ — accessed 2026-10-14.
 

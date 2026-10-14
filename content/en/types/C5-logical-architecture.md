@@ -3,20 +3,18 @@ code: C5
 slug: logical-architecture
 family: C
 names:
-  en: Logical Architecture Diagram
+  en: Logical architecture diagram
   zh: 逻辑架构图
   aliases:
-    en: [logical view, functional view, building block view (level 1), logical application architecture, technology-neutral component diagram]
-    zh: [逻辑视图, 功能视图, 逻辑组件图]
-question: "Which technology-neutral building blocks must the system have, what is each responsible for, and through which named interfaces do they depend on each other and on external capabilities?"
-audiences: [solution architects, developers, tech leads, product owners, reviewers of build-vs-buy options]
-level: logical
-phases: [planning, design, review]
-scope: "One system or one solution, decomposed into responsibility blocks (one level, one page)."
-formal:
-  kind: convention
-  ref: "none (no graphical standard); closest definitions: Rozanski & Woods Functional viewpoint, arc42 §5 building block view, TOGAF 9.x Logical Application Component"
-neighbours: [A7, C1, C2, C3, C4, C6, C7, C8, G1, I1]
+    en: [logical view, logical building-block view, technology-neutral component diagram, functional view, building block view (level 1), logical application architecture]
+    zh: [逻辑视图, 逻辑构件视图, 功能视图, 逻辑组件图]
+question: Which technology-neutral building blocks must the system have, what is each responsible for, and through which named interfaces do they depend on each other and on external capabilities?
+audiences: [architects, product, developers]
+levels: [logical]
+phases: [design]
+scope: One system or one solution, decomposed into responsibility blocks (one level, one page).
+formal: {kind: convention, ref: 'none (no graphical standard); closest definitions: Rozanski & Woods Functional viewpoint, arc42 §5 building block view, TOGAF 9.x Logical Application Component'}
+neighbours: [A7, B3, C1, C3, C4, C6, C7, C8, G2, I1]
 status: draft
 ---
 
@@ -39,10 +37,20 @@ A logical architecture diagram answers: *which blocks must exist, what does each
 
 ## When to use and how to choose {#choose}
 <!-- skill: condense (bullets, ≤12 lines) -->
+<!-- skill-text
+- **Audience:** solution architects, developers, tech leads, product owners, reviewers of build/buy options; not executives (A7, C1) or operators (G1).
+- **Scenarios:** compare technology options on one logical view; assign each requirement to one block; split team ownership; answer "where does this responsibility live?".
+- **When not:** hosts or zones (G1/G2); technology fixed and readers are developers (C3/C4); call order (E1); boxes that only list features (A1 abilities, B3 features).
+- **vs neighbours:**
+  - **A7** for coarse business blocks; **C3** for runnable units with technology; **C4** inside one container with technology labels.
+  - **C6** for protocol, authentication and SLA per interface; **C8** for a dependency rule inside code; **G1** for where things run.
+  - **B3** for product features to build and prioritise; **C7** for domain-model boundaries and their relationships.
+  - **I1** when the logical view is one of several coordinated views (Kruchten's logical view is class-level).
+-->
 
 - **Audience:** solution architects, developers and tech leads, product owners (requirement coverage), reviewers comparing build/buy options. Not for executives (use A7 or C1) or operators (use G1).
 - **Classic scenarios:** (1) compare technology or vendor options by mapping each onto one logical view; (2) turn requirements into blocks so each lands on exactly one owner; (3) split work and ownership between teams along block boundaries; (4) answer "what does the system consist of?" after a context diagram has been shown; (5) review a partner proposal for gaps and overlaps.
-- **When not to use:** the audience needs hosts, scaling or zones (G1/G2); technology is already fixed and readers are developers (C3/C4); you need call order or error paths (E1); the system is one small process (a short module list is enough [4]); the boxes would only list features (that is a capability map, A1).
+- **When not to use:** the audience needs hosts, scaling or zones (G1/G2); technology is already fixed and readers are developers (C3/C4); you need call order or error paths (E1); the system is one small process (a short module list is enough [4]); the boxes would only list features (business abilities belong in A1, product features in B3).
 - **vs neighbours:**
   - Choose **A7 Conceptual architecture** when the reader wants coarse, business-level blocks without interfaces.
   - Choose **C3 Container diagram** when runnable units, their technology and protocols matter; the C4 model requires a technology per container [10].
@@ -50,6 +58,9 @@ A logical architecture diagram answers: *which blocks must exist, what does each
   - Choose **C6 Integration/interface** when protocol, authentication and SLA of each interface matter.
   - Choose **C8 Layered architecture** when the point is an allowed-dependency *rule* inside code; a C5 may be grouped in bands, but states no such rule.
   - Choose **G1 Deployment** when the question is where things run.
+  - Choose **B3 Feature tree** when the list is product features to build and prioritise; C5 groups responsibilities and interfaces.
+  - Choose **C7 Bounded context map** when the boundaries are domain models with their own language and the relationships between them (upstream/downstream, translation) matter.
+  - Choose **I1 4+1 view model** when the logical view is one of several coordinated views; Kruchten's logical view is class-level, finer than C5.
 
 ## Notation and elements {#notation}
 <!-- skill: condense (bullets, ≤15 lines) -->

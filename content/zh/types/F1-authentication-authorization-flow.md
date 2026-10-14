@@ -3,20 +3,18 @@ code: F1
 slug: authentication-authorization-flow
 family: F
 names:
-  en: Authentication and Authorization Flow
+  en: Authentication and authorization flow
   zh: 认证与授权流程图
   aliases:
-    en: [identity flow, sign-in flow, SSO flow, delegated API access flow]
+    en: [identity flow, sign-in flow, SSO flow, OAuth flow, OIDC flow, delegated access flow, delegated API access flow]
     zh: [身份认证流程图, 统一登录流程图, 委托访问流程图]
-question: "谁向谁证明了哪个身份，传递了什么授权，访问究竟在哪里被允许或拒绝？"
-audiences: [解决方案架构师, 身份工程师, 应用开发人员, 安全评审人员, 业务负责人（通俗版）]
-level: logical
-phases: [design, review, onboarding]
-scope: "一个场景（浏览器登录、服务代表用户调用，或纯机器调用）和一个受保护操作"
-formal:
-  kind: convention
-  ref: "A concern-based diagram family, not a notation. Drawn as a UML 2.5.1 sequence diagram when UML is claimed; protocol semantics come from OAuth 2.0 (RFC 6749), PKCE (RFC 7636), the OAuth security BCP (RFC 9700) and OpenID Connect Core 1.0"
-neighbours: [E1, F3, F2, C2, D2]
+question: 谁向谁证明了哪个身份，传递了什么授权，访问究竟在哪里被允许或拒绝？
+audiences: [security, architects, developers]
+levels: [logical]
+phases: [design, build]
+scope: 一个场景（浏览器登录、服务代表用户调用，或纯机器调用）和一个受保护操作
+formal: {kind: convention, ref: 'A concern-based diagram family, not a notation. Drawn as a UML 2.5.1 sequence diagram when UML is claimed; protocol semantics come from OAuth 2.0 (RFC 6749), PKCE (RFC 7636), the OAuth security BCP (RFC 9700) and OpenID Connect Core 1.0'}
+neighbours: [E1, F2, F3]
 status: draft
 translationOf: en/types/F1-authentication-authorization-flow.md
 sourceRev: 674f366

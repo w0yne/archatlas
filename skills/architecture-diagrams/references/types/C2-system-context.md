@@ -1,7 +1,7 @@
 # System Context Diagram (系统上下文图)
 <!-- Generated from content/en/types/C2-system-context.md by tools/build_skill_refs.py. Do not edit. -->
 > What is this system, who uses it, and which other systems does it depend on or exchange with?
-Scope: One software system as a black box, with the people and the external systems directly connected to it. Neighbours: C1, C3, B4, A3, A7, D2, C6, F2, G1.
+Scope: One software system as a black box, with the people and the external systems directly connected to it. Neighbours: A3, A7, B4, C1, C3, C6, D2.
 
 ## Meaning
 It answers: *what is this system, who uses it, and which other systems does it depend on or exchange with?* The concern is scope and boundary: an agreement on where the system stops, readable by technical and non-technical people alike. It is Level 1 of the C4 model, created by Simon Brown, which is a notation-independent method, not a versioned standard; the same idea is the structured-analysis context diagram (DFD level 0), the systems-engineering context of a system of interest and arc42 section 3 "Context and Scope". ISO/IEC/IEEE 42010 prescribes no notation; this is a view under a context viewpoint. It deliberately leaves out everything inside the box, technology choices, protocols and deployment, and every system not directly connected.
@@ -14,10 +14,11 @@ It answers: *what is this system, who uses it, and which other systems does it d
 - **vs neighbours:**
   - Choose **C1** when many systems at enterprise or department scope matter; the C4 model System Landscape diagram is the bridge, "a system context diagram without a specific focus".
   - Choose **C3** as soon as you need applications, data stores or technology inside the box.
-  - Choose **B4** (variant "context with scope exclusions") when negotiating what is in and out of scope.
+  - Choose **B4** (a separate scope diagram with in- and out-of-scope regions) when negotiating what is in and out of scope.
   - Choose **D2** when data flows and stores are the question: DFD lines name data, C2 lines name intent.
   - Choose **C6** for protocol, sync/async, authentication and SLA per interface (arc42 "technical context").
   - Choose **A3** for organisations, roles and stakeholder interest rather than systems.
+  - Choose **A7** when leaders need the solution's main blocks in business terms rather than the system's users and neighbours.
 
 ## Notation and elements
 - **Required:** title with type and scope ("System Context diagram for `<System>`"); exactly **one** system in scope, typed and with a one-line description; **people** as roles, not named individuals; **external systems** directly connected, typed and described; **relationships** with one direction each and an intent label (verb phrase) that agrees with the direction; a **legend** for shapes, colours, borders, line styles and arrowheads; acronyms explained.

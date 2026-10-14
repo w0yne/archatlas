@@ -1,7 +1,7 @@
 # Activity Diagram / Flowchart (活动图 / 流程图)
 <!-- Generated from content/en/types/E2-activity-flowchart.md by tools/build_skill_refs.py. Do not edit. -->
 > What steps does this one behaviour go through, where does it decide, where does it run in parallel, and where does it end?
-Scope: One behaviour (a use case, request handler, job or procedure), about 8–20 nodes, optionally with up to 4–5 partitions Neighbours: E1, E3, E4, A5, D2.
+Scope: One behaviour (a use case, request handler, job or procedure), about 8–20 nodes, optionally with up to 4–5 partitions Neighbours: A5, D2, E1, E3, E4.
 
 ## Meaning
 - **Question:** what steps does this behaviour go through, where does it decide, where does it run in parallel, and where does it end?

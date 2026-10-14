@@ -3,20 +3,18 @@ code: D3
 slug: data-lineage-ownership
 family: D
 names:
-  en: Data Lineage and Ownership Map
-  zh: 数据血缘与数据归属图
+  en: Data lineage and ownership map
+  zh: 数据血缘与归属图
   aliases:
-    en: [data lineage graph, lineage DAG, data provenance graph, data map, data ownership map, data domain map, data stewardship map]
-    zh: [数据血缘图, 血缘关系图, 数据溯源图, 数据地图, 数据资产地图, 数据归属图, 数据责任图, 数据分布图]
-question: "Where did this dataset or answer come from, what breaks downstream if it changes, and who is accountable for it?"
-audiences: [data governance leads, data owners and stewards, privacy and compliance officers, data engineers, analytics consumers, architects]
-level: logical
-phases: [design, operation, review]
-scope: "One anchor (a dataset, report or answer) with a bounded upstream or downstream trace, about 20 nodes, at dataset granularity; ownership shown as an overlay"
-formal:
-  kind: convention
-  ref: "No graphical standard. Runtime lineage metadata is standardised by OpenLineage (Job, Run, Dataset, facets); ownership roles follow data-governance practice (owner, steward)"
-neighbours: [D2, D1, H1, F3, E2]
+    en: [data lineage diagram, lineage graph, data ownership map, data asset map, data lineage graph, lineage DAG, data provenance graph, data domain map, data stewardship map]
+    zh: [数据血缘图, 数据归属图, 数据资产地图, 血缘关系图, 数据溯源图, 数据责任图, 数据分布图]
+question: Where did this dataset or answer come from, what breaks downstream if it changes, and who is accountable for it?
+audiences: [architects, security, business]
+levels: [logical]
+phases: [design, operate]
+scope: One anchor (a dataset, report or answer) with a bounded upstream or downstream trace, about 20 nodes, at dataset granularity; ownership shown as an overlay
+formal: {kind: convention, ref: 'No graphical standard. Runtime lineage metadata is standardised by OpenLineage (Job, Run, Dataset, facets); ownership roles follow data-governance practice (owner, steward)'}
+neighbours: [D1, D2, H1]
 status: draft
 ---
 
@@ -41,8 +39,9 @@ status: draft
 - **vs neighbours:**
   - **D2 Data Flow Diagram** for designed flow; D3 for observed or derived provenance.
   - **H1 RACI Matrix** if ownership is the only question.
-  - **F3 Access Control Model** for who may read or write; ownership is accountability, not permission.
+  - **F3 Access-control model** for who may read or write; ownership is accountability, not permission.
   - **E2 Activity Flowchart** for job ordering and triggers.
+  - Choose **D1 Entity-relationship diagram** for the structure of the entities themselves; D3 shows where datasets come from and who owns them.
 -->
 - **Audience:** data governance, owners and stewards, privacy and compliance officers, data engineers, analytics consumers, architects.
 - **Classic scenarios:**
@@ -55,8 +54,9 @@ status: draft
 - **vs neighbours:**
   - Choose **D2 Data Flow Diagram** for how data is designed to flow; choose D3 for observed or derived provenance.
   - Choose **H1 RACI Matrix** if ownership is the only question; D3 is the right place when owners must sit on a flow.
-  - Choose **F3 Access Control Model** for who may read or write; ownership is accountability, not permission.
+  - Choose **F3 Access-control model** for who may read or write; ownership is accountability, not permission.
   - Choose **E2 Activity Flowchart** or the orchestrator's DAG for job ordering and triggers.
+  - Choose **D1 Entity-relationship diagram** for the structure of the entities themselves; D3 shows where datasets come from and who owns them.
 
 ## Notation and elements {#notation}
 <!-- skill: condense (bullets, ≤15 lines) -->

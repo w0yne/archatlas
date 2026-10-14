@@ -25,6 +25,7 @@ test:
 	$(PYTHON) -m pytest -q
 
 generated:
+	$(PYTHON) tools/check_front_matter.py
 	$(PYTHON) tools/build_selection.py --check
 	$(PYTHON) tools/build_skill_refs.py --check
 	$(PYTHON) tools/build_samples.py --check

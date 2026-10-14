@@ -3,20 +3,18 @@ code: D1
 slug: entity-relationship
 family: D
 names:
-  en: Entity-Relationship Diagram
+  en: Entity-relationship diagram
   zh: 实体关系图
   aliases:
-    en: [ERD, ER diagram, data model diagram, conceptual data model, logical data model, information model, domain model (UML class style), crow's foot diagram]
-    zh: [E-R 图, ER 图, 数据模型图, 概念数据模型, 逻辑数据模型, 信息模型, 领域模型]
-question: "Which business things does the system keep information about, how are they related, and how many of each can take part in a relationship?"
-audiences: [architects, developers, data and business analysts, data governance leads, product owners (conceptual level only)]
-level: logical
-phases: [design, implementation, review]
-scope: "One subject area or bounded context, about 5-15 entities, drawn at one stated level (conceptual or logical)"
-formal:
-  kind: convention
-  ref: "Chen 1976; crow's foot (Everest 1976), Barker, IDEF1X (FIPS PUB 184, 1993) and UML 2.5.1 class diagrams are separate defined notations; the conceptual/logical/physical levels are a modelling convention"
-neighbours: [D2, D3, E3, C7, F3]
+    en: [ER diagram, ERD, data model diagram, conceptual data model, logical data model, information model, domain model (UML class style), crow's foot diagram]
+    zh: [ER 图, 数据模型图, 概念数据模型, 逻辑数据模型, E-R 图, 信息模型, 领域模型]
+question: Which business things does the system keep information about, how are they related, and how many of each can take part in a relationship?
+audiences: [architects, developers, business]
+levels: [concept, logical]
+phases: [design, build]
+scope: One subject area or bounded context, about 5-15 entities, drawn at one stated level (conceptual or logical)
+formal: {kind: method, ref: 'Chen 1976; crow''s foot (Everest 1976), Barker, IDEF1X (FIPS PUB 184, 1993) and UML 2.5.1 class diagrams are separate defined notations; the conceptual/logical/physical levels are a modelling convention'}
+neighbours: [D2, D3, E3, F3]
 status: draft
 ---
 
@@ -42,7 +40,8 @@ status: draft
   - **D2 Data Flow Diagram** when data is moving; D1 shows structure.
   - **E3 State Machine** for one entity's lifecycle; a common pair is D1 plus one E3 per entity with a status field.
   - **C7 Bounded Context Map** for how contexts relate; draw one D1 per context, not one enterprise ER.
-  - **F3 Access Control Model** for permissions.
+  - **F3 Access-control model** for permissions.
+  - Choose **D3 Data lineage and ownership map** when the question is where data comes from, what derives from it and who owns it, rather than how entities relate.
 -->
 - **Audience:** architects, developers, analysts and governance leads; product owners and business experts for the conceptual level only.
 - **Classic scenarios:**
@@ -56,7 +55,8 @@ status: draft
   - Choose **D2 Data Flow Diagram** when data is *moving*; D1 shows data *structure*.
   - Choose **E3 State Machine** for one entity's lifecycle. A common pair: D1 plus one E3 per entity with a status field.
   - Choose **C7 Bounded Context Map** to show how contexts relate; draw one D1 per context, not one enterprise-wide ER.
-  - Choose **F3 Access Control Model** for permissions; the chain user-role-permission-resource is a small ER.
+  - Choose **F3 Access-control model** for permissions; the chain user-role-permission-resource is a small ER.
+  - Choose **D3 Data lineage and ownership map** when the question is where data comes from, what derives from it and who owns it, rather than how entities relate.
 
 ## Notation and elements {#notation}
 <!-- skill: condense (bullets, ≤15 lines) -->
@@ -78,7 +78,7 @@ status: draft
 2. **One subject area per diagram.** Slice by bounded context or business function; reference shared entities instead of duplicating them.
 3. **Model with domain experts** and read every relationship aloud ("Each Order is placed by exactly one Customer").
 4. **Show optionality** (minimum 0 vs 1); it holds business rules that would otherwise hide in code.
-5. **Resolve N:M only at the logical level,** naming the associative entity after the real thing (`Enrolment`, not `StudentCourse`). Note cross-cutting patterns (tenant key, soft delete, audit) once instead of on every entity.
+5. **Resolve N:M only at the logical level,** naming the associative entity after the real thing (`OrderLine`, not `OrderProduct`). Note cross-cutting patterns (tenant key, soft delete, audit) once instead of on every entity.
 
 ### Anti-patterns
 1. **The database dump:** 100+ tables with all columns; comprehensiveness is the enemy of comprehensibility [15].

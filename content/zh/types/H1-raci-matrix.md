@@ -6,17 +6,15 @@ names:
   en: RACI matrix
   zh: RACI 责任矩阵
   aliases:
-    en: [RACI chart, responsibility assignment matrix]
+    en: [RACI chart, responsibility assignment matrix, RASCI matrix]
     zh: [RACI 职责分配矩阵, 责任分配矩阵]
-question: "对于每项活动，谁执行工作、对结果负责、提供意见，以及接收进展通知？"
+question: 对于每项活动，谁执行工作、对结果负责、提供意见，以及接收进展通知？
 audiences: [leaders, business, operations]
-level: concept
+levels: [strategy, concept]
 phases: [initiate, operate]
-scope: "一项举措或一项服务内各项活动的职责分配。"
-formal:
-  kind: convention
-  ref: "职责分配实践；没有统一版本的图形标准。Atlassian，Understanding and using RACI charts：https://www.atlassian.com/work-management/project-management/raci-chart"
-neighbours: [H3, E4, D3, F3]
+scope: 一项举措或一项服务内各项活动的职责分配。
+formal: {kind: convention, ref: '职责分配实践；没有统一版本的图形标准。Atlassian，Understanding and using RACI charts：https://www.atlassian.com/work-management/project-management/raci-chart'}
+neighbours: [A4, D3, E4, F3, H2, H3]
 status: draft
 sourceRev: a082cec
 translationOf: en/types/H1-raci-matrix.md
@@ -24,6 +22,8 @@ reviewed: false
 ---
 
 # RACI 责任矩阵
+
+> 活动 × 参与方的网格，逐项说明谁执行、谁最终负责、咨询谁、告知谁。
 
 ## 含义 {#meaning}
 <!-- skill: condense (4–6 lines) -->
@@ -40,8 +40,11 @@ RACI 没有统一版本的表示法。职责分配矩阵是更广泛的类别；
 - **不适用：** 简单任务清单已能明确责任，或真正需要回答的是时间安排、依赖关系或技术访问权限问题 [1][4]。
 - **H3 干系人地图：** 需要确定沟通参与的优先级时使用；RACI 则为每项活动分配职责。
 - **E4 泳道：** 需要表达顺序和交接时使用；可将其中的活动关联到矩阵行。
-- **F3 访问控制模型：** 需要说明允许执行的操作时使用。评审权限不等于业务上的最终责任；**D3** 则关注数据血缘与归属。
+- **F3 访问控制模型：** 需要说明允许执行的操作时使用；评审权限不等于业务上的最终责任。
+- **D3 数据血缘与归属图：** 需要说明某个数据集归谁所有、由谁管理时使用；RACI 为活动分配职责。
 - **DACI：** 需要组织某项具体决策时使用；决策产生的交付职责可用 RACI 表达 [3]。
+- **A4 业务场景矩阵：** 需要说明哪些角色参与哪些业务活动时使用；RACI 为每项活动分配职责，不表达覆盖范围。
+- **H2 可观测性视图：** 需要说明事故如何被发现、如何分派时使用；RACI 说明由谁负责响应。
 
 ## 表示法与元素 {#notation}
 <!-- skill: condense (bullets, ≤15 lines) -->

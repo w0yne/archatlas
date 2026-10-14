@@ -3,20 +3,18 @@ code: C5
 slug: logical-architecture
 family: C
 names:
-  en: Logical Architecture Diagram
+  en: Logical architecture diagram
   zh: 逻辑架构图
   aliases:
-    en: [logical view, functional view, building block view (level 1), logical application architecture, technology-neutral component diagram]
-    zh: [逻辑视图, 功能视图, 逻辑组件图]
-question: "系统必须具备哪些与技术无关的构建块？每个构建块负责什么？它们通过哪些具名接口相互依赖，又如何依赖外部能力？"
-audiences: [解决方案架构师, 开发人员, 技术负责人, 产品负责人, 自建与采购方案评审人员]
-level: logical
-phases: [planning, design, review]
-scope: "一个系统或一个解决方案，分解为若干职责块（一个层级，一页）。"
-formal:
-  kind: convention
-  ref: "none (no graphical standard); closest definitions: Rozanski & Woods Functional viewpoint, arc42 §5 building block view, TOGAF 9.x Logical Application Component"
-neighbours: [A7, C1, C2, C3, C4, C6, C7, C8, G1, I1]
+    en: [logical view, logical building-block view, technology-neutral component diagram, functional view, building block view (level 1), logical application architecture]
+    zh: [逻辑视图, 逻辑构件视图, 功能视图, 逻辑组件图]
+question: 系统必须具备哪些与技术无关的构建块？每个构建块负责什么？它们通过哪些具名接口相互依赖，又如何依赖外部能力？
+audiences: [architects, product, developers]
+levels: [logical]
+phases: [design]
+scope: 一个系统或一个解决方案，分解为若干职责块（一个层级，一页）。
+formal: {kind: convention, ref: 'none (no graphical standard); closest definitions: Rozanski & Woods Functional viewpoint, arc42 §5 building block view, TOGAF 9.x Logical Application Component'}
+neighbours: [A7, B3, C1, C3, C4, C6, C7, C8, G2, I1]
 status: draft
 translationOf: en/types/C5-logical-architecture.md
 sourceRev: 6857dea
@@ -45,7 +43,7 @@ reviewed: false
 
 - **受众：** 解决方案架构师、开发人员和技术负责人、产品负责人（需求覆盖）、比较自建/采购方案的评审人员。不面向高管（用 A7 或 C1）或运维人员（用 G1）。
 - **典型场景：** (1) 把每种技术或厂商方案映射到同一张逻辑视图上进行比较；(2) 把需求转化为构建块，使每条需求恰好落到一个负责方；(3) 沿构建块边界在团队之间划分工作和归属；(4) 在展示过上下文图之后，回答“系统由什么构成？”；(5) 评审合作方的提案，找出缺口和重叠。
-- **不适用场景：** 受众需要主机、扩缩容或可用区（G1/G2）；技术已经确定且读者是开发人员（C3/C4）；需要调用顺序或错误路径（E1）；系统只是一个小进程（一份简短的模块清单就够了 [4]）；方框里只会罗列功能特性（那是能力地图，A1）。
+- **不适用场景：** 受众需要主机、扩缩容或可用区（G1/G2）；技术已经确定且读者是开发人员（C3/C4）；需要调用顺序或错误路径（E1）；系统只是一个小进程（一份简短的模块清单就够了 [4]）；方框里只会罗列功能特性（业务能力应画成 A1，产品功能应画成 B3）。
 - **与相邻类型的区别：**
   - 当读者想要粗粒度、业务层面且不含接口的构建块时，选 **A7 概念架构**。
   - 当可运行单元及其技术和协议很重要时，选 **C3 容器图**；C4 model 要求每个容器都标注技术 [10]。
@@ -53,6 +51,9 @@ reviewed: false
   - 当每个接口的协议、认证和 SLA 很重要时，选 **C6 集成/接口**。
   - 当重点是代码内部允许依赖的*规则*时，选 **C8 分层架构**；C5 可以按带状分组，但不声明这样的规则。
   - 当问题是各部分运行在哪里时，选 **G1 部署**。
+  - 要列出的是待建设、待排优先级的产品功能时，选 **B3 功能树**；C5 组织的是职责与接口。
+  - 边界是各有自己术语的领域模型，且它们之间的关系（上下游、转换）很重要时，选 **C7 限界上下文映射**。
+  - 逻辑视图只是多个协调视图之一时，选 **I1 4+1 视图模型**；Kruchten 的逻辑视图是类级别的，比 C5 更细。
 
 ## 表示法与元素 {#notation}
 <!-- skill: condense (bullets, ≤15 lines) -->

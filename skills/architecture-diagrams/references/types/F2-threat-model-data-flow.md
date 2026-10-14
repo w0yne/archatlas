@@ -1,7 +1,7 @@
 # Threat-Model Data-Flow Diagram (威胁建模数据流图)
 <!-- Generated from content/en/types/F2-threat-model-data-flow.md by tools/build_skill_refs.py. Do not edit. -->
 > What data crosses which changes of authority or trust assumptions, and where could security properties fail?
-Scope: One feature or subsystem, with its assets, entry points and trust boundaries; linked to a separate threat register Neighbours: D2, F1, F3, G3, C3.
+Scope: One feature or subsystem, with its assets, entry points and trust boundaries; linked to a separate threat register Neighbours: C3, C6, D2, F1, F3, G3.
 
 ## Meaning
 - **Question:** what data crosses which changes of authority or trust assumptions, and where could security properties fail? A boundary can separate organisations, privilege levels, tenants, processes, or browser and server authority on the same network. A private subnet does not prove that everything inside it is trusted.
@@ -20,6 +20,7 @@ Scope: One feature or subsystem, with its assets, entry points and trust boundar
   - **F3** for permission rules.
   - **G3** for routing and connectivity.
   - **C3** for the structure this DFD is usually derived from.
+  - Choose **C6 Integration and interface diagram** for the full interface inventory; its authentication and data-classification columns feed the trust-boundary analysis here.
 
 ## Notation and elements
 - **Formal or informal:** informal but widely taught. Use one recognisable DFD symbol set or a declared custom legend-.
@@ -46,7 +47,7 @@ Scope: One feature or subsystem, with its assets, entry points and trust boundar
 ### Anti-patterns
 1. **A boundary drawn around the whole system** or around each cloud component, which explains nothing.
 2. **Unlabelled arrows** (no data name) or arrows used for sequence or dependency.
-3. **Omitting internal flows mechanically** because they cross no boundary.
+3. **Omitting internal flows mechanically** because they cross no boundary, or removing refusal and abuse paths to tidy the figure; in a security view they are often the point.
 4. **Threat text crammed onto the diagram** so that it becomes unreadable and unowned.
 5. **Presenting the picture as a completed assessment,** or showing proposed controls as if they were in place.
 
@@ -56,7 +57,7 @@ Scope: One feature or subsystem, with its assets, entry points and trust boundar
 3. Draw the smallest model that keeps those distinctions; name every payload on its arrow.
 4. Layout: external entities on the outer edges, processes in the middle, stores at the bottom; flow direction left to right. Boundaries are dashed containers with a short label of the trust change.
 5. Inspect every boundary crossing and each important internal flow; keep or justify each one.
-6. Assign stable IDs (E1, P1, S1, F1 style) and emit a threat/mitigation register as a separate table.
+6. Assign stable IDs (EE-1, P-1, DS-1, DF-1 style, so they never collide with catalogue codes) and emit a threat/mitigation register as a separate table.
 7. Colour: neutral fills; one accent for boundaries; a second marker only for "proposed / unverified". Keep symbols from one DFD set, with a legend.
 8. Review with a system expert; label gaps instead of guessing.
 

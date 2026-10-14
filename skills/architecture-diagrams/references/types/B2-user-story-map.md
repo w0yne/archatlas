@@ -1,12 +1,12 @@
-# User story map
+# User story map (用户故事地图)
 <!-- Generated from content/en/types/B2-user-story-map.md by tools/build_skill_refs.py. Do not edit. -->
 > What does the user do to reach a goal, and which coherent increments can support or test that experience?
-Scope: system Neighbours: A4, A6, B3, B1.
+Scope: system Neighbours: A4, A6, B1, B3.
 
 ## Meaning
 A story map answers **what a user does to reach a goal, and which coherent increments can support or test that experience**. It preserves the narrative context that a flat backlog can lose.
 **Definition used here:** the collaborative product-discovery and planning method associated with Jeff Patton, not a versioned graphical standard.
-The horizontal backbone follows the order in which the user's story is told; the vertical body organizes detail, alternatives, or priority. Neither axis is automatically a precise timeline.
+The horizontal backbone follows the order in which the user's story is told; the vertical body organises detail, alternatives, or priority. Neither axis is automatically a precise timeline.
 Release or experiment slices cross the activity to support a meaningful outcome. A walking skeleton, prototype, or learning experiment can be the next step; “MVP” is not a required first-line label.
 The map omits precise workflow semantics, implementation structure, detailed estimates, and commitments unless supplied separately. It is a conversation aid, not a self-contained requirements contract.
 
@@ -15,9 +15,10 @@ The map omits precise workflow semantics, implementation structure, detailed est
 - **Scenarios:** discover an online shopping experience; select a checkout prototype; slice a release into useful increments; place a support-chatbot feature within an existing journey; expose missing steps or accessibility needs.
 - **When not:** specifying exact branches/concurrency, committing a schedule, or inventorying internal modules.
 - Choose **A6 Journey map** for touchpoints, thoughts, and feelings across an experience.
-- Choose **B3 Feature tree** for capability hierarchy without narrative/release semantics.
-- Choose **B1 Use case diagram** for actor–goal relationships, or **E2 Activity/flowchart** for precise behavior.
+- Choose **B3 Feature tree** for a feature hierarchy without narrative/release semantics.
+- Choose **B1 Use case diagram** for actor–goal relationships, or **E2 Activity/flowchart** for precise behaviour.
 - A roadmap communicates strategic outcomes/timing; a sprint board tracks work state. Neither is a synonym for a story map.
+- Choose **A4 Business scenario matrix** for coverage across several roles at business-activity level; a story map tells one user's end-to-end story.
 
 ## Notation and elements
 - **Core:** target user and goal; high-level activities/tasks forming the backbone; smaller detail cards grouped underneath.
@@ -28,7 +29,7 @@ The map omits precise workflow semantics, implementation structure, detailed est
 - **Arrows:** normally unnecessary. A dependency arrow, if added, needs a separate legend and does not turn the map into a workflow.
 - **Optional:** story IDs, research references, release bands, estimates, and linked technical enablers.
 - **Multiple users:** use explicit lanes or linked maps rather than mixing incompatible narratives.
-- **Color:** reinforce card/group/slice meaning with labels; no mandatory palette, row count, or number of releases exists.
+- **Colour:** reinforce card/group/slice meaning with labels; no mandatory palette, row count, or number of releases exists.
 
 ## Best practices and anti-patterns
 - Establish the broad narrative before detailed decomposition; avoid an exhaustive first column and an empty remainder.
@@ -43,14 +44,14 @@ The map omits precise workflow semantics, implementation structure, detailed est
 3. Place comparable activities left to right, with related tasks and details beneath.
 4. Expand enough to expose alternatives, gaps, and enabling dependencies.
 5. Define vertical ordering; select an outcome or learning slice if planning delivery.
-6. Use short cards, aligned columns, labeled slices, and sparse redundant color.
+6. Use short cards, aligned columns, labeled slices, and sparse redundant colour.
 7. Walk the chosen slice end to end; keep evidence, commitments, and assumptions distinct.
 
 **Self-check**
 - [ ] User, goal, and scope are explicit.
 - [ ] The backbone forms an intelligible narrative.
 - [ ] Detail cards belong to the correct activity.
-- [ ] Vertical position and color have declared meanings.
+- [ ] Vertical position and colour have declared meanings.
 - [ ] Each planned slice has a coherent outcome or learning goal.
 - [ ] Alternatives, essential dependencies, and enabling work are considered.
 - [ ] Evidence, candidate ideas, and commitments remain distinguishable and readable.

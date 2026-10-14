@@ -6,17 +6,15 @@ names:
   en: Feature tree (functional decomposition)
   zh: 功能树（功能分解）
   aliases:
-    en: [functional decomposition, feature breakdown]
-    zh: [功能分解图, 功能特性树]
-question: "产品必须做什么？这些功能如何分解？"
-audiences: [product, developers, architects]
-level: concept
-phases: [requirements, design]
+    en: [functional decomposition, requirements breakdown structure, feature breakdown]
+    zh: [需求树, 功能分解图, 需求分解结构, 特性树, 功能特性树]
+question: 产品必须做什么？这些功能如何分解？
+audiences: [product, developers]
+levels: [concept]
+phases: [requirements]
 scope: system
-formal:
-  kind: convention
-  ref: "Functional hierarchy — https://sebokwiki.org/wiki/Logical_Architecture; variability mode uses FeatureIDE conventions"
-neighbours: [B2, B1, C5, E2]
+formal: {kind: convention, ref: 'Functional hierarchy — https://sebokwiki.org/wiki/Logical_Architecture; variability mode uses FeatureIDE conventions'}
+neighbours: [B2, C5]
 status: draft
 sourceRev: a082cec
 translationOf: en/types/B3-feature-tree.md
@@ -25,10 +23,12 @@ reviewed: false
 
 # 功能树与功能分解
 
+> 把产品功能自上而下分解到可估算的叶子，并标出优先级；不表达流程，也不表达代码结构。
+
 ## 含义 {#meaning}
 <!-- skill: condense (4–6 lines) -->
-功能层次图回答：**系统必须做什么，整体功能如何分解？** 它关注能力覆盖，而不是执行顺序或源代码结构 [1][2]。
-**本站采用的定义：** B3 默认指非正式的功能／能力分解。需求分解是相关的可追溯性模式；软件产品线的*特性模型*则是另一种可变性模式，用于定义合法的特性选择组合 [3–5]。
+功能层次图回答：**系统必须做什么，整体功能如何分解？** 它关注功能覆盖，而不是执行顺序或源代码结构 [1][2]。
+**本站采用的定义：** B3 默认指非正式的产品功能分解（业务能力属于 A1）。需求分解是相关的可追溯性模式；软件产品线的*特性模型*则是另一种可变性模式，用于定义合法的特性选择组合 [3–5]。
 网店的“履行订单”可以分解为若干功能。可配置产品的配送选项则需要选择规则和约束。普通树形结构不会让这些含义变成同一回事。
 静态层次图不表达输入／输出行为、运行顺序、物理分配，也不能证明质量要求已经满足。NASA 和 SEBoK 都描述了结合行为／接口视图开展迭代分析的方法 [1][2]。
 MoSCoW 是可选的优先级注释，不是树的语法；“Won't Have”表示*这次不做*。没有通用的深度要求，也没有“叶节点必须可估算”的统一规则 [6]。
@@ -36,13 +36,13 @@ MoSCoW 是可选的优先级注释，不是树的语法；“Won't Have”表示
 ## 何时使用与如何选择 {#choose}
 <!-- skill: condense (bullets, ≤12 lines) -->
 - **受众：** 产品分析师、系统工程师、架构师、测试人员和产品线工程师。
-- **场景：** 分解网店的整体功能；审查能力覆盖；建立上层需要与下层需求之间的追溯关系；定义网店支持的产品版本；检查可配置配送选项是否冲突。
+- **场景：** 分解网店的整体功能；审查功能覆盖；建立上层需要与下层需求之间的追溯关系；定义网店支持的产品版本；检查可配置配送选项是否冲突。
 - **何时不用：** 证明工作流正确性、容量或接口完整性；未做功能分析就列出文件夹。
 - 需要叙事／发布切片时，选择 **B2 用户故事地图**；需要行为时，选择 **E2 活动图／流程图**。
 - 需要表达相互协作的职责，而不是功能清单时，选择 **C5 逻辑架构**。
 - **WBS** 分解工作／交付物；**模块树**分解实现；两者都不自动等于功能树。
 - 当共享或横切需求使严格树形结构产生误导时，使用需求关系图或矩阵。
-- 只有当问题是合法组合，而不是能力覆盖或优先级时，才选择**可变性模式**。
+- 只有当问题是合法组合，而不是功能覆盖或优先级时，才选择**可变性模式**。
 
 ## 表示法与元素 {#notation}
 <!-- skill: condense (bullets, ≤15 lines) -->
@@ -71,11 +71,11 @@ MoSCoW 是可选的优先级注释，不是树的语法；“Won't Have”表示
 - [FeatureIDE，Hello World 教程](https://github.com/FeatureIDE/FeatureIDE/wiki/Tutorial) — 将特性模型与配置及生成的产品联系起来。**许可：** 未确认逐图许可；软件许可证并不一概授权复用 wiki 图片。
 - [FeatureIDE: Background，GraphLibrary 模型，第 7 页幻灯片](https://featureide.github.io/slides/featureide-0-background.pdf) — 分组类型加上 `Cycle ⇒ Directed`，说明跨树约束为何重要。**许可：** 未确认幻灯片图片复用许可；不要描摹。
 
-这些范例展示不同的建模模式，而不是同义概念。已核对正文和图注；不声称做过视觉审查或图片改编。
+这些范例展示不同的建模模式，而不是同义概念。
 
 ## 绘制方法 {#recipe}
 <!-- skill: keep (≤25 lines) -->
-1. 选择功能、需求、能力或可变性模式，并明确命名。
+1. 选择功能、需求或可变性模式，并明确命名。
 2. 确定根节点、边界、受众、基线和来源证据。
 3. 统一节点类型与名称，为每条父子关系提供理由。
 4. 用明确的交叉连线或表格保留共享需求和质量约束。
@@ -118,11 +118,11 @@ MoSCoW 是可选的优先级注释，不是树的语法；“Won't Have”表示
 <!-- skill: omit -->
 1. NASA — *4.3 Logical Decomposition* — https://www.nasa.gov/reference/4-3-logical-decomposition/ — 访问于 2026-10-14。
 2. SEBoK — *Logical Architecture* — https://sebokwiki.org/wiki/Logical_Architecture — 访问于 2026-10-14。
-3. Kang 等，CMU SEI — *Feature-Oriented Domain Analysis (FODA) Feasibility Study*，CMU/SEI-90-TR-021（1990）— https://www.sei.cmu.edu/library/feature-oriented-domain-analysis-foda-feasibility-study/ — 访问于 2026-10-14；已查阅机构摘要和书目信息。
+3. Kang 等，CMU SEI — *Feature-Oriented Domain Analysis (FODA) Feasibility Study*，CMU/SEI-90-TR-021（1990）— https://www.sei.cmu.edu/library/feature-oriented-domain-analysis-foda-feasibility-study/ — 访问于 2026-10-14。
 4. FeatureIDE — *Getting Started tutorial* — https://github.com/FeatureIDE/FeatureIDE/wiki/Tutorial — 访问于 2026-10-14。
 5. FeatureIDE — *FeatureIDE: Background*，第 7 页幻灯片（2015）— https://featureide.github.io/slides/featureide-0-background.pdf — 访问于 2026-10-14。
 6. Agile Business Consortium — *What is MoSCoW Prioritization?* — https://www.agilebusiness.org/resource/what-is-moscow-prioritization/ — 访问于 2026-10-14。
-7. FeatureIDE — *Feature Diagram* — https://github.com/FeatureIDE/FeatureIDE/wiki/Feature-Diagram — 访问于 2026-10-14；生成具体模型时，应固定所选模型／工具的版本。
+7. FeatureIDE — *Feature Diagram* — https://github.com/FeatureIDE/FeatureIDE/wiki/Feature-Diagram — 访问于 2026-10-14。
 
 ## 示例 {#sample}
 <!-- skill: path only -->

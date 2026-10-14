@@ -3,20 +3,18 @@ code: C2
 slug: system-context
 family: C
 names:
-  en: System Context Diagram
-  zh: 系统上下文图
+  en: System context diagram (C4 model level 1)
+  zh: 系统上下文图（C4 模型第 1 层）
   aliases:
-    en: [Context Diagram, C4 model Level 1, System Environment Diagram, Business Context (arc42), DFD Level 0, Structured-analysis Context Diagram]
-    zh: [上下文图, 系统环境图, C4 模型第 1 层, 业务上下文, 顶层数据流图（0 层）]
-question: "这是什么系统？谁在使用它？它依赖哪些其他系统，或与哪些系统交换信息？"
-audiences: [所有人, 发起人, 产品负责人, 业务分析师, 开发人员, 运维人员, 安全人员, 新成员]
-level: concept
-phases: [discovery, planning, design, review]
-scope: "把一个软件系统视为黑盒，连同与它直接相连的人员和外部系统。"
-formal:
-  kind: method
-  ref: "C4 model (Simon Brown), Level 1 System Context diagram; notation-independent, no versioned standard"
-neighbours: [C1, C3, B4, A3, A7, D2, C6, F2, G1]
+    en: [system context diagram, system environment diagram, context-level DFD, C4 model Level 1, DFD Level 0, Structured-analysis Context Diagram]
+    zh: [系统上下文图, 系统环境图, 0 层数据流图, C4 模型第 1 层, 业务上下文, 顶层数据流图（0 层）]
+question: 这是什么系统？谁在使用它？它依赖哪些其他系统，或与哪些系统交换信息？
+audiences: [leaders, business, architects, developers, security]
+levels: [concept]
+phases: [initiate, requirements, design]
+scope: 把一个软件系统视为黑盒，连同与它直接相连的人员和外部系统。
+formal: {kind: method, ref: 'C4 model (Simon Brown), Level 1 System Context diagram; notation-independent, no versioned standard'}
+neighbours: [A3, A7, B4, C1, C3, C6, D2]
 status: draft
 translationOf: en/types/C2-system-context.md
 sourceRev: 6857dea
@@ -40,10 +38,11 @@ reviewed: false
 - **与相邻类型的区别：**
   - 当企业或部门范围内的许多系统都很重要时，选 **C1**；C4 model 的系统全景图（System Landscape diagram）是两者之间的桥梁，即“没有特定焦点的系统上下文图” [5]。
   - 一旦需要展示方框内部的应用、数据存储或技术，就选 **C3**。
-  - 在协商范围内外时，选 **B4**（变体“带范围排除项的上下文”）。
+  - 在协商范围内外时，选 **B4**（单独的范围图，划出范围内与范围外区域）。
   - 当问题是数据流与数据存储时，选 **D2**：DFD 的连线标注数据，C2 的连线标注意图。
   - 需要按接口说明协议、同步/异步、认证和 SLA 时（arc42 的“技术上下文”），选 **C6**。
   - 关注组织、角色和干系人利益而非系统时，选 **A3**。
+  - 领导需要用业务语言了解方案的主要组成，而不是系统的用户和外部系统时，选 **A7**。
 
 ## 表示法与元素 {#notation}
 <!-- skill: condense (bullets, ≤15 lines) -->

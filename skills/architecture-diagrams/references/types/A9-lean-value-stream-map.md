@@ -1,7 +1,7 @@
 # Lean Value-Stream Map (精益价值流图)
 <!-- Generated from content/en/types/A9-lean-value-stream-map.md by tools/build_skill_refs.py. Do not edit. -->
 > Where do time and waste sit in today's flow of work and information for one product or service family, and what should the future flow be?
-Scope: One product or service family, door to door from trigger to delivery, current state and (separately) future state, with process times, waits and a timeline Neighbours: A2, A5, E4, G4, A8.
+Scope: One product or service family, door to door from trigger to delivery, current state and (separately) future state, with process times, waits and a timeline Neighbours: A2, A5, E4, G4.
 
 ## Meaning
 - **Question:** where does the time go between trigger and delivery, how much of it is real work, and what should the future flow look like?

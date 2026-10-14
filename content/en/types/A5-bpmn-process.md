@@ -3,20 +3,18 @@ code: A5
 slug: bpmn-process
 family: A
 names:
-  en: Business Process Diagram (BPMN)
-  zh: 业务流程图（BPMN 泳道图）
+  en: Business process diagram (BPMN)
+  zh: 业务流程图（BPMN）
   aliases:
-    en: [BPMN diagram, BPMN process diagram, BPMN collaboration diagram, swimlane process diagram, process flow diagram]
-    zh: [BPMN 流程图, 业务流程图, 泳道流程图, 协作图, 业务流程建模图]
-question: "How does one instance of a piece of business work run from trigger to outcome: who does each step, where does it branch, and how does it talk to outside parties?"
-audiences: [process owners, business analysts, operations leads, auditors, product owners, developers and testers]
-level: logical
-phases: [discovery, design, build, review]
-scope: "One business process (one kind of instance) at one level of decomposition, with its participants as pools and its performers as lanes."
-formal:
-  kind: standard
-  ref: "OMG BPMN 2.0.2 (formal/13-12-09, Jan 2014); ISO/IEC 19510:2013 is identical to BPMN 2.0.1 (same notation)"
-neighbours: [A2, A6, E4, E1, E3]
+    en: [BPMN diagram, BPMN collaboration diagram, BPMN process diagram, process map, swimlane process diagram, process flow diagram]
+    zh: [BPMN 流程图, 业务流程建模图, BPMN 协作图, 业务流程图, 协作图]
+question: 'How does one instance of a piece of business work run from trigger to outcome: who does each step, where does it branch, and how does it talk to outside parties?'
+audiences: [business, product, developers]
+levels: [concept, logical]
+phases: [requirements, design]
+scope: One business process (one kind of instance) at one level of decomposition, with its participants as pools and its performers as lanes.
+formal: {kind: standard, ref: 'OMG BPMN 2.0.2 (formal/13-12-09, Jan 2014); ISO/IEC 19510:2013 is identical to BPMN 2.0.1 (same notation)'}
+neighbours: [A1, A2, A6, A9, E1, E2, E3, E4]
 status: draft
 ---
 
@@ -30,17 +28,20 @@ A BPMN process diagram answers "how does one order, request or case flow from it
 
 **Definition used here:** the current version is **BPMN 2.0.2** (OMG, January 2014) [1]. ISO/IEC 19510:2013 is identical to **BPMN 2.0.1**, not 2.0.2; the notation is the same, and 2.0.2 adds clarifications only [3]. A **pool** is a participant (an independent party or process). A **lane** is a partition inside one pool (a role, department or system) [2 §10].
 
+**Deeper meaning:** a BPMN process is defined by its **instance**: one order, request or claim flows from a start event to one of several **end states**. Make the end states explicit, because they are the business outcomes [4][7]. The specification places organisational models and resources, functional breakdowns, data and information models, strategy and business rules **out of scope**, and BPMN is not a data-flow language [2]; use A1, B3, D1, D2 or a rules table for those.
+
 ## When to use and how to choose {#choose}
 <!-- skill: condense (bullets, ≤12 lines) -->
 - **Audience:** process owners, analysts, operations, auditors; developers and testers who automate or verify the process. Executives need only a one-page top level of collapsed sub-processes.
 - **Scenarios:** as-is / to-be process redesign; online-shop order-to-shipment with the customer and payment provider as external pools; automation scoping (user task vs service task); deriving acceptance tests (one path from start to an end state = one test).
-- **When not to use:** the reader needs *what* the business does (A1, A2); the question is the customer's experience (A6); the flow is mostly system-to-system calls (E4, E1); the work is unstructured case work; or the process is trivial and the readers have never seen BPMN.
+- **When not to use:** the reader needs *what* the business does (A1, A2); the question is the customer's experience (A6); the flow is mostly system-to-system calls (E4, E1); the work is unstructured case work with no fixed order (a state view, E3, usually communicates it better); or the process is trivial and the readers have never seen BPMN.
 - **vs neighbours:**
   - Choose **A2 value stream** when the question is which value stages exist, without control flow or roles.
   - Choose **A6 journey map** for the customer's experience; A5 is the organisation's logic behind it.
   - Choose **E4 swimlane flow** when lanes are systems and readers are engineers. A5 has formal semantics (pools, message flows); E4 is an informal convention.
   - Choose **E1 sequence** for exact message order between software parts, **E3 state machine** for the lifecycle of one object.
-  - Choose a **plain flowchart** (ISO 5807 [14]) for one performer and 5–8 steps, or readers new to BPMN.
+  - Choose **E2 activity diagram / flowchart** (ISO 5807 symbols [14]) for one performer and 5–8 steps, or readers new to BPMN.
+  - Choose **A9** when the question is where waiting time builds up in a delivery process (Lean value-stream map), not who does which step.
 
 ## Notation and elements {#notation}
 <!-- skill: condense (bullets, ≤15 lines) -->

@@ -3,20 +3,18 @@ code: A5
 slug: bpmn-process
 family: A
 names:
-  en: Business Process Diagram (BPMN)
-  zh: 业务流程图（BPMN 泳道图）
+  en: Business process diagram (BPMN)
+  zh: 业务流程图（BPMN）
   aliases:
-    en: [BPMN diagram, BPMN process diagram, BPMN collaboration diagram, swimlane process diagram, process flow diagram]
-    zh: [BPMN 流程图, 业务流程图, 泳道流程图, 协作图, 业务流程建模图]
-question: "一项业务工作的单个实例如何从触发走到结果：每一步由谁完成，在哪里分支，又如何与外部参与方交互？"
-audiences: [流程负责人, 业务分析师, 运营负责人, 审计人员, 产品负责人, 开发与测试人员]
-level: logical
-phases: [discovery, design, build, review]
-scope: "一个业务流程（一类实例）在一个分解层级上的视图：参与方画为池，执行者画为泳道。"
-formal:
-  kind: standard
-  ref: "OMG BPMN 2.0.2 (formal/13-12-09, Jan 2014); ISO/IEC 19510:2013 is identical to BPMN 2.0.1 (same notation)"
-neighbours: [A2, A6, E4, E1, E3]
+    en: [BPMN diagram, BPMN collaboration diagram, BPMN process diagram, process map, swimlane process diagram, process flow diagram]
+    zh: [BPMN 流程图, 业务流程建模图, BPMN 协作图, 业务流程图, 协作图]
+question: 一项业务工作的单个实例如何从触发走到结果：每一步由谁完成，在哪里分支，又如何与外部参与方交互？
+audiences: [business, product, developers]
+levels: [concept, logical]
+phases: [requirements, design]
+scope: 一个业务流程（一类实例）在一个分解层级上的视图：参与方画为池，执行者画为泳道。
+formal: {kind: standard, ref: 'OMG BPMN 2.0.2 (formal/13-12-09, Jan 2014); ISO/IEC 19510:2013 is identical to BPMN 2.0.1 (same notation)'}
+neighbours: [A1, A2, A6, A9, E1, E2, E3, E4]
 status: draft
 translationOf: en/types/A5-bpmn-process.md
 sourceRev: 6857dea
@@ -44,6 +42,8 @@ BPMN 流程图回答的是：“一个订单、请求或案件如何从触发走
   - 泳道是系统、读者是工程师时，选 **E4 泳道流程图**。A5 有形式化语义（池、消息流）；E4 只是非正式约定。
   - 软件各部分之间的精确消息顺序选 **E1 时序图**，单个对象的生命周期选 **E3 状态机图**。
   - 只有一个执行者、5–8 个步骤，或读者不熟悉 BPMN 时，选**普通流程图**（ISO 5807 [14]）。
+  - 问题是交付过程中等待时间积压在哪里（精益价值流图），而不是谁做哪一步时，选 **A9**。
+  - 读者不需要 BPMN 的池、事件或消息流，只需要一段流程的普通流程图时，选 **E2**。
 
 ## 表示法与元素 {#notation}
 <!-- skill: condense (bullets, ≤15 lines) -->

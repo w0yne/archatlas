@@ -1,7 +1,7 @@
 # Business Context Diagram (业务上下文图)
 <!-- Generated from content/en/types/A3-business-context.md by tools/build_skill_refs.py. Do not edit. -->
 > What is inside our system or initiative, and who or what outside it exchanges what with us?
-Scope: One system, initiative or business unit drawn as a black box, with every external party it exchanges information, goods, money or obligations with. Neighbours: H3, B4, C2, A2, A7, C6.
+Scope: One system, initiative or business unit drawn as a black box, with every external party it exchanges information, goods, money or obligations with. Neighbours: B4, C2, H3.
 
 ## Meaning
 - **Question:** what is inside the system or initiative, and who or what outside it exchanges what with it (information, goods, money, decisions, obligations)?

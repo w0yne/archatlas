@@ -3,20 +3,18 @@ code: E1
 slug: sequence-diagram
 family: E
 names:
-  en: Sequence Diagram
+  en: Sequence diagram
   zh: 时序图
   aliases:
-    en: [message sequence chart, MSC, C4 dynamic diagram (sequence style), runtime-view scenario, call-flow diagram, ladder diagram]
-    zh: [序列图, 顺序图, 调用链时序图, 交互时序图]
-question: "For one scenario, which participants exchange which messages in what order, and where does the flow branch, loop or wait?"
-audiences: [developers, testers, solution architects, integration partners, security reviewers]
-level: logical
-phases: [design, build, review]
-scope: "One scenario (one trigger to one outcome), about 4–8 lifelines at one abstraction level, up to about 25 messages"
-formal:
-  kind: standard
-  ref: "OMG UML 2.5.1 (formal/2017-12-05), interaction diagrams; ITU-T Z.120 Message Sequence Chart for the telecom ancestor"
-neighbours: [E2, E3, E4, C3, C4, F1, A5]
+    en: [UML sequence diagram, runtime view, C4 dynamic diagram, message sequence chart, MSC, C4 dynamic diagram (sequence style), runtime-view scenario, call-flow diagram, ladder diagram]
+    zh: [序列图, 运行时视图, 交互时序图, 顺序图, 调用链时序图]
+question: For one scenario, which participants exchange which messages in what order, and where does the flow branch, loop or wait?
+audiences: [developers, architects]
+levels: [logical]
+phases: [design, build]
+scope: One scenario (one trigger to one outcome), about 4–8 lifelines at one abstraction level, up to about 25 messages
+formal: {kind: standard, ref: 'OMG UML 2.5.1 (formal/2017-12-05), interaction diagrams; ITU-T Z.120 Message Sequence Chart for the telecom ancestor'}
+neighbours: [A5, C3, C4, C6, E2, E3, E4, F1, I1]
 status: draft
 ---
 
@@ -45,6 +43,8 @@ status: draft
   - A communication diagram when spatial relationships matter more than time order.
   - **F1** for OAuth/OIDC-style flows (a specialised sequence diagram).
   - **C3/C4** when the question is structure, not behaviour.
+  - Choose **C6** when the question is the list of interfaces with protocol, authentication and failure semantics, not the order of one scenario.
+  - Choose **I1** when several scenarios must tie the logical, process, development and physical views together; a sequence diagram is one such scenario.
 -->
 - **Audience:** developers, testers, architects, integration partners and security reviewers. Business readers can follow a simplified version with fewer lifelines and plain-language messages.
 - **Classic scenarios:**
@@ -60,6 +60,8 @@ status: draft
   - Choose a **communication or C4 collaboration-style** diagram when spatial relationships matter more than strict time order [4].
   - Choose **F1 Authentication and authorisation flow** for OAuth/OIDC-style flows; it is a specialised sequence diagram [7][8].
   - Choose **C3/C4** when the question is structure, not behaviour.
+  - Choose **C6** when the question is the list of interfaces with protocol, authentication and failure semantics, not the order of one scenario.
+  - Choose **I1** when several scenarios must tie the logical, process, development and physical views together; a sequence diagram is one such scenario.
 
 ## Notation and elements {#notation}
 <!-- skill: condense (bullets, ≤15 lines) -->

@@ -3,20 +3,18 @@ code: C3
 slug: container-diagram
 family: C
 names:
-  en: Container Diagram
-  zh: 容器图
+  en: Container diagram (C4 model level 2)
+  zh: 容器图（C4 模型第 2 层）
   aliases:
-    en: [C4 model Level 2, High-level System Diagram, Building Block View Level 1 (arc42), High-level Technical Architecture Diagram (loose)]
-    zh: [C4 模型第 2 层, 运行单元图, 技术架构图（口语，含义宽泛）, 系统架构图（口语，含义宽泛）]
-question: "Which separately running applications and data stores make up this system, what technology does each use, and how do they communicate?"
-audiences: [architects, developers, operations and support, security reviewers, technical stakeholders]
-level: logical
-phases: [design, build, review, operate]
-scope: "One software system: its containers inside a boundary, plus the people and external systems directly connected to them."
-formal:
-  kind: method
-  ref: "C4 model (Simon Brown), Level 2 Container diagram; notation-independent, no versioned standard"
-neighbours: [C2, C4, C1, C5, C6, G1, E1, D2, F2, I2]
+    en: [container view, high-level technical architecture diagram, runtime building-block view, C4 model Level 2, High-level System Diagram, Building Block View Level 1 (arc42), High-level Technical Architecture Diagram (loose)]
+    zh: [容器视图, C4 第二层, 运行单元图, C4 模型第 2 层, 技术架构图（口语，含义宽泛）, 系统架构图（口语，含义宽泛）]
+question: Which separately running applications and data stores make up this system, what technology does each use, and how do they communicate?
+audiences: [architects, developers, operations, security]
+levels: [logical]
+phases: [design, build]
+scope: 'One software system: its containers inside a boundary, plus the people and external systems directly connected to them.'
+formal: {kind: method, ref: 'C4 model (Simon Brown), Level 2 Container diagram; notation-independent, no versioned standard'}
+neighbours: [A7, C1, C2, C4, C5, C6, E1, F2, G1, G2]
 status: draft
 ---
 

@@ -3,20 +3,18 @@ code: F3
 slug: access-control-model
 family: F
 names:
-  en: Access-Control Model
+  en: Access-control model
   zh: 访问控制模型
   aliases:
-    en: [authorization model, permission model, role-permission matrix, RBAC model, ABAC policy model, relationship-based authorization graph]
-    zh: [授权模型, 权限模型, 角色权限矩阵, 基于属性的授权模型, 基于关系的授权模型]
-question: "主体在什么规则下，能在给定的范围或上下文中对某个资源执行某个操作？"
-audiences: [业务负责人, 安全与治理人员, 应用开发人员, 管理员]
-level: logical
-phases: [design, review]
-scope: "一个应用或领域：其资源类别、一小组操作，以及选定的一种模型类型（RBAC、ABAC 或 ReBAC，可组合使用）"
-formal:
-  kind: standard
-  ref: "RBAC: ANSI/INCITS 359-2004 and its 2012 revision (NIST history). ABAC: NIST SP 800-162. Policy language and architecture: OASIS XACML 3.0. ReBAC has influential models (Zanzibar, OpenFGA) but no single graphical standard"
-neighbours: [F1, F2, D1, H1, C5]
+    en: [authorization model, permission model, RBAC model, role-permission matrix, ABAC policy model, ReBAC graph, relationship-based authorization graph]
+    zh: [权限模型, 授权模型, 角色权限矩阵, 基于属性的授权模型, 基于关系的授权模型]
+question: 主体在什么规则下，能在给定的范围或上下文中对某个资源执行某个操作？
+audiences: [architects, developers, security]
+levels: [logical]
+phases: [design, build]
+scope: 一个应用或领域：其资源类别、一小组操作，以及选定的一种模型类型（RBAC、ABAC 或 ReBAC，可组合使用）
+formal: {kind: convention, ref: 'RBAC: ANSI/INCITS 359-2004 and its 2012 revision (NIST history). ABAC: NIST SP 800-162. Policy language and architecture: OASIS XACML 3.0. ReBAC has influential models (Zanzibar, OpenFGA) but no single graphical standard'}
+neighbours: [D1, F1, F2, H1]
 status: draft
 translationOf: en/types/F3-access-control-model.md
 sourceRev: 674f366
@@ -49,7 +47,7 @@ reviewed: false
   5. 将提议的角色模型与当前实际执行的情况进行比较。
 - **不适用的情况：** 当关系、时间或资源属性会实质性地决定访问时，不要只用角色矩阵。也不要仅仅因为某个授权引擎的文档示例好看就引入它。
 - **与相邻图类的区别：**
-  - 身份在哪里被校验、决策在哪里被执行，选 **F1 认证流程图**。
+  - 身份在哪里被校验、决策在哪里被执行，选 **F1 认证与授权流程图**。
   - 可能出什么问题，选 **F2 威胁建模 DFD**。
   - 实际的持久化关系（而非权限关系），选 **D1 实体关系图**。
   - 项目职责（而非应用权限），选 **H1 RACI 矩阵**。

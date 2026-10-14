@@ -1,7 +1,7 @@
-# RACI matrix
+# RACI matrix (RACI 责任矩阵)
 <!-- Generated from content/en/types/H1-raci-matrix.md by tools/build_skill_refs.py. Do not edit. -->
 > For each activity, who performs the work, owns the outcome, provides input, and receives updates?
-Scope: Responsibilities for activities within one initiative or service. Neighbours: H3, E4, D3, F3.
+Scope: Responsibilities for activities within one initiative or service. Neighbours: A4, D3, E4, F3, H2, H3.
 
 ## Meaning
 A RACI matrix connects activities to execution, accountability, consultation, and communication. Reading across reveals unowned work; reading down reveals concentrated workload or approval authority. It supports a governance concern, not a fixed architecture level.
@@ -16,8 +16,11 @@ RACI has no universal notation version. A responsibility assignment matrix is th
 - **When not:** a simple task list already establishes ownership, or the real question is timing, dependencies, or technical access.
 - **H3 stakeholder map:** choose it for engagement priorities; RACI assigns responsibility per activity.
 - **E4 swimlane:** choose it for sequence and handoffs; link its activities to matrix rows.
-- **F3 access-control model:** choose it for permitted operations. Review permission is not business accountability; **D3** instead addresses data lineage and ownership.
-- **DACI:** choose it to organize a particular decision; use RACI for the resulting delivery responsibilities.
+- **F3 access-control model:** choose it for permitted operations; review permission is not business accountability.
+- **D3 data lineage and ownership map:** choose it for who owns and stewards a dataset; RACI assigns responsibility for activities.
+- **DACI:** choose it to organise a particular decision; use RACI for the resulting delivery responsibilities.
+- **A4 business scenario matrix:** choose it for which roles take part in which business activities; RACI assigns responsibility per activity, not coverage.
+- **H2 observability view:** choose it for how incidents are detected and routed; RACI names who owns the response.
 
 ## Notation and elements
 - **Required:** scoped activities as rows, identifiable participants as columns, cell assignments, and a legend. Use short verb–object activity names.
@@ -27,7 +30,7 @@ RACI has no universal notation version. A responsibility assignment matrix is th
 - **Optional:** phase groups, activity IDs, evidence references, effective date, and a role-to-person register. Label an added S as RASCI.
 - **Arrows:** none in the matrix. Cells are assignments, not data flow or sequence. Consultation can involve two-way communication without drawn connectors.
 - **Companion flow:** label escalation arrows with their trigger and meaning; keep them separate from the matrix.
-- **Detail:** use comparable activity granularity and explain mixed participant levels. Letters carry meaning; color is supplementary.
+- **Detail:** use comparable activity granularity and explain mixed participant levels. Letters carry meaning; colour is supplementary.
 
 ## Best practices and anti-patterns
 | Best practice | Anti-pattern |
@@ -36,7 +39,7 @@ RACI has no universal notation version. A responsibility assignment matrix is th
 | State local A/R rules and explain shared authority. | Claiming one A or one R is universally mandatory. |
 | Review row coverage and column workload. | Checking letters while ignoring bottlenecks. |
 | Keep meaningful activities and necessary C/I assignments. | Filling every cell or listing every implementation microtask. |
-| Revisit assignments when scope or staffing changes. | Copying a template's ownership into a different organization. |
+| Revisit assignments when scope or staffing changes. | Copying a template's ownership into a different organisation. |
 
 Asana's main instructions recommend one R, while its FAQ permits multiple R assignments. Use its practical guidance with that inconsistency in mind; it is not a normative cardinality rule.
 
@@ -46,7 +49,7 @@ Asana's main instructions recommend one R, while its FAQ permits multiple R assi
 3. Draft rows against evidence; leave uncertain ownership unresolved.
 4. Review rows for gaps and columns for overload; split activities with conflicting outcomes.
 5. Lay out activities vertically and participants horizontally; group phases and repeat headers when splitting.
-6. Keep labels short, letters visible without color, and the legend adjacent; record effective date and update ownership.
+6. Keep labels short, letters visible without colour, and the legend adjacent; record effective date and update ownership.
 
 **Self-check**
 - [ ] Scope and state are explicit.
@@ -56,12 +59,12 @@ Asana's main instructions recommend one R, while its FAQ permits multiple R assi
 - [ ] Unknown differs from no involvement.
 - [ ] Columns and C/I assignments were reviewed.
 - [ ] Participants confirmed ownership; evidence supports the claims.
-- [ ] Headers, codes, and legend remain readable without color.
+- [ ] Headers, codes, and legend remain readable without colour.
 
 ## Evidence in a code repository
 - Governance documents and approved decisions support documented responsibility assignments.
 - Runbooks and release procedures identify activities, duties, and escalation routes.
-- `CODEOWNERS` and approval configuration establish review rules, not organizational A.
+- `CODEOWNERS` and approval configuration establish review rules, not organisational A.
 - Commit frequency, administrator access, and issue assignment do not establish accountability.
 - Record each claim's path, revision, and verified/inferred/doc-only/conflict status; confirm ownership gaps with people.
 
@@ -72,7 +75,7 @@ Asana's main instructions recommend one R, while its FAQ permits multiple R assi
 4. Which assignments are agreed, unresolved, or need a separate escalation flow?
 
 ## Template
-Model template: `assets/templates/H1.json` · Layout template: `grid_table` · one `tables[]` entry with activity rows × participant columns and R/A/C/I in the cells (exactly one A per row); the legend goes in the table `title`.
+Model template: `assets/templates/H1.json` · Layout template: `grid_table` · one `tables[]` entry with activity rows × participant columns and R/A/C/I in the cells (one A per row by default; a shared A needs a resolution note); the legend goes in the table `title`.
 
 ## Sample
 Figure: `samples/H1-raci-matrix.svg` (published with the site)

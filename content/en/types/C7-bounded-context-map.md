@@ -3,20 +3,18 @@ code: C7
 slug: bounded-context-map
 family: C
 names:
-  en: Bounded Context Map
-  zh: 限界上下文映射图
+  en: Bounded context map (DDD)
+  zh: 限界上下文映射（DDD）
   aliases:
     en: [context map, DDD context map, strategic design map, team map (organisational variant)]
-    zh: [上下文映射图, DDD 上下文映射, 战略设计图, 团队映射图]
-question: "Which distinct models, each with its own consistent language, exist in and around this system, and what power, coordination or translation relationship holds across each boundary?"
-audiences: [architects, domain experts, product owners, tech leads, engineering managers, platform teams]
-level: concept
-phases: [discovery, planning, design, review]
-scope: "The bounded contexts of one system or landscape (or the teams behind them) and the relationship on each boundary; about 5–12 contexts per map."
-formal:
-  kind: method
-  ref: "Domain-Driven Design: Evans, DDD (2003) and DDD Reference (2015, CC BY 4.0); no graphical standard"
-neighbours: [C1, C2, C3, C5, C6, C8, D1]
+    zh: [上下文映射图, DDD 战略设计图, 领域上下文图, DDD 上下文映射, 战略设计图, 团队映射图]
+question: Which distinct models, each with its own consistent language, exist in and around this system, and what power, coordination or translation relationship holds across each boundary?
+audiences: [architects, developers, business]
+levels: [concept, logical]
+phases: [design]
+scope: The bounded contexts of one system or landscape (or the teams behind them) and the relationship on each boundary; about 5–12 contexts per map.
+formal: {kind: method, ref: 'Domain-Driven Design: Evans, DDD (2003) and DDD Reference (2015, CC BY 4.0); no graphical standard'}
+neighbours: [C5, C6, C8]
 status: draft
 ---
 

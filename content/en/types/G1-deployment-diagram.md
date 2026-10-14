@@ -3,20 +3,18 @@ code: G1
 slug: deployment-diagram
 family: G
 names:
-  en: Deployment Diagram
+  en: Deployment diagram
   zh: 部署图
   aliases:
-    en: [deployment view, software-to-infrastructure mapping, runtime infrastructure view, physical architecture diagram]
-    zh: [部署视图, 软件与基础设施映射图, 物理架构图]
-question: "Where do the software instances and artifacts run, and how does that placement support operational needs such as capacity, failover and ownership?"
-audiences: [developers, platform and infrastructure engineers, operators, architects, security reviewers]
-level: physical
-phases: [design, delivery, operations, review]
-scope: "One named environment (for example production), showing hosting nodes and the software instances placed on them"
-formal:
-  kind: standard
-  ref: "OMG UML 2.5.1 Deployments (nodes, execution environments, artifacts, deployment); C4 model deployment diagram as a pragmatic variant; arc42 section 7 for documentation"
-neighbours: [C3, G2, G3, G4, E1]
+    en: [deployment view, software-to-infrastructure mapping, C4 deployment diagram, runtime infrastructure view]
+    zh: [部署视图, 部署架构图, 软件与基础设施映射图]
+question: Where do the software instances and artifacts run, and how does that placement support operational needs such as capacity, failover and ownership?
+audiences: [operations, architects, security]
+levels: [physical]
+phases: [design, operate]
+scope: One named environment (for example production), showing hosting nodes and the software instances placed on them
+formal: {kind: standard, ref: 'OMG UML 2.5.1 Deployments (nodes, execution environments, artifacts, deployment); C4 model deployment diagram as a pragmatic variant; arc42 section 7 for documentation'}
+neighbours: [C3, C8, G2, G3, G4, H2, I1]
 status: draft
 ---
 
@@ -44,6 +42,9 @@ status: draft
   - **G3** for routing, segmentation, reachability.
   - **G4** for how a change reaches this environment.
   - **E1** (or arc42 runtime view) for behaviour over time.
+  - Choose **C8** when the layers are code layers with dependency rules; deployment tiers are not code layers.
+  - Choose **H2** when the question is how the running system is observed and who is alerted, not where it runs.
+  - Choose **I1** when this deployment view is the physical view of a 4+1 description and must stay consistent with the other views.
 -->
 - **Audience:** developers, platform engineers, operators, architects and security reviewers.
 - **Classic scenarios:**
@@ -59,6 +60,9 @@ status: draft
   - Choose **G3** when the question is routing, segmentation and reachability.
   - Choose **G4** for how a change reaches this environment.
   - Choose **E1** (or arc42 runtime view) for behaviour over time.
+  - Choose **C8** when the layers are code layers with dependency rules; deployment tiers are not code layers.
+  - Choose **H2** when the question is how the running system is observed and who is alerted, not where it runs.
+  - Choose **I1** when this deployment view is the physical view of a 4+1 description and must stay consistent with the other views.
 
 ## Notation and elements {#notation}
 <!-- skill: condense (bullets, ≤15 lines) -->

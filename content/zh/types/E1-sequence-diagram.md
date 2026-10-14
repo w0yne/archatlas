@@ -3,20 +3,18 @@ code: E1
 slug: sequence-diagram
 family: E
 names:
-  en: Sequence Diagram
+  en: Sequence diagram
   zh: 时序图
   aliases:
-    en: [message sequence chart, MSC, C4 dynamic diagram (sequence style), runtime-view scenario, call-flow diagram, ladder diagram]
-    zh: [序列图, 顺序图, 调用链时序图, 交互时序图]
-question: "在一个场景中，哪些参与方按什么顺序交换哪些消息？流程在哪里分支、循环或等待？"
-audiences: [开发人员, 测试人员, 解决方案架构师, 集成合作方, 安全评审人员]
-level: logical
-phases: [design, build, review]
-scope: "一个场景（从一个触发到一个结果），同一抽象层级上约 4–8 条生命线，最多约 25 条消息"
-formal:
-  kind: standard
-  ref: "OMG UML 2.5.1 (formal/2017-12-05), interaction diagrams; ITU-T Z.120 Message Sequence Chart for the telecom ancestor"
-neighbours: [E2, E3, E4, C3, C4, F1, A5]
+    en: [UML sequence diagram, runtime view, C4 dynamic diagram, message sequence chart, MSC, C4 dynamic diagram (sequence style), runtime-view scenario, call-flow diagram, ladder diagram]
+    zh: [序列图, 运行时视图, 交互时序图, 顺序图, 调用链时序图]
+question: 在一个场景中，哪些参与方按什么顺序交换哪些消息？流程在哪里分支、循环或等待？
+audiences: [developers, architects]
+levels: [logical]
+phases: [design, build]
+scope: 一个场景（从一个触发到一个结果），同一抽象层级上约 4–8 条生命线，最多约 25 条消息
+formal: {kind: standard, ref: 'OMG UML 2.5.1 (formal/2017-12-05), interaction diagrams; ITU-T Z.120 Message Sequence Chart for the telecom ancestor'}
+neighbours: [A5, C3, C4, C6, E2, E3, E4, F1, I1]
 status: draft
 translationOf: en/types/E1-sequence-diagram.md
 sourceRev: 674f366
@@ -52,6 +50,8 @@ reviewed: false
   - 空间关系比严格的时间顺序更重要时，选**通信图或 C4 协作风格**的图 [4]。
   - OAuth/OIDC 类流程选 **F1 认证与授权流程图**；它是一种专门化的时序图 [7][8]。
   - 问题是结构而非行为时，选 **C3/C4**。
+  - 问题是接口清单及其协议、认证和失败语义，而不是某个场景中的先后顺序时，选 **C6**。
+  - 需要用多个场景把逻辑、进程、开发和物理视图串起来时，选 **I1**；一张时序图就是其中的一个场景。
 
 ## 表示法与元素 {#notation}
 <!-- skill: condense (bullets, ≤15 lines) -->

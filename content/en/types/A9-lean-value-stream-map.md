@@ -3,20 +3,18 @@ code: A9
 slug: lean-value-stream-map
 family: A
 names:
-  en: Lean Value-Stream Map
-  zh: 精益价值流图
+  en: Lean value-stream map (VSM)
+  zh: 精益价值流图（VSM）
   aliases:
-    en: [value-stream map, VSM, current-state map, future-state map, material and information flow diagram]
-    zh: [价值流程图, 精益价值流程图, 现状图, 未来状态图, VSM]
-question: "Where do time and waste sit in today's flow of work and information for one product or service family, and what should the future flow be?"
-audiences: [process owners, operations and improvement teams, frontline staff, engineering and delivery leads]
-level: logical
-phases: [discovery, review, operate]
-scope: "One product or service family, door to door from trigger to delivery, current state and (separately) future state, with process times, waits and a timeline"
-formal:
-  kind: method
-  ref: "Rother & Shook, Learning to See (Lean Enterprise Institute, 1998); LEI icon set (de-facto, no ISO notation); Martin & Osterling, Value Stream Mapping (2013) for office and service work"
-neighbours: [A2, A5, E4, G4, A8]
+    en: [VSM, material and information flow diagram, lean value stream mapping, current-state map, future-state map]
+    zh: [精益价值流映射, 物料与信息流图, 价值流程图, 精益价值流程图, 现状图, 未来状态图]
+question: Where do time and waste sit in today's flow of work and information for one product or service family, and what should the future flow be?
+audiences: [business, leaders, operations]
+levels: [strategy, concept]
+phases: [initiate, operate]
+scope: One product or service family, door to door from trigger to delivery, current state and (separately) future state, with process times, waits and a timeline
+formal: {kind: method, ref: 'Rother & Shook, Learning to See (Lean Enterprise Institute, 1998); LEI icon set (de-facto, no ISO notation); Martin & Osterling, Value Stream Mapping (2013) for office and service work'}
+neighbours: [A2, A5, E4, G4]
 status: draft
 ---
 

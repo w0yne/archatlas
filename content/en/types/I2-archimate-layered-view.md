@@ -8,20 +8,20 @@ names:
   aliases:
     en: [ArchiMate layered viewpoint, business-application-technology view, cross-layer enterprise view]
     zh: [ArchiMate 分层视点, 业务-应用-技术视图, 跨层企业架构视图]
-question: "How do business behaviour, applications and technology support one another, and what is affected by a change?"
+question: How do business behaviour, applications and technology support one another, and what is affected by a change?
 audiences: [architects, leaders]
-level: logical
+levels: [strategy, concept, logical]
 phases: [initiate, design]
 scope: enterprise
-formal:
-  kind: standard
-  ref: "The Open Group, ArchiMate 3.2 (2022), informative Layered Viewpoint, Appendix C.1.5; https://pubs.opengroup.org/architecture/archimate3-doc/ch-Example-Viewpoints.html"
-neighbours: [I1, A7, C8, C1]
+formal: {kind: standard, ref: 'The Open Group, ArchiMate 3.2 (2022), informative Layered Viewpoint, Appendix C.1.5; https://pubs.opengroup.org/architecture/archimate3-doc/ch-Example-Viewpoints.html'}
+neighbours: [A7, C1, C8, I1]
 status: draft
-sourceRev: "2026-10-14"
+sourceRev: '2026-10-14'
 ---
 
-# ArchiMate layered view
+# ArchiMate layered view (ArchiMate 分层视图)
+
+> Business, application and technology elements in bands, linked by ArchiMate relationships that show what serves and realises what.
 
 ## Meaning {#meaning}
 <!-- skill: condense (4–6 lines) -->
@@ -39,8 +39,8 @@ This page targets **3.2 explicitly**. ArchiMate 4 was released in April 2026; do
 - **Consolidation:** compare the shop's baseline and target support chains.
 - **Service review:** find a support chatbot service without a known consumer or realization.
 - **Do not use:** detailed request order, API payloads, exhaustive inventory, or inferred business structure without domain evidence.
-- Choose Application Usage or Technology Usage for a narrower dependency slice; Service Realization for implementation behavior; Implementation and Deployment for artifact allocation [1].
-- Choose **C8** for code-layer dependencies, **A7** for informal conceptual bands, **C1** for a system portfolio, or **I1** for organizing several software views.
+- Choose Application Usage or Technology Usage for a narrower dependency slice; Service Realization for implementation behaviour; Implementation and Deployment for artifact allocation [1].
+- Choose **C8** for code-layer dependencies, **A7** for informal conceptual bands, **C1** for a system portfolio, or **I1** for organising several software views.
 
 ## Notation and elements {#notation}
 <!-- skill: condense (bullets, ≤15 lines) -->
@@ -48,21 +48,21 @@ This page targets **3.2 explicitly**. ArchiMate 4 was released in April 2026; do
 - Select actors/roles, processes/functions, components, services, and nodes as needed; information objects, interfaces, artifacts, and internal detail are optional [3].
 - **Serving:** provider → consumer; solid line/open arrowhead. It expresses supplied functionality, not request direction.
 - **Realization:** concrete → abstract; dashed line/hollow triangle. A function realizes a service; an artifact realizes a component.
-- **Assignment:** performer/host → behavior/artifact; solid line, source dot, filled target arrowhead. Example: Node → Artifact.
+- **Assignment:** performer/host → behaviour/artifact; solid line, source dot, filled target arrowhead. Example: Node → Artifact.
 - **Deployment:** `Node —Assignment→ Artifact —Realization→ Application Component`; “hosted-on” is not a generic ArchiMate relationship [3][5].
 - **Access** represents reading/writing passive structure; **Triggering** represents temporal/causal dependency; **Flow** represents transfer. Use their distinct standard glyphs [3].
 - Validate source/relation/target combinations and derived shortcuts against the metamodel and normative Appendix B. Selecting all core relationship types does not legalize every pair [4].
-- Name structure with nouns and behavior with actions. Explain nesting; a background band alone establishes no relationship.
-- Yellow/blue/green are optional conventions, with no formal color semantics [2].
+- Name structure with nouns and behaviour with actions. Explain nesting; a background band alone establishes no relationship.
+- Yellow/blue/green are optional conventions, with no formal colour semantics [2].
 - Keep uncertainty in evidence annotations or a table. Never repurpose formal dashed lines as “inferred.”
 
 ## Best practices and anti-patterns {#practice}
 <!-- skill: condense (top 5 each, no citations) -->
 - Select one bounded concern; avoid an enterprise inventory on one page [1].
-- Separate performers, behavior, services, and consumers; avoid unlabeled “supports” lines [3][10].
+- Separate performers, behaviour, services, and consumers; avoid unlabeled “supports” lines [3][10].
 - Preserve standard direction; avoid reversing Serving to resemble an API request [10].
 - Validate exact relation pairs; avoid arbitrary cross-layer realization or generic hosting arrows [4][5].
-- Keep comparable groups consistent and color redundant; avoid fixed layer counts or color-only typing [1][2].
+- Keep comparable groups consistent and colour redundant; avoid fixed layer counts or colour-only typing [1][2].
 
 ## Exemplars {#exemplars}
 <!-- skill: omit -->
@@ -76,27 +76,27 @@ Examples were identified through text and indexed excerpts; images were not visu
 ## Drawing recipe {#recipe}
 <!-- skill: keep (≤25 lines) -->
 1. Fix the concern, boundary, baseline/target state, and ArchiMate version.
-2. Inventory evidenced business behavior, application services, and technology support.
+2. Inventory evidenced business behaviour, application services, and technology support.
 3. Assign exact types and validate relationships before arranging boxes.
 4. Align providers and consumers in useful bands; business above application above technology is optional.
-5. Use short names, type icons, sparse color, and service bands where helpful.
+5. Use short names, type icons, sparse colour, and service bands where helpful.
 6. Preserve arrow direction and glyphs; explain nesting and annotate evidence separately.
 7. Trace a checkout concern through the chain; split dense detail into focused views.
 8. Review semantic validity and readability; an informal renderer output needs an explicit label.
 
 **Self-check**
 - [ ] Scope and version are explicit.
-- [ ] Components, behavior, and services are distinct.
+- [ ] Components, behaviour, and services are distinct.
 - [ ] Every relationship is permitted for its endpoint types.
 - [ ] Serving and Realization point in the correct directions.
 - [ ] Deployment uses artifact/allocation semantics.
-- [ ] Layer count and color are not treated as normative.
+- [ ] Layer count and colour are not treated as normative.
 - [ ] Evidence status does not alter formal line styles.
 - [ ] Labels, glyphs, and endpoints remain readable.
 
 ## Evidence in a code repository {#evidence}
 <!-- skill: keep (≤10 lines) -->
-- Components/behavior: implementation responsibilities, handlers, entry points, build boundaries.
+- Components/behaviour: implementation responsibilities, handlers, entry points, build boundaries.
 - Services/consumers: interface contracts, clients, configuration, and integration tests.
 - Artifacts/allocation: build outputs, image references, deployment manifests, and infrastructure definitions.
 - Information: schemas and read/write code; names alone do not establish business meaning.

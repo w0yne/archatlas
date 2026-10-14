@@ -1,7 +1,7 @@
 # Business Capability Map (业务能力图)
 <!-- Generated from content/en/types/A1-capability-map.md by tools/build_skill_refs.py. Do not edit. -->
 > What must the business be able to do, independent of who does it, how, or with which system, and which of those abilities are strong, weak, missing or strategic?
-Scope: One enterprise or business unit, 2–3 capability levels on one page, optionally with one assessment overlay Neighbours: A2, A5, A3, C1, A7, A8.
+Scope: One enterprise or business unit, 2–3 capability levels on one page, optionally with one assessment overlay Neighbours: A2, A5, A7, A8, C1.
 
 ## Meaning
 - **Question:** what abilities does the business need, regardless of who performs them, how, or with which system? With a heat overlay: which are weak, missing or strategic?
@@ -19,7 +19,7 @@ Scope: One enterprise or business unit, 2–3 capability levels on one page, opt
   - **A5 BPMN Process** for steps, gateways, hand-offs.
   - **A3 Business Context** for "who"; capability × org is a matrix, not a merged picture.
   - **C1 Application Landscape** when the reader needs systems; the overlay is a derived view.
-  - **A7 Conceptual Architecture** for "what are the parts"; a feature list is a capability map.
+  - **A7 Conceptual Architecture** for "what are the parts"; a list of business abilities is A1, a list of product features is B3.
   - **A8 Roadmap** for when change happens.
 
 ## Notation and elements
