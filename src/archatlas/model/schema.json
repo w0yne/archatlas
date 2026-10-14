@@ -69,6 +69,7 @@
                   "data",
                   "async",
                   "message",
+                  "reply",
                   "dependency",
                   "assoc"
                 ]
@@ -306,15 +307,69 @@
           "to_step": {
             "type": "integer",
             "minimum": 1
+          },
+          "operator": {
+            "enum": [
+              "loop",
+              "alt",
+              "opt",
+              "par",
+              "break",
+              "critical",
+              "seq",
+              "strict"
+            ]
+          },
+          "guard": {
+            "type": "string",
+            "minLength": 1
+          },
+          "operands": {
+            "type": "array",
+            "minItems": 2,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "guard",
+                "from_step",
+                "to_step"
+              ],
+              "properties": {
+                "guard": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "from_step": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "to_step": {
+                  "type": "integer",
+                  "minimum": 1
+                }
+              }
+            }
           }
         },
         "required": [
           "id",
-          "label",
           "from_step",
           "to_step"
         ],
-        "additionalProperties": false
+        "additionalProperties": false,
+        "anyOf": [
+          {
+            "required": [
+              "label"
+            ]
+          },
+          {
+            "required": [
+              "operator"
+            ]
+          }
+        ]
       }
     },
     "activations": {
@@ -502,7 +557,8 @@
             "async",
             "message",
             "dependency",
-            "assoc"
+            "assoc",
+            "reply"
           ]
         },
         "dir": {

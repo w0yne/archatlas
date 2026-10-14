@@ -14,6 +14,8 @@ from .model import load
 from .render import render_svg
 
 TEMPLATES = ("nested", "layered", "sequence", "lanes", "grid_table", "er", "statechart", "tree")
+INSTALL_COMMAND = ("python3 -m venv .atlas-venv && "
+                   ".atlas-venv/bin/python -m pip install -r scripts/requirements.txt")
 
 
 def save_json(path, data):
@@ -154,7 +156,7 @@ def main(argv=None):
             model = load(args.model, args.lang)
             if args.profile:
                 model["layout"]["profile"] = args.profile
-            metrics = FontMetrics()
+            metrics = FontMetrics(lang=model["meta"]["lang"])
             scene = layout(model, metrics)
             svg = render_svg(scene, args.namespace)
             destination = Path(args.output)
@@ -164,8 +166,19 @@ def main(argv=None):
             destination.write_text(svg, encoding="utf-8")
             report = check_svg(svg, metrics)
             save_json(destination.with_suffix(".findings.json"), report)
-            print(json.dumps({"svg": str(destination), "errors": report["errors"],
-                              "warnings": report["warnings"], "visual_review": "pending"}))
+            summary = {"svg": str(destination), "errors": report["errors"],
+                       "warnings": report["warnings"], "visual_review": "pending",
+                       "measured_with": metrics.measured_with}
+            if metrics.measured_with == "estimate":
+                summary["install_hint"] = INSTALL_COMMAND
+                print("Font measurement used conservative estimates. To install renderer "
+                      "dependencies, run from the skill folder:\n"
+                      f"{INSTALL_COMMAND}\n"
+                      "Python dependencies do not install system fonts. If dependencies "
+                      "are already installed, check font availability and glyph coverage "
+                      "with scripts/atlas fonts doctor; install fonts covering your labels.",
+                      file=sys.stderr)
+            print(json.dumps(summary))
             return int(failed(report, args.fail_on))
         elif args.command == "check":
             if args.lang is not None and not re.fullmatch(r"[A-Za-z0-9_-]+", args.lang):

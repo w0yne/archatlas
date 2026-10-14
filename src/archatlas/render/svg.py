@@ -34,7 +34,7 @@ def render_svg(scene, namespace=None):
     SubElement(root, "metadata").text = json.dumps({"warnings": scene.warnings, "allow": scene.allow},
                                                  ensure_ascii=False, sort_keys=True)
     defs = SubElement(root, "defs")
-    variants = sorted({(e.style, (e.marker_kind or e.kind) in ("async", "message")) for e in scene.edges})
+    variants = sorted({(e.style, (e.marker_kind or e.kind) in ("async", "message", "reply")) for e in scene.edges})
     for style, open_arrow in variants:
         marker_id = f"{prefix}-marker-{style}-{'open' if open_arrow else 'arrow'}"
         colour = theme[style][1]
@@ -93,13 +93,14 @@ def render_svg(scene, namespace=None):
                                       "width": number(box.w), "height": number(box.h),
                                       "rx": "12" if box.kind in ("task", "state") else "4" if box.role == "node" else "0"})
     for edge in scene.edges:
-        attrs = {"id": prefix + "-edge-" + edge.id, "data-id": edge.id, "data-role": "edge",
+        attrs = {"id": prefix + "-edge-" + edge.id, "data-id": edge.id,
+                 "data-role": "frame-separator" if edge.kind == "frame-separator" else "edge",
                  "data-from": edge.source, "data-to": edge.target, "data-kind": edge.kind,
                  "points": " ".join(f"{number(x)},{number(y)}" for x, y in edge.points),
                  "fill": "none", "stroke": theme[edge.style][1], "stroke-width": "1.8",
                  "stroke-linejoin": "round"}
         marker_kind = edge.marker_kind or edge.kind
-        marker = f"url(#{prefix}-marker-{edge.style}-{'open' if marker_kind in ('async', 'message') else 'arrow'})"
+        marker = f"url(#{prefix}-marker-{edge.style}-{'open' if marker_kind in ('async', 'message', 'reply') else 'arrow'})"
         if edge.direction in ("->", "<->"):
             attrs["marker-end"] = marker
         if edge.direction == "<->":
@@ -118,6 +119,7 @@ def render_svg(scene, namespace=None):
     for text in scene.texts:
         attrs = {"id": prefix + "-text-" + text.role + "-" + text.id, "data-id": text.id, "data-role": text.role,
                  "data-owner": text.owner, "x": number(text.x), "y": number(text.y + text.size),
+                 "data-source": text.source,
                  "font-size": number(text.size), "font-family": scene.family,
                  "text-anchor": text.anchor, "fill": theme["text"],
                  "data-text-box": " ".join(number(v) for v in text.rect)}

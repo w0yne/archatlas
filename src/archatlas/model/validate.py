@@ -54,6 +54,37 @@ def validate(model):
                 raise ModelError("Sequence ranges must reference existing, ordered steps")
             if "node" in item and item["node"] not in node_ids:
                 raise ModelError("Activation must reference a lifeline node")
+        positions = {step: i for i, step in enumerate(sorted(steps))}
+        frames = model.get("frames", [])
+        for frame in frames:
+            operator = frame.get("operator")
+            operands = frame.get("operands", [])
+            if operator in ("loop", "opt", "break") and not frame.get("guard"):
+                raise ModelError(f"{operator} frames require a guard")
+            if operator == "alt" and len(operands) < 2:
+                raise ModelError("alt requires at least two guarded operands")
+            if operands and operator not in ("alt", "par"):
+                raise ModelError("Only alt/par frames accept operands")
+            next_index = positions[frame["from_step"]]
+            for operand in operands:
+                first, last = operand["from_step"], operand["to_step"]
+                if first not in positions or last not in positions or positions[first] != next_index or positions[last] < next_index:
+                    raise ModelError("Operands must partition the frame's message steps in order")
+                next_index = positions[last] + 1
+            if operands and next_index != positions[frame["to_step"]] + 1:
+                raise ModelError("Operands must cover the entire frame")
+        for i, a in enumerate(frames):
+            for b in frames[i + 1:]:
+                af, at, bf, bt = a["from_step"], a["to_step"], b["from_step"], b["to_step"]
+                if af < bf <= at < bt or bf < af <= bt < at:
+                    raise ModelError("Sequence frames must be nested or disjoint")
+                outer, inner = (a, b) if af <= bf and bt <= at else (b, a)
+                if outer["from_step"] <= inner["from_step"] and inner["to_step"] <= outer["to_step"]:
+                    if outer.get("operands") and not any(
+                        operand["from_step"] <= inner["from_step"] <= inner["to_step"] <= operand["to_step"]
+                        for operand in outer["operands"]
+                    ):
+                        raise ModelError("Nested frames must fit inside one operand")
     elif model.get("frames") or model.get("activations"):
         raise ModelError("Frames and activations require the sequence template")
     if model.get("tables") and template != "grid_table":
