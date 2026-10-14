@@ -1,43 +1,51 @@
 ---
-title: Commands, formats and limits
+title: Formats and troubleshooting
 ---
-# Commands, formats and limits
+# Formats and troubleshooting
 
-The repository provides the SVG renderer now. Install it from a reviewed clone with make setup or python -m pip install -e .; no project package is published on PyPI. [Installation](./index) explains the clone and bundle paths.
+## Initial format
 
-## Choose before rendering
+The current renderer produces **SVG with editable text** from model JSON. Keep both: rendering does not copy the source model into the output directory. A simple HTML wrapper is available through the Python exporter API, not an HTML CLI command.
 
-[Not sure which diagram? Choose a view.](/choose) The same renderer supports different views, but a layout does not decide what your architecture means.
+**Not yet promised:** draw.io export, editable PowerPoint export, lossless import, or round-trip editing. Embedding one SVG image in a slide is not equivalent to native editable shapes.
 
-## Working commands
+## Rendering and checks
 
-Run these from an activated checkout environment:
+From a reviewed clone, `make setup` installs development/site dependencies into the checkout environment; activate `.venv` afterwards. For renderer-only use, create and activate a virtual environment and run `python -m pip install -e .` from the clone root. Do not install a similarly named PyPI package: this project has no published package yet.
 
-    atlas init C2 -o model.json
-    atlas render model.json -o out/
-    atlas check out/diagram.svg --model model.json --report out/findings.json
-    atlas fonts doctor
+```sh
+atlas init C2 -o model.json
+atlas render model.json -o out/ --lang en --profile doc
+atlas check out/diagram.svg --model model.json --lang en --fail-on warning --report out/findings.json
+atlas fonts doctor
+```
 
-The render command writes diagram.svg and diagram.findings.json. The explicit check writes the requested findings.json. Review each finding's severity, rule, element IDs, boxes and message. Exit codes: **0** no findings at the selected failure threshold; **1** findings at/above that threshold (error by default); **2** a tool error. Warnings still need review.
+`init` accepts an available type code or a layout family; `--templates DIR` selects another template directory. It resolves default-language labels. `render` writes `out/diagram.svg` and `out/diagram.findings.json`; a named SVG output instead gets a matching `.findings.json`. `check --lang` checks the SVG's language and loads model labels for that locale; it does not translate an existing SVG.
 
-## Optional images and browser checks
+For PNG/contact sheets and real browser geometry checks, install the optional dependencies from the clone:
 
-For PNG previews and contact sheets, install the CairoSVG extra from the clone:
+```sh
+python -m pip install -e '.[preview,browser]'
+python -m playwright install chromium
+atlas preview out/diagram.svg -o out/preview.png --scale 1
+atlas sheet out/*.svg -o out/sheet.jpg
+atlas check out/diagram.svg --model model.json --lang en --browser --report out/browser.findings.json
+```
 
-    python -m pip install -e '.[preview]'
-    atlas preview out/diagram.svg -o out/preview.png
-    atlas sheet out/diagram.svg -o out/sheet.jpg
+Preview/sheet use CairoSVG and system Cairo; browser checking uses Playwright, Chromium and its platform libraries. Browser checks run offline and measure actual bounds after fonts are ready. They do not establish semantic correctness or visual quality. Font-subset embedding is not implemented.
 
-CairoSVG may require system Cairo libraries. In an unpacked bundle, install the optional CairoSVG version documented in scripts/requirements.txt. Browser checks additionally require the browser extra and Chromium; availability does not constitute a visual review.
+Exit **0** means success at the selected threshold, so warnings may remain with the default `--fail-on error`; **1** means findings at/above the threshold; **2** means an input/tool/dependency failure. `render` may write an SVG before returning 1. Reports list findings, severities, element IDs and boxes. Fix the model, render again, re-check the new SVG and then inspect it visually. Element-specific `allow` reasons do not suppress errors or change the exit threshold.
 
-## Fonts and findings
+Schema 0.1 also supports authored/localised legends (`meta.legend`, `legend_mode`, `legend_labels`), table panels beside a small diagram, minimum flow ranks and configurable `layout.spacing`. Actor/use-case glyphs and BPMN start/end event borders are available; descriptive process/dataset/job/pipeline kinds are ordinary cards. Lane/state/tree ranking is deterministic but heuristic. The renderer does not guarantee complete formal notation.
 
-Use fonts doctor to inspect available fonts and CJK coverage. A report with **measured_with: estimate** means fallback measurement was used, not that fit was verified with the intended font. Fix wrapping, layout and font selection rather than shrinking every label. Inspect the final image after changes.
+## Missing fonts or Chinese glyphs
 
-## Supported output and limits
+Use `atlas fonts doctor` to inspect selected fonts and CJK probe coverage. `measured_with: estimate` means some measurement used a conservative estimate; report it. The probe is not all-Unicode coverage, and an SVG's live text still depends on the viewer's fonts. Literal English does not become Chinese just by setting `--lang zh`: supply translation keys and `labels.zh.json`, then re-render. Do not fix clipping by shrinking all labels.
 
-SVG retains editable text; keep model JSON as the source. Native draw.io/PPTX export and lossless round trips are not implemented. The HTML exporter is a library-level wrapper, not a CLI subcommand. Font-subset embedding is not implemented. Use atlas --help for the installed revision rather than assuming planned flags exist.
+## No browser or no image input
 
-## No image input
+Text and geometry checks can still run. Generate a preview when supported, and hand it to a human or image-capable reviewer. Report **visual review pending**, never visual pass based solely on a successful command.
 
-Run available automated checks, produce a preview when possible, and ask a human or image-capable reviewer to inspect it. Report **visual review pending** until that happens. A successful build is not evidence that the diagram tells the right story.
+## A diagram is too dense
+
+Return to the reader's question. Collapse non-focus detail or separate concerns into different views. `slide` keeps 1440×810 and reports overflow; `doc` prefers 1120px and can grow, with a configurable wide-view warning limit. Neither automatically paginates. Keep the full-size image available rather than making labels unreadable on a small screen.

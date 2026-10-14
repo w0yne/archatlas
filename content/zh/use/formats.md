@@ -1,46 +1,54 @@
 ---
-title: 命令、格式与限制
+title: 格式与故障排查
 translationOf: en/use/formats.md
-sourceRev: bca58c9299c22a5a05f98bf81e38393e6e1d1713
-reviewed: true
+sourceRev: 9b3455f1532fa425f2412c0a4c828c086dae8092
+reviewed: false
 ---
-# 命令、格式与限制
+# 格式与故障排查
 
-仓库中的 SVG 渲染器已经可用。请从审阅过的克隆运行 make setup 或 python -m pip install -e .；本项目尚未发布 PyPI 包。[安装说明](./index)区分源码与打包文件两种方式。
+## 初始格式
 
-## 先选择，再渲染
+当前渲染器从模型 JSON 生成 **保留可编辑文字的 SVG**。两者都要保留：渲染不会把源模型复制进输出目录。简单 HTML 外壳通过 Python exporter API 提供，没有 HTML CLI 命令。
 
-[不确定该画哪种图？先选择视图。](/zh/choose) 同一个渲染器可以支持不同视图，但布局不能替你决定架构的含义。
+**尚未承诺：** draw.io 导出、可编辑的 PowerPoint 导出、无损导入或往返编辑。在幻灯片中嵌入一张 SVG 图片，并不等同于原生可编辑的形状。
 
-## 可用命令
+## 渲染与检查
 
-在已经激活的源码环境中运行：
+在已审阅的克隆仓库中，`make setup` 安装开发及站点依赖，之后激活 `.venv`。如果只使用渲染器，创建并激活虚拟环境，然后在克隆根目录执行 `python -m pip install -e .`。项目尚未发布包，不要从 PyPI 安装同名包。
 
-    atlas init C2 -o model.json
-    atlas render model.json -o out/
-    atlas check out/diagram.svg --model model.json --report out/findings.json
-    atlas fonts doctor
+```sh
+atlas init C2 -o model.json
+atlas render model.json -o out/ --lang en --profile doc
+atlas check out/diagram.svg --model model.json --lang en --fail-on warning --report out/findings.json
+atlas fonts doctor
+```
 
-render 会写入 diagram.svg 和 diagram.findings.json；显式 check 会写入指定的 findings.json。逐项检查严重级别、规则、元素 ID、边界框和说明。退出码：**0** 没有达到失败阈值的发现；**1** 有达到阈值的发现（默认阈值为 error）；**2** 工具错误。warning 仍需要复核。
+`init` 接受已提供的类型码或布局族，`--templates DIR` 可指定另一个模板目录。初始化会解析默认语言标签。`render` 写入 `out/diagram.svg` 和 `out/diagram.findings.json`；指定 SVG 文件名时，会生成同名 `.findings.json`。`check --lang` 核对 SVG 的语言，并按该语言加载模型标签，不会翻译已有 SVG。
 
-## 可选图片与浏览器检查
+需要 PNG、联系表或真实浏览器几何检查时，在克隆仓库中安装可选依赖：
 
-从源码安装 CairoSVG 预览依赖，即可生成 PNG 和联系表：
+```sh
+python -m pip install -e '.[preview,browser]'
+python -m playwright install chromium
+atlas preview out/diagram.svg -o out/preview.png --scale 1
+atlas sheet out/*.svg -o out/sheet.jpg
+atlas check out/diagram.svg --model model.json --lang en --browser --report out/browser.findings.json
+```
 
-    python -m pip install -e '.[preview]'
-    atlas preview out/diagram.svg -o out/preview.png
-    atlas sheet out/diagram.svg -o out/sheet.jpg
+preview/sheet 使用 CairoSVG 和系统 Cairo；浏览器检查使用 Playwright、Chromium 及其平台库。浏览器检查阻断网络请求，在字体就绪后测量实际边界，但不证明语义或视觉质量正确。字体子集嵌入尚未实现。
 
-CairoSVG 可能需要系统 Cairo 库。使用解压包时，安装 scripts/requirements.txt 注明的可选 CairoSVG 版本。浏览器检查还需要 browser 额外依赖与 Chromium；工具能运行不等于已经做过视觉复核。
+退出码 **0** 表示通过所选阈值；默认 `--fail-on error` 下仍可能有警告。**1** 表示发现达到阈值的问题，**2** 表示输入、工具或依赖错误。`render` 可能先写出 SVG 再返回 1。报告列出问题、级别、元素 ID 和边界。应修改模型、重新渲染、检查新 SVG，再进行视觉复核。逐元素的 `allow` 理由不会消除错误，也不会改变失败阈值。
 
-## 字体与检查结果
+Schema 0.1 还支持作者编写及本地化的图例（`meta.legend`、`legend_mode`、`legend_labels`）、表格配小图、最小流程 rank 和可配置的 `layout.spacing`。参与者/用例图形及 BPMN 开始/结束事件边框已可用；process/dataset/job/pipeline 等描述性 kind 仍是普通卡片。泳道、状态、树图排名具有确定性，但属于启发式布局，不代表完整形式化记法。
 
-使用 fonts doctor 查看字体与中文字符覆盖。报告中的 **measured_with: estimate** 表示采用了估算，不是用目标字体验证过文字适配。应调整换行、布局和字体，而不是把全部字缩小；修改后查看最终图片。
+## 缺少字体或中文字形
 
-## 输出支持与限制
+用 `atlas fonts doctor` 查看选用字体与 CJK 探针覆盖。`measured_with: estimate` 表示部分测量使用了保守估算，应如实说明。探针不代表全部 Unicode 覆盖，SVG 的可编辑文字也仍依赖查看环境的字体。仅设置 `--lang zh` 不会翻译英文常量：应提供翻译 key 和 `labels.zh.json`，再重新渲染。不要靠缩小所有标签解决裁切。
 
-SVG 保留可编辑文字，模型 JSON 是源文件。原生 draw.io/PPTX 导出及无损往返尚未实现。HTML 导出目前是库接口，不是 CLI 子命令。字体子集嵌入尚未实现。请用 atlas --help 核对当前版本，不要假定规划中的参数已经可用。
+## 没有浏览器或不支持图像输入
 
-## 没有图像输入能力时
+文本检查和几何检查仍可运行。在支持时生成预览，交给人工或能读图的审阅者。报告**视觉复核待做**，绝不能仅凭命令执行成功就声称视觉检查通过。
 
-运行可用的自动检查，条件允许时生成预览，并交给人工或支持图像的模型检查。在此之前标明**视觉复核待做**。构建成功不能证明图表达了正确含义。
+## 图过于密集
+
+回到读者的问题。折叠非重点细节，或把不同关注点拆分到不同视图中。`slide` 保持 1440×810 并报告溢出；`doc` 首选 1120px，可按内容增长，宽图警告阈值可配置。两者都不会自动分页。保留可查看的全尺寸图片，而不是让标签在小屏幕上无法辨认。

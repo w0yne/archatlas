@@ -1,46 +1,74 @@
 # Reviewing a rendered diagram
 
-Two separate reviews: **semantic** (is it the right, truthful diagram?) and **geometric** (can it be read?). A passing automated check proves neither the meaning nor the look.
+Keep semantic review (does the view tell the truth?) separate from geometry and
+visual review (can the reader understand it?). Automated success proves neither.
 
-## 1. Order of work
-semantic check → `scripts/atlas check` → fix → fresh render → visual review → fix → final render → report. Review the exact bytes you will deliver.
+## 1. Fixing loop
 
-## 2. Semantic review (always, by text)
-- Does the view answer the audience's question, at one level of abstraction?
-- Are element kinds consistent within each row or group? Are boundaries explicit? Do labels describe real relationships?
-- Are verified, inferred, proposed and target elements distinguishable? Is there any working note or status text on the figure?
-- Is every number, badge or marker explained? Do step numbers match the sequence of events?
-- Names and steps checked against the code or documents? (Repository mode: every arrow has an evidence row.)
+Model and semantic review → render → check the emitted SVG → fix the model →
+re-render/re-check → preview and visual review. Review the exact final bytes.
+From the skill folder, with its dependencies installed:
 
-## 3. Geometric review
-Use `findings.json` from `scripts/atlas check` (fields: `id, severity, rule, element ids, boxes, message`). Fix errors; fix or justify warnings in the reply. Do not silence a whole rule; allow-list a specific element with a reason in the model.
-Typical defects the checks look for: text outside its box, label background offset from its text, text over lines, node overlap, an arrow crossing an unrelated box or ending in the wrong group, a missing arrowhead target, low contrast, tofu or fallback glyphs in CJK text.
+```sh
+scripts/atlas render model.json -o out/ --lang en
+scripts/atlas check out/diagram.svg --model model.json --lang en --fail-on warning --report out/findings.json
+scripts/atlas check out/diagram.svg --model model.json --lang en --browser --report out/browser.findings.json
+scripts/atlas preview out/diagram.svg -o out/preview.png
+scripts/atlas sheet out/*.svg -o out/sheet.jpg
+```
+
+Browser checking needs the optional Playwright dependency and Chromium; previews
+need CairoSVG/Cairo. Installation and exact output/exit-code rules: `rendering.md`.
+`check --lang` does not translate an existing SVG. Missing tools are not a pass.
+
+## 2. Semantic review
+
+- Does the figure answer its audience's question at a consistent level?
+- Do boundaries, element kinds and relationships match the described system?
+- Are facts, inferences, proposals and target state distinguishable? Repository
+  diagrams need traceable evidence for the elements and relationships.
+- Do names, guards, cardinalities and numbered steps say what actually happens?
+- Does the legend explain meanings? Override defaults with authored, localised
+  legend labels when needed; do not expose renderer identifiers to the reader.
+- Does the chosen notation require information this template cannot express?
+  Do not claim complete UML/BPMN/ArchiMate conformance from a geometry check.
+
+## 3. Automated geometry review
+
+Reports contain counts and findings with id/severity/rule/elements/boxes/message.
+Static checks cover measured text fit, overlaps, label backgrounds, connector
+ports, unrelated boxes/labels crossed, contrast, membership and some hygiene.
+Browser mode adds actual text/shape bounds after fonts are ready, offline.
+Neither mode guarantees glyph identity or absence of tofu: inspect CJK text.
+
+Fix errors. Fix or explain warnings per element; model `allow` entries keep
+reasons but do not suppress errors or alter the failure threshold. Exit 0 at the
+default error threshold may still include warnings. Run `--fail-on warning` when
+the acceptance condition requires none. A valid source model and matching
+node/edge identities do not prove that every visible word or relationship is correct.
 
 ## 4. Visual review
-First decide whether you can actually read images **on your real API route** (do not infer it from a model name).
 
-**You can read images:**
-1. Produce a preview (`scripts/atlas preview`) and, for several figures, a downscaled contact sheet (`scripts/atlas sheet`). Both need CairoSVG; without it, use any rasteriser the host offers or follow the "cannot read images" path.
-2. Look at the contact sheet first; open a full-size image only for complex or flagged figures.
-3. **Open each image once.** Write the observations down immediately (element ids, what is wrong) instead of reopening. Keep a running count of images viewed in the session and stop near the host's limit; fall back to text checks and say so.
-4. Look for: clipped or overlapping text, tiny text, lines through boxes, crossings, unreadable markers, blank space, CJK glyphs, light-on-light contrast, uneven spacing, the last page of a multi-figure document.
-5. Report "visual review done" with what you looked at.
+Determine image support from the actual tool/API route, not just the model name.
+If you can read images, start with the downscaled contact sheet, then inspect
+full-size complex or flagged figures. Look for clipped/overlapping text, too-small
+labels, ambiguous shared line segments, wrong arrow origins, missing glyphs,
+indistinguishable styles, awkward spacing and the last figure in a set.
 
-**You cannot read images (or the host rejects them):**
-1. Run every text and geometry check.
-2. Produce the preview and contact sheet files and give their paths.
-3. Report **"visual review pending"**, and say who needs to do it. Never write "visual pass" based on DOM or geometry checks alone.
+Open each image once, record element-specific findings immediately, and track the
+session's image budget. After a correction, render new files and review them.
+For large sets, delegate subsets only when delegation is available and permitted.
 
-**Large reviews:** split across sub-agents that return text only, each looking at a subset.
+If you cannot read images, run the checks you can, produce previews when possible,
+and hand them to an image-capable reviewer. State **visual review pending** with
+paths and limitations. Never infer a visual pass from DOM/geometry checks. The
+CLI always leaves visual_review pending; record a completed review separately
+with exactly which images you inspected.
 
-## 5. Independent review
-For important deliverables, ask a second reviewer (a different model or a person) to look at the rendered result and the model, without the author's reasoning. Batch their findings into one revision rather than patching one by one.
+## 5. Independent review and handoff
 
-## 6. Report format
-```
-type: sequence diagram       audience: developers      state: to-be
-checks: structure ok, text-fit ok, overlap 0 errors / 1 warning (justified: ...), contrast ok
-visual review: done (contact sheet + 2 full-size) | pending (no image input) 
-verified: ...   inferred: ...   proposed: ...
-open questions: ...
-```
+For consequential deliverables, an independent reviewer can assess the model and
+rendered bytes without the author's explanation. Batch the findings into a revision.
+Report: type/audience/state; checks and remaining findings; measured or estimated
+fonts; visual review done/pending and its scope; verified/inferred/proposed content;
+remaining questions. Deliver SVG with its model, plus previews when available.

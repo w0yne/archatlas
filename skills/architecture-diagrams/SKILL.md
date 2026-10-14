@@ -12,7 +12,8 @@ description: >-
 license: Apache-2.0
 compatibility: >-
   Needs Python 3.10+ and the archatlas renderer behind `scripts/atlas`: a release bundle
-  (which ships `scripts/lib`) or `pip install archatlas`. Without it the skill still
+  (which ships `scripts/lib`, plus its requirements) or `python -m pip install -e .`
+  from a reviewed checkout. No PyPI release is required. Without it the skill still
   chooses types and writes models, and falls back to hand-written SVG.
 metadata:
   version: "0.1.0"
@@ -69,8 +70,8 @@ If feedback contains questions, answer them first and ask for the go-ahead befor
    the exact file name is in `references/selection.md` §6). If the type has no reference yet, say so,
    draw it from `references/principles.md` and the type's row in `selection.md` with the closest
    layout template, and report "no type checklist applied".
-2. Start from the type's model: `scripts/atlas init <code> -o model.json` (copies
-   `assets/templates/<code>.json`; if your renderer version rejects a type code, copy that file).
+2. Start from the type's model: `scripts/atlas init <code> -o model.json` (initialises
+   a shipped template with resolved default-language labels; see `references/rendering.md`).
    Fill it: nodes, edges, groups, labels, evidence status.
 3. Render: `scripts/atlas render model.json -o out/` (options and model schema: `references/rendering.md`).
    Write outputs where the user asked, or to a new folder outside any repository you are analysing.
@@ -79,7 +80,7 @@ If feedback contains questions, answer them first and ask for the go-ahead befor
 ## Step 5 — Check and fix
 
 Run `scripts/atlas check out/diagram.svg --model model.json --report findings.json`
-(`render` already writes `out/diagram.findings.json`; `check` re-verifies against the model).
+(`render` already writes `out/diagram.findings.json`; `check` validates the model and compares node/edge IDs and endpoints).
 If the findings say `measured_with: estimate`, fonts were not measured: report it, and run
 `scripts/atlas fonts doctor` to see what is missing. Fix every `error`. Fix every `warning` or justify it in the reply. Re-render. Then look
 at the result as `references/review.md` describes. Do not claim a visual review that did not happen.
