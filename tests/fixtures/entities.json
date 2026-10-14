@@ -1,0 +1,66 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "D1",
+    "title": "Logical order model",
+    "legend": [
+      {
+        "label": "Multiplicity: minimum..maximum"
+      }
+    ]
+  },
+  "layout": {
+    "template": "er"
+  },
+  "nodes": [
+    {
+      "id": "buyer",
+      "kind": "entity",
+      "label": "Customer",
+      "attributes": [
+        "customer_id (PK)",
+        "display_name"
+      ]
+    },
+    {
+      "id": "order",
+      "kind": "entity",
+      "label": "Order",
+      "attributes": [
+        "order_id (PK)",
+        "customer_id (FK)",
+        "status"
+      ]
+    },
+    {
+      "id": "item",
+      "kind": "entity",
+      "label": "Order item",
+      "attributes": [
+        "item_id (PK)",
+        "order_id (FK)",
+        "quantity"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": "buyer",
+      "to": "order",
+      "label": "places",
+      "cardinality": {
+        "from": "1",
+        "to": "0..*"
+      }
+    },
+    {
+      "from": "order",
+      "to": "item",
+      "label": "contains",
+      "cardinality": {
+        "from": "1",
+        "to": "1..*"
+      }
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "C2",
+    "title": "Online shop context",
+    "lang": "en"
+  },
+  "layout": {
+    "template": "nested"
+  },
+  "nodes": [
+    {
+      "id": "buyer",
+      "kind": "person",
+      "label": "Buyer",
+      "style": "external"
+    },
+    {
+      "id": "shop",
+      "kind": "system",
+      "label": "Shop",
+      "style": "primary"
+    },
+    {
+      "id": "payment",
+      "kind": "external",
+      "label": "Payment provider",
+      "style": "external"
+    }
+  ],
+  "edges": [
+    {
+      "from": "buyer",
+      "to": "shop",
+      "label": "Places order"
+    },
+    {
+      "from": "shop",
+      "to": "payment",
+      "label": "Requests payment",
+      "style": "shared"
+    }
+  ]
+}

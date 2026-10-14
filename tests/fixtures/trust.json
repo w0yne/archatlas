@@ -1,0 +1,57 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "F2",
+    "title": "Shop trust boundaries"
+  },
+  "layout": {
+    "template": "nested"
+  },
+  "groups": [
+    {
+      "id": "public",
+      "kind": "boundary",
+      "title": "Public network"
+    },
+    {
+      "id": "private",
+      "kind": "boundary",
+      "title": "Private services"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "browser",
+      "kind": "external",
+      "label": "Browser",
+      "parent": "public",
+      "style": "external"
+    },
+    {
+      "id": "gateway",
+      "kind": "container",
+      "label": "Gateway",
+      "parent": "private",
+      "style": "primary"
+    },
+    {
+      "id": "orders",
+      "kind": "store",
+      "label": "Order store",
+      "parent": "private"
+    }
+  ],
+  "edges": [
+    {
+      "from": "browser",
+      "to": "gateway",
+      "label": "HTTPS request"
+    },
+    {
+      "from": "gateway",
+      "to": "orders",
+      "label": "Reads order",
+      "kind": "data"
+    }
+  ]
+}

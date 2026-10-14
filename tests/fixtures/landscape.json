@@ -1,0 +1,55 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "C1",
+    "title": "Shop application landscape"
+  },
+  "layout": {
+    "template": "layered"
+  },
+  "groups": [
+    {
+      "id": "channels",
+      "kind": "layer",
+      "title": "Channels"
+    },
+    {
+      "id": "services",
+      "kind": "layer",
+      "title": "Services"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "web",
+      "kind": "container",
+      "label": "Web shop",
+      "parent": "channels"
+    },
+    {
+      "id": "checkout",
+      "kind": "container",
+      "label": "Checkout",
+      "parent": "services",
+      "style": "primary"
+    },
+    {
+      "id": "stock",
+      "kind": "container",
+      "label": "Inventory",
+      "parent": "services"
+    }
+  ],
+  "edges": [
+    {
+      "from": "web",
+      "to": "checkout",
+      "label": "Submits order"
+    },
+    {
+      "from": "checkout",
+      "to": "stock",
+      "label": "Reserves stock"
+    }
+  ]
+}
