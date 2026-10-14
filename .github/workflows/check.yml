@@ -24,3 +24,30 @@ jobs:
           name: site-build
           path: content/.vitepress/dist
           retention-days: 7
+  release-hygiene:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # lint_private --history scans every commit
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install PyYAML==6.0.3 -r skills/architecture-diagrams/scripts/requirements.txt
+      - name: Private-content lint
+        env:
+          # Optional repository secret: one private term per line. Never commit the list.
+          PRIVATE_NAMES: ${{ secrets.ARCHATLAS_PRIVATE_NAMES }}
+        run: |
+          if [ -n "$PRIVATE_NAMES" ]; then
+            printf '%s\n' "$PRIVATE_NAMES" > "$RUNNER_TEMP/private-names.txt"
+            export ARCHATLAS_PRIVATE_NAMES_FILE="$RUNNER_TEMP/private-names.txt"
+          fi
+          python3 tools/lint_private.py --history --strict
+      - name: Pack and verify the skill zip
+        run: python3 tools/pack_skill.py --out "$RUNNER_TEMP/dist" --verify
+      - uses: actions/upload-artifact@v4
+        with:
+          name: skill-zip
+          path: ${{ runner.temp }}/dist
+          retention-days: 7
