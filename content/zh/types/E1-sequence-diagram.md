@@ -17,7 +17,7 @@ formal: {kind: standard, ref: 'OMG UML 2.5.1 (formal/2017-12-05), interaction di
 neighbours: [A5, C3, C4, C6, E2, E3, E4, F1, I1]
 status: draft
 translationOf: en/types/E1-sequence-diagram.md
-sourceRev: 3e7f7c4
+sourceRev: a5c5cf3
 reviewed: false
 ---
 
