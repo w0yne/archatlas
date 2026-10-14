@@ -4,6 +4,8 @@ Automatic routes avoid unrelated rectangles with eight units of clearance. If
 clearance is impossible, routing retries against their actual borders, then
 raises ValueError if no route exists. Manual waypoints are the exact internal
 points: they bypass obstacle avoidance but must form an orthogonal connector.
+Crossings and collinear shared lengths are penalized, so a return flow prefers
+a separate corridor instead of retracing an arrival when space permits.
 """
 
 from __future__ import annotations
@@ -19,6 +21,7 @@ __all__ = ["route", "segment_hits_rect", "crosses"]
 _CLEARANCE = 8.0
 _BEND = 40.0
 _CROSSING = 200.0
+_OVERLAP = 4.0
 _NORMAL = {"n": (0, -1), "e": (1, 0), "s": (0, 1), "w": (-1, 0)}
 
 
@@ -135,7 +138,20 @@ def _score(points: Sequence[Point], previous: Sequence[tuple[Point, Point]]) -> 
                 for a, b, c in zip(points, points[1:], points[2:]))
     crossings = sum(_crosses(a, b, c, d) for a, b in zip(points, points[1:])
                     for c, d in previous)
-    return length + _BEND * bends + _CROSSING * crossings
+    shared = sum(_overlap(a, b, c, d) for a, b in zip(points, points[1:]) for c, d in previous)
+    return length + _BEND * bends + _CROSSING * crossings + _OVERLAP * shared
+
+
+def _overlap(a: Point, b: Point, c: Point, d: Point) -> float:
+    """Length of collinear overlap; endpoint touches cost nothing."""
+    if a[0] == b[0] == c[0] == d[0]:
+        axis = 1
+    elif a[1] == b[1] == c[1] == d[1]:
+        axis = 0
+    else:
+        return 0.0
+    return max(0.0, min(max(a[axis], b[axis]), max(c[axis], d[axis])) -
+               max(min(a[axis], b[axis]), min(c[axis], d[axis])))
 
 
 def _axes(a: Point, b: Point, boxes: Sequence[Rect], margin: float):
@@ -214,6 +230,7 @@ def _visibility_route(a: Point, b: Point, start: str, end: str,
                         crossings += min(c[0], d[0]) < p[0] < max(c[0], d[0])
             extra = abs(q[0] - p[0]) + abs(q[1] - p[1])
             extra += _BEND * (incoming != -1 and incoming != axis) + _CROSSING * crossings
+            extra += _OVERLAP * sum(_overlap(p, q, c, d) for c, d in previous)
             following = (jx, jy, axis)
             next_cost = cost + extra
             if next_cost < distances.get(following, float("inf")):

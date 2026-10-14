@@ -3,6 +3,7 @@ import argparse
 from io import BytesIO
 import json
 from pathlib import Path
+import re
 import sys
 from xml.etree import ElementTree as ET
 
@@ -57,11 +58,61 @@ def initial(template):
     return model
 
 
+def template_directories(explicit=None):
+    """Find checkout or copied-skill assets, including a vendored scripts/lib."""
+    if explicit:
+        directory = Path(explicit)
+        if not directory.is_dir():
+            raise ValueError("--templates must name a template directory")
+        return [directory]
+    directories = []
+    for start in (Path(__file__).resolve().parent, Path(sys.argv[0]).resolve().parent, Path.cwd()):
+        for parent in (start, *start.parents):
+            for directory in (parent / "assets/templates",
+                              parent / "skills/architecture-diagrams/assets/templates"):
+                if directory.is_dir() and directory not in directories:
+                    directories.append(directory)
+    return directories
+
+
+def initial_type(name, templates=None):
+    if name in TEMPLATES:
+        return initial(name)
+    # Resolve by shipped filename or model metadata, never a code/family table.
+    code = name.upper()
+    for directory in template_directories(templates):
+        files = sorted(directory.glob("*.json"))
+        matches = [path for path in files if path.stem.upper() == code]
+        if not matches:
+            matches = [path for path in files
+                       if json.loads(path.read_text(encoding="utf-8")).get("meta", {}).get("type", "").upper() == code]
+        if len(matches) > 1:
+            raise ValueError(f"Multiple templates declare type {code}")
+        if matches:
+            # Materialise default-language labels so the copy is self-contained.
+            # load() copies before resolution; shipped assets are never modified.
+            return load(matches[0])
+    raise ValueError(f"No shipped template for {name!r}; use a layout family or --templates DIRECTORY")
+
+
+def add_finding(report, rule, message):
+    report["findings"].append({"severity": "error", "rule": rule, "elements": [],
+                               "boxes": [], "message": message})
+
+
+def recount(report):
+    for i, finding in enumerate(report["findings"], 1):
+        finding["id"] = f"finding-{i}"
+    report["errors"] = sum(f["severity"] == "error" for f in report["findings"])
+    report["warnings"] = sum(f["severity"] == "warning" for f in report["findings"])
+
+
 def parser():
     root = argparse.ArgumentParser(prog="atlas", description=__doc__)
     commands = root.add_subparsers(dest="command", required=True)
     init = commands.add_parser("init")
-    init.add_argument("template", choices=TEMPLATES)
+    init.add_argument("template", help="Type code from shipped templates, or a layout family")
+    init.add_argument("--templates", help="Explicit directory containing template JSON models")
     init.add_argument("-o", "--output", default="model.json")
     render = commands.add_parser("render")
     render.add_argument("model")
@@ -74,6 +125,7 @@ def parser():
     check = commands.add_parser("check")
     check.add_argument("svg")
     check.add_argument("--model")
+    check.add_argument("--lang", help="Model label locale; must match the supplied SVG language")
     check.add_argument("--report", required=True)
     check.add_argument("--browser", action="store_true")
     check.add_argument("--fail-on", choices=("error", "warning"), default="error")
@@ -93,7 +145,7 @@ def main(argv=None):
     args = parser().parse_args(argv)
     try:
         if args.command == "init":
-            save_json(args.output, initial(args.template))
+            save_json(args.output, initial_type(args.template, args.templates))
         elif args.command == "fonts":
             print(json.dumps(FontMetrics().doctor(), indent=2, ensure_ascii=False))
         elif args.command == "render":
@@ -116,13 +168,19 @@ def main(argv=None):
                               "warnings": report["warnings"], "visual_review": "pending"}))
             return int(failed(report, args.fail_on))
         elif args.command == "check":
-            if args.browser:
-                raise ValueError("Browser QA is not implemented; static checks do not prove visual correctness")
+            if args.lang is not None and not re.fullmatch(r"[A-Za-z0-9_-]+", args.lang):
+                raise ValueError("Language must be a locale identifier")
             svg = Path(args.svg).read_text(encoding="utf-8")
             report = check_svg(svg)
-            if args.model and not any(f["rule"] in ("unsafe-svg", "structure") for f in report["findings"]):
+            safe = not any(f["rule"] in ("unsafe-svg", "structure") for f in report["findings"])
+            if safe and args.lang:
+                actual_lang = ET.fromstring(svg).get("lang")
+                if actual_lang != args.lang:
+                    add_finding(report, "language-mismatch",
+                                f"SVG language {actual_lang!r} differs from requested language {args.lang!r}")
+            if args.model and safe:
                 root = ET.fromstring(svg)
-                model = load(args.model, root.get("lang"))
+                model = load(args.model, args.lang or root.get("lang"))
                 expected_nodes = {n["id"] for n in model.get("nodes", []) + model.get("groups", [])}
                 actual_nodes = {e.get("data-id") for e in root.iter() if e.get("data-role") in ("node", "group")
                                 and e.get("data-kind") != "frame"}
@@ -132,12 +190,30 @@ def main(argv=None):
                 actual_edges = {(e.get("data-id"), e.get("data-from"), e.get("data-to")) for e in root.iter()
                                 if e.get("data-role") == "edge" and e.get("data-kind") not in ("legend", "lifeline")}
                 if expected_nodes != actual_nodes or expected_edges != actual_edges:
-                    report["findings"].append({"id": f"finding-{len(report['findings']) + 1}", "severity": "error",
-                                                "rule": "model-topology", "elements": [], "boxes": [],
-                                                "message": "SVG node/edge identities differ from the supplied model"})
-                    report["errors"] += 1
+                    add_finding(report, "model-topology", "SVG node/edge identities differ from the supplied model")
+            tool_error = None
+            if args.browser:
+                report["visual_review"] = "pending"
+                if not safe:
+                    report["browser"] = {"status": "blocked", "reason": "Unsafe or invalid SVG"}
+                else:
+                    from .check.browser import check_browser
+                    try:
+                        browser_report = check_browser(svg)
+                        report["findings"].extend(browser_report["findings"])
+                        report["browser"] = browser_report["browser"]
+                    except (RuntimeError, ValueError, OSError, ImportError) as error:
+                        tool_error = str(error)
+                        report["browser"] = {"status": "tool-error", "message": tool_error}
+            recount(report)
             save_json(args.report, report)
-            print(json.dumps({"errors": report["errors"], "warnings": report["warnings"]}))
+            summary = {"errors": report["errors"], "warnings": report["warnings"]}
+            if args.browser:
+                summary.update(browser=report["browser"]["status"], visual_review="pending")
+            print(json.dumps(summary))
+            if tool_error:
+                print(json.dumps({"error": tool_error}), file=sys.stderr)
+                return 2
             return int(failed(report, args.fail_on))
         elif args.command == "preview":
             if not 0 < args.scale <= 4:

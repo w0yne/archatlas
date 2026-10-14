@@ -7,6 +7,16 @@ import pytest
 from archatlas.layout.route import crosses, route, segment_hits_rect
 
 
+def test_return_flow_does_not_retrace_the_arrival_segment():
+    source, target = (200, 200, 100, 60), (400, 100, 100, 60)
+    previous = [[(100, 50), (250, 50), (250, 200)]]
+    points = route(source, target, [], previous=previous)
+    # Sharing the arrival's vertical segment would make the return look like
+    # a branch before this task. A different source/target port pair is clear.
+    assert not any(a[0] == b[0] == 250 and min(a[1], b[1]) < 200 and max(a[1], b[1]) > 50
+                   for a, b in zip(points, points[1:]))
+
+
 def assert_clear(points, boxes, padding=0):
     assert len(points) >= 2
     for a, b in zip(points, points[1:]):

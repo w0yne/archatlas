@@ -180,6 +180,8 @@ def check_svg(svg, metrics=None):
             for sid, (rect, shape) in shapes.items():
                 if sid in excluded or shape.get("data-role") in ("label-bg", "activation"):
                     continue
+                if shape.get("data-role") == "group" and shape.get("data-kind") == "lane":
+                    continue  # A lane partitions responsibility; flow may cross it.
                 if shape.get("data-kind") == "frame" and contains(rect, (a[0], a[1], 0, 0)) and contains(rect, (b[0], b[1], 0, 0)):
                     continue
                 if segment_hits_rect(a, b, rect, padding=2):

@@ -54,6 +54,7 @@ class Connector:
     direction: str = "->"
     dashed: bool = False
     kind: str = "call"
+    marker_kind: str = ""
 
 
 @dataclass

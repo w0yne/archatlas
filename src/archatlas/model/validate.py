@@ -55,6 +55,4 @@ def validate(model):
         raise ModelError("Frames and activations require the sequence template")
     if model.get("tables") and template != "grid_table":
         raise ModelError("Tables require the grid_table template")
-    if template == "grid_table" and (entities or model.get("edges")):
-        raise ModelError("grid_table currently accepts tables only")
     return model
