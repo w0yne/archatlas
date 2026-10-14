@@ -3,4 +3,6 @@ Copyright 2026 archatlas contributors
 
 Newly authored code, instructions, documentation and examples are licensed under
 Apache License 2.0. Third-party dependencies and referenced material retain their
-own licenses. Links to third-party diagrams do not grant redistribution rights.
+own licenses; see THIRD_PARTY_NOTICES.md. Links to third-party diagrams do not
+grant redistribution rights. Names of standards and products are trademarks of
+their respective owners and are used only to identify them.
