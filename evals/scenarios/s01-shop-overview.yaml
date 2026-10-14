@@ -1,0 +1,21 @@
+id: S1
+title: Underspecified overview for two audiences
+focus: landscape or context; audience handling
+expected_types: [C2, A7, C1]
+modes: [autonomous, guided]
+lang: en
+prompt: >-
+  Draw an overview of our online shop for the CTO and the head of the business.
+  The shop has a web storefront, a mobile app, an order service, a payment provider,
+  a warehouse system and a customer support tool. Save the result under out/.
+scripted_answers:
+  - "The CTO and business lead want to see what the shop is made of and what it depends on. Current state."
+  - "Go with your recommendation."
+  - "Looks good, render it."
+expect:
+  - States the audience and assumptions (autonomous) or asks for them one at a time (guided).
+  - Picks a named type (system context or conceptual overview) and names a runner-up.
+  - Shows a text wireframe before rendering.
+  - Shows external parties (payment provider, warehouse) as external, not as internal parts.
+  - Delivers an SVG plus the editable model under out/.
+deliverables: ["out/*.svg"]

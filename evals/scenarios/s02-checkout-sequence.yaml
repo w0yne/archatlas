@@ -1,0 +1,15 @@
+id: S2
+title: Checkout sequence with one retry
+focus: sequence diagram with a loop frame
+expected_types: [E1]
+modes: [autonomous]
+lang: en
+prompt: >-
+  For our developers, show how checkout talks to the payment service and the inventory
+  service. Payment can be retried once if the provider times out. Save the diagram under out/.
+expect:
+  - Uses a sequence diagram with 4-7 lifelines and numbered messages.
+  - Shows the retry as a loop or alt frame with a guard, not as extra arrows.
+  - Distinguishes synchronous calls, replies and asynchronous messages.
+  - Keeps the main figure on the happy path plus the one retry; no unrelated error branches.
+deliverables: ["out/*.svg"]

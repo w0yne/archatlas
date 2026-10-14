@@ -1,0 +1,21 @@
+id: S3
+title: Two ownership boundaries and access rules
+focus: access-control model and trust boundaries
+expected_types: [F3, F2]
+modes: [guided]
+lang: en
+prompt: >-
+  Two teams own the order system and the billing system. Support agents can read orders
+  but not invoices; finance staff can read and correct invoices; team admins manage their
+  own team's roles. Show who can see what. Save the diagrams under out/.
+scripted_answers:
+  - "Guided, please."
+  - "The readers are the security reviewer and both team leads."
+  - "Use your recommendation; keep it to two figures at most."
+  - "Approved, render it."
+expect:
+  - Asks one question at a time, each with a recommended default.
+  - Separates who-may-do-what (access-control model) from where trust changes (boundaries).
+  - Uses a role x permission matrix or chain whose cells match the prompt exactly.
+  - Does not invent roles or permissions that were not stated, or marks them as assumptions.
+deliverables: ["out/*.svg"]

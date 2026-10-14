@@ -1,0 +1,44 @@
+# Copy to a local file (e.g. hosts.local.yaml, gitignored) and adapt.
+# Each run gets a fresh HOME and host config dir; only what is listed here
+# reaches the child process:
+#   binary    executable name or path (default: claude / codex / pi on PATH)
+#   model     model id passed on the command line
+#   env       literal, non-secret variables (region, provider switches)
+#   pass_env  NAMES of parent variables to forward, e.g. an API key. Values are
+#             never written to results. RCC_*, CYBERWARE_*, PI_*, CLAUDE*, CODEX_*
+#             are refused.
+#   copy      {dest-in-host-config-dir: source-file}: minimal auth/model files
+#             copied into the sandbox (mode 0600) and deleted with it
+# Never point anything at a live session directory.
+
+claude:
+  model: claude-sonnet-4-5          # any model id your account can use
+  pass_env: [ANTHROPIC_API_KEY]
+  # Amazon Bedrock instead of an API key (credentials from the instance role
+  # or AWS_* variables listed in pass_env):
+  # env: {CLAUDE_CODE_USE_BEDROCK: "1", AWS_REGION: us-west-2}
+
+codex:
+  model: gpt-5-codex
+  # sandbox: workspace-write (default). If shell commands fail with bubblewrap
+  # namespace errors ("setting up uid map: Permission denied"), set
+  # danger-full-access; the run is then contained only by its temp sandbox.
+  pass_env: [OPENAI_API_KEY]
+  config_toml: |
+    check_for_update_on_startup = false
+  # A provider that needs a model catalog file:
+  # copy: {models.json: ~/.codex/models.json}
+  # config_toml: |
+  #   model_provider = "amazon-bedrock-runtime"
+  #   model_catalog_json = "{state}/models.json"
+  #   [model_providers.amazon-bedrock-runtime.aws]
+  #   region = "us-west-2"
+
+pi:
+  provider: anthropic
+  model: claude-sonnet-4-5
+  pass_env: [ANTHROPIC_API_KEY]
+  # provider: amazon-bedrock
+  # Pi only uses ambient AWS credentials (e.g. an instance role) when a
+  # credential variable such as AWS_PROFILE is set:
+  # env: {AWS_REGION: us-west-2, AWS_PROFILE: default}

@@ -1,0 +1,14 @@
+id: S4
+title: Order lifecycle
+focus: state machine
+expected_types: [E3]
+modes: [autonomous]
+lang: en
+prompt: >-
+  Model the lifecycle of an order in an online shop: placed, paid, packed, shipped,
+  delivered, and the ways it can be cancelled or refunded. Save the diagram under out/.
+expect:
+  - Uses a state machine with an initial pseudostate and at least one final state.
+  - States are nouns or adjectives; transitions are labelled with events (and guards where needed).
+  - Forbidden transitions are not drawn; cancellation is only possible from the states the model allows.
+deliverables: ["out/*.svg"]

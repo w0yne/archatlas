@@ -1,0 +1,18 @@
+# Trigger set: the skill is installed but not invoked by name. A positive should
+# load the skill; a near miss should not.
+id: T
+title: Skill trigger set
+kind: trigger
+items:
+  - {id: T1, should_trigger: true, lang: en, prompt: "Can you draw a container diagram of a web shop with a storefront, an API and a database?"}
+  - {id: T2, should_trigger: true, lang: en, prompt: "Which architecture diagram should I show my CFO to explain where we want to invest next year?"}
+  - {id: T3, should_trigger: true, lang: en, prompt: "Make a sequence diagram for password reset by email."}
+  - {id: T4, should_trigger: true, lang: zh, prompt: "帮我画一张系统上下文图，说明网店和支付、物流系统的关系。"}
+  - {id: T5, should_trigger: true, lang: zh, prompt: "我们要做安全评审，需要准备哪些架构图？"}
+  - {id: T6, should_trigger: true, lang: en, prompt: "Read the repository in this folder and draw its deployment view."}
+  - {id: T7, should_trigger: false, lang: en, prompt: "Make a pie chart of last quarter's sales by region from these numbers: north 40, south 25, east 20, west 15."}
+  - {id: T8, should_trigger: false, lang: en, prompt: "Sketch a UI mockup of a login screen with two fields and a button."}
+  - {id: T9, should_trigger: false, lang: en, prompt: "Design a logo for a coffee shop called Bean There."}
+  - {id: T10, should_trigger: false, lang: en, prompt: "Draw a flowchart of how to bake bread at home."}
+  - {id: T11, should_trigger: false, lang: en, prompt: "In Mermaid, what is the syntax for a dotted arrow?"}
+  - {id: T12, should_trigger: false, lang: en, prompt: "Our PostgreSQL queries are slow; how should I tune the indexes on the orders table?"}

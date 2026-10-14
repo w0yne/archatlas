@@ -1,0 +1,19 @@
+id: S9
+title: Revise a dense diagram with mixed English and Chinese labels
+focus: review and fix
+expected_types: [C3]
+modes: [autonomous]
+lang: en
+fixture:
+  files:
+    input/dense.svg: dense.svg
+prompt: >-
+  input/dense.svg is a container diagram that people find hard to read: labels overflow,
+  some boxes contain bullet lists, and a few labels are Chinese. Fix it and save the revised
+  version under out/. Explain what you changed.
+expect:
+  - Identifies overflowing labels and bullet lists inside boxes as defects.
+  - Keeps the same elements and relationships; does not invent new ones.
+  - Mixed English/Chinese labels fit after the fix.
+  - States whether a visual review actually happened.
+deliverables: ["out/*.svg"]

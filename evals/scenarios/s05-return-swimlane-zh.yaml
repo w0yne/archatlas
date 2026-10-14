@@ -1,0 +1,15 @@
+id: S5
+title: Return process across three parties, Chinese labels
+focus: BPMN collaboration or swimlane with message flows
+expected_types: [A5, E4]
+modes: [autonomous]
+lang: zh
+prompt: >-
+  画一张退货流程图：顾客提交退货申请，客服审核，仓库收货验货，客服办理退款并通知顾客。
+  图中文字用中文，结果保存到 out/ 目录。
+expect:
+  - Chooses between BPMN (A5) and a lightweight swimlane (E4) and says why.
+  - If BPMN, uses pools for independent parties and message flows only between pools.
+  - All labels are Chinese and fit their shapes; no glyph fallback boxes.
+  - Message flows are short and aligned; no long folded line running back to the start.
+deliverables: ["out/*.svg"]
