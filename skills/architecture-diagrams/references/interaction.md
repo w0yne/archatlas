@@ -7,7 +7,7 @@ Read this in Step 0–3 of `SKILL.md`, and whenever you are unsure whether to as
 | | Autonomous | Guided |
 |---|---|---|
 | Brief | Infer from the request. Put assumptions at the top of the reply. | Ask the missing fields one question at a time. Each question carries a recommended default ("I suggest X because Y — OK?"). |
-| Type choice | Pick the best fit, name one runner-up. | Offer the decision tree as 3–4 short questions (audience and purpose → question → scope → current or target), recommend one or two types. |
+| Type choice | Pick the best fit, name one runner-up. | Ask the "First questions" of `selection.md` §1 (audience and purpose → question → scope → current or target), skipping any already answered, then recommend one or two types. |
 | Wireframe | Show it, then continue. | Show it, wait for approval, then render. |
 | Questions | Only when a wrong guess would change the meaning (see §3). | Also confirm inferred items (repository mode) and names. |
 | Ambiguous quality words | Restate as a concrete property and carry on as an assumption. | Ask which concrete property is meant. |
@@ -23,6 +23,7 @@ If the user has not said, and the session is interactive, ask in plain chat:
 > 2) **Guided** — we decide audience, diagram type and boundaries together first.
 
 - A host question UI may be used for the same question; do not depend on one existing. Without it, a numbered question in ordinary chat is enough; wait for the reply.
+- Clear cues count as the answer ("ask me", "walk me through" → guided; "just draw it", or a request that already fixes type, scope and audience → autonomous); say in one line which mode you took.
 - Honour the answer for the whole task. Do not re-ask. Explicit user instructions beat these defaults.
 - Non-interactive run (a headless prompt): use the mode in the prompt; if none, autonomous.
 - If you must have an answer and cannot get one, end with `needs_input:` and the question. A timeout or silence is not approval, and you must not invent the user's decision.
@@ -55,6 +56,7 @@ Keep it to one paragraph in the reply. Update it when the user corrects somethin
 ## 5. Question bank (ask only the relevant ones, in this order)
 
 Each question comes with a recommendation. One at a time in guided mode.
+**Budget:** skip anything the request, the chosen type or an earlier answer already settles. Ask the type-specific questions first, then the generic ones below; at most five questions before the wireframe. Fold the rest into the wireframe as stated defaults the user can correct.
 1. **Audience and purpose** — business, technical, mixed? Review draft or final handout?
 2. **Current or target state?** — or both as two figures.
 3. **Type** — one or two candidates from the catalogue, with the reason for each.
@@ -62,10 +64,8 @@ Each question comes with a recommendation. One at a time in guided mode.
 5. **External systems** — which to show, kept at the edge.
 6. **Inside the main system** — what makes it distinctive (components, not feature lists).
 7. **Interface labels** — a generic label, or named endpoints? (Some audiences do not want endpoint names.)
-8. **Flows** — happy path only or error branches too? Where does the story start? Static or animated?
-9. **Connecting two systems** — pools with message flows at aligned heights, or a layered view with numbered links?
-10. **Example cards** — small labelled examples next to a business-facing flow: yes or no, how many?
-Type-specific questions live in `references/types/<code>-<slug>.md` (section "Questions").
+8. **Flows** — happy path only or error branches too? Where does the story start?
+Type-specific questions live in `references/types/<code>-<slug>.md` (section "Guided-mode questions").
 
 ## 6. Plain-language restatements for vague words
 
@@ -88,7 +88,7 @@ Keep a compact log in the reply tail and carry accepted decisions into every rev
 decisions:
 - D1 type: container diagram (runner-up: component)         source: user, round 1
 - D2 state: to-be only                                       source: assumption
-- D3 admin plane drawn separately from runtime plane         source: user, round 2
+- D3 payment provider shown as one external box               source: user, round 2
 open:
 - Q1 which deployment target? (assumed: the production IaC)
 ```

@@ -13,12 +13,12 @@ If the user asks for an unsupported format: deliver SVG plus model JSON, state w
 
 ## Exporter interface (sketch)
 ```python
-class Exporter(Protocol):
+class Exporter(Protocol):          # src/archatlas/export/base.py
     name: str
-    capabilities: set[str]      # {"editable_text", "editable_shapes", "attached_connectors"}
-    def export(self, scene: Scene, out: Path, opts: dict) -> ExportResult: ...
+    capabilities: dict             # e.g. {"editable_text": True, "editable_shapes": True, "connectors_attached": False}
+    def export(self, scene: Scene, out: Path, opts: dict) -> dict: ...   # returns a small result record
 ```
-`Scene` is the resolved geometry plus semantics and localisation produced after layout (nodes with boxes and ports, edges with waypoints, groups, tables, legend). Exporters never re-run layout and never touch the model schema. [TODO: align names with the implemented `export/base.py`.]
+`Scene` (`src/archatlas/layout/base.py`) is the resolved geometry plus semantics and localisation produced after layout (nodes with boxes and ports, edges with waypoints, groups, tables, legend). Exporters never re-run layout and never touch the model schema.
 
 ## Planned mappings (not yet implemented)
 - **draw.io:** write uncompressed `mxGraphModel` XML — vertices and parent groups, edges with source and target ids, label cells, geometry from the scene. Keep objects editable; do not embed the SVG as an image. No promise of a lossless round trip back to the model.

@@ -2,19 +2,20 @@
 
 SVG is the primary format. You write a **model** (what the diagram means); the renderer lays it out and draws it; the checker finds defects. Never place nodes by absolute coordinates unless a model field explicitly allows waypoints.
 
-> Status: the model schema below is frozen at `archatlas: "0.1"` (file `src/archatlas/model/schema.json`; the schema is the authority — validate with it, do not trust this summary over it). CLI flags follow the design and are marked **[TODO confirm]** until the renderer package lands; run `scripts/atlas --help` and prefer the real output.
+> Status: the model schema below is frozen at `archatlas: "0.1"` (file `src/archatlas/model/schema.json`; the schema is the authority — validate with it, do not trust this summary over it). If `scripts/atlas --help` disagrees with this page, the real output wins.
 
 ## 1. Workflow
 ```
-scripts/atlas init <type>  -o model.json        # starting model for a type code (e.g. C2, E1)
+scripts/atlas init <code> -o model.json        # copies assets/templates/<code>.json (e.g. C2, E1)
 # edit model.json (+ optional labels.en.json / labels.zh.json beside it)
-scripts/atlas render model.json -o out/         # writes out/diagram.svg (and out/scene.json)
+scripts/atlas render model.json -o out/         # writes out/diagram.svg and out/diagram.findings.json
 scripts/atlas check  out/diagram.svg --model model.json --report out/findings.json
-scripts/atlas preview out/diagram.svg -o out/preview.png     # needs a rasteriser; says so if none
-scripts/atlas sheet  out/*.svg -o out/sheet.jpg              # downscaled contact sheet
+scripts/atlas preview out/diagram.svg -o out/preview.png     # needs CairoSVG (archatlas[preview])
+scripts/atlas sheet  out/*.svg -o out/sheet.jpg              # contact sheet; needs CairoSVG too
 scripts/atlas fonts doctor                                   # usable fonts and CJK glyph coverage
 ```
-Exit codes: 0 clean; 1 findings at or above `--fail-on` (default `error`); 2 tool error. **[TODO confirm flags]**
+`render` runs the checks as well and prints a one-line summary (`errors`, `warnings`, `visual_review: pending`). `--fail-on error|warning` sets the threshold for exit code 1. Exit codes: 0 clean; 1 findings at or above `--fail-on` (default `error`); 2 tool error. If an older renderer rejects a type code in `init`, copy `assets/templates/<code>.json` instead.
+**Unavailable options:** `check --browser` and `render --embed-font-subset` are not implemented and exit with code 2; do not rely on them.
 
 ## 2. Model (version 0.1)
 Required top level: `archatlas: "0.1"`, `meta` (`type`, `title`), `layout` (`template`).
@@ -44,7 +45,7 @@ Required top level: `archatlas: "0.1"`, `meta` (`type`, `title`), `layout` (`tem
 - IDs (nodes and groups share one namespace) match `^[A-Za-z][A-Za-z0-9_-]*$`. Layout is derived from groups, parents, edges and steps; you describe structure, not positions.
 
 ### Labels and languages
-Labels are strings. A string equal to a key in `labels.<lang>.json` (next to the model) is replaced by that translation; otherwise it is literal. `@key` forces a lookup and fails if missing. An inline top-level `labels` object may supply translations; the external language file wins. Titles, group titles, edge labels, tags, attributes and table cells all use this. IDs and topology never change between languages; text width may, so the renderer re-lays-out per language and the checks run per language: `atlas render model.json --lang zh`. **[TODO confirm flag]**
+Labels are strings. A string equal to a key in `labels.<lang>.json` (next to the model) is replaced by that translation; otherwise it is literal. `@key` forces a lookup and fails if missing. An inline top-level `labels` object may supply translations; the external language file wins. Titles, group titles, edge labels, tags, attributes and table cells all use this. IDs and topology never change between languages; text width may, so the renderer re-lays-out per language and the checks run per language: `atlas render model.json --lang zh -o out/zh/`.
 
 ## 3. Choosing a template
 | Template | Use for |
@@ -75,8 +76,8 @@ Findings file: `id, severity (error|warning|info), rule, element ids, boxes, mes
 - **overlap** — text–text, text–shape (non-owner), node–node unless contained;
 - **arrow** — segment through an unrelated box, arrowhead not on its port, arrow crossing a group border it should not, edge crossings (warning);
 - **contrast** — text ≥4.5:1 (large text ≥3:1), strokes ≥3:1;
-- **hygiene** — bullet characters or sentences in labels, more than 12 nodes per view, unexplained markers, status words (`TBD`, `draft`, `pending`, `v2`) or a subtitle restating the type, sibling-kind mismatch in a row, peers of different size (all warnings except unexplained markers, an error);
-- **browser** (optional `--browser`) — real text boxes and glyph coverage (fallback fonts, tofu) in a headless browser.
+- **hygiene** (warnings) — bullet characters or sentences in labels (`label-hygiene`), status words such as `TBD`, `draft`, `pending`, `v2` (`working-note`), more than 12 nodes per view (`view-density`), elements outside their declared group (`boundary-membership`);
+- **planned, not yet checked** — unexplained markers, a subtitle restating the type, sibling-kind mismatch in a row, peers of different size, browser-based text boxes and glyph coverage (`--browser` is unavailable). Check these by eye.
 Fix errors; fix or explain warnings. To explain an intentional one, add an `allow` entry for that element with a reason.
 
 ## 6. Fallback (no renderer available)
