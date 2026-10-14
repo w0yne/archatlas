@@ -1,7 +1,7 @@
 ---
 title: 安装与使用 skill
 translationOf: en/use/index.md
-sourceRev: bca58c9299c22a5a05f98bf81e38393e6e1d1713
+sourceRev: 2389b26ba4db27b8a7bebafa0adfb5bc7da45a2f
 reviewed: true
 ---
 # 安装与使用 skill

@@ -1,7 +1,7 @@
 ---
 title: 从代码仓库到架构图
 translationOf: en/use/code-to-diagram.md
-sourceRev: bca58c9299c22a5a05f98bf81e38393e6e1d1713
+sourceRev: 2389b26ba4db27b8a7bebafa0adfb5bc7da45a2f
 reviewed: true
 ---
 # 从代码仓库到架构图

@@ -5,7 +5,7 @@ aside: false
 title: 先选对视图，再画方框
 description: 架构图类型指南与可移植的绘图 skill。
 translationOf: en/index.md
-sourceRev: bca58c9299c22a5a05f98bf81e38393e6e1d1713
+sourceRev: 2389b26ba4db27b8a7bebafa0adfb5bc7da45a2f
 reviewed: true
 ---
 <script setup>

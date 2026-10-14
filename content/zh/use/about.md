@@ -1,7 +1,7 @@
 ---
 title: 关于与许可
 translationOf: en/use/about.md
-sourceRev: e7caaf8e9d3cc7ae17ab7d38a0e31d2458b5c8b0
+sourceRev: 2389b26ba4db27b8a7bebafa0adfb5bc7da45a2f
 reviewed: true
 ---
 # 关于与许可
