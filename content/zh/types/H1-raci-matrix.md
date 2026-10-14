@@ -18,7 +18,7 @@ formal:
   ref: "职责分配实践；没有统一版本的图形标准。Atlassian，Understanding and using RACI charts：https://www.atlassian.com/work-management/project-management/raci-chart"
 neighbours: [H3, E4, D3, F3]
 status: draft
-sourceRev: "e788c6788614339113be54b7afe4cb3e1340c063"
+sourceRev: a082cec
 translationOf: en/types/H1-raci-matrix.md
 reviewed: false
 ---
@@ -110,7 +110,7 @@ Asana 正文建议只设一个 R，但其常见问题部分允许多个 R [4]。
 
 ## 模板 {#template}
 <!-- skill: keep (≤3 lines) -->
-待集成目标：`assets/templates/H1.json`；布局为 `grid_table`，活动行 × 参与方列。模型模板尚未提供。
+模型模板：`assets/templates/H1.json` · 布局模板：`grid_table` · 一个 `tables[]` 条目：活动为行 × 参与方为列，单元格填 R/A/C/I（每行恰好一个 A）；图例写在表格的 `title` 中。
 
 ## 来源 {#sources}
 <!-- skill: omit -->
@@ -124,6 +124,5 @@ Asana 正文建议只设一个 R，但其常见问题部分允许多个 R [4]。
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-`/samples/H1-raci-matrix.svg`
-
-预期示例，尚未提供：原创网店发布矩阵，将准备、审批、支持交接和回滚就绪工作分配给通用角色。其中的分配仅作示意，不代表推断出的组织规则。
+![H1 示例：一次结账发布的 RACI 矩阵](/samples/H1-raci-matrix.svg)
+*网店发布矩阵将准备、审批、支持交接和回滚就绪工作分配给通用角色。其中的分配仅作示意，不代表推断出的组织规则。*

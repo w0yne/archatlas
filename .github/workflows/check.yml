@@ -5,36 +5,24 @@ on:
 permissions:
   contents: read
 jobs:
-  site:
+  check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # the private-content lint scans every commit
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
           cache: npm
           cache-dependency-path: content/.vitepress/package-lock.json
-      - run: npm run site:install
-      - run: npm run check
-      - run: npm run build
-        env:
-          SITE_BASE: /archatlas/
-      - uses: actions/upload-artifact@v4
-        with:
-          name: site-build
-          path: content/.vitepress/dist
-          retention-days: 7
-  release-hygiene:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0   # lint_private --history scans every commit
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-      - run: pip install PyYAML==6.0.3 -r skills/architecture-diagrams/scripts/requirements.txt
-      - name: Private-content lint
+      - name: Fonts for measured text tests
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends fonts-noto-core fonts-noto-cjk
+      - run: make setup
+      - name: make check (same command as local development)
         env:
           # Optional repository secret: one private term per line. Never commit the list.
           PRIVATE_NAMES: ${{ secrets.ARCHATLAS_PRIVATE_NAMES }}
@@ -43,9 +31,12 @@ jobs:
             printf '%s\n' "$PRIVATE_NAMES" > "$RUNNER_TEMP/private-names.txt"
             export ARCHATLAS_PRIVATE_NAMES_FILE="$RUNNER_TEMP/private-names.txt"
           fi
-          python3 tools/lint_private.py --history --strict
-      - name: Pack and verify the skill zip
-        run: python3 tools/pack_skill.py --out "$RUNNER_TEMP/dist" --verify
+          make check PACK_OUT="$RUNNER_TEMP/dist"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: site-build
+          path: content/.vitepress/dist
+          retention-days: 7
       - uses: actions/upload-artifact@v4
         with:
           name: skill-zip

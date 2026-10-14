@@ -18,7 +18,7 @@ formal:
   ref: "The Open Group，ArchiMate 3.2（2022），附录 C.1.5 中的资料性分层视点；https://pubs.opengroup.org/architecture/archimate3-doc/ch-Example-Viewpoints.html"
 neighbours: [I1, A7, C8, C1]
 status: draft
-sourceRev: "e788c6788614339113be54b7afe4cb3e1340c063"
+sourceRev: a082cec
 translationOf: en/types/I2-archimate-layered-view.md
 reviewed: false
 ---
@@ -116,8 +116,8 @@ reviewed: false
 
 ## 模板 {#template}
 <!-- skill: keep (≤3 lines) -->
-计划接入的模板：`assets/templates/I2.json`，采用 `layered` 布局；模型模板尚未提供。
-分层布局本身不会实现正式的 ArchiMate 符号，也不会验证其元模型；生成正式表示法的图之前，需要单独核实这些能力。
+模型模板：`assets/templates/I2.json` · 布局模板：`layered` · 业务、应用和技术是 `layer` 分组；关系类型写成边标签，边的 kind 为 `dependency` 或 `assoc`。
+近似表示：不绘制正式的 ArchiMate 符号，也不验证元模型；生成正式表示法的图之前，需要单独核实这些能力。
 
 ## 来源 {#sources}
 <!-- skill: omit -->
@@ -136,4 +136,5 @@ reviewed: false
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-预期示例路径：`/samples/I2-archimate-layered-view.svg` — 尚未提供。图注：网上商店的结账行为、应用服务与技术支撑，明确标出关系类型。
+![I2 示例：下单的分层视图](/samples/I2-archimate-layered-view.svg)
+*网店的结账行为、应用服务与技术支撑，明确标出关系类型。*

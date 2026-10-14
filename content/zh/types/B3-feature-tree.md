@@ -18,7 +18,7 @@ formal:
   ref: "Functional hierarchy — https://sebokwiki.org/wiki/Logical_Architecture; variability mode uses FeatureIDE conventions"
 neighbours: [B2, B1, C5, E2]
 status: draft
-sourceRev: "e788c6788614339113be54b7afe4cb3e1340c063"
+sourceRev: a082cec
 translationOf: en/types/B3-feature-tree.md
 reviewed: false
 ---
@@ -111,7 +111,8 @@ MoSCoW 是可选的优先级注释，不是树的语法；“Won't Have”表示
 
 ## 模板 {#template}
 <!-- skill: keep (≤3 lines) -->
-集成目标：`assets/templates/B3.json`；版式为 `tree`。默认采用功能分解；可变性模式还需要分组标记、约束，以及树形排版之外的语义验证。
+模型模板：`assets/templates/B3.json` · 布局模板：`tree` · 根是 `system` 节点，功能是 `component` 和 `task` 节点，由父指向子的 `edges` 连接，自上而下排布。
+仅支持功能分解：不支持可变性模式（分组标记、约束、语义验证）。
 
 ## 来源 {#sources}
 <!-- skill: omit -->
@@ -125,6 +126,5 @@ MoSCoW 是可选的优先级注释，不是树的语法；“Won't Have”表示
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-计划资源：`/samples/B3-feature-tree.svg`。
-
-**图注：** 网店的功能分解为浏览、订购和履约，各自下方再组织详细功能。这是功能层次图，不是可变性模型。生成的示例尚未提供。
+![B3 示例：网店的功能树](/samples/B3-feature-tree.svg)
+*网店的功能分解为浏览、订购和履约，各自下方再组织详细功能。这是功能层次图，不是可变性模型。*

@@ -18,7 +18,7 @@ formal:
   ref: "权力-利益矩阵绘制实践；没有统一的图形标准。Nielsen Norman Group，Stakeholder Analysis for UX Projects：https://www.nngroup.com/articles/stakeholder-analysis/"
 neighbours: [A3, H1]
 status: draft
-sourceRev: "e788c6788614339113be54b7afe4cb3e1340c063"
+sourceRev: a082cec
 translationOf: en/types/H3-stakeholder-map.md
 reviewed: false
 ---
@@ -112,7 +112,8 @@ reviewed: false
 
 ## 模板 {#template}
 <!-- skill: keep (≤3 lines) -->
-待集成目标：`assets/templates/H3.json`；采用 `grid_table` 布局，包含四个象限及配套参与规划表。模型模板尚未提供。
+模型模板：`assets/templates/H3.json` · 布局模板：`grid_table` · 两个 `tables[]` 条目：一个 2×2 的影响力 × 关注度网格，以及配套的参与规划表。
+近似表示：象限只是普通表格单元格，不绘制坐标平面。
 
 ## 来源 {#sources}
 <!-- skill: omit -->
@@ -126,6 +127,5 @@ reviewed: false
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-`/samples/H3-stakeholder-map.svg`
-
-预期示例，尚未提供：原创网店结账项目的参与规划矩阵，使用通用角色并配套行动表。点位安排将明确标为假设，不对真实个人或组织进行排名。
+![H3 示例：网店结账项目的干系人地图](/samples/H3-stakeholder-map.svg)
+*网店结账项目的参与规划网格，使用通用角色并配套行动表。点位安排是假设，不对真实个人或组织进行排名。*

@@ -18,7 +18,7 @@ formal:
   ref: "Kruchten，Architectural Blueprints—The 4+1 View Model of Software Architecture（1995），IEEE Software 12(6)，第 42–50 页；https://www.cs.ubc.ca/~gregor/teaching/papers/4+1view-architecture.pdf"
 neighbours: [I2, C5, G1, E1]
 status: draft
-sourceRev: "e788c6788614339113be54b7afe4cb3e1340c063"
+sourceRev: a082cec
 translationOf: en/types/I1-four-plus-one.md
 reviewed: false
 ---
@@ -118,8 +118,8 @@ reviewed: false
 
 ## 模板 {#template}
 <!-- skill: keep (≤3 lines) -->
-计划接入的模板：`assets/templates/I1.json`，采用 `layered` 布局，用于生成视图与场景的概览索引。
-模型模板尚未提供；概览必须指向有实质内容的视图，不能取代这些视图。
+模型模板：`assets/templates/I1.json` · 布局模板：`layered` · 视图和场景是 `layer` 分组，内含 `component` 和 `task` 节点，由一条从场景指向视图的 `dependency` 边连接。
+这是概览索引：必须指向有实质内容的视图，不能取代这些视图。
 
 ## 来源 {#sources}
 <!-- skill: omit -->
@@ -130,4 +130,5 @@ reviewed: false
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-预期示例路径：`/samples/I1-four-plus-one.svg` — 尚未提供。图注：网上商店的逻辑视图、进程视图、开发视图和物理视图，由结账与恢复场景串联起来。
+![I1 示例：网店的 4+1 视图](/samples/I1-four-plus-one.svg)
+*网店的逻辑视图、进程视图、开发视图和物理视图，由结账与恢复场景串联起来。*

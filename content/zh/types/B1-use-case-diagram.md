@@ -18,7 +18,7 @@ formal:
   ref: "OMG UML 2.5.1, Chapter 18 — https://www.omg.org/spec/UML/2.5.1/PDF"
 neighbours: [A4, B2, B4, E1, E2]
 status: draft
-sourceRev: "e788c6788614339113be54b7afe4cb3e1340c063"
+sourceRev: a082cec
 translationOf: en/types/B1-use-case-diagram.md
 reviewed: false
 ---
@@ -109,7 +109,8 @@ UML 定义语义和表示法，不规定固定版式、配色或椭圆数量上�
 
 ## 模板 {#template}
 <!-- skill: keep (≤3 lines) -->
-集成目标：`assets/templates/B1.json`；版式为 `nested`。UML 参与者、用例椭圆和正式连接标记需要渲染器支持；仅使用通用方框不能证明符合 UML。
+模型模板：`assets/templates/B1.json` · 布局模板：`nested` · 参与者是一个 `boundary` 分组之外的 `actor` 节点，该分组内的用例是 `task` 节点；参与者与用例之间的连线是 `dir` 为 `--` 的 `assoc` 边。
+近似表示：渲染器不绘制 UML 参与者小人、用例椭圆或 include/extend 标记，仅使用通用方框不能证明符合 UML。
 
 ## 来源 {#sources}
 <!-- skill: omit -->
@@ -121,6 +122,5 @@ UML 定义语义和表示法，不规定固定版式、配色或椭圆数量上�
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-计划资源：`/samples/B1-use-case-diagram.svg`。
-
-**图注：** 购物者在网店下单并跟踪订单；支付服务商参与支付相关行为。生成的示例尚未提供；不声称已做视觉验证。
+![B1 示例：购物者使用网店的用例；支付服务商参与支付](/samples/B1-use-case-diagram.svg)
+*购物者在网店下单并跟踪订单；支付服务商参与支付相关行为。*
