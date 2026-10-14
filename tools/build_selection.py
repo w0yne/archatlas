@@ -28,6 +28,7 @@ ROOT = Path(__file__).resolve().parents[1]
 TYPES_FILE = ROOT / "content/data/types.yaml"
 TREE_FILE = ROOT / "content/data/selection-tree.yaml"
 SELECTION_MD = ROOT / "skills/architecture-diagrams/references/selection.md"
+REF_DIR = SELECTION_MD.parent / "types"
 CHOOSE_JSON = ROOT / "content/data/choose.json"
 CHOOSE_MD = {"en": ROOT / "content/en/choose.md", "zh": ROOT / "content/zh/choose.md"}
 
@@ -55,7 +56,13 @@ def norm(text: str) -> str:
 
 
 def page(t: dict) -> str:
+    """Site URL path segment (lower case)."""
     return f"{t['code'].lower()}-{t['slug']}"
+
+
+def ref_file(t: dict) -> str:
+    """Skill reference file name; matches the case-sensitive file in references/types/."""
+    return f"{t['code']}-{t['slug']}.md"
 
 
 def load(types_file: Path = TYPES_FILE, tree_file: Path = TREE_FILE) -> tuple[dict, dict]:
@@ -278,7 +285,7 @@ def render_selection_md(cat: dict, tree: dict) -> str:
         "# Choosing a diagram type",
         "",
         "Use this file to pick one or two types before drawing. Then read",
-        "`types/<code>-<slug>.md` for the chosen type only.",
+        "`types/<code>-<slug>.md` (for example `types/C3-container-diagram.md`) for the chosen type only.",
         "",
         "## 1. First questions",
         "",
@@ -291,7 +298,9 @@ def render_selection_md(cat: dict, tree: dict) -> str:
     out += ["", "Name the chosen type and one runner-up, each with a one-line reason. "
             "If the reader needs answers to two questions, draw two figures.", "",
             "## 3. Audience × question matrix", "",
-            "Cells list types that suit both the audience and the question.", ""]
+            "Cells list types that suit both the audience and the question. A '–' means no type "
+            "targets that pair: pick the type from the reader's question, then simplify it for the "
+            "audience (fewer elements, business names, no protocols) and say that you simplified.", ""]
     out += render_matrix(cat, "en", link)
     out += ["", "## 4. Lifecycle phase", ""]
     out += render_phases(cat, "en", link)
@@ -300,14 +309,16 @@ def render_selection_md(cat: dict, tree: dict) -> str:
     out += render_terms(cat, "en", link)
     out += ["", "## 6. Catalogue and aliases", "",
             "Formal: S = formal standard, M = published method, C = convention only. "
-            "Research: `pending` means the type page is not yet based on phase-2 research.", "",
+            "Research: `pending` means the type page is not yet based on phase-2 research. "
+            "Reference `none yet`: no type reference exists; follow SKILL.md Step 4 for that case.", "",
             "| Code | Type | Reference | Formal | Answers | Also called |",
             "|---|---|---|---|---|---|"]
     for t in types:
         aliases = "; ".join(t["aliases"].get("en", []) + t["aliases"].get("zh", []))
         formal = t["formal"]["kind"][0].upper()
         pending = " (research pending)" if t["research"] == "pending" else ""
-        out.append(f"| {t['code']} | {t['names']['en']}{pending} | `types/{page(t)}.md` | {formal} | "
+        ref = f"`types/{ref_file(t)}`" if (REF_DIR / ref_file(t)).exists() else "none yet"
+        out.append(f"| {t['code']} | {t['names']['en']}{pending} | {ref} | {formal} | "
                    f"{t['question']['en']} | {aliases} |")
     return "\n".join(out) + "\n"
 

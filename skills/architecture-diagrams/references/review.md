@@ -20,14 +20,14 @@ Typical defects the checks look for: text outside its box, label background offs
 First decide whether you can actually read images **on your real API route** (do not infer it from a model name).
 
 **You can read images:**
-1. Produce a preview (`scripts/atlas preview`) and, for several figures, a downscaled contact sheet (`scripts/atlas sheet`).
+1. Produce a preview (`scripts/atlas preview`) and, for several figures, a downscaled contact sheet (`scripts/atlas sheet`). Both need CairoSVG; without it, use any rasteriser the host offers or follow the "cannot read images" path.
 2. Look at the contact sheet first; open a full-size image only for complex or flagged figures.
 3. **Open each image once.** Write the observations down immediately (element ids, what is wrong) instead of reopening. Keep a running count of images viewed in the session and stop near the host's limit; fall back to text checks and say so.
 4. Look for: clipped or overlapping text, tiny text, lines through boxes, crossings, unreadable markers, blank space, CJK glyphs, light-on-light contrast, uneven spacing, the last page of a multi-figure document.
 5. Report "visual review done" with what you looked at.
 
 **You cannot read images (or the host rejects them):**
-1. Run every text, geometry and, if available, browser check.
+1. Run every text and geometry check.
 2. Produce the preview and contact sheet files and give their paths.
 3. Report **"visual review pending"**, and say who needs to do it. Never write "visual pass" based on DOM or geometry checks alone.
 

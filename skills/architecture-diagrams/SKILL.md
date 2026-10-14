@@ -3,16 +3,17 @@ name: architecture-diagrams
 description: >-
   Choose, draw and review software and enterprise architecture and design diagrams
   (system context, container, component, sequence, ER, state machine, deployment,
-  BPMN swimlane, RBAC/trust boundary, landscape, roadmap, RACI and about 38 other types)
-  as editable SVG, either from a description or by reading a code repository and
+  BPMN swimlane, access control and trust boundary, landscape, roadmap; about 40 types
+  in total) as editable SVG, either from a description or by reading a code repository and
   deriving diagrams from evidence. Use when the user asks for an architecture or
   design diagram, asks which diagram type fits an audience or question, or wants
   diagrams of an existing codebase. Not for data charts, UI mockups, logos or
   decorative illustration.
 license: Apache-2.0
 compatibility: >-
-  Needs Python 3.10+ for the bundled renderer (`scripts/atlas`). A browser (Playwright
-  with Chromium) is optional and only used for visual and font checks.
+  Needs Python 3.10+ and the archatlas renderer behind `scripts/atlas`: a release bundle
+  (which ships `scripts/lib`) or `pip install archatlas`. Without it the skill still
+  chooses types and writes models, and falls back to hand-written SVG.
 metadata:
   version: "0.1.0"
 ---
@@ -29,6 +30,9 @@ tells you to; never load all of `references/types/`.
 ## Step 0 — Mode (ask at most once)
 
 - If the user already said `autonomous` or `guided` (or `mode=...`), use it.
+- Treat clear cues as the answer and state the mode you took in one line: "ask me",
+  "walk me through", "let's decide together" → guided; "just draw it", "don't ask", or a
+  request that already gives type, scope and audience → autonomous.
 - Otherwise, in an interactive session, ask once, in plain chat, with numbered answers:
   **"1) Autonomous: I choose sensible defaults and tell you my assumptions. 2) Guided: we decide audience, diagram type and boundaries together first."**
   If your host has a question UI you may use it for this same question. Never make a specific tool name part of your plan.
@@ -61,15 +65,23 @@ If feedback contains questions, answer them first and ask for the go-ahead befor
 
 ## Step 4 — Model and render
 
-1. Read `references/types/<code>-<slug>.md` for the chosen type (recipe, checklist, template name).
-2. Start from `assets/templates/<type>.json` (`scripts/atlas init <type>`), fill the model: nodes, edges, groups, labels, evidence status.
+1. Read `references/types/<code>-<slug>.md` for the chosen type (recipe, checklist, template name;
+   the exact file name is in `references/selection.md` §6). If the type has no reference yet, say so,
+   draw it from `references/principles.md` and the type's row in `selection.md` with the closest
+   layout template, and report "no type checklist applied".
+2. Start from the type's model: `scripts/atlas init <code> -o model.json` (copies
+   `assets/templates/<code>.json`; if your renderer version rejects a type code, copy that file).
+   Fill it: nodes, edges, groups, labels, evidence status.
 3. Render: `scripts/atlas render model.json -o out/` (options and model schema: `references/rendering.md`).
+   Write outputs where the user asked, or to a new folder outside any repository you are analysing.
 4. If the renderer is unavailable, say so, deliver the model plus a hand-written SVG that follows the rules in `references/rendering.md` (section "Fallback"), and report that automated checks did not run.
 
 ## Step 5 — Check and fix
 
-Run `scripts/atlas check out/diagram.svg --model model.json --report findings.json`.
-Fix every `error`. Fix every `warning` or justify it in the reply. Re-render. Then look
+Run `scripts/atlas check out/diagram.svg --model model.json --report findings.json`
+(`render` already writes `out/diagram.findings.json`; `check` re-verifies against the model).
+If the findings say `measured_with: estimate`, fonts were not measured: report it, and run
+`scripts/atlas fonts doctor` to see what is missing. Fix every `error`. Fix every `warning` or justify it in the reply. Re-render. Then look
 at the result as `references/review.md` describes. Do not claim a visual review that did not happen.
 
 ## Step 6 — Deliver
@@ -92,6 +104,8 @@ Steps 0–6. The model JSON is the source of truth; the SVG is derived.
 
 Use when the user wants diagrams of an existing codebase, or the diagram they need is not in
 the repository. Full procedure, evidence-to-diagram map, budgets and traps: `references/repo-analysis.md`.
+Steps 0, 1, 3, 5 and 6 still apply; the evidence replaces guesswork in Step 2 and the evidence table
+is delivered in Step 6. Never modify the repository you analyse unless asked.
 
 1. Frame: audience, question, scope, which deployment target counts. Ask if several exist.
 2. Orient (about 5 % of effort): README, tree with file counts, manifests, existing diagrams and their age.
