@@ -130,7 +130,7 @@ status: draft
 
 ## Template {#template}
 <!-- skill: keep (≤3 lines) -->
-Model template: `assets/templates/G2.json` · Layout template: `layered` · tiers (edge, compute, data, supporting) become `layer` groups, provider boundaries (account, region, zone) become `boundary` groups, services are nodes with a role in `sub`, and arrows use `call`, `data` or `async` edge kinds with explicit labels; design status is carried in node `style` and `evidence`.
+Model template: `assets/templates/G2.json` · Layout template: `statechart` · provider boundaries (region) become `boundary` groups and tiers or zones (edge, network and security, zone 1, zone 2, managed services) become `frame` groups ranked along the request path, so equal-rank zones sit side by side; services are nodes with a role in a chip, and arrows use `call`, `data` or `async` edge kinds; design status is carried in node `style` and `evidence`.
 
 ## Sources {#sources}
 <!-- skill: omit -->
@@ -146,4 +146,4 @@ Model template: `assets/templates/G2.json` · Layout template: `layered` · tier
 ## Sample {#sample}
 <!-- skill: path only -->
 ![G2 sample: proposed cloud infrastructure of an online shop on a generic provider](/samples/G2-cloud-infrastructure-architecture.svg)
-*Proposed cloud infrastructure on a generic provider: a CDN at the edge, an app service in region A (zones 1 and 2) and a managed database with a replica in zone 2. The arrows are labelled forwards requests and reads and writes.*
+*Proposed cloud infrastructure on a generic provider: a CDN at the edge, a load balancer in the network and security zone, an app service and a database in each of two availability zones (primary database in zone 1, replica in zone 2) and managed object storage, a message queue and monitoring. Amber marks the proposed compute tier and badges 1–2 the write path; nothing here is built yet.*

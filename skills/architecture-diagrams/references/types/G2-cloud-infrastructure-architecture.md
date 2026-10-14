@@ -81,7 +81,7 @@ Scope: One workload on one provider (or a stated multi-provider split), showing 
 5. Should routing, deployment and recovery be separate views? (yes, linked)
 
 ## Template
-Model template: `assets/templates/G2.json` · Layout template: `layered` · tiers (edge, compute, data, supporting) become `layer` groups, provider boundaries (account, region, zone) become `boundary` groups, services are nodes with a role in `sub`, and arrows use `call`, `data` or `async` edge kinds with explicit labels; design status is carried in node `style` and `evidence`.
+Model template: `assets/templates/G2.json` · Layout template: `statechart` · provider boundaries (region) become `boundary` groups and tiers or zones (edge, network and security, zone 1, zone 2, managed services) become `frame` groups ranked along the request path, so equal-rank zones sit side by side; services are nodes with a role in a chip, and arrows use `call`, `data` or `async` edge kinds; design status is carried in node `style` and `evidence`.
 
 ## Sample
 Figure: `samples/G2-cloud-infrastructure-architecture.svg` (published with the site)

@@ -155,4 +155,4 @@ Model template: `assets/templates/F3.json` · Layout template: `grid_table` · r
 ## Sample {#sample}
 <!-- skill: path only -->
 ![F3 sample: role-permission matrix for a shop back office, proposed](/samples/F3-access-control-model.svg)
-*Role-permission matrix (RBAC) for the shop back office, proposed: roles as rows and resource-action pairs as columns. A cell says allow, deny or the condition that applies (own order, assigned to the case, under the refund limit). Default deny; enforcement has not been verified.*
+*Role-permission matrix (RBAC) for the shop back office, proposed: six roles as rows and five resource-action pairs as columns. A cell says allow, deny or the condition that applies (own order, assigned to the case, under the refund limit, ready to pack). Default deny; enforcement has not been verified.*

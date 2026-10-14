@@ -116,7 +116,7 @@ It answers: *which separately running applications and data stores make up this 
 
 ## Template {#template}
 <!-- skill: keep (≤3 lines) -->
-Model template: `assets/templates/C3.json` · Layout template: `nested` · one `boundary` group for the system containing `container`, `store` and `queue` nodes; `person` and `external` nodes outside it; edges carry label plus protocol.
+Model template: `assets/templates/C3.json` · Layout template: `statechart` · one `boundary` group for the system containing `frame` groups (front ends, services, data stores) of `container`, `store` and `queue` nodes ranked by the request path; `person` and `external` nodes outside it; chips carry the technology, `badge` numbers the key path, and edges carry a label.
 
 ## Sources {#sources}
 <!-- skill: omit -->
@@ -150,4 +150,4 @@ Model template: `assets/templates/C3.json` · Layout template: `nested` · one `
 ## Sample {#sample}
 <!-- skill: path only -->
 ![C3 sample: containers of an online shop](/samples/C3-container-diagram.svg)
-*Containers of the online shop: a web storefront, an order API and a shop database inside the system boundary, with the customer and an external payment provider outside. Each container shows its technology type and responsibility, and the lines carry the protocol.*
+*Containers of the online shop. Inside the system boundary three zones group the front ends (web storefront, mobile app), the services (API gateway, order service, catalogue service, chatbot service) and the data stores (shop database, search index, order event queue). Chips give each container’s technology, and badges 1–4 number the order path from storefront to gateway, order service and database. The customer, the payment provider and the language model service are outside.*

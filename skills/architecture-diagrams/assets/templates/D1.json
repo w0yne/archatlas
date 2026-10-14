@@ -6,11 +6,17 @@
     "lang": "en",
     "audience": "developers and analysts",
     "state": "as-is",
+    "subtitle": "Entities, keys and cardinalities",
     "legend": [
       {
         "label": "Cardinality at each end: minimum..maximum (* = many)",
         "kind": "assoc",
         "dir": "--"
+      },
+      {
+        "label": "Entity at the centre of the model",
+        "style": "highlight",
+        "symbol": "box"
       }
     ]
   },
@@ -24,55 +30,114 @@
       "id": "customer",
       "kind": "entity",
       "label": "Customer",
+      "chips": [
+        "People"
+      ],
       "attributes": [
         "customer ID (PK)",
-        "name",
-        "email"
-      ],
-      "size_hint": {
-        "width": 170
-      }
+        "full name",
+        "email",
+        "created at"
+      ]
     },
     {
       "id": "order",
       "kind": "entity",
       "label": "Order",
+      "style": "highlight",
+      "chips": [
+        "Sales"
+      ],
       "attributes": [
         "order ID (PK)",
         "customer ID (FK)",
         "placed at",
         "status"
-      ],
-      "size_hint": {
-        "width": 170
-      }
+      ]
     },
     {
       "id": "orderline",
       "kind": "entity",
       "label": "Order line",
+      "chips": [
+        "Sales"
+      ],
       "attributes": [
         "order line ID (PK)",
         "order ID (FK)",
         "product ID (FK)",
-        "quantity"
-      ],
-      "size_hint": {
-        "width": 170
-      }
+        "quantity",
+        "unit price"
+      ]
     },
     {
       "id": "product",
       "kind": "entity",
       "label": "Product",
+      "chips": [
+        "Catalogue"
+      ],
       "attributes": [
         "product ID (PK)",
+        "category ID (FK)",
         "name",
         "price"
+      ]
+    },
+    {
+      "id": "address",
+      "kind": "entity",
+      "label": "Address",
+      "chips": [
+        "People"
       ],
-      "size_hint": {
-        "width": 170
-      }
+      "attributes": [
+        "address ID (PK)",
+        "customer ID (FK)",
+        "street",
+        "city",
+        "country"
+      ]
+    },
+    {
+      "id": "payment",
+      "kind": "entity",
+      "label": "Payment",
+      "chips": [
+        "Payments"
+      ],
+      "attributes": [
+        "payment ID (PK)",
+        "order ID (FK)",
+        "amount",
+        "status"
+      ]
+    },
+    {
+      "id": "return",
+      "kind": "entity",
+      "label": "Return",
+      "chips": [
+        "Sales"
+      ],
+      "attributes": [
+        "return ID (PK)",
+        "order line ID (FK)",
+        "reason",
+        "decided at"
+      ]
+    },
+    {
+      "id": "category",
+      "kind": "entity",
+      "label": "Category",
+      "chips": [
+        "Catalogue"
+      ],
+      "attributes": [
+        "category ID (PK)",
+        "name"
+      ]
     }
   ],
   "edges": [
@@ -80,6 +145,16 @@
       "from": "customer",
       "to": "order",
       "label": "places",
+      "cardinality": {
+        "from": "1..1",
+        "to": "0..*"
+      },
+      "dir": "--"
+    },
+    {
+      "from": "customer",
+      "to": "address",
+      "label": "has",
       "cardinality": {
         "from": "1..1",
         "to": "0..*"
@@ -105,6 +180,37 @@
         "to": "0..*"
       },
       "dir": "--"
+    },
+    {
+      "from": "category",
+      "to": "product",
+      "label": "groups",
+      "cardinality": {
+        "from": "1..1",
+        "to": "0..*"
+      },
+      "dir": "--"
+    },
+    {
+      "from": "order",
+      "to": "payment",
+      "label": "is paid by",
+      "cardinality": {
+        "from": "1..1",
+        "to": "0..*"
+      },
+      "dir": "--"
+    },
+    {
+      "from": "orderline",
+      "to": "return",
+      "label": "may lead to",
+      "cardinality": {
+        "from": "1..1",
+        "to": "0..*"
+      },
+      "dir": "--"
     }
-  ]
+  ],
+  "groups": []
 }

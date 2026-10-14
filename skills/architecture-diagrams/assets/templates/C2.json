@@ -4,59 +4,115 @@
     "type": "C2",
     "title": "System context diagram for Online shop",
     "lang": "en",
-    "audience": "everyone",
+    "audience": "architects and product owners",
     "state": "as-is",
+    "subtitle": "Who and what the shop talks to",
     "legend": [
       {
-        "label": "Arrow: who starts the exchange",
+        "label": "Subject of this view",
+        "style": "highlight",
+        "symbol": "box"
+      },
+      {
+        "label": "Outside our control",
+        "style": "external",
+        "symbol": "box"
+      },
+      {
+        "label": "Request or call",
         "kind": "call",
         "dir": "->"
+      },
+      {
+        "label": "Asynchronous message",
+        "kind": "async",
+        "dir": "->",
+        "dashed": true
       }
-    ]
+    ],
+    "legend_mode": "replace"
   },
   "layout": {
-    "template": "nested",
-    "profile": "doc"
+    "template": "statechart",
+    "profile": "doc",
+    "direction": "LR",
+    "spacing": {
+      "rank_gap": 56
+    }
   },
   "nodes": [
-    {
-      "id": "cust",
-      "kind": "person",
-      "label": "Customer",
-      "sub": "[Person] buys goods"
-    },
     {
       "id": "shop",
       "kind": "system",
       "label": "Online shop",
-      "sub": "[Software system] sells goods to customers",
-      "style": "primary"
+      "parent": "g_shop",
+      "sub": "Catalogue, cart, orders",
+      "style": "highlight",
+      "chips": [
+        "Core"
+      ]
     },
     {
-      "id": "pay",
-      "kind": "external",
-      "label": "Payment provider",
-      "sub": "[External system] takes card payments",
-      "style": "external"
+      "id": "bot",
+      "kind": "system",
+      "label": "Support chatbot",
+      "parent": "g_shop",
+      "sub": "Answers order questions",
+      "chips": [
+        "New"
+      ]
+    },
+    {
+      "id": "back",
+      "kind": "system",
+      "label": "Back office",
+      "parent": "g_shop",
+      "sub": "Staff tools"
+    },
+    {
+      "id": "cust",
+      "kind": "person",
+      "label": "Customer",
+      "sub": "Buys and returns goods"
     },
     {
       "id": "agent",
       "kind": "person",
       "label": "Support agent",
-      "sub": "[Person] answers questions"
+      "sub": "Handles escalations"
     },
     {
-      "id": "mail",
+      "id": "admin",
+      "kind": "person",
+      "label": "Shop admin",
+      "sub": "Maintains catalogue"
+    },
+    {
+      "id": "pay",
       "kind": "external",
-      "label": "Email service",
-      "sub": "[External system] sends receipts",
+      "label": "Payment provider",
+      "sub": "Takes card payments",
       "style": "external"
     },
     {
       "id": "car",
       "kind": "external",
       "label": "Carrier",
-      "sub": "[External system] delivers parcels",
+      "sub": "Delivers parcels",
+      "style": "external"
+    },
+    {
+      "id": "mail",
+      "kind": "external",
+      "label": "Email service",
+      "sub": "Sends receipts",
+      "style": "external"
+    },
+    {
+      "id": "llm",
+      "kind": "external",
+      "label": "Language model service",
+      "sub": "Drafts chatbot replies",
       "style": "external"
     }
   ],
@@ -64,27 +120,58 @@
     {
       "from": "cust",
       "to": "shop",
-      "label": "Browses and orders"
+      "label": "Browses and orders",
+      "kind": "call"
+    },
+    {
+      "from": "cust",
+      "to": "bot",
+      "label": "Asks questions",
+      "kind": "call"
     },
     {
       "from": "agent",
-      "to": "shop",
-      "label": "Answers questions"
+      "to": "bot",
+      "label": "Takes over chats",
+      "kind": "call"
+    },
+    {
+      "from": "admin",
+      "to": "back",
+      "label": "Maintains products",
+      "kind": "call"
     },
     {
       "from": "shop",
       "to": "pay",
-      "label": "Charges cards"
+      "label": "Charges cards",
+      "kind": "call"
     },
     {
       "from": "shop",
       "to": "car",
-      "label": "Books shipments"
+      "label": "Books shipments",
+      "kind": "call"
     },
     {
       "from": "shop",
       "to": "mail",
-      "label": "Sends receipts"
+      "label": "Sends receipts",
+      "kind": "async"
+    },
+    {
+      "from": "bot",
+      "to": "llm",
+      "label": "Requests drafts",
+      "kind": "call"
+    }
+  ],
+  "groups": [
+    {
+      "id": "g_shop",
+      "title": "Online shop platform",
+      "kind": "boundary",
+      "tint": "app"
     }
   ]
 }

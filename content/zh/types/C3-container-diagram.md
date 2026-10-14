@@ -119,7 +119,7 @@ reviewed: false
 
 ## 模板 {#template}
 <!-- skill: keep (≤3 lines) -->
-模型模板：`assets/templates/C3.json` · 布局模板：`nested` · 系统用一个 `boundary` 分组，内含 `container`、`store` 和 `queue` 节点；`person` 和 `external` 节点在其外部；连线带标签和协议。
+模型模板：`assets/templates/C3.json` · 布局模板：`statechart` · 系统用一个 `boundary` 分组，内含若干 `frame` 分组（前端、服务、数据存储），其中的 `container`、`store` 和 `queue` 节点按请求路径分层；`person` 和 `external` 节点在其外部；标签（chips）标注技术，`badge` 给关键路径编号，连线带标签。
 
 ## 来源 {#sources}
 <!-- skill: omit -->
@@ -152,5 +152,5 @@ reviewed: false
 
 ## 示例图 {#sample}
 <!-- skill: path only -->
-![C3 示例：网店的容器图](/samples/C3-container-diagram.svg)
-*网店的容器：系统边界内有网页商城、订单 API 和商城数据库，边界外有顾客和外部的支付服务商。每个容器标出技术类型和职责，连线上标注协议。*
+![C3 示例：网店的容器图](/samples/C3-container-diagram.zh.svg)
+*网店的容器图。系统边界内三个分区分别容纳前端（网页商城、移动应用）、服务（API 网关、订单服务、商品目录服务、机器人服务）和数据存储（商城数据库、搜索索引、订单事件队列）。标签给出各容器的技术类型，编号 1–4 依次标出订单路径：网页商城、网关、订单服务、数据库。顾客、支付服务商和语言模型服务在边界之外。*

@@ -173,4 +173,4 @@ Model template: `assets/templates/A1.json` · Layout template: `layered` · tier
 ## Sample {#sample}
 <!-- skill: path only -->
 ![A1 sample: capability map of an online shop in three tiers with a maturity lens](/samples/A1-capability-map.svg)
-*Business capabilities of an online shop in three tiers (Strategic, Core, Supporting), each with Level 1 groups and Level 2 capability tiles and no arrows. Colour shows one lens, maturity against the target as of 2026-10: green at the desired level, amber one level below (marked “gap 1”), purple desired but not yet existing (marked “new”). The ratings are illustrative.*
+*Business capabilities of an online shop in three tiers (Strategic, Core, Supporting). Each tier is a tinted zone holding Level 1 groups, and each group holds two Level 2 capability tiles; there are no arrows. One lens colours the tiles, maturity against the target as of 2026-10: green at the desired level, gray one level below (chip “gap 1”), purple desired but not yet existing (chip “new”). The ratings are illustrative.*

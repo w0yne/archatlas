@@ -138,7 +138,7 @@ reviewed: false
 ## 模板 {#template}
 <!-- skill: keep (≤3 lines) -->
 
-模型模板：`assets/templates/C5.json` · 布局模板：`layered` · 类型为 `frame` 的分组成为一个 `boundary` 内由职责块组成的水平带；外部方位于其外部，类型为 `dependency` 的 `edges` 带操作标签。
+模型模板：`assets/templates/C5.json` · 布局模板：`statechart` · 类型为 `frame` 的分组在一个 `boundary` 内容纳职责块，并按依赖分层；外部方位于其外部，样式 `highlight` 标出承载主流程的块，类型为 `call` 的 `edges` 带操作标签。
 
 ## 来源 {#sources}
 <!-- skill: omit -->
@@ -162,5 +162,5 @@ reviewed: false
 
 ## 示例图 {#sample}
 <!-- skill: path only -->
-![C5 示例：网店的逻辑架构，按职责划分构建块](/samples/C5-logical-architecture.svg)
-*网店的逻辑视图：构建块按职责分组（销售：商品目录和结账；履约：订单管理和库存；支付：支付处理），每条依赖标注所用操作，边界外是支付服务商。这里只有图，没有配套的构建块表。*
+![C5 示例：网店的逻辑视图，按职责分组](/samples/C5-logical-architecture.zh.svg)
+*网店的逻辑视图：构建块按职责分在着色分区中（销售：商品目录、购物车、结账；履约：订单管理、库存、发运；支付：支付处理、开票；客户支持：聊天助手）。琥珀色构建块承载从结账到订单管理和支付处理的主流程；每条依赖都标注交换内容，支付服务商和承运商在边界之外。*

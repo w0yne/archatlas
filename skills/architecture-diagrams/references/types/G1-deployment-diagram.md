@@ -86,7 +86,7 @@ Scope: One named environment (for example production), showing hosting nodes and
 5. Include disaster recovery here or in a separate view? (separate view, linked)
 
 ## Template
-Model template: `assets/templates/G1.json` · Layout template: `nested` · hosting nodes become nested `boundary` groups (region, cluster, host), software instances become `component` nodes with style `primary` inside them, managed or external nodes use the `external` style, and communication becomes `call` or `data` edges with a protocol label; `evidence.status` records declared (`doc-only`) versus observed (`verified`).
+Model template: `assets/templates/G1.json` · Layout template: `statechart` · hosting segments become `boundary` groups (cluster, public and application subnets, managed data services), software instances become `component` nodes (the focus one with style `highlight`) and data services `store` nodes inside them, external nodes use the `external` style, chips carry the protocol or replica count, and communication becomes `call` or `data` edges; `evidence.status` records declared (`doc-only`) versus observed (`verified`).
 
 ## Sample
 Figure: `samples/G1-deployment-diagram.svg` (published with the site)

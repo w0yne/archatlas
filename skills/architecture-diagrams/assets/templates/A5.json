@@ -5,118 +5,76 @@
     "title": "Online shop: handle a return (as-is)",
     "lang": "en",
     "audience": "business and operations",
-    "state": "as-is"
+    "state": "as-is",
+    "subtitle": "BPMN collaboration: the shop pool and the customer as a black box",
+    "legend": [
+      {
+        "label": "Task on the refund path",
+        "style": "highlight",
+        "symbol": "box"
+      }
+    ]
   },
   "layout": {
     "template": "lanes",
     "profile": "doc",
-    "direction": "LR",
+    "direction": "TB",
     "spacing": {
-      "rank_gap": 24,
-      "node_gap": 24,
-      "gap_ratio": 0.1,
-      "boundary_gap": 40,
-      "label_clearance": 8,
-      "label_width": 40
+      "boundary_gap": 40
     }
   },
-  "groups": [
-    {
-      "id": "p_c",
-      "title": "Customer",
-      "kind": "pool"
-    },
-    {
-      "id": "p_s",
-      "title": "Online shop",
-      "kind": "pool"
-    },
-    {
-      "id": "l_s",
-      "title": "Support",
-      "kind": "lane",
-      "parent": "p_s"
-    },
-    {
-      "id": "l_w",
-      "title": "Warehouse",
-      "kind": "lane",
-      "parent": "p_s"
-    }
-  ],
   "nodes": [
     {
       "id": "st",
       "kind": "event",
       "label": "Request received",
       "parent": "l_s",
-      "size_hint": {
-        "width": 116
-      },
       "event_type": "start"
     },
     {
       "id": "chk",
       "kind": "task",
       "label": "Check return",
-      "parent": "l_s",
-      "size_hint": {
-        "width": 100
-      }
+      "parent": "l_s"
     },
     {
       "id": "gw",
       "kind": "gateway",
       "label": "Eligible?",
-      "parent": "l_s",
-      "size_hint": {
-        "width": 100
-      }
+      "parent": "l_s"
     },
     {
       "id": "lab",
       "kind": "task",
       "label": "Send return label",
       "parent": "l_s",
-      "size_hint": {
-        "width": 100
-      }
+      "style": "highlight"
     },
     {
       "id": "rcv",
       "kind": "task",
       "label": "Receive item",
-      "parent": "l_w",
-      "size_hint": {
-        "width": 100
-      }
+      "parent": "l_w"
     },
     {
       "id": "ins",
       "kind": "task",
       "label": "Inspect item",
       "parent": "l_w",
-      "size_hint": {
-        "width": 100
-      }
+      "style": "highlight"
     },
     {
       "id": "ref",
       "kind": "task",
       "label": "Refund payment",
-      "parent": "l_s",
-      "size_hint": {
-        "width": 100
-      }
+      "parent": "l_f",
+      "style": "highlight"
     },
     {
       "id": "ok",
       "kind": "event",
       "label": "Refund issued",
-      "parent": "l_s",
-      "size_hint": {
-        "width": 108
-      },
+      "parent": "l_f",
       "event_type": "end"
     },
     {
@@ -124,9 +82,6 @@
       "kind": "event",
       "label": "Return declined",
       "parent": "l_s",
-      "size_hint": {
-        "width": 108
-      },
       "event_type": "end"
     }
   ],
@@ -169,25 +124,54 @@
       "from": "p_c",
       "to": "st",
       "label": "Return request",
-      "kind": "message",
-      "from_port": "s",
-      "to_port": "n"
+      "kind": "message"
     },
     {
       "from": "lab",
       "to": "p_c",
       "label": "Return label",
-      "kind": "message",
-      "from_port": "n",
-      "to_port": "s"
+      "kind": "message"
     },
     {
       "from": "p_c",
       "to": "rcv",
       "label": "Parcel",
-      "kind": "message",
-      "from_port": "s",
-      "to_port": "n"
+      "kind": "message"
+    }
+  ],
+  "groups": [
+    {
+      "id": "p_c",
+      "title": "Customer",
+      "kind": "pool",
+      "tint": "biz"
+    },
+    {
+      "id": "p_s",
+      "title": "Online shop",
+      "kind": "pool",
+      "tint": "app"
+    },
+    {
+      "id": "l_s",
+      "title": "Support",
+      "kind": "lane",
+      "parent": "p_s",
+      "tint": "app"
+    },
+    {
+      "id": "l_w",
+      "title": "Warehouse",
+      "kind": "lane",
+      "parent": "p_s",
+      "tint": "tech"
+    },
+    {
+      "id": "l_f",
+      "title": "Finance",
+      "kind": "lane",
+      "parent": "p_s",
+      "tint": "data"
     }
   ]
 }

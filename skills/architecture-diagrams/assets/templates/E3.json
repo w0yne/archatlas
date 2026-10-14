@@ -5,11 +5,29 @@
     "title": "Order: states",
     "lang": "en",
     "audience": "developers and analysts",
-    "state": "as-is"
+    "state": "as-is",
+    "subtitle": "Lifecycle of one order, transitions as event [guard] / effect",
+    "legend": [
+      {
+        "label": "Main path of a successful order",
+        "style": "highlight",
+        "symbol": "box"
+      },
+      {
+        "label": "Transition: event [guard] / effect",
+        "kind": "call",
+        "dir": "->"
+      }
+    ],
+    "legend_mode": "replace"
   },
   "layout": {
     "template": "statechart",
-    "profile": "doc"
+    "profile": "doc",
+    "direction": "TB",
+    "spacing": {
+      "rank_gap": 36
+    }
   },
   "nodes": [
     {
@@ -21,33 +39,52 @@
       "id": "new",
       "kind": "state",
       "label": "Placed",
-      "size_hint": {
-        "width": 130
-      }
+      "chips": [
+        "Awaiting payment"
+      ]
     },
     {
       "id": "paid",
       "kind": "state",
       "label": "Paid",
-      "size_hint": {
-        "width": 130
-      }
+      "style": "highlight",
+      "chips": [
+        "Stock reserved"
+      ]
     },
     {
       "id": "shipped",
       "kind": "state",
       "label": "Shipped",
-      "size_hint": {
-        "width": 130
-      }
+      "style": "highlight",
+      "chips": [
+        "In transit"
+      ]
+    },
+    {
+      "id": "deliv",
+      "kind": "state",
+      "label": "Delivered",
+      "style": "highlight",
+      "chips": [
+        "Return window open"
+      ]
+    },
+    {
+      "id": "refd",
+      "kind": "state",
+      "label": "Refunded",
+      "chips": [
+        "Money returned"
+      ]
     },
     {
       "id": "cancelled",
       "kind": "state",
       "label": "Cancelled",
-      "size_hint": {
-        "width": 130
-      }
+      "chips": [
+        "Stock released"
+      ]
     },
     {
       "id": "f",
@@ -74,8 +111,26 @@
     },
     {
       "from": "shipped",
-      "to": "f",
+      "to": "deliv",
       "label": "deliver",
+      "kind": "call"
+    },
+    {
+      "from": "deliv",
+      "to": "f",
+      "label": "close [window over]",
+      "kind": "call"
+    },
+    {
+      "from": "deliv",
+      "to": "refd",
+      "label": "return [within 30 days] / refund",
+      "kind": "call"
+    },
+    {
+      "from": "refd",
+      "to": "f",
+      "label": "close",
       "kind": "call"
     },
     {
@@ -85,10 +140,17 @@
       "kind": "call"
     },
     {
+      "from": "paid",
+      "to": "cancelled",
+      "label": "cancel [before shipping] / refund",
+      "kind": "call"
+    },
+    {
       "from": "cancelled",
       "to": "f",
-      "label": "release stock",
+      "label": "close",
       "kind": "call"
     }
-  ]
+  ],
+  "groups": []
 }

@@ -5,28 +5,34 @@
     "title": "Shop back office: role-permission matrix (proposed)",
     "lang": "en",
     "audience": "security and product",
-    "state": "as-is"
+    "state": "to-be",
+    "subtitle": "Default deny; enforcement not verified"
   },
   "layout": {
     "template": "grid_table",
     "profile": "doc"
   },
+  "nodes": [],
+  "edges": [],
+  "groups": [],
   "tables": [
     {
       "id": "acl",
-      "title": "Default deny. allow = always; if … = conditional; deny = never. Proposed design, enforcement not verified.",
+      "title": "Default deny. allow = always; if … = conditional; deny = never.",
       "columns": [
         "Role",
         "Orders: view",
         "Orders: edit",
         "Orders: refund",
-        "Catalogue: edit"
+        "Catalogue: edit",
+        "Customers: export"
       ],
       "rows": [
         [
           "Customer",
           "if own order",
           "if own order, before shipping",
+          "deny",
           "deny",
           "deny"
         ],
@@ -35,12 +41,38 @@
           "allow",
           "if assigned to the case",
           "if under the refund limit",
+          "deny",
           "deny"
+        ],
+        [
+          "Warehouse clerk",
+          "if ready to pack",
+          "deny",
+          "deny",
+          "deny",
+          "deny"
+        ],
+        [
+          "Merchandiser",
+          "deny",
+          "deny",
+          "deny",
+          "allow",
+          "deny"
+        ],
+        [
+          "Finance analyst",
+          "allow",
+          "deny",
+          "if under the refund limit",
+          "deny",
+          "allow"
         ],
         [
           "Shop manager",
           "allow",
           "deny",
+          "allow",
           "allow",
           "allow"
         ]

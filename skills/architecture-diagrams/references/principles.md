@@ -49,6 +49,18 @@ These are the generic rules distilled from many review rounds; the numbers are f
 31. **Render and inspect every version.** Check label backgrounds for every text anchor (start, middle, end), overlaps, consistent page orientation in documents, and readability at presentation size. **[auto + review]**
 32. **Keep related figures in one deliverable** and give the same step numbers and names to the same things across figures.
 
+## Visual hierarchy
+
+"Few words" and "rich visual structure" are compatible: words stay short, and structure carries the meaning. The renderer's one default style is built on these rules; apply them to hand-drawn figures too.
+
+33. **Show boundaries with zones, not sentences.** A system boundary, layer, subnet, lane or trust zone is a tinted group with a header band holding its name. Use one tint per role (business, application, technology, data, security, neutral) and keep that mapping across all figures of one deliverable. A tint is a colour role, not a claim about content: say what it means in the legend.
+34. **One emphasis colour for the subject.** Exactly one warm highlight marks the focus (the system in a context view, the main path in a flow, the central entity in a data model). Everything else is calm: peers share one blue, shared services green, outside parties gray, planned elements purple. If everything is emphasised, nothing is.
+35. **Chips instead of bullet text.** A short technology, protocol, status or ownership word belongs in a chip on the element (`Relational`, `HTTPS`, `New`), not in a sentence inside the box. Keep chips to one to three per element and use one chip style per meaning.
+36. **Number what is read in order.** A badge on an element or step links it to the explained sequence (legend or caption). Use badges only when the order matters, and number from 1 without gaps.
+37. **Shape says kind.** Databases are cylinders, queues are queue shapes, documents are folded cards, people are stick figures or person cards. Use a shape only where it separates kinds the reader must tell apart; do not add icons for decoration.
+38. **One legend, consistent meaning.** Every colour, line style, chip colour and badge used must appear in one legend, with reader-facing words (not style names). The same meaning keeps the same look in every figure.
+39. **Density follows the question.** Roughly 12 to 30 elements are fine when zones group them and the emphasis is clear; beyond that, split the view. Never shrink text to fit; widen, re-flow or split.
+
 ## Where each kind of rule lives
 - Always in mind: `SKILL.md` (core rules).
 - Family-specific drawing advice and checklists: `references/types/<code>-<slug>.md`.

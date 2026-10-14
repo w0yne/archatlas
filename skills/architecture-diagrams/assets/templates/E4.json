@@ -6,63 +6,99 @@
     "lang": "en",
     "audience": "business and operations",
     "state": "as-is",
+    "subtitle": "Who does what, and what is handed over",
     "legend_labels": {
       "edges": {
         "call": "Hand-off between lanes",
         "message": "Hand-off between lanes"
       }
-    }
+    },
+    "legend": [
+      {
+        "label": "Step that decides the outcome",
+        "style": "highlight",
+        "symbol": "box"
+      },
+      {
+        "label": "Numbers: order of the steps",
+        "symbol": "box"
+      }
+    ]
   },
   "layout": {
     "template": "lanes",
     "profile": "doc",
-    "direction": "LR",
-    "columns": 4
+    "direction": "TB"
   },
-  "groups": [
-    {
-      "id": "l_c",
-      "title": "Customer",
-      "kind": "lane"
-    },
-    {
-      "id": "l_s",
-      "title": "Support",
-      "kind": "lane"
-    },
-    {
-      "id": "l_w",
-      "title": "Warehouse",
-      "kind": "lane"
-    }
-  ],
   "nodes": [
     {
       "id": "t1",
       "kind": "task",
       "label": "Request return",
       "parent": "l_c",
-      "size_hint": {
-        "width": 150
-      }
+      "badge": 1
     },
     {
       "id": "t2",
       "kind": "task",
-      "label": "Approve return",
+      "label": "Check order and reason",
       "parent": "l_s",
-      "size_hint": {
-        "width": 150
-      }
+      "badge": 2
     },
     {
       "id": "t3",
       "kind": "task",
+      "label": "Approve return",
+      "parent": "l_s",
+      "style": "highlight",
+      "badge": 3
+    },
+    {
+      "id": "t4",
+      "kind": "task",
+      "label": "Print label and send parcel",
+      "parent": "l_c",
+      "badge": 4
+    },
+    {
+      "id": "t5",
+      "kind": "task",
+      "label": "Receive parcel",
+      "parent": "l_w",
+      "badge": 5
+    },
+    {
+      "id": "t6",
+      "kind": "task",
       "label": "Inspect item",
       "parent": "l_w",
-      "size_hint": {
-        "width": 150
-      }
+      "style": "highlight",
+      "badge": 6
+    },
+    {
+      "id": "t7",
+      "kind": "task",
+      "label": "Restock item",
+      "parent": "l_w",
+      "badge": 7
+    },
+    {
+      "id": "t8",
+      "kind": "task",
+      "label": "Refund payment",
+      "parent": "l_f",
+      "style": "highlight",
+      "chips": [
+        "Within 5 days"
+      ],
+      "badge": 8
+    },
+    {
+      "id": "t9",
+      "kind": "task",
+      "label": "Receive refund notice",
+      "parent": "l_c",
+      "badge": 9
     }
   ],
   "edges": [
@@ -74,7 +110,63 @@
     {
       "from": "t2",
       "to": "t3",
+      "label": "Eligible order"
+    },
+    {
+      "from": "t3",
+      "to": "t4",
       "label": "Return label"
+    },
+    {
+      "from": "t4",
+      "to": "t5",
+      "label": "Parcel"
+    },
+    {
+      "from": "t5",
+      "to": "t6",
+      "label": "Received item"
+    },
+    {
+      "from": "t6",
+      "to": "t7",
+      "label": "Good condition"
+    },
+    {
+      "from": "t6",
+      "to": "t8",
+      "label": "Inspection result"
+    },
+    {
+      "from": "t8",
+      "to": "t9",
+      "label": "Refund notice"
+    }
+  ],
+  "groups": [
+    {
+      "id": "l_c",
+      "title": "Customer",
+      "kind": "lane",
+      "tint": "biz"
+    },
+    {
+      "id": "l_s",
+      "title": "Support",
+      "kind": "lane",
+      "tint": "app"
+    },
+    {
+      "id": "l_w",
+      "title": "Warehouse",
+      "kind": "lane",
+      "tint": "tech"
+    },
+    {
+      "id": "l_f",
+      "title": "Finance",
+      "kind": "lane",
+      "tint": "data"
     }
   ]
 }

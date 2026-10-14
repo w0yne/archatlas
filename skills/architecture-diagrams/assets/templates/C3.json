@@ -5,100 +5,257 @@
     "title": "Container diagram for Online shop",
     "lang": "en",
     "audience": "architects and developers",
-    "state": "as-is"
+    "state": "as-is",
+    "subtitle": "What runs inside the shop and how requests flow",
+    "legend": [
+      {
+        "label": "Focus service",
+        "style": "highlight",
+        "symbol": "box"
+      },
+      {
+        "label": "Outside our control",
+        "style": "external",
+        "symbol": "box"
+      },
+      {
+        "label": "Synchronous call",
+        "kind": "call",
+        "dir": "->"
+      },
+      {
+        "label": "Asynchronous message",
+        "kind": "async",
+        "dir": "->",
+        "dashed": true
+      },
+      {
+        "label": "Numbers 1–4: path of an order",
+        "symbol": "box"
+      }
+    ],
+    "legend_mode": "replace"
   },
   "layout": {
-    "template": "nested",
+    "template": "statechart",
     "profile": "doc",
-    "direction": "LR",
-    "columns": 2
-  },
-  "groups": [
-    {
-      "id": "g_s",
-      "title": "Online shop",
-      "kind": "boundary"
+    "direction": "TB",
+    "spacing": {
+      "rank_gap": 48
     }
-  ],
+  },
   "nodes": [
+    {
+      "id": "cust",
+      "kind": "person",
+      "label": "Customer"
+    },
     {
       "id": "web",
       "kind": "container",
       "label": "Web storefront",
-      "sub": "Shows catalogue and cart",
-      "tags": [
+      "parent": "g_front",
+      "sub": "Catalogue and cart",
+      "chips": [
         "Browser app"
       ],
-      "parent": "g_s",
-      "size_hint": {
-        "width": 170
-      }
+      "badge": 1
+    },
+    {
+      "id": "mob",
+      "kind": "container",
+      "label": "Mobile app",
+      "parent": "g_front",
+      "sub": "Same flows on a phone",
+      "chips": [
+        "Native"
+      ]
+    },
+    {
+      "id": "gw",
+      "kind": "container",
+      "label": "API gateway",
+      "parent": "g_svc",
+      "sub": "Routes and limits",
+      "chips": [
+        "HTTPS"
+      ],
+      "badge": 2
     },
     {
       "id": "api",
       "kind": "container",
-      "label": "Order API",
+      "label": "Order service",
+      "parent": "g_svc",
       "sub": "Places and tracks orders",
-      "tags": [
-        "REST service"
+      "style": "highlight",
+      "chips": [
+        "REST",
+        "Stateless"
       ],
-      "parent": "g_s",
-      "style": "primary",
-      "size_hint": {
-        "width": 170
-      }
+      "badge": 3
+    },
+    {
+      "id": "cat",
+      "kind": "container",
+      "label": "Catalogue service",
+      "parent": "g_svc",
+      "sub": "Products and prices",
+      "chips": [
+        "REST"
+      ]
+    },
+    {
+      "id": "bot",
+      "kind": "container",
+      "label": "Chatbot service",
+      "parent": "g_svc",
+      "sub": "Replies to questions",
+      "chips": [
+        "New"
+      ]
     },
     {
       "id": "db",
       "kind": "store",
       "label": "Shop database",
-      "sub": "Stores orders and products",
-      "tags": [
-        "Relational database"
+      "parent": "g_data",
+      "sub": "Orders and products",
+      "chips": [
+        "Relational"
       ],
-      "parent": "g_s",
-      "size_hint": {
-        "width": 170
-      }
+      "badge": 4
     },
     {
-      "id": "cust",
-      "kind": "person",
-      "label": "Customer",
-      "size_hint": {
-        "width": 170
-      }
+      "id": "idx",
+      "kind": "store",
+      "label": "Search index",
+      "parent": "g_data",
+      "sub": "Product search",
+      "chips": [
+        "Derived"
+      ]
+    },
+    {
+      "id": "q",
+      "kind": "queue",
+      "label": "Order events",
+      "parent": "g_data",
+      "sub": "Paid and shipped",
+      "chips": [
+        "Queue"
+      ]
     },
     {
       "id": "pay",
       "kind": "external",
       "label": "Payment provider",
       "style": "external",
-      "size_hint": {
-        "width": 170
-      }
+      "chips": [
+        "HTTPS"
+      ]
+    },
+    {
+      "id": "llm",
+      "kind": "external",
+      "label": "Language model service",
+      "style": "external"
     }
   ],
   "edges": [
     {
       "from": "cust",
       "to": "web",
-      "label": "Browses"
+      "label": "Browses",
+      "kind": "call"
+    },
+    {
+      "from": "cust",
+      "to": "mob",
+      "kind": "call"
     },
     {
       "from": "web",
+      "to": "gw",
+      "label": "Calls API",
+      "kind": "call"
+    },
+    {
+      "from": "mob",
+      "to": "gw",
+      "kind": "call"
+    },
+    {
+      "from": "gw",
       "to": "api",
-      "label": "Places order [JSON/HTTPS]"
+      "kind": "call"
+    },
+    {
+      "from": "gw",
+      "to": "cat",
+      "kind": "call"
+    },
+    {
+      "from": "gw",
+      "to": "bot",
+      "kind": "call"
     },
     {
       "from": "api",
       "to": "db",
-      "label": "Reads and writes [SQL]"
+      "label": "Reads and writes",
+      "kind": "data"
+    },
+    {
+      "from": "api",
+      "to": "q",
+      "label": "Publishes",
+      "kind": "async"
+    },
+    {
+      "from": "cat",
+      "to": "idx",
+      "kind": "data"
     },
     {
       "from": "api",
       "to": "pay",
-      "label": "Charges cards [HTTPS]"
+      "label": "Charges cards",
+      "kind": "call"
+    },
+    {
+      "from": "bot",
+      "to": "llm",
+      "kind": "call"
+    }
+  ],
+  "groups": [
+    {
+      "id": "g_s",
+      "title": "Online shop",
+      "kind": "boundary",
+      "tint": "app"
+    },
+    {
+      "id": "g_front",
+      "title": "Front ends",
+      "kind": "frame",
+      "parent": "g_s",
+      "tint": "biz"
+    },
+    {
+      "id": "g_svc",
+      "title": "Services",
+      "kind": "frame",
+      "parent": "g_s",
+      "tint": "app"
+    },
+    {
+      "id": "g_data",
+      "title": "Data stores",
+      "kind": "frame",
+      "parent": "g_s",
+      "tint": "data"
     }
   ]
 }

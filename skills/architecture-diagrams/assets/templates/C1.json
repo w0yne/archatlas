@@ -6,7 +6,18 @@
     "lang": "en",
     "audience": "IT and business leads",
     "state": "as-is",
+    "subtitle": "Who uses which application, and what each depends on",
     "legend": [
+      {
+        "label": "Core application",
+        "style": "primary",
+        "symbol": "box"
+      },
+      {
+        "label": "New this year",
+        "style": "highlight",
+        "symbol": "box"
+      },
       {
         "label": "Shared by every application",
         "style": "shared",
@@ -27,110 +38,134 @@
   },
   "layout": {
     "template": "layered",
-    "profile": "doc"
+    "profile": "doc",
+    "columns": 3
   },
-  "groups": [
-    {
-      "id": "g_ch",
-      "title": "Channels",
-      "kind": "layer"
-    },
-    {
-      "id": "g_app",
-      "title": "Business applications",
-      "kind": "layer"
-    },
-    {
-      "id": "g_pl",
-      "title": "Shared platform",
-      "kind": "layer"
-    },
-    {
-      "id": "g_ex",
-      "title": "External services",
-      "kind": "layer"
-    }
-  ],
   "nodes": [
     {
-      "id": "web",
+      "id": "ch0",
       "kind": "system",
       "label": "Web storefront",
-      "parent": "g_ch"
+      "parent": "g_ch",
+      "chips": [
+        "Browser"
+      ]
     },
     {
-      "id": "mob",
+      "id": "ch1",
       "kind": "system",
       "label": "Mobile app",
-      "parent": "g_ch"
+      "parent": "g_ch",
+      "chips": [
+        "iOS · Android"
+      ]
     },
     {
-      "id": "chat",
+      "id": "ch2",
       "kind": "system",
       "label": "Support chat widget",
-      "parent": "g_ch"
+      "parent": "g_ch",
+      "chips": [
+        "Embedded"
+      ]
     },
     {
       "id": "shop",
       "kind": "system",
       "label": "Shop",
-      "sub": "orders and catalogue",
       "parent": "g_app",
-      "style": "primary"
+      "sub": "orders and catalogue",
+      "style": "primary",
+      "chips": [
+        "Core"
+      ]
     },
     {
       "id": "back",
       "kind": "system",
       "label": "Back office",
-      "parent": "g_app"
+      "parent": "g_app",
+      "sub": "staff tools",
+      "chips": [
+        "Internal"
+      ]
     },
     {
       "id": "bot",
       "kind": "system",
       "label": "Support chatbot",
-      "parent": "g_app"
+      "parent": "g_app",
+      "sub": "answers and hand-offs",
+      "style": "highlight",
+      "chips": [
+        "New"
+      ]
     },
     {
       "id": "idp",
       "kind": "system",
       "label": "Identity",
       "parent": "g_pl",
-      "style": "shared"
+      "sub": "sign-in and tokens",
+      "style": "shared",
+      "chips": [
+        "Shared"
+      ]
     },
     {
       "id": "notif",
       "kind": "system",
       "label": "Notifications",
       "parent": "g_pl",
-      "style": "shared"
+      "sub": "email and push",
+      "style": "shared",
+      "chips": [
+        "Shared"
+      ]
     },
     {
       "id": "search",
       "kind": "system",
       "label": "Search",
       "parent": "g_pl",
-      "style": "shared"
+      "sub": "products and help",
+      "style": "shared",
+      "chips": [
+        "Shared"
+      ]
     },
     {
       "id": "pay",
       "kind": "external",
       "label": "Payment provider",
       "parent": "g_ex",
-      "style": "external"
+      "sub": "card payments",
+      "style": "external",
+      "chips": [
+        "Outside our control"
+      ]
     },
     {
       "id": "car",
       "kind": "external",
       "label": "Carrier",
       "parent": "g_ex",
-      "style": "external"
+      "sub": "parcel delivery",
+      "style": "external",
+      "chips": [
+        "Outside our control"
+      ]
     },
     {
       "id": "mail",
       "kind": "external",
       "label": "Email service",
       "parent": "g_ex",
-      "style": "external"
+      "sub": "receipts",
+      "style": "external",
+      "chips": [
+        "Outside our control"
+      ]
     }
   ],
   "edges": [
@@ -151,6 +186,32 @@
       "to": "g_ex",
       "label": "payments, parcels, mail",
       "kind": "call"
+    }
+  ],
+  "groups": [
+    {
+      "id": "g_ch",
+      "title": "Channels",
+      "kind": "layer",
+      "tint": "app"
+    },
+    {
+      "id": "g_app",
+      "title": "Business applications",
+      "kind": "layer",
+      "tint": "biz"
+    },
+    {
+      "id": "g_pl",
+      "title": "Shared platform",
+      "kind": "layer",
+      "tint": "tech"
+    },
+    {
+      "id": "g_ex",
+      "title": "External services",
+      "kind": "layer",
+      "tint": "neutral"
     }
   ]
 }

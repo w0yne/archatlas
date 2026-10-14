@@ -4,138 +4,220 @@
     "type": "C5",
     "title": "Logical view: online shop",
     "lang": "en",
-    "audience": "architects",
+    "audience": "architects and developers",
     "state": "as-is",
+    "subtitle": "Building blocks grouped by responsibility",
     "legend": [
       {
-        "label": "Arrow: depends on (consumer → provider)",
-        "kind": "dependency",
+        "label": "Block that carries the main flow",
+        "style": "highlight",
+        "symbol": "box"
+      },
+      {
+        "label": "Outside our control",
+        "style": "external",
+        "symbol": "box"
+      },
+      {
+        "label": "Arrow: dependency, labelled with the operation",
+        "kind": "call",
         "dir": "->"
       }
-    ]
+    ],
+    "legend_mode": "replace"
   },
   "layout": {
-    "template": "layered",
+    "template": "statechart",
     "profile": "doc",
-    "columns": 3
-  },
-  "groups": [
-    {
-      "id": "g_b",
-      "title": "Online shop",
-      "kind": "boundary"
-    },
-    {
-      "id": "f_sell",
-      "title": "Selling",
-      "kind": "frame",
-      "parent": "g_b"
-    },
-    {
-      "id": "f_ful",
-      "title": "Fulfilment",
-      "kind": "frame",
-      "parent": "g_b"
-    },
-    {
-      "id": "f_pay",
-      "title": "Payments",
-      "kind": "frame",
-      "parent": "g_b"
+    "direction": "LR",
+    "spacing": {
+      "rank_gap": 32,
+      "node_gap": 20,
+      "group_padding": 16
     }
-  ],
+  },
   "nodes": [
     {
       "id": "cat",
       "kind": "component",
       "label": "Catalogue",
-      "sub": "Presents products",
-      "parent": "f_sell",
-      "size_hint": {
-        "width": 150
-      }
+      "parent": "g_sell",
+      "sub": "Products and prices"
+    },
+    {
+      "id": "cart",
+      "kind": "component",
+      "label": "Cart",
+      "parent": "g_sell",
+      "sub": "Items before checkout"
     },
     {
       "id": "chk",
       "kind": "component",
       "label": "Checkout",
+      "parent": "g_sell",
       "sub": "Turns a cart into an order",
-      "parent": "f_sell",
-      "style": "primary",
-      "size_hint": {
-        "width": 150
-      }
+      "style": "highlight"
     },
     {
       "id": "ord",
       "kind": "component",
-      "label": "Order Management",
-      "sub": "Tracks orders",
-      "parent": "f_ful",
-      "size_hint": {
-        "width": 150
-      }
+      "label": "Order management",
+      "parent": "g_ful",
+      "sub": "Order lifecycle",
+      "style": "highlight"
     },
     {
-      "id": "stk",
+      "id": "stock",
       "kind": "component",
       "label": "Stock",
-      "sub": "Reserves items",
-      "parent": "f_ful",
-      "size_hint": {
-        "width": 150
-      }
+      "parent": "g_ful",
+      "sub": "Availability and reservations"
     },
     {
-      "id": "pay",
+      "id": "ship",
       "kind": "component",
-      "label": "Payment Handling",
-      "sub": "Requests payments",
-      "parent": "f_pay",
-      "size_hint": {
-        "width": 150
-      }
+      "label": "Shipping",
+      "parent": "g_ful",
+      "sub": "Labels and tracking"
     },
     {
-      "id": "ext",
+      "id": "pm",
+      "kind": "component",
+      "label": "Payment handling",
+      "parent": "g_pay",
+      "sub": "Charges and refunds",
+      "style": "highlight"
+    },
+    {
+      "id": "inv",
+      "kind": "component",
+      "label": "Invoicing",
+      "parent": "g_pay",
+      "sub": "Receipts and tax"
+    },
+    {
+      "id": "chat",
+      "kind": "component",
+      "label": "Chat assistant",
+      "parent": "g_supp",
+      "sub": "Answers common questions"
+    },
+    {
+      "id": "psp",
       "kind": "external",
       "label": "Payment provider",
       "style": "external",
-      "size_hint": {
-        "width": 150
-      }
+      "chips": [
+        "Outside our control"
+      ]
+    },
+    {
+      "id": "car",
+      "kind": "external",
+      "label": "Carrier",
+      "style": "external",
+      "chips": [
+        "Outside our control"
+      ]
     }
   ],
   "edges": [
     {
-      "from": "chk",
-      "to": "cat",
-      "label": "reads products",
-      "kind": "dependency"
+      "from": "cat",
+      "to": "chk",
+      "label": "Prices",
+      "kind": "call"
+    },
+    {
+      "from": "cart",
+      "to": "chk",
+      "label": "Checks out",
+      "kind": "call"
     },
     {
       "from": "chk",
       "to": "ord",
-      "label": "creates orders",
-      "kind": "dependency"
-    },
-    {
-      "from": "ord",
-      "to": "stk",
-      "label": "reserves items",
-      "kind": "dependency"
+      "label": "Order",
+      "kind": "call"
     },
     {
       "from": "chk",
-      "to": "pay",
-      "label": "requests payment",
-      "kind": "dependency"
+      "to": "pm",
+      "label": "Charge",
+      "kind": "call"
     },
     {
-      "from": "pay",
-      "to": "ext",
-      "label": "charges card",
-      "kind": "dependency"
+      "from": "ord",
+      "to": "stock",
+      "label": "Reserves",
+      "kind": "call"
+    },
+    {
+      "from": "ord",
+      "to": "ship",
+      "label": "Books",
+      "kind": "call"
+    },
+    {
+      "from": "pm",
+      "to": "inv",
+      "label": "Receipt",
+      "kind": "call"
+    },
+    {
+      "from": "pm",
+      "to": "psp",
+      "label": "Card",
+      "kind": "call"
+    },
+    {
+      "from": "ship",
+      "to": "car",
+      "label": "Parcel",
+      "kind": "call"
+    },
+    {
+      "from": "chat",
+      "to": "ord",
+      "label": "Status",
+      "kind": "call"
+    }
+  ],
+  "groups": [
+    {
+      "id": "b",
+      "title": "Online shop",
+      "kind": "boundary",
+      "tint": "app"
+    },
+    {
+      "id": "g_sell",
+      "title": "Selling",
+      "kind": "frame",
+      "parent": "b",
+      "tint": "biz"
+    },
+    {
+      "id": "g_ful",
+      "title": "Fulfilment",
+      "kind": "frame",
+      "parent": "b",
+      "tint": "app"
+    },
+    {
+      "id": "g_pay",
+      "title": "Payments",
+      "kind": "frame",
+      "parent": "b",
+      "tint": "tech"
+    },
+    {
+      "id": "g_supp",
+      "title": "Customer support",
+      "kind": "frame",
+      "parent": "b",
+      "tint": "data"
     }
   ]
 }

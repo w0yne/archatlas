@@ -123,7 +123,7 @@ reviewed: false
 
 ## 模板 {#template}
 <!-- skill: keep (≤3 lines) -->
-模型模板：`assets/templates/G2.json` · 布局模板：`layered` · 各层级（边缘、计算、数据、支撑）成为 `layer` 分组，云服务商边界（账号、区域、可用区）成为 `boundary` 分组，服务是节点，其角色写在 `sub` 中，箭头使用带明确标签的 `call`、`data` 或 `async` 边类型；设计状态由节点的 `style` 和 `evidence` 承载。
+模型模板：`assets/templates/G2.json` · 布局模板：`statechart` · 云服务商边界（区域）成为 `boundary` 分组，层级或可用区（边缘、网络与安全、可用区 1、可用区 2、托管服务）成为沿请求路径分层的 `frame` 分组，同层的可用区并排；服务是节点，角色写在标签（chip）中，箭头使用 `call`、`data` 或 `async` 边类型；设计状态由节点的 `style` 和 `evidence` 承载。
 
 ## 来源 {#sources}
 <!-- skill: omit -->
@@ -138,5 +138,5 @@ reviewed: false
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-![G2 示例：网店在通用云上的基础设施（拟议）](/samples/G2-cloud-infrastructure-architecture.svg)
-*通用云上的拟议基础设施：边缘是 CDN，区域 A（可用区 1 和 2）运行应用服务，托管数据库在可用区 2 有副本。箭头分别标注“转发请求”和“读写”。*
+![G2 示例：网店在通用云上的拟议基础设施](/samples/G2-cloud-infrastructure-architecture.zh.svg)
+*通用云上的拟议基础设施：边缘的 CDN，网络与安全分区中的负载均衡器，两个可用区各有一个应用服务和一个数据库（可用区 1 为主库，可用区 2 为副本），以及托管的对象存储、消息队列和监控。琥珀色标出拟议的计算层，编号 1–2 标出写入路径；这里的内容均尚未建成。*
