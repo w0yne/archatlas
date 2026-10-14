@@ -14,6 +14,9 @@
 | `rubric.md` | 硬门槛，以及各维度 0–3 分的评分标准 |
 | `run_eval.py` | 运行器：创建沙箱、准备 fixture、执行多轮对话、采集指标、输出 `results.json` 和 `report.md` |
 | `adapters/{claude,codex,pi}.py` | 每个宿主一个适配器：配置、命令行、事件解析 |
+| `grade.py`、`grader/prompt.md` | 模型评分：按 `rubric.md` 给每次运行打分，写入 `grade.json` |
+| `report.py` | 把运行结果和评分汇总为 `reports/<名称>.md` 与 `.json` |
+| `reports/` | 提交到仓库的报告；原始结果不进仓库 |
 | `hosts.example.yaml` | 本地宿主配置文件的模板 |
 | `tests/` | 工具本身的不变量测试 |
 
@@ -21,7 +24,7 @@
 
 ## 运行
 
-命令见英文版 README。结果写入 `evals/results/<时间戳>/`（已在 gitignore 中）。
+命令见英文版 README（包括从发布 zip 安装 skill、`--budget-usd` 费用上限、评分与汇总）。评分模型应与被评模型不同。结果写入 `evals/results/<时间戳>/`（已在 gitignore 中）。
 
 每次运行保存以下文件：
 - 每一轮的事件流、stderr 和命令行；

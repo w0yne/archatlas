@@ -10,6 +10,7 @@ class CodexAdapter(Adapter):
     name = "codex"
     default_binary = "codex"
     invoke_prefix = "$architecture-diagrams"
+    traces_image_views = False  # `codex exec --json` emits no event for viewing an image
 
     @property
     def sandbox(self) -> str:
@@ -49,9 +50,17 @@ class CodexAdapter(Adapter):
             opts.append("--ephemeral")
         return [self.binary, "exec", *opts, "--", prompt]
 
+    def tool_calls(self, events):
+        return [str((ev.get("item") or {}).get("command")) for ev in events
+                if ev.get("type") == "item.started" and (ev.get("item") or {}).get("type") == "command_execution"]
+
+    def assistant_texts(self, events):
+        return [(ev.get("item") or {}).get("text") or "" for ev in events
+                if ev.get("type") == "item.completed" and (ev.get("item") or {}).get("type") == "agent_message"]
+
     def parse(self, events, sb, tag, out_dir) -> Turn:
         t = Turn(exit_code=0, wall_s=0)
-        usage = {"input": 0, "output": 0, "cache_read": 0}
+        usage = {"input": 0, "output": 0, "cache_read": 0, "cache_write": 0}
         for ev in jsonl(events):
             if ev.get("type") == "thread.started":
                 t.session = ev.get("thread_id")
@@ -60,6 +69,7 @@ class CodexAdapter(Adapter):
                 usage["input"] += u.get("input_tokens") or 0
                 usage["output"] += u.get("output_tokens") or 0
                 usage["cache_read"] += u.get("cached_input_tokens") or 0
+                usage["cache_write"] += u.get("cache_write_input_tokens") or 0
             item = ev.get("item") or {}
             if ev.get("type") == "item.completed" and item.get("type") == "agent_message":
                 t.final_text = item.get("text") or t.final_text

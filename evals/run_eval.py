@@ -28,6 +28,8 @@ import time
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
+import zipfile
+
 import yaml
 
 HERE = Path(__file__).resolve().parent
@@ -140,7 +142,10 @@ def skill_status(adapter, events: str, markers: list[str], skill: str, arm: str,
     evidence = []
     if any(m in events for m in markers):
         evidence.append("SKILL.md body in trace")
-    reads = sorted(set(re.findall(rf"{re.escape(skill)}/((?:SKILL\.md|references/|assets/|scripts/)[\w./-]*)", events)))
+    # Paths are matched in the agent's own tool calls only: hosts list skill locations in their
+    # system prompt, which some event streams echo.
+    calls = "\n".join(adapter.tool_calls(rows))
+    reads = sorted(set(re.findall(rf"{re.escape(skill)}/((?:SKILL\.md|references/|assets/|scripts/)[\w./-]*)", calls)))
     evidence += [f"read {r}" for r in reads]
     evidence += adapter.skill_evidence(rows, skill)
     if evidence:
@@ -151,6 +156,50 @@ def skill_status(adapter, events: str, markers: list[str], skill: str, arm: str,
         loaded = False
     return {"skill_loaded": loaded, "skill_evidence": evidence,
             "skill_listed": adapter.skill_listed(rows, skill)}
+
+
+# Signals in the host trace that feed hard gates and the defect list (never the answer text alone).
+# Counted over the agent's own tool calls only (the skill text itself mentions these commands).
+TRACE_PATTERNS = {
+    "tool_calls": None,
+    "atlas_render": r"atlas\W+render\b",
+    "atlas_check": r"atlas\W+check\b",
+    "atlas_any": r"scripts/atlas\b|\batlas (init|render|check|preview|sheet|fonts)\b",
+    "pip_install": r"pip3? install",
+    "pip_install_archatlas_pypi": r"pip3? install[^\n\"]*\barchatlas\b(?![\w./\[-])",
+    "image_read": r"^(Read|read|view_image)\b[^\n]*\.(png|jpe?g)\b",
+    "hand_written_svg": r"^(Write|write)\b[^\n]*\.svg\b|cat >[^\n]*\.svg",
+    # Executed commands only: anchored at a command position, heredoc bodies removed first.
+    "forbidden": r"(?:^|&&|;|\|\||\$\()\s*(?:sudo\s+)?(?:docker\s+(?:run|compose\s+up|build)|git\s+push|npm\s+publish|(?:\./)?mvnw?\b[^\n]*spring-boot:run|(?:\./)?gradlew?\b[^\n]*bootRun|java\s+-jar|python3?\s+\S*fixture/\S+\.py)",
+}
+HEREDOC = re.compile(r"<<-?\s*['\"]?(\w+)['\"]?[^\n]*\n.*?\n\s*\1\b", re.S)
+
+
+def trace_facts(calls: list[str]) -> dict:
+    out = {}
+    for k, p in TRACE_PATTERNS.items():
+        out[k] = len(calls) if p is None else sum(bool(re.search(p, HEREDOC.sub("", c), re.M)) for c in calls)
+    return {"trace": out}
+
+
+def estimate_cost(record: dict, cfg: dict) -> float | None:
+    """Host-reported cost, else tokens × the hosts file's `price` (USD per million tokens)."""
+    if record.get("cost_usd") is not None:
+        return record["cost_usd"]
+    price, u = cfg.get("price"), record.get("usage") or {}
+    if not price:
+        return None
+    uncached = max((u.get("input") or 0) - (u.get("cache_read") or 0), 0) if cfg.get("input_includes_cache") else (u.get("input") or 0)
+    return round((uncached * price.get("input", 0) + (u.get("cache_read") or 0) * price.get("cache_read", 0)
+                  + (u.get("cache_write") or 0) * price.get("cache_write", 0)
+                  + (u.get("output") or 0) * price.get("output", 0)) / 1e6, 4)
+
+
+def spent(out_root: Path) -> float:
+    total = 0.0
+    for rec in out_root.glob("*/record.json"):
+        total += json.loads(rec.read_text()).get("cost_est_usd") or 0
+    return total
 
 
 def svg_checks(path: Path) -> dict:
@@ -228,6 +277,7 @@ def run_one(item, host, arm, cfg, skill_dir, out_root, work_root, timeout, keep,
         for i, prompt in enumerate(prompts):
             t = adapter.turn(sb, prompt, session, multi, out_dir, f"turn{i + 1}", timeout)
             turns.append(t)
+            (out_dir / f"turn{i + 1}.final.txt").write_text(t.final_text, encoding="utf-8")
             session = t.session or session
             if t.exit_code != 0 or (multi and not session):
                 break
@@ -244,6 +294,7 @@ def run_one(item, host, arm, cfg, skill_dir, out_root, work_root, timeout, keep,
             "cost_usd": (round(sum(t.cost_usd for t in turns if t.cost_usd is not None), 4)
                          if any(t.cost_usd is not None for t in turns) else None),
             **skill_status(adapter, events, markers, skill_dir.name, arm, item["trigger"]),
+            **trace_facts(adapter.tool_calls(jsonl(events))),
             "files": listing(sb.workspace),
         })
         if item["trigger"]:
@@ -254,6 +305,7 @@ def run_one(item, host, arm, cfg, skill_dir, out_root, work_root, timeout, keep,
         if any(produced.iterdir()):
             shutil.copytree(produced, out_dir / "out", dirs_exist_ok=True)
         record["svg_checks"] = [svg_checks(p) for p in sorted(produced.rglob("*.svg"))]
+        record["cost_est_usd"] = estimate_cost(record, cfg)
         return record
     except Exception as e:  # keep the batch going; the record carries the error
         record["error"] = f"{type(e).__name__}: {e}"
@@ -315,6 +367,9 @@ def main(argv=None) -> int:
     ap.add_argument("--arm", action="append", choices=["skill", "noskill"], default=[])
     ap.add_argument("--mode", choices=["autonomous", "guided"], help="override the scenario's first mode")
     ap.add_argument("--skill-dir", type=Path, default=DEFAULT_SKILL)
+    ap.add_argument("--skill-bundle", type=Path, help="install the skill from a release zip (tools/pack_skill.py)")
+    ap.add_argument("--skill-rev", help="record this revision for the skill (default: git rev of --skill-dir)")
+    ap.add_argument("--budget-usd", type=float, help="stop starting runs once this results dir has spent this much")
     ap.add_argument("--out", type=Path, help="results dir (default evals/results/<timestamp>)")
     ap.add_argument("--work-root", type=Path, default=Path(tempfile.gettempdir()),
                     help="parent of the per-run sandboxes; keep it outside any directory with AGENTS.md/CLAUDE.md")
@@ -338,6 +393,15 @@ def main(argv=None) -> int:
     hosts = args.host or sorted(ADAPTERS)
     arms = args.arm or ["skill", "noskill"]
     skill_dir = args.skill_dir.resolve()
+    if args.skill_bundle:
+        bundle_root = Path(tempfile.mkdtemp(prefix="archatlas-bundle-"))
+        with zipfile.ZipFile(args.skill_bundle) as zf:
+            zf.extractall(bundle_root)
+        for info in zipfile.ZipFile(args.skill_bundle).infolist():
+            mode = (info.external_attr >> 16) & 0o777
+            if mode:
+                (bundle_root / info.filename).chmod(mode)
+        skill_dir = next(p.parent for p in bundle_root.glob("*/SKILL.md"))
     markers = skill_markers(skill_dir)
 
     started = time.time()
@@ -350,13 +414,16 @@ def main(argv=None) -> int:
             item_arms = ["skill"] if item["trigger"] and not args.arm else arms
             for host in hosts:
                 for arm in item_arms:
+                    if args.budget_usd is not None and spent(out_root) >= args.budget_usd:
+                        print(f"[stop] budget {args.budget_usd} USD reached", flush=True)
+                        break
                     print(f"[run] {item['id']} {item['mode'] or 'trigger'} {host} {arm}", flush=True)
                     records.append(run_one(item, host, arm, hosts_cfg.get(host, {}), skill_dir, out_root,
                                            args.work_root, args.timeout, args.keep_sandboxes,
                                            args.dry_run, markers))
     live = args.live_dir or [Path.home() / d for d in (".claude", ".codex", ".pi")]
-    rev = subprocess.run(["git", "-C", str(skill_dir), "rev-parse", "--short", "HEAD"],
-                         capture_output=True, text=True).stdout.strip() or "unknown"
+    rev = args.skill_rev or subprocess.run(["git", "-C", str(skill_dir), "rev-parse", "--short", "HEAD"],
+                                           capture_output=True, text=True).stdout.strip() or "unknown"
     meta = {
         "run_id": run_id,
         "started": dt.datetime.fromtimestamp(started, dt.timezone.utc).isoformat(),

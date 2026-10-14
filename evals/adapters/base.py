@@ -152,6 +152,17 @@ class Adapter:
         """Host-specific proof in the event log that the skill was loaded."""
         return []
 
+    # False when the host's event stream does not show image views (G2 cannot be judged from it).
+    traces_image_views = True
+
+    def tool_calls(self, events: list[dict]) -> list[str]:
+        """The serialised inputs of the agent's tool calls (commands, file reads)."""
+        return []
+
+    def assistant_texts(self, events: list[dict]) -> list[str]:
+        """Every text message the agent wrote, in order (the final reply is only the last one)."""
+        return []
+
     def skill_listed(self, events: list[dict], skill: str) -> bool | None:
         """Whether the host reported the skill as available (None: host does not report)."""
         return None

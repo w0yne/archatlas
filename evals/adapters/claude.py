@@ -1,6 +1,7 @@
 """Claude Code 2.1.x: `claude -p --output-format stream-json`."""
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
 from .base import Adapter, Sandbox, Turn, copy_state_files, install_skill, jsonl
@@ -34,6 +35,8 @@ class ClaudeAdapter(Adapter):
                 "--setting-sources", "project"]
         if self.cfg.get("model"):
             argv += ["--model", self.cfg["model"]]
+        if self.cfg.get("max_budget_usd"):
+            argv += ["--max-budget-usd", str(self.cfg["max_budget_usd"])]
         if not multi_turn:
             argv.append("--no-session-persistence")
         if session:
@@ -48,6 +51,28 @@ class ClaudeAdapter(Adapter):
                         and skill in str(c.get("input")):
                     found.append("Skill tool call")
         return found
+
+    def tool_calls(self, events):
+        calls = []
+        for ev in events:
+            if ev.get("type") != "assistant":
+                continue
+            for c in (ev.get("message") or {}).get("content") or []:
+                if isinstance(c, dict) and c.get("type") == "tool_use":
+                    inp = c.get("input") or {}
+                    body = inp.get("command") if isinstance(inp.get("command"), str) else json.dumps(inp, ensure_ascii=False)
+                    calls.append(f"{c.get('name')} {body}")
+        return calls
+
+    def assistant_texts(self, events):
+        out = []
+        for ev in events:
+            if ev.get("type") == "assistant":
+                t = "".join(c.get("text", "") for c in (ev.get("message") or {}).get("content") or []
+                            if isinstance(c, dict) and c.get("type") == "text")
+                if t.strip():
+                    out.append(t)
+        return out
 
     def skill_listed(self, events, skill):
         for ev in events:
