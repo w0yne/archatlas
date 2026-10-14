@@ -23,11 +23,12 @@ if vendored.is_dir():
 
 try:
     from archatlas.cli import main
-except ImportError:
-    print("Renderer unavailable. Use a release bundle containing scripts/lib. "
+except ImportError as error:
+    print(f"Renderer unavailable ({error}). Use a release bundle containing scripts/lib. "
           "To install renderer dependencies, run from the skill folder:\n"
           "python3 -m venv .atlas-venv && "
-          ".atlas-venv/bin/python -m pip install -r scripts/requirements.txt",
+          ".atlas-venv/bin/python -m pip install -r scripts/requirements.txt\n"
+          "Renderer and automatic checks did not run; do not claim estimate mode.",
           file=sys.stderr)
     raise SystemExit(2)
 

@@ -11,6 +11,7 @@ from .check import check_svg
 from .fonts import FontMetrics
 from .layout import layout
 from .model import load
+from .model.validate import require_schema_validator
 from .render import render_svg
 
 TEMPLATES = ("nested", "layered", "sequence", "lanes", "grid_table", "er", "statechart", "tree")
@@ -37,7 +38,9 @@ def raster(svg, scale=1):
     try:
         import cairosvg
     except ImportError as error:
-        raise RuntimeError("PNG preview needs CairoSVG: install archatlas[preview]") from error
+        raise RuntimeError("PNG preview needs CairoSVG and the platform Cairo library. "
+                           "In the bundle's virtual environment run: python -m pip install CairoSVG; "
+                           "or from a reviewed checkout run: python -m pip install -e '.[preview]'") from error
     return cairosvg.svg2png(bytestring=svg.encode("utf-8"), scale=scale, unsafe=False)
 
 
@@ -146,6 +149,15 @@ def parser():
 def main(argv=None):
     args = parser().parse_args(argv)
     try:
+        try:
+            require_schema_validator()
+        except ImportError as error:
+            raise RuntimeError(
+                f"Required schema-validation dependency unavailable: {error}. "
+                "Renderer and automatic checks did not run; estimate mode cannot replace schema validation. "
+                "From the skill folder run: " + INSTALL_COMMAND +
+                ". For a reviewed checkout, install into its virtual environment with: python -m pip install -e ."
+            ) from error
         if args.command == "init":
             save_json(args.output, initial_type(args.template, args.templates))
         elif args.command == "fonts":
@@ -235,7 +247,11 @@ def main(argv=None):
             destination.parent.mkdir(parents=True, exist_ok=True)
             destination.write_bytes(raster(Path(args.svg).read_text(encoding="utf-8"), args.scale))
         elif args.command == "sheet":
-            from PIL import Image, ImageDraw
+            try:
+                from PIL import Image, ImageDraw
+            except ImportError as error:
+                raise RuntimeError("Contact sheets need Pillow. In the bundle's virtual environment run: "
+                                   "python -m pip install Pillow; or install the reviewed checkout's dependencies.") from error
             columns = min(3, len(args.svgs))
             rows = (len(args.svgs) + columns - 1) // columns
             cell_w, cell_h = min(520, 1600 // columns), min(330, 1600 // rows)

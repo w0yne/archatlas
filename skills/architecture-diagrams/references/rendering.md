@@ -38,9 +38,20 @@ python3 -m venv .atlas-venv
 
 Then run every command as `.atlas-venv/bin/python <skill>/scripts/atlas …`. If
 `python3 -m venv` or pip is unavailable, or installing is not permitted, do not
-install into the system Python: continue, and report that the renderer ran in
-estimate mode (`measured_with: estimate`). Optional preview/browser dependencies
-are CairoSVG and Playwright.
+install into the system Python. **Required dependency:** the renderer needs
+`jsonschema` and its dependencies for model validation. If they or the renderer
+library are missing, commands fail with exit 2 and an install hint; automatic
+rendering/checks did not run. Keep the model and use the hand-written SVG fallback
+in §6 if needed, explicitly reporting that it is not validated renderer output.
+**Measurement fallback:** only when required dependencies are available, missing
+Pillow/fontTools or fonts/glyphs can produce conservative estimates with warnings
+and `measured_with: estimate`; report the actual mode returned by the tool.
+Optional preview/browser dependencies are CairoSVG (plus the platform Cairo
+library) and Playwright (plus Chromium). Missing optional tools leave SVG work
+available but their requested preview/browser command returns 2; contact sheets
+also require Pillow. Install extras in the bundle's virtual environment
+(`python -m pip install CairoSVG playwright`, then
+`python -m playwright install chromium`) or use the reviewed checkout extras above.
 A copied checkout skill folder alone does not include `scripts/lib`.
 
 ## 2. Working commands

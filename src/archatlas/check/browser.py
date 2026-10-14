@@ -63,7 +63,10 @@ def _measure(svg):
     try:
         from playwright.sync_api import sync_playwright, Error
     except ImportError as error:
-        raise RuntimeError("Browser QA needs archatlas[browser] and playwright install chromium") from error
+        raise RuntimeError("Browser QA needs Playwright. In the bundle's virtual environment run: "
+                           "python -m pip install playwright; or from a reviewed checkout run: "
+                           "python -m pip install -e '.[browser]'. Then run: "
+                           "python -m playwright install chromium") from error
     try:
         with sync_playwright() as playwright:
             browser = playwright.chromium.launch()

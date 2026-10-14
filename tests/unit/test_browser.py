@@ -62,7 +62,7 @@ class BrowserTests(unittest.TestCase):
 
     def test_missing_dependency_is_tool_error(self):
         with patch.dict(sys.modules, {"playwright.sync_api": None}):
-            with self.assertRaisesRegex(RuntimeError, r"archatlas\[browser\]"):
+            with self.assertRaisesRegex(RuntimeError, r"python -m pip install playwright"):
                 check_browser(SVG)
 
     def test_offline_context_waits_for_fonts_measures_supplied_svg_and_closes(self):
