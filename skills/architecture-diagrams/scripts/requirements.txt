@@ -3,3 +3,5 @@ fonttools==4.60.1
 jsonschema==4.26.0
 # Optional PNG/contact-sheet rasterizer:
 # CairoSVG==2.8.2
+# Optional browser geometry checks (also require a Chromium installation):
+# playwright>=1.50,<2

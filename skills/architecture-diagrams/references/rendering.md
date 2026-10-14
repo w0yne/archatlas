@@ -1,92 +1,201 @@
-# Rendering: model JSON, layout templates, CLI, checks
+# Rendering: model, CLI and fixing loop
 
-SVG is the primary format. You write a **model** (what the diagram means); the renderer lays it out and draws it; the checker finds defects. Never place nodes by absolute coordinates unless a model field explicitly allows waypoints.
+SVG is the primary output; model JSON is the editable source. Schema version is
+`archatlas: "0.1"`. In a checkout, the authority is
+`src/archatlas/model/schema.json`; a packed skill includes it under
+`scripts/lib/archatlas/model/schema.json`. Nodes have no absolute-position fields;
+edge `waypoints` are the explicit manual routing override.
 
-> Status: the model schema below is frozen at `archatlas: "0.1"` (file `src/archatlas/model/schema.json`; the schema is the authority — validate with it, do not trust this summary over it). If `scripts/atlas --help` disagrees with this page, the real output wins.
+## 1. Install and invoke
 
-## 1. Workflow
+From a reviewed repository checkout, create and activate a virtual environment,
+then run `python -m pip install -e .`. Alternatively, `make setup` creates `.venv`,
+installs development dependencies and installs the site's Node dependencies;
+activate `.venv` afterwards. Neither route needs a published `archatlas` package.
+Do not install an unrelated package with that name from PyPI.
+
+Optional extras, from the checkout root:
+
+```sh
+python -m pip install -e '.[preview,browser]'
+python -m playwright install chromium
 ```
-scripts/atlas init <code> -o model.json        # copies assets/templates/<code>.json (e.g. C2, E1)
-# edit model.json (+ optional labels.en.json / labels.zh.json beside it)
-scripts/atlas render model.json -o out/         # writes out/diagram.svg and out/diagram.findings.json
-scripts/atlas check  out/diagram.svg --model model.json --report out/findings.json
-scripts/atlas preview out/diagram.svg -o out/preview.png     # needs CairoSVG (archatlas[preview])
-scripts/atlas sheet  out/*.svg -o out/sheet.jpg              # contact sheet; needs CairoSVG too
-scripts/atlas fonts doctor                                   # usable fonts and CJK glyph coverage
-```
-`render` runs the checks as well and prints a one-line summary (`errors`, `warnings`, `visual_review: pending`). `--fail-on error|warning` sets the threshold for exit code 1. Exit codes: 0 clean; 1 findings at or above `--fail-on` (default `error`); 2 tool error. If an older renderer rejects a type code in `init`, copy `assets/templates/<code>.json` instead.
-**Unavailable options:** `check --browser` and `render --embed-font-subset` are not implemented and exit with code 2; do not rely on them.
 
-## 2. Model (version 0.1)
-Required top level: `archatlas: "0.1"`, `meta` (`type`, `title`), `layout` (`template`).
+CairoSVG supplies PNG/contact-sheet rendering and also needs the platform's Cairo
+library. Playwright needs Chromium and its platform libraries; follow Playwright's
+platform dependency instructions if Chromium cannot launch.
+
+The installed command is `atlas`. From the skill folder, `scripts/atlas` is the
+same CLI: it prefers a release bundle's `scripts/lib`, otherwise the installed
+library. In an unpacked bundle, install core dependencies with
+`python -m pip install -r architecture-diagrams/scripts/requirements.txt` from the
+bundle's parent; optional preview/browser dependencies are CairoSVG and Playwright.
+A copied checkout skill folder alone does not include `scripts/lib`.
+
+## 2. Working commands
+
+After checkout installation, run from the repository root:
+
+```sh
+atlas init C2 -o model.json
+atlas render model.json -o out/ --lang en --profile doc
+atlas check out/diagram.svg --model model.json --lang en --report out/findings.json
+atlas check out/diagram.svg --model model.json --lang en --browser --fail-on warning --report out/browser.findings.json
+atlas preview out/diagram.svg -o out/preview.png --scale 1
+atlas sheet out/*.svg -o out/sheet.jpg
+atlas fonts doctor
+```
+
+`init` accepts a shipped type code (case-insensitive) or a layout family. It finds
+assets in the checkout/copied skill, or in `--templates DIR`. Unknown/unavailable
+codes fail; it does not invent a type-to-template mapping. The output materialises
+the template's default-language labels, rather than copying JSON bytes unchanged.
+For bilingual work, keep translation keys and sidecar label files in your source.
+
+| Command | Options and output |
+|---|---|
+| `init TYPE` | `-o model.json` (default); optional `--templates DIR` |
+| `render MODEL` | Required `-o`; optional `--lang`, `--profile slide\|doc`, `--namespace`, `--fail-on error\|warning` |
+| `check SVG` | Required `--report FILE`; optional `--model`, `--lang`, `--browser`, `--fail-on error\|warning` |
+| `preview SVG` | Required `-o FILE`; `--scale` is greater than 0 and at most 4; needs CairoSVG |
+| `sheet SVG...` | Required `-o FILE`; downscaled contact sheet, at most 1600px per dimension; needs CairoSVG |
+| `fonts doctor` | JSON with selected font families/files, CJK probe coverage, warnings and measurement mode |
+
+`render -o out/` writes `out/diagram.svg` and `out/diagram.findings.json`.
+`render -o out/context.svg` writes that file and `out/context.findings.json`.
+Render writes the SVG even when checks find defects: inspect its return code and
+report before delivery. `check --lang` validates the requested language against
+the SVG and uses it to load the supplied model; it does not translate an SVG.
+Re-render with `--lang zh` to change language.
+
+For render/check: **0** means no finding reaches the chosen failure threshold;
+warnings may still exist at the default `error` threshold. **1** means findings
+at/above that threshold. **2** means tool/input/dependency failure. Other commands
+return 0 on success and 2 on tool/input failure. `--embed-font-subset` is accepted
+by render but is **not implemented** and returns 2. Browser checking is implemented;
+a missing browser/dependency returns 2 and records `browser.status: tool-error`.
+
+## 3. Model fields
+
+Required: `archatlas`, `meta` with `type`/`title`, and `layout` with `template`.
+Use `init` for a complete starting model. The following is a summary, not a
+replacement for schema validation.
+
+- **layout:** template, direction (`LR|TB`), columns (maximum 1–8), profile,
+  spacing overrides. `slide`/`slide-16x9` keeps 1440×810; overflow is reported.
+  `doc`/`doc-1120xN` prefers 1120px width and grows as needed; the default wide-view
+  warning limit is 1.5 times the preferred width. It does not paginate or shrink text.
+- **nodes:** id, kind, label; optional sub (keep brief), parent group, tags (small
+  text labels), style, size_hint, evidence, attributes (ER field strings), rank
+  (minimum flow rank, integer 0–100). Styles: primary/peer/external/shared/planned.
+  Kinds: person, system, container, component, store, queue, external, actor,
+  lifeline, state, entity, task, event, gateway, band, initial, final, note,
+  process, dataset, job, pipeline, use_case.
+- **glyphs:** actor is a stick figure with its label below; person stays a card.
+  use_case is an ellipse. An event may set event_type=start/end (thin/thick BPMN
+  border); initial/final are UML state symbols. Descriptive kinds such as dataset
+  and pipeline remain cards, not a promise of complete formal notation.
+- **groups:** id, title, kind (`boundary|layer|pool|lane|frame`), optional parent,
+  style, dashed. Explicit pool models in lanes reject sequence calls across pool
+  boundaries and messages within one pool; messages require a dashed directed arrow.
+- **edges:** from/to; optional id, label, kind (`call|data|async|message|dependency|assoc`),
+  dir (`->|<->|--`), step, from_port/to_port (`n|e|s|w|auto`), style, dashed,
+  evidence, waypoints (`[[x,y],…]`), cardinality (`{from,to}` strings such as
+  `1..1`/`0..*`). Crow's-foot markers are not implemented.
+- **evidence:** status (`verified|inferred|doc-only|conflict`), optional refs with
+  required path and optional url/ref/line_start/line_end. Non-verified edges are
+  dashed unless explicitly overridden.
+- **tables:** id, optional title, non-empty columns array, rows of matching length;
+  column headings may be empty strings. grid_table can place tables beside a
+  small nodes/edges/groups diagram. Merged cells are not supported.
+- **sequence:** frames (`id,label,from_step,to_step`) and activations
+  (`node,from_step,to_step`). Frames mark step ranges; they do not implement full
+  multi-operand UML alt/par semantics. Author the operator/guard in the label.
+- **allow:** element/rule/reason explanations. These are retained for review;
+  they do not suppress errors or change the CLI failure threshold.
+
+IDs match `^[A-Za-z][A-Za-z0-9_-]*$` and are unique across nodes, groups, tables,
+frames and explicit/generated edge IDs. An omitted edge id becomes `edge-1`, etc.
+
+### Meaningful legends and languages
+
+`meta.legend` holds authored entries: label plus optional style, dashed, kind,
+dir and symbol (`line|box`). Set `meta.legend_mode: "replace"` to use only those
+entries. Default `auto` supplements them with semantic defaults for the diagram.
+
+`meta.legend_labels` can map `edges`, `styles` and `groups` keys to reader-facing
+text. For example, under meta:
 
 ```json
-{
-  "archatlas": "0.1",
-  "meta":   {"type": "C2", "title": "Shop context", "audience": "business and IT", "state": "as-is", "lang": "en",
-             "legend": [{"label": "External system", "style": "external"}]},
-  "layout": {"template": "nested", "direction": "TB", "profile": "slide"},
-  "groups": [{"id": "shopb", "title": "Shop", "kind": "boundary"}],
-  "nodes":  [{"id": "buyer", "kind": "person", "label": "Buyer"},
-             {"id": "shop",  "kind": "system", "label": "Shop", "sub": "web store", "parent": "shopb", "style": "primary"},
-             {"id": "pay",   "kind": "external", "label": "Payment provider", "style": "external"}],
-  "edges":  [{"from": "buyer", "to": "shop", "label": "Places order", "dir": "->"},
-             {"from": "shop",  "to": "pay",  "label": "Charges card", "evidence": {"status": "inferred"}}]
-}
+{"legend_labels":{"edges":{"call":"@legend.request","reply":"@legend.reply"},"styles":{"primary":"@legend.shop"},"groups":{"boundary":"@legend.trust"}}}
 ```
-- **layout.template** (set it explicitly; there is no inference): `nested`, `layered`, `sequence`, `lanes`, `grid_table`, `er`, `statechart`, `tree`. Optional `direction` (`LR`|`TB`), `columns` (1–8), `profile` (`slide` = 1440×810, `doc` = 1120 wide, variable height).
-- **nodes**: `id`, `kind`, `label`; optional `sub` (one short line), `parent` (a group id), `tags[]` (small chips), `style` (`primary|peer|external|shared|planned`), `size_hint {width,height}`, `evidence`, `attributes[]` (ER field strings). Kinds: person, system, container, component, store, queue, external, actor, lifeline, state, entity, task, event, gateway, band, initial, final, note.
-- **groups**: `id`, `title`, `kind` (`boundary|layer|pool|lane|frame`); optional `parent`, `style`, `dashed` (use dashed frames for trust boundaries).
-- **edges**: `from`, `to`; optional `id`, `label`, `kind` (`call|data|async|message|dependency|assoc`), `dir` (`->`, `<->`, `--`), `step` (integer; numbers key steps, and orders sequence messages), `from_port`/`to_port` (`n|e|s|w|auto`), `style`, `dashed`, `evidence`, `waypoints` (`[[x,y],…]` manual override), `cardinality {from,to}` (ER).
-- **evidence**: `status` (`verified|inferred|doc-only|conflict`), optional `refs [{path,url,ref,line_start,line_end}]`. Non-verified edges render dashed unless `dashed` says otherwise.
-- **tables**: `[{id,title,columns[],rows[[]]}]` — every row has as many cells as columns (matrices, RACI, interface tables).
-- **sequence extras**: `frames [{id,label,from_step,to_step}]` (alt/opt/loop boxes), `activations [{node,from_step,to_step}]`.
-- **allow**: `[{element, rule, reason}]` — element-specific explanations for an intentional finding. Never allow a whole rule.
-- IDs (nodes and groups share one namespace) match `^[A-Za-z][A-Za-z0-9_-]*$`. Layout is derived from groups, parents, edges and steps; you describe structure, not positions.
 
-### Labels and languages
-Labels are strings. A string equal to a key in `labels.<lang>.json` (next to the model) is replaced by that translation; otherwise it is literal. `@key` forces a lookup and fails if missing. An inline top-level `labels` object may supply translations; the external language file wins. Titles, group titles, edge labels, tags, attributes and table cells all use this. IDs and topology never change between languages; text width may, so the renderer re-lays-out per language and the checks run per language: `atlas render model.json --lang zh -o out/zh/`.
+`reply` overrides a dashed, verified sequence-call legend; it is not an edge kind.
+Use business meanings, not style identifiers. Default meanings have EN/ZH forms.
+All authored legend labels use the same localisation as node labels: a matching
+key in `labels.<lang>.json` beside the model resolves to text; `@key` fails when
+missing; otherwise a string is literal. Inline top-level `labels` is allowed,
+and the external file wins. Titles, subtitles, tags, attributes and table text
+also resolve this way. `--lang` does not translate literal English automatically.
+IDs/topology remain the same; each language is measured and laid out afresh.
 
-## 3. Choosing a template
-| Template | Use for |
+## 4. Layout, fonts and routing
+
+| Family | Implemented layout |
 |---|---|
-| `layered` | landscapes, logical and layered architecture, capability maps, cloud reference views (bands × columns) |
-| `nested` | context / container / component, deployment, network, trust-boundary frames (containment tree plus connectors between leaves) |
-| `lanes` | swimlane / BPMN / activity (pools and lanes via `groups`, nodes via `parent`, message flows between pools) |
-| `sequence` | sequence and authentication/authorization flows (lifelines are nodes of kind `lifeline`; messages are edges with `step`) |
-| `grid_table` | matrices and tables (RACI, RBAC, scenario map, interface table) |
-| `er` | entity-relationship, lineage (nodes of kind `entity` with `attributes`; edges with `cardinality`) |
-| `statechart` | state machines (`state`, `initial`, `final`; edges labelled with events) |
-| `tree` | feature trees, value-stream and roadmap rows, delivery pipelines |
-The type reference (`references/types/<code>-<slug>.md`, section "Template") names the template and the starting model for each type. Unsupported features are reported by the renderer; do not fake them with absolute shapes.
+| nested | Containment groups with headers and connectors |
+| layered | Stacked bands with child rows |
+| lanes | Shared dependency ranks across lanes, including nested groups |
+| sequence | Lifelines, ordered steps, range frames, activations |
+| grid_table | Tables, optionally beside a small diagram |
+| er | Entity cards and textual cardinality endpoints |
+| statechart | Ranked states/branches; feedback edges retained for routing |
+| tree | Longest-path ranks; cycles rejected |
 
-## 4. What the renderer guarantees (so you do not have to)
-- Text is measured with an installed font (CJK and Latin runs separately), wrapped by measured width with CJK line-break rules; if no font is found it falls back to a conservative estimate, adds padding and records `measured_with: estimate` — tell the user.
-- Label backgrounds are derived from the same measured lines and anchor as their text.
-- Connectors leave from box sides (ports) and are routed straight → one elbow → corridor → around obstacles, avoiding unrelated boxes and labels; group-level connections end on the group border.
-- One arrow-marker set per SVG with a unique prefix; marker colour follows the edge style; double-headed arrows come from `dir: "<->"`.
-- A legend is generated from the styles actually used; keep `meta.legend` for custom entries.
-- Output is deterministic (stable ids, sorted serialisation, no timestamps), contains live text, `<title>`/`<desc>`, no scripts, no `foreignObject`, no external references.
-- Type scale tokens and spacing come from the theme (`neutral`, `print`, `dark`); default background is explicit.
+Flow ranking uses deterministic feedback-edge removal and barycentre ordering;
+rank hints are minima, not fixed coordinates. Layout/routing is heuristic, not a
+minimum-crossing guarantee. Automatic routes avoid unrelated shapes where possible,
+penalise crossings/shared segments/reused ports and remove retraced spurs. Manual
+waypoints preserve author coordinates and can still produce findings.
 
-## 5. Checks (`atlas check`)
-Findings file: `id, severity (error|warning|info), rule, element ids, boxes, message`. Rules include:
-- **structure** — schema valid, unique ids, edge endpoints exist, markers resolve, no script / `foreignObject` / external URL, non-empty title and description;
-- **text-fit** — measured text inside its owner's padded interior; label background matches its text;
-- **overlap** — text–text, text–shape (non-owner), node–node unless contained;
-- **arrow** — segment through an unrelated box, arrowhead not on its port, arrow crossing a group border it should not, edge crossings (warning);
-- **contrast** — text ≥4.5:1 (large text ≥3:1), strokes ≥3:1;
-- **hygiene** (warnings) — bullet characters or sentences in labels (`label-hygiene`), status words such as `TBD`, `draft`, `pending`, `v2` (`working-note`), more than 12 nodes per view (`view-density`), elements outside their declared group (`boundary-membership`);
-- **planned, not yet checked** — unexplained markers, a subtitle restating the type, sibling-kind mismatch in a row, peers of different size, browser-based text boxes and glyph coverage (`--browser` is unavailable). Check these by eye.
-Fix errors; fix or explain warnings. To explain an intentional one, add an `allow` entry for that element with a reason.
+`layout.spacing` overrides theme tokens: node_gap, rank_gap, boundary_gap,
+gap_ratio, group_padding, group_header, document_width, wide_view_ratio,
+label_width, label_clearance. Measured labels and busy boundaries can require more
+space than a gap minimum. Themes are neutral, print and dark.
 
-## 6. Fallback (no renderer available)
-Say so. Deliver the model JSON plus a hand-written SVG and state clearly that the automated checks did not run. For the SVG:
-- one `<svg viewBox>` with an explicit white background, `<title>` and `<desc>`; live `<text>` with a font stack including a CJK font; no scripts, no external references;
-- one `<defs>` with the arrow markers; unique marker ids; group elements with ids matching the model;
-- text sized from the type scale (title 26–28, name 14–16, body 12–13, note 11); estimate width as 1.0 × size per CJK character and 0.55 × size per Latin character, and pad boxes by at least 12 %;
-- a white 90 % background rectangle under every connector label, sized to its text at the same anchor;
-- measure twice: no text outside its box, no label over a line, no arrow through an unrelated box.
+Pillow/fontTools measure installed fonts and CJK/Latin fallback runs. Missing
+fonts or glyphs trigger a conservative estimate, extra padding and warnings;
+reports identify `measured_with: estimate`. `fonts doctor` checks a CJK probe,
+not all Unicode. SVG keeps live text, so matching appearance needs matching fonts.
+Label backgrounds use the same text box/anchor as the label. SVG is deterministic
+for the same inputs, fonts and renderer, with no scripts/foreignObject/external
+resources. For repeated inline copies of one diagram, use distinct `--namespace` values.
 
-## 7. Local preview and screenshots
-Rasterise only for review. Use whatever the host offers (headless browser, `rsvg-convert`, `resvg`); if none is available say "preview not produced" and follow the "cannot read images" path in `review.md`.
+## 5. Check, fix and review
+
+Reports contain counts plus `findings[]` with id/severity/rule/elements/boxes/message.
+`check --model` validates the model and compares node/edge IDs and endpoints;
+it is not a semantic proof or a full text-by-text comparison against the model.
+Static checks cover text fit, owner/group membership, label backgrounds, overlaps,
+ports, lines through unrelated boxes/labels, marker references, contrast, canvas
+bounds, crossing counts and some label hygiene. Boundary violations are errors.
+
+`--browser` adds actual Chromium text/shape bounds after fonts are ready, with
+network access blocked. It does not prove glyph identity, semantic correctness
+or visual quality. Formal notation completeness, unexplained meanings, peer-kind
+consistency and other human judgments still need review.
+
+Fix errors in the model, re-render, and run check again on the new SVG with the
+same language. Fix warnings or record element-specific reasons; a reason does not
+turn an exit 1 into 0. After automated checks, make previews and follow `review.md`.
+The CLI's `visual_review: pending` never means that somebody looked at the image.
+
+## 6. Fallback
+
+If the renderer cannot run, report the missing dependency and keep the model.
+A hand-written SVG is a fallback, not a validated renderer output. Use live text,
+explicit background, title/description, local markers and conservative text space;
+then measure and inspect it with available tools. The static checker requires
+Archatlas ownership metadata and refuses to claim complete checks for arbitrary
+SVG/CSS/transforms. If no rasteriser is available, say “preview not produced” and
+“visual review pending”.
