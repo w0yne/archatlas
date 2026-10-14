@@ -27,9 +27,20 @@ platform dependency instructions if Chromium cannot launch.
 
 The installed command is `atlas`. From the skill folder, `scripts/atlas` is the
 same CLI: it prefers a release bundle's `scripts/lib`, otherwise the installed
-library. In an unpacked bundle, install core dependencies with
-`python -m pip install -r architecture-diagrams/scripts/requirements.txt` from the
-bundle's parent; optional preview/browser dependencies are CairoSVG and Playwright.
+library. In an unpacked bundle (or an installed skill folder), set up a virtual environment
+in your working folder and install the skill's own core requirements:
+
+```sh
+python3 -m venv .atlas-venv
+.atlas-venv/bin/python -m pip install -r <skill>/scripts/requirements.txt
+.atlas-venv/bin/python <skill>/scripts/atlas fonts doctor
+```
+
+Then run every command as `.atlas-venv/bin/python <skill>/scripts/atlas …`. If
+`python3 -m venv` or pip is unavailable, or installing is not permitted, do not
+install into the system Python: continue, and report that the renderer ran in
+estimate mode (`measured_with: estimate`). Optional preview/browser dependencies
+are CairoSVG and Playwright.
 A copied checkout skill folder alone does not include `scripts/lib`.
 
 ## 2. Working commands

@@ -30,6 +30,10 @@ need CairoSVG/Cairo. Installation and exact output/exit-code rules: `rendering.m
 - Do names, guards, cardinalities and numbered steps say what actually happens?
 - Does the legend explain meanings? Override defaults with authored, localised
   legend labels when needed; do not expose renderer identifiers to the reader.
+- Revisions: compare the labels before and after. Every user-written label is still present, in its
+  original language (mixed English/Chinese stays mixed); none was deleted or translated to fit.
+- Repository diagrams: every non-verified claim carries `evidence.status` in the model and is visibly
+  marked (dashed edge, doc-only mark) on the figure.
 - Does the chosen notation require information this template cannot express?
   Do not claim complete UML/BPMN/ArchiMate conformance from a geometry check.
 
@@ -39,7 +43,9 @@ Reports contain counts and findings with id/severity/rule/elements/boxes/message
 Static checks cover measured text fit, overlaps, label backgrounds, connector
 ports, unrelated boxes/labels crossed, contrast, membership and some hygiene.
 Browser mode adds actual text/shape bounds after fonts are ready, offline.
-Neither mode guarantees glyph identity or absence of tofu: inspect CJK text.
+Neither mode guarantees glyph identity or absence of tofu: inspect CJK text. In estimate mode
+(`measured_with: estimate`) never state that Chinese/CJK text displays correctly unless you viewed a
+preview rendered with a CJK-capable font.
 
 Fix errors. Fix or explain warnings per element; model `allow` entries keep
 reasons but do not suppress errors or alter the failure threshold. Exit 0 at the
@@ -63,7 +69,10 @@ If you cannot read images, run the checks you can, produce previews when possibl
 and hand them to an image-capable reviewer. State **visual review pending** with
 paths and limitations. Never infer a visual pass from DOM/geometry checks. The
 CLI always leaves visual_review pending; record a completed review separately
-with exactly which images you inspected.
+with exactly which images you inspected. Claim **visual review done** only when you
+actually opened the rendered image file(s) in this session; list those file paths in
+the delivery summary so the claim can be audited on any host. Reading SVG source or
+check output is not a visual review.
 
 ## 5. Independent review and handoff
 

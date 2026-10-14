@@ -25,28 +25,29 @@ These are the generic rules distilled from many review rounds; the numbers are f
 
 ## Text and labels
 
-16. **Short names and small tags; no bullet lists or sentences in boxes.** Express structure with nesting, layers and connections, not paragraphs. **[auto: warning]**
-17. **No working notes, status words, assumptions or reasoning on the figure** ("TBD", "pending", "draft", "to be confirmed", "see earlier document"). They belong in surrounding text. Mark status only through a legend, such as "planned". **[auto: warning for status words]**
-18. **Keep widely known terms; drop specialist acronyms** the audience does not use. Balance: every label must earn its place; less but sufficient.
-19. **Full name plus abbreviation once in titles and headers; short form elsewhere.** Use the name the audience officially uses.
-20. **Titles carry the message.** No subtitle that restates the diagram type; no internal iteration labels in titles ("simplified", "v2", "draft"). A small type caption is allowed only in a documentation page, not in the figure.
-21. **Every number, badge, multiplier or glyph needs an obvious meaning or a legend.** Do not use notation glyphs the audience will misread. If a small marker renders badly, remove it rather than tweak it. **[planned: unexplained-marker check]**
-22. **Decoration is not clarity.** Icons only when they carry meaning; prefer clear boundaries and flows.
-23. **Use a type scale** (title > element name > body > note). Dense figures may use smaller text when the audience will zoom; never shrink labels to fit. **[auto: minimum size]**
+16. **Fix fit with layout, not by deleting text.** When revising, keep every user-written label in its original language; widen boxes, re-flow or split the view instead of removing or translating words.
+17. **Short names and small tags; no bullet lists or sentences in boxes.** Express structure with nesting, layers and connections, not paragraphs. **[auto: warning]**
+18. **No working notes, status words, assumptions or reasoning on the figure** ("TBD", "pending", "draft", "to be confirmed", "see earlier document"). They belong in surrounding text. Mark status only through a legend, such as "planned". **[auto: warning for status words]**
+19. **Keep widely known terms; drop specialist acronyms** the audience does not use. Balance: every label must earn its place; less but sufficient.
+20. **Full name plus abbreviation once in titles and headers; short form elsewhere.** Use the name the audience officially uses.
+21. **Titles carry the message.** No subtitle that restates the diagram type; no internal iteration labels in titles ("simplified", "v2", "draft"). A small type caption is allowed only in a documentation page, not in the figure.
+22. **Every number, badge, multiplier or glyph needs an obvious meaning or a legend.** Do not use notation glyphs the audience will misread. If a small marker renders badly, remove it rather than tweak it. **[planned: unexplained-marker check]**
+23. **Decoration is not clarity.** Icons only when they carry meaning; prefer clear boundaries and flows.
+24. **Use a type scale** (title > element name > body > note). Dense figures may use smaller text when the audience will zoom; never shrink labels to fit. **[auto: minimum size]**
 
 ## Lines and flows
 
-24. **An arrow ends exactly on what it connects.** A group-level link ends on the group border; it must not run into or across an unrelated region. **[auto: arrow-through-box, boundary-membership]**
-25. **Short, local flows.** No long lines that run to the far side and fold back; arrange or pair the systems instead (for example pools with message flows at aligned heights). Avoid crossings. **[auto: warning]**
-26. **Follow the chosen notation strictly.** Sequence: lifelines are real nameable systems; prerequisites come before the steps that need them; activations end at the return; a loop frame encloses the whole round trip. Generalise mechanisms into one named step unless the audience needs the protocol.
-27. **Happy path first; errors in their own figure.** One scenario per flow figure. Start at the trigger the audience cares about.
+25. **An arrow ends exactly on what it connects.** A group-level link ends on the group border; it must not run into or across an unrelated region. **[auto: arrow-through-box, boundary-membership]**
+26. **Short, local flows.** No long lines that run to the far side and fold back; arrange or pair the systems instead (for example pools with message flows at aligned heights). Avoid crossings. **[auto: warning]**
+27. **Follow the chosen notation strictly.** Sequence: lifelines are real nameable systems; prerequisites come before the steps that need them; activations end at the return; a loop frame encloses the whole round trip. Generalise mechanisms into one named step unless the audience needs the protocol.
+28. **Happy path first; errors in their own figure.** One scenario per flow figure. Start at the trigger the audience cares about.
 
 ## Process and quality assurance
 
-28. **Ask one question at a time with a recommended default; answer the user's questions before redrawing.** Keep a decision log.
-29. **For a figure that keeps failing review, sketch two alternative layouts in text, pick or merge, and suggest an independent review** of the rendered result. Alternatives converge faster than serial redraws.
-30. **Render and inspect every version.** Check label backgrounds for every text anchor (start, middle, end), overlaps, consistent page orientation in documents, and readability at presentation size. **[auto + review]**
-31. **Keep related figures in one deliverable** and give the same step numbers and names to the same things across figures.
+29. **Ask one question at a time with a recommended default; answer the user's questions before redrawing.** Keep a decision log.
+30. **For a figure that keeps failing review, sketch two alternative layouts in text, pick or merge, and suggest an independent review** of the rendered result. Alternatives converge faster than serial redraws.
+31. **Render and inspect every version.** Check label backgrounds for every text anchor (start, middle, end), overlaps, consistent page orientation in documents, and readability at presentation size. **[auto + review]**
+32. **Keep related figures in one deliverable** and give the same step numbers and names to the same things across figures.
 
 ## Where each kind of rule lives
 - Always in mind: `SKILL.md` (core rules).
