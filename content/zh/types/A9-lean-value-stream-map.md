@@ -33,7 +33,7 @@ reviewed: false
 - **视点：** 一个产品或服务族的运营流程及其绩效，在工作发生的现场观察。LEI 将价值流图析定义为“diagraming every step involved in the material and information flows needed to bring a product from order to delivery”（把产品从订单到交付所需的物料流和信息流中的每一步都画出来）[1]；“it shows the linkage between material flow and information flow. No other tool does this”（它展示物料流与信息流之间的关联，没有其他工具能做到这一点）[1]。按 42010 的说法，它为流程负责人构建“前置时间与浪费”这一关注点。没有对应的 ArchiMate 视点、TOGAF 制品或 C4 model 层级。
 - **深层含义：** 这是一种“学会观察”的练习，而不是画图练习：“Having a perfectly drawn current state map is not the point”（画出一张完美的现状图并不是目的）[1]。现状图总是与未来状态图和实施计划配套 [1][4]。
 - **不包含：** 物理布局（刻意推后处理 [5]）、详细的任务逻辑和决策、能力以及干系人价值。
-- **本站采用的定义：** 这里采用“价值流”的精益含义（Womack 和 Jones 提出；图析方法由 Rother 和 Shook 提出 [2][3]）。它与业务架构中的 [A2 价值流](./A2-value-stream.md) 是不同的图，后者不标注时间。TOGAF 指出，精益价值流用于分析和改进信息流或物料流，不适合把阶段与能力做交叉映射 [7]；Business Architecture Guild 也声明其价值流不是精益价值流 [8]。SAFe 的“development value stream”（开发价值流）是第三种、更宽泛的含义 [9]。
+- **本站采用的定义：** 这里采用“价值流”的精益含义（Womack 和 Jones 提出；图析方法由 Rother 和 Shook 提出 [2][3]）。它与业务架构中的 A2 价值流 是不同的图，后者不标注时间。TOGAF 指出，精益价值流用于分析和改进信息流或物料流，不适合把阶段与能力做交叉映射 [7]；Business Architecture Guild 也声明其价值流不是精益价值流 [8]。SAFe 的“development value stream”（开发价值流）是第三种、更宽泛的含义 [9]。
 - **本站采用的度量：** 活动比（activity ratio，即流动效率（flow efficiency））= ΣPT ÷ 总前置时间；前置时间包含处理时间，因此等待时间 = LT − PT [2]。
 
 ## 何时使用与如何选择 {#choose}
@@ -64,7 +64,7 @@ reviewed: false
   - 顶部的**信息流**：由谁排程或下达工作；手工信息用直线箭头，电子信息用折线箭头 [6]。忽略信息流的价值流图“is like a piece of sheet music that just lists notes randomly”（就像一张只随意罗列音符的乐谱）[5]。
   - 底部的**时间线阶梯**：上层台阶为等待时间，下层台阶为 PT；右侧为合计：总前置时间、ΣPT、活动比，办公类工作还有累计 %C&A（rolled %C&A）[2]。
 - **可选：** 推动箭头（条纹）以及表示拉动的超市（supermarket）、先进先出（FIFO）或看板（kanban）图标 [6]；未来状态图上的改善爆炸点 [6]。
-- **图例：** 所用图标、单位（分钟、小时、天）以及“current state, mapped on <date>”（现状，绘制于某日期），并注明数字来源。
+- **图例：** 所用图标、单位（分钟、小时、天）以及“current state, mapped on `<date>`”（现状，绘制于某日期），并注明数字来源。
 - **命名：** 处理框按所做的工作命名（“Pick”“Pack”），而不是按部门命名；每行数字只用一种时间单位。
 
 ## 最佳实践与反模式 {#practice}

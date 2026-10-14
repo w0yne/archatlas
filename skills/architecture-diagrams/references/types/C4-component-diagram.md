@@ -23,7 +23,7 @@ It answers: *inside this one container, what are the major components, what is e
 
 ## Notation and elements
 - **No mandated notation in the C4 model**: plain boxes and labelled arrows are the norm; the general C4 model notation rules and review checklist apply to every level.
-- **Required:** title "Component diagram for <Container> in <System>"; **components**, each with name, type ("Component"), technology (e.g. "web controller", "TypeScript module") and a short responsibility; a **container boundary** around them; **relationships**; a **legend**.
+- **Required:** title "Component diagram for `<Container>` in `<System>`"; **components**, each with name, type ("Component"), technology (e.g. "web controller", "TypeScript module") and a short responsibility; a **container boundary** around them; **relationships**; a **legend**.
 - **Supporting elements:** other containers of the same system (data stores, queues, services) outside the boundary, plus people and external systems only if directly connected to a component.
 - **Relationships:** one direction, a verb label that agrees with it ("calls", "reads from", "publishes to"); add the protocol where a line leaves the container; mark sync vs async in the legend if both appear; no double-headed arrows.
 - **Optional UML interface notation:** provided-interface balls, required-interface sockets and ports are allowed when readers know UML or when interfaces are the point (e.g. hexagonal ports). They are not part of the C4 model, and they carry the UML meaning of "component".

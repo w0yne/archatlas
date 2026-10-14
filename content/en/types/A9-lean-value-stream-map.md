@@ -30,7 +30,7 @@ status: draft
 - **Viewpoint:** operational flow and performance of one product or service family, observed where the work happens. LEI defines value-stream mapping as "diagraming every step involved in the material and information flows needed to bring a product from order to delivery" [1]; "it shows the linkage between material flow and information flow. No other tool does this" [1]. In 42010 terms it frames the concern "lead time and waste" for process owners. No ArchiMate viewpoint, no TOGAF artifact, no C4 model level.
 - **Deeper meaning:** it is a learning-to-see exercise, not a drawing exercise: "Having a perfectly drawn current state map is not the point" [1]. A current-state map is always paired with a future-state map and an implementation plan [1][4].
 - **Leaves out:** physical layout (deliberately postponed [5]), detailed task logic and decisions, capabilities and stakeholder value.
-- **Definition used here:** this is the Lean sense of "value stream" (Womack and Jones; mapping method by Rother and Shook [2][3]). It is a different diagram from the business-architecture [A2 Value Stream](./A2-value-stream.md), which has no times. TOGAF notes that the Lean value stream exists to analyse and improve the flow of information or materials and is not suited to cross-mapping stages to capabilities [7]; the Business Architecture Guild says its value streams are not Lean value streams [8]. SAFe's "development value stream" is a third, looser sense [9].
+- **Definition used here:** this is the Lean sense of "value stream" (Womack and Jones; mapping method by Rother and Shook [2][3]). It is a different diagram from the business-architecture A2 Value Stream, which has no times. TOGAF notes that the Lean value stream exists to analyse and improve the flow of information or materials and is not suited to cross-mapping stages to capabilities [7]; the Business Architecture Guild says its value streams are not Lean value streams [8]. SAFe's "development value stream" is a third, looser sense [9].
 - **Metric used here:** activity ratio (flow efficiency) = ΣPT ÷ total lead time; lead time includes process time, so wait = LT − PT [2].
 
 ## When to use and how to choose {#choose}
@@ -72,7 +72,7 @@ status: draft
   - **Information flow** along the top: who schedules or releases work; manual arrows straight, electronic arrows zig-zag [6]. A map that ignores information flow "is like a piece of sheet music that just lists notes randomly" [5].
   - **Timeline ladder** at the bottom: wait on the upper rungs, PT on the lower rungs; totals at the right: total lead time, ΣPT, activity ratio, and rolled %C&A for office work [2].
 - **Optional:** push arrows (striped) and supermarket, FIFO or kanban icons for pull [6]; kaizen bursts on the future-state map [6].
-- **Legend:** icons used, units (minutes, hours, days) and "current state, mapped on <date>", with the source of the numbers.
+- **Legend:** icons used, units (minutes, hours, days) and "current state, mapped on `<date>`", with the source of the numbers.
 - **Naming:** process boxes named as work done ("Pick", "Pack"), not by department; one time unit per row of numbers.
 
 ## Best practices and anti-patterns {#practice}
