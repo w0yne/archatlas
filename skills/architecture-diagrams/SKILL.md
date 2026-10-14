@@ -62,16 +62,21 @@ diagram; a deliverable may contain several diagrams of different types. When the
 steers with a type name or code, follow that type's notation strictly.
 If the request implies a standard companion view, say so and deliver it or offer it: who may do what
 (F3) with where trust changes (F2); containers (C3) with where they run (G1); a lifecycle (E3) with the
-interaction that drives it (E1); a data model (D1) with how data moves (D2).
+interaction that drives it (E1); a data model (D1) with how data moves (D2). A delivered companion must
+answer its own question in its own notation (F2 marks each trust boundary and the data crossing it;
+G1 shows nodes and environments); never deliver a regrouped copy of the main view as the companion.
+Companions are listed separately and never counted among the core recommendations.
 
 ## Step 3 — Text wireframe
 
 Before rendering, write a short text wireframe: type, boundaries, the elements in each
 group (aim for 7–12 per view, one level of abstraction), connectors with numbered key
 steps, legend. **Print the wireframe block in your reply in both modes.**
-- Autonomous: show it, then render in the same turn; the delivered reply still contains it.
+- Autonomous: output the wireframe as text *before* your first render command (not only in the
+  final summary), then render in the same turn; repeat it in the delivered reply.
 - Guided: show it and stop. Render only after the user approves it ("approved", "go", or
-  equivalent); a question or a partial answer is not approval.
+  equivalent); a question or a partial answer is not approval. Every guided message contains
+  exactly one question; if you need two answers, ask the first and wait.
 If feedback contains questions, answer them first and ask for the go-ahead before redrawing.
 
 ## Step 4 — Model and render
@@ -87,16 +92,17 @@ If feedback contains questions, answer them first and ask for the go-ahead befor
    the exact file name is in `references/selection.md` §6). If the type has no reference yet, say so,
    draw it from `references/principles.md` and the type's row in `selection.md` with the closest
    layout template, and report "no type checklist applied".
-2. Start from the type's model: `scripts/atlas init <code> -o model.json` (initialises
-   a shipped template with resolved default-language labels; see `references/rendering.md`).
-   Fill it: nodes, edges, groups, labels, evidence status.
-3. Render: `scripts/atlas render model.json -o out/` (options and model schema: `references/rendering.md`).
-   Write outputs where the user asked, or to a new folder outside any repository you are analysing.
+2. Choose one output folder first: where the user asked, else a new `out/` folder (outside any
+   repository you are analysing). Keep every working file there, including the model:
+   `scripts/atlas init <code> -o out/model.json` (initialises a shipped template with resolved
+   default-language labels; see `references/rendering.md`). Fill it: nodes, edges, groups, labels,
+   evidence status. Leave nothing in the workspace root except the renderer's venv.
+3. Render: `scripts/atlas render out/model.json -o out/` (options and model schema: `references/rendering.md`).
 4. If the renderer is unavailable, say so, deliver the model plus a hand-written SVG that follows the rules in `references/rendering.md` (section "Fallback"), and report that automated checks did not run.
 
 ## Step 5 — Check and fix
 
-Run `scripts/atlas check out/diagram.svg --model model.json --report findings.json`
+Run `scripts/atlas check out/diagram.svg --model out/model.json --report out/findings.json`
 (`render` already writes `out/diagram.findings.json`; `check` validates the model and compares node/edge IDs and endpoints).
 If the findings say `measured_with: estimate`, fonts were not measured: report "estimate mode" in
 the delivery, and do not claim that text fits or that Chinese/CJK glyphs display correctly. Fix every `error`. Fix every `warning` or justify it in the reply. Re-render. Then look
@@ -113,8 +119,11 @@ looked at. Otherwise write `visual review pending` and give the preview paths. S
 
 ## Job A — Only choose a type
 
-When the user only asks which diagram to use: do Steps 1–2, return one or two types with the
-trade-off and the neighbouring type, and stop unless asked to draw.
+When the user only asks which diagram to use: do Steps 1–2 and stop unless asked to draw.
+- One question → one or two types, with the trade-off and the neighbouring type.
+- A set of views (for a review, a document, an onboarding pack) → **2–4 core types**, one line each
+  on the question it answers. Then, under a separate "Optional companions" heading, at most two
+  companion views with the reason; they never inflate the core list.
 
 ## Job B — Draw from a description
 

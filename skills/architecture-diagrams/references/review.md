@@ -10,9 +10,9 @@ re-render/re-check → preview and visual review. Review the exact final bytes.
 From the skill folder, with its dependencies installed:
 
 ```sh
-scripts/atlas render model.json -o out/ --lang en
-scripts/atlas check out/diagram.svg --model model.json --lang en --fail-on warning --report out/findings.json
-scripts/atlas check out/diagram.svg --model model.json --lang en --browser --report out/browser.findings.json
+scripts/atlas render out/model.json -o out/ --lang en
+scripts/atlas check out/diagram.svg --model out/model.json --lang en --fail-on warning --report out/findings.json
+scripts/atlas check out/diagram.svg --model out/model.json --lang en --browser --report out/browser.findings.json
 scripts/atlas preview out/diagram.svg -o out/preview.png
 scripts/atlas sheet out/*.svg -o out/sheet.jpg
 ```
@@ -34,6 +34,8 @@ need CairoSVG/Cairo. Installation and exact output/exit-code rules: `rendering.m
   original language (mixed English/Chinese stays mixed); none was deleted or translated to fit.
 - Repository diagrams: every non-verified claim carries `evidence.status` in the model and is visibly
   marked (dashed edge, doc-only mark) on the figure.
+- Companion views: does each one answer its own question in its own notation (for example F2 marks
+  trust boundaries and the data crossing them), rather than regrouping the main view?
 - Does the chosen notation require information this template cannot express?
   Do not claim complete UML/BPMN/ArchiMate conformance from a geometry check.
 

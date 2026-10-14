@@ -112,7 +112,7 @@ status: draft
 2. List participants in the order they first act; cap at about 6–8. Collapse non-focus subsystems into one lifeline.
 3. Write the message list as numbered text first (sender, receiver, sync / async / reply) and validate it against code or docs. Show it to the user before drawing.
 4. Layout: time flows top to bottom; the initiator is leftmost. Group lifelines by owning system with a light background band ("inside the shop" vs "external").
-5. Frames: `loop` around repeating round trips, `alt [condition]` for branches, `opt` for optional steps, `ref` to point at a separate diagram.
+5. Frames: `loop` around repeating round trips, `alt [condition]` for branches, `opt` for optional steps, `ref` to point at a separate diagram. A single retry after a timeout: `alt [reply received] … [else: timeout] retry once` when both outcomes matter; `loop [until confirmed, max 2]` around the whole round trip for a bounded retry; `opt [timeout]` only when the figure shows the retry branch alone, guard written. Mark a message async (open arrowhead, kind `async`) only when the sender does not wait (event, notification, queue publish, webhook, callback); never invent one.
 6. Text: messages at most 6 words; endpoints, payloads or technology only if the audience needs them, as a small mono-font suffix.
 7. Colour: neutral lifelines; at most one accent for messages that cross a system boundary or are asynchronous, explained in the key.
 8. Add a key (sync, async, reply, frames) if readers are not UML-literate, and a one-line caption with the scenario and its assumptions.
