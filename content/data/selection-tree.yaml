@@ -1,0 +1,147 @@
+# Decision tree for choosing a diagram type: source for
+# tools/build_selection.py. Top-level branch ids are the `facets.asks` keys in
+# types.yaml; every type listed under a branch must carry that facet, and the
+# leaves together must reach every type.
+#
+# Leaf fields: when {en, zh} (the reader's need), types [codes, best first],
+# optional hint {en, zh} (how to pick between the listed types).
+
+version: 1
+
+# Asked before the tree (guided mode asks them one at a time; autonomous mode
+# infers them and states the assumption).
+first_questions:
+  - en: "Who will read it, and what should they do afterwards (decide, approve, build, operate, review)?"
+    zh: "谁来看？看完要做什么（决策、审批、开发、运维、评审）？"
+  - en: "Which question must the figure answer? Pick one branch below."
+    zh: "这张图要回答哪个问题？在下面选一个分支。"
+  - en: "What is the scope: the whole estate, one system, or one part inside it?"
+    zh: "范围是什么：整个企业 / 应用组合、单个系统，还是系统内的一个部件？"
+  - en: "Current state, target state, or both (as separate figures)?"
+    zh: "画现状、目标，还是两者（分开成两张图）？"
+
+root:
+  value:
+    - when: {en: "What the organisation can do, and where to invest", zh: "组织能做什么、投资往哪放"}
+      types: [A1]
+    - when: {en: "Which stages deliver value to a stakeholder", zh: "哪些阶段为干系人交付价值"}
+      types: [A2, A9]
+      hint: {en: "A2 has no timings and maps stages to capabilities; A9 measures process and waiting time.", zh: "A2 不含时间、把阶段映射到能力；A9 度量处理与等待时间。"}
+    - when: {en: "What the solution is, in business terms", zh: "用业务语言说明方案是什么"}
+      types: [A7]
+    - when: {en: "How to get from today to the target, step by step", zh: "如何从现状分步走到目标"}
+      types: [A8]
+    - when: {en: "What one persona experiences", zh: "某个角色的体验"}
+      types: [A6]
+    - when: {en: "Who has influence over the initiative and how to engage them", zh: "谁能影响项目、如何沟通"}
+      types: [H3]
+  scope:
+    - when: {en: "What is in or out of scope, and who connects to us", zh: "范围内外是什么、谁与我们对接"}
+      types: [B4, C2]
+      hint: {en: "B4 when the point is the boundary of this phase; C2 when the subject is a software system and its neighbours.", zh: "强调本期边界用 B4；主题是软件系统及其外部时用 C2。"}
+    - when: {en: "Which outside parties the business deals with, and what is exchanged", zh: "业务与哪些外部方往来、交换什么"}
+      types: [A3]
+    - when: {en: "Which roles do what, in which release", zh: "哪些角色做什么、在哪个版本"}
+      types: [A4, B2]
+      hint: {en: "A4 shows coverage across several roles; B2 tells one end-to-end story with release slices.", zh: "A4 展示多角色覆盖；B2 讲一个端到端故事并按版本切片。"}
+    - when: {en: "Which user goals the system supports, and for whom", zh: "系统支持哪些用户目标、给谁"}
+      types: [B1]
+    - when: {en: "Which functions, how deep, with which priority", zh: "有哪些功能、拆多细、优先级如何"}
+      types: [B3]
+    - when: {en: "How a business case runs across participants", zh: "一件业务如何在参与方之间流转"}
+      types: [A5]
+    - when: {en: "What a persona needs at each stage", zh: "某个角色在每个阶段需要什么"}
+      types: [A6]
+  structure:
+    - when: {en: "Many applications across the estate, and who owns them", zh: "企业内的众多应用及其归属"}
+      types: [C1]
+    - when: {en: "Main blocks, for non-technical readers", zh: "给非技术读者看的主要组成"}
+      types: [A7]
+    - when: {en: "One system: users and neighbouring systems", zh: "单个系统：用户与外部系统"}
+      types: [C2]
+    - when: {en: "One system: its running applications and data stores", zh: "单个系统：可运行的应用与数据存储"}
+      types: [C3]
+    - when: {en: "Inside one application: its components", zh: "单个应用内部：组件"}
+      types: [C4]
+    - when: {en: "Responsibilities and interfaces, without technology", zh: "职责与接口，不含技术选型"}
+      types: [C5]
+    - when: {en: "Model boundaries in the domain", zh: "领域中的模型边界"}
+      types: [C7]
+    - when: {en: "Code layers and allowed dependencies", zh: "代码分层与允许的依赖"}
+      types: [C8]
+    - when: {en: "How business, applications and technology support each other", zh: "业务、应用、技术如何互相支撑"}
+      types: [I2]
+  integration:
+    - when: {en: "Interfaces with style, protocol, authentication and failure semantics", zh: "接口的集成方式、协议、认证与失败语义"}
+      types: [C6]
+    - when: {en: "Dependencies between applications across the estate", zh: "企业范围内应用之间的依赖"}
+      types: [C1]
+    - when: {en: "How the running parts of one system talk", zh: "单个系统内各运行单元如何通信"}
+      types: [C3]
+    - when: {en: "Message order in one scenario", zh: "一个场景中的消息顺序"}
+      types: [E1]
+    - when: {en: "Relationships between domain models and teams", zh: "领域模型与团队之间的关系"}
+      types: [C7]
+  data:
+    - when: {en: "Which business objects exist and how they relate", zh: "有哪些业务对象、如何关联"}
+      types: [D1]
+    - when: {en: "How data moves between processes and stores", zh: "数据如何在加工与存储之间流动"}
+      types: [D2]
+    - when: {en: "Where a dataset came from, and who owns it", zh: "数据从哪里来、归谁负责"}
+      types: [D3]
+    - when: {en: "Which data crosses trust boundaries", zh: "哪些数据跨越信任边界"}
+      types: [F2]
+  behaviour:
+    - when: {en: "Messages between participants, in order", zh: "参与者之间按顺序的消息"}
+      types: [E1]
+    - when: {en: "Steps, decisions and parallel branches of one piece of logic", zh: "一段逻辑的步骤、判断与并行分支"}
+      types: [E2]
+    - when: {en: "The lifecycle of one object", zh: "一个对象的生命周期"}
+      types: [E3]
+    - when: {en: "Hand-offs between roles or systems", zh: "角色或系统之间的交接"}
+      types: [E4, A5]
+      hint: {en: "E4 for lightweight hand-offs, often with systems as lanes; A5 when BPMN semantics (pools, message flows, events) are needed.", zh: "轻量交接（常以系统为泳道）用 E4；需要 BPMN 语义（池、消息流、事件）时用 A5。"}
+    - when: {en: "How sign-in and access decisions happen", zh: "登录与访问判定如何发生"}
+      types: [F1]
+    - when: {en: "Where a delivery process waits", zh: "交付过程在哪里等待"}
+      types: [A9]
+  security:
+    - when: {en: "Sign-in, tokens, and where access is decided", zh: "登录、令牌，以及访问在哪里判定"}
+      types: [F1]
+    - when: {en: "Threats and trust boundaries", zh: "威胁与信任边界"}
+      types: [F2]
+    - when: {en: "Who may do what, in which scope", zh: "谁在什么范围内能做什么"}
+      types: [F3]
+    - when: {en: "Network exposure and paths", zh: "网络暴露面与路径"}
+      types: [G3]
+  runtime:
+    - when: {en: "Where the software runs", zh: "软件运行在哪里"}
+      types: [G1]
+    - when: {en: "Which cloud services, and their failure boundaries", zh: "使用哪些云服务及其故障边界"}
+      types: [G2]
+    - when: {en: "Network segments and paths", zh: "网络分区与路径"}
+      types: [G3]
+    - when: {en: "How a change ships to production", zh: "变更如何发布到生产"}
+      types: [G4]
+    - when: {en: "How the running system is observed", zh: "如何观测运行中的系统"}
+      types: [H2]
+  operations:
+    - when: {en: "Who is responsible for each activity", zh: "每项活动由谁负责"}
+      types: [H1]
+    - when: {en: "Who must be engaged, and how", zh: "需要与谁沟通、如何沟通"}
+      types: [H3]
+    - when: {en: "How problems are detected and answered", zh: "问题如何被发现与响应"}
+      types: [H2]
+    - when: {en: "Who owns which data", zh: "哪些数据归谁"}
+      types: [D3]
+    - when: {en: "Hand-offs in an operating procedure", zh: "运维流程中的交接"}
+      types: [E4]
+    - when: {en: "Owners and lifecycle state of applications", zh: "应用的归属与生命周期状态"}
+      types: [C1]
+    - when: {en: "Release controls and promotion gates", zh: "发布控制与晋级关卡"}
+      types: [G4]
+  views:
+    - when: {en: "Several views for different readers, kept consistent", zh: "面向不同读者的多张视图并保持一致"}
+      types: [I1]
+    - when: {en: "One enterprise view across business, application and technology", zh: "跨业务、应用、技术的企业视图"}
+      types: [I2]

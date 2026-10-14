@@ -1,0 +1,3833 @@
+{
+  "generated_from": [
+    "content/data/types.yaml",
+    "content/data/selection-tree.yaml"
+  ],
+  "families": {
+    "A": {
+      "en": "Business and strategy",
+      "zh": "战略与业务"
+    },
+    "B": {
+      "en": "Requirements",
+      "zh": "需求"
+    },
+    "C": {
+      "en": "Application and system architecture",
+      "zh": "应用与系统架构"
+    },
+    "D": {
+      "en": "Data",
+      "zh": "数据"
+    },
+    "E": {
+      "en": "Behaviour",
+      "zh": "行为"
+    },
+    "F": {
+      "en": "Security and identity",
+      "zh": "安全与身份"
+    },
+    "G": {
+      "en": "Technology and infrastructure",
+      "zh": "技术与基础设施"
+    },
+    "H": {
+      "en": "Operations and governance",
+      "zh": "运营与治理"
+    },
+    "I": {
+      "en": "View frameworks",
+      "zh": "视图框架"
+    }
+  },
+  "facets": {
+    "asks": {
+      "value": {
+        "en": "Why invest, and where is the value?",
+        "zh": "为什么做、价值在哪、投资往哪放？"
+      },
+      "scope": {
+        "en": "What must it do, for whom, and what is in or out?",
+        "zh": "要做什么、给谁用、范围内外是什么？"
+      },
+      "structure": {
+        "en": "What are the parts and how are they organised?",
+        "zh": "由哪些部分组成、如何组织？"
+      },
+      "integration": {
+        "en": "How do the parts and systems connect?",
+        "zh": "各部分 / 各系统之间怎么连接？"
+      },
+      "data": {
+        "en": "What data is there, where does it flow, who owns it?",
+        "zh": "有哪些数据、怎么流动、归谁负责？"
+      },
+      "behaviour": {
+        "en": "What happens, in which order, with which states?",
+        "zh": "事情按什么顺序发生、有哪些状态？"
+      },
+      "security": {
+        "en": "Who may do what, and what could go wrong?",
+        "zh": "谁能做什么、哪里可能出安全问题？"
+      },
+      "runtime": {
+        "en": "Where does it run and how does it ship?",
+        "zh": "跑在哪里、怎么发布？"
+      },
+      "operations": {
+        "en": "Who is responsible, and how is it run and watched?",
+        "zh": "谁负责、怎么运行和监控？"
+      },
+      "views": {
+        "en": "How do I organise several diagrams into one description?",
+        "zh": "怎样把多张图组织成一套架构描述？"
+      }
+    },
+    "audiences": {
+      "leaders": {
+        "en": "Leaders and sponsors",
+        "zh": "领导与发起人"
+      },
+      "business": {
+        "en": "Business owners and analysts",
+        "zh": "业务负责人与业务分析"
+      },
+      "product": {
+        "en": "Product and design",
+        "zh": "产品与设计"
+      },
+      "architects": {
+        "en": "Architects",
+        "zh": "架构师"
+      },
+      "developers": {
+        "en": "Developers and testers",
+        "zh": "开发与测试"
+      },
+      "operations": {
+        "en": "Operations and SRE",
+        "zh": "运维与 SRE"
+      },
+      "security": {
+        "en": "Security and compliance",
+        "zh": "安全与合规"
+      }
+    },
+    "levels": {
+      "strategy": {
+        "en": "Strategy / business",
+        "zh": "战略 / 业务"
+      },
+      "concept": {
+        "en": "Requirements / concept",
+        "zh": "需求 / 概念"
+      },
+      "logical": {
+        "en": "Logical / design",
+        "zh": "逻辑 / 设计"
+      },
+      "physical": {
+        "en": "Physical / implementation",
+        "zh": "物理 / 实现"
+      }
+    },
+    "phases": {
+      "initiate": {
+        "en": "Initiate",
+        "zh": "立项"
+      },
+      "requirements": {
+        "en": "Requirements",
+        "zh": "需求"
+      },
+      "design": {
+        "en": "Design",
+        "zh": "设计"
+      },
+      "build": {
+        "en": "Build",
+        "zh": "构建"
+      },
+      "operate": {
+        "en": "Release and operate",
+        "zh": "发布与运营"
+      }
+    },
+    "scope": {
+      "enterprise": {
+        "en": "Enterprise or portfolio",
+        "zh": "企业 / 应用组合"
+      },
+      "system": {
+        "en": "One system or initiative",
+        "zh": "单个系统 / 项目"
+      },
+      "component": {
+        "en": "Inside one system part",
+        "zh": "单个部件内部"
+      }
+    }
+  },
+  "types": [
+    {
+      "code": "A1",
+      "slug": "capability-map",
+      "family": "A",
+      "names": {
+        "en": "Business capability map",
+        "zh": "业务能力图"
+      },
+      "question": {
+        "en": "What can the organisation do, independent of who or what does it, and where should it invest?",
+        "zh": "组织“能做什么”（与由谁、用什么系统做无关）？哪些能力要加强，投资该往哪放？"
+      },
+      "asks": [
+        "value",
+        "structure"
+      ],
+      "audiences": [
+        "leaders",
+        "business",
+        "architects"
+      ],
+      "levels": [
+        "strategy"
+      ],
+      "phases": [
+        "initiate"
+      ],
+      "scope": "enterprise",
+      "research": "done",
+      "page": "a1-capability-map"
+    },
+    {
+      "code": "A2",
+      "slug": "value-stream",
+      "family": "A",
+      "names": {
+        "en": "Value stream (business architecture)",
+        "zh": "价值流（业务架构）"
+      },
+      "question": {
+        "en": "Which stages does a stakeholder pass through, from trigger to delivered value, and which capabilities enable each stage?",
+        "zh": "从触发到交付价值，干系人经过哪些价值阶段？每个阶段由哪些能力支撑？"
+      },
+      "asks": [
+        "value"
+      ],
+      "audiences": [
+        "leaders",
+        "business",
+        "architects"
+      ],
+      "levels": [
+        "strategy"
+      ],
+      "phases": [
+        "initiate"
+      ],
+      "scope": "enterprise",
+      "research": "done",
+      "page": "a2-value-stream"
+    },
+    {
+      "code": "A3",
+      "slug": "business-context",
+      "family": "A",
+      "names": {
+        "en": "Business context diagram",
+        "zh": "业务上下文图"
+      },
+      "question": {
+        "en": "Which outside parties does the business or initiative deal with, and what do they exchange (goods, money, information, obligations)?",
+        "zh": "业务或项目与哪些外部方打交道？彼此交换什么（货物、资金、信息、义务）？"
+      },
+      "asks": [
+        "scope"
+      ],
+      "audiences": [
+        "leaders",
+        "business",
+        "architects"
+      ],
+      "levels": [
+        "strategy",
+        "concept"
+      ],
+      "phases": [
+        "initiate",
+        "requirements"
+      ],
+      "scope": "system",
+      "research": "done",
+      "page": "a3-business-context"
+    },
+    {
+      "code": "A4",
+      "slug": "scenario-matrix",
+      "family": "A",
+      "names": {
+        "en": "Business scenario matrix (role × activity)",
+        "zh": "业务场景矩阵（角色 × 活动）"
+      },
+      "question": {
+        "en": "Which roles take part in which business activities, and in which release is each scenario supported?",
+        "zh": "哪些角色参与哪些业务活动？每个场景在哪个版本支持？"
+      },
+      "asks": [
+        "scope"
+      ],
+      "audiences": [
+        "business",
+        "product"
+      ],
+      "levels": [
+        "concept"
+      ],
+      "phases": [
+        "requirements"
+      ],
+      "scope": "system",
+      "research": "done",
+      "page": "a4-scenario-matrix"
+    },
+    {
+      "code": "A5",
+      "slug": "bpmn-process",
+      "family": "A",
+      "names": {
+        "en": "Business process diagram (BPMN)",
+        "zh": "业务流程图（BPMN）"
+      },
+      "question": {
+        "en": "How does a business case run from start to end, who does each step, where does it branch, and what passes between participants?",
+        "zh": "一件业务如何从开始走到结束？每一步谁做、在哪分支、参与方之间传递什么？"
+      },
+      "asks": [
+        "scope",
+        "behaviour"
+      ],
+      "audiences": [
+        "business",
+        "product",
+        "developers"
+      ],
+      "levels": [
+        "concept"
+      ],
+      "phases": [
+        "requirements",
+        "design"
+      ],
+      "scope": "system",
+      "research": "done",
+      "page": "a5-bpmn-process"
+    },
+    {
+      "code": "A6",
+      "slug": "journey-map",
+      "family": "A",
+      "names": {
+        "en": "Customer or user journey map",
+        "zh": "用户旅程图"
+      },
+      "question": {
+        "en": "For one persona in one scenario, which stages do they go through, what do they do, think and feel, and where are the opportunities?",
+        "zh": "某个角色在某个场景中经历哪些阶段？做什么、想什么、感受如何，机会点在哪？"
+      },
+      "asks": [
+        "value",
+        "scope"
+      ],
+      "audiences": [
+        "product",
+        "business",
+        "leaders"
+      ],
+      "levels": [
+        "strategy",
+        "concept"
+      ],
+      "phases": [
+        "initiate",
+        "requirements"
+      ],
+      "scope": "system",
+      "research": "done",
+      "page": "a6-journey-map"
+    },
+    {
+      "code": "A7",
+      "slug": "conceptual-architecture",
+      "family": "A",
+      "names": {
+        "en": "Conceptual architecture (solution overview)",
+        "zh": "概念架构图（方案概览）"
+      },
+      "question": {
+        "en": "Which major blocks make up the solution and what is each one for, in terms the business understands?",
+        "zh": "方案由哪些大块组成？每一块在业务上起什么作用？"
+      },
+      "asks": [
+        "structure",
+        "value"
+      ],
+      "audiences": [
+        "leaders",
+        "business",
+        "architects"
+      ],
+      "levels": [
+        "concept"
+      ],
+      "phases": [
+        "initiate",
+        "design"
+      ],
+      "scope": "system",
+      "research": "done",
+      "page": "a7-conceptual-architecture"
+    },
+    {
+      "code": "A8",
+      "slug": "target-roadmap",
+      "family": "A",
+      "names": {
+        "en": "Target architecture and transition roadmap",
+        "zh": "目标架构与演进路线图"
+      },
+      "question": {
+        "en": "What does it look like today, where is it going, which coherent transition states lead there, and what value does each state deliver?",
+        "zh": "现状是什么、目标是什么、经过哪些可独立交付价值的过渡态、每一步交付什么？"
+      },
+      "asks": [
+        "value"
+      ],
+      "audiences": [
+        "leaders",
+        "architects"
+      ],
+      "levels": [
+        "strategy"
+      ],
+      "phases": [
+        "initiate",
+        "design"
+      ],
+      "scope": "enterprise",
+      "research": "done",
+      "page": "a8-target-roadmap"
+    },
+    {
+      "code": "A9",
+      "slug": "lean-value-stream-map",
+      "family": "A",
+      "names": {
+        "en": "Lean value-stream map (VSM)",
+        "zh": "精益价值流图（VSM）"
+      },
+      "question": {
+        "en": "How do material and information flow through a delivery process, and where is time spent waiting rather than working?",
+        "zh": "物料与信息如何在交付过程中流动？时间花在处理上还是等待上？"
+      },
+      "asks": [
+        "value",
+        "behaviour"
+      ],
+      "audiences": [
+        "business",
+        "leaders",
+        "operations"
+      ],
+      "levels": [
+        "strategy",
+        "concept"
+      ],
+      "phases": [
+        "initiate",
+        "operate"
+      ],
+      "scope": "system",
+      "research": "done",
+      "page": "a9-lean-value-stream-map"
+    },
+    {
+      "code": "B1",
+      "slug": "use-case-diagram",
+      "family": "B",
+      "names": {
+        "en": "Use case diagram",
+        "zh": "用例图"
+      },
+      "question": {
+        "en": "Which user goals does the system support, and for which actors?",
+        "zh": "系统支持哪些用户目标（用例）？分别给哪些参与者？"
+      },
+      "asks": [
+        "scope"
+      ],
+      "audiences": [
+        "product",
+        "business",
+        "developers"
+      ],
+      "levels": [
+        "concept"
+      ],
+      "phases": [
+        "requirements"
+      ],
+      "scope": "system",
+      "research": "pending",
+      "page": "b1-use-case-diagram"
+    },
+    {
+      "code": "B2",
+      "slug": "user-story-map",
+      "family": "B",
+      "names": {
+        "en": "User story map",
+        "zh": "用户故事地图"
+      },
+      "question": {
+        "en": "What does the user do end to end, what is the smallest useful first release, and how are later releases sliced?",
+        "zh": "用户端到端要做哪些事？最小可用的第一个版本是什么？后续如何切片交付？"
+      },
+      "asks": [
+        "scope"
+      ],
+      "audiences": [
+        "product",
+        "developers",
+        "business"
+      ],
+      "levels": [
+        "concept"
+      ],
+      "phases": [
+        "requirements"
+      ],
+      "scope": "system",
+      "research": "pending",
+      "page": "b2-user-story-map"
+    },
+    {
+      "code": "B3",
+      "slug": "feature-tree",
+      "family": "B",
+      "names": {
+        "en": "Feature tree (functional decomposition)",
+        "zh": "功能树（功能分解）"
+      },
+      "question": {
+        "en": "Which functions does the product contain, down to which estimable level, and with which priority?",
+        "zh": "产品包含哪些功能？拆到可估算的哪一层？优先级如何？"
+      },
+      "asks": [
+        "scope"
+      ],
+      "audiences": [
+        "product",
+        "developers"
+      ],
+      "levels": [
+        "concept"
+      ],
+      "phases": [
+        "requirements"
+      ],
+      "scope": "system",
+      "research": "pending",
+      "page": "b3-feature-tree"
+    },
+    {
+      "code": "B4",
+      "slug": "scope-diagram",
+      "family": "B",
+      "names": {
+        "en": "Scope diagram",
+        "zh": "范围图"
+      },
+      "question": {
+        "en": "What is in and out of scope for this phase, and which outside parties does it touch?",
+        "zh": "这一期做什么、不做什么？与哪些外部方对接？"
+      },
+      "asks": [
+        "scope"
+      ],
+      "audiences": [
+        "leaders",
+        "product",
+        "architects"
+      ],
+      "levels": [
+        "concept"
+      ],
+      "phases": [
+        "initiate",
+        "requirements"
+      ],
+      "scope": "system",
+      "research": "pending",
+      "page": "b4-scope-diagram"
+    },
+    {
+      "code": "C1",
+      "slug": "application-landscape",
+      "family": "C",
+      "names": {
+        "en": "Application landscape",
+        "zh": "应用全景图"
+      },
+      "question": {
+        "en": "Which applications exist in the estate, who owns them, what state are they in, and how do they depend on each other?",
+        "zh": "企业或产品线有哪些应用？各归谁、处于什么状态、如何互相依赖？"
+      },
+      "asks": [
+        "structure",
+        "integration",
+        "operations"
+      ],
+      "audiences": [
+        "architects",
+        "leaders"
+      ],
+      "levels": [
+        "logical"
+      ],
+      "phases": [
+        "initiate",
+        "design"
+      ],
+      "scope": "enterprise",
+      "research": "done",
+      "page": "c1-application-landscape"
+    },
+    {
+      "code": "C2",
+      "slug": "system-context",
+      "family": "C",
+      "names": {
+        "en": "System context diagram (C4 model level 1)",
+        "zh": "系统上下文图（C4 模型第 1 层）"
+      },
+      "question": {
+        "en": "What is the software system, who uses it, and which other systems does it depend on?",
+        "zh": "我们的软件系统是什么？谁在用？依赖哪些外部系统？"
+      },
+      "asks": [
+        "scope",
+        "structure"
+      ],
+      "audiences": [
+        "leaders",
+        "business",
+        "architects",
+        "developers",
+        "security"
+      ],
+      "levels": [
+        "concept"
+      ],
+      "phases": [
+        "initiate",
+        "requirements",
+        "design"
+      ],
+      "scope": "system",
+      "research": "done",
+      "page": "c2-system-context"
+    },
+    {
+      "code": "C3",
+      "slug": "container-diagram",
+      "family": "C",
+      "names": {
+        "en": "Container diagram (C4 model level 2)",
+        "zh": "容器图（C4 模型第 2 层）"
+      },
+      "question": {
+        "en": "Which separately running applications and data stores make up the system, what technology does each use, and how do they communicate?",
+        "zh": "系统由哪些独立运行的应用和数据存储组成？各用什么技术？如何通信？"
+      },
+      "asks": [
+        "structure",
+        "integration"
+      ],
+      "audiences": [
+        "architects",
+        "developers",
+        "operations",
+        "security"
+      ],
+      "levels": [
+        "logical"
+      ],
+      "phases": [
+        "design",
+        "build"
+      ],
+      "scope": "system",
+      "research": "done",
+      "page": "c3-container-diagram"
+    },
+    {
+      "code": "C4",
+      "slug": "component-diagram",
+      "family": "C",
+      "names": {
+        "en": "Component diagram (C4 model level 3)",
+        "zh": "组件图（C4 模型第 3 层）"
+      },
+      "question": {
+        "en": "Inside one container, which components exist, what is each responsible for, and which calls which?",
+        "zh": "某个容器内部有哪些组件？各自负责什么？谁调用谁？"
+      },
+      "asks": [
+        "structure"
+      ],
+      "audiences": [
+        "developers",
+        "architects"
+      ],
+      "levels": [
+        "logical"
+      ],
+      "phases": [
+        "design",
+        "build"
+      ],
+      "scope": "component",
+      "research": "done",
+      "page": "c4-component-diagram"
+    },
+    {
+      "code": "C5",
+      "slug": "logical-architecture",
+      "family": "C",
+      "names": {
+        "en": "Logical architecture diagram",
+        "zh": "逻辑架构图"
+      },
+      "question": {
+        "en": "Seen by responsibility and without technology choices, which modules and interfaces must the system have?",
+        "zh": "只从职责看、不涉及技术选型，系统要有哪些模块和接口？"
+      },
+      "asks": [
+        "structure"
+      ],
+      "audiences": [
+        "architects",
+        "product",
+        "developers"
+      ],
+      "levels": [
+        "logical"
+      ],
+      "phases": [
+        "design"
+      ],
+      "scope": "system",
+      "research": "done",
+      "page": "c5-logical-architecture"
+    },
+    {
+      "code": "C6",
+      "slug": "integration-interface",
+      "family": "C",
+      "names": {
+        "en": "Integration and interface diagram",
+        "zh": "集成与接口图"
+      },
+      "question": {
+        "en": "Which interfaces connect the systems, in which integration style and direction, with which protocol, authentication and failure semantics?",
+        "zh": "系统之间有哪些接口？用什么集成方式、方向、协议、认证方式和失败语义？"
+      },
+      "asks": [
+        "integration"
+      ],
+      "audiences": [
+        "architects",
+        "developers",
+        "operations"
+      ],
+      "levels": [
+        "logical",
+        "physical"
+      ],
+      "phases": [
+        "design",
+        "build"
+      ],
+      "scope": "enterprise",
+      "research": "done",
+      "page": "c6-integration-interface"
+    },
+    {
+      "code": "C7",
+      "slug": "bounded-context-map",
+      "family": "C",
+      "names": {
+        "en": "Bounded context map (DDD)",
+        "zh": "限界上下文映射（DDD）"
+      },
+      "question": {
+        "en": "Which model boundaries exist in the domain, and which relationship patterns connect them?",
+        "zh": "领域中有哪些模型边界？它们之间用什么关系模式连接？"
+      },
+      "asks": [
+        "structure",
+        "integration"
+      ],
+      "audiences": [
+        "architects",
+        "developers",
+        "business"
+      ],
+      "levels": [
+        "logical"
+      ],
+      "phases": [
+        "design"
+      ],
+      "scope": "system",
+      "research": "done",
+      "page": "c7-bounded-context-map"
+    },
+    {
+      "code": "C8",
+      "slug": "layered-architecture",
+      "family": "C",
+      "names": {
+        "en": "Layered architecture diagram",
+        "zh": "分层架构图"
+      },
+      "question": {
+        "en": "Which layers does the code have, what is each responsible for, and which dependency directions are allowed?",
+        "zh": "代码分几层？每层负责什么？允许哪些依赖方向？"
+      },
+      "asks": [
+        "structure"
+      ],
+      "audiences": [
+        "developers",
+        "architects"
+      ],
+      "levels": [
+        "logical"
+      ],
+      "phases": [
+        "design",
+        "build"
+      ],
+      "scope": "component",
+      "research": "done",
+      "page": "c8-layered-architecture"
+    },
+    {
+      "code": "D1",
+      "slug": "entity-relationship",
+      "family": "D",
+      "names": {
+        "en": "Entity-relationship diagram",
+        "zh": "实体关系图"
+      },
+      "question": {
+        "en": "Which business objects does the system manage, and how are they related, with which cardinalities?",
+        "zh": "系统管理哪些业务对象？它们之间是什么关系、基数如何？"
+      },
+      "asks": [
+        "data"
+      ],
+      "audiences": [
+        "architects",
+        "developers",
+        "business"
+      ],
+      "levels": [
+        "concept",
+        "logical"
+      ],
+      "phases": [
+        "design",
+        "build"
+      ],
+      "scope": "system",
+      "research": "done",
+      "page": "d1-entity-relationship"
+    },
+    {
+      "code": "D2",
+      "slug": "data-flow-diagram",
+      "family": "D",
+      "names": {
+        "en": "Data flow diagram (DFD)",
+        "zh": "数据流图（DFD）"
+      },
+      "question": {
+        "en": "Where does data come from, which processes transform it, where is it stored, and where does it go?",
+        "zh": "数据从哪来、经过哪些加工、存在哪、流到哪？"
+      },
+      "asks": [
+        "data"
+      ],
+      "audiences": [
+        "architects",
+        "business",
+        "security"
+      ],
+      "levels": [
+        "logical"
+      ],
+      "phases": [
+        "requirements",
+        "design"
+      ],
+      "scope": "system",
+      "research": "done",
+      "page": "d2-data-flow-diagram"
+    },
+    {
+      "code": "D3",
+      "slug": "data-lineage-ownership",
+      "family": "D",
+      "names": {
+        "en": "Data lineage and ownership map",
+        "zh": "数据血缘与归属图"
+      },
+      "question": {
+        "en": "Where did a dataset or result come from, what derives from it, and who is accountable for it?",
+        "zh": "某份数据或结果从哪里来、又派生出什么？由谁负责？"
+      },
+      "asks": [
+        "data",
+        "operations"
+      ],
+      "audiences": [
+        "architects",
+        "security",
+        "business"
+      ],
+      "levels": [
+        "logical"
+      ],
+      "phases": [
+        "design",
+        "operate"
+      ],
+      "scope": "enterprise",
+      "research": "done",
+      "page": "d3-data-lineage-ownership"
+    },
+    {
+      "code": "E1",
+      "slug": "sequence-diagram",
+      "family": "E",
+      "names": {
+        "en": "Sequence diagram",
+        "zh": "时序图"
+      },
+      "question": {
+        "en": "For one scenario, in what order do the participants exchange which messages?",
+        "zh": "在一个场景中，各参与者按什么顺序交换哪些消息？"
+      },
+      "asks": [
+        "behaviour",
+        "integration"
+      ],
+      "audiences": [
+        "developers",
+        "architects"
+      ],
+      "levels": [
+        "logical"
+      ],
+      "phases": [
+        "design",
+        "build"
+      ],
+      "scope": "system",
+      "research": "done",
+      "page": "e1-sequence-diagram"
+    },
+    {
+      "code": "E2",
+      "slug": "activity-flowchart",
+      "family": "E",
+      "names": {
+        "en": "Activity diagram or flowchart",
+        "zh": "活动图 / 流程图"
+      },
+      "question": {
+        "en": "Which steps, decisions and parallel branches make up one piece of logic?",
+        "zh": "一段处理逻辑由哪些步骤、判断和并行分支组成？"
+      },
+      "asks": [
+        "behaviour"
+      ],
+      "audiences": [
+        "developers",
+        "business"
+      ],
+      "levels": [
+        "logical"
+      ],
+      "phases": [
+        "design",
+        "build"
+      ],
+      "scope": "component",
+      "research": "done",
+      "page": "e2-activity-flowchart"
+    },
+    {
+      "code": "E3",
+      "slug": "state-machine",
+      "family": "E",
+      "names": {
+        "en": "State machine diagram",
+        "zh": "状态机图"
+      },
+      "question": {
+        "en": "Which states can one object be in, which events move it between them, and which transitions are not allowed?",
+        "zh": "一个对象有哪些状态？什么事件使它迁移？哪些迁移不允许？"
+      },
+      "asks": [
+        "behaviour"
+      ],
+      "audiences": [
+        "developers",
+        "product"
+      ],
+      "levels": [
+        "logical"
+      ],
+      "phases": [
+        "design",
+        "build"
+      ],
+      "scope": "component",
+      "research": "done",
+      "page": "e3-state-machine"
+    },
+    {
+      "code": "E4",
+      "slug": "swimlane-flowchart",
+      "family": "E",
+      "names": {
+        "en": "Swimlane or cross-functional flowchart",
+        "zh": "泳道流程图（跨职能流程图）"
+      },
+      "question": {
+        "en": "In one process, which role or system performs each step, and where are the hand-offs?",
+        "zh": "一个流程中，每一步由哪个角色或系统完成？在哪里交接？"
+      },
+      "asks": [
+        "behaviour",
+        "operations"
+      ],
+      "audiences": [
+        "developers",
+        "operations",
+        "business"
+      ],
+      "levels": [
+        "logical"
+      ],
+      "phases": [
+        "design",
+        "operate"
+      ],
+      "scope": "system",
+      "research": "done",
+      "page": "e4-swimlane-flowchart"
+    },
+    {
+      "code": "F1",
+      "slug": "auth-flow",
+      "family": "F",
+      "names": {
+        "en": "Authentication and authorization flow",
+        "zh": "认证与授权流程图"
+      },
+      "question": {
+        "en": "Who proves which identity to whom, what authority is conveyed, and where is access actually allowed or refused?",
+        "zh": "谁向谁证明了什么身份？传递了什么授权？访问在哪里被真正允许或拒绝？"
+      },
+      "asks": [
+        "security",
+        "behaviour"
+      ],
+      "audiences": [
+        "security",
+        "architects",
+        "developers"
+      ],
+      "levels": [
+        "logical"
+      ],
+      "phases": [
+        "design",
+        "build"
+      ],
+      "scope": "system",
+      "research": "done",
+      "page": "f1-auth-flow"
+    },
+    {
+      "code": "F2",
+      "slug": "threat-model-dfd",
+      "family": "F",
+      "names": {
+        "en": "Threat-model data-flow diagram with trust boundaries",
+        "zh": "威胁建模数据流图（含信任边界）"
+      },
+      "question": {
+        "en": "Which data crosses which changes of authority or trust, and where could security properties fail?",
+        "zh": "哪些数据跨越了权限或信任的变化？安全属性可能在哪里失效？"
+      },
+      "asks": [
+        "security",
+        "data"
+      ],
+      "audiences": [
+        "security",
+        "architects"
+      ],
+      "levels": [
+        "logical"
+      ],
+      "phases": [
+        "design"
+      ],
+      "scope": "system",
+      "research": "done",
+      "page": "f2-threat-model-dfd"
+    },
+    {
+      "code": "F3",
+      "slug": "access-control-model",
+      "family": "F",
+      "names": {
+        "en": "Access-control model",
+        "zh": "访问控制模型"
+      },
+      "question": {
+        "en": "Under which rules can a subject perform an action on a resource, in which scope?",
+        "zh": "在什么规则下，主体可以在什么范围内对资源执行什么操作？"
+      },
+      "asks": [
+        "security"
+      ],
+      "audiences": [
+        "architects",
+        "developers",
+        "security"
+      ],
+      "levels": [
+        "logical"
+      ],
+      "phases": [
+        "design",
+        "build"
+      ],
+      "scope": "system",
+      "research": "done",
+      "page": "f3-access-control-model"
+    },
+    {
+      "code": "G1",
+      "slug": "deployment-diagram",
+      "family": "G",
+      "names": {
+        "en": "Deployment diagram",
+        "zh": "部署图"
+      },
+      "question": {
+        "en": "Where do the software instances run, in which environment, and how does their placement support operational needs?",
+        "zh": "软件实例运行在哪里、哪个环境？部署位置如何满足运行要求？"
+      },
+      "asks": [
+        "runtime"
+      ],
+      "audiences": [
+        "operations",
+        "architects",
+        "security"
+      ],
+      "levels": [
+        "physical"
+      ],
+      "phases": [
+        "design",
+        "operate"
+      ],
+      "scope": "system",
+      "research": "done",
+      "page": "g1-deployment-diagram"
+    },
+    {
+      "code": "G2",
+      "slug": "cloud-infrastructure",
+      "family": "G",
+      "names": {
+        "en": "Cloud infrastructure architecture",
+        "zh": "云基础设施架构图"
+      },
+      "question": {
+        "en": "Which cloud services realise the workload, and which failure boundaries and trade-offs make the arrangement fit its requirements?",
+        "zh": "用哪些云服务承载工作负载？哪些故障边界与权衡使这种安排满足需求？"
+      },
+      "asks": [
+        "runtime"
+      ],
+      "audiences": [
+        "architects",
+        "operations",
+        "security"
+      ],
+      "levels": [
+        "physical"
+      ],
+      "phases": [
+        "design",
+        "operate"
+      ],
+      "scope": "system",
+      "research": "done",
+      "page": "g2-cloud-infrastructure"
+    },
+    {
+      "code": "G3",
+      "slug": "network-topology",
+      "family": "G",
+      "names": {
+        "en": "Network topology and connectivity view",
+        "zh": "网络拓扑与连通视图"
+      },
+      "question": {
+        "en": "What can communicate with what, through which paths and controls, in normal and failure conditions?",
+        "zh": "什么能与什么通信？经过哪些路径与控制？正常与故障时分别如何？"
+      },
+      "asks": [
+        "runtime",
+        "security"
+      ],
+      "audiences": [
+        "operations",
+        "security",
+        "architects"
+      ],
+      "levels": [
+        "physical"
+      ],
+      "phases": [
+        "design",
+        "operate"
+      ],
+      "scope": "system",
+      "research": "done",
+      "page": "g3-network-topology"
+    },
+    {
+      "code": "G4",
+      "slug": "delivery-pipeline",
+      "family": "G",
+      "names": {
+        "en": "CI/CD and deployment pipeline",
+        "zh": "CI/CD 与部署流水线图"
+      },
+      "question": {
+        "en": "How does a change become a trusted release, which evidence allows each promotion, and what happens when it fails?",
+        "zh": "一次变更如何成为可信的发布？每次晋级依据什么证据？失败时怎么办？"
+      },
+      "asks": [
+        "runtime",
+        "operations"
+      ],
+      "audiences": [
+        "developers",
+        "operations",
+        "security"
+      ],
+      "levels": [
+        "physical"
+      ],
+      "phases": [
+        "build",
+        "operate"
+      ],
+      "scope": "system",
+      "research": "done",
+      "page": "g4-delivery-pipeline"
+    },
+    {
+      "code": "H1",
+      "slug": "raci-matrix",
+      "family": "H",
+      "names": {
+        "en": "RACI matrix",
+        "zh": "RACI 责任矩阵"
+      },
+      "question": {
+        "en": "For each activity or decision, who is Responsible, Accountable, Consulted and Informed?",
+        "zh": "每项活动或决策，谁执行（R）、谁最终负责（A）、谁被咨询（C）、谁被告知（I）？"
+      },
+      "asks": [
+        "operations"
+      ],
+      "audiences": [
+        "leaders",
+        "business",
+        "operations"
+      ],
+      "levels": [
+        "strategy",
+        "concept"
+      ],
+      "phases": [
+        "initiate",
+        "operate"
+      ],
+      "scope": "system",
+      "research": "done",
+      "page": "h1-raci-matrix"
+    },
+    {
+      "code": "H2",
+      "slug": "observability-view",
+      "family": "H",
+      "names": {
+        "en": "Observability view",
+        "zh": "可观测性视图"
+      },
+      "question": {
+        "en": "Which evidence shows how the service behaves for users, how does it reach analysis and alerting, and how does a finding reach someone who can act?",
+        "zh": "哪些证据反映服务对用户的表现？它如何到达分析与告警？问题如何送达能处理的人？"
+      },
+      "asks": [
+        "operations",
+        "runtime"
+      ],
+      "audiences": [
+        "operations",
+        "developers",
+        "leaders"
+      ],
+      "levels": [
+        "physical"
+      ],
+      "phases": [
+        "operate"
+      ],
+      "scope": "system",
+      "research": "done",
+      "page": "h2-observability-view"
+    },
+    {
+      "code": "H3",
+      "slug": "stakeholder-map",
+      "family": "H",
+      "names": {
+        "en": "Stakeholder map (power-interest grid)",
+        "zh": "干系人地图（权力-利益矩阵）"
+      },
+      "question": {
+        "en": "Who can influence or is affected by the initiative, how much power and interest do they have, and how should each be engaged?",
+        "zh": "谁能影响或受影响于这个项目？各自权力与关注度如何？应如何沟通？"
+      },
+      "asks": [
+        "operations",
+        "value"
+      ],
+      "audiences": [
+        "leaders",
+        "business"
+      ],
+      "levels": [
+        "strategy"
+      ],
+      "phases": [
+        "initiate"
+      ],
+      "scope": "system",
+      "research": "done",
+      "page": "h3-stakeholder-map"
+    },
+    {
+      "code": "I1",
+      "slug": "four-plus-one",
+      "family": "I",
+      "names": {
+        "en": "4+1 view model",
+        "zh": "4+1 视图模型"
+      },
+      "question": {
+        "en": "How can different stakeholders understand one architecture through views that answer their concerns and stay consistent?",
+        "zh": "不同干系人如何通过各自关心的视图理解同一套架构，并保持视图之间一致？"
+      },
+      "asks": [
+        "views"
+      ],
+      "audiences": [
+        "architects"
+      ],
+      "levels": [
+        "concept",
+        "logical",
+        "physical"
+      ],
+      "phases": [
+        "design"
+      ],
+      "scope": "system",
+      "research": "done",
+      "page": "i1-four-plus-one"
+    },
+    {
+      "code": "I2",
+      "slug": "archimate-layered-view",
+      "family": "I",
+      "names": {
+        "en": "ArchiMate layered view",
+        "zh": "ArchiMate 分层视图"
+      },
+      "question": {
+        "en": "How do business behaviour, applications and technology support one another, and what is affected by a change?",
+        "zh": "业务、应用与技术如何互相支撑？一处变化会影响哪些部分？"
+      },
+      "asks": [
+        "views",
+        "structure"
+      ],
+      "audiences": [
+        "architects",
+        "leaders"
+      ],
+      "levels": [
+        "strategy",
+        "concept",
+        "logical"
+      ],
+      "phases": [
+        "initiate",
+        "design"
+      ],
+      "scope": "enterprise",
+      "research": "done",
+      "page": "i2-archimate-layered-view"
+    }
+  ],
+  "first_questions": [
+    {
+      "en": "Who will read it, and what should they do afterwards (decide, approve, build, operate, review)?",
+      "zh": "谁来看？看完要做什么（决策、审批、开发、运维、评审）？"
+    },
+    {
+      "en": "Which question must the figure answer? Pick one branch below.",
+      "zh": "这张图要回答哪个问题？在下面选一个分支。"
+    },
+    {
+      "en": "What is the scope: the whole estate, one system, or one part inside it?",
+      "zh": "范围是什么：整个企业 / 应用组合、单个系统，还是系统内的一个部件？"
+    },
+    {
+      "en": "Current state, target state, or both (as separate figures)?",
+      "zh": "画现状、目标，还是两者（分开成两张图）？"
+    }
+  ],
+  "tree": {
+    "value": [
+      {
+        "when": {
+          "en": "What the organisation can do, and where to invest",
+          "zh": "组织能做什么、投资往哪放"
+        },
+        "types": [
+          "A1"
+        ]
+      },
+      {
+        "when": {
+          "en": "Which stages deliver value to a stakeholder",
+          "zh": "哪些阶段为干系人交付价值"
+        },
+        "types": [
+          "A2",
+          "A9"
+        ],
+        "hint": {
+          "en": "A2 has no timings and maps stages to capabilities; A9 measures process and waiting time.",
+          "zh": "A2 不含时间、把阶段映射到能力；A9 度量处理与等待时间。"
+        }
+      },
+      {
+        "when": {
+          "en": "What the solution is, in business terms",
+          "zh": "用业务语言说明方案是什么"
+        },
+        "types": [
+          "A7"
+        ]
+      },
+      {
+        "when": {
+          "en": "How to get from today to the target, step by step",
+          "zh": "如何从现状分步走到目标"
+        },
+        "types": [
+          "A8"
+        ]
+      },
+      {
+        "when": {
+          "en": "What one persona experiences",
+          "zh": "某个角色的体验"
+        },
+        "types": [
+          "A6"
+        ]
+      },
+      {
+        "when": {
+          "en": "Who has influence over the initiative and how to engage them",
+          "zh": "谁能影响项目、如何沟通"
+        },
+        "types": [
+          "H3"
+        ]
+      }
+    ],
+    "scope": [
+      {
+        "when": {
+          "en": "What is in or out of scope, and who connects to us",
+          "zh": "范围内外是什么、谁与我们对接"
+        },
+        "types": [
+          "B4",
+          "C2"
+        ],
+        "hint": {
+          "en": "B4 when the point is the boundary of this phase; C2 when the subject is a software system and its neighbours.",
+          "zh": "强调本期边界用 B4；主题是软件系统及其外部时用 C2。"
+        }
+      },
+      {
+        "when": {
+          "en": "Which outside parties the business deals with, and what is exchanged",
+          "zh": "业务与哪些外部方往来、交换什么"
+        },
+        "types": [
+          "A3"
+        ]
+      },
+      {
+        "when": {
+          "en": "Which roles do what, in which release",
+          "zh": "哪些角色做什么、在哪个版本"
+        },
+        "types": [
+          "A4",
+          "B2"
+        ],
+        "hint": {
+          "en": "A4 shows coverage across several roles; B2 tells one end-to-end story with release slices.",
+          "zh": "A4 展示多角色覆盖；B2 讲一个端到端故事并按版本切片。"
+        }
+      },
+      {
+        "when": {
+          "en": "Which user goals the system supports, and for whom",
+          "zh": "系统支持哪些用户目标、给谁"
+        },
+        "types": [
+          "B1"
+        ]
+      },
+      {
+        "when": {
+          "en": "Which functions, how deep, with which priority",
+          "zh": "有哪些功能、拆多细、优先级如何"
+        },
+        "types": [
+          "B3"
+        ]
+      },
+      {
+        "when": {
+          "en": "How a business case runs across participants",
+          "zh": "一件业务如何在参与方之间流转"
+        },
+        "types": [
+          "A5"
+        ]
+      },
+      {
+        "when": {
+          "en": "What a persona needs at each stage",
+          "zh": "某个角色在每个阶段需要什么"
+        },
+        "types": [
+          "A6"
+        ]
+      }
+    ],
+    "structure": [
+      {
+        "when": {
+          "en": "Many applications across the estate, and who owns them",
+          "zh": "企业内的众多应用及其归属"
+        },
+        "types": [
+          "C1"
+        ]
+      },
+      {
+        "when": {
+          "en": "Main blocks, for non-technical readers",
+          "zh": "给非技术读者看的主要组成"
+        },
+        "types": [
+          "A7"
+        ]
+      },
+      {
+        "when": {
+          "en": "One system: users and neighbouring systems",
+          "zh": "单个系统：用户与外部系统"
+        },
+        "types": [
+          "C2"
+        ]
+      },
+      {
+        "when": {
+          "en": "One system: its running applications and data stores",
+          "zh": "单个系统：可运行的应用与数据存储"
+        },
+        "types": [
+          "C3"
+        ]
+      },
+      {
+        "when": {
+          "en": "Inside one application: its components",
+          "zh": "单个应用内部：组件"
+        },
+        "types": [
+          "C4"
+        ]
+      },
+      {
+        "when": {
+          "en": "Responsibilities and interfaces, without technology",
+          "zh": "职责与接口，不含技术选型"
+        },
+        "types": [
+          "C5"
+        ]
+      },
+      {
+        "when": {
+          "en": "Model boundaries in the domain",
+          "zh": "领域中的模型边界"
+        },
+        "types": [
+          "C7"
+        ]
+      },
+      {
+        "when": {
+          "en": "Code layers and allowed dependencies",
+          "zh": "代码分层与允许的依赖"
+        },
+        "types": [
+          "C8"
+        ]
+      },
+      {
+        "when": {
+          "en": "How business, applications and technology support each other",
+          "zh": "业务、应用、技术如何互相支撑"
+        },
+        "types": [
+          "I2"
+        ]
+      }
+    ],
+    "integration": [
+      {
+        "when": {
+          "en": "Interfaces with style, protocol, authentication and failure semantics",
+          "zh": "接口的集成方式、协议、认证与失败语义"
+        },
+        "types": [
+          "C6"
+        ]
+      },
+      {
+        "when": {
+          "en": "Dependencies between applications across the estate",
+          "zh": "企业范围内应用之间的依赖"
+        },
+        "types": [
+          "C1"
+        ]
+      },
+      {
+        "when": {
+          "en": "How the running parts of one system talk",
+          "zh": "单个系统内各运行单元如何通信"
+        },
+        "types": [
+          "C3"
+        ]
+      },
+      {
+        "when": {
+          "en": "Message order in one scenario",
+          "zh": "一个场景中的消息顺序"
+        },
+        "types": [
+          "E1"
+        ]
+      },
+      {
+        "when": {
+          "en": "Relationships between domain models and teams",
+          "zh": "领域模型与团队之间的关系"
+        },
+        "types": [
+          "C7"
+        ]
+      }
+    ],
+    "data": [
+      {
+        "when": {
+          "en": "Which business objects exist and how they relate",
+          "zh": "有哪些业务对象、如何关联"
+        },
+        "types": [
+          "D1"
+        ]
+      },
+      {
+        "when": {
+          "en": "How data moves between processes and stores",
+          "zh": "数据如何在加工与存储之间流动"
+        },
+        "types": [
+          "D2"
+        ]
+      },
+      {
+        "when": {
+          "en": "Where a dataset came from, and who owns it",
+          "zh": "数据从哪里来、归谁负责"
+        },
+        "types": [
+          "D3"
+        ]
+      },
+      {
+        "when": {
+          "en": "Which data crosses trust boundaries",
+          "zh": "哪些数据跨越信任边界"
+        },
+        "types": [
+          "F2"
+        ]
+      }
+    ],
+    "behaviour": [
+      {
+        "when": {
+          "en": "Messages between participants, in order",
+          "zh": "参与者之间按顺序的消息"
+        },
+        "types": [
+          "E1"
+        ]
+      },
+      {
+        "when": {
+          "en": "Steps, decisions and parallel branches of one piece of logic",
+          "zh": "一段逻辑的步骤、判断与并行分支"
+        },
+        "types": [
+          "E2"
+        ]
+      },
+      {
+        "when": {
+          "en": "The lifecycle of one object",
+          "zh": "一个对象的生命周期"
+        },
+        "types": [
+          "E3"
+        ]
+      },
+      {
+        "when": {
+          "en": "Hand-offs between roles or systems",
+          "zh": "角色或系统之间的交接"
+        },
+        "types": [
+          "E4",
+          "A5"
+        ],
+        "hint": {
+          "en": "E4 for lightweight hand-offs, often with systems as lanes; A5 when BPMN semantics (pools, message flows, events) are needed.",
+          "zh": "轻量交接（常以系统为泳道）用 E4；需要 BPMN 语义（池、消息流、事件）时用 A5。"
+        }
+      },
+      {
+        "when": {
+          "en": "How sign-in and access decisions happen",
+          "zh": "登录与访问判定如何发生"
+        },
+        "types": [
+          "F1"
+        ]
+      },
+      {
+        "when": {
+          "en": "Where a delivery process waits",
+          "zh": "交付过程在哪里等待"
+        },
+        "types": [
+          "A9"
+        ]
+      }
+    ],
+    "security": [
+      {
+        "when": {
+          "en": "Sign-in, tokens, and where access is decided",
+          "zh": "登录、令牌，以及访问在哪里判定"
+        },
+        "types": [
+          "F1"
+        ]
+      },
+      {
+        "when": {
+          "en": "Threats and trust boundaries",
+          "zh": "威胁与信任边界"
+        },
+        "types": [
+          "F2"
+        ]
+      },
+      {
+        "when": {
+          "en": "Who may do what, in which scope",
+          "zh": "谁在什么范围内能做什么"
+        },
+        "types": [
+          "F3"
+        ]
+      },
+      {
+        "when": {
+          "en": "Network exposure and paths",
+          "zh": "网络暴露面与路径"
+        },
+        "types": [
+          "G3"
+        ]
+      }
+    ],
+    "runtime": [
+      {
+        "when": {
+          "en": "Where the software runs",
+          "zh": "软件运行在哪里"
+        },
+        "types": [
+          "G1"
+        ]
+      },
+      {
+        "when": {
+          "en": "Which cloud services, and their failure boundaries",
+          "zh": "使用哪些云服务及其故障边界"
+        },
+        "types": [
+          "G2"
+        ]
+      },
+      {
+        "when": {
+          "en": "Network segments and paths",
+          "zh": "网络分区与路径"
+        },
+        "types": [
+          "G3"
+        ]
+      },
+      {
+        "when": {
+          "en": "How a change ships to production",
+          "zh": "变更如何发布到生产"
+        },
+        "types": [
+          "G4"
+        ]
+      },
+      {
+        "when": {
+          "en": "How the running system is observed",
+          "zh": "如何观测运行中的系统"
+        },
+        "types": [
+          "H2"
+        ]
+      }
+    ],
+    "operations": [
+      {
+        "when": {
+          "en": "Who is responsible for each activity",
+          "zh": "每项活动由谁负责"
+        },
+        "types": [
+          "H1"
+        ]
+      },
+      {
+        "when": {
+          "en": "Who must be engaged, and how",
+          "zh": "需要与谁沟通、如何沟通"
+        },
+        "types": [
+          "H3"
+        ]
+      },
+      {
+        "when": {
+          "en": "How problems are detected and answered",
+          "zh": "问题如何被发现与响应"
+        },
+        "types": [
+          "H2"
+        ]
+      },
+      {
+        "when": {
+          "en": "Who owns which data",
+          "zh": "哪些数据归谁"
+        },
+        "types": [
+          "D3"
+        ]
+      },
+      {
+        "when": {
+          "en": "Hand-offs in an operating procedure",
+          "zh": "运维流程中的交接"
+        },
+        "types": [
+          "E4"
+        ]
+      },
+      {
+        "when": {
+          "en": "Owners and lifecycle state of applications",
+          "zh": "应用的归属与生命周期状态"
+        },
+        "types": [
+          "C1"
+        ]
+      },
+      {
+        "when": {
+          "en": "Release controls and promotion gates",
+          "zh": "发布控制与晋级关卡"
+        },
+        "types": [
+          "G4"
+        ]
+      }
+    ],
+    "views": [
+      {
+        "when": {
+          "en": "Several views for different readers, kept consistent",
+          "zh": "面向不同读者的多张视图并保持一致"
+        },
+        "types": [
+          "I1"
+        ]
+      },
+      {
+        "when": {
+          "en": "One enterprise view across business, application and technology",
+          "zh": "跨业务、应用、技术的企业视图"
+        },
+        "types": [
+          "I2"
+        ]
+      }
+    ]
+  },
+  "matrix": {
+    "leaders": {
+      "value": [
+        "A1",
+        "A2",
+        "A6",
+        "A7",
+        "A8",
+        "A9",
+        "H3"
+      ],
+      "scope": [
+        "A3",
+        "A6",
+        "B4",
+        "C2"
+      ],
+      "structure": [
+        "A1",
+        "A7",
+        "C1",
+        "C2",
+        "I2"
+      ],
+      "integration": [
+        "C1"
+      ],
+      "data": [],
+      "behaviour": [
+        "A9"
+      ],
+      "security": [],
+      "runtime": [
+        "H2"
+      ],
+      "operations": [
+        "C1",
+        "H1",
+        "H2",
+        "H3"
+      ],
+      "views": [
+        "I2"
+      ]
+    },
+    "business": {
+      "value": [
+        "A1",
+        "A2",
+        "A6",
+        "A7",
+        "A9",
+        "H3"
+      ],
+      "scope": [
+        "A3",
+        "A4",
+        "A5",
+        "A6",
+        "B1",
+        "B2",
+        "C2"
+      ],
+      "structure": [
+        "A1",
+        "A7",
+        "C2",
+        "C7"
+      ],
+      "integration": [
+        "C7"
+      ],
+      "data": [
+        "D1",
+        "D2",
+        "D3"
+      ],
+      "behaviour": [
+        "A5",
+        "A9",
+        "E2",
+        "E4"
+      ],
+      "security": [],
+      "runtime": [],
+      "operations": [
+        "D3",
+        "E4",
+        "H1",
+        "H3"
+      ],
+      "views": []
+    },
+    "product": {
+      "value": [
+        "A6"
+      ],
+      "scope": [
+        "A4",
+        "A5",
+        "A6",
+        "B1",
+        "B2",
+        "B3",
+        "B4"
+      ],
+      "structure": [
+        "C5"
+      ],
+      "integration": [],
+      "data": [],
+      "behaviour": [
+        "A5",
+        "E3"
+      ],
+      "security": [],
+      "runtime": [],
+      "operations": [],
+      "views": []
+    },
+    "architects": {
+      "value": [
+        "A1",
+        "A2",
+        "A7",
+        "A8"
+      ],
+      "scope": [
+        "A3",
+        "B4",
+        "C2"
+      ],
+      "structure": [
+        "A1",
+        "A7",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C7",
+        "C8",
+        "I2"
+      ],
+      "integration": [
+        "C1",
+        "C3",
+        "C6",
+        "C7",
+        "E1"
+      ],
+      "data": [
+        "D1",
+        "D2",
+        "D3",
+        "F2"
+      ],
+      "behaviour": [
+        "E1",
+        "F1"
+      ],
+      "security": [
+        "F1",
+        "F2",
+        "F3",
+        "G3"
+      ],
+      "runtime": [
+        "G1",
+        "G2",
+        "G3"
+      ],
+      "operations": [
+        "C1",
+        "D3"
+      ],
+      "views": [
+        "I1",
+        "I2"
+      ]
+    },
+    "developers": {
+      "value": [],
+      "scope": [
+        "A5",
+        "B1",
+        "B2",
+        "B3",
+        "C2"
+      ],
+      "structure": [
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C7",
+        "C8"
+      ],
+      "integration": [
+        "C3",
+        "C6",
+        "C7",
+        "E1"
+      ],
+      "data": [
+        "D1"
+      ],
+      "behaviour": [
+        "A5",
+        "E1",
+        "E2",
+        "E3",
+        "E4",
+        "F1"
+      ],
+      "security": [
+        "F1",
+        "F3"
+      ],
+      "runtime": [
+        "G4",
+        "H2"
+      ],
+      "operations": [
+        "E4",
+        "G4",
+        "H2"
+      ],
+      "views": []
+    },
+    "operations": {
+      "value": [
+        "A9"
+      ],
+      "scope": [],
+      "structure": [
+        "C3"
+      ],
+      "integration": [
+        "C3",
+        "C6"
+      ],
+      "data": [],
+      "behaviour": [
+        "A9",
+        "E4"
+      ],
+      "security": [
+        "G3"
+      ],
+      "runtime": [
+        "G1",
+        "G2",
+        "G3",
+        "G4",
+        "H2"
+      ],
+      "operations": [
+        "E4",
+        "G4",
+        "H1",
+        "H2"
+      ],
+      "views": []
+    },
+    "security": {
+      "value": [],
+      "scope": [
+        "C2"
+      ],
+      "structure": [
+        "C2",
+        "C3"
+      ],
+      "integration": [
+        "C3"
+      ],
+      "data": [
+        "D2",
+        "D3",
+        "F2"
+      ],
+      "behaviour": [
+        "F1"
+      ],
+      "security": [
+        "F1",
+        "F2",
+        "F3",
+        "G3"
+      ],
+      "runtime": [
+        "G1",
+        "G2",
+        "G3",
+        "G4"
+      ],
+      "operations": [
+        "D3",
+        "G4"
+      ],
+      "views": []
+    }
+  },
+  "phases": {
+    "initiate": [
+      "A1",
+      "A2",
+      "A3",
+      "A6",
+      "A7",
+      "A8",
+      "A9",
+      "B4",
+      "C1",
+      "C2",
+      "H1",
+      "H3",
+      "I2"
+    ],
+    "requirements": [
+      "A3",
+      "A4",
+      "A5",
+      "A6",
+      "B1",
+      "B2",
+      "B3",
+      "B4",
+      "C2",
+      "D2"
+    ],
+    "design": [
+      "A5",
+      "A7",
+      "A8",
+      "C1",
+      "C2",
+      "C3",
+      "C4",
+      "C5",
+      "C6",
+      "C7",
+      "C8",
+      "D1",
+      "D2",
+      "D3",
+      "E1",
+      "E2",
+      "E3",
+      "E4",
+      "F1",
+      "F2",
+      "F3",
+      "G1",
+      "G2",
+      "G3",
+      "I1",
+      "I2"
+    ],
+    "build": [
+      "C3",
+      "C4",
+      "C6",
+      "C8",
+      "D1",
+      "E1",
+      "E2",
+      "E3",
+      "F1",
+      "F3",
+      "G4"
+    ],
+    "operate": [
+      "A9",
+      "D3",
+      "E4",
+      "G1",
+      "G2",
+      "G3",
+      "G4",
+      "H1",
+      "H2"
+    ]
+  },
+  "aliases": [
+    {
+      "text": "4+1 architectural view model",
+      "lang": "en",
+      "code": "I1"
+    },
+    {
+      "text": "ABAC policy model",
+      "lang": "en",
+      "code": "F3"
+    },
+    {
+      "text": "activity diagram",
+      "lang": "en",
+      "code": "E2"
+    },
+    {
+      "text": "API landscape",
+      "lang": "en",
+      "code": "C6"
+    },
+    {
+      "text": "application communication diagram",
+      "lang": "en",
+      "code": "C1"
+    },
+    {
+      "text": "application portfolio view",
+      "lang": "en",
+      "code": "C1"
+    },
+    {
+      "text": "ArchiMate layered viewpoint",
+      "lang": "en",
+      "code": "I2"
+    },
+    {
+      "text": "architecture on a page",
+      "lang": "en",
+      "code": "A7"
+    },
+    {
+      "text": "architecture roadmap",
+      "lang": "en",
+      "code": "A8"
+    },
+    {
+      "text": "as-is to-be roadmap",
+      "lang": "en",
+      "code": "A8"
+    },
+    {
+      "text": "authorization model",
+      "lang": "en",
+      "code": "F3"
+    },
+    {
+      "text": "block diagram",
+      "lang": "en",
+      "code": "A7"
+    },
+    {
+      "text": "BPMN collaboration diagram",
+      "lang": "en",
+      "code": "A5"
+    },
+    {
+      "text": "BPMN diagram",
+      "lang": "en",
+      "code": "A5"
+    },
+    {
+      "text": "BPMN process diagram",
+      "lang": "en",
+      "code": "A5"
+    },
+    {
+      "text": "business capability model",
+      "lang": "en",
+      "code": "A1"
+    },
+    {
+      "text": "business context",
+      "lang": "en",
+      "code": "A3"
+    },
+    {
+      "text": "business environment diagram",
+      "lang": "en",
+      "code": "A3"
+    },
+    {
+      "text": "business scenario map",
+      "lang": "en",
+      "code": "A4"
+    },
+    {
+      "text": "business-application-technology view",
+      "lang": "en",
+      "code": "I2"
+    },
+    {
+      "text": "C4 deployment diagram",
+      "lang": "en",
+      "code": "G1"
+    },
+    {
+      "text": "C4 dynamic diagram",
+      "lang": "en",
+      "code": "E1"
+    },
+    {
+      "text": "capability heat map",
+      "lang": "en",
+      "code": "A1"
+    },
+    {
+      "text": "capability landscape",
+      "lang": "en",
+      "code": "A1"
+    },
+    {
+      "text": "capability map",
+      "lang": "en",
+      "code": "A1"
+    },
+    {
+      "text": "CI/CD pipeline",
+      "lang": "en",
+      "code": "G4"
+    },
+    {
+      "text": "clean architecture",
+      "lang": "en",
+      "code": "C8"
+    },
+    {
+      "text": "cloud architecture diagram",
+      "lang": "en",
+      "code": "G2"
+    },
+    {
+      "text": "cloud solution architecture",
+      "lang": "en",
+      "code": "G2"
+    },
+    {
+      "text": "component view",
+      "lang": "en",
+      "code": "C4"
+    },
+    {
+      "text": "conceptual data model",
+      "lang": "en",
+      "code": "D1"
+    },
+    {
+      "text": "connectivity view",
+      "lang": "en",
+      "code": "G3"
+    },
+    {
+      "text": "container view",
+      "lang": "en",
+      "code": "C3"
+    },
+    {
+      "text": "context map",
+      "lang": "en",
+      "code": "C7"
+    },
+    {
+      "text": "context-level DFD",
+      "lang": "en",
+      "code": "C2"
+    },
+    {
+      "text": "control flow diagram",
+      "lang": "en",
+      "code": "E2"
+    },
+    {
+      "text": "cross-functional flowchart",
+      "lang": "en",
+      "code": "E4"
+    },
+    {
+      "text": "cross-layer enterprise view",
+      "lang": "en",
+      "code": "I2"
+    },
+    {
+      "text": "customer journey map",
+      "lang": "en",
+      "code": "A6"
+    },
+    {
+      "text": "data asset map",
+      "lang": "en",
+      "code": "D3"
+    },
+    {
+      "text": "data flow chart",
+      "lang": "en",
+      "code": "D2"
+    },
+    {
+      "text": "data lineage diagram",
+      "lang": "en",
+      "code": "D3"
+    },
+    {
+      "text": "data model diagram",
+      "lang": "en",
+      "code": "D1"
+    },
+    {
+      "text": "data ownership map",
+      "lang": "en",
+      "code": "D3"
+    },
+    {
+      "text": "DDD context map",
+      "lang": "en",
+      "code": "C7"
+    },
+    {
+      "text": "delegated access flow",
+      "lang": "en",
+      "code": "F1"
+    },
+    {
+      "text": "deployment pipeline",
+      "lang": "en",
+      "code": "G4"
+    },
+    {
+      "text": "deployment view",
+      "lang": "en",
+      "code": "G1"
+    },
+    {
+      "text": "DFD",
+      "lang": "en",
+      "code": "D2"
+    },
+    {
+      "text": "ER diagram",
+      "lang": "en",
+      "code": "D1"
+    },
+    {
+      "text": "ERD",
+      "lang": "en",
+      "code": "D1"
+    },
+    {
+      "text": "feature breakdown",
+      "lang": "en",
+      "code": "B3"
+    },
+    {
+      "text": "functional decomposition",
+      "lang": "en",
+      "code": "B3"
+    },
+    {
+      "text": "GitOps flow",
+      "lang": "en",
+      "code": "G4"
+    },
+    {
+      "text": "hexagonal architecture",
+      "lang": "en",
+      "code": "C8"
+    },
+    {
+      "text": "high-level architecture",
+      "lang": "en",
+      "code": "A7"
+    },
+    {
+      "text": "high-level technical architecture diagram",
+      "lang": "en",
+      "code": "C3"
+    },
+    {
+      "text": "identity flow",
+      "lang": "en",
+      "code": "F1"
+    },
+    {
+      "text": "in-scope out-of-scope diagram",
+      "lang": "en",
+      "code": "B4"
+    },
+    {
+      "text": "integration architecture",
+      "lang": "en",
+      "code": "C6"
+    },
+    {
+      "text": "integration diagram",
+      "lang": "en",
+      "code": "C6"
+    },
+    {
+      "text": "interface catalog",
+      "lang": "en",
+      "code": "C6"
+    },
+    {
+      "text": "interface map",
+      "lang": "en",
+      "code": "C6"
+    },
+    {
+      "text": "internal structure diagram",
+      "lang": "en",
+      "code": "C4"
+    },
+    {
+      "text": "IT landscape",
+      "lang": "en",
+      "code": "C1"
+    },
+    {
+      "text": "Kruchten 4+1",
+      "lang": "en",
+      "code": "I1"
+    },
+    {
+      "text": "layer diagram",
+      "lang": "en",
+      "code": "C8"
+    },
+    {
+      "text": "lean value stream mapping",
+      "lang": "en",
+      "code": "A9"
+    },
+    {
+      "text": "level 0 DFD",
+      "lang": "en",
+      "code": "C2"
+    },
+    {
+      "text": "lineage graph",
+      "lang": "en",
+      "code": "D3"
+    },
+    {
+      "text": "logical building-block view",
+      "lang": "en",
+      "code": "C5"
+    },
+    {
+      "text": "logical data model",
+      "lang": "en",
+      "code": "D1"
+    },
+    {
+      "text": "logical network diagram",
+      "lang": "en",
+      "code": "G3"
+    },
+    {
+      "text": "logical view",
+      "lang": "en",
+      "code": "C5"
+    },
+    {
+      "text": "material and information flow diagram",
+      "lang": "en",
+      "code": "A9"
+    },
+    {
+      "text": "message sequence chart",
+      "lang": "en",
+      "code": "E1"
+    },
+    {
+      "text": "migration roadmap",
+      "lang": "en",
+      "code": "A8"
+    },
+    {
+      "text": "monitoring architecture diagram",
+      "lang": "en",
+      "code": "H2"
+    },
+    {
+      "text": "n-layer architecture",
+      "lang": "en",
+      "code": "C8"
+    },
+    {
+      "text": "network diagram",
+      "lang": "en",
+      "code": "G3"
+    },
+    {
+      "text": "network topology diagram",
+      "lang": "en",
+      "code": "G3"
+    },
+    {
+      "text": "OAuth flow",
+      "lang": "en",
+      "code": "F1"
+    },
+    {
+      "text": "observability architecture diagram",
+      "lang": "en",
+      "code": "H2"
+    },
+    {
+      "text": "OIDC flow",
+      "lang": "en",
+      "code": "F1"
+    },
+    {
+      "text": "onion architecture",
+      "lang": "en",
+      "code": "C8"
+    },
+    {
+      "text": "permission model",
+      "lang": "en",
+      "code": "F3"
+    },
+    {
+      "text": "plateau diagram",
+      "lang": "en",
+      "code": "A8"
+    },
+    {
+      "text": "power-interest grid",
+      "lang": "en",
+      "code": "H3"
+    },
+    {
+      "text": "process map",
+      "lang": "en",
+      "code": "A5"
+    },
+    {
+      "text": "program flowchart",
+      "lang": "en",
+      "code": "E2"
+    },
+    {
+      "text": "provider infrastructure view",
+      "lang": "en",
+      "code": "G2"
+    },
+    {
+      "text": "RACI chart",
+      "lang": "en",
+      "code": "H1"
+    },
+    {
+      "text": "RASCI matrix",
+      "lang": "en",
+      "code": "H1"
+    },
+    {
+      "text": "RBAC model",
+      "lang": "en",
+      "code": "F3"
+    },
+    {
+      "text": "ReBAC graph",
+      "lang": "en",
+      "code": "F3"
+    },
+    {
+      "text": "release pipeline",
+      "lang": "en",
+      "code": "G4"
+    },
+    {
+      "text": "requirements breakdown structure",
+      "lang": "en",
+      "code": "B3"
+    },
+    {
+      "text": "responsibility assignment matrix",
+      "lang": "en",
+      "code": "H1"
+    },
+    {
+      "text": "role-activity matrix",
+      "lang": "en",
+      "code": "A4"
+    },
+    {
+      "text": "role-permission matrix",
+      "lang": "en",
+      "code": "F3"
+    },
+    {
+      "text": "Rummler-Brache diagram",
+      "lang": "en",
+      "code": "E4"
+    },
+    {
+      "text": "runtime building-block view",
+      "lang": "en",
+      "code": "C3"
+    },
+    {
+      "text": "runtime view",
+      "lang": "en",
+      "code": "E1"
+    },
+    {
+      "text": "scenario coverage matrix",
+      "lang": "en",
+      "code": "A4"
+    },
+    {
+      "text": "scope and context diagram",
+      "lang": "en",
+      "code": "B4"
+    },
+    {
+      "text": "security data-flow diagram",
+      "lang": "en",
+      "code": "F2"
+    },
+    {
+      "text": "sign-in flow",
+      "lang": "en",
+      "code": "F1"
+    },
+    {
+      "text": "software delivery pipeline",
+      "lang": "en",
+      "code": "G4"
+    },
+    {
+      "text": "software-to-infrastructure mapping",
+      "lang": "en",
+      "code": "G1"
+    },
+    {
+      "text": "solution concept diagram",
+      "lang": "en",
+      "code": "A7"
+    },
+    {
+      "text": "solution overview",
+      "lang": "en",
+      "code": "A7"
+    },
+    {
+      "text": "SSO flow",
+      "lang": "en",
+      "code": "F1"
+    },
+    {
+      "text": "stakeholder grid",
+      "lang": "en",
+      "code": "H3"
+    },
+    {
+      "text": "stakeholder matrix",
+      "lang": "en",
+      "code": "H3"
+    },
+    {
+      "text": "state diagram",
+      "lang": "en",
+      "code": "E3"
+    },
+    {
+      "text": "state transition diagram",
+      "lang": "en",
+      "code": "E3"
+    },
+    {
+      "text": "statechart",
+      "lang": "en",
+      "code": "E3"
+    },
+    {
+      "text": "story map",
+      "lang": "en",
+      "code": "B2"
+    },
+    {
+      "text": "story mapping",
+      "lang": "en",
+      "code": "B2"
+    },
+    {
+      "text": "strategic design map",
+      "lang": "en",
+      "code": "C7"
+    },
+    {
+      "text": "swimlane flowchart",
+      "lang": "en",
+      "code": "E4"
+    },
+    {
+      "text": "system context diagram",
+      "lang": "en",
+      "code": "C2"
+    },
+    {
+      "text": "system environment diagram",
+      "lang": "en",
+      "code": "C2"
+    },
+    {
+      "text": "system landscape diagram",
+      "lang": "en",
+      "code": "C1"
+    },
+    {
+      "text": "technology-neutral component diagram",
+      "lang": "en",
+      "code": "C5"
+    },
+    {
+      "text": "telemetry pipeline diagram",
+      "lang": "en",
+      "code": "H2"
+    },
+    {
+      "text": "threat-model DFD",
+      "lang": "en",
+      "code": "F2"
+    },
+    {
+      "text": "transition architecture",
+      "lang": "en",
+      "code": "A8"
+    },
+    {
+      "text": "trust boundary diagram",
+      "lang": "en",
+      "code": "F2"
+    },
+    {
+      "text": "UML activity diagram",
+      "lang": "en",
+      "code": "E2"
+    },
+    {
+      "text": "UML sequence diagram",
+      "lang": "en",
+      "code": "E1"
+    },
+    {
+      "text": "UML use case diagram",
+      "lang": "en",
+      "code": "B1"
+    },
+    {
+      "text": "user journey map",
+      "lang": "en",
+      "code": "A6"
+    },
+    {
+      "text": "UX journey map",
+      "lang": "en",
+      "code": "A6"
+    },
+    {
+      "text": "value stream capability cross-map",
+      "lang": "en",
+      "code": "A2"
+    },
+    {
+      "text": "value stream diagram",
+      "lang": "en",
+      "code": "A2"
+    },
+    {
+      "text": "value stream stages",
+      "lang": "en",
+      "code": "A2"
+    },
+    {
+      "text": "VPC topology",
+      "lang": "en",
+      "code": "G3"
+    },
+    {
+      "text": "VSM",
+      "lang": "en",
+      "code": "A9"
+    },
+    {
+      "text": "white-box view of a container",
+      "lang": "en",
+      "code": "C4"
+    },
+    {
+      "text": "0 层数据流图",
+      "lang": "zh",
+      "code": "C2"
+    },
+    {
+      "text": "4+1 架构视图模型",
+      "lang": "zh",
+      "code": "I1"
+    },
+    {
+      "text": "ArchiMate 分层视点",
+      "lang": "zh",
+      "code": "I2"
+    },
+    {
+      "text": "BPMN 协作图",
+      "lang": "zh",
+      "code": "A5"
+    },
+    {
+      "text": "BPMN 流程图",
+      "lang": "zh",
+      "code": "A5"
+    },
+    {
+      "text": "C4 第二层",
+      "lang": "zh",
+      "code": "C3"
+    },
+    {
+      "text": "CI/CD 流水线图",
+      "lang": "zh",
+      "code": "G4"
+    },
+    {
+      "text": "DDD 战略设计图",
+      "lang": "zh",
+      "code": "C7"
+    },
+    {
+      "text": "ER 图",
+      "lang": "zh",
+      "code": "D1"
+    },
+    {
+      "text": "RACI 职责分配矩阵",
+      "lang": "zh",
+      "code": "H1"
+    },
+    {
+      "text": "UML 活动图",
+      "lang": "zh",
+      "code": "E2"
+    },
+    {
+      "text": "UML 用例图",
+      "lang": "zh",
+      "code": "B1"
+    },
+    {
+      "text": "一页纸架构",
+      "lang": "zh",
+      "code": "A7"
+    },
+    {
+      "text": "上下文映射图",
+      "lang": "zh",
+      "code": "C7"
+    },
+    {
+      "text": "业务-应用-技术视图",
+      "lang": "zh",
+      "code": "I2"
+    },
+    {
+      "text": "业务场景地图",
+      "lang": "zh",
+      "code": "A4"
+    },
+    {
+      "text": "业务流程建模图",
+      "lang": "zh",
+      "code": "A5"
+    },
+    {
+      "text": "业务环境图",
+      "lang": "zh",
+      "code": "A3"
+    },
+    {
+      "text": "业务背景图",
+      "lang": "zh",
+      "code": "A3"
+    },
+    {
+      "text": "业务能力模型",
+      "lang": "zh",
+      "code": "A1"
+    },
+    {
+      "text": "云服务架构图",
+      "lang": "zh",
+      "code": "G2"
+    },
+    {
+      "text": "云架构图",
+      "lang": "zh",
+      "code": "G2"
+    },
+    {
+      "text": "云解决方案架构图",
+      "lang": "zh",
+      "code": "G2"
+    },
+    {
+      "text": "交互时序图",
+      "lang": "zh",
+      "code": "E1"
+    },
+    {
+      "text": "交付流水线",
+      "lang": "zh",
+      "code": "G4"
+    },
+    {
+      "text": "价值流能力映射",
+      "lang": "zh",
+      "code": "A2"
+    },
+    {
+      "text": "价值流阶段图",
+      "lang": "zh",
+      "code": "A2"
+    },
+    {
+      "text": "体验旅程图",
+      "lang": "zh",
+      "code": "A6"
+    },
+    {
+      "text": "信任边界图",
+      "lang": "zh",
+      "code": "F2"
+    },
+    {
+      "text": "克鲁岑 4+1 视图模型",
+      "lang": "zh",
+      "code": "I1"
+    },
+    {
+      "text": "六边形架构",
+      "lang": "zh",
+      "code": "C8"
+    },
+    {
+      "text": "内部结构图",
+      "lang": "zh",
+      "code": "C4"
+    },
+    {
+      "text": "利益相关者矩阵",
+      "lang": "zh",
+      "code": "H3"
+    },
+    {
+      "text": "功能分解图",
+      "lang": "zh",
+      "code": "B3"
+    },
+    {
+      "text": "发布流水线",
+      "lang": "zh",
+      "code": "G4"
+    },
+    {
+      "text": "可观测性架构图",
+      "lang": "zh",
+      "code": "H2"
+    },
+    {
+      "text": "场景覆盖矩阵",
+      "lang": "zh",
+      "code": "A4"
+    },
+    {
+      "text": "委托访问流程图",
+      "lang": "zh",
+      "code": "F1"
+    },
+    {
+      "text": "威胁建模数据流图",
+      "lang": "zh",
+      "code": "F2"
+    },
+    {
+      "text": "安全数据流图",
+      "lang": "zh",
+      "code": "F2"
+    },
+    {
+      "text": "客户旅程图",
+      "lang": "zh",
+      "code": "A6"
+    },
+    {
+      "text": "容器内部结构图",
+      "lang": "zh",
+      "code": "C4"
+    },
+    {
+      "text": "容器视图",
+      "lang": "zh",
+      "code": "C3"
+    },
+    {
+      "text": "层次结构图",
+      "lang": "zh",
+      "code": "C8"
+    },
+    {
+      "text": "干系人图",
+      "lang": "zh",
+      "code": "H3"
+    },
+    {
+      "text": "序列图",
+      "lang": "zh",
+      "code": "E1"
+    },
+    {
+      "text": "应用地图",
+      "lang": "zh",
+      "code": "C1"
+    },
+    {
+      "text": "应用组合图",
+      "lang": "zh",
+      "code": "C1"
+    },
+    {
+      "text": "技术分层图",
+      "lang": "zh",
+      "code": "C8"
+    },
+    {
+      "text": "授权模型",
+      "lang": "zh",
+      "code": "F3"
+    },
+    {
+      "text": "接口关系图",
+      "lang": "zh",
+      "code": "C6"
+    },
+    {
+      "text": "接口清单",
+      "lang": "zh",
+      "code": "C6"
+    },
+    {
+      "text": "控制流图",
+      "lang": "zh",
+      "code": "E2"
+    },
+    {
+      "text": "故事地图",
+      "lang": "zh",
+      "code": "B2"
+    },
+    {
+      "text": "数据归属图",
+      "lang": "zh",
+      "code": "D3"
+    },
+    {
+      "text": "数据模型图",
+      "lang": "zh",
+      "code": "D1"
+    },
+    {
+      "text": "数据流向图",
+      "lang": "zh",
+      "code": "D2"
+    },
+    {
+      "text": "数据流程图",
+      "lang": "zh",
+      "code": "D2"
+    },
+    {
+      "text": "数据血缘图",
+      "lang": "zh",
+      "code": "D3"
+    },
+    {
+      "text": "数据资产地图",
+      "lang": "zh",
+      "code": "D3"
+    },
+    {
+      "text": "整洁架构",
+      "lang": "zh",
+      "code": "C8"
+    },
+    {
+      "text": "方案总览",
+      "lang": "zh",
+      "code": "A7"
+    },
+    {
+      "text": "方案构想图",
+      "lang": "zh",
+      "code": "A7"
+    },
+    {
+      "text": "方案概览图",
+      "lang": "zh",
+      "code": "A7"
+    },
+    {
+      "text": "权力利益矩阵",
+      "lang": "zh",
+      "code": "H3"
+    },
+    {
+      "text": "权限模型",
+      "lang": "zh",
+      "code": "F3"
+    },
+    {
+      "text": "架构路线图",
+      "lang": "zh",
+      "code": "A8"
+    },
+    {
+      "text": "概念数据模型",
+      "lang": "zh",
+      "code": "D1"
+    },
+    {
+      "text": "泳道流程图",
+      "lang": "zh",
+      "code": "E4"
+    },
+    {
+      "text": "洋葱架构",
+      "lang": "zh",
+      "code": "C8"
+    },
+    {
+      "text": "活动图",
+      "lang": "zh",
+      "code": "E2"
+    },
+    {
+      "text": "演进路线图",
+      "lang": "zh",
+      "code": "A8"
+    },
+    {
+      "text": "物料与信息流图",
+      "lang": "zh",
+      "code": "A9"
+    },
+    {
+      "text": "特性树",
+      "lang": "zh",
+      "code": "B3"
+    },
+    {
+      "text": "状态图",
+      "lang": "zh",
+      "code": "E3"
+    },
+    {
+      "text": "状态转换图",
+      "lang": "zh",
+      "code": "E3"
+    },
+    {
+      "text": "状态迁移图",
+      "lang": "zh",
+      "code": "E3"
+    },
+    {
+      "text": "监控架构图",
+      "lang": "zh",
+      "code": "H2"
+    },
+    {
+      "text": "程序流程图",
+      "lang": "zh",
+      "code": "E2"
+    },
+    {
+      "text": "精益价值流映射",
+      "lang": "zh",
+      "code": "A9"
+    },
+    {
+      "text": "系统上下文图",
+      "lang": "zh",
+      "code": "C2"
+    },
+    {
+      "text": "系统全景图",
+      "lang": "zh",
+      "code": "C1"
+    },
+    {
+      "text": "系统环境图",
+      "lang": "zh",
+      "code": "C2"
+    },
+    {
+      "text": "系统集成图",
+      "lang": "zh",
+      "code": "C6"
+    },
+    {
+      "text": "组件视图",
+      "lang": "zh",
+      "code": "C4"
+    },
+    {
+      "text": "统一登录流程图",
+      "lang": "zh",
+      "code": "F1"
+    },
+    {
+      "text": "网络拓扑图",
+      "lang": "zh",
+      "code": "G3"
+    },
+    {
+      "text": "网络架构图",
+      "lang": "zh",
+      "code": "G3"
+    },
+    {
+      "text": "网络连通图",
+      "lang": "zh",
+      "code": "G3"
+    },
+    {
+      "text": "能力地图",
+      "lang": "zh",
+      "code": "A1"
+    },
+    {
+      "text": "能力热力图",
+      "lang": "zh",
+      "code": "A1"
+    },
+    {
+      "text": "范围上下文图",
+      "lang": "zh",
+      "code": "B4"
+    },
+    {
+      "text": "范围边界图",
+      "lang": "zh",
+      "code": "B4"
+    },
+    {
+      "text": "角色权限矩阵",
+      "lang": "zh",
+      "code": "F3"
+    },
+    {
+      "text": "责任分配矩阵",
+      "lang": "zh",
+      "code": "H1"
+    },
+    {
+      "text": "跨层企业架构视图",
+      "lang": "zh",
+      "code": "I2"
+    },
+    {
+      "text": "跨职能流程图",
+      "lang": "zh",
+      "code": "E4"
+    },
+    {
+      "text": "身份认证流程图",
+      "lang": "zh",
+      "code": "F1"
+    },
+    {
+      "text": "迁移路线图",
+      "lang": "zh",
+      "code": "A8"
+    },
+    {
+      "text": "过渡架构",
+      "lang": "zh",
+      "code": "A8"
+    },
+    {
+      "text": "运行单元图",
+      "lang": "zh",
+      "code": "C3"
+    },
+    {
+      "text": "运行时视图",
+      "lang": "zh",
+      "code": "E1"
+    },
+    {
+      "text": "逻辑数据模型",
+      "lang": "zh",
+      "code": "D1"
+    },
+    {
+      "text": "逻辑构件视图",
+      "lang": "zh",
+      "code": "C5"
+    },
+    {
+      "text": "逻辑网络图",
+      "lang": "zh",
+      "code": "G3"
+    },
+    {
+      "text": "逻辑视图",
+      "lang": "zh",
+      "code": "C5"
+    },
+    {
+      "text": "遥测流水线图",
+      "lang": "zh",
+      "code": "H2"
+    },
+    {
+      "text": "部署架构图",
+      "lang": "zh",
+      "code": "G1"
+    },
+    {
+      "text": "部署流水线图",
+      "lang": "zh",
+      "code": "G4"
+    },
+    {
+      "text": "部署视图",
+      "lang": "zh",
+      "code": "G1"
+    },
+    {
+      "text": "集成架构图",
+      "lang": "zh",
+      "code": "C6"
+    },
+    {
+      "text": "需求分解结构",
+      "lang": "zh",
+      "code": "B3"
+    },
+    {
+      "text": "需求树",
+      "lang": "zh",
+      "code": "B3"
+    },
+    {
+      "text": "顾客旅程地图",
+      "lang": "zh",
+      "code": "A6"
+    },
+    {
+      "text": "领域上下文图",
+      "lang": "zh",
+      "code": "C7"
+    },
+    {
+      "text": "高层架构图",
+      "lang": "zh",
+      "code": "A7"
+    }
+  ],
+  "terms": [
+    {
+      "en": "system architecture diagram",
+      "zh": "系统架构图",
+      "types": [
+        "C3",
+        "A7",
+        "G1"
+      ],
+      "note": {
+        "en": "Usually the container view (C3); for leaders the conceptual overview (A7); sometimes the deployment view (G1). Ask which.",
+        "zh": "多数指容器图（C3）；给领导时指概念架构（A7）；有时指部署图（G1）。先问清楚。"
+      }
+    },
+    {
+      "en": "technical architecture diagram",
+      "zh": "技术架构图",
+      "types": [
+        "C3",
+        "G1",
+        "G2"
+      ],
+      "note": {
+        "en": "Containers with technology labels (C3), or the infrastructure views (G1, G2).",
+        "zh": "带技术选型的容器图（C3），或基础设施视图（G1、G2）。"
+      }
+    },
+    {
+      "en": "application architecture diagram",
+      "zh": "应用架构图",
+      "types": [
+        "C1",
+        "C3"
+      ],
+      "note": {
+        "en": "Portfolio of many applications (C1) or the inside of one application (C3).",
+        "zh": "企业级指多应用全景（C1）；单系统级指容器图（C3）。"
+      }
+    },
+    {
+      "en": "business architecture diagram",
+      "zh": "业务架构图",
+      "types": [
+        "A1",
+        "A2",
+        "A5"
+      ],
+      "note": {
+        "en": "A family, not one diagram: capabilities (A1), value streams (A2), processes (A5).",
+        "zh": "是一类图而不是一张图：能力（A1）、价值流（A2）、流程（A5）。"
+      }
+    },
+    {
+      "en": "context diagram",
+      "zh": "上下文图",
+      "types": [
+        "C2",
+        "A3",
+        "B4"
+      ],
+      "note": {
+        "en": "Software system and its neighbours (C2); business exchanges (A3); in/out of scope (B4).",
+        "zh": "软件系统与外部（C2）；业务往来（A3）；范围内外（B4）。"
+      }
+    },
+    {
+      "en": "flowchart",
+      "zh": "流程图",
+      "types": [
+        "E2",
+        "A5",
+        "E4"
+      ],
+      "note": {
+        "en": "Logic of one procedure (E2); business process with BPMN semantics (A5); hand-offs between roles or systems (E4).",
+        "zh": "一段处理逻辑（E2）；有 BPMN 语义的业务流程（A5）；角色 / 系统间交接（E4）。"
+      }
+    },
+    {
+      "en": "swimlane diagram",
+      "zh": "泳道图",
+      "types": [
+        "E4",
+        "A5"
+      ],
+      "note": {
+        "en": "Lightweight hand-offs (E4) or BPMN pools and lanes with message flows (A5).",
+        "zh": "轻量交接（E4），或 BPMN 的池 / 道与消息流（A5）。"
+      }
+    },
+    {
+      "en": "physical architecture diagram",
+      "zh": "物理架构图",
+      "types": [
+        "G1",
+        "G3"
+      ],
+      "note": {
+        "en": "Software placed on infrastructure (G1) or the network (G3). State which.",
+        "zh": "软件部署到基础设施（G1）或网络（G3），需说明是哪种。"
+      }
+    },
+    {
+      "en": "module diagram",
+      "zh": "模块图",
+      "types": [
+        "C4",
+        "C5",
+        "C8"
+      ],
+      "note": {
+        "en": "Components inside one container (C4), technology-neutral responsibilities (C5) or code layers (C8).",
+        "zh": "单个容器内部组件（C4）、与技术无关的职责模块（C5）或代码分层（C8）。"
+      }
+    },
+    {
+      "en": "functional architecture diagram",
+      "zh": "功能架构图",
+      "types": [
+        "C5",
+        "B3"
+      ],
+      "note": {
+        "en": "Logical responsibilities (C5); a function tree in the systems-engineering sense (B3).",
+        "zh": "逻辑职责划分（C5）；系统工程意义上的功能分解（B3）。"
+      }
+    },
+    {
+      "en": "value stream map",
+      "zh": "价值流图",
+      "types": [
+        "A2",
+        "A9"
+      ],
+      "note": {
+        "en": "Business-architecture value stream without times (A2) or Lean value-stream map with process and lead times (A9).",
+        "zh": "业务架构价值流，不含时间（A2）；或含处理 / 提前期的精益价值流图（A9）。"
+      }
+    },
+    {
+      "en": "reference architecture",
+      "zh": "参考架构",
+      "types": [
+        "G2",
+        "A7",
+        "C3"
+      ],
+      "note": {
+        "en": "A reuse status (reference, proposed, implemented, observed), not a diagram type. Pick the view, then state the status.",
+        "zh": "是一种状态（参考 / 方案 / 已实现 / 实测），不是图的类型。先选视图，再标明状态。"
+      }
+    },
+    {
+      "en": "interaction diagram",
+      "zh": "交互图",
+      "types": [
+        "E1"
+      ],
+      "note": {
+        "en": "In UML the family name for sequence, communication, timing and interaction-overview diagrams; the sequence diagram is the usual pick.",
+        "zh": "UML 中是时序图、通信图、时间图、交互概览图的统称；通常选时序图。"
+      }
+    },
+    {
+      "en": "layered diagram",
+      "zh": "分层图",
+      "types": [
+        "C8",
+        "A7",
+        "I2"
+      ],
+      "note": {
+        "en": "Code layers with a dependency rule (C8), conceptual bands (A7) or ArchiMate business/application/technology layers (I2).",
+        "zh": "带依赖规则的代码分层（C8）、概念分层（A7）或 ArchiMate 业务 / 应用 / 技术分层（I2）。"
+      }
+    },
+    {
+      "en": "data map",
+      "zh": "数据地图",
+      "types": [
+        "D3",
+        "D2"
+      ],
+      "note": {
+        "en": "Where data comes from and who owns it (D3), or how it moves between processes (D2).",
+        "zh": "数据来源与归属（D3），或数据在加工之间如何流动（D2）。"
+      }
+    }
+  ]
+}
