@@ -32,7 +32,7 @@ Use when the user wants diagrams of an existing codebase, or the diagrams they n
 
 **9. Build the model.** Elements (person, system, container, component, store, queue, external) and relations (from, to, label, protocol, sync or async). Each row has evidence and a status. Resolve conflicts between docs and code here, and list them.
 
-**10. Render views.** Choose types from the map below; apply `principles.md`; every figure carries a legend line for evidence status.
+**10. Render views.** Choose types from the map below; apply `principles.md`; every figure carries a legend line for evidence status. In the model, copy each claim's status into `evidence.status` on the matching node or edge (with `refs` to the file and lines); every claim that is not `verified` must carry its status so it renders dashed or marked. Check the rendered figure: if an inferred edge is solid, the model is wrong. Offer the standard companion view when the question needs two (for example access rules with trust boundaries).
 
 **11. Self-check.** For each arrow, can you point to the file? For each box, does it appear in some start or deploy artefact (a directory alone is not a runtime unit)? Compare with the repository's own diagrams in both directions and report gaps.
 

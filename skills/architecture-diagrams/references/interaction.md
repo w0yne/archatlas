@@ -8,7 +8,7 @@ Read this in Step 0–3 of `SKILL.md`, and whenever you are unsure whether to as
 |---|---|---|
 | Brief | Infer from the request. Put assumptions at the top of the reply. | Ask the missing fields one question at a time. Each question carries a recommended default ("I suggest X because Y — OK?"). |
 | Type choice | Pick the best fit, name one runner-up. | Ask the "First questions" of `selection.md` §1 (audience and purpose → question → scope → current or target), skipping any already answered, then recommend one or two types. |
-| Wireframe | Show it, then continue. | Show it, wait for approval, then render. |
+| Wireframe | Print it in the reply, then render in the same turn. | Print it and stop; render only after explicit approval. |
 | Questions | Only when a wrong guess would change the meaning (see §3). | Also confirm inferred items (repository mode) and names. |
 | Ambiguous quality words | Restate as a concrete property and carry on as an assumption. | Ask which concrete property is meant. |
 | Revisions | Apply feedback, list what changed. | Same, and re-show the decision log. |
@@ -49,13 +49,17 @@ scope:        whole system | one subsystem | one scenario; what is explicitly ou
 language:     labels and text language(s)
 format:       svg (default); other formats only through references/formats.md
 constraints:  required names, existing diagrams to keep, size, delivery place
+revision:     for a fix-up, the label languages found in the source (kept unless the user asks otherwise)
 assumptions:  everything inferred rather than stated
 ```
 Keep it to one paragraph in the reply. Update it when the user corrects something.
 
 ## 5. Question bank (ask only the relevant ones, in this order)
 
-Each question comes with a recommendation. One at a time in guided mode.
+Each question comes with a recommendation. In guided mode, follow this checklist for every question:
+1. Ask exactly one question per message, with its recommended default.
+2. Stop and wait for the answer; do not add a second question, a draft or a render to that message.
+3. Record the answer in the decision log, then ask the next question or show the wireframe.
 **Budget:** skip anything the request, the chosen type or an earlier answer already settles. Ask the type-specific questions first, then the generic ones below; at most five questions before the wireframe. Fold the rest into the wireframe as stated defaults the user can correct.
 1. **Audience and purpose** — business, technical, mixed? Review draft or final handout?
 2. **Current or target state?** — or both as two figures.
