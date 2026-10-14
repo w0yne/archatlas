@@ -1013,7 +1013,7 @@
     },
     {
       "code": "E4",
-      "slug": "swimlane-flowchart",
+      "slug": "swimlane-cross-functional",
       "family": "E",
       "names": {
         "en": "Swimlane or cross-functional flowchart",
@@ -1041,11 +1041,11 @@
       ],
       "scope": "system",
       "research": "done",
-      "page": "e4-swimlane-flowchart"
+      "page": "e4-swimlane-cross-functional"
     },
     {
       "code": "F1",
-      "slug": "auth-flow",
+      "slug": "authentication-authorization-flow",
       "family": "F",
       "names": {
         "en": "Authentication and authorization flow",
@@ -1073,11 +1073,11 @@
       ],
       "scope": "system",
       "research": "done",
-      "page": "f1-auth-flow"
+      "page": "f1-authentication-authorization-flow"
     },
     {
       "code": "F2",
-      "slug": "threat-model-dfd",
+      "slug": "threat-model-data-flow",
       "family": "F",
       "names": {
         "en": "Threat-model data-flow diagram with trust boundaries",
@@ -1103,7 +1103,7 @@
       ],
       "scope": "system",
       "research": "done",
-      "page": "f2-threat-model-dfd"
+      "page": "f2-threat-model-data-flow"
     },
     {
       "code": "F3",
@@ -1169,7 +1169,7 @@
     },
     {
       "code": "G2",
-      "slug": "cloud-infrastructure",
+      "slug": "cloud-infrastructure-architecture",
       "family": "G",
       "names": {
         "en": "Cloud infrastructure architecture",
@@ -1196,7 +1196,7 @@
       ],
       "scope": "system",
       "research": "done",
-      "page": "g2-cloud-infrastructure"
+      "page": "g2-cloud-infrastructure-architecture"
     },
     {
       "code": "G3",

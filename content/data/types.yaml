@@ -834,7 +834,7 @@ types:
     - {kind: fact, note: "Added Harel 1987 origin, behavioural vs protocol machines, orthogonal regions, history and the transition label 'event [guard] / effect'."}
 
 - code: E4
-  slug: swimlane-flowchart
+  slug: swimlane-cross-functional
   family: E
   names: {en: Swimlane or cross-functional flowchart, zh: 泳道流程图（跨职能流程图）}
   aliases:
@@ -860,7 +860,7 @@ types:
 
 # ---------------------------------------------------------------- F security
 - code: F1
-  slug: auth-flow
+  slug: authentication-authorization-flow
   family: F
   names: {en: Authentication and authorization flow, zh: 认证与授权流程图}
   aliases:
@@ -887,7 +887,7 @@ types:
     - {kind: scope, note: "No longer tied to OIDC authorization code + PKCE; covers sign-in, delegated and machine-only flows. Token lifetime and refresh are conditional."}
 
 - code: F2
-  slug: threat-model-dfd
+  slug: threat-model-data-flow
   family: F
   names: {en: Threat-model data-flow diagram with trust boundaries, zh: 威胁建模数据流图（含信任边界）}
   aliases:
@@ -967,7 +967,7 @@ types:
     - {kind: fact, note: "'Runtime view' is not an alias (that is arc42 section 6, i.e. E1). Replica counts and DR are concern-dependent, not mandatory."}
 
 - code: G2
-  slug: cloud-infrastructure
+  slug: cloud-infrastructure-architecture
   family: G
   names: {en: Cloud infrastructure architecture, zh: 云基础设施架构图}
   aliases:
