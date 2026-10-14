@@ -2,7 +2,7 @@
 title: 如何选择架构图
 description: 按读者和图要回答的问题，选出合适的架构图类型。
 translationOf: en/choose.md
-sourceRev: bca58c9299c22a5a05f98bf81e38393e6e1d1713
+sourceRev: e7caaf8e9d3cc7ae17ab7d38a0e31d2458b5c8b0
 reviewed: true
 ---
 
@@ -114,6 +114,8 @@ reviewed: true
 ## 读者 × 问题
 
 同一个问题，读者不同，需要的图也不同。格子包含经过编排的首选和目录匹配，是建议而不是必填清单。在小屏幕上可使用下面的分读者列表。
+
+开发者需要把多个视图组织成一份说明时，也可以选择 [I1 4+1 视图模型](/zh/types/i1-four-plus-one)；它组织已有视图，不替代 C2/C3 等单张图。
 
 <!-- BEGIN GENERATED: matrix -->
 | 问题 | 领导与发起人 | 业务负责人与业务分析 | 产品与设计 | 架构师 | 开发与测试 | 运维与 SRE | 安全与合规 |
@@ -294,7 +296,7 @@ reviewed: true
 - *技术栈图（tech stack diagram）* → [C3 容器图（C4 模型第 2 层）](/zh/types/c3-container-diagram)、[G2 云基础设施架构图](/zh/types/g2-cloud-infrastructure-architecture)。把技术对应到运行职责或云服务，而不是堆放标志。
 <!-- END GENERATED: terms -->
 
-下面这些叫法只对应一种类型：
+下面这些叫法在当前目录中对应一种类型。中英索引按各语言的常用叫法编排，不逐词互译；扩充检索别名不意味着不同表示法可以互换。遇到歧义时，请先核对类型页的含义和范围：
 
 <!-- BEGIN GENERATED: aliases -->
 - 0 层图 → [D2 数据流图（DFD）](/zh/types/d2-data-flow-diagram)

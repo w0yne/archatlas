@@ -46,4 +46,10 @@ for (const [query, code] of [['context diagram','c2'],['permission matrix','f3']
  const results = index.search(query);
  if (!results.some(result => result.id.endsWith('#type-' + code))) throw new Error('Catalogue alias not discoverable: ' + query);
 }
+const legalText = readFileSync(join(root,'THIRD_PARTY_LICENSES.txt'),'utf8');
+const legalManifest = JSON.parse(readFileSync(join(root,'third-party-manifest.json'),'utf8'));
+for (const entry of legalManifest) if (!legalText.includes(entry.name) || !legalText.includes(entry.version)) throw new Error('Missing distributed notice: '+entry.name);
+for (const file of ['LICENSE.txt','NOTICE.txt','THIRD_PARTY_NOTICES.txt','evaluation-report.txt']) if (!readFileSync(join(root,file),'utf8').trim()) throw new Error('Empty distribution file: '+file);
+if (!legalText.includes('Permission is hereby granted') || !legalText.includes('Lucide Contributors') || !legalText.includes('Cole Bemis')) throw new Error('Incomplete licence texts');
+console.log('Distributed notices: '+legalManifest.length+' entries; full texts and legal/report assets present.');
 console.log('Built site: ' + pages.length + ' HTML pages; ' + checked + ' local links/assets/anchors verified; 2 English alias queries passed against the emitted search index.');

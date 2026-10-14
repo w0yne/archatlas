@@ -4,6 +4,14 @@
 item in the release pull request. Release tooling: `tools/lint_private.py` and
 `tools/pack_skill.py`. CI job: `release-hygiene` in `.github/workflows/check.yml`.
 
+## Current verification status / 当前验证状态
+
+The [first comparison](../evals/reports/2026-10-14-first-full.md) tested skill revision `3847acb`; it is complete and **did not meet DESIGN §8.5**. Current skill/renderer corrections are not automatically certified by that report. Reconcile disputed summary/per-run entries from retained evidence, then record targeted retests and the release-candidate commit before marking the quality gate passed. Build, package-layout and CLI checks are separate evidence, not agent output-quality certification.
+
+首轮对比已完成，但修订 `3847acb` 未通过发布门槛。旧报告不是当前修订的认证。应对照保留证据核实有争议的汇总与逐项记录，再为当前候选提交记录针对性复测和发布结论；构建、目录安装和 CLI 检查不能替代代理输出质量验证。
+
+No release is declared by this checklist. / 本清单不宣称已完成发布。
+
 ## 1. Before the first public push (v0.1.0 only)
 
 - [ ] **Names are free.**
@@ -35,6 +43,10 @@ item in the release pull request. Release tooling: `tools/lint_private.py` and
   must be rewritten.
 - [ ] `LICENSE` (Apache-2.0), `NOTICE` and `THIRD_PARTY_NOTICES.md` are present. The pack
   script copies them into the zip.
+- [ ] The built site includes `THIRD_PARTY_LICENSES.txt` (full permission/copyright texts),
+  `third-party-manifest.json`, `LICENSE.txt`, `NOTICE.txt` and `THIRD_PARTY_NOTICES.txt`.
+  Check links from both About pages and audit emitted dependencies/assets, not the count
+  of packages installed for development. Missing notices must fail the build.
 
 ## 3. Content and quality gates
 
@@ -43,7 +55,7 @@ item in the release pull request. Release tooling: `tools/lint_private.py` and
 - [ ] Generators are up to date:
   - `python3 tools/build_selection.py --check`
   - `tools/build_skill_refs.py` (check mode)
-  - `tools/i18n_check.py`
+  - `tools/i18n_check.py --release` (review English changes before updating sourceRev)
 - [ ] Every type reference that `references/selection.md` points to exists.
   `pack_skill.py` prints a warning for each missing one; there must be none.
 - [ ] Unit, geometry and golden tests pass, and `atlas check` reports 0 errors on all
@@ -90,11 +102,12 @@ item in the release pull request. Release tooling: `tools/lint_private.py` and
 2. **许可证**
    - `THIRD_PARTY_NOTICES.md` 与当前锁定的依赖版本一致。
    - 新依赖不能是 copyleft 或许可证未知；如果有，必须在该文件中写明处理决定。
-   - 仓库和 zip 里不能有第三方字体、图标或图片。
+   - 仓库和 zip 不分发未审计的第三方字体、图标或图片；站点内嵌图标须保留其完整许可。
+   - 检查站点 About 页可访问完整版权与许可文本、构建模块清单，以及项目法律文件。
    - 抽查 10% 的类型页：标准只能引用，不能复制。改写自 arc42（CC BY-SA）或 C4 网站（CC BY）的文字要按其许可证署名，否则重写。
 3. **内容与质量**
    - lint 结果为 0。
-   - 各生成器的 `--check` 都通过，i18n 检查通过。
+   - 各生成器的 `--check` 都通过；核对英文变更并完成中文同步后，`i18n_check.py --release` 必须通过，不只修改 sourceRev。
    - `selection.md` 指向的类型参考文件都存在。
    - 测试通过，`atlas check` 对所有示例报 0 个错误。
    - CI 全绿。

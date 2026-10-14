@@ -14,9 +14,22 @@ Third-party packages are *installed* by the user from PyPI and are not redistrib
 
 **Built documentation site:**
 
-- **Bundled:** the site's JavaScript bundle contains the VitePress default theme and the Vue
-  runtime. Both are MIT. Their notices are listed here, and this file is linked from the site's About page.
-- **Search:** MiniSearch (MIT) is bundled for local search.
+The client build emits `THIRD_PARTY_LICENSES.txt` with the complete copyright and
+permission texts, plus `third-party-manifest.json` listing the versions identified from
+emitted JavaScript and CSS modules. Both are linked from the bilingual About/licences
+pages. `LICENSE.txt`, `NOTICE.txt` and `THIRD_PARTY_NOTICES.txt` accompany them.
+
+The build includes VitePress, Vue runtime packages, VueUse, MiniSearch, the SVG parser,
+focus/marking utilities and the Vite preload helper. Even the unused search option's
+emitted DocSearch CSS needs its notice. Do not equate installed dependencies with
+distributed code: the generated manifest is the build inventory, not a lockfile count.
+
+VitePress also embeds **Lucide icons (ISC), including Feather portions (MIT)** in CSS.
+Their complete upstream notices are stored under `content/.vitepress/licenses/` and
+appended to the generated text. DocSearch 3.8.2 omits its licence file from the npm
+package; the version-specific upstream MIT text and provenance are recorded in
+`licenses/overrides.json`. Missing licence text for a newly emitted package fails the
+build rather than being replaced with a guessed permission notice.
 
 ### Python, runtime (installed by the user)
 
@@ -38,16 +51,21 @@ Third-party packages are *installed* by the user from PyPI and are not redistrib
 
 ### Node, site build (dev dependencies, `content/.vitepress/package-lock.json`)
 
-The lockfile has 175 packages, all development dependencies:
+The lockfile includes platform-specific optional and transitive build dependencies;
+its entry count is not a count of browser libraries. Direct development dependencies:
 
-- **MIT:** 168
-- **ISC:** 3 (`yaml`, `picocolors`, `@ungap/structured-clone`)
-- **BSD-3-Clause:** 2 (`source-map-js`, `speakingurl`)
-- **BSD-2-Clause:** 1 (`entities`)
-- **CC0-1.0:** 1 (`@iconify-json/simple-icons`)
+| Package | Pin | Licence | Role |
+|---|---|---|---|
+| vitepress | 1.6.4 | MIT | build and browser theme/router |
+| vue | 3.5.44 | MIT | browser runtime |
+| minisearch | 7.2.0 | MIT | browser local search |
+| @xmldom/xmldom | 0.9.12 | MIT | SVG parsing, including browser code |
+| yaml | 2.9.1 | ISC | build-time catalogue loading |
+| markdown-it | 14.3.2 | MIT | Markdown build/lint |
+| markdown-it-cjk-friendly | 3.0.0 | MIT | Markdown build/lint |
 
-All are compatible with Apache-2.0. Direct dependencies: vitepress 1.6.4 (MIT), vue 3.5.44
-(MIT), minisearch 7.2.0 (MIT), yaml 2.9.1 (ISC), @xmldom/xmldom 0.9.12 (MIT).
+Development-only packages are installed by the maintainer, not copied wholesale into
+the site. Check the generated manifest and full licence file for each release.
 
 `@iconify-json/simple-icons` is pulled in by VitePress for social-link icons. The icon data
 is CC0, but the icons depict third-party brand logos, which remain trademarks of their
@@ -58,6 +76,9 @@ owners. archatlas does not configure any of them.
 - **Not bundled:** no font files are in the repository or the release zip. SVG output names
   a font stack (for example Noto Sans, Noto Sans CJK SC, DejaVu Sans) and relies on fonts
   installed on the viewer's system.
+- **Site:** uses the official VitePress `theme-without-fonts` entry. No Inter webfonts
+  are emitted; viewer system fonts are used. The legal build check rejects unexpected
+  font assets until their distribution terms are audited.
 - **CI:** may install the Noto fonts (SIL Open Font License 1.1) to measure text. They are
   not redistributed.
 - **Future font embedding:** the optional `--embed-font-subset` flag (DESIGN §5.2) would

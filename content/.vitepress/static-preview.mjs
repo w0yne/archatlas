@@ -58,7 +58,7 @@ for (const file of files) {
  body=body.replace(/<img\b[^>]*src="([^"]+)"[^>]*>/g,(tag,src)=>tag+'<span class="preview-note"> · <a href="'+src+'">'+(zh?'查看完整图片':'Open full-size image')+'</a></span>');
  body=body.replace(/href="([^"#][^"]*)"/g,(match,href)=>{
   if (/^(?:https?:|mailto:|data:)/.test(href)) return match;
-  if (href.endsWith('.svg')) return 'href="'+(existsSync(join(out,href))?href:copyAsset(href,directory))+'"';
+  if (/\.(svg|txt|json)$/.test(href)) return 'href="'+(existsSync(join(out,href))?href:copyAsset(href,directory))+'"';
   return 'href="'+pageLink(href,directory)+'"';
  });
  const nav=navFor(zh?'zh':'en').map(item=>'<a href="'+pageLink(item.link)+'">'+item.text+'</a>').join('');

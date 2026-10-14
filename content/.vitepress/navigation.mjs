@@ -5,7 +5,8 @@ export function navFor(lang) {
   {text: zh ? '图型目录' : 'Catalogue', link:p+'/types/'},
   {text: zh ? '使用' : 'Use the skill', link:p+'/use/'},
   {text: zh ? '改进' : 'Improve', link:p+'/improve/'},
-  {text: zh ? '术语与概念' : 'Glossary', link:zh ? '/zh/use/glossary' : '/glossary'}
+  {text: zh ? '术语与概念' : 'Glossary', link:zh ? '/zh/use/glossary' : '/glossary'},
+  {text: zh ? '关于与许可' : 'About & licences', link:p+'/about'}
  ];
 }
 export function sidebarFor(lang, typeGroups) {

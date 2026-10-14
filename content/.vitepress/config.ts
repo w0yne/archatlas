@@ -7,6 +7,7 @@ import { loadCatalog, typeSidebar, typeRewrites } from './catalog.mjs';
 import { tokenize, catalogSearchHtml } from './search.mjs';
 import { integrateContent, validateSelection } from './integrate-content.mjs';
 import cjkEmphasis from './cjk-emphasis.mjs';
+import { siteLegal } from './legal.mjs';
 import { navFor, sidebarFor } from './navigation.mjs';
 const contentRoot = fileURLToPath(new URL('..', import.meta.url));
 const catalogue = loadCatalog(contentRoot);
@@ -16,7 +17,7 @@ if (!(base.startsWith('/') && base.endsWith('/')) && base !== './') throw new Er
 export default defineConfig({
   title: 'archatlas', description: 'Choose the right architecture view. Draw it from evidence.',
   srcDir: '.', outDir: './.vitepress/dist', cacheDir: './.vitepress/cache', base,
-  rewrites: { ...typeRewrites(catalogue), 'en/use/glossary.md': 'glossary.md', 'en/use/catalogue.md': 'types/index.md', 'zh/use/catalogue.md': 'zh/types/index.md', 'en/:rest*': ':rest*' },
+  rewrites: { ...typeRewrites(catalogue), 'en/use/about.md': 'about.md', 'zh/use/about.md': 'zh/about.md', 'en/use/glossary.md': 'glossary.md', 'en/use/catalogue.md': 'types/index.md', 'zh/use/catalogue.md': 'zh/types/index.md', 'en/:rest*': ':rest*' },
   markdown: { config(md) { md.use(cjkEmphasis); md.core.ruler.before('block', 'atlas-content-integration', state => { state.src = integrateContent(state.src, state.env.realPath ? relative(contentRoot, state.env.realPath).split(sep).join('/') : state.env.relativePath || '', catalogue, contentRoot); }); } },
   cleanUrls: false, lastUpdated: false,
   locales: { root: { label: 'English', lang: 'en' }, zh: { label: '简体中文', lang: 'zh-Hans', title: 'archatlas', description: '选对架构视图，以证据绘图。', themeConfig: { nav: navFor('zh'), sidebar: sidebarFor('zh', typeSidebar(catalogue, 'zh')), outline: { level: [2, 3], label: '本页内容' } } } },
@@ -31,6 +32,7 @@ export default defineConfig({
     catalogue, selection
   },
   vite: {
+    plugins: [siteLegal()],
     server: { host: '127.0.0.1' }, preview: { host: '127.0.0.1' },
     resolve: { alias: [
       { find: 'vue/server-renderer', replacement: createRequire(import.meta.url).resolve('vue/server-renderer') },

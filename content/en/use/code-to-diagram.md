@@ -26,7 +26,7 @@ This synthetic example uses the same five fields as the skill:
 | E2 | Worker consumes that event | workers/orders.py:18 | verified | Deployment not observed |
 | E3 | Worker runs in a separate availability zone | Architecture note only | doc-only | Confirm before drawing placement |
 
-Show inferred edges dashed and explain their meaning in the legend; label document-only claims and conflicts rather than hiding them. A code declaration is not an observed deployed value, and an unused authorization helper is not enforcement.
+Use explicit evidence labels for inferred, document-only and conflicting claims. Only use dashed inference edges when they do not conflict with the selected notation (for example, UML reply messages already have their own line style); explain the encoding in the legend. A code declaration is not an observed deployed value, and an unused authorization helper is not enforcement.
 
 ## Keep analysis read-only
 
