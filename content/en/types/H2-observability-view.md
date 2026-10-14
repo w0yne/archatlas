@@ -111,7 +111,8 @@ These are linked architecture examples, not copied graphics. SRE workbook figure
 
 ## Template {#template}
 <!-- skill: keep (≤3 lines) -->
-Integration target: `assets/templates/H2.json`; layout `layered` for logical pipelines or `nested` for deployment boundaries. The model template is not yet provided.
+Model template: `assets/templates/H2.json` · Layout template: `layered` · layers (instrument, collect, analyse, respond) are `layer` groups holding `component`, `store` and `person` nodes, with `data` and `async` edges between layers and proposed policies in style `planned`.
+Use `nested` with `boundary` groups for deployment boundaries instead.
 
 ## Sources {#sources}
 <!-- skill: omit -->
@@ -133,6 +134,5 @@ Integration target: `assets/templates/H2.json`; layout `layered` for logical pip
 
 ## Sample {#sample}
 <!-- skill: path only -->
-`/samples/H2-observability-view.svg`
-
-Expected sample, not yet provided: original online-shop telemetry paths from checkout instrumentation to collection, analysis, and an explicitly owned alert route. Proposed policies will be distinguished from measured behavior.
+![H2 sample: observability of an online shop's checkout](/samples/H2-observability-view.svg)
+*Telemetry paths from checkout instrumentation to collection, analysis and an alert route with a named owner. The alert policy is proposed, not measured behavior.*

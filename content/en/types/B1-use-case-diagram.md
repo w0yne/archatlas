@@ -107,7 +107,8 @@ These examples were checked through source text and figure descriptions, not a v
 
 ## Template {#template}
 <!-- skill: keep (≤3 lines) -->
-Integration target: `assets/templates/B1.json`; layout `nested`. UML actors, use-case ellipses, and formal connector markers require renderer support; generic boxes alone do not establish UML conformance.
+Model template: `assets/templates/B1.json` · Layout template: `nested` · actors are `actor` nodes outside one `boundary` group that holds the use cases as `task` nodes; actor–use-case links are `assoc` edges with `dir` `--`.
+Approximate: the renderer draws no UML actor figures, use-case ellipses or include/extend markers, so generic boxes alone do not establish UML conformance.
 
 ## Sources {#sources}
 <!-- skill: omit -->
@@ -119,6 +120,5 @@ Integration target: `assets/templates/B1.json`; layout `nested`. UML actors, use
 
 ## Sample {#sample}
 <!-- skill: path only -->
-Planned asset: `/samples/B1-use-case-diagram.svg`.
-
-**Caption:** Shoppers place and track orders in an online shop; a payment provider participates in payment-related behavior. The generated sample is not yet available; no visual verification is claimed.
+![B1 sample: shoppers use an online shop's use cases; a payment provider takes part in payment](/samples/B1-use-case-diagram.svg)
+*Shoppers place and track orders in an online shop; a payment provider participates in payment-related behavior.*

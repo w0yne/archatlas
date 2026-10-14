@@ -1,0 +1,50 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "B2",
+    "title": "Online shop: user story map",
+    "lang": "en",
+    "audience": "product team",
+    "state": "as-is"
+  },
+  "layout": {
+    "template": "grid_table",
+    "profile": "doc"
+  },
+  "tables": [
+    {
+      "id": "map",
+      "title": "Activities (top) with stories by release slice",
+      "columns": [
+        "Slice",
+        "Discover items",
+        "Compare items",
+        "Check out",
+        "Track delivery"
+      ],
+      "rows": [
+        [
+          "Slice 1: prototype",
+          "Search by name",
+          "View two items",
+          "Pay by card",
+          "See order status"
+        ],
+        [
+          "Slice 2",
+          "Filter by category",
+          "Compare side by side",
+          "Save a cart",
+          "Delivery updates"
+        ],
+        [
+          "Later",
+          "Recommendations",
+          "Reviews",
+          "Gift options",
+          "Delivery map"
+        ]
+      ]
+    }
+  ]
+}

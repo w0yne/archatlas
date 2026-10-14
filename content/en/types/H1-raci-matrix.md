@@ -108,7 +108,7 @@ The government workbook and Essex cells were checked as text; PMI's example was 
 
 ## Template {#template}
 <!-- skill: keep (≤3 lines) -->
-Integration target: `assets/templates/H1.json`; layout `grid_table`, activity rows × participant columns. The model template is not yet provided.
+Model template: `assets/templates/H1.json` · Layout template: `grid_table` · one `tables[]` entry with activity rows × participant columns and R/A/C/I in the cells (exactly one A per row); the legend goes in the table `title`.
 
 ## Sources {#sources}
 <!-- skill: omit -->
@@ -122,6 +122,5 @@ Integration target: `assets/templates/H1.json`; layout `grid_table`, activity ro
 
 ## Sample {#sample}
 <!-- skill: path only -->
-`/samples/H1-raci-matrix.svg`
-
-Expected sample, not yet provided: an original online-shop release matrix assigning preparation, approval, support handoff, and rollback readiness to generic roles. Its assignments will be illustrative, not an inferred organizational policy.
+![H1 sample: RACI matrix for a checkout release](/samples/H1-raci-matrix.svg)
+*An online-shop release matrix assigns preparation, approval, support handoff and rollback readiness to generic roles. The assignments are illustrative, not an inferred organizational policy.*

@@ -1,0 +1,57 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "H1",
+    "title": "Checkout release: RACI",
+    "lang": "en",
+    "audience": "project team",
+    "state": "as-is"
+  },
+  "layout": {
+    "template": "grid_table",
+    "profile": "doc"
+  },
+  "tables": [
+    {
+      "id": "raci",
+      "title": "R responsible, A accountable, C consulted, I informed",
+      "columns": [
+        "Activity",
+        "Product owner",
+        "Shop manager",
+        "Support lead",
+        "Engineer"
+      ],
+      "rows": [
+        [
+          "Prepare release notes",
+          "A",
+          "C",
+          "I",
+          "R"
+        ],
+        [
+          "Approve release",
+          "A",
+          "R",
+          "C",
+          "I"
+        ],
+        [
+          "Hand off to support",
+          "C",
+          "I",
+          "A",
+          "R"
+        ],
+        [
+          "Confirm rollback readiness",
+          "I",
+          "C",
+          "I",
+          "A"
+        ]
+      ]
+    }
+  ]
+}

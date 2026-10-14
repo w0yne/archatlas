@@ -1,0 +1,93 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "I2",
+    "title": "Online shop: layered view, place order",
+    "lang": "en",
+    "audience": "enterprise architects",
+    "state": "as-is"
+  },
+  "layout": {
+    "template": "layered",
+    "profile": "doc"
+  },
+  "groups": [
+    {
+      "id": "g_b",
+      "title": "Business",
+      "kind": "layer"
+    },
+    {
+      "id": "g_a",
+      "title": "Application",
+      "kind": "layer"
+    },
+    {
+      "id": "g_t",
+      "title": "Technology",
+      "kind": "layer"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "shopper",
+      "kind": "actor",
+      "label": "Shopper",
+      "parent": "g_b"
+    },
+    {
+      "id": "proc",
+      "kind": "task",
+      "label": "Place order",
+      "parent": "g_b"
+    },
+    {
+      "id": "svc",
+      "kind": "component",
+      "label": "Order service",
+      "parent": "g_a",
+      "style": "primary"
+    },
+    {
+      "id": "data",
+      "kind": "store",
+      "label": "Order data",
+      "parent": "g_a"
+    },
+    {
+      "id": "plat",
+      "kind": "system",
+      "label": "Container platform",
+      "sub": "node",
+      "parent": "g_t"
+    },
+    {
+      "id": "db",
+      "kind": "store",
+      "label": "Managed database",
+      "sub": "system software",
+      "parent": "g_t"
+    }
+  ],
+  "edges": [
+    {
+      "from": "svc",
+      "to": "proc",
+      "label": "serves",
+      "kind": "dependency"
+    },
+    {
+      "from": "plat",
+      "to": "svc",
+      "label": "serves",
+      "kind": "dependency"
+    },
+    {
+      "from": "shopper",
+      "to": "proc",
+      "label": "assigned to",
+      "kind": "assoc",
+      "dir": "--"
+    }
+  ]
+}

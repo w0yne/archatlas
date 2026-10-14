@@ -1,0 +1,77 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "B4",
+    "title": "Checkout release: scope",
+    "lang": "en",
+    "audience": "sponsors and product team",
+    "state": "as-is"
+  },
+  "layout": {
+    "template": "nested",
+    "profile": "doc",
+    "direction": "LR",
+    "columns": 3
+  },
+  "groups": [
+    {
+      "id": "g_in",
+      "title": "In scope",
+      "kind": "boundary"
+    },
+    {
+      "id": "g_out",
+      "title": "Out of scope",
+      "kind": "boundary",
+      "dashed": true,
+      "style": "planned"
+    },
+    {
+      "id": "g_dep",
+      "title": "Dependency",
+      "kind": "boundary",
+      "style": "external"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "pay",
+      "kind": "component",
+      "label": "Payment integration",
+      "parent": "g_in",
+      "style": "primary",
+      "size_hint": {
+        "width": 140
+      }
+    },
+    {
+      "id": "conf",
+      "kind": "component",
+      "label": "Order confirmation",
+      "parent": "g_in",
+      "size_hint": {
+        "width": 140
+      }
+    },
+    {
+      "id": "loyal",
+      "kind": "component",
+      "label": "Loyalty programme",
+      "parent": "g_out",
+      "style": "planned",
+      "size_hint": {
+        "width": 140
+      }
+    },
+    {
+      "id": "prov",
+      "kind": "external",
+      "label": "Payment provider",
+      "parent": "g_dep",
+      "style": "external",
+      "size_hint": {
+        "width": 140
+      }
+    }
+  ]
+}

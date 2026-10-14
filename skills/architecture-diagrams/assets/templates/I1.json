@@ -1,0 +1,97 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "I1",
+    "title": "Online shop: 4+1 views",
+    "lang": "en",
+    "audience": "architects",
+    "state": "as-is"
+  },
+  "layout": {
+    "template": "layered",
+    "profile": "doc",
+    "columns": 4
+  },
+  "groups": [
+    {
+      "id": "g_v",
+      "title": "Views",
+      "kind": "layer"
+    },
+    {
+      "id": "g_s",
+      "title": "Scenarios (+1)",
+      "kind": "layer"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "log",
+      "kind": "component",
+      "label": "Logical view",
+      "sub": "order, payment, catalogue",
+      "parent": "g_v",
+      "size_hint": {
+        "width": 160
+      }
+    },
+    {
+      "id": "proc",
+      "kind": "component",
+      "label": "Process view",
+      "sub": "checkout concurrency",
+      "parent": "g_v",
+      "size_hint": {
+        "width": 160
+      }
+    },
+    {
+      "id": "dev",
+      "kind": "component",
+      "label": "Development view",
+      "sub": "modules and teams",
+      "parent": "g_v",
+      "size_hint": {
+        "width": 160
+      }
+    },
+    {
+      "id": "phy",
+      "kind": "component",
+      "label": "Physical view",
+      "sub": "hosts and networks",
+      "parent": "g_v",
+      "size_hint": {
+        "width": 160
+      }
+    },
+    {
+      "id": "s1",
+      "kind": "task",
+      "label": "Checkout",
+      "parent": "g_s",
+      "style": "primary",
+      "size_hint": {
+        "width": 160
+      }
+    },
+    {
+      "id": "s2",
+      "kind": "task",
+      "label": "Recovery after failure",
+      "parent": "g_s",
+      "style": "primary",
+      "size_hint": {
+        "width": 160
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "g_s",
+      "to": "g_v",
+      "label": "validate",
+      "kind": "dependency"
+    }
+  ]
+}

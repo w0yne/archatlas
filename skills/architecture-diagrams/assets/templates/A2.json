@@ -15,29 +15,33 @@
     {
       "id": "s1",
       "kind": "task",
-      "label": "Customer orders"
+      "label": "Customer orders",
+      "size_hint": {
+        "width": 150
+      }
     },
     {
       "id": "s2",
       "kind": "task",
-      "label": "Pay"
+      "label": "Pay",
+      "size_hint": {
+        "width": 150
+      }
     },
     {
       "id": "s3",
       "kind": "task",
-      "label": "Pack"
+      "label": "Pack",
+      "size_hint": {
+        "width": 150
+      }
     },
     {
       "id": "s4",
       "kind": "task",
-      "label": "Deliver"
-    },
-    {
-      "id": "s5",
-      "kind": "event",
-      "label": "Goods received",
+      "label": "Deliver goods",
       "size_hint": {
-        "width": 110
+        "width": 150
       }
     }
   ],
@@ -53,10 +57,6 @@
     {
       "from": "s3",
       "to": "s4"
-    },
-    {
-      "from": "s4",
-      "to": "s5"
     }
   ]
 }

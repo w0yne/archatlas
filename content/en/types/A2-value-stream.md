@@ -132,7 +132,7 @@ status: draft
 
 ## Template {#template}
 <!-- skill: keep (≤3 lines) -->
-Model template: `assets/templates/A2.json` · Layout template: `tree` · stages are `task` nodes chained by edges in one left-to-right row (the trigger and the outcome are `event` nodes); capabilities cross-mapped to a stage are listed in its `tags`.
+Model template: `assets/templates/A2.json` · Layout template: `tree` · stages are `task` nodes chained by edges in one left-to-right row; capabilities cross-mapped to a stage are listed in its `tags`.
 
 ## Sources {#sources}
 <!-- skill: omit -->

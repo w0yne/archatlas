@@ -1,0 +1,95 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "B1",
+    "title": "Online shop: use cases",
+    "lang": "en",
+    "audience": "product owners and analysts",
+    "state": "as-is"
+  },
+  "layout": {
+    "template": "nested",
+    "profile": "doc",
+    "direction": "LR",
+    "columns": 2
+  },
+  "groups": [
+    {
+      "id": "g_s",
+      "title": "Online shop",
+      "kind": "boundary"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "shopper",
+      "kind": "actor",
+      "label": "Shopper",
+      "size_hint": {
+        "width": 160
+      }
+    },
+    {
+      "id": "browse",
+      "kind": "task",
+      "label": "Browse catalogue",
+      "parent": "g_s",
+      "size_hint": {
+        "width": 160
+      }
+    },
+    {
+      "id": "order",
+      "kind": "task",
+      "label": "Place order",
+      "parent": "g_s",
+      "size_hint": {
+        "width": 160
+      }
+    },
+    {
+      "id": "track",
+      "kind": "task",
+      "label": "Track order",
+      "parent": "g_s",
+      "size_hint": {
+        "width": 160
+      }
+    },
+    {
+      "id": "pay",
+      "kind": "actor",
+      "label": "Payment provider",
+      "style": "external",
+      "size_hint": {
+        "width": 160
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "shopper",
+      "to": "browse",
+      "dir": "--",
+      "kind": "assoc"
+    },
+    {
+      "from": "shopper",
+      "to": "order",
+      "dir": "--",
+      "kind": "assoc"
+    },
+    {
+      "from": "shopper",
+      "to": "track",
+      "dir": "--",
+      "kind": "assoc"
+    },
+    {
+      "from": "order",
+      "to": "pay",
+      "dir": "--",
+      "kind": "assoc"
+    }
+  ]
+}

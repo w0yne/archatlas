@@ -79,7 +79,7 @@ Scope: One value stream: a triggering stakeholder, a value proposition and about
 5. Heat-map the capabilities, and by which single criterion? (no heat map unless a decision needs it)
 
 ## Template
-Model template: `assets/templates/A2.json` · Layout template: `tree` · stages are `task` nodes chained by edges in one left-to-right row (the trigger and the outcome are `event` nodes); capabilities cross-mapped to a stage are listed in its `tags`.
+Model template: `assets/templates/A2.json` · Layout template: `tree` · stages are `task` nodes chained by edges in one left-to-right row; capabilities cross-mapped to a stage are listed in its `tags`.
 
 ## Sample
 Figure: `samples/A2-value-stream.svg` (published with the site)

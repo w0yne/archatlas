@@ -114,8 +114,8 @@ Examples were identified through text and indexed excerpts; images were not visu
 
 ## Template {#template}
 <!-- skill: keep (≤3 lines) -->
-Integration target: `assets/templates/I2.json`, layout `layered`; the model template is not yet provided.
-A layered layout does not implement formal ArchiMate glyphs or validate its metamodel; formal output needs those capabilities checked separately.
+Model template: `assets/templates/I2.json` · Layout template: `layered` · business, application and technology are `layer` groups; relationship types are edge labels with kind `dependency` or `assoc`.
+Approximate: no formal ArchiMate glyphs and no metamodel validation; formal output needs those capabilities checked separately.
 
 ## Sources {#sources}
 <!-- skill: omit -->
@@ -134,4 +134,5 @@ A layered layout does not implement formal ArchiMate glyphs or validate its meta
 
 ## Sample {#sample}
 <!-- skill: path only -->
-Expected sample: `/samples/I2-archimate-layered-view.svg` — not yet provided. Caption: an online shop's checkout behavior, application services, and technology support, with explicit relationship types.
+![I2 sample: layered view of placing an order](/samples/I2-archimate-layered-view.svg)
+*An online shop's checkout behavior, application services and technology support, with explicit relationship types.*
