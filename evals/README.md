@@ -40,6 +40,8 @@ python3 evals/run_eval.py --hosts evals/hosts.local.yaml --scenario all --host p
 # Grade with a different model than the one graded, then aggregate:
 python3 evals/grade.py --hosts evals/hosts.local.yaml evals/results/<run-dir> ...
 python3 evals/report.py evals/results/<run-dir> ... --out evals/reports/<name> --defects <notes.md>
+# Re-evaluation: compare with an earlier report (its no-skill rows are reused when not re-run):
+python3 evals/report.py evals/results/<run-dir> ... --out evals/reports/<name> --baseline evals/reports/<earlier>.json
 ```
 
 `--budget-usd` stops before the next run once the runs already in the output directory
