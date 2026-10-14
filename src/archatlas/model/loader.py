@@ -29,6 +29,9 @@ def resolve(model, labels):
                 item["rows"] = [list(map(text, row)) for row in item["rows"]]
     for entry in model["meta"].get("legend", []):
         entry["label"] = text(entry["label"])
+    for mapping in model["meta"].get("legend_labels", {}).values():
+        for key, value in mapping.items():
+            mapping[key] = text(value)
     return model
 
 

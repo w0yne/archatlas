@@ -1,20 +1,14 @@
 """Only explain distinct visible encodings; explicit author entries win."""
 from .theme import THEMES
+from .legend_text import FAMILY_RELATIONS, TYPE_RELATIONS, edge_label, group_label, local, style_label
 
 
 def entries(scene, model):
     theme = THEMES[scene.theme]
-    zh = model["meta"].get("lang", "").startswith("zh")
-    words = {"call": "调用", "data": "数据", "async": "异步", "message": "消息",
-             "dependency": "依赖", "assoc": "关联", "dashed": "虚线", "peer": "同级",
-             "primary": "重点", "external": "外部", "shared": "共享", "planned": "规划",
-             "boundary": "边界", "inferred": "推断", "doc-only": "仅文档", "conflict": "冲突",
-             "bidirectional": "双向"}
-    local = lambda word: words.get(word, word) if zh else word
     result, labels, covered = [], set(), set()
 
-    def signature(style, dashed):
-        return theme[style][1], dashed
+    def signature(style, dashed, symbol="line"):
+        return theme[style][1], dashed, symbol
 
     def append(entry, cover=True):
         label = " ".join(entry["label"].split()).casefold()
@@ -22,10 +16,13 @@ def entries(scene, model):
             labels.add(label)
             result.append(entry)
             if cover:
-                covered.add(signature(entry.get("style", "peer"), entry.get("dashed", False)))
+                covered.add(signature(entry.get("style", "peer"), entry.get("dashed", False),
+                                      entry.get("symbol", "line")))
 
     for entry in model["meta"].get("legend", []):
-        append(dict(entry), "style" in entry or "dashed" in entry)
+        append(dict(entry), any(k in entry for k in ("style", "dashed", "symbol", "kind", "dir")))
+    if model["meta"].get("legend_mode", "auto") == "replace":
+        return result
     variants = {}
     for edge in scene.edges:
         if edge.kind in ("lifeline", "legend"):
@@ -35,18 +32,15 @@ def entries(scene, model):
         variants.setdefault(key, []).append(edge)
     auto_colours = set()
     for key, edges in variants.items():
-        if len(variants) == 1 and not key[2] and key[3] != "<->":
+        has_meaning = (model["layout"]["template"] in FAMILY_RELATIONS or
+                       model["meta"]["type"].upper() in TYPE_RELATIONS or
+                       model["meta"].get("legend_labels", {}).get("edges"))
+        if len(variants) == 1 and not key[2] and key[3] != "<->" and not has_meaning:
             continue
         edge = edges[0]
         if signature(edge.style, edge.dashed) in covered:
             continue
-        label = " / ".join(local(kind) for kind in dict.fromkeys(e.kind for e in edges))
-        if edge.style != "peer":
-            label = local(edge.style) + " · " + label
-        if edge.dashed:
-            label += " · " + local("dashed")
-        if edge.direction == "<->":
-            label += " · " + local("bidirectional")
+        label = " / ".join(dict.fromkeys(edge_label(e, model) for e in edges))
         append({"label": label, "style": edge.style, "dashed": edge.dashed,
                 "kind": edge.kind, "dir": edge.direction}, cover=False)
         auto_colours.add(signature(edge.style, edge.dashed))
@@ -55,13 +49,20 @@ def entries(scene, model):
     for box in scene.boxes:
         if box.role == "node":
             styles.setdefault((*theme[box.style], box.dashed), box)
-    if len(styles) > 1:
+    if len(styles) > 1 or model["meta"].get("legend_labels", {}).get("styles"):
         for box in styles.values():
-            if signature(box.style, box.dashed) not in covered:
-                append({"label": local(box.style) + (" · " + local("dashed") if box.dashed else ""),
+            if signature(box.style, box.dashed, "box") not in covered:
+                append({"label": style_label(box.style, model) +
+                        (local(model, (" (dashed)", "（虚线）")) if box.dashed else ""),
                         "style": box.style, "dashed": box.dashed, "symbol": "box"})
-    boundaries = {(box.kind, box.dashed) for box in scene.boxes if box.role == "group"}
-    if len(boundaries) > 1 and any(dashed for _, dashed in boundaries):
-        if signature("peer", True) not in covered:
-            append({"label": local("boundary") + " · " + local("dashed"), "dashed": True, "symbol": "box"})
+    groups = {}
+    for box in scene.boxes:
+        if box.role == "group":
+            groups.setdefault(box.dashed, []).append(box)
+    explicit = model["meta"].get("legend_labels", {}).get("groups")
+    if groups and (explicit or model["meta"]["type"].upper() in ("F2", "G1", "G3", "A5") or len(groups) > 1):
+        for dashed, boxes in groups.items():
+            if signature("peer", dashed, "box") not in covered:
+                append({"label": " / ".join(dict.fromkeys(group_label(b.kind, model) for b in boxes)),
+                        "dashed": dashed, "symbol": "box"})
     return result

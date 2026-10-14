@@ -14,10 +14,27 @@ class Box:
     style: str = "peer"
     parent: str = ""
     dashed: bool = False
+    event_type: str = ""
 
     @property
     def rect(self):
         return (self.x, self.y, self.w, self.h)
+
+    @property
+    def glyph_rect(self):
+        """Visible symbol bounds; rect also reserves an actor's label footprint."""
+        if self.kind == "actor":
+            return (self.x + self.w / 2 - 28, self.y, 56, 80)
+        return self.rect
+
+    @property
+    def actor_parts(self):
+        x, y, w, _ = self.glyph_rect
+        cx = x + w / 2
+        return ((cx, y + 10, 10),
+                [[(cx, y + 20), (cx, y + 54)],
+                 [(x, y + 40), (x + w, y + 40)],
+                 [(cx - 24, y + 80), (cx, y + 54), (cx + 24, y + 80)]])
 
 
 @dataclass

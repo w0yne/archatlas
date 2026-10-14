@@ -107,12 +107,11 @@ def _simplify(points: Iterable[Point]) -> list[Point]:
         while len(result) >= 2:
             a, b = result[-2:]
             straight = (a[0] == b[0] == point[0] or a[1] == b[1] == point[1])
-            forward = ((b[0] - a[0]) * (point[0] - b[0])
-                       + (b[1] - a[1]) * (point[1] - b[1])) > 0
-            if not (straight and forward):
+            if not straight:
                 break
             result.pop()
-        result.append(point)
+        if not result or point != result[-1]:
+            result.append(point)
     return result
 
 
@@ -139,7 +138,11 @@ def _score(points: Sequence[Point], previous: Sequence[tuple[Point, Point]]) -> 
     crossings = sum(_crosses(a, b, c, d) for a, b in zip(points, points[1:])
                     for c, d in previous)
     shared = sum(_overlap(a, b, c, d) for a, b in zip(points, points[1:]) for c, d in previous)
-    return length + _BEND * bends + _CROSSING * crossings + _OVERLAP * shared
+    occupied_ports = {point for segment in previous for point in segment}
+    reused_ports = sum(point in occupied_ports for point in (points[0], points[-1]))
+    # Reusing an arrival port for a departure can visually bypass the node,
+    # even when only a short stub overlaps. Prefer another available port.
+    return length + _BEND * bends + _CROSSING * (crossings + reused_ports) + _OVERLAP * shared
 
 
 def _overlap(a: Point, b: Point, c: Point, d: Point) -> float:

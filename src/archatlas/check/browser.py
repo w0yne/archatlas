@@ -2,7 +2,7 @@
 import re
 from xml.etree import ElementTree as ET
 
-from .report import contains, overlap
+from .report import contains, overlap, owner_fits
 
 
 def _safe_root(svg):
@@ -50,6 +50,7 @@ _MEASURE = """async () => {
         .filter(e => shapeRoles.has(e.dataset.role))
         .map(e => ({id: e.dataset.id, role: e.dataset.role,
                     parent: e.dataset.parent || '', kind: e.dataset.kind || '',
+                    tag: e.localName,
                     box: mapRect(e, e.getBBox())}));
     const texts = [...svg.querySelectorAll('text')].filter(e => e.textContent.trim())
         .map(e => ({id: e.dataset.id, role: e.dataset.role,
@@ -111,10 +112,14 @@ def check_browser(svg):
     for text in texts:
         box, owner = text["box"], owners.get(text["owner"])
         if owner:
-            x, y, w, h = owner["box"]
-            if not contains((x + 4, y + 4, w - 8, h - 8), box):
+            if not owner_fits(owner["box"], box, owner.get("kind", ""), owner.get("tag", "")):
                 add("text-overflow", "Browser text bounds exceed the padded owner",
                     [text["id"], owner["id"]], [box, owner["box"]])
+            if owner.get("kind") == "actor" and owner.get("parent"):
+                parent = owners.get(owner["parent"])
+                if not parent or not contains(parent["box"], box):
+                    add("boundary-membership", "Browser actor label exceeds its declared group",
+                        [text["id"], owner["parent"]], [box])
         if text["role"] == "edge-label":
             backgrounds = [s for s in shapes if s["role"] == "label-bg" and s["parent"] == text["owner"]]
             # Font ink/line bounds differ from Pillow's advance/line-height
