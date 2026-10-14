@@ -132,7 +132,7 @@ status: draft
 
 ## Template {#template}
 <!-- skill: keep (≤3 lines) -->
-Model template: `assets/templates/F1.json` · Layout template: `sequence` · participants are `lifeline` nodes (person, client, identity provider, API, resource); proofs and requests are numbered `message` edges with `step`; the allow/refuse alternative is a `frames` entry labelled `alt` over its step range; verification and enforcement are `activations` on the identity provider and the API.
+Model template: `assets/templates/F1.json` · Layout template: `sequence` · participants are `lifeline` nodes (person, client, identity provider, API, resource); proofs and requests are numbered `message` edges with `step`; the allow/refuse alternative is an `alt` entry in `frames` with two `operands`, each with its own guard and step range; verification and enforcement are `activations` on the identity provider and the API.
 
 ## Sources {#sources}
 <!-- skill: omit -->
@@ -149,4 +149,4 @@ Model template: `assets/templates/F1.json` · Layout template: `sequence` · par
 ## Sample {#sample}
 <!-- skill: path only -->
 ![F1 sample: authorization code flow for a signed-in shopper, with a refusal branch](/samples/F1-authentication-authorization-flow.svg)
-*Authorization code flow for a shopper loading order history (illustrative, not verified against a real deployment): the web app sends the shopper to the identity provider by redirect, exchanges the code for an access token over the back channel and calls the order API with it. The API fetches signing keys, then either returns the order list (token valid) or answers 401 Unauthorized and stops before the protected operation. The shopper never receives the access token.*
+*Authorization code flow for a shopper loading order history (illustrative, not verified against a real deployment): the web app sends the shopper to the identity provider by redirect, exchanges the code for an access token over the back channel and calls the order API with it. The API fetches signing keys, then checks the token in an alt frame with two operands split by a dashed line: under [token valid] it returns the order list; under [else: token invalid or expired] it answers 401 Unauthorized and stops before the protected operation. Only one operand runs for a given request. The shopper never receives the access token.*

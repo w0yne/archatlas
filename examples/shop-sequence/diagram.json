@@ -95,7 +95,8 @@
   "frames": [
     {
       "id": "loop1",
-      "label": "f1",
+      "operator": "loop",
+      "guard": "@f1",
       "from_step": 2,
       "to_step": 3
     }

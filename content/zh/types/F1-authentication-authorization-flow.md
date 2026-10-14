@@ -124,7 +124,7 @@ reviewed: false
 
 ## 模板 {#template}
 <!-- skill: keep (≤3 lines) -->
-模型模板：`assets/templates/F1.json` · 布局模板：`sequence` · 参与方是 `lifeline` 节点（人、客户端、身份提供方、API、资源）；凭证和请求是带 `step` 的编号 `message` 边；允许/拒绝的备选分支是标签为 `alt`、覆盖相应步骤范围的 `frames` 条目；校验和执行是身份提供方和 API 上的 `activations`。
+模型模板：`assets/templates/F1.json` · 布局模板：`sequence` · 参与方是 `lifeline` 节点（人、客户端、身份提供方、API、资源）；凭证和请求是带 `step` 的编号 `message` 边；允许/拒绝的备选分支是 `frames` 中的 `alt` 条目，带两个 `operands`，各有自己的守卫条件和步骤范围；校验和执行是身份提供方和 API 上的 `activations`。
 
 ## 来源 {#sources}
 <!-- skill: omit -->
@@ -140,5 +140,5 @@ reviewed: false
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-![F1 示例：已登录购物者的授权码流程，含拒绝分支](/samples/F1-authentication-authorization-flow.svg)
-*购物者查看订单历史的授权码流程（示意，未对照真实部署验证）：网页应用通过重定向把购物者带到身份提供方，经后端通道用授权码换取访问令牌，再带令牌调用订单 API。API 取得签名密钥后，要么返回订单列表（令牌有效），要么回答 401 未授权并在受保护操作之前停止。购物者始终拿不到访问令牌。*
+![F1 示例：已登录购物者的授权码流程，含拒绝分支](/samples/F1-authentication-authorization-flow.zh.svg)
+*购物者查看订单历史的授权码流程（示意，未对照真实部署验证）：网页应用通过重定向把购物者带到身份提供方，经后端通道用授权码换取访问令牌，再带令牌调用订单 API。API 取得签名密钥后，在一个 alt 框内校验令牌，框内有两个以虚线分隔的操作数：[令牌有效] 时返回订单列表；[否则：令牌无效或已过期] 时回答 401 未授权，并在受保护操作之前停止。同一请求只会走其中一个操作数。购物者始终拿不到访问令牌。*

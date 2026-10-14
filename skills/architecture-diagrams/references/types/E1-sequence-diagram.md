@@ -91,7 +91,7 @@ Scope: One scenario (one trigger to one outcome), about 4–8 lifelines at one a
 5. Show interface and endpoint names, or generalise? (generalise unless engineers will check them against code)
 
 ## Template
-Model template: `assets/templates/E1.json` · Layout template: `sequence` · lifelines are `lifeline` nodes ordered left to right; messages are `edges` with `step` numbers and kind `call`, `async` or `message` (a reply is the same edge reversed with `dashed: true`); `frames` mark `alt` / `loop` / `opt` / `par` regions as a `label` over a step range (`from_step`, `to_step`) and `activations` the execution bars.
+Model template: `assets/templates/E1.json` · Layout template: `sequence` · lifelines are `lifeline` nodes ordered left to right; messages are `edges` with `step` numbers and kind `call`, `async` or `message` (a reply is the same edge reversed with `dashed: true`); `frames` mark `loop` / `alt` / `opt` / `par` regions by `operator` over a step range (`from_step`, `to_step`) with a `guard`; an `alt` or `par` frame lists `operands`, each with its own guard and step range, drawn as regions split by a dashed separator; `activations` are the execution bars.
 
 ## Sample
 Figure: `samples/E1-sequence-diagram.svg` (published with the site)

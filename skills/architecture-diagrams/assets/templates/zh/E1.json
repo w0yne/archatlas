@@ -12,6 +12,8 @@
   "Order confirmed": "订单已确认",
   "Payment declined": "支付被拒",
   "Order rejected": "订单被拒绝",
-  "loop [each order line]": "循环 [每个订单行]",
-  "alt [card accepted] / [else] card declined": "分支 [扣款成功] / [否则] 扣款被拒"
+  "each order line": "每个订单行",
+  "Payment outcome": "支付结果",
+  "card accepted": "扣款成功",
+  "else: card declined": "否则：扣款被拒"
 }

@@ -2,6 +2,7 @@
 
 The samples themselves are rendered by tools/build_samples.py (needs the renderer and installed fonts).
 """
+import json
 import re
 import unittest
 from pathlib import Path
@@ -9,6 +10,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 PAGES = ROOT / "content/en/types"
 SAMPLES = ROOT / "content/public/samples"
+MODELS = [*(ROOT / "skills/architecture-diagrams/assets/templates").glob("*.json"), *(ROOT / "examples").glob("*/diagram.json")]
 
 
 class SamplesTest(unittest.TestCase):
@@ -35,6 +37,16 @@ class SamplesTest(unittest.TestCase):
         stems = {page.stem for page in PAGES.glob("*.md")}
         for sample in SAMPLES.glob("*.svg"):
             self.assertIn(sample.name.removesuffix(".zh.svg").removesuffix(".svg"), stems, sample.name)
+
+    def test_sequence_alternatives_are_structured_operands_with_guards(self):
+        """A branch drawn in one undivided frame would read as sequential steps, not as exclusive outcomes."""
+        for model in MODELS:
+            for frame in json.loads(model.read_text(encoding="utf-8")).get("frames", []):
+                where = f"{model.parent.name}/{model.name}:{frame['id']}"
+                self.assertIn("operator", frame, where)
+                self.assertNotRegex(frame.get("label", ""), r"^(alt|par|loop|opt|break)\b", where)
+                if frame["operator"] in ("alt", "par"):
+                    self.assertGreaterEqual(len(frame.get("operands", [])), 2, where)
 
 
 if __name__ == "__main__":
