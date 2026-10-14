@@ -1,0 +1,19 @@
+{
+  "name": "archatlas-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vitepress dev ..",
+    "build": "vitepress build ..",
+    "preview": "vitepress preview ..",
+    "preview:static": "node static-preview.mjs",
+    "check": "node --test tests/*.test.mjs && node check-content.mjs"
+  },
+  "devDependencies": {
+    "@xmldom/xmldom": "0.9.12",
+    "minisearch": "7.2.0",
+    "vitepress": "1.6.4",
+    "vue": "3.5.44",
+    "yaml": "2.9.1"
+  }
+}

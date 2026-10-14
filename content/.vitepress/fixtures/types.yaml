@@ -1,0 +1,29 @@
+# Scaffold fixture only. Replaced automatically by content/data/types.yaml.
+types:
+  - code: C2
+    slug: system-context
+    family: C
+    names: {en: System context, zh: 系统上下文}
+    question: Who uses the system, and what surrounds it?
+    aliases: {en: [context diagram], zh: [上下文图]}
+    audiences: [architects, business]
+    level: concept
+    phases: [discovery, design]
+  - code: E1
+    slug: sequence
+    family: E
+    names: {en: Sequence diagram, zh: 时序图}
+    question: What happens during one request?
+    aliases: {en: [interaction sequence], zh: [序列图]}
+    audiences: [developers]
+    level: logical
+    phases: [design]
+  - code: F3
+    slug: access-control-model
+    family: F
+    names: {en: Access-control model, zh: 权限模型}
+    question: Who may do what, on which resources?
+    aliases: {en: [permission matrix], zh: [权限矩阵]}
+    audiences: [security, developers]
+    level: logical
+    phases: [design, review]
