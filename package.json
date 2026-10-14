@@ -1,0 +1,11 @@
+{
+  "name": "archatlas",
+  "private": true,
+  "scripts": {
+    "site:install": "npm ci --prefix content/.vitepress",
+    "site:dev": "npm run dev --prefix content/.vitepress",
+    "build": "npm run build --prefix content/.vitepress",
+    "check": "npm run check --prefix content/.vitepress",
+    "site:preview": "npm run preview --prefix content/.vitepress"
+  }
+}

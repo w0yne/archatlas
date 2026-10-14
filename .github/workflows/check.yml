@@ -1,0 +1,26 @@
+name: Check
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  site:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+          cache-dependency-path: content/.vitepress/package-lock.json
+      - run: npm run site:install
+      - run: npm run check
+      - run: npm run build
+        env:
+          SITE_BASE: /archatlas/
+      - uses: actions/upload-artifact@v4
+        with:
+          name: site-build
+          path: content/.vitepress/dist
+          retention-days: 7
