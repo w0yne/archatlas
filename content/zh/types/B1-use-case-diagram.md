@@ -16,7 +16,7 @@ scope: system
 formal: {kind: standard, ref: 'OMG UML 2.5.1, Chapter 18 — https://www.omg.org/spec/UML/2.5.1/PDF'}
 neighbours: [A4, B2, B4]
 status: draft
-sourceRev: a5d2191
+sourceRev: 1ed1739
 translationOf: en/types/B1-use-case-diagram.md
 reviewed: false
 ---

@@ -16,7 +16,7 @@ scope: system
 formal: {kind: convention, ref: 'Functional hierarchy — https://sebokwiki.org/wiki/Logical_Architecture; variability mode uses FeatureIDE conventions'}
 neighbours: [B2, C5]
 status: draft
-sourceRev: a5d2191
+sourceRev: 1ed1739
 translationOf: en/types/B3-feature-tree.md
 reviewed: false
 ---

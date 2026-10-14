@@ -17,7 +17,7 @@ formal: {kind: convention, ref: 'No single standard. Provider icon sets and prov
 neighbours: [C3, C5, G1, G3, G4]
 status: draft
 translationOf: en/types/G2-cloud-infrastructure-architecture.md
-sourceRev: a5d2191
+sourceRev: 1ed1739
 reviewed: false
 ---
 

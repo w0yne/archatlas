@@ -17,7 +17,7 @@ formal: {kind: convention, ref: none (table convention; cell content follows Coc
 neighbours: [A6, B1, B2, H1]
 status: draft
 translationOf: en/types/A4-scenario-matrix.md
-sourceRev: a5d2191
+sourceRev: 1ed1739
 reviewed: false
 ---
 

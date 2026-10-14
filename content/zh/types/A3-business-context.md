@@ -17,7 +17,7 @@ formal: {kind: method, ref: Context-level DFD (Yourdon–DeMarco / Gane–Sarson
 neighbours: [B4, C2, H3]
 status: draft
 translationOf: en/types/A3-business-context.md
-sourceRev: a5d2191
+sourceRev: 1ed1739
 reviewed: false
 ---
 

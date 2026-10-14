@@ -17,7 +17,7 @@ formal: {kind: convention, ref: 'No graphical standard. Runtime lineage metadata
 neighbours: [D1, D2, H1]
 status: draft
 translationOf: en/types/D3-data-lineage-ownership.md
-sourceRev: a5d2191
+sourceRev: 1ed1739
 reviewed: false
 ---
 

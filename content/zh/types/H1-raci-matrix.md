@@ -16,7 +16,7 @@ scope: 一项举措或一项服务内各项活动的职责分配。
 formal: {kind: convention, ref: '职责分配实践；没有统一版本的图形标准。Atlassian，Understanding and using RACI charts：https://www.atlassian.com/work-management/project-management/raci-chart'}
 neighbours: [A4, D3, E4, F3, H2, H3]
 status: draft
-sourceRev: a5d2191
+sourceRev: 1ed1739
 translationOf: en/types/H1-raci-matrix.md
 reviewed: false
 ---

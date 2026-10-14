@@ -17,7 +17,7 @@ formal: {kind: convention, ref: 'none (de-facto reference: Nielsen Norman Group 
 neighbours: [A2, A4, A5, B2, E4]
 status: draft
 translationOf: en/types/A6-journey-map.md
-sourceRev: a5d2191
+sourceRev: 1ed1739
 reviewed: false
 ---
 

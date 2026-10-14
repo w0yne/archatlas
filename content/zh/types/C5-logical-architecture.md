@@ -17,7 +17,7 @@ formal: {kind: convention, ref: 'none (no graphical standard); closest definitio
 neighbours: [A7, B3, C1, C3, C4, C6, C7, C8, G2, I1]
 status: draft
 translationOf: en/types/C5-logical-architecture.md
-sourceRev: a5d2191
+sourceRev: 1ed1739
 reviewed: false
 ---
 
