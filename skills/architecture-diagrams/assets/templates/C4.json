@@ -2,7 +2,7 @@
   "archatlas": "0.1",
   "meta": {
     "type": "C4",
-    "title": "Order API: components",
+    "title": "Component diagram for Order API",
     "lang": "en",
     "audience": "developers",
     "state": "as-is"
@@ -24,28 +24,31 @@
       "id": "ctl",
       "kind": "component",
       "label": "Order controller",
+      "sub": "Handles requests",
       "parent": "g_api",
       "size_hint": {
-        "width": 160
+        "width": 150
       }
     },
     {
       "id": "svc",
       "kind": "component",
       "label": "Order service",
+      "sub": "Applies order rules",
       "parent": "g_api",
       "style": "primary",
       "size_hint": {
-        "width": 160
+        "width": 150
       }
     },
     {
       "id": "repo",
       "kind": "component",
       "label": "Order repository",
+      "sub": "Stores orders",
       "parent": "g_api",
       "size_hint": {
-        "width": 160
+        "width": 150
       }
     },
     {
@@ -53,7 +56,7 @@
       "kind": "store",
       "label": "Shop database",
       "size_hint": {
-        "width": 160
+        "width": 150
       }
     },
     {
@@ -62,7 +65,7 @@
       "label": "Payment provider",
       "style": "external",
       "size_hint": {
-        "width": 160
+        "width": 150
       }
     }
   ],
@@ -80,12 +83,12 @@
     {
       "from": "repo",
       "to": "db",
-      "label": "SQL"
+      "label": "Reads and writes [SQL]"
     },
     {
       "from": "svc",
       "to": "pay",
-      "label": "Charges"
+      "label": "Charges cards [HTTPS]"
     }
   ]
 }

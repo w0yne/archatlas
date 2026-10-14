@@ -17,7 +17,7 @@ formal: {kind: method, ref: 'No single notation. Related: TOGAF 9.2 Application 
 neighbours: [A1, A7, A8, C2, C3, C5, C6, I2]
 status: draft
 translationOf: en/types/C1-application-landscape.md
-sourceRev: a5d2191
+sourceRev: 88db750
 reviewed: false
 ---
 
@@ -148,5 +148,5 @@ reviewed: false
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-![C1 示例：一家网店的应用全景图，分为渠道、业务应用、共享平台和外部服务四组](/samples/C1-application-landscape.svg)
-*示例待生成（由渲染器根据 `examples/` 生成）。*
+![C1 示例：网店的应用全景图，分四层](/samples/C1-application-landscape.zh.svg)
+*网店的应用全景图，分四层：渠道（网页商城、手机应用、客服聊天窗口）、业务应用（商城、运营后台、客服机器人）、共享平台（身份认证、消息通知、搜索）和外部服务（支付服务商、物流承运商、邮件服务）。层间箭头标注流动的内容，图例标出共享和外部元素。*

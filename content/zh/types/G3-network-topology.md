@@ -17,7 +17,7 @@ formal: {kind: convention, ref: 'No graphical standard. RFC 1918, RFC 5737 and R
 neighbours: [F2, G1, G2]
 status: draft
 translationOf: en/types/G3-network-topology.md
-sourceRev: a5d2191
+sourceRev: 88db750
 reviewed: false
 ---
 
@@ -137,5 +137,5 @@ reviewed: false
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-![G3 示例：网上商城逻辑网络，包含办公室、互联网边缘、中心网络以及店面和数据辐射网络，并用文档地址段标出一条编号的订单路径](/samples/G3-network-topology.svg)
-*示例待生成（由渲染器根据 `examples/` 生成）。*
+![G3 示例：网店的网络分区](/samples/G3-network-topology.svg)
+*网店的网络分区：公共区（负载均衡器，192.0.2.0/24）、应用区（应用服务器，198.51.100.0/24）和数据区（数据库，203.0.113.0/24）。编号的流量路径经 443 端口进入应用区，经 5432 端口进入数据区。*

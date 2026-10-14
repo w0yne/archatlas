@@ -16,7 +16,7 @@ scope: system
 formal: {kind: standard, ref: 'OMG UML 2.5.1, Chapter 18 — https://www.omg.org/spec/UML/2.5.1/PDF'}
 neighbours: [A4, B2, B4]
 status: draft
-sourceRev: a5d2191
+sourceRev: 5137fae
 translationOf: en/types/B1-use-case-diagram.md
 reviewed: false
 ---
@@ -123,5 +123,5 @@ UML 定义语义和表示法，不规定固定版式、配色或椭圆数量上�
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-![B1 示例：购物者使用网店的用例；支付服务商参与支付](/samples/B1-use-case-diagram.svg)
-*购物者在网店下单并跟踪订单；支付服务商参与支付相关行为。*
+![B1 示例：网店的用例，含购物者和支付服务商](/samples/B1-use-case-diagram.svg)
+*网店在同一系统边界内的用例：购物者使用浏览商品、下单和跟踪订单，支付服务商参与订单支付。参与者画成人形图标，用例画成椭圆；只画关联，不画包含或扩展关系。*

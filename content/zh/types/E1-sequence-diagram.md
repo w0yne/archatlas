@@ -17,7 +17,7 @@ formal: {kind: standard, ref: 'OMG UML 2.5.1 (formal/2017-12-05), interaction di
 neighbours: [A5, C3, C4, C6, E2, E3, E4, F1, I1]
 status: draft
 translationOf: en/types/E1-sequence-diagram.md
-sourceRev: a5d2191
+sourceRev: 88db750
 reviewed: false
 ---
 
@@ -160,5 +160,5 @@ reviewed: false
 
 ## 示例图 {#sample}
 <!-- skill: path only -->
-![E1 示例：网店下单时序图，跨店面、订单服务、支付服务商和库存，包含重试循环和银行卡被拒的 alt 分支](/samples/E1-sequence-diagram.svg)
-*示例图待生成（由渲染器根据 `examples/` 生成）。*
+![E1 示例：下单的时序图，含循环和备选分支](/samples/E1-sequence-diagram.zh.svg)
+*下单的时序：顾客向订单接口提交订单，订单接口逐项向库存服务预留商品（循环），再向支付服务商扣款。一个备选分支框覆盖两种结果：支付成功则订单已确认，支付被拒则订单被拒绝。*

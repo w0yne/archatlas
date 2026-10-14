@@ -16,7 +16,7 @@ scope: system
 formal: {kind: method, ref: 'Kruchten，Architectural Blueprints—The 4+1 View Model of Software Architecture（1995），IEEE Software 12(6)，第 42–50 页；https://www.cs.ubc.ca/~gregor/teaching/papers/4+1view-architecture.pdf'}
 neighbours: [C5, E1, G1, I2]
 status: draft
-sourceRev: a5d2191
+sourceRev: 88db750
 translationOf: en/types/I1-four-plus-one.md
 reviewed: false
 ---
@@ -142,4 +142,4 @@ reviewed: false
 ## 示例 {#sample}
 <!-- skill: path only -->
 ![I1 示例：网店的 4+1 视图](/samples/I1-four-plus-one.svg)
-*网店的逻辑视图、进程视图、开发视图和物理视图，由结账与恢复场景串联起来。*
+*网店的 4+1 视图：逻辑视图、进程视图、开发视图和物理视图，由映射线相连（类作为任务运行、任务位于模块中、模块部署到节点），并由结账和故障恢复两个场景验证。*

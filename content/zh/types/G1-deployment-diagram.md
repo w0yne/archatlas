@@ -17,7 +17,7 @@ formal: {kind: standard, ref: 'OMG UML 2.5.1 Deployments (nodes, execution envir
 neighbours: [C3, C8, G2, G3, G4, H2, I1]
 status: draft
 translationOf: en/types/G1-deployment-diagram.md
-sourceRev: a5d2191
+sourceRev: 88db750
 reviewed: false
 ---
 
@@ -141,5 +141,5 @@ reviewed: false
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-![G1 示例：网上商城生产环境部署，包含负载均衡器、承载店面、订单服务和聊天机器人实例的容器平台，以及带副本的托管数据库](/samples/G1-deployment-diagram.svg)
-*示例待生成（由渲染器根据 `examples/` 生成）。*
+![G1 示例：网店的生产部署图](/samples/G1-deployment-diagram.svg)
+*网店的生产部署（现状）：集群内的主机 A 上运行商城前台和订单 API（两个副本，仅为示意），调用托管数据库和外部支付服务商。承载框画成实线；通信线上标注协议（HTTP、SQL、HTTPS）。*

@@ -17,7 +17,7 @@ formal: {kind: convention, ref: 'No single standard. Provider icon sets and prov
 neighbours: [C3, C5, G1, G3, G4]
 status: draft
 translationOf: en/types/G2-cloud-infrastructure-architecture.md
-sourceRev: a5d2191
+sourceRev: 88db750
 reviewed: false
 ---
 
@@ -138,5 +138,5 @@ reviewed: false
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-![G2 示例：托管云平台上的网上商城店面，包含 CDN、容器服务、托管数据库、队列，以及使用模型端点的客服聊天机器人](/samples/G2-cloud-infrastructure-architecture.svg)
-*示例待生成（由渲染器根据 `examples/` 生成）。*
+![G2 示例：网店在通用云上的基础设施（拟议）](/samples/G2-cloud-infrastructure-architecture.svg)
+*通用云上的拟议基础设施：边缘是 CDN，区域 A（可用区 1 和 2）运行应用服务，托管数据库在可用区 2 有副本。箭头分别标注“转发请求”和“读写”。*

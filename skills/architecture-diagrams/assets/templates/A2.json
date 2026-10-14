@@ -9,43 +9,75 @@
   },
   "layout": {
     "template": "tree",
-    "profile": "doc"
+    "profile": "doc",
+    "spacing": {
+      "rank_gap": 36,
+      "node_gap": 24
+    }
   },
   "nodes": [
     {
+      "id": "who",
+      "kind": "actor",
+      "label": "Shopper",
+      "size_hint": {
+        "width": 112
+      }
+    },
+    {
       "id": "s1",
       "kind": "task",
-      "label": "Customer orders",
+      "label": "Choose product",
       "size_hint": {
-        "width": 150
+        "width": 112
       }
     },
     {
       "id": "s2",
       "kind": "task",
-      "label": "Pay",
+      "label": "Place order",
       "size_hint": {
-        "width": 150
+        "width": 112
       }
     },
     {
       "id": "s3",
       "kind": "task",
-      "label": "Pack",
+      "label": "Pay for order",
       "size_hint": {
-        "width": 150
+        "width": 112
       }
     },
     {
       "id": "s4",
       "kind": "task",
-      "label": "Deliver goods",
+      "label": "Pack order",
       "size_hint": {
-        "width": 150
+        "width": 112
+      }
+    },
+    {
+      "id": "s5",
+      "kind": "task",
+      "label": "Deliver order",
+      "size_hint": {
+        "width": 112
+      }
+    },
+    {
+      "id": "val",
+      "kind": "event",
+      "label": "Goods received",
+      "size_hint": {
+        "width": 104
       }
     }
   ],
   "edges": [
+    {
+      "from": "who",
+      "to": "s1"
+    },
     {
       "from": "s1",
       "to": "s2"
@@ -57,6 +89,14 @@
     {
       "from": "s3",
       "to": "s4"
+    },
+    {
+      "from": "s4",
+      "to": "s5"
+    },
+    {
+      "from": "s5",
+      "to": "val"
     }
   ]
 }

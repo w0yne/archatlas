@@ -17,7 +17,7 @@ formal: {kind: method, ref: 'Rother & Shook, Learning to See (Lean Enterprise In
 neighbours: [A2, A5, E4, G4]
 status: draft
 translationOf: en/types/A9-lean-value-stream-map.md
-sourceRev: a5d2191
+sourceRev: 88db750
 reviewed: false
 ---
 
@@ -142,5 +142,5 @@ reviewed: false
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-![A9 示例：网店从下单到送货上门的现状图，含处理框、排队以及处理时间与等待时间对比的时间线](/samples/A9-lean-value-stream-map.svg)
-*示例待生成（由渲染器根据 `examples/` 生成）。*
+![A9 示例：从下单到送货上门的精益价值流图，含排队和处理时间](/samples/A9-lean-value-stream-map.svg)
+*从下单到送货上门的精益价值流图：供应商和订单系统驱动“拣货、打包、交接”，再交给顾客，其间有打包队列和交接队列。每个步骤下写处理时间，每个队列下写等待时间；标题给出合计（前置时间 32.8 小时，ΣPT 20 分钟，活动比 1 %）。数字仅为示意，本渲染器不绘制时间线梯形。*

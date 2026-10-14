@@ -17,7 +17,7 @@ formal: {kind: method, ref: 'C4 model (Simon Brown), Level 3 Component diagram; 
 neighbours: [C3, C5, C8, E1]
 status: draft
 translationOf: en/types/C4-component-diagram.md
-sourceRev: a5d2191
+sourceRev: 5137fae
 reviewed: false
 ---
 
@@ -154,5 +154,5 @@ reviewed: false
 
 ## 示例图 {#sample}
 <!-- skill: path only -->
-![C4 示例：网店 Shop API 的组件图，包括各处理器、结账逻辑、仓储库以及连接支付服务商和仓储系统的客户端](/samples/C4-component-diagram.svg)
-*示例图待生成（由渲染器根据 `examples/` 生成）。*
+![C4 示例：订单 API 的组件图](/samples/C4-component-diagram.svg)
+*订单 API 的组件：边界内有控制器、服务和仓储。控制器调用服务，服务通过仓储保存订单，仓储读写商城数据库，服务向外部的支付服务商扣款。*

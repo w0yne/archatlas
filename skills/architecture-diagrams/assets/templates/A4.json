@@ -14,7 +14,7 @@
   "tables": [
     {
       "id": "m",
-      "title": "Roles by activities",
+      "title": "R1 = release 1, R2 = release 2. Blank = not applicable; – = in scope, deliberately not supported.",
       "columns": [
         "Role",
         "Browse",
@@ -30,15 +30,15 @@
         ],
         [
           "Support agent",
-          "-",
+          "",
           "Edit order [R2]",
           "Approve return [R2]"
         ],
         [
           "Shop manager",
           "Maintain catalogue [R1]",
-          "-",
-          "-"
+          "–",
+          ""
         ]
       ]
     }

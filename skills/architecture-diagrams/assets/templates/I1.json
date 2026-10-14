@@ -5,7 +5,13 @@
     "title": "Online shop: 4+1 views",
     "lang": "en",
     "audience": "architects",
-    "state": "as-is"
+    "state": "as-is",
+    "legend_labels": {
+      "edges": {
+        "dependency": "Scenario validates view",
+        "assoc": "Mapping between views"
+      }
+    }
   },
   "layout": {
     "template": "layered",
@@ -32,7 +38,7 @@
       "sub": "order, payment, catalogue",
       "parent": "g_v",
       "size_hint": {
-        "width": 160
+        "width": 170
       }
     },
     {
@@ -42,7 +48,7 @@
       "sub": "checkout concurrency",
       "parent": "g_v",
       "size_hint": {
-        "width": 160
+        "width": 170
       }
     },
     {
@@ -52,7 +58,7 @@
       "sub": "modules and teams",
       "parent": "g_v",
       "size_hint": {
-        "width": 160
+        "width": 170
       }
     },
     {
@@ -62,7 +68,7 @@
       "sub": "hosts and networks",
       "parent": "g_v",
       "size_hint": {
-        "width": 160
+        "width": 170
       }
     },
     {
@@ -72,7 +78,7 @@
       "parent": "g_s",
       "style": "primary",
       "size_hint": {
-        "width": 160
+        "width": 170
       }
     },
     {
@@ -82,7 +88,7 @@
       "parent": "g_s",
       "style": "primary",
       "size_hint": {
-        "width": 160
+        "width": 170
       }
     }
   ],
@@ -92,6 +98,27 @@
       "to": "g_v",
       "label": "validate",
       "kind": "dependency"
+    },
+    {
+      "from": "log",
+      "to": "proc",
+      "label": "classes run as tasks",
+      "kind": "assoc",
+      "dir": "--"
+    },
+    {
+      "from": "proc",
+      "to": "dev",
+      "label": "tasks live in modules",
+      "kind": "assoc",
+      "dir": "--"
+    },
+    {
+      "from": "dev",
+      "to": "phy",
+      "label": "modules deploy to nodes",
+      "kind": "assoc",
+      "dir": "--"
     }
   ]
 }

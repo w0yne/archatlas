@@ -2,7 +2,7 @@
   "archatlas": "0.1",
   "meta": {
     "type": "D2",
-    "title": "Online shop: data flow, order data",
+    "title": "Online shop: data flow, level 1",
     "lang": "en",
     "audience": "analysts and security",
     "state": "as-is"
@@ -10,15 +10,11 @@
   "layout": {
     "template": "nested",
     "profile": "doc",
-    "columns": 3
-  },
-  "groups": [
-    {
-      "id": "g_in",
-      "title": "Shop",
-      "kind": "boundary"
+    "columns": 5,
+    "spacing": {
+      "node_gap": 40
     }
-  ],
+  },
   "nodes": [
     {
       "id": "cust",
@@ -26,16 +22,15 @@
       "label": "Customer",
       "style": "external",
       "size_hint": {
-        "width": 160
+        "width": 130
       }
     },
     {
-      "id": "val",
+      "id": "p1",
       "kind": "component",
-      "label": "Validate order",
-      "parent": "g_in",
+      "label": "1 Validate order",
       "size_hint": {
-        "width": 160
+        "width": 130
       }
     },
     {
@@ -43,9 +38,16 @@
       "kind": "store",
       "label": "Orders",
       "sub": "D1",
-      "parent": "g_in",
       "size_hint": {
-        "width": 160
+        "width": 130
+      }
+    },
+    {
+      "id": "p2",
+      "kind": "component",
+      "label": "2 Request payment",
+      "size_hint": {
+        "width": 130
       }
     },
     {
@@ -54,27 +56,33 @@
       "label": "Payment provider",
       "style": "external",
       "size_hint": {
-        "width": 160
+        "width": 130
       }
     }
   ],
   "edges": [
     {
       "from": "cust",
-      "to": "val",
+      "to": "p1",
       "label": "Order details",
       "kind": "data"
     },
     {
-      "from": "val",
+      "from": "p1",
       "to": "st",
       "label": "Valid order",
       "kind": "data"
     },
     {
       "from": "st",
+      "to": "p2",
+      "label": "Amount due",
+      "kind": "data"
+    },
+    {
+      "from": "p2",
       "to": "pay",
-      "label": "Amount to charge",
+      "label": "Payment request",
       "kind": "data"
     }
   ]

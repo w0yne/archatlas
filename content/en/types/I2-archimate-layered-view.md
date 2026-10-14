@@ -134,5 +134,5 @@ Approximate: no formal ArchiMate glyphs and no metamodel validation; formal outp
 
 ## Sample {#sample}
 <!-- skill: path only -->
-![I2 sample: layered view of placing an order](/samples/I2-archimate-layered-view.svg)
-*An online shop's checkout behavior, application services and technology support, with explicit relationship types.*
+![I2 sample: informal ArchiMate-style layered view of placing an order](/samples/I2-archimate-layered-view.svg)
+*Informal approximation of an ArchiMate layered view for placing an order: the shopper is assigned to the Place order process in the business layer; the Order handling application service serves it and is realised by the Order service component, which accesses Order data; a container platform in the technology layer serves the component. Edge labels name the relationship types; there are no ArchiMate glyphs and no metamodel validation.*

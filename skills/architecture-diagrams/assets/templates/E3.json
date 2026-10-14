@@ -9,8 +9,7 @@
   },
   "layout": {
     "template": "statechart",
-    "profile": "doc",
-    "columns": 5
+    "profile": "doc"
   },
   "nodes": [
     {
@@ -23,7 +22,7 @@
       "kind": "state",
       "label": "Placed",
       "size_hint": {
-        "width": 120
+        "width": 130
       }
     },
     {
@@ -31,7 +30,7 @@
       "kind": "state",
       "label": "Paid",
       "size_hint": {
-        "width": 120
+        "width": 130
       }
     },
     {
@@ -39,21 +38,21 @@
       "kind": "state",
       "label": "Shipped",
       "size_hint": {
-        "width": 120
+        "width": 130
       }
-    },
-    {
-      "id": "f",
-      "kind": "final",
-      "label": "End"
     },
     {
       "id": "cancelled",
       "kind": "state",
       "label": "Cancelled",
       "size_hint": {
-        "width": 120
+        "width": 130
       }
+    },
+    {
+      "id": "f",
+      "kind": "final",
+      "label": "End"
     }
   ],
   "edges": [
@@ -64,25 +63,31 @@
     {
       "from": "new",
       "to": "paid",
-      "label": "payment received",
+      "label": "pay [amount ok] / reserve stock",
       "kind": "call"
     },
     {
       "from": "paid",
       "to": "shipped",
-      "label": "handed to carrier",
+      "label": "ship / notify customer",
       "kind": "call"
     },
     {
       "from": "shipped",
       "to": "f",
-      "label": "delivered",
+      "label": "deliver",
       "kind": "call"
     },
     {
       "from": "new",
       "to": "cancelled",
-      "label": "customer cancels",
+      "label": "cancel [before payment]",
+      "kind": "call"
+    },
+    {
+      "from": "cancelled",
+      "to": "f",
+      "label": "release stock",
       "kind": "call"
     }
   ]

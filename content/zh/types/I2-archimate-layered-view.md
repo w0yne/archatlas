@@ -16,7 +16,7 @@ scope: enterprise
 formal: {kind: standard, ref: 'The Open Group，ArchiMate 3.2（2022），附录 C.1.5 中的资料性分层视点；https://pubs.opengroup.org/architecture/archimate3-doc/ch-Example-Viewpoints.html'}
 neighbours: [A7, C1, C8, I1]
 status: draft
-sourceRev: a5d2191
+sourceRev: 88db750
 translationOf: en/types/I2-archimate-layered-view.md
 reviewed: false
 ---
@@ -136,5 +136,5 @@ reviewed: false
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-![I2 示例：下单的分层视图](/samples/I2-archimate-layered-view.svg)
-*网店的结账行为、应用服务与技术支撑，明确标出关系类型。*
+![I2 示例：下单的 ArchiMate 风格分层视图（非正式近似）](/samples/I2-archimate-layered-view.svg)
+*下单的 ArchiMate 分层视图（非正式近似）：购物者被分配到业务层的“下单”流程；应用服务“订单处理”为它提供服务，并由“订单服务”组件实现，该组件访问“订单数据”；技术层的容器平台为该组件提供服务。连线标注关系类型；没有 ArchiMate 图元，也没有元模型校验。*

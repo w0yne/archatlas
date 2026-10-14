@@ -16,7 +16,7 @@ scope: 在明确时间点，对一项举措的干系人参与进行规划。
 formal: {kind: method, ref: '权力-利益矩阵绘制实践；没有统一的图形标准。Nielsen Norman Group，Stakeholder Analysis for UX Projects：https://www.nngroup.com/articles/stakeholder-analysis/'}
 neighbours: [A3, H1]
 status: draft
-sourceRev: a5d2191
+sourceRev: 88db750
 translationOf: en/types/H3-stakeholder-map.md
 reviewed: false
 ---
@@ -127,5 +127,5 @@ reviewed: false
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-![H3 示例：网店结账项目的干系人地图](/samples/H3-stakeholder-map.svg)
-*网店结账项目的参与规划网格，使用通用角色并配套行动表。点位安排是假设，不对真实个人或组织进行排名。*
+![H3 示例：权力-利益干系人图及配套行动表](/samples/H3-stakeholder-map.svg)
+*权力-利益干系人图（假设）：商城管理员重点管理，财务令其满意，顾客保持知情，承运商持续关注；配套表给出态度和下一步。摆放位置仅为示意，不对任何真实的人或组织排序。*

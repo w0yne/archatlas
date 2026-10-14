@@ -2,7 +2,7 @@
   "archatlas": "0.1",
   "meta": {
     "type": "H3",
-    "title": "Online shop: stakeholder map",
+    "title": "Online shop: stakeholder map (hypothetical)",
     "lang": "en",
     "audience": "project team",
     "state": "as-is"
@@ -14,20 +14,20 @@
   "tables": [
     {
       "id": "q",
-      "title": "Influence by interest",
+      "title": "Power by interest",
       "columns": [
-        "Influence",
+        "Power",
         "Low interest",
         "High interest"
       ],
       "rows": [
         [
-          "High influence",
+          "High power",
           "Finance (keep satisfied)",
           "Shop manager (manage closely)"
         ],
         [
-          "Low influence",
+          "Low power",
           "Carrier (monitor)",
           "Customer (keep informed)"
         ]
@@ -35,7 +35,7 @@
     },
     {
       "id": "s",
-      "title": "Companion table",
+      "title": "Engagement actions",
       "columns": [
         "Stakeholder",
         "Attitude",

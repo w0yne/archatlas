@@ -2,10 +2,10 @@
   "archatlas": "0.1",
   "meta": {
     "type": "G2",
-    "title": "Online shop: cloud infrastructure",
+    "title": "Online shop: cloud infrastructure on a generic provider (proposed)",
     "lang": "en",
     "audience": "operations and architects",
-    "state": "as-is"
+    "state": "to-be"
   },
   "layout": {
     "template": "layered",
@@ -14,17 +14,17 @@
   "groups": [
     {
       "id": "g_e",
-      "title": "Edge",
+      "title": "Edge (global)",
       "kind": "layer"
     },
     {
       "id": "g_cmp",
-      "title": "Compute",
+      "title": "Compute (region A, zones 1 and 2)",
       "kind": "layer"
     },
     {
       "id": "g_d",
-      "title": "Data",
+      "title": "Data (region A, replica in zone 2)",
       "kind": "layer"
     }
   ],
@@ -56,7 +56,7 @@
     {
       "from": "g_e",
       "to": "g_cmp",
-      "label": "forwards",
+      "label": "forwards requests",
       "kind": "call"
     },
     {

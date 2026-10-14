@@ -147,4 +147,4 @@ This is an overview index: it must link to the substantive views, not substitute
 ## Sample {#sample}
 <!-- skill: path only -->
 ![I1 sample: 4+1 views of an online shop](/samples/I1-four-plus-one.svg)
-*An online shop's logical, process, development and physical views, connected by checkout and recovery scenarios.*
+*4+1 views of the online shop: logical, process, development and physical views, linked by mapping lines (classes run as tasks, tasks live in modules, modules deploy to nodes) and validated by two scenarios, checkout and recovery after failure.*

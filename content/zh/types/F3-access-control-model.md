@@ -17,7 +17,7 @@ formal: {kind: convention, ref: 'RBAC: ANSI/INCITS 359-2004 and its 2012 revisio
 neighbours: [D1, F1, F2, H1]
 status: draft
 translationOf: en/types/F3-access-control-model.md
-sourceRev: a5d2191
+sourceRev: 88db750
 reviewed: false
 ---
 
@@ -140,5 +140,5 @@ reviewed: false
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-![F3 示例：网上商城角色权限矩阵，涵盖顾客、客服专员、仓储和财务角色对订单、退款和库存的权限，并附租户范围说明](/samples/F3-access-control-model.svg)
-*示例待生成（由渲染器根据 `examples/` 生成）。*
+![F3 示例：商城后台的角色-权限矩阵（拟议）](/samples/F3-access-control-model.svg)
+*商城后台的角色-权限矩阵（RBAC，拟议方案）：角色为行，“资源-操作”对为列。单元格写明允许、拒绝，或适用的条件（本人订单、分配给该工单、不超过退款限额）。默认拒绝；执行情况尚未验证。*

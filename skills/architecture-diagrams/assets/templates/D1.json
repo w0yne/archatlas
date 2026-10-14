@@ -5,7 +5,14 @@
     "title": "Online shop: logical data model",
     "lang": "en",
     "audience": "developers and analysts",
-    "state": "as-is"
+    "state": "as-is",
+    "legend": [
+      {
+        "label": "Cardinality at each end: minimum..maximum (* = many)",
+        "kind": "assoc",
+        "dir": "--"
+      }
+    ]
   },
   "layout": {
     "template": "er",
@@ -16,9 +23,9 @@
     {
       "id": "customer",
       "kind": "entity",
-      "label": "customer",
+      "label": "Customer",
       "attributes": [
-        "PK customer_id",
+        "customer ID (PK)",
         "name",
         "email"
       ],
@@ -29,11 +36,11 @@
     {
       "id": "order",
       "kind": "entity",
-      "label": "order",
+      "label": "Order",
       "attributes": [
-        "PK order_id",
-        "FK customer_id",
-        "placed_at",
+        "order ID (PK)",
+        "customer ID (FK)",
+        "placed at",
         "status"
       ],
       "size_hint": {
@@ -41,13 +48,13 @@
       }
     },
     {
-      "id": "order_line",
+      "id": "orderline",
       "kind": "entity",
-      "label": "order_line",
+      "label": "Order line",
       "attributes": [
-        "PK order_line_id",
-        "FK order_id",
-        "FK product_id",
+        "order line ID (PK)",
+        "order ID (FK)",
+        "product ID (FK)",
         "quantity"
       ],
       "size_hint": {
@@ -57,9 +64,9 @@
     {
       "id": "product",
       "kind": "entity",
-      "label": "product",
+      "label": "Product",
       "attributes": [
-        "PK product_id",
+        "product ID (PK)",
         "name",
         "price"
       ],
@@ -74,28 +81,28 @@
       "to": "order",
       "label": "places",
       "cardinality": {
-        "from": "1",
-        "to": "N"
+        "from": "1..1",
+        "to": "0..*"
       },
       "dir": "--"
     },
     {
       "from": "order",
-      "to": "order_line",
+      "to": "orderline",
       "label": "contains",
       "cardinality": {
-        "from": "1",
-        "to": "N"
+        "from": "1..1",
+        "to": "1..*"
       },
       "dir": "--"
     },
     {
       "from": "product",
-      "to": "order_line",
-      "label": "is for",
+      "to": "orderline",
+      "label": "is sold as",
       "cardinality": {
-        "from": "1",
-        "to": "N"
+        "from": "1..1",
+        "to": "0..*"
       },
       "dir": "--"
     }

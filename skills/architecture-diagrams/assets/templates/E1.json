@@ -90,21 +90,43 @@
       "step": 6,
       "kind": "call",
       "dashed": true
+    },
+    {
+      "from": "pay",
+      "to": "api",
+      "label": "Payment declined",
+      "step": 7,
+      "kind": "call",
+      "dashed": true
+    },
+    {
+      "from": "api",
+      "to": "cust",
+      "label": "Order rejected",
+      "step": 8,
+      "kind": "call",
+      "dashed": true
     }
   ],
   "frames": [
     {
       "id": "loop1",
-      "label": "for each order line",
+      "label": "loop [each order line]",
       "from_step": 2,
       "to_step": 3
+    },
+    {
+      "id": "alt1",
+      "label": "alt [card accepted] / [else] card declined",
+      "from_step": 5,
+      "to_step": 8
     }
   ],
   "activations": [
     {
       "node": "api",
       "from_step": 1,
-      "to_step": 6
+      "to_step": 8
     },
     {
       "node": "inv",
@@ -114,7 +136,7 @@
     {
       "node": "pay",
       "from_step": 4,
-      "to_step": 5
+      "to_step": 7
     }
   ]
 }

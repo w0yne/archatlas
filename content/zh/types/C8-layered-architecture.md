@@ -17,7 +17,7 @@ formal: {kind: convention, ref: 'none for the picture; semantics: SEI layered st
 neighbours: [C4, C5, C7, G1, I2]
 status: draft
 translationOf: en/types/C8-layered-architecture.md
-sourceRev: a5d2191
+sourceRev: 88db750
 reviewed: false
 ---
 
@@ -163,6 +163,5 @@ reviewed: false
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-
-![C8 示例：网店后端的分层——web/API 适配器层（店面、结账端点）、应用层（下单、更新购物车）、领域层（购物车、订单、定价）、基础设施层（持久化、支付服务商客户端、仓库客户端），图注中陈述了严格堆栈规则](/samples/C8-layered-architecture.svg)
-*示例待生成（由渲染器根据 `examples/` 生成）。*
+![C8 示例：容器内的分层架构及允许的依赖](/samples/C8-layered-architecture.svg)
+*一个容器内的分层架构：表现层（控制器）、领域层（订单服务）和数据访问层（仓储）。标注“可使用”的箭头是仅有的允许依赖，都指向下方。*

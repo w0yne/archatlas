@@ -2,23 +2,52 @@
   "archatlas": "0.1",
   "meta": {
     "type": "A9",
-    "title": "Online shop: fulfilment value stream map",
+    "title": "Order to doorstep: lead time 32.8 h, ΣPT 20 min, activity ratio 1 % (illustrative)",
     "lang": "en",
     "audience": "operations",
-    "state": "as-is"
+    "state": "as-is",
+    "description": "Illustrative totals: lead time 32.8 h, sum of process times 20 min, activity ratio about 1 %.",
+    "legend_labels": {
+      "edges": {
+        "call": "Material flow",
+        "async": "Information flow"
+      }
+    }
   },
   "layout": {
     "template": "tree",
-    "profile": "doc"
+    "profile": "doc",
+    "spacing": {
+      "rank_gap": 24,
+      "node_gap": 24
+    }
   },
   "nodes": [
+    {
+      "id": "sup",
+      "kind": "external",
+      "label": "Supplier",
+      "style": "external",
+      "size_hint": {
+        "width": 120
+      }
+    },
+    {
+      "id": "ord",
+      "kind": "system",
+      "label": "Order system",
+      "style": "shared",
+      "size_hint": {
+        "width": 120
+      }
+    },
     {
       "id": "p1",
       "kind": "task",
       "label": "Pick",
       "sub": "PT 6 min",
       "size_hint": {
-        "width": 110
+        "width": 120
       }
     },
     {
@@ -27,7 +56,7 @@
       "label": "Packing queue",
       "sub": "wait 4 h",
       "size_hint": {
-        "width": 110
+        "width": 120
       }
     },
     {
@@ -36,7 +65,7 @@
       "label": "Pack",
       "sub": "PT 4 min",
       "size_hint": {
-        "width": 110
+        "width": 120
       }
     },
     {
@@ -45,20 +74,40 @@
       "label": "Handover queue",
       "sub": "wait 12 h",
       "size_hint": {
-        "width": 110
+        "width": 120
       }
     },
     {
       "id": "p3",
       "kind": "task",
-      "label": "Hand over to carrier",
+      "label": "Hand over",
       "sub": "PT 2 min",
       "size_hint": {
-        "width": 110
+        "width": 120
+      }
+    },
+    {
+      "id": "cus",
+      "kind": "external",
+      "label": "Customer",
+      "style": "external",
+      "size_hint": {
+        "width": 120
       }
     }
   ],
   "edges": [
+    {
+      "from": "sup",
+      "to": "p1",
+      "label": "Stock"
+    },
+    {
+      "from": "ord",
+      "to": "p1",
+      "label": "Pick list",
+      "kind": "async"
+    },
     {
       "from": "p1",
       "to": "q1"
@@ -74,6 +123,11 @@
     {
       "from": "q2",
       "to": "p3"
+    },
+    {
+      "from": "p3",
+      "to": "cus",
+      "label": "Parcel"
     }
   ]
 }

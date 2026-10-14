@@ -17,7 +17,7 @@ formal: {kind: convention, ref: 'none (no graphical standard); closest definitio
 neighbours: [A7, B3, C1, C3, C4, C6, C7, C8, G2, I1]
 status: draft
 translationOf: en/types/C5-logical-architecture.md
-sourceRev: a5d2191
+sourceRev: 88db750
 reviewed: false
 ---
 
@@ -162,6 +162,5 @@ reviewed: false
 
 ## 示例图 {#sample}
 <!-- skill: path only -->
-
-![C5 示例：一家网店的逻辑视图，包括商品目录、购物车、结账、订单管理、履约和客户支持等构建块，支付服务商、仓储和身份位于边界之外](/samples/C5-logical-architecture.svg)
-*示例图待生成（由渲染器根据 `examples/` 生成）。*
+![C5 示例：网店的逻辑架构，按职责划分构建块](/samples/C5-logical-architecture.svg)
+*网店的逻辑视图：构建块按职责分组（销售：商品目录和结账；履约：订单管理和库存；支付：支付处理），每条依赖标注所用操作，边界外是支付服务商。这里只有图，没有配套的构建块表。*

@@ -126,4 +126,4 @@ Use a separate context view when nodes and arrows describe an operating system b
 ## Sample {#sample}
 <!-- skill: path only -->
 ![B4 sample: scope of a checkout release](/samples/B4-scope-diagram.svg)
-*A checkout release includes payment integration and order confirmation, excludes a loyalty program, and records an external provider as a dependency.*
+*Scope of a checkout release: payment integration and order confirmation are in scope, a loyalty programme is out of scope, and the payment provider is recorded as an external dependency.*

@@ -2,16 +2,20 @@
   "archatlas": "0.1",
   "meta": {
     "type": "E2",
-    "title": "Online shop: order fulfilment flow",
+    "title": "Online shop: handle a new order",
     "lang": "en",
     "audience": "developers and operations",
-    "state": "as-is"
+    "state": "as-is",
+    "legend_labels": {
+      "edges": {
+        "call": "Control flow"
+      }
+    }
   },
   "layout": {
     "template": "lanes",
     "profile": "doc",
-    "direction": "LR",
-    "columns": 4
+    "direction": "LR"
   },
   "groups": [
     {
@@ -47,7 +51,7 @@
       "label": "In stock?",
       "parent": "l_a",
       "size_hint": {
-        "width": 110
+        "width": 96
       }
     },
     {
@@ -60,10 +64,25 @@
       }
     },
     {
-      "id": "f",
+      "id": "a3",
+      "kind": "task",
+      "label": "Offer backorder",
+      "parent": "l_a",
+      "size_hint": {
+        "width": 150
+      }
+    },
+    {
+      "id": "f1",
       "kind": "final",
-      "label": "End",
+      "label": "Packed",
       "parent": "l_b"
+    },
+    {
+      "id": "f2",
+      "kind": "final",
+      "label": "Backordered",
+      "parent": "l_a"
     }
   ],
   "edges": [
@@ -78,11 +97,20 @@
     {
       "from": "d1",
       "to": "a2",
-      "label": "yes"
+      "label": "[in stock]"
+    },
+    {
+      "from": "d1",
+      "to": "a3",
+      "label": "[else]"
     },
     {
       "from": "a2",
-      "to": "f"
+      "to": "f1"
+    },
+    {
+      "from": "a3",
+      "to": "f2"
     }
   ]
 }

@@ -9,7 +9,8 @@
   },
   "layout": {
     "template": "layered",
-    "profile": "doc"
+    "profile": "doc",
+    "columns": 3
   },
   "groups": [
     {
@@ -27,28 +28,47 @@
     {
       "id": "orders",
       "kind": "store",
-      "label": "orders",
-      "sub": "owner: Ordering team",
+      "label": "Orders",
+      "sub": "shop.orders · owner Ordering · steward Data office",
       "tags": [
         "internal"
       ],
-      "parent": "g_src"
+      "parent": "g_src",
+      "size_hint": {
+        "width": 180
+      }
     },
     {
       "id": "job",
       "kind": "component",
-      "label": "Daily sales job",
-      "parent": "g_rep"
+      "label": "Aggregate daily sales",
+      "parent": "g_rep",
+      "size_hint": {
+        "width": 180
+      }
     },
     {
       "id": "sales",
       "kind": "store",
-      "label": "daily_sales",
-      "sub": "owner: Reporting team",
+      "label": "Daily sales",
+      "sub": "rep.daily_sales · owner Reporting · steward Data office",
       "tags": [
         "internal"
       ],
-      "parent": "g_rep"
+      "parent": "g_rep",
+      "size_hint": {
+        "width": 180
+      }
+    },
+    {
+      "id": "dash",
+      "kind": "system",
+      "label": "Sales dashboard",
+      "sub": "consumer",
+      "parent": "g_rep",
+      "size_hint": {
+        "width": 180
+      }
     }
   ],
   "edges": [
@@ -62,6 +82,12 @@
       "from": "job",
       "to": "sales",
       "label": "writes",
+      "kind": "data"
+    },
+    {
+      "from": "sales",
+      "to": "dash",
+      "label": "feeds",
       "kind": "data"
     }
   ]

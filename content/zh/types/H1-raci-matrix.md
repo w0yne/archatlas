@@ -16,7 +16,7 @@ scope: 一项举措或一项服务内各项活动的职责分配。
 formal: {kind: convention, ref: '职责分配实践；没有统一版本的图形标准。Atlassian，Understanding and using RACI charts：https://www.atlassian.com/work-management/project-management/raci-chart'}
 neighbours: [A4, D3, E4, F3, H2, H3]
 status: draft
-sourceRev: a5d2191
+sourceRev: 88db750
 translationOf: en/types/H1-raci-matrix.md
 reviewed: false
 ---
@@ -127,5 +127,5 @@ Asana 正文建议只设一个 R，但其常见问题部分允许多个 R [4]。
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-![H1 示例：一次结账发布的 RACI 矩阵](/samples/H1-raci-matrix.svg)
-*网店发布矩阵将准备、审批、支持交接和回滚就绪工作分配给通用角色。其中的分配仅作示意，不代表推断出的组织规则。*
+![H1 示例：结账版本的 RACI 矩阵](/samples/H1-raci-matrix.svg)
+*结账版本的 RACI 矩阵：四项活动对四个角色（产品负责人、商城管理员、客服主管、工程师）。每行有一个最终责任人（A）和至少一个执行人（R）；A/R 表示同一角色兼任两者。*

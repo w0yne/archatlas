@@ -17,7 +17,7 @@ formal: {kind: standard, ref: 'TOGAF ADM Architecture Roadmap and Transition Arc
 neighbours: [A1, A7, C1]
 status: draft
 translationOf: en/types/A8-target-roadmap.md
-sourceRev: a5d2191
+sourceRev: 88db750
 reviewed: false
 ---
 
@@ -137,5 +137,5 @@ reviewed: false
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-![A8 示例：网店 2026–2028 路线图——基线单体网店 →“结账作为独立服务运行”→“仓库实时库存”→ 目标模块化网店（含客服聊天机器人）；状态之间为工作包，临时的订单同步适配器以虚线标出](/samples/A8-target-roadmap.svg)
-*示例待生成（由渲染器根据 `examples/` 生成）。*
+![A8 示例：从当前单一商城到能回答订单问题的客服机器人的路线图](/samples/A8-target-roadmap.svg)
+*从当前单一商城到能回答订单问题的客服机器人的路线图：三个状态（现状、机器人回答常见问题、机器人处理订单问题）由两个规划中的工作包（上线客服机器人、把订单接入机器人）相连。紫色表示规划中的工作。*

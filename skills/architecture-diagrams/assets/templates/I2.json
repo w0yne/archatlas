@@ -2,10 +2,17 @@
   "archatlas": "0.1",
   "meta": {
     "type": "I2",
-    "title": "Online shop: layered view, place order",
+    "title": "Online shop: layered view, place an order (informal ArchiMate approximation)",
     "lang": "en",
     "audience": "enterprise architects",
-    "state": "as-is"
+    "state": "as-is",
+    "legend": [
+      {
+        "label": "Edge labels name the relationship type",
+        "kind": "dependency",
+        "dir": "->"
+      }
+    ]
   },
   "layout": {
     "template": "layered",
@@ -33,43 +40,78 @@
       "id": "shopper",
       "kind": "actor",
       "label": "Shopper",
-      "parent": "g_b"
+      "parent": "g_b",
+      "size_hint": {
+        "width": 150
+      }
     },
     {
       "id": "proc",
       "kind": "task",
       "label": "Place order",
-      "parent": "g_b"
+      "parent": "g_b",
+      "size_hint": {
+        "width": 150
+      }
     },
     {
       "id": "svc",
       "kind": "component",
-      "label": "Order service",
+      "label": "Order handling",
+      "tags": [
+        "application service"
+      ],
       "parent": "g_a",
-      "style": "primary"
+      "size_hint": {
+        "width": 150
+      }
+    },
+    {
+      "id": "comp",
+      "kind": "component",
+      "label": "Order service",
+      "tags": [
+        "application component"
+      ],
+      "parent": "g_a",
+      "style": "primary",
+      "size_hint": {
+        "width": 150
+      }
     },
     {
       "id": "data",
       "kind": "store",
       "label": "Order data",
-      "parent": "g_a"
+      "tags": [
+        "data object"
+      ],
+      "parent": "g_a",
+      "size_hint": {
+        "width": 150
+      }
     },
     {
       "id": "plat",
       "kind": "system",
       "label": "Container platform",
-      "sub": "node",
-      "parent": "g_t"
-    },
-    {
-      "id": "db",
-      "kind": "store",
-      "label": "Managed database",
-      "sub": "system software",
-      "parent": "g_t"
+      "tags": [
+        "node"
+      ],
+      "parent": "g_t",
+      "size_hint": {
+        "width": 150
+      }
     }
   ],
   "edges": [
+    {
+      "from": "shopper",
+      "to": "proc",
+      "label": "assigned to",
+      "kind": "assoc",
+      "dir": "--"
+    },
     {
       "from": "svc",
       "to": "proc",
@@ -77,17 +119,24 @@
       "kind": "dependency"
     },
     {
-      "from": "plat",
+      "from": "comp",
       "to": "svc",
-      "label": "serves",
-      "kind": "dependency"
+      "label": "realizes",
+      "kind": "dependency",
+      "dashed": true
     },
     {
-      "from": "shopper",
-      "to": "proc",
-      "label": "assigned to",
+      "from": "comp",
+      "to": "data",
+      "label": "accesses",
       "kind": "assoc",
       "dir": "--"
+    },
+    {
+      "from": "plat",
+      "to": "comp",
+      "label": "serves",
+      "kind": "dependency"
     }
   ]
 }

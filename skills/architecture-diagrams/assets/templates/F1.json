@@ -2,7 +2,7 @@
   "archatlas": "0.1",
   "meta": {
     "type": "F1",
-    "title": "Online shop: sign-in and API access",
+    "title": "Shop: signed-in order history, authorization code flow (current)",
     "lang": "en",
     "audience": "security and developers",
     "state": "as-is"
@@ -15,17 +15,25 @@
     {
       "id": "user",
       "kind": "lifeline",
-      "label": "Customer",
+      "label": "Shopper",
       "size_hint": {
-        "width": 150
+        "width": 140
+      }
+    },
+    {
+      "id": "app",
+      "kind": "lifeline",
+      "label": "Web app",
+      "size_hint": {
+        "width": 140
       }
     },
     {
       "id": "idp",
       "kind": "lifeline",
-      "label": "Identity",
+      "label": "Identity provider",
       "size_hint": {
-        "width": 150
+        "width": 140
       }
     },
     {
@@ -33,45 +41,90 @@
       "kind": "lifeline",
       "label": "Order API",
       "size_hint": {
-        "width": 150
+        "width": 140
       }
     }
   ],
   "edges": [
     {
       "from": "user",
-      "to": "idp",
-      "label": "Sign in",
+      "to": "app",
+      "label": "Open order history",
       "step": 1,
       "kind": "call"
     },
     {
-      "from": "idp",
-      "to": "user",
-      "label": "Access token",
+      "from": "app",
+      "to": "idp",
+      "label": "Authorization request (redirect)",
       "step": 2,
+      "kind": "call"
+    },
+    {
+      "from": "user",
+      "to": "idp",
+      "label": "Sign in",
+      "step": 3,
+      "kind": "call"
+    },
+    {
+      "from": "idp",
+      "to": "app",
+      "label": "Authorization code (redirect)",
+      "step": 4,
       "kind": "call",
       "dashed": true
     },
     {
-      "from": "user",
+      "from": "app",
+      "to": "idp",
+      "label": "Code and verifier (back channel)",
+      "step": 5,
+      "kind": "call"
+    },
+    {
+      "from": "idp",
+      "to": "app",
+      "label": "Access token",
+      "step": 6,
+      "kind": "call",
+      "dashed": true
+    },
+    {
+      "from": "app",
       "to": "api",
-      "label": "Request with token",
-      "step": 3,
+      "label": "Request orders with token",
+      "step": 7,
       "kind": "call"
     },
     {
       "from": "api",
       "to": "idp",
-      "label": "Verify token",
-      "step": 4,
+      "label": "Fetch signing keys",
+      "step": 8,
       "kind": "call"
     },
     {
+      "from": "idp",
+      "to": "api",
+      "label": "Keys",
+      "step": 9,
+      "kind": "call",
+      "dashed": true
+    },
+    {
       "from": "api",
-      "to": "user",
+      "to": "app",
       "label": "Order list",
-      "step": 5,
+      "step": 10,
+      "kind": "call",
+      "dashed": true
+    },
+    {
+      "from": "api",
+      "to": "app",
+      "label": "401 Unauthorized",
+      "step": 11,
       "kind": "call",
       "dashed": true
     }
@@ -79,21 +132,21 @@
   "frames": [
     {
       "id": "alt1",
-      "label": "token valid",
-      "from_step": 4,
-      "to_step": 5
+      "label": "alt [token valid] / [else] refuse",
+      "from_step": 10,
+      "to_step": 11
     }
   ],
   "activations": [
     {
       "node": "idp",
-      "from_step": 1,
-      "to_step": 2
+      "from_step": 2,
+      "to_step": 6
     },
     {
       "node": "api",
-      "from_step": 3,
-      "to_step": 5
+      "from_step": 7,
+      "to_step": 11
     }
   ]
 }

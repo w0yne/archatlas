@@ -17,7 +17,7 @@ formal: {kind: convention, ref: 'none (de-facto reference: Nielsen Norman Group 
 neighbours: [A2, A4, A5, B2, E4]
 status: draft
 translationOf: en/types/A6-journey-map.md
-sourceRev: a5d2191
+sourceRev: 88db750
 reviewed: false
 ---
 
@@ -139,5 +139,5 @@ reviewed: false
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-![A6 示例：网店首次购买者，现状——阶段为发现、比较、购买、等待配送、收货、寻求帮助；情绪在付款后以及客服聊天机器人转人工时下跌；机会点分别由仓库和客户支持负责](/samples/A6-journey-map.svg)
-*示例待生成（由渲染器根据 `examples/` 生成）。*
+![A6 示例：首次购物者的旅程图，含行为、想法、情绪、痛点、触点和机会点](/samples/A6-journey-map.svg)
+*一个用户画像——首次购物者——经历四个阶段（发现、比较、下单、收货）的旅程，标注为假设和现状。各行依次是行为、想法、情绪（每个阶段一个词，不画情绪曲线）、痛点、触点，以及带负责方的机会点。*

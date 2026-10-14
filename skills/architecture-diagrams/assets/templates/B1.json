@@ -22,38 +22,47 @@
   ],
   "nodes": [
     {
-      "id": "shopper",
-      "kind": "actor",
-      "label": "Shopper",
-      "size_hint": {
-        "width": 160
-      }
-    },
-    {
       "id": "browse",
-      "kind": "task",
+      "kind": "use_case",
       "label": "Browse catalogue",
       "parent": "g_s",
       "size_hint": {
-        "width": 160
+        "width": 140
       }
     },
     {
       "id": "order",
-      "kind": "task",
+      "kind": "use_case",
       "label": "Place order",
       "parent": "g_s",
       "size_hint": {
-        "width": 160
+        "width": 140
       }
     },
     {
       "id": "track",
-      "kind": "task",
+      "kind": "use_case",
       "label": "Track order",
       "parent": "g_s",
       "size_hint": {
-        "width": 160
+        "width": 140
+      }
+    },
+    {
+      "id": "payu",
+      "kind": "use_case",
+      "label": "Pay for order",
+      "parent": "g_s",
+      "size_hint": {
+        "width": 140
+      }
+    },
+    {
+      "id": "shopper",
+      "kind": "actor",
+      "label": "Shopper",
+      "size_hint": {
+        "width": 140
       }
     },
     {
@@ -62,7 +71,7 @@
       "label": "Payment provider",
       "style": "external",
       "size_hint": {
-        "width": 160
+        "width": 140
       }
     }
   ],
@@ -86,7 +95,7 @@
       "kind": "assoc"
     },
     {
-      "from": "order",
+      "from": "payu",
       "to": "pay",
       "dir": "--",
       "kind": "assoc"

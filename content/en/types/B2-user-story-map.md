@@ -120,5 +120,5 @@ Approximate: it is a table; task cards and slice bands are not drawn, and it exp
 
 ## Sample {#sample}
 <!-- skill: path only -->
-![B2 sample: a user story map for an online shopper with a prototype slice](/samples/B2-user-story-map.svg)
-*An online shopper discovers items, compares them, checks out, and tracks delivery; a prototype slice tests one complete shopping goal.*
+![B2 sample: user story map for an online shopper with release slices](/samples/B2-user-story-map.svg)
+*User story map of an online shopper: four activities from left to right (discover items, compare items, check out, track delivery) and one row per release slice. Slice 1 is the prototype, holding one complete shopping goal. It is drawn as a table, without task cards.*

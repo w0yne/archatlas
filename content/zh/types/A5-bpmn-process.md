@@ -17,7 +17,7 @@ formal: {kind: standard, ref: 'OMG BPMN 2.0.2 (formal/13-12-09, Jan 2014); ISO/I
 neighbours: [A1, A2, A6, A9, E1, E2, E3, E4]
 status: draft
 translationOf: en/types/A5-bpmn-process.md
-sourceRev: a5d2191
+sourceRev: 5137fae
 reviewed: false
 ---
 
@@ -146,5 +146,5 @@ BPMN 流程图回答的是：“一个订单、请求或案件如何从触发走
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-![A5 示例：网店从下单到发货（目标态）——网店池含结账、仓库和客户支持三条泳道；客户和支付服务商作为黑盒池，以消息流相连；结束状态为“订单已发货”和“订单已取消”](/samples/A5-bpmn-process.svg)
-*示例待生成（由渲染器根据 `examples/` 生成）。*
+![A5 示例：处理退货的 BPMN 协作图，顾客为黑盒池](/samples/A5-bpmn-process.zh.svg)
+*以 BPMN 协作图表示处理退货：网店池内有客服和仓库两条泳道，顾客是黑盒池。实线箭头是网店池内的顺序流；带空心圆起点的虚线箭头是与顾客之间的消息流（退货申请、退货标签、包裹）。判断“可退吗？”导向两个结束事件“退款完成”和“拒绝退货”；开始事件是细圆圈，结束事件是粗圆圈。*

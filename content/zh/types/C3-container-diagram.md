@@ -17,7 +17,7 @@ formal: {kind: method, ref: 'C4 model (Simon Brown), Level 2 Container diagram; 
 neighbours: [A7, C1, C2, C4, C5, C6, E1, F2, G1, G2]
 status: draft
 translationOf: en/types/C3-container-diagram.md
-sourceRev: a5d2191
+sourceRev: 88db750
 reviewed: false
 ---
 
@@ -152,5 +152,5 @@ reviewed: false
 
 ## 示例图 {#sample}
 <!-- skill: path only -->
-![C3 示例：一家网店的容器图，包括 Web 和移动客户端、商店 API、订单处理程序、订单数据库、搜索索引和“订单已下达”主题](/samples/C3-container-diagram.svg)
-*示例图待生成（由渲染器根据 `examples/` 生成）。*
+![C3 示例：网店的容器图](/samples/C3-container-diagram.svg)
+*网店的容器：系统边界内有网页商城、订单 API 和商城数据库，边界外有顾客和外部的支付服务商。每个容器标出技术类型和职责，连线上标注协议。*

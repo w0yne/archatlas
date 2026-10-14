@@ -5,7 +5,13 @@
     "title": "Online shop: return across teams",
     "lang": "en",
     "audience": "business and operations",
-    "state": "as-is"
+    "state": "as-is",
+    "legend_labels": {
+      "edges": {
+        "call": "Hand-off between lanes",
+        "message": "Hand-off between lanes"
+      }
+    }
   },
   "layout": {
     "template": "lanes",

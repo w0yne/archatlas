@@ -16,7 +16,7 @@ scope: 某个环境中的遥测路径及相关运维响应。
 formal: {kind: convention, ref: '没有统一的图形标准；参考 OpenTelemetry 信号概念：https://opentelemetry.io/docs/concepts/signals/ 以及 SRE 监控实践：https://sre.google/sre-book/monitoring-distributed-systems/'}
 neighbours: [G1, G4, H1]
 status: draft
-sourceRev: a5d2191
+sourceRev: 88db750
 translationOf: en/types/H2-observability-view.md
 reviewed: false
 ---
@@ -137,4 +137,4 @@ reviewed: false
 ## 示例 {#sample}
 <!-- skill: path only -->
 ![H2 示例：网店结账的可观测性](/samples/H2-observability-view.svg)
-*从结账埋点到采集、分析，以及有明确负责人的告警路径。告警策略是拟议的，不是实际测得的行为。*
+*结账的可观测性：商城前台和订单 API 把遥测数据发给采集器，采集器存入指标库和链路库，二者供结账看板使用。一条拟议的订单失败告警通知值班团队；告警标注为拟议，不是已测得的行为。*

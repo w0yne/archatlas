@@ -2,10 +2,17 @@
   "archatlas": "0.1",
   "meta": {
     "type": "C2",
-    "title": "Online shop: system context",
+    "title": "System context diagram for Online shop",
     "lang": "en",
     "audience": "everyone",
-    "state": "as-is"
+    "state": "as-is",
+    "legend": [
+      {
+        "label": "Arrow: who starts the exchange",
+        "kind": "call",
+        "dir": "->"
+      }
+    ]
   },
   "layout": {
     "template": "nested",
@@ -15,36 +22,41 @@
     {
       "id": "cust",
       "kind": "person",
-      "label": "Customer"
+      "label": "Customer",
+      "sub": "[Person] buys goods"
     },
     {
       "id": "shop",
       "kind": "system",
       "label": "Online shop",
-      "sub": "sells goods to customers",
+      "sub": "[Software system] sells goods to customers",
       "style": "primary"
     },
     {
       "id": "pay",
       "kind": "external",
       "label": "Payment provider",
+      "sub": "[External system] takes card payments",
       "style": "external"
     },
     {
       "id": "agent",
       "kind": "person",
-      "label": "Support agent"
+      "label": "Support agent",
+      "sub": "[Person] answers questions"
     },
     {
       "id": "mail",
       "kind": "external",
       "label": "Email service",
+      "sub": "[External system] sends receipts",
       "style": "external"
     },
     {
       "id": "car",
       "kind": "external",
       "label": "Carrier",
+      "sub": "[External system] delivers parcels",
       "style": "external"
     }
   ],

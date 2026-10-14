@@ -17,7 +17,7 @@ formal: {kind: convention, ref: 'No graphical standard. Fowler''s deployment-pip
 neighbours: [A9, G1, G2, H2]
 status: draft
 translationOf: en/types/G4-delivery-pipeline.md
-sourceRev: a5d2191
+sourceRev: 88db750
 reviewed: false
 ---
 
@@ -145,5 +145,5 @@ reviewed: false
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-![G4 示例：网上商城发布路径，从提交经构建、测试和扫描到镜像仓库中的镜像，先晋级到预发布环境，人工审批后再到生产环境，由 GitOps 控制器应用清单](/samples/G4-delivery-pipeline.svg)
-*示例待生成（由渲染器根据 `examples/` 生成）。*
+![G4 示例：带审批关卡和失败出口的交付流水线](/samples/G4-delivery-pipeline.svg)
+*交付流水线：合并到主干触发构建，构建在镜像仓库产出镜像，随后测试。通过审批关卡后部署到预发布环境，再把同一摘要晋级到生产环境。测试失败或审批被拒都会停止流水线并通知作者。*

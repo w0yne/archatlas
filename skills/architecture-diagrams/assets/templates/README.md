@@ -2,7 +2,7 @@
 
 One minimal, valid model per diagram type, using the neutral online-shop scenario. Start from the template of the chosen type (copy `assets/templates/<code>.json`; `atlas init` currently takes a layout-template name, not a type code), replace the content, render, check.
 
-Every file here renders with `atlas render` with **0 errors and 0 warnings**, and `tools/build_samples.py` renders each one into the type's sample SVG (`content/public/samples/`). Labels are inline English text; for bilingual output move them into `labels.<lang>.json` as in `examples/`.
+Every file here renders with `atlas render` with **0 errors and 0 warnings**, and `tools/build_samples.py` renders each one into the type's sample SVG (`content/public/samples/`). Labels are inline English text. For a Chinese sample, `zh/<code>.json` maps each English label text to its Chinese rendering (the loader looks the literal text up in the labels file); `build_samples.py` renders `<code>.zh.svg` when that file exists (today A5, C1, C2, D1, E1, F2). `examples/` keeps its own full worked examples and is not used for the samples.
 
 "Fidelity" says how well the current renderer (main, W1) lays the type out:
 
