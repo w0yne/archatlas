@@ -58,6 +58,23 @@ class SkillVenvTests(unittest.TestCase):
         self.assertNotIn(str(self.root), result.stderr)
         self.assertFalse((self.skill / ".atlas-venv").exists())
 
+    def test_real_bundle_without_required_dependencies_fails_before_output(self):
+        source = SHIM.parents[3] / "src/archatlas"
+        shutil.copytree(source, self.shim.parent / "lib/archatlas",
+                        ignore=shutil.ignore_patterns("__pycache__", "*.pyc"))
+        for args in (("fonts", "doctor"), ("render", "model.json", "-o", "out")):
+            with self.subTest(command=args[0]):
+                result = self.run_shim(*args, isolated=True)
+                self.assertEqual(result.returncode, 2)
+                self.assertEqual(result.stdout, "")
+                message = json.loads(result.stderr)["error"]
+                self.assertIn("Required schema-validation dependency", message)
+                self.assertIn("jsonschema", message)
+                self.assertIn("automatic checks did not run", message)
+                self.assertIn(INSTALL_COMMAND, message)
+                self.assertNotIn("Traceback", result.stderr)
+                self.assertFalse((self.root / "out").exists())
+
     def test_without_venv_installed_renderer_and_bundle_precedence(self):
         installed = self.root / "installed"
         self.renderer(installed, "installed")

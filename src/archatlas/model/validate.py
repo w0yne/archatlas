@@ -2,16 +2,20 @@
 import json
 from pathlib import Path
 
-from jsonschema import Draft202012Validator
-
-
 class ModelError(ValueError):
     pass
 
 
+def require_schema_validator():
+    """Load the required validator; missing dependencies never skip validation."""
+    from jsonschema import Draft202012Validator
+    return Draft202012Validator
+
+
 def validate(model):
+    validator = require_schema_validator()
     schema = json.loads(Path(__file__).with_name("schema.json").read_text())
-    errors = sorted(Draft202012Validator(schema).iter_errors(model), key=lambda e: str(e.path))
+    errors = sorted(validator(schema).iter_errors(model), key=lambda e: str(e.path))
     if errors:
         error = errors[0]
         raise ModelError(f"{'/'.join(map(str, error.path)) or 'model'}: {error.message}")

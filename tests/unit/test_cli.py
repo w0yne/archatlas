@@ -4,6 +4,7 @@ import io
 import json
 from pathlib import Path
 import tempfile
+import sys
 import unittest
 from unittest.mock import patch
 
@@ -17,6 +18,41 @@ INSTALL_COMMAND = ("python3 -m venv .atlas-venv && "
 
 
 class CLITests(unittest.TestCase):
+    def test_missing_required_or_transitive_dependency_never_uses_estimates(self):
+        for missing in ("jsonschema", "attrs"):
+            with self.subTest(missing=missing), tempfile.TemporaryDirectory() as temp:
+                output = Path(temp) / "out"
+                stdout, stderr = io.StringIO(), io.StringIO()
+                with patch("archatlas.cli.require_schema_validator",
+                           side_effect=ModuleNotFoundError(f"No module named '{missing}'")), \
+                        contextlib.redirect_stdout(stdout), contextlib.redirect_stderr(stderr):
+                    code = main(["render", "model.json", "-o", str(output)])
+                self.assertEqual(code, 2)
+                self.assertEqual(stdout.getvalue(), "")
+                self.assertFalse(output.exists())
+                message = json.loads(stderr.getvalue())["error"]
+                self.assertIn(missing, message)
+                self.assertIn(INSTALL_COMMAND, message)
+                self.assertIn("cannot replace schema validation", message)
+
+    def test_optional_preview_and_sheet_fail_with_installable_hints(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            with contextlib.redirect_stdout(io.StringIO()):
+                main(["init", "nested", "-o", str(root / "model.json")])
+                main(["render", str(root / "model.json"), "-o", str(root / "diagram.svg")])
+            for command, module, hint in (("preview", "cairosvg", "python -m pip install CairoSVG"),
+                                          ("sheet", "cairosvg", "python -m pip install CairoSVG"),
+                                          ("sheet", "PIL", "python -m pip install Pillow")):
+                stderr = io.StringIO()
+                with self.subTest(command=command, module=module), patch.dict(sys.modules, {module: None}), \
+                        contextlib.redirect_stderr(stderr):
+                    output = root / f"{command}-{module}.png"
+                    self.assertEqual(main([command, str(root / "diagram.svg"), "-o", str(output)]), 2)
+                self.assertIn(hint, json.loads(stderr.getvalue())["error"])
+                self.assertNotIn("archatlas[", stderr.getvalue())
+                self.assertFalse(output.exists())
+
     def test_render_missing_dependencies_reports_setup_and_preserves_exit_codes(self):
         original_import = builtins.__import__
 
