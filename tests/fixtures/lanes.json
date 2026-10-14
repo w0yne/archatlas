@@ -1,0 +1,60 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "E4",
+    "title": "订单退货协作流程",
+    "lang": "zh"
+  },
+  "layout": {
+    "template": "lanes"
+  },
+  "groups": [
+    {
+      "id": "buyer",
+      "kind": "lane",
+      "title": "顾客"
+    },
+    {
+      "id": "support",
+      "kind": "lane",
+      "title": "客服团队"
+    },
+    {
+      "id": "warehouse",
+      "kind": "lane",
+      "title": "仓库"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "request",
+      "kind": "task",
+      "label": "提交退货申请",
+      "parent": "buyer"
+    },
+    {
+      "id": "approve",
+      "kind": "task",
+      "label": "核验订单与退货条件",
+      "parent": "support"
+    },
+    {
+      "id": "receive",
+      "kind": "task",
+      "label": "接收退回商品",
+      "parent": "warehouse"
+    }
+  ],
+  "edges": [
+    {
+      "from": "request",
+      "to": "approve",
+      "label": "订单号与原因"
+    },
+    {
+      "from": "approve",
+      "to": "receive",
+      "label": "批准退货"
+    }
+  ]
+}

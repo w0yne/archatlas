@@ -1,0 +1,76 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "E1",
+    "title": "Checkout with payment retry"
+  },
+  "layout": {
+    "template": "sequence"
+  },
+  "nodes": [
+    {
+      "id": "shop",
+      "kind": "lifeline",
+      "label": "Shop"
+    },
+    {
+      "id": "checkout",
+      "kind": "lifeline",
+      "label": "Checkout"
+    },
+    {
+      "id": "payment",
+      "kind": "lifeline",
+      "label": "Payment provider",
+      "style": "external"
+    }
+  ],
+  "edges": [
+    {
+      "from": "shop",
+      "to": "checkout",
+      "label": "Submit order",
+      "step": 1
+    },
+    {
+      "from": "checkout",
+      "to": "payment",
+      "label": "Authorize payment",
+      "step": 2
+    },
+    {
+      "from": "payment",
+      "to": "checkout",
+      "label": "Payment result",
+      "step": 3,
+      "dashed": true
+    },
+    {
+      "from": "checkout",
+      "to": "shop",
+      "label": "Order confirmation",
+      "step": 4,
+      "dashed": true
+    }
+  ],
+  "frames": [
+    {
+      "id": "retry",
+      "label": "loop [retry once if unavailable]",
+      "from_step": 2,
+      "to_step": 3
+    }
+  ],
+  "activations": [
+    {
+      "node": "checkout",
+      "from_step": 1,
+      "to_step": 4
+    },
+    {
+      "node": "payment",
+      "from_step": 2,
+      "to_step": 3
+    }
+  ]
+}

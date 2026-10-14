@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "archatlas"
+version = "0.1.0"
+description = "Offline, measured architecture diagrams with geometry checks"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+dependencies = ["Pillow>=10,<13", "fonttools>=4.50,<5", "jsonschema>=4.20,<5"]
+
+[project.optional-dependencies]
+preview = ["CairoSVG>=2.7,<3"]
+test = ["pytest>=8,<10"]
+
+[project.scripts]
+atlas = "archatlas.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+archatlas = ["model/schema.json"]

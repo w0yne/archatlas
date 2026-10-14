@@ -1,0 +1,5 @@
+Pillow==12.3.0
+fonttools==4.60.1
+jsonschema==4.26.0
+# Optional PNG/contact-sheet rasterizer:
+# CairoSVG==2.8.2

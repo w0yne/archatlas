@@ -1,0 +1,16 @@
+#!/usr/bin/env python3
+"""Use the installed package, or the release packager's local library."""
+from pathlib import Path
+import sys
+
+vendored = Path(__file__).resolve().parent / "lib"
+if vendored.is_dir():
+    sys.path.insert(0, str(vendored))
+
+try:
+    from archatlas.cli import main
+except ImportError:
+    print("Renderer unavailable. Install archatlas or use a release bundle with scripts/lib.", file=sys.stderr)
+    raise SystemExit(2)
+
+raise SystemExit(main())
