@@ -11,8 +11,9 @@ license = "Apache-2.0"
 dependencies = ["Pillow>=10,<13", "fonttools>=4.50,<5", "jsonschema>=4.20,<5"]
 
 [project.optional-dependencies]
+browser = ["playwright>=1.50,<2"]
 preview = ["CairoSVG>=2.7,<3"]
-test = ["pytest>=8,<10"]
+test = ["pytest>=8,<10", "PyYAML>=6,<7"]
 # Everything the tests, tools/ and evals/ need: pip install -e '.[dev]'
 dev = ["pytest>=8,<10", "PyYAML>=6,<7"]
 

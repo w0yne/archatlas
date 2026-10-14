@@ -29,7 +29,7 @@ def render_svg(scene, namespace=None):
     SubElement(root, "metadata").text = json.dumps({"warnings": scene.warnings, "allow": scene.allow},
                                                  ensure_ascii=False, sort_keys=True)
     defs = SubElement(root, "defs")
-    variants = sorted({(e.style, e.kind in ("async", "message")) for e in scene.edges})
+    variants = sorted({(e.style, (e.marker_kind or e.kind) in ("async", "message")) for e in scene.edges})
     for style, open_arrow in variants:
         marker_id = f"{prefix}-marker-{style}-{'open' if open_arrow else 'arrow'}"
         colour = theme[style][1]
@@ -83,12 +83,13 @@ def render_svg(scene, namespace=None):
                  "points": " ".join(f"{number(x)},{number(y)}" for x, y in edge.points),
                  "fill": "none", "stroke": theme[edge.style][1], "stroke-width": "1.8",
                  "stroke-linejoin": "round"}
-        marker = f"url(#{prefix}-marker-{edge.style}-{'open' if edge.kind in ('async', 'message') else 'arrow'})"
+        marker_kind = edge.marker_kind or edge.kind
+        marker = f"url(#{prefix}-marker-{edge.style}-{'open' if marker_kind in ('async', 'message') else 'arrow'})"
         if edge.direction in ("->", "<->"):
             attrs["marker-end"] = marker
         if edge.direction == "<->":
             attrs["marker-start"] = marker
-        elif edge.kind == "message":
+        elif marker_kind == "message":
             attrs["marker-start"] = f"url(#{prefix}-marker-{edge.style}-circle)"
         if edge.dashed:
             attrs["stroke-dasharray"] = "7 5"
