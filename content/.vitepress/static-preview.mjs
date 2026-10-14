@@ -5,6 +5,7 @@ import { join, relative, dirname, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 const dist = fileURLToPath(new URL('./dist/', import.meta.url));
 const out = join(dist, 'static-preview');
+const contentCSS = readFileSync(new URL('./theme/content.css', import.meta.url), 'utf8');
 const base = process.env.SITE_BASE || '/archatlas/';
 const files = [];
 const flat = name => name.split(sep).join('--');
@@ -27,6 +28,7 @@ for (const file of files) {
   if (!body) throw new Error('No prerendered main content: ' + name);
   body = body.replace(/<dialog\b[\s\S]*?<\/dialog>/g, '').replace(/<script\b[\s\S]*?<\/script>/g, '').replace(/<button\b[\s\S]*?<\/button>/g, '');
   body = body.replace(/<div class="figure-actions">[\s\S]*?<\/div>/g, '');
+  body = body.replace(/<form class="catalogue-filters"[\s\S]*?<\/form>/g, '<p class="preview-note">All types are shown in this reading preview. Query filters are available in the regular site build.</p>');
   // Export the same sanitized, server-rendered SVG for full-size access.
   let index = 0;
   body = body.replace(/<svg\b[\s\S]*?<\/svg>/g, svg => {
@@ -46,7 +48,7 @@ for (const file of files) {
     if (!local.endsWith('.html')) local += '.html';
     return 'href="' + flat(local) + (fragment ? '#' + fragment : '') + '"';
   });
-  const output = '<!doctype html><html lang="' + (name.startsWith('zh/') ? 'zh-Hans' : 'en') + '"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>' + title + '</title><style>' + css + '</style></head><body><header class="preview-nav"><a href="' + prefix + '/index.html">archatlas</a><a href="' + prefix + '/use--index.html">Use the skill</a><a href="' + prefix + '/improve--index.html">Improve</a><a href="' + prefix + '/zh--index.html">简体中文</a></header><main><p class="preview-note">Static reading preview · Search and interactive controls are available in the normal site build.</p>' + body + '</main><footer>archatlas · Original material Apache-2.0 · Pre-release scaffold</footer></body></html>';
+  const output = '<!doctype html><html lang="' + (name.startsWith('zh/') ? 'zh-Hans' : 'en') + '"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>' + title + '</title><style>' + css + contentCSS + '</style></head><body><header class="preview-nav"><a href="' + prefix + '/index.html">archatlas</a><a href="' + prefix + '/use--index.html">Use the skill</a><a href="' + prefix + '/improve--index.html">Improve</a><a href="' + prefix + '/zh--index.html">简体中文</a></header><main><p class="preview-note">Static reading preview · Search and interactive controls are available in the normal site build.</p>' + body + '</main><footer>archatlas · Original material Apache-2.0 · Pre-release scaffold</footer></body></html>';
   const target = join(out, flat(name)); mkdirSync(dirname(target), {recursive:true}); writeFileSync(target, output);
 }
 // Verify local page/figure links in the exported snapshot.

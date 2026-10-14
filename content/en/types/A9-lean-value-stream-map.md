@@ -61,7 +61,7 @@ status: draft
   - **Information flow** along the top: who schedules or releases work; manual arrows straight, electronic arrows zig-zag [6]. A map that ignores information flow "is like a piece of sheet music that just lists notes randomly" [5].
   - **Timeline ladder** at the bottom: wait on the upper rungs, PT on the lower rungs; totals at the right: total lead time, ΣPT, activity ratio, and rolled %C&A for office work [2].
 - **Optional:** push arrows (striped) and supermarket, FIFO or kanban icons for pull [6]; kaizen bursts on the future-state map [6].
-- **Legend:** icons used, units (minutes, hours, days) and "current state, mapped on <date>", with the source of the numbers.
+- **Legend:** icons used, units (minutes, hours, days) and "current state, mapped on &lt;date&gt;", with the source of the numbers.
 - **Naming:** process boxes named as work done ("Pick", "Pack"), not by department; one time unit per row of numbers.
 
 ## Best practices and anti-patterns {#practice}
