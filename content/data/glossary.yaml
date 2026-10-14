@@ -4,6 +4,11 @@
 version: 1
 
 keep:
+  - archatlas
+  - architecture-diagrams
+  - Claude Code
+  - Codex
+  - Pi
   - C4 model
   - UML
   - BPMN
@@ -276,3 +281,17 @@ terms:
   - {en: peering, zh: 对等连接}
   - {en: stereotype, zh: 构造型, note: UML}
   - {en: accessed (source date), zh: 访问于}
+  - {en: building block view, zh: 构建块视图, note: arc42}
+  - {en: pass-through layer, zh: 透传层}
+  - {en: composition root, zh: 组合根}
+  - {en: driving adapter, zh: 驱动方适配器, note: "hexagonal architecture"}
+  - {en: driven adapter, zh: 被驱动方适配器, note: "hexagonal architecture"}
+  - {en: interaction diagram, zh: 交互图, note: UML}
+  - {en: behavioural state machine, zh: 行为状态机, note: UML}
+  - {en: protocol state machine, zh: 协议状态机, note: UML}
+  - {en: data mesh, zh: 数据网格}
+  - {en: doc-only, zh: 仅文档, note: "evidence status: stated in docs, not found in code"}
+  - {en: conflict, zh: 冲突, note: "evidence status: docs and code disagree"}
+  - {en: agent, zh: 智能体, note: "an AI coding agent; product names (Claude Code, Codex, Pi) stay as-is"}
+  - {en: skill, zh: skill, note: "the installable Agent Skill; kept in English"}
+  - {en: visual review pending, zh: 视觉复核待做}

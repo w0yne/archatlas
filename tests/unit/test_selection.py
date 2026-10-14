@@ -46,9 +46,9 @@ class ContentModelTest(unittest.TestCase):
         self.assertEqual(reached, self.codes)
 
     def test_generated_outputs_are_current_and_idempotent(self):
-        md = bs.CHOOSE_MD.read_text(encoding="utf-8")
-        first = bs.build(self.cat, self.tree, md)
-        second = bs.build(self.cat, self.tree, first[bs.CHOOSE_MD])
+        texts = {lang: p.read_text(encoding="utf-8") for lang, p in bs.CHOOSE_MD.items() if p.exists()}
+        first = bs.build(self.cat, self.tree, texts)
+        second = bs.build(self.cat, self.tree, {lang: first[bs.CHOOSE_MD[lang]] for lang in texts})
         self.assertEqual(first, second)
         for path, text in first.items():
             self.assertEqual(path.read_text(encoding="utf-8"), text, f"{path} is stale; run tools/build_selection.py")
