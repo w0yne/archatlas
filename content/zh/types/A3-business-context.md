@@ -19,7 +19,7 @@ formal:
 neighbours: [H3, B4, C2, A2, A7, C6]
 status: draft
 translationOf: en/types/A3-business-context.md
-sourceRev: 6857dea
+sourceRev: 674f366
 reviewed: false
 ---
 
@@ -118,7 +118,7 @@ reviewed: false
 
 ## 模板 {#template}
 <!-- skill: keep (≤3 lines) -->
-模型模板：`assets/templates/A3.json` · 版式模板：`nested` · 主体是唯一的边界节点，外部方是位于外围分组中的 `external`/`actor` 节点，每项交换是一条带标签的边，其 `kind` 设为流的类型。
+模型模板：`assets/templates/A3.json` · 布局模板：`nested` · 主体是一个样式为 `primary` 的 `system` 节点，外部方是它周围的 `external` 或 `actor` 节点，每项交换是一条带标签的边，其 `kind` 为 `data`、`call` 或 `message`（流的类型写在标签里）。
 
 ## 来源 {#sources}
 <!-- skill: omit -->

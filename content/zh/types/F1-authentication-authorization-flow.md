@@ -19,7 +19,7 @@ formal:
 neighbours: [E1, F3, F2, C2, D2]
 status: draft
 translationOf: en/types/F1-authentication-authorization-flow.md
-sourceRev: 72ec5c8
+sourceRev: 674f366
 reviewed: false
 ---
 
@@ -126,7 +126,7 @@ reviewed: false
 
 ## 模板 {#template}
 <!-- skill: keep (≤3 lines) -->
-模型模板：`assets/templates/F1.json` · 布局模板：`sequence` · 参与方成为节点（人、客户端、签发方、API、资源），各自带一条生命线；凭证和请求成为带 `step` 的编号 `message` 边；允许/拒绝的备选分支成为时序 `frame`；校验和执行是签发方和 API 上的 `activations`。
+模型模板：`assets/templates/F1.json` · 布局模板：`sequence` · 参与方是 `lifeline` 节点（人、客户端、身份提供方、API、资源）；凭证和请求是带 `step` 的编号 `message` 边；允许/拒绝的备选分支是标签为 `alt`、覆盖相应步骤范围的 `frames` 条目；校验和执行是身份提供方和 API 上的 `activations`。
 
 ## 来源 {#sources}
 <!-- skill: omit -->

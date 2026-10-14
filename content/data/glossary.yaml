@@ -295,3 +295,40 @@ terms:
   - {en: agent, zh: 智能体, note: "an AI coding agent; product names (Claude Code, Codex, Pi) stay as-is"}
   - {en: skill, zh: skill, note: "the installable Agent Skill; kept in English"}
   - {en: visual review pending, zh: 视觉复核待做}
+  # --- B (requirements), H (collaboration/operations), I (views) pages
+  - {en: use case, zh: 用例}
+  - {en: use-case diagram, zh: 用例图}
+  - {en: actor (UML), zh: 参与者, note: "UML actor; the role outside the system boundary"}
+  - {en: include (use case), zh: 包含, note: "UML «include» relationship"}
+  - {en: extend (use case), zh: 扩展, note: "UML «extend» relationship"}
+  - {en: functional decomposition, zh: 功能分解}
+  - {en: feature model, zh: 特性模型}
+  - {en: variability, zh: 可变性}
+  - {en: open arrowhead, zh: 开口箭头}
+  - {en: observability, zh: 可观测性}
+  - {en: telemetry, zh: 遥测}
+  - {en: accountability, zh: 最终责任, note: "the A in RACI: the one who answers for the outcome"}
+  - {en: tail sampling, zh: 尾部采样}
+  - {en: burn rate, zh: 错误预算消耗速率}
+  - {en: redaction, zh: 敏感信息遮蔽}
+  - {en: logical view, zh: 逻辑视图, note: "4+1 view"}
+  - {en: process view, zh: 进程视图, note: "4+1 view"}
+  - {en: development view, zh: 开发视图, note: "4+1 view"}
+  - {en: physical view, zh: 物理视图, note: "4+1 view"}
+  - {en: scenario (4+1), zh: 场景, note: "the +1 of the 4+1 views"}
+  - {en: dedicated layer, zh: 专用层}
+  - {en: service layer, zh: 服务层}
+  - {en: serving, zh: 服务于, note: "ArchiMate relationship"}
+  - {en: realization, zh: 实现, note: "ArchiMate relationship"}
+  - {en: assignment, zh: 分配, note: "ArchiMate relationship"}
+  # --- provisional renderings from the first translation round
+  - {en: "%C&A", zh: 完整准确率, note: "percent complete and accurate (Lean office VSM)"}
+  - {en: black hole (DFD), zh: 黑洞, note: "a process with inputs only"}
+  - {en: miracle (DFD), zh: 奇迹, note: "a process with outputs only"}
+  - {en: reconcile, zh: 调和, note: "GitOps controller aligning actual state with declared state"}
+  - {en: implementation event, zh: 实施事件, note: "ArchiMate element"}
+  - {en: assessment, zh: 评估, note: "ArchiMate element"}
+  - {en: gap (ArchiMate), zh: 差距, note: "ArchiMate element; 差距分析 stays for gap analysis"}
+  # --- tool vocabulary used in the Template sections
+  - {en: model template, zh: 模型模板}
+  - {en: layout template, zh: 布局模板, avoid: [版式模板]}

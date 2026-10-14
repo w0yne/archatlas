@@ -19,7 +19,7 @@ formal:
 neighbours: [C3, G2, G3, G4, E1]
 status: draft
 translationOf: en/types/G1-deployment-diagram.md
-sourceRev: 72ec5c8
+sourceRev: 674f366
 reviewed: false
 ---
 
@@ -127,7 +127,7 @@ reviewed: false
 
 ## 模板 {#template}
 <!-- skill: keep (≤3 lines) -->
-模型模板：`assets/templates/G1.json` · 布局模板：`nested` · 承载节点成为嵌套的 `boundary` 分组（区域、集群、主机），软件实例成为其中的 `primary` 节点，托管或外部节点使用 `external` 样式，通信成为带协议标签的 `call` 或 `data` 边；`evidence` 记录是声明还是观察。
+模型模板：`assets/templates/G1.json` · 布局模板：`nested` · 承载节点成为嵌套的 `boundary` 分组（区域、集群、主机），软件实例成为其中样式为 `primary` 的 `component` 节点，托管或外部节点使用 `external` 样式，通信成为带协议标签的 `call` 或 `data` 边；`evidence.status` 记录声明（`doc-only`）与观察（`verified`）之别。
 
 ## 来源 {#sources}
 <!-- skill: omit -->

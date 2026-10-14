@@ -19,7 +19,7 @@ formal:
 neighbours: [E2, E1, A5, D1, E4]
 status: draft
 translationOf: en/types/E3-state-machine.md
-sourceRev: 72ec5c8
+sourceRev: 674f366
 reviewed: false
 ---
 
@@ -141,7 +141,7 @@ reviewed: false
 
 ## 模板 {#template}
 <!-- skill: keep (≤3 lines) -->
-模型模板：`assets/templates/E3.json` · 布局模板：`statechart` · 状态是节点（kind 为 `state`，终止和初始状态使用伪状态 kind），复合状态是 `frame` 分组，每条迁移是一条边，`label` = `event [guard] / effect`，kind 为 `call`；证据状态区分已核实与推断的迁移。
+模型模板：`assets/templates/E3.json` · 布局模板：`statechart` · 状态是 `state` 节点（伪状态用 `initial` 和 `final`），复合状态是 `frame` 分组，每条迁移是 kind 为 `call` 的边，`label` = `event [guard] / effect`；`evidence.status` 区分已核实与推断的迁移。
 
 ## 参考来源 {#sources}
 <!-- skill: omit -->

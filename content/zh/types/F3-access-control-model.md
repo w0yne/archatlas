@@ -19,7 +19,7 @@ formal:
 neighbours: [F1, F2, D1, H1, C5]
 status: draft
 translationOf: en/types/F3-access-control-model.md
-sourceRev: 72ec5c8
+sourceRev: 674f366
 reviewed: false
 ---
 
@@ -128,7 +128,7 @@ reviewed: false
 
 ## 模板 {#template}
 <!-- skill: keep (≤3 lines) -->
-模型模板：`assets/templates/F3.json` · 布局模板：`grid_table` · 角色（或主体）成为行，"资源-操作"对成为分组的列，每个单元格按固定图例填写允许、拒绝、有条件或不适用；对于 ABAC 和 ReBAC，同样的 `tables` 承载属性规则或关系定义，节点和 `assoc` 边仅用于一张小的示意图。
+模型模板：`assets/templates/F3.json` · 布局模板：`grid_table` · 角色（或主体）成为行，“资源-操作”对成为分组的列，每个单元格按固定图例填写允许、拒绝、有条件或不适用；对于 ABAC 和 ReBAC，同样的 `tables` 承载属性规则或关系定义（关系图需要另做一个模型，因为 `grid_table` 只接受表格）。
 
 ## 来源 {#sources}
 <!-- skill: omit -->

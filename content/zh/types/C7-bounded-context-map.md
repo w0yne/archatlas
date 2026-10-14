@@ -19,7 +19,7 @@ formal:
 neighbours: [C1, C2, C3, C5, C6, C8, D1]
 status: draft
 translationOf: en/types/C7-bounded-context-map.md
-sourceRev: 6857dea
+sourceRev: 674f366
 reviewed: false
 ---
 
@@ -138,7 +138,7 @@ reviewed: false
 ## 模板 {#template}
 <!-- skill: keep (≤3 lines) -->
 
-模型模板：`assets/templates/C7.json` · 布局模板：`nested` · 每个上下文是一个 `boundary` 分组（团队可选放在 `sub`，OHS/ACL 等角色标签放在 `tags`）；`edges` 携带模式标签，`dir` 为 `->` 表示上游→下游，`--` 表示对称。
+模型模板：`assets/templates/C7.json` · 布局模板：`nested` · 每个上下文是一个 `boundary` 分组，其中为每个关键模型放一个 `component` 节点（团队放在节点的 `sub`，OHS/ACL 等角色标签放在其 `tags`）；`edges` 携带模式标签，`dir` 为 `->` 表示上游→下游，`--` 表示对称。
 
 ## 来源 {#sources}
 <!-- skill: omit -->

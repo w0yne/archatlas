@@ -19,7 +19,7 @@ formal:
 neighbours: [A5, A2, A4, B2]
 status: draft
 translationOf: en/types/A6-journey-map.md
-sourceRev: 6857dea
+sourceRev: 674f366
 reviewed: false
 ---
 
@@ -121,7 +121,7 @@ reviewed: false
 
 ## 模板 {#template}
 <!-- skill: keep (≤3 lines) -->
-模型模板：`assets/templates/A6.json` · 布局模板：`grid_table` · 阶段为列，各组成部分（行为、想法、情绪、痛点、触点、机会点）为表格行；情绪曲线作为一个系列画在情绪行中。
+模型模板：`assets/templates/A6.json` · 布局模板：`grid_table` · 阶段为列，各组成部分（行为、想法、情绪、痛点、触点、机会点）为表格行；情绪行每个阶段写一个词（渲染器暂不绘制情绪曲线）；首列表头不能为空（用 `Row`）。
 
 ## 来源 {#sources}
 <!-- skill: omit -->

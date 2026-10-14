@@ -19,7 +19,7 @@ formal:
 neighbours: [G1, G2, F2, E1]
 status: draft
 translationOf: en/types/G3-network-topology.md
-sourceRev: 72ec5c8
+sourceRev: 674f366
 reviewed: false
 ---
 
@@ -125,7 +125,7 @@ reviewed: false
 
 ## 模板 {#template}
 <!-- skill: keep (≤3 lines) -->
-模型模板：`assets/templates/G3.json` · 布局模板：`nested` · 网络和网段成为嵌套的 `boundary` 分组，网关和端点成为节点，连通性使用 `assoc` 边（`--`），流量路径使用带 `step` 编号的 `call` 或 `data` 边；CIDR 写在 `sub` 中，视图类型是一个标题字段。
+模型模板：`assets/templates/G3.json` · 布局模板：`nested` · 网络和网段成为嵌套的 `boundary` 分组，网关和端点成为 `component` 节点，连通性使用 `assoc` 边（`dir` 为 `--`），流量路径使用带 `step` 编号的 `call` 或 `data` 边；CIDR 写在 `sub` 中，视图类型写在标题中。
 
 ## 来源 {#sources}
 <!-- skill: omit -->

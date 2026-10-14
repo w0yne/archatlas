@@ -123,7 +123,7 @@ reviewed: false
 
 ## 模板 {#template}
 <!-- skill: keep (≤3 lines) -->
-模型模板：`assets/templates/A4.json` · 版式模板：`grid_table` · 一个 `tables[]` 条目：行表头是角色，列表头是活动，每个单元格承载带发布标签和可选重要性标志的场景条目。
+模型模板：`assets/templates/A4.json` · 布局模板：`grid_table` · 一个 `tables[]` 条目：行表头是角色，列表头是活动，每个单元格承载带发布标签和可选重要性标志的场景条目。
 
 ## 来源 {#sources}
 <!-- skill: omit -->

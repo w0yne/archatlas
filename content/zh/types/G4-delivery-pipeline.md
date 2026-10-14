@@ -19,7 +19,7 @@ formal:
 neighbours: [G1, E3, H1]
 status: draft
 translationOf: en/types/G4-delivery-pipeline.md
-sourceRev: 72ec5c8
+sourceRev: 674f366
 reviewed: false
 ---
 
@@ -129,7 +129,7 @@ reviewed: false
 
 ## 模板 {#template}
 <!-- skill: keep (≤3 lines) -->
-模型模板：`assets/templates/G4.json` · 布局模板：`tree` · 触发器是根节点，阶段和作业是沿 `dependency` 边从左到右排列的节点，制品和镜像仓库使用 `data` 边，部署或调和步骤使用 `call` 边，控制器或审批人成为 `lane` 分组；关卡状态映射到节点的 `evidence`。
+模型模板：`assets/templates/G4.json` · 布局模板：`tree` · 触发器是 `event` 节点，阶段和作业是沿 `dependency` 边从左到右排列的 `task` 节点，制品和镜像仓库是通过 `data` 边连接的 `store` 节点，部署或调和步骤使用 `call` 边，控制器或审批人成为 `lane` 分组；关卡状态用节点的 `style`（尚未通过用 `planned`）或 `tags` 表示。
 
 ## 来源 {#sources}
 <!-- skill: omit -->

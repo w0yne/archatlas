@@ -19,7 +19,7 @@ formal:
 neighbours: [A2, A5, A3, C1, A7, A8]
 status: draft
 translationOf: en/types/A1-capability-map.md
-sourceRev: 6857dea
+sourceRev: 674f366
 reviewed: false
 ---
 
@@ -140,7 +140,7 @@ reviewed: false
 
 ## 模板 {#template}
 <!-- skill: keep (≤3 lines) -->
-模型模板：`assets/templates/A1.json` · 版式模板：`layered` · 分层成为 `layer` 分组（层带），第 1 层能力成为其中带标题栏的分组，第 2 层能力是网格中大小一致的节点；热力值映射到样式令牌，并自动生成图例。
+模型模板：`assets/templates/A1.json` · 布局模板：`layered` · 分层成为 `layer` 分组（层带），第 1 层能力成为其中的 `frame` 分组，第 2 层能力是网格中大小一致的 `component` 节点；热力值映射到节点的 `style` 令牌（`primary`、`peer`、`planned`、`shared`），并自动生成图例。
 
 ## 来源 {#sources}
 <!-- skill: omit -->

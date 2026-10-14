@@ -19,7 +19,7 @@ formal:
 neighbours: [C1, C2, C3, C5, C7, D2, D3, E1, F2, G1]
 status: draft
 translationOf: en/types/C6-integration-interface.md
-sourceRev: 6857dea
+sourceRev: 674f366
 reviewed: false
 ---
 
@@ -152,7 +152,7 @@ reviewed: false
 ## 模板 {#template}
 <!-- skill: keep (≤3 lines) -->
 
-模型模板：`assets/templates/C6.json` · 布局模板：`grid_table` · `tables[]` 中的接口表（集成方式为首列）是主要输出；带 `step` ID 的 `nodes`/`edges` 渲染配套的关系图，每条连线的 ID 必须对应表中的一行。
+模型模板：`assets/templates/C6.json` · 布局模板：`grid_table` · `tables[]` 中的接口表（集成方式为首列）是主要输出；`grid_table` 只接受表格，所以配套的关系图是另一个模型，其边的 `step` 或 `label` 携带对应表行的接口 ID。
 
 ## 来源 {#sources}
 <!-- skill: omit -->

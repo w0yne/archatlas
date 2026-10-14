@@ -19,7 +19,7 @@ formal:
 neighbours: [D2, D3, E3, C7, F3]
 status: draft
 translationOf: en/types/D1-entity-relationship.md
-sourceRev: 72ec5c8
+sourceRev: 674f366
 reviewed: false
 ---
 
@@ -126,7 +126,7 @@ reviewed: false
 
 ## 模板 {#template}
 <!-- skill: keep (≤3 lines) -->
-模型模板：`assets/templates/D1.json` · 布局模板：`er` · 实体成为 `nodes`（kind 为 entity，属性放在 `sub`），限界上下文或主题域成为 `boundary` 分组，关系成为 `assoc` 连线，其 `cardinality{from,to}` 携带最小值/最大值，`label` 为动词；层级写在标题中。
+模型模板：`assets/templates/D1.json` · 布局模板：`er` · 实体成为 kind 为 `entity` 的 `nodes`（属性字符串放在 `attributes` 中，`PK`/`FK` 等键标记在前），限界上下文或主题域成为 `boundary` 分组，关系成为 `dir` 为 `--` 的边，其 `cardinality{from,to}` 携带最小值/最大值，`label` 为动词；层级写在标题中。
 
 ## 来源 {#sources}
 <!-- skill: omit -->

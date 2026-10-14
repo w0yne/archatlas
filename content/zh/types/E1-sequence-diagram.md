@@ -19,7 +19,7 @@ formal:
 neighbours: [E2, E3, E4, C3, C4, F1, A5]
 status: draft
 translationOf: en/types/E1-sequence-diagram.md
-sourceRev: 72ec5c8
+sourceRev: 674f366
 reviewed: false
 ---
 
@@ -135,7 +135,7 @@ reviewed: false
 
 ## 模板 {#template}
 <!-- skill: keep (≤3 lines) -->
-模型模板：`assets/templates/E1.json` · 布局模板：`sequence` · 生命线是从左到右排列的 `nodes`（可放在 `boundary` 分组中）；消息是带 `step` 编号的 `edges`，kind 为 `call`、`async` 或 `message`（返回使用 `dir: "--"`）；`frames` 承载 `alt` / `loop` / `opt` / `par` 区域，`activations` 承载执行条。
+模型模板：`assets/templates/E1.json` · 布局模板：`sequence` · 生命线是从左到右排列的 `lifeline` 节点；消息是带 `step` 编号的 `edges`，kind 为 `call`、`async` 或 `message`（返回消息是同一条边反向并加 `dashed: true`）；`frames` 用 `label` 加步骤范围（`from_step`、`to_step`）标出 `alt` / `loop` / `opt` / `par` 区域，`activations` 承载执行条。
 
 ## 参考来源 {#sources}
 <!-- skill: omit -->
