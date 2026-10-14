@@ -4,11 +4,11 @@
 
 **选对架构视图，以证据绘图。**
 
-archatlas 将架构图类型指南与名为 architecture-diagrams 的英文 Agent Skill 放在一起。文档以英文为主，中文镜像正在完善。
+archatlas 将架构图类型指南与名为 architecture-diagrams 的英文 Agent Skill 放在一起。文档以英文为主，并提供中文参考页面。
 
 ## 状态
 
-目前为预发布阶段。站点骨架可以构建；完整目录内容、渲染器接入、skill 打包和跨智能体评测仍在独立推进。不宣称已有公开软件包、生产就绪或完整中文覆盖。
+0.1.0 为预发布版本：仓库中已有40类图的中英文文档、skill、可运行的 SVG 渲染器、打包工具和评测框架。样例完善、跨代理冒烟测试与首次对比评测仍待完成。尚未发布 PyPI 包或公开发布压缩包。
 
 ## 能做什么
 
@@ -21,7 +21,16 @@ archatlas 将架构图类型指南与名为 architecture-diagrams 的英文 Agen
 
 ## 安装 skill
 
-从完整且经过审阅的源码或发布包中，把 architecture-diagrams 文件夹复制到**一个**发现目录：
+从审阅过的克隆先安装渲染器：
+
+    make setup
+    . .venv/bin/activate
+    atlas init C2 -o model.json
+    atlas render model.json -o out/
+
+只需要渲染器时，可在虚拟环境中运行 python -m pip install -e .，无需 make setup 的站点依赖。保持环境激活后启动代理，再把 skills/architecture-diagrams 复制到下表的**一个**发现目录。不要按包名安装尚未发布的软件。
+
+也可用 python tools/pack_skill.py --out dist --verify 生成经过验证的 ZIP。解压后的根文件夹是 architecture-diagrams/，不是 skills/architecture-diagrams/，并含 scripts/lib。先在虚拟环境安装其中的 scripts/requirements.txt，再复制整个根文件夹。
 
 | 智能体 | 个人目录 | 显式调用 |
 |---|---|---|
@@ -33,7 +42,7 @@ archatlas 将架构图类型指南与名为 architecture-diagrams 的英文 Agen
 
 ## 模式
 
-**自主模式：**选择合理默认值并说明假设；缺失事实会改变含义时仍应提问。**引导模式：**逐步确认重要选择，先批准线框再渲染。未回答不等于同意。参阅[模式说明（英文）](content/en/use/modes.md)。
+**自主模式：**选择合理默认值并说明假设；缺失事实会改变含义时仍应提问。**引导模式：**逐步确认重要选择，先批准线框再渲染。未回答不等于同意。参阅[模式说明](content/zh/use/modes.md)。
 
 ## 开发站点
 
@@ -48,9 +57,9 @@ archatlas 将架构图类型指南与名为 architecture-diagrams 的英文 Agen
 
 构建后可运行 npm run preview:static --prefix content/.vitepress，生成不含脚本的阅读版，输出在忽略目录 dist/static-preview。该导出使用扁平页面路径，不含搜索和弹窗；正常站点构建仍保留这些交互。
 
-中文镜像尚未完整时，语言菜单返回对应语言首页。默认基路径为 /archatlas/。其他仓库名或托管路径可设置 SITE_BASE。content/en 的页面重写为根路径，中文保留 /zh/。目录和侧栏读取 content/data/types.yaml；其尚不存在时使用明确标注的三项小样。没有正文的类型页不会产生无效链接。
+语言菜单返回对应语言首页，各语言都有自己的导航。默认基路径为 /archatlas/。其他仓库名或托管路径可设置 SITE_BASE。content/en 的页面重写为根路径，中文保留 /zh/。目录和侧栏读取 content/data/types.yaml 中的40类图。读者推荐来自 content/data/selection-tree.yaml。未来没有正文的类型页也不会产生无效链接。
 
-骨架使用 VitePress 1.6.4。依赖审计目前报告上游开发服务器漏洞；开发/预览只在本机运行，不向不可信网络开放，公开发布前须复核升级。Pages 只部署静态文件，不运行 Vite 开发服务器。
+站点使用 VitePress 1.6.4。依赖审计目前报告上游开发服务器漏洞；开发/预览只在本机运行，不向不可信网络开放，公开发布前须复核升级。Pages 只部署静态文件，不运行 Vite 开发服务器。
 
 ## 兼容性与限制
 

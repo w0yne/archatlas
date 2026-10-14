@@ -10,7 +10,7 @@ const linkFor = type => withBase((locale.value === 'zh' ? '/zh' : '') + '/types/
 </script>
 <template>
  <div class="decision-tree" :aria-label="t.choose">
-  <details v-for="(branches, key, index) in theme.selection.tree" :key="key" class="decision-branch" :open="index === 0">
+  <details v-for="(branches, key) in theme.selection.tree" :key="key" class="decision-branch">
    <summary>{{ theme.selection.facets.asks[key][locale] }}</summary>
    <ul>
     <li v-for="(branch, n) in branches" :key="n">

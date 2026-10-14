@@ -29,4 +29,4 @@ Run clean installation and representative tasks on Claude Code, Codex and Pi, in
 
 Pull-request checks need no model credentials. Paid model evaluations belong in trusted, manually approved, budgeted jobs. Do not expose secrets to untrusted contributions or commit private model transcripts.
 
-The first release evaluation is pending; this scaffold does not display invented benchmark scores.
+The evaluation harness is in the repository. The first comparative cross-host evaluation and release smoke tests are pending; no benchmark result is claimed here.

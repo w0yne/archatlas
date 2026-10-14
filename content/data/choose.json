@@ -1429,7 +1429,7 @@
       "zh": "这张图要回答哪个问题？在下面选一个分支。"
     },
     {
-      "en": "What is the scope: the whole estate, one system, or one part inside it?",
+      "en": "What is the scope: all applications in an organisation, one system, or one part inside it?",
       "zh": "范围是什么：整个企业 / 应用组合、单个系统，还是系统内的一个部件？"
     },
     {
@@ -1437,6 +1437,202 @@
       "zh": "画现状、目标，还是两者（分开成两张图）？"
     }
   ],
+  "common_requests": [
+    {
+      "request": {
+        "en": "Onboard a developer",
+        "zh": "让新开发者了解系统"
+      },
+      "first": "C2",
+      "next": [
+        "C3",
+        "E1"
+      ],
+      "note": {
+        "en": "Start with the system and its neighbours; then show running parts and one request.",
+        "zh": "先看系统与周边，再看运行组成和一次请求。"
+      }
+    },
+    {
+      "request": {
+        "en": "Show a technical executive the big picture",
+        "zh": "向技术负责人介绍全局"
+      },
+      "first": "C2",
+      "next": [
+        "C1"
+      ],
+      "note": {
+        "en": "Use C1 instead when the subject is a portfolio of applications, not one system.",
+        "zh": "如果主题是多个应用的全景而非单个系统，改用 C1。"
+      }
+    },
+    {
+      "request": {
+        "en": "Explain a solution to business readers",
+        "zh": "向业务读者说明方案"
+      },
+      "first": "A7",
+      "next": [
+        "A1"
+      ],
+      "note": {
+        "en": "Show the main solution blocks; use A1 when the question is business abilities or investment.",
+        "zh": "先展示方案的大块组成；讨论业务能力或投资时再用 A1。"
+      }
+    },
+    {
+      "request": {
+        "en": "Model order status",
+        "zh": "说明订单状态"
+      },
+      "first": "E3",
+      "next": [
+        "E2"
+      ],
+      "note": {
+        "en": "Show states and allowed changes; use E2 for the processing steps instead.",
+        "zh": "展示状态及允许的变化；如果要看处理步骤，改用 E2。"
+      }
+    },
+    {
+      "request": {
+        "en": "Explain who may access what",
+        "zh": "说明谁能访问什么"
+      },
+      "first": "F3",
+      "next": [
+        "F1"
+      ],
+      "note": {
+        "en": "Start with permissions and scope; add F1 to explain identity verification and enforcement.",
+        "zh": "先说明权限与范围；需要解释身份验证和执行位置时加 F1。"
+      }
+    },
+    {
+      "request": {
+        "en": "Plan a migration",
+        "zh": "规划迁移"
+      },
+      "first": "A8",
+      "next": [
+        "G1",
+        "G2"
+      ],
+      "note": {
+        "en": "Show coherent transition states; use paired current/target deployment or cloud views for detail.",
+        "zh": "展示可独立理解的过渡状态，再用现状与目标成对的部署或云架构图补充细节。"
+      }
+    },
+    {
+      "request": {
+        "en": "Draw a database or schema diagram",
+        "zh": "画数据库或数据模型图"
+      },
+      "first": "D1",
+      "next": [
+        "D3"
+      ],
+      "note": {
+        "en": "Show entities and relationships; add D3 when lineage and ownership matter.",
+        "zh": "展示实体与关系；关心血缘和归属时再加 D3。"
+      }
+    },
+    {
+      "request": {
+        "en": "Explain the release process",
+        "zh": "说明发布流程"
+      },
+      "first": "G4",
+      "next": [
+        "G1"
+      ],
+      "note": {
+        "en": "Show build, checks and promotion; add G1 for the resulting deployment.",
+        "zh": "展示构建、检查和晋级，再用 G1 说明最终部署。"
+      }
+    }
+  ],
+  "matrix_overrides": [
+    {
+      "audience": "leaders",
+      "ask": "runtime",
+      "types": [
+        "G2",
+        "G1",
+        "A8"
+      ],
+      "note": {
+        "en": "Start with a high-level service or deployment view; use A8 for migration decisions.",
+        "zh": "先看高层云服务或部署视图；迁移决策用 A8。"
+      }
+    },
+    {
+      "audience": "business",
+      "ask": "security",
+      "types": [
+        "F3"
+      ],
+      "note": {
+        "en": "A plain-language permission matrix is useful to business owners.",
+        "zh": "业务负责人也需要易读的权限矩阵。"
+      }
+    },
+    {
+      "audience": "developers",
+      "ask": "runtime",
+      "types": [
+        "G1",
+        "G4",
+        "A8"
+      ],
+      "note": {
+        "en": "Deployment, delivery and migration are common developer questions.",
+        "zh": "部署、交付和迁移都是开发者的常见问题。"
+      }
+    },
+    {
+      "audience": "operations",
+      "ask": "runtime",
+      "types": [
+        "G1",
+        "G2",
+        "G3",
+        "A8"
+      ],
+      "note": {
+        "en": "Include migration alongside deployment and connectivity choices.",
+        "zh": "在部署与连通方案之外，也提供迁移视图。"
+      }
+    }
+  ],
+  "phase_picks": {
+    "initiate": [
+      "A1",
+      "A7",
+      "C1"
+    ],
+    "requirements": [
+      "B1",
+      "B4",
+      "C2"
+    ],
+    "design": [
+      "C3",
+      "D1",
+      "E1"
+    ],
+    "build": [
+      "C4",
+      "E1",
+      "G4"
+    ],
+    "operate": [
+      "G1",
+      "G4",
+      "H2"
+    ]
+  },
   "tree": {
     "value": [
       {
@@ -1482,8 +1678,8 @@
       },
       {
         "when": {
-          "en": "What one persona experiences",
-          "zh": "某个角色的体验"
+          "en": "What a typical user experiences",
+          "zh": "某类用户（用户画像）的整体体验"
         },
         "types": [
           "A6"
@@ -1566,8 +1762,8 @@
       },
       {
         "when": {
-          "en": "What a persona needs at each stage",
-          "zh": "某个角色在每个阶段需要什么"
+          "en": "What a typical user needs at each stage of one task",
+          "zh": "某类用户完成一项任务时在每个阶段需要什么"
         },
         "types": [
           "A6"
@@ -1577,7 +1773,7 @@
     "structure": [
       {
         "when": {
-          "en": "Many applications across the estate, and who owns them",
+          "en": "Applications across the organisation, and who owns them",
           "zh": "企业内的众多应用及其归属"
         },
         "types": [
@@ -1631,7 +1827,7 @@
       },
       {
         "when": {
-          "en": "Model boundaries in the domain",
+          "en": "Where different teams use different business models",
           "zh": "领域中的模型边界"
         },
         "types": [
@@ -1660,7 +1856,7 @@
     "integration": [
       {
         "when": {
-          "en": "Interfaces with style, protocol, authentication and failure semantics",
+          "en": "What interfaces exchange, how they authenticate, and what happens on failure",
           "zh": "接口的集成方式、协议、认证与失败语义"
         },
         "types": [
@@ -1669,7 +1865,7 @@
       },
       {
         "when": {
-          "en": "Dependencies between applications across the estate",
+          "en": "Dependencies between applications across the organisation",
           "zh": "企业范围内应用之间的依赖"
         },
         "types": [
@@ -1734,7 +1930,7 @@
       },
       {
         "when": {
-          "en": "Which data crosses trust boundaries",
+          "en": "Which data crosses a change in control or access rights",
           "zh": "哪些数据跨越信任边界"
         },
         "types": [
@@ -1780,7 +1976,7 @@
           "A5"
         ],
         "hint": {
-          "en": "E4 for lightweight hand-offs, often with systems as lanes; A5 when BPMN semantics (pools, message flows, events) are needed.",
+          "en": "E4 for simple hand-offs; A5 when the diagram needs strict rules for process events and messages (BPMN).",
           "zh": "轻量交接（常以系统为泳道）用 E4；需要 BPMN 语义（池、消息流、事件）时用 A5。"
         }
       },
@@ -1815,7 +2011,7 @@
       },
       {
         "when": {
-          "en": "Threats and trust boundaries",
+          "en": "What could go wrong when data crosses a change in control",
           "zh": "威胁与信任边界"
         },
         "types": [
@@ -1842,6 +2038,19 @@
       }
     ],
     "runtime": [
+      {
+        "when": {
+          "en": "How to migrate from today's system to the target",
+          "zh": "如何从现有系统迁移到目标"
+        },
+        "types": [
+          "A8"
+        ],
+        "cross_facet_reason": {
+          "en": "Migration spans architecture decisions and deployment, beyond A8's primary value/structure facets.",
+          "zh": "迁移横跨架构决策与部署，不局限于 A8 的主要价值和结构维度。"
+        }
+      },
       {
         "when": {
           "en": "Where the software runs",
@@ -1945,7 +2154,7 @@
       },
       {
         "when": {
-          "en": "Release controls and promotion gates",
+          "en": "Checks and approvals before releasing a change",
           "zh": "发布控制与晋级关卡"
         },
         "types": [
@@ -2007,7 +2216,9 @@
       ],
       "security": [],
       "runtime": [
-        "H2"
+        "G2",
+        "G1",
+        "A8"
       ],
       "operations": [
         "C1",
@@ -2057,7 +2268,9 @@
         "E2",
         "E4"
       ],
-      "security": [],
+      "security": [
+        "F3"
+      ],
       "runtime": [],
       "operations": [
         "D3",
@@ -2194,8 +2407,9 @@
         "F3"
       ],
       "runtime": [
+        "G1",
         "G4",
-        "H2"
+        "A8"
       ],
       "operations": [
         "E4",
@@ -2228,8 +2442,7 @@
         "G1",
         "G2",
         "G3",
-        "G4",
-        "H2"
+        "A8"
       ],
       "operations": [
         "E4",
@@ -3646,13 +3859,14 @@
       "en": "system architecture diagram",
       "zh": "系统架构图",
       "types": [
+        "C2",
         "C3",
         "A7",
         "G1"
       ],
       "note": {
-        "en": "Usually the container view (C3); for leaders the conceptual overview (A7); sometimes the deployment view (G1). Ask which.",
-        "zh": "多数指容器图（C3）；给领导时指概念架构（A7）；有时指部署图（G1）。先问清楚。"
+        "en": "Start with C2 for the system and its neighbours, then C3 for running parts. A7 is a conceptual solution overview; G1 shows deployment.",
+        "zh": "先用 C2 看系统与周边，再用 C3 看运行组成；A7 是概念方案概览，G1 展示部署。"
       }
     },
     {
@@ -3676,8 +3890,8 @@
         "C3"
       ],
       "note": {
-        "en": "Portfolio of many applications (C1) or the inside of one application (C3).",
-        "zh": "企业级指多应用全景（C1）；单系统级指容器图（C3）。"
+        "en": "Portfolio of many applications (C1) or the running applications and data stores of one system (C3). Inside one running application is C4, not C3.",
+        "zh": "多应用全景用 C1，单个系统的可运行应用与数据存储用 C3。单个运行应用的内部组件是 C4，不是 C3。"
       }
     },
     {
@@ -3827,6 +4041,102 @@
       "note": {
         "en": "Where data comes from and who owns it (D3), or how it moves between processes (D2).",
         "zh": "数据来源与归属（D3），或数据在加工之间如何流动（D2）。"
+      }
+    },
+    {
+      "en": "big picture / architecture overview / system overview",
+      "zh": "全局图 / 架构概览 / 系统概览",
+      "types": [
+        "C2",
+        "C1",
+        "A7"
+      ],
+      "note": {
+        "en": "Start with C2 for one system, C1 for many applications, or A7 for a business-level solution overview.",
+        "zh": "单个系统先用 C2，多应用用 C1，业务层方案概览用 A7。"
+      }
+    },
+    {
+      "en": "database diagram / schema",
+      "zh": "数据库图 / 数据模式",
+      "types": [
+        "D1"
+      ],
+      "note": {
+        "en": "Choose the conceptual, logical or physical level before adding fields and keys.",
+        "zh": "添加字段和键之前，先确定概念、逻辑还是物理层次。"
+      }
+    },
+    {
+      "en": "AWS / Azure / GCP architecture diagram",
+      "zh": "AWS / Azure / GCP 架构图",
+      "types": [
+        "G2"
+      ],
+      "note": {
+        "en": "Cloud service composition; use G1 when software placement is the real question.",
+        "zh": "展示云服务组成；实际关心软件部署位置时用 G1。"
+      }
+    },
+    {
+      "en": "Kubernetes diagram",
+      "zh": "Kubernetes 架构图",
+      "types": [
+        "G1"
+      ],
+      "note": {
+        "en": "Start with workload placement; add G3 only when routing and network isolation matter.",
+        "zh": "先看工作负载部署；只有关心路由与网络隔离时才加 G3。"
+      }
+    },
+    {
+      "en": "microservices diagram",
+      "zh": "微服务架构图",
+      "types": [
+        "C3"
+      ],
+      "note": {
+        "en": "Use C3 for running services and stores; E1 for one cross-service interaction.",
+        "zh": "运行服务与存储用 C3，单次跨服务交互用 E1。"
+      }
+    },
+    {
+      "en": "workflow / user flow",
+      "zh": "工作流 / 用户流程",
+      "types": [
+        "E2",
+        "E4",
+        "A5",
+        "A6"
+      ],
+      "note": {
+        "en": "Ask whether this means logic, hand-offs, a formal business process, or the user's experience.",
+        "zh": "先确认是逻辑步骤、角色交接、严格记法的业务流程，还是用户体验。"
+      }
+    },
+    {
+      "en": "infrastructure diagram",
+      "zh": "基础设施图",
+      "types": [
+        "G1",
+        "G2",
+        "G3"
+      ],
+      "note": {
+        "en": "Choose placement, cloud service composition or connectivity; they answer different questions.",
+        "zh": "部署位置、云服务组成和网络连通回答不同问题，先确定目的。"
+      }
+    },
+    {
+      "en": "tech stack diagram",
+      "zh": "技术栈图",
+      "types": [
+        "C3",
+        "G2"
+      ],
+      "note": {
+        "en": "Tie technologies to runnable responsibilities or cloud services, rather than drawing a logo list.",
+        "zh": "把技术对应到运行职责或云服务，而不是堆放标志。"
       }
     }
   ]

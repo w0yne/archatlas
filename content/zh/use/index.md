@@ -1,70 +1,76 @@
 ---
 title: 安装与使用 skill
 translationOf: en/use/index.md
-sourceRev: 8ea75e8
-reviewed: false
+sourceRev: 08a6a35
+reviewed: true
 ---
 # 安装与使用 skill
 
-这个可移植 skill 名为 **architecture-diagrams**，包含说明、参考资料和本地辅助入口。使用已安装的 skill 不需要本站。
+archatlas 0.1.0 是**仓库内的预发布版本**：英文 skill、40 类图的参考文档、SVG 渲染器、打包工具和评测框架已经存在。尚未发布 PyPI 包，跨代理发布冒烟测试与首次对比评测仍待完成。
 
-::: warning 预发布说明
-以下步骤描述的是从完整且经过审校的检出版本或发布包进行安装。仅凭本脚手架并不包含渲染器或打包的 skill。不要仅因名称相似就安装无关的软件包。
-:::
+## 方式 A：使用经过审阅的源码克隆
 
-## 安装前先审查
+在仓库根目录运行完整开发环境安装：
 
-允许 skill 和脚本运行之前，先检查它们。使用可信的发布版本，记录其版本号，并避免在多个发现路径下重复安装。渲染器要求 Python 3.10+；浏览器仅用于视觉 QA，属可选项。请按发布包的依赖说明操作。
+    make setup
+    . .venv/bin/activate
+    atlas --help
 
-## Claude Code
+如果只需要渲染器，不需要站点开发依赖：
 
-在完整发布包的根目录下执行：
+    python3 -m venv .venv
+    . .venv/bin/activate
+    python -m pip install -e .
+
+之后按下表复制 skill 文件夹。**从已经激活的环境启动代理**，才能让 helper 找到已安装的渲染器。只复制源码中的 skill 文件夹不会安装 Python 依赖或渲染器库。不要运行 pip install archatlas：本项目尚未发布这个包名。
+
+## 方式 B：使用经过验证的打包文件
+
+在审阅过的克隆中生成打包文件：
+
+    python tools/pack_skill.py --out dist --verify
+
+解压选定的压缩包并进入解压目录。顶层文件夹是 **architecture-diagrams/**，不是 skills/architecture-diagrams/。其中包含 scripts/lib，但第三方 Python 依赖需要另行安装：
+
+    python3 -m venv .venv
+    . .venv/bin/activate
+    python -m pip install -r architecture-diagrams/scripts/requirements.txt
+
+将整个 architecture-diagrams 文件夹复制到下表的一个位置，并保持环境激活后再启动代理。安装前检查源码、压缩包校验值及脚本，不要用软件源中的同名包替代。
+
+## 选择一个代理安装位置
+
+| 代理 | 个人目录 | 显式调用 |
+|---|---|---|
+| Claude Code | ~/.claude/skills/architecture-diagrams/ | /architecture-diagrams |
+| Codex | ~/.agents/skills/architecture-diagrams/ | $architecture-diagrams |
+| Pi | ~/.pi/agent/skills/architecture-diagrams/ | /skill:architecture-diagrams |
+
+例如，从已安装渲染器的克隆中复制：
 
     mkdir -p ~/.claude/skills
     cp -R skills/architecture-diagrams ~/.claude/skills/
 
-开启新会话并调用：
+若从解压包复制，改用 cp -R architecture-diagrams ~/.claude/skills/。Codex、Pi 使用表中对应目标目录，不要重复安装到多个发现位置。安装后重启代理；Pi 也可使用 /reload。
 
-    /architecture-diagrams mode=guided 帮我为一家网店选择一个视图。
+## 第一次请求与第一次渲染
 
-## Codex
+[不确定该画哪种图？先选择视图。](/zh/choose)
 
-    mkdir -p ~/.agents/skills
-    cp -R skills/architecture-diagrams ~/.agents/skills/
+> 引导模式。帮助新开发者理解结账、支付和库存。推荐一种视图，并解释它不展示什么。使用中文标签。
 
-开启新会话并调用：
+在源码克隆中验证已安装的渲染器：
 
-    $architecture-diagrams mode=autonomous 为一家网店画一张系统上下文图。
+    atlas init C2 -o model.json
+    atlas render model.json -o out/
+    atlas check out/diagram.svg --model model.json --report out/findings.json
 
-## Pi
-
-    mkdir -p ~/.pi/agent/skills
-    cp -R skills/architecture-diagrams ~/.pi/agent/skills/
-
-在已有会话中使用 /reload，然后调用：
-
-    /skill:architecture-diagrams mode=guided 给我看看重要的架构选择。
-
-如果只想在一次运行中试用完整的 skill 文件夹而不复制它：
-
-    pi --skill ./skills/architecture-diagrams
-
-## 你的第一个请求
-
-说明谁会阅读这张图、它要回答什么问题、描述的是现状还是提议方案、系统边界，以及输出语言。例如：
-
-> 引导模式。帮助一名新开发者理解结账如何与支付和库存通信。使用英文标签。不要推断部署拓扑。
-
-预期会得到类型推荐、线框图、源模型、渲染好的 SVG，以及明确的复核状态。如果缺失的信息会改变架构的含义，智能体应当提问，而不是默默编造。
+渲染器可以从随附模板读取类型代码。请检查 findings 和实际图片；命令结束不代表质量合格。[命令与限制](./formats)说明可选预览依赖和退出码。
 
 ## 更新与卸载
 
-只用经过审校的发布版本替换已安装的 architecture-diagrams 文件夹。卸载时，从所选的发现位置删除该文件夹，然后重启或重新加载宿主。切勿删除宿主的整个 skills 目录。
+只替换本 skill 的文件夹，更新其 Python 环境，再重启或重新加载代理。不要删除代理的整个 skills 目录。
 
 ## 兼容性状态
 
-文档与 CLI 帮助调研覆盖了 Claude Code 2.1.285、Codex 0.160.1 和 Pi 1.1.0。**这些并不是已完成的安装认证或输出质量认证。** 跨宿主的发布冒烟测试仍待进行。
-
-宿主官方参考：[Claude Code skills](https://code.claude.com/docs/en/skills)、[Codex skills](https://developers.openai.com/codex/skills)、[Pi skills](https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/docs/skills.md)。
-
-下一步：[选择交互模式](./modes)或[从代码推导视图](./code-to-diagram)。
+文档与帮助信息研究覆盖 Claude Code 2.1.285、Codex 0.160.1、Pi 1.1.0；这不代表跨代理输出质量认证已经完成。官方说明：[Claude Code](https://code.claude.com/docs/en/skills)、[Codex](https://developers.openai.com/codex/skills)、[Pi](https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/docs/skills.md)。

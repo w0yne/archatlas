@@ -17,6 +17,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+from copy import deepcopy
 import json
 import re
 import sys
@@ -70,6 +71,14 @@ def load(types_file: Path = TYPES_FILE, tree_file: Path = TREE_FILE) -> tuple[di
         cat = yaml.safe_load(f)
     with tree_file.open(encoding="utf-8") as f:
         tree = yaml.safe_load(f)
+    # Taxonomy remains in types.yaml; reader-specific advice belongs to the tree.
+    cat = deepcopy(cat)
+    terms = {norm(term['en']): term for term in cat.get('terms', [])}
+    for term in tree.get('reader_terms', []):
+        terms[norm(term['en'])] = term
+    cat['terms'] = list(terms.values())
+    for key in ('common_requests', 'matrix_overrides', 'phase_picks'):
+        cat[key] = tree.get(key, [] if key != 'phase_picks' else {})
     validate(cat, tree)
     return cat, tree
 
@@ -169,7 +178,10 @@ def validate(cat: dict, tree: dict) -> None:
                     continue
                 reached.add(c)
                 if branch not in by_code[c].get("asks", []):
-                    errors.append(f"tree {branch}: {c} lacks asks facet {branch!r}")
+                    if not leaf.get('cross_facet_reason'):
+                        errors.append(f"tree {branch}: {c} lacks asks facet {branch!r}; explain cross_facet_reason")
+                    else:
+                        _bilingual(leaf['cross_facet_reason'], f'tree {branch}.cross_facet_reason', errors)
             if not leaf.get("types"):
                 errors.append(f"tree {branch}: leaf without types")
     unreached = sorted(known - reached, key=code_key)
@@ -177,6 +189,26 @@ def validate(cat: dict, tree: dict) -> None:
         errors.append(f"tree does not reach {unreached}")
     for q in tree.get("first_questions", []):
         _bilingual(q, "first_questions", errors)
+
+    for row in cat.get('common_requests', []):
+        _bilingual(row.get('request'), 'common request', errors)
+        _bilingual(row.get('note'), 'common request note', errors)
+        if row.get('first') not in known or any(c not in known for c in row.get('next', [])):
+            errors.append('common request refers to an unknown type')
+    cells = set()
+    for row in cat.get('matrix_overrides', []):
+        key = (row.get('audience'), row.get('ask'))
+        if key in cells:
+            errors.append('duplicate matrix override')
+        cells.add(key)
+        if row.get('audience') not in facets['audiences'] or row.get('ask') not in facets['asks']:
+            errors.append('matrix override has unknown facets')
+        if not row.get('types') or any(c not in known for c in row['types']):
+            errors.append('matrix override has unknown types')
+        _bilingual(row.get('note'), 'matrix override note', errors)
+    for phase, picks in cat.get('phase_picks', {}).items():
+        if phase not in facets['phases'] or not 2 <= len(picks) <= 4 or len(set(picks)) != len(picks) or any(c not in known for c in picks):
+            errors.append('phase picks need a known phase and 2–4 known types')
 
     if errors:
         raise ModelError("\n".join(errors))
@@ -196,6 +228,8 @@ def matrix(cat: dict) -> dict[str, dict[str, list[str]]]:
         for ask in cat["facets"]["asks"]:
             out[aud][ask] = [t["code"] for t in sorted_types(cat)
                              if aud in t["audiences"] and ask in t["asks"]]
+    for row in cat.get('matrix_overrides', []):
+        out[row['audience']][row['ask']] = row['types']
     return out
 
 
@@ -222,6 +256,9 @@ def choose_data(cat: dict, tree: dict) -> dict:
         "facets": cat["facets"],
         "types": [{k: t[k] for k in keep} | {"page": page(t)} for t in sorted_types(cat)],
         "first_questions": tree["first_questions"],
+        "common_requests": cat.get('common_requests', []),
+        "matrix_overrides": cat.get('matrix_overrides', []),
+        "phase_picks": cat.get('phase_picks', {}),
         "tree": tree["root"],
         "matrix": matrix(cat),
         "phases": by_phase(cat),
@@ -232,8 +269,26 @@ def choose_data(cat: dict, tree: dict) -> dict:
 
 # ------------------------------------------------------------------ rendering
 
-def _codes(codes: list[str], link) -> str:
-    return ", ".join(link(c) for c in codes) if codes else "–"
+def _codes(codes: list[str], link, lang: str = 'en') -> str:
+    return ('、' if lang == 'zh' else ', ').join(link(c) for c in codes) if codes else '–'
+
+
+def render_common(cat: dict, lang: str, link) -> list[str]:
+    first, later = ('先选', '再考虑') if lang == 'zh' else ('Start with', 'Then consider')
+    colon, stop = ('：', '。') if lang == 'zh' else (': ', '. ')
+    return [f"- **{row['request'][lang]}**{colon}{first}{colon}{link(row['first'])}{stop}"
+            f"{later}{colon}{_codes(row.get('next', []), link, lang)}{stop}{row['note'][lang]}"
+            for row in cat.get('common_requests', [])]
+
+
+def render_audiences(cat: dict, lang: str, link) -> list[str]:
+    result = []
+    for audience, cells in matrix(cat).items():
+        result += [f"<details><summary>{cat['facets']['audiences'][audience][lang]}</summary>", '']
+        result += [f"- **{cat['facets']['asks'][ask][lang]}** {'：' if lang == 'zh' else ': '}{_codes(codes, link, lang)}"
+                   for ask, codes in cells.items() if codes]
+        result += ['', '</details>', '']
+    return result
 
 
 def render_tree(cat: dict, tree: dict, lang: str, link) -> list[str]:
@@ -242,9 +297,9 @@ def render_tree(cat: dict, tree: dict, lang: str, link) -> list[str]:
     for branch, leaves in tree["root"].items():
         lines.append(f"- **{asks[branch][lang]}**")
         for leaf in leaves:
-            line = f"  - {leaf['when'][lang]} → {_codes(leaf['types'], link)}"
+            line = f"  - {leaf['when'][lang]} → {_codes(leaf['types'], link, lang)}"
             if "hint" in leaf:
-                line += f". {leaf['hint'][lang]}"
+                line += ('。' if lang == 'zh' else '. ') + leaf['hint'][lang]
             lines.append(line)
     return lines
 
@@ -256,27 +311,35 @@ def render_matrix(cat: dict, lang: str, link) -> list[str]:
     lines = ["| " + ("Question" if lang == "en" else "问题") + " | " + " | ".join(head) + " |",
              "|---" * (len(head) + 1) + "|"]
     for ask in f["asks"]:
-        cells = [_codes(m[a][ask], link) for a in f["audiences"]]
+        cells = [_codes(m[a][ask], link, lang) for a in f["audiences"]]
         lines.append(f"| {f['asks'][ask][lang]} | " + " | ".join(cells) + " |")
     return lines
 
 
 def render_phases(cat: dict, lang: str, link) -> list[str]:
     phases = cat["facets"]["phases"]
-    return [f"- **{phases[p][lang]}**: {_codes(codes, link)}" for p, codes in by_phase(cat).items()]
+    result = []
+    for phase, codes in by_phase(cat).items():
+        picks = cat.get('phase_picks', {}).get(phase, codes[:3])
+        rest = [code for code in codes if code not in picks]
+        result.append(f"- **{phases[phase][lang]}** {'：' if lang == 'zh' else ': '}{_codes(picks, link, lang)}")
+        if rest:
+            result += [f"<details><summary>{'其他可选类型' if lang == 'zh' else 'Also useful'}</summary>", '', _codes(rest, link, lang), '', '</details>', '']
+    return result
 
 
 def render_terms(cat: dict, lang: str, link) -> list[str]:
     lines = []
     for term in cat.get("terms", []):
-        label = term["en"] if lang == "en" else f"{term['zh']} ({term['en']})"
-        lines.append(f"- *{label}* → {_codes(term['types'], link)}. {term['note'][lang]}")
+        label = term["en"] if lang == "en" else f"{term['zh']}（{term['en']}）"
+        lines.append(f"- *{label}* → {_codes(term['types'], link, lang)}{'。' if lang == 'zh' else '. '}{term['note'][lang]}")
     return lines
 
 
 def render_selection_md(cat: dict, tree: dict) -> str:
+    by_code = {t['code']: t for t in cat['types']}
     def link(c: str) -> str:
-        return c
+        return c + ' ' + by_code[c]['names']['en']
 
     types = sorted_types(cat)
     out = [
@@ -290,6 +353,8 @@ def render_selection_md(cat: dict, tree: dict) -> str:
         "## 1. First questions",
         "",
     ]
+    out += render_common(cat, 'en', link)
+    out += ['', 'For a less common request, establish:', '']
     out += [f"{i}. {q['en']}" for i, q in enumerate(tree["first_questions"], 1)]
     out += ["", "In autonomous mode, infer the answers and state them as assumptions. "
             "In guided mode, ask them one at a time with a recommended default.", "",
@@ -331,14 +396,16 @@ def render_choose_blocks(cat: dict, tree: dict, lang: str = "en") -> dict[str, s
     prefix = "" if lang == "en" else f"/{lang}"
 
     def link(c: str) -> str:
-        return f"[{c}]({prefix}/types/{page(by_code[c])})"
+        return f"[{c} {by_code[c]['names'][lang]}]({prefix}/types/{page(by_code[c])})"
 
     head = "| Code | Type | Answers |" if lang == "en" else "| 代码 | 类型 | 回答的问题 |"
     catalogue = [head, "|---|---|---|"]
-    catalogue += [f"| {link(t['code'])} | {t['names'][lang]} | {t['question'][lang]} |"
+    catalogue += [f"| [{t['code']}]({prefix}/types/{page(t)}) | {t['names'][lang]} | {t['question'][lang]} |"
                   for t in sorted_types(cat)]
     aliases = [f"- {r['text']} → {link(r['code'])}" for r in alias_index(cat) if r["lang"] == lang]
     blocks = {
+        "common": render_common(cat, lang, link),
+        "audiences": render_audiences(cat, lang, link),
         "questions": [f"{i}. {q[lang]}" for i, q in enumerate(tree["first_questions"], 1)],
         "tree": render_tree(cat, tree, lang, link),
         "matrix": render_matrix(cat, lang, link),

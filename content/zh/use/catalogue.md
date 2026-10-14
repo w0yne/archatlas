@@ -5,7 +5,7 @@ sidebar: false
 aside: false
 translationOf: en/use/catalogue.md
 sourceRev: 4a208bb
-reviewed: false
+reviewed: true
 ---
 # 图类型目录
 
@@ -17,4 +17,4 @@ reviewed: false
 
 ## 关于可用状态
 
-“即将推出”表示目录中已有该条目，但讲解页尚未接入。已上线的页面中，样图也可能仍标注为“准备中”。这两种状态都不代表渲染器已经过测试，也不代表已完成发布前评测。
+“即将推出”表示目录中已有该条目，但讲解页尚未接入。已上线的页面中，样图也可能仍标注为“准备中”。这两种可用状态都不能代替视觉复核，也不代表已完成发布前评测。

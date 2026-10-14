@@ -7,9 +7,20 @@ Use this file to pick one or two types before drawing. Then read
 
 ## 1. First questions
 
+- **Onboard a developer**: Start with: C2 System context diagram (C4 model level 1). Then consider: C3 Container diagram (C4 model level 2), E1 Sequence diagram. Start with the system and its neighbours; then show running parts and one request.
+- **Show a technical executive the big picture**: Start with: C2 System context diagram (C4 model level 1). Then consider: C1 Application landscape. Use C1 instead when the subject is a portfolio of applications, not one system.
+- **Explain a solution to business readers**: Start with: A7 Conceptual architecture (solution overview). Then consider: A1 Business capability map. Show the main solution blocks; use A1 when the question is business abilities or investment.
+- **Model order status**: Start with: E3 State machine diagram. Then consider: E2 Activity diagram or flowchart. Show states and allowed changes; use E2 for the processing steps instead.
+- **Explain who may access what**: Start with: F3 Access-control model. Then consider: F1 Authentication and authorization flow. Start with permissions and scope; add F1 to explain identity verification and enforcement.
+- **Plan a migration**: Start with: A8 Target architecture and transition roadmap. Then consider: G1 Deployment diagram, G2 Cloud infrastructure architecture. Show coherent transition states; use paired current/target deployment or cloud views for detail.
+- **Draw a database or schema diagram**: Start with: D1 Entity-relationship diagram. Then consider: D3 Data lineage and ownership map. Show entities and relationships; add D3 when lineage and ownership matter.
+- **Explain the release process**: Start with: G4 CI/CD and deployment pipeline. Then consider: G1 Deployment diagram. Show build, checks and promotion; add G1 for the resulting deployment.
+
+For a less common request, establish:
+
 1. Who will read it, and what should they do afterwards (decide, approve, build, operate, review)?
 2. Which question must the figure answer? Pick one branch below.
-3. What is the scope: the whole estate, one system, or one part inside it?
+3. What is the scope: all applications in an organisation, one system, or one part inside it?
 4. Current state, target state, or both (as separate figures)?
 
 In autonomous mode, infer the answers and state them as assumptions. In guided mode, ask them one at a time with a recommended default.
@@ -17,70 +28,71 @@ In autonomous mode, infer the answers and state them as assumptions. In guided m
 ## 2. Decision tree (by the question the figure must answer)
 
 - **Why invest, and where is the value?**
-  - What the organisation can do, and where to invest → A1
-  - Which stages deliver value to a stakeholder → A2, A9. A2 has no timings and maps stages to capabilities; A9 measures process and waiting time.
-  - What the solution is, in business terms → A7
-  - How to get from today to the target, step by step → A8
-  - What one persona experiences → A6
-  - Who has influence over the initiative and how to engage them → H3
+  - What the organisation can do, and where to invest → A1 Business capability map
+  - Which stages deliver value to a stakeholder → A2 Value stream (business architecture), A9 Lean value-stream map (VSM). A2 has no timings and maps stages to capabilities; A9 measures process and waiting time.
+  - What the solution is, in business terms → A7 Conceptual architecture (solution overview)
+  - How to get from today to the target, step by step → A8 Target architecture and transition roadmap
+  - What a typical user experiences → A6 Customer or user journey map
+  - Who has influence over the initiative and how to engage them → H3 Stakeholder map (power-interest grid)
 - **What must it do, for whom, and what is in or out?**
-  - What is in or out of scope, and who connects to us → B4, C2. B4 when the point is the boundary of this phase; C2 when the subject is a software system and its neighbours.
-  - Which outside parties the business deals with, and what is exchanged → A3
-  - Which roles do what, in which release → A4, B2. A4 shows coverage across several roles; B2 tells one end-to-end story with release slices.
-  - Which user goals the system supports, and for whom → B1
-  - Which functions, how deep, with which priority → B3
-  - How a business case runs across participants → A5
-  - What a persona needs at each stage → A6
+  - What is in or out of scope, and who connects to us → B4 Scope diagram, C2 System context diagram (C4 model level 1). B4 when the point is the boundary of this phase; C2 when the subject is a software system and its neighbours.
+  - Which outside parties the business deals with, and what is exchanged → A3 Business context diagram
+  - Which roles do what, in which release → A4 Business scenario matrix (role × activity), B2 User story map. A4 shows coverage across several roles; B2 tells one end-to-end story with release slices.
+  - Which user goals the system supports, and for whom → B1 Use case diagram
+  - Which functions, how deep, with which priority → B3 Feature tree (functional decomposition)
+  - How a business case runs across participants → A5 Business process diagram (BPMN)
+  - What a typical user needs at each stage of one task → A6 Customer or user journey map
 - **What are the parts and how are they organised?**
-  - Many applications across the estate, and who owns them → C1
-  - Main blocks, for non-technical readers → A7
-  - One system: users and neighbouring systems → C2
-  - One system: its running applications and data stores → C3
-  - Inside one application: its components → C4
-  - Responsibilities and interfaces, without technology → C5
-  - Model boundaries in the domain → C7
-  - Code layers and allowed dependencies → C8
-  - How business, applications and technology support each other → I2
+  - Applications across the organisation, and who owns them → C1 Application landscape
+  - Main blocks, for non-technical readers → A7 Conceptual architecture (solution overview)
+  - One system: users and neighbouring systems → C2 System context diagram (C4 model level 1)
+  - One system: its running applications and data stores → C3 Container diagram (C4 model level 2)
+  - Inside one application: its components → C4 Component diagram (C4 model level 3)
+  - Responsibilities and interfaces, without technology → C5 Logical architecture diagram
+  - Where different teams use different business models → C7 Bounded context map (DDD)
+  - Code layers and allowed dependencies → C8 Layered architecture diagram
+  - How business, applications and technology support each other → I2 ArchiMate layered view
 - **How do the parts and systems connect?**
-  - Interfaces with style, protocol, authentication and failure semantics → C6
-  - Dependencies between applications across the estate → C1
-  - How the running parts of one system talk → C3
-  - Message order in one scenario → E1
-  - Relationships between domain models and teams → C7
+  - What interfaces exchange, how they authenticate, and what happens on failure → C6 Integration and interface diagram
+  - Dependencies between applications across the organisation → C1 Application landscape
+  - How the running parts of one system talk → C3 Container diagram (C4 model level 2)
+  - Message order in one scenario → E1 Sequence diagram
+  - Relationships between domain models and teams → C7 Bounded context map (DDD)
 - **What data is there, where does it flow, who owns it?**
-  - Which business objects exist and how they relate → D1
-  - How data moves between processes and stores → D2
-  - Where a dataset came from, and who owns it → D3
-  - Which data crosses trust boundaries → F2
+  - Which business objects exist and how they relate → D1 Entity-relationship diagram
+  - How data moves between processes and stores → D2 Data flow diagram (DFD)
+  - Where a dataset came from, and who owns it → D3 Data lineage and ownership map
+  - Which data crosses a change in control or access rights → F2 Threat-model data-flow diagram with trust boundaries
 - **What happens, in which order, with which states?**
-  - Messages between participants, in order → E1
-  - Steps, decisions and parallel branches of one piece of logic → E2
-  - The lifecycle of one object → E3
-  - Hand-offs between roles or systems → E4, A5. E4 for lightweight hand-offs, often with systems as lanes; A5 when BPMN semantics (pools, message flows, events) are needed.
-  - How sign-in and access decisions happen → F1
-  - Where a delivery process waits → A9
+  - Messages between participants, in order → E1 Sequence diagram
+  - Steps, decisions and parallel branches of one piece of logic → E2 Activity diagram or flowchart
+  - The lifecycle of one object → E3 State machine diagram
+  - Hand-offs between roles or systems → E4 Swimlane or cross-functional flowchart, A5 Business process diagram (BPMN). E4 for simple hand-offs; A5 when the diagram needs strict rules for process events and messages (BPMN).
+  - How sign-in and access decisions happen → F1 Authentication and authorization flow
+  - Where a delivery process waits → A9 Lean value-stream map (VSM)
 - **Who may do what, and what could go wrong?**
-  - Sign-in, tokens, and where access is decided → F1
-  - Threats and trust boundaries → F2
-  - Who may do what, in which scope → F3
-  - Network exposure and paths → G3
+  - Sign-in, tokens, and where access is decided → F1 Authentication and authorization flow
+  - What could go wrong when data crosses a change in control → F2 Threat-model data-flow diagram with trust boundaries
+  - Who may do what, in which scope → F3 Access-control model
+  - Network exposure and paths → G3 Network topology and connectivity view
 - **Where does it run and how does it ship?**
-  - Where the software runs → G1
-  - Which cloud services, and their failure boundaries → G2
-  - Network segments and paths → G3
-  - How a change ships to production → G4
-  - How the running system is observed → H2
+  - How to migrate from today's system to the target → A8 Target architecture and transition roadmap
+  - Where the software runs → G1 Deployment diagram
+  - Which cloud services, and their failure boundaries → G2 Cloud infrastructure architecture
+  - Network segments and paths → G3 Network topology and connectivity view
+  - How a change ships to production → G4 CI/CD and deployment pipeline
+  - How the running system is observed → H2 Observability view
 - **Who is responsible, and how is it run and watched?**
-  - Who is responsible for each activity → H1
-  - Who must be engaged, and how → H3
-  - How problems are detected and answered → H2
-  - Who owns which data → D3
-  - Hand-offs in an operating procedure → E4
-  - Owners and lifecycle state of applications → C1
-  - Release controls and promotion gates → G4
+  - Who is responsible for each activity → H1 RACI matrix
+  - Who must be engaged, and how → H3 Stakeholder map (power-interest grid)
+  - How problems are detected and answered → H2 Observability view
+  - Who owns which data → D3 Data lineage and ownership map
+  - Hand-offs in an operating procedure → E4 Swimlane or cross-functional flowchart
+  - Owners and lifecycle state of applications → C1 Application landscape
+  - Checks and approvals before releasing a change → G4 CI/CD and deployment pipeline
 - **How do I organise several diagrams into one description?**
-  - Several views for different readers, kept consistent → I1
-  - One enterprise view across business, application and technology → I2
+  - Several views for different readers, kept consistent → I1 4+1 view model
+  - One enterprise view across business, application and technology → I2 ArchiMate layered view
 
 Name the chosen type and one runner-up, each with a one-line reason. If the reader needs answers to two questions, draw two figures.
 
@@ -90,44 +102,82 @@ Cells list types that suit both the audience and the question. A '–' means no 
 
 | Question | Leaders and sponsors | Business owners and analysts | Product and design | Architects | Developers and testers | Operations and SRE | Security and compliance |
 |---|---|---|---|---|---|---|---|
-| Why invest, and where is the value? | A1, A2, A6, A7, A8, A9, H3 | A1, A2, A6, A7, A9, H3 | A6 | A1, A2, A7, A8 | – | A9 | – |
-| What must it do, for whom, and what is in or out? | A3, A6, B4, C2 | A3, A4, A5, A6, B1, B2, C2 | A4, A5, A6, B1, B2, B3, B4 | A3, B4, C2 | A5, B1, B2, B3, C2 | – | C2 |
-| What are the parts and how are they organised? | A1, A7, C1, C2, I2 | A1, A7, C2, C7 | C5 | A1, A7, C1, C2, C3, C4, C5, C7, C8, I2 | C2, C3, C4, C5, C7, C8 | C3 | C2, C3 |
-| How do the parts and systems connect? | C1 | C7 | – | C1, C3, C6, C7, E1 | C3, C6, C7, E1 | C3, C6 | C3 |
-| What data is there, where does it flow, who owns it? | – | D1, D2, D3 | – | D1, D2, D3, F2 | D1 | – | D2, D3, F2 |
-| What happens, in which order, with which states? | A9 | A5, A9, E2, E4 | A5, E3 | E1, F1 | A5, E1, E2, E3, E4, F1 | A9, E4 | F1 |
-| Who may do what, and what could go wrong? | – | – | – | F1, F2, F3, G3 | F1, F3 | G3 | F1, F2, F3, G3 |
-| Where does it run and how does it ship? | H2 | – | – | G1, G2, G3 | G4, H2 | G1, G2, G3, G4, H2 | G1, G2, G3, G4 |
-| Who is responsible, and how is it run and watched? | C1, H1, H2, H3 | D3, E4, H1, H3 | – | C1, D3 | E4, G4, H2 | E4, G4, H1, H2 | D3, G4 |
-| How do I organise several diagrams into one description? | I2 | – | – | I1, I2 | – | – | – |
+| Why invest, and where is the value? | A1 Business capability map, A2 Value stream (business architecture), A6 Customer or user journey map, A7 Conceptual architecture (solution overview), A8 Target architecture and transition roadmap, A9 Lean value-stream map (VSM), H3 Stakeholder map (power-interest grid) | A1 Business capability map, A2 Value stream (business architecture), A6 Customer or user journey map, A7 Conceptual architecture (solution overview), A9 Lean value-stream map (VSM), H3 Stakeholder map (power-interest grid) | A6 Customer or user journey map | A1 Business capability map, A2 Value stream (business architecture), A7 Conceptual architecture (solution overview), A8 Target architecture and transition roadmap | – | A9 Lean value-stream map (VSM) | – |
+| What must it do, for whom, and what is in or out? | A3 Business context diagram, A6 Customer or user journey map, B4 Scope diagram, C2 System context diagram (C4 model level 1) | A3 Business context diagram, A4 Business scenario matrix (role × activity), A5 Business process diagram (BPMN), A6 Customer or user journey map, B1 Use case diagram, B2 User story map, C2 System context diagram (C4 model level 1) | A4 Business scenario matrix (role × activity), A5 Business process diagram (BPMN), A6 Customer or user journey map, B1 Use case diagram, B2 User story map, B3 Feature tree (functional decomposition), B4 Scope diagram | A3 Business context diagram, B4 Scope diagram, C2 System context diagram (C4 model level 1) | A5 Business process diagram (BPMN), B1 Use case diagram, B2 User story map, B3 Feature tree (functional decomposition), C2 System context diagram (C4 model level 1) | – | C2 System context diagram (C4 model level 1) |
+| What are the parts and how are they organised? | A1 Business capability map, A7 Conceptual architecture (solution overview), C1 Application landscape, C2 System context diagram (C4 model level 1), I2 ArchiMate layered view | A1 Business capability map, A7 Conceptual architecture (solution overview), C2 System context diagram (C4 model level 1), C7 Bounded context map (DDD) | C5 Logical architecture diagram | A1 Business capability map, A7 Conceptual architecture (solution overview), C1 Application landscape, C2 System context diagram (C4 model level 1), C3 Container diagram (C4 model level 2), C4 Component diagram (C4 model level 3), C5 Logical architecture diagram, C7 Bounded context map (DDD), C8 Layered architecture diagram, I2 ArchiMate layered view | C2 System context diagram (C4 model level 1), C3 Container diagram (C4 model level 2), C4 Component diagram (C4 model level 3), C5 Logical architecture diagram, C7 Bounded context map (DDD), C8 Layered architecture diagram | C3 Container diagram (C4 model level 2) | C2 System context diagram (C4 model level 1), C3 Container diagram (C4 model level 2) |
+| How do the parts and systems connect? | C1 Application landscape | C7 Bounded context map (DDD) | – | C1 Application landscape, C3 Container diagram (C4 model level 2), C6 Integration and interface diagram, C7 Bounded context map (DDD), E1 Sequence diagram | C3 Container diagram (C4 model level 2), C6 Integration and interface diagram, C7 Bounded context map (DDD), E1 Sequence diagram | C3 Container diagram (C4 model level 2), C6 Integration and interface diagram | C3 Container diagram (C4 model level 2) |
+| What data is there, where does it flow, who owns it? | – | D1 Entity-relationship diagram, D2 Data flow diagram (DFD), D3 Data lineage and ownership map | – | D1 Entity-relationship diagram, D2 Data flow diagram (DFD), D3 Data lineage and ownership map, F2 Threat-model data-flow diagram with trust boundaries | D1 Entity-relationship diagram | – | D2 Data flow diagram (DFD), D3 Data lineage and ownership map, F2 Threat-model data-flow diagram with trust boundaries |
+| What happens, in which order, with which states? | A9 Lean value-stream map (VSM) | A5 Business process diagram (BPMN), A9 Lean value-stream map (VSM), E2 Activity diagram or flowchart, E4 Swimlane or cross-functional flowchart | A5 Business process diagram (BPMN), E3 State machine diagram | E1 Sequence diagram, F1 Authentication and authorization flow | A5 Business process diagram (BPMN), E1 Sequence diagram, E2 Activity diagram or flowchart, E3 State machine diagram, E4 Swimlane or cross-functional flowchart, F1 Authentication and authorization flow | A9 Lean value-stream map (VSM), E4 Swimlane or cross-functional flowchart | F1 Authentication and authorization flow |
+| Who may do what, and what could go wrong? | – | F3 Access-control model | – | F1 Authentication and authorization flow, F2 Threat-model data-flow diagram with trust boundaries, F3 Access-control model, G3 Network topology and connectivity view | F1 Authentication and authorization flow, F3 Access-control model | G3 Network topology and connectivity view | F1 Authentication and authorization flow, F2 Threat-model data-flow diagram with trust boundaries, F3 Access-control model, G3 Network topology and connectivity view |
+| Where does it run and how does it ship? | G2 Cloud infrastructure architecture, G1 Deployment diagram, A8 Target architecture and transition roadmap | – | – | G1 Deployment diagram, G2 Cloud infrastructure architecture, G3 Network topology and connectivity view | G1 Deployment diagram, G4 CI/CD and deployment pipeline, A8 Target architecture and transition roadmap | G1 Deployment diagram, G2 Cloud infrastructure architecture, G3 Network topology and connectivity view, A8 Target architecture and transition roadmap | G1 Deployment diagram, G2 Cloud infrastructure architecture, G3 Network topology and connectivity view, G4 CI/CD and deployment pipeline |
+| Who is responsible, and how is it run and watched? | C1 Application landscape, H1 RACI matrix, H2 Observability view, H3 Stakeholder map (power-interest grid) | D3 Data lineage and ownership map, E4 Swimlane or cross-functional flowchart, H1 RACI matrix, H3 Stakeholder map (power-interest grid) | – | C1 Application landscape, D3 Data lineage and ownership map | E4 Swimlane or cross-functional flowchart, G4 CI/CD and deployment pipeline, H2 Observability view | E4 Swimlane or cross-functional flowchart, G4 CI/CD and deployment pipeline, H1 RACI matrix, H2 Observability view | D3 Data lineage and ownership map, G4 CI/CD and deployment pipeline |
+| How do I organise several diagrams into one description? | I2 ArchiMate layered view | – | – | I1 4+1 view model, I2 ArchiMate layered view | – | – | – |
 
 ## 4. Lifecycle phase
 
-- **Initiate**: A1, A2, A3, A6, A7, A8, A9, B4, C1, C2, H1, H3, I2
-- **Requirements**: A3, A4, A5, A6, B1, B2, B3, B4, C2, D2
-- **Design**: A5, A7, A8, C1, C2, C3, C4, C5, C6, C7, C8, D1, D2, D3, E1, E2, E3, E4, F1, F2, F3, G1, G2, G3, I1, I2
-- **Build**: C3, C4, C6, C8, D1, E1, E2, E3, F1, F3, G4
-- **Release and operate**: A9, D3, E4, G1, G2, G3, G4, H1, H2
+- **Initiate** : A1 Business capability map, A7 Conceptual architecture (solution overview), C1 Application landscape
+<details><summary>Also useful</summary>
+
+A2 Value stream (business architecture), A3 Business context diagram, A6 Customer or user journey map, A8 Target architecture and transition roadmap, A9 Lean value-stream map (VSM), B4 Scope diagram, C2 System context diagram (C4 model level 1), H1 RACI matrix, H3 Stakeholder map (power-interest grid), I2 ArchiMate layered view
+
+</details>
+
+- **Requirements** : B1 Use case diagram, B4 Scope diagram, C2 System context diagram (C4 model level 1)
+<details><summary>Also useful</summary>
+
+A3 Business context diagram, A4 Business scenario matrix (role × activity), A5 Business process diagram (BPMN), A6 Customer or user journey map, B2 User story map, B3 Feature tree (functional decomposition), D2 Data flow diagram (DFD)
+
+</details>
+
+- **Design** : C3 Container diagram (C4 model level 2), D1 Entity-relationship diagram, E1 Sequence diagram
+<details><summary>Also useful</summary>
+
+A5 Business process diagram (BPMN), A7 Conceptual architecture (solution overview), A8 Target architecture and transition roadmap, C1 Application landscape, C2 System context diagram (C4 model level 1), C4 Component diagram (C4 model level 3), C5 Logical architecture diagram, C6 Integration and interface diagram, C7 Bounded context map (DDD), C8 Layered architecture diagram, D2 Data flow diagram (DFD), D3 Data lineage and ownership map, E2 Activity diagram or flowchart, E3 State machine diagram, E4 Swimlane or cross-functional flowchart, F1 Authentication and authorization flow, F2 Threat-model data-flow diagram with trust boundaries, F3 Access-control model, G1 Deployment diagram, G2 Cloud infrastructure architecture, G3 Network topology and connectivity view, I1 4+1 view model, I2 ArchiMate layered view
+
+</details>
+
+- **Build** : C4 Component diagram (C4 model level 3), E1 Sequence diagram, G4 CI/CD and deployment pipeline
+<details><summary>Also useful</summary>
+
+C3 Container diagram (C4 model level 2), C6 Integration and interface diagram, C8 Layered architecture diagram, D1 Entity-relationship diagram, E2 Activity diagram or flowchart, E3 State machine diagram, F1 Authentication and authorization flow, F3 Access-control model
+
+</details>
+
+- **Release and operate** : G1 Deployment diagram, G4 CI/CD and deployment pipeline, H2 Observability view
+<details><summary>Also useful</summary>
+
+A9 Lean value-stream map (VSM), D3 Data lineage and ownership map, E4 Swimlane or cross-functional flowchart, G2 Cloud infrastructure architecture, G3 Network topology and connectivity view, H1 RACI matrix
+
+</details>
+
 
 ## 5. Ambiguous names people use
 
 These names do not identify one type. Ask which is meant, or pick one and say so.
 
-- *system architecture diagram* → C3, A7, G1. Usually the container view (C3); for leaders the conceptual overview (A7); sometimes the deployment view (G1). Ask which.
-- *technical architecture diagram* → C3, G1, G2. Containers with technology labels (C3), or the infrastructure views (G1, G2).
-- *application architecture diagram* → C1, C3. Portfolio of many applications (C1) or the inside of one application (C3).
-- *business architecture diagram* → A1, A2, A5. A family, not one diagram: capabilities (A1), value streams (A2), processes (A5).
-- *context diagram* → C2, A3, B4. Software system and its neighbours (C2); business exchanges (A3); in/out of scope (B4).
-- *flowchart* → E2, A5, E4. Logic of one procedure (E2); business process with BPMN semantics (A5); hand-offs between roles or systems (E4).
-- *swimlane diagram* → E4, A5. Lightweight hand-offs (E4) or BPMN pools and lanes with message flows (A5).
-- *physical architecture diagram* → G1, G3. Software placed on infrastructure (G1) or the network (G3). State which.
-- *module diagram* → C4, C5, C8. Components inside one container (C4), technology-neutral responsibilities (C5) or code layers (C8).
-- *functional architecture diagram* → C5, B3. Logical responsibilities (C5); a function tree in the systems-engineering sense (B3).
-- *value stream map* → A2, A9. Business-architecture value stream without times (A2) or Lean value-stream map with process and lead times (A9).
-- *reference architecture* → G2, A7, C3. A reuse status (reference, proposed, implemented, observed), not a diagram type. Pick the view, then state the status.
-- *interaction diagram* → E1. In UML the family name for sequence, communication, timing and interaction-overview diagrams; the sequence diagram is the usual pick.
-- *layered diagram* → C8, A7, I2. Code layers with a dependency rule (C8), conceptual bands (A7) or ArchiMate business/application/technology layers (I2).
-- *data map* → D3, D2. Where data comes from and who owns it (D3), or how it moves between processes (D2).
+- *system architecture diagram* → C2 System context diagram (C4 model level 1), C3 Container diagram (C4 model level 2), A7 Conceptual architecture (solution overview), G1 Deployment diagram. Start with C2 for the system and its neighbours, then C3 for running parts. A7 is a conceptual solution overview; G1 shows deployment.
+- *technical architecture diagram* → C3 Container diagram (C4 model level 2), G1 Deployment diagram, G2 Cloud infrastructure architecture. Containers with technology labels (C3), or the infrastructure views (G1, G2).
+- *application architecture diagram* → C1 Application landscape, C3 Container diagram (C4 model level 2). Portfolio of many applications (C1) or the running applications and data stores of one system (C3). Inside one running application is C4, not C3.
+- *business architecture diagram* → A1 Business capability map, A2 Value stream (business architecture), A5 Business process diagram (BPMN). A family, not one diagram: capabilities (A1), value streams (A2), processes (A5).
+- *context diagram* → C2 System context diagram (C4 model level 1), A3 Business context diagram, B4 Scope diagram. Software system and its neighbours (C2); business exchanges (A3); in/out of scope (B4).
+- *flowchart* → E2 Activity diagram or flowchart, A5 Business process diagram (BPMN), E4 Swimlane or cross-functional flowchart. Logic of one procedure (E2); business process with BPMN semantics (A5); hand-offs between roles or systems (E4).
+- *swimlane diagram* → E4 Swimlane or cross-functional flowchart, A5 Business process diagram (BPMN). Lightweight hand-offs (E4) or BPMN pools and lanes with message flows (A5).
+- *physical architecture diagram* → G1 Deployment diagram, G3 Network topology and connectivity view. Software placed on infrastructure (G1) or the network (G3). State which.
+- *module diagram* → C4 Component diagram (C4 model level 3), C5 Logical architecture diagram, C8 Layered architecture diagram. Components inside one container (C4), technology-neutral responsibilities (C5) or code layers (C8).
+- *functional architecture diagram* → C5 Logical architecture diagram, B3 Feature tree (functional decomposition). Logical responsibilities (C5); a function tree in the systems-engineering sense (B3).
+- *value stream map* → A2 Value stream (business architecture), A9 Lean value-stream map (VSM). Business-architecture value stream without times (A2) or Lean value-stream map with process and lead times (A9).
+- *reference architecture* → G2 Cloud infrastructure architecture, A7 Conceptual architecture (solution overview), C3 Container diagram (C4 model level 2). A reuse status (reference, proposed, implemented, observed), not a diagram type. Pick the view, then state the status.
+- *interaction diagram* → E1 Sequence diagram. In UML the family name for sequence, communication, timing and interaction-overview diagrams; the sequence diagram is the usual pick.
+- *layered diagram* → C8 Layered architecture diagram, A7 Conceptual architecture (solution overview), I2 ArchiMate layered view. Code layers with a dependency rule (C8), conceptual bands (A7) or ArchiMate business/application/technology layers (I2).
+- *data map* → D3 Data lineage and ownership map, D2 Data flow diagram (DFD). Where data comes from and who owns it (D3), or how it moves between processes (D2).
+- *big picture / architecture overview / system overview* → C2 System context diagram (C4 model level 1), C1 Application landscape, A7 Conceptual architecture (solution overview). Start with C2 for one system, C1 for many applications, or A7 for a business-level solution overview.
+- *database diagram / schema* → D1 Entity-relationship diagram. Choose the conceptual, logical or physical level before adding fields and keys.
+- *AWS / Azure / GCP architecture diagram* → G2 Cloud infrastructure architecture. Cloud service composition; use G1 when software placement is the real question.
+- *Kubernetes diagram* → G1 Deployment diagram. Start with workload placement; add G3 only when routing and network isolation matter.
+- *microservices diagram* → C3 Container diagram (C4 model level 2). Use C3 for running services and stores; E1 for one cross-service interaction.
+- *workflow / user flow* → E2 Activity diagram or flowchart, E4 Swimlane or cross-functional flowchart, A5 Business process diagram (BPMN), A6 Customer or user journey map. Ask whether this means logic, hand-offs, a formal business process, or the user's experience.
+- *infrastructure diagram* → G1 Deployment diagram, G2 Cloud infrastructure architecture, G3 Network topology and connectivity view. Choose placement, cloud service composition or connectivity; they answer different questions.
+- *tech stack diagram* → C3 Container diagram (C4 model level 2), G2 Cloud infrastructure architecture. Tie technologies to runnable responsibilities or cloud services, rather than drawing a logo list.
 
 ## 6. Catalogue and aliases
 

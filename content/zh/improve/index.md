@@ -2,7 +2,7 @@
 title: 改进 skill
 translationOf: en/improve/index.md
 sourceRev: 8ea75e8
-reviewed: false
+reviewed: true
 ---
 # 改进 skill
 
@@ -13,8 +13,20 @@ reviewed: false
 1. 描述误解或缺陷，以及目标读者。
 2. 提供一个新的通用示例，或一个采用宽松许可的公开来源。
 3. 修改最小范围的相关参考、模板或检查。
-4. 运行检查；如有影响，在两种语言下查看生成的图像。
+4. 运行 make check；如有影响，在两种语言下查看生成的图像。
 5. 记录改进了什么、还有哪些不确定。
+
+## 具体检查与错误指南报告
+
+激活开发环境后，make check 会运行测试、生成器、翻译检查、私有内容检查、打包验证和站点构建。可单独运行：
+
+    python -m pytest -q
+    python tools/build_selection.py --check
+    python tools/i18n_check.py
+    python tools/lint_private.py --strict --history
+    npm run check
+
+不要为发布而关闭失败的检查。报告错误或歧义时，请提供类型代码、读者与问题、冲突原文、主要来源链接及最小修正建议。使用通用复现，通过仓库问题追踪器或维护者提交；不要附加私人架构图。
 
 ## 内容单一来源
 

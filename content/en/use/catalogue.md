@@ -14,4 +14,4 @@ Start with the question your reader needs answered. These families organize the 
 
 ## About availability
 
-“Coming soon” means the catalogue entry exists but its reference page is not yet integrated. Available pages may still have clearly marked sample illustrations in preparation. Neither status claims a tested renderer or a completed release evaluation.
+“Coming soon” means the catalogue entry exists but its reference page is not yet integrated. Available pages may still have clearly marked sample illustrations in preparation. Neither availability status substitutes for visual review or a completed release evaluation.
