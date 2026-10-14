@@ -1,7 +1,7 @@
 ---
 title: 用日常语言理解架构术语
 translationOf: en/use/glossary.md
-sourceRev: 08a6a35
+sourceRev: bca58c9299c22a5a05f98bf81e38393e6e1d1713
 reviewed: true
 ---
 # 用日常语言理解架构术语

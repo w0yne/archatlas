@@ -1,7 +1,7 @@
 ---
 title: 评估改动
 translationOf: en/improve/evals.md
-sourceRev: 8ea75e8
+sourceRev: bca58c9299c22a5a05f98bf81e38393e6e1d1713
 reviewed: true
 ---
 # 评估改动

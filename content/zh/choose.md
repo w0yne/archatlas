@@ -2,7 +2,7 @@
 title: 如何选择架构图
 description: 按读者和图要回答的问题，选出合适的架构图类型。
 translationOf: en/choose.md
-sourceRev: 03871cd
+sourceRev: bca58c9299c22a5a05f98bf81e38393e6e1d1713
 reviewed: true
 ---
 

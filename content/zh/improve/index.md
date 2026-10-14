@@ -1,7 +1,7 @@
 ---
 title: 改进 skill
 translationOf: en/improve/index.md
-sourceRev: 8ea75e8
+sourceRev: bca58c9299c22a5a05f98bf81e38393e6e1d1713
 reviewed: true
 ---
 # 改进 skill

@@ -1,7 +1,7 @@
 ---
 title: 命令、格式与限制
 translationOf: en/use/formats.md
-sourceRev: 08a6a35
+sourceRev: bca58c9299c22a5a05f98bf81e38393e6e1d1713
 reviewed: true
 ---
 # 命令、格式与限制
