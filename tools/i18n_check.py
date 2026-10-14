@@ -52,7 +52,7 @@ def git(*args: str) -> str | None:
 def glossary_block(g: dict) -> str:
     rows = ["| English | 中文 | 说明 |", "|---|---|---|"]
     for t in sorted(g["terms"], key=lambda t: t["en"].lower()):
-        note = t.get("note", "")
+        note = t.get("note_zh") or t.get("note", "")
         if t.get("avoid"):
             note = (note + "；" if note else "") + "不用：" + "、".join(t["avoid"])
         rows.append("| " + " | ".join(c.replace("|", "\\|") for c in (t["en"], t["zh"], note)) + " |")
