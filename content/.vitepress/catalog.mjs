@@ -17,7 +17,8 @@ export function normalizeCatalog(raw) {
 export function loadCatalog(contentRoot) {
   const actual = join(contentRoot, 'data/types.yaml');
   const fixture = !existsSync(actual);
-  const types = normalizeCatalog(parse(readFileSync(fixture ? join(contentRoot, '.vitepress/fixtures/types.yaml') : actual, 'utf8')));
+  const data = parse(readFileSync(fixture ? join(contentRoot, '.vitepress/fixtures/types.yaml') : actual, 'utf8'));
+  const types = normalizeCatalog(data);
   const pages = { en: new Map(), zh: new Map() };
   for (const lang of ['en', 'zh']) {
     const dir = join(contentRoot, lang, 'types');
@@ -31,7 +32,7 @@ export function loadCatalog(contentRoot) {
       pages[lang].set(code, lang + '/types/' + file);
     }
   }
-  return { fixture, types: types.map(type => ({ ...type,
+  return { fixture, families: data.families || {}, facets: data.facets || {}, types: types.map(type => ({ ...type,
     available: { en: pages.en.has(type.code), zh: pages.zh.has(type.code) },
     source: { en: pages.en.get(type.code), zh: pages.zh.get(type.code) }
   })) };
@@ -49,5 +50,5 @@ export function typeSidebar(catalog, lang) {
     if (!groups.has(type.family)) groups.set(type.family, []);
     groups.get(type.family).push({ text: type.code + ' · ' + type.names[lang], link: (lang === 'zh' ? '/zh' : '') + '/types/' + type.path });
   }
-  return [...groups].map(([family, items]) => ({ text: family, collapsed: false, items }));
+  return [...groups].map(([family, items]) => ({ text: family + (catalog.families?.[family]?.[lang] ? ' · ' + catalog.families[family][lang] : ''), collapsed: true, items }));
 }

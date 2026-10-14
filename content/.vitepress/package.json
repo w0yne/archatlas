@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "vitepress dev ..",
-    "build": "vitepress build ..",
+    "build": "vitepress build .. && node check-built.mjs",
     "preview": "vitepress preview ..",
     "preview:static": "node static-preview.mjs",
     "check": "node --test tests/*.test.mjs && node check-content.mjs"
