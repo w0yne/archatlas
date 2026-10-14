@@ -1,7 +1,7 @@
 # Conceptual Architecture / Solution Overview (概念架构图 / 方案概览图)
 <!-- Generated from content/en/types/A7-conceptual-architecture.md by tools/build_skill_refs.py. Do not edit. -->
 > What big parts make up this solution, what does each part do for the business, and how do they depend on each other and on the outside world?
-Scope: One solution opened one level below its context: 5–9 technology-neutral building blocks inside an explicit boundary, with users, channels and external systems at the edge. Neighbours: C1, C2, C3, C5, A1, A8.
+Scope: One solution opened one level below its context: 5–9 technology-neutral building blocks inside an explicit boundary, with users, channels and external systems at the edge. Neighbours: A1, A8, C1, C2, C3, C5, I2.
 
 ## Meaning
 A conceptual architecture answers "what big parts make up this solution, what does each do, and how do they depend on each other?" In ISO/IEC/IEEE 42010 terms it is an overview viewpoint whose concerns are scope, major building blocks and the solution approach. TOGAF defines it as the **Solution Concept diagram**, a Phase A artifact: "a high-level orientation of the solution", explicitly a "pencil sketch", used "to quickly on-board and align stakeholders". The C4 model has no conceptual level; an A7 sits between the System Context (C2) and Container (C3) views. It leaves out products, versions, protocols and deployment, feature lists (A1), process steps (A5, E4) and the path from as-is to to-be (A8).
@@ -11,13 +11,14 @@ A conceptual architecture answers "what big parts make up this solution, what do
 ## When to use and how to choose
 - **Audience:** executives, sponsors, steering and review boards, customer stakeholders, new joiners; architects use it as the cover page of an architecture pack.
 - **Scenarios:** a vision workshop that aligns sponsors on what is being built (an online shop replatforming); a proposal "solution on a page"; the opening slide of an architecture review; onboarding; a reference picture for a recurring solution pattern.
-- **When not to use:** engineers need interfaces, deployment or sequencing (C3, C5, G1, E1); the real question is scope only (C2) or the whole estate (C1); the story is a migration (A8); the content is a feature inventory (A1).
+- **When not to use:** engineers need interfaces, deployment or sequencing (C3, C5, G1, E1); the real question is scope only (C2) or the whole estate (C1); the story is a migration (A8); the content is a list of business abilities (A1) or of product features (B3).
 - **vs neighbours:**
   - Choose **C2 system context** when the audience only needs scope; A7 opens that black box one level.
   - Choose **C1 application landscape** for many systems across the enterprise; A7 is one solution.
   - Choose **A1 capability map** for what the business must be able to do; A7 shows which parts deliver it.
   - Choose **A8 target and roadmap** when the story is change over time; reuse this A7 as the target picture.
   - Choose **C3 / C5** as soon as readers ask which service calls which API.
+  - Choose **I2** when business, application and technology elements and their formal ArchiMate relationships must appear in one view.
 
 ## Notation and elements
 - **Required:** a title with scope and state; an explicit solution boundary; 5–9 building blocks named as nouns in business language (a working heuristic, not a standard); users / channels at the edge; external systems as single boxes; main dependency arrows; a **key / legend** for every colour, shape, border and line style.
@@ -40,7 +41,7 @@ A conceptual architecture answers "what big parts make up this solution, what do
 ### Anti-patterns
 
 1. "Marketecture": logos only, boxes without lines, unlabelled arrows, ambiguous levels of abstraction.
-2. A feature list drawn as boxes; that is a capability map. An architecture view shows parts; features become tags at most.
+2. A feature list drawn as boxes. Business abilities belong in a capability map (A1) and product features in a feature tree (B3); an architecture view shows parts, and features become tags at most.
 3. Mixed abstraction among siblings, e.g. a container, an actor and a process step in one row.
 4. Sentences or bullet lists inside boxes, and icons that decorate rather than mean something.
 5. A non-focus subsystem drawn in full, or working notes ("TBD", "pending") on the figure instead of a legend category such as "planned".

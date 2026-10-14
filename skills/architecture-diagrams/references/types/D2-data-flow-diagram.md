@@ -19,6 +19,7 @@ Scope: One system, one level per diagram: a context diagram, or one decompositio
   - **D3 Lineage** for concrete datasets across jobs and runs; a DFD is a design-time model.
   - **F2 Threat Model** for the security workflow; it uses this dialect plus threat annotations.
   - **E2 Activity Flowchart** for control flow; a DFD arrow is data, never "then".
+  - Choose **D1 Entity-relationship diagram** when the question is which business objects exist and how they relate, not how data moves.
 
 ## Notation and elements
 - **Convention, not standard:** choose one symbol set and keep it. Yourdon/DeMarco: circle = process, two parallel lines = store, rectangle = external entity. Gane & Sarson: rounded rectangle with id = process, open-ended rectangle with id (D1) = store, square = external entity.

@@ -3,20 +3,18 @@ code: F3
 slug: access-control-model
 family: F
 names:
-  en: Access-Control Model
+  en: Access-control model
   zh: 访问控制模型
   aliases:
-    en: [authorization model, permission model, role-permission matrix, RBAC model, ABAC policy model, relationship-based authorization graph]
-    zh: [授权模型, 权限模型, 角色权限矩阵, 基于属性的授权模型, 基于关系的授权模型]
-question: "Under what rules can a subject perform an action on a resource, in a given scope or context?"
-audiences: [business owners, security and governance staff, application developers, administrators]
-level: logical
-phases: [design, review]
-scope: "One application or domain: its resource classes, a small set of actions, and one chosen model kind (RBAC, ABAC or ReBAC, possibly combined)"
-formal:
-  kind: standard
-  ref: "RBAC: ANSI/INCITS 359-2004 and its 2012 revision (NIST history). ABAC: NIST SP 800-162. Policy language and architecture: OASIS XACML 3.0. ReBAC has influential models (Zanzibar, OpenFGA) but no single graphical standard"
-neighbours: [F1, F2, D1, H1, C5]
+    en: [authorization model, permission model, RBAC model, role-permission matrix, ABAC policy model, ReBAC graph, relationship-based authorization graph]
+    zh: [权限模型, 授权模型, 角色权限矩阵, 基于属性的授权模型, 基于关系的授权模型]
+question: Under what rules can a subject perform an action on a resource, in a given scope or context?
+audiences: [architects, developers, security]
+levels: [logical]
+phases: [design, build]
+scope: 'One application or domain: its resource classes, a small set of actions, and one chosen model kind (RBAC, ABAC or ReBAC, possibly combined)'
+formal: {kind: convention, ref: 'RBAC: ANSI/INCITS 359-2004 and its 2012 revision (NIST history). ABAC: NIST SP 800-162. Policy language and architecture: OASIS XACML 3.0. ReBAC has influential models (Zanzibar, OpenFGA) but no single graphical standard'}
+neighbours: [D1, F1, F2, H1]
 status: draft
 ---
 
@@ -63,7 +61,7 @@ status: draft
   5. Comparing a proposed role model with what is enforced today.
 - **When not to use:** a role matrix alone, when relationships, time or resource attributes materially decide access. Do not introduce an authorisation engine just because its documentation has good examples.
 - **vs neighbours:**
-  - Choose **F1 Authentication Flow** for where identity is verified and decisions are enforced.
+  - Choose **F1 Authentication and authorization flow** for where identity is verified and decisions are enforced.
   - Choose **F2 Threat-Model DFD** for what can go wrong.
   - Choose **D1 Entity-Relationship** for actual persistence relationships, not permission relations.
   - Choose **H1 RACI Matrix** for project responsibility, not application permissions.

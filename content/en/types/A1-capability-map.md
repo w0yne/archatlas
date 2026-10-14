@@ -3,20 +3,18 @@ code: A1
 slug: capability-map
 family: A
 names:
-  en: Business Capability Map
+  en: Business capability map
   zh: 业务能力图
   aliases:
-    en: [capability map, business capability model, capability heat map, capability landscape]
-    zh: [能力地图, 业务能力模型, 能力热力图]
-question: "What must the business be able to do, independent of who does it, how, or with which system, and which of those abilities are strong, weak, missing or strategic?"
-audiences: [executives, business sponsors, strategy and portfolio leads, enterprise architects, business architects]
-level: strategy
-phases: [discovery, planning, review]
-scope: "One enterprise or business unit, 2–3 capability levels on one page, optionally with one assessment overlay"
-formal:
-  kind: standard
-  ref: "ArchiMate 3.2 Capability element and Capability Map viewpoint; TOGAF Series Guide: Business Capabilities, Version 2 (G211, 2022) and BIZBOK Guide for content rules"
-neighbours: [A2, A5, A3, C1, A7, A8]
+    en: [capability map, capability heat map, capability landscape, business capability model]
+    zh: [能力地图, 能力热力图, 业务能力模型]
+question: What must the business be able to do, independent of who does it, how, or with which system, and which of those abilities are strong, weak, missing or strategic?
+audiences: [leaders, business, architects]
+levels: [strategy]
+phases: [initiate]
+scope: One enterprise or business unit, 2–3 capability levels on one page, optionally with one assessment overlay
+formal: {kind: standard, ref: 'ArchiMate 3.2 Capability element and Capability Map viewpoint; TOGAF Series Guide: Business Capabilities, Version 2 (G211, 2022) and BIZBOK Guide for content rules'}
+neighbours: [A2, A5, A7, A8, C1]
 status: draft
 ---
 
@@ -37,13 +35,13 @@ status: draft
 - **Viewpoint:** ArchiMate *Capability Map viewpoint* (stakeholders: business managers, enterprise and business architects; purpose: designing and deciding; scope: Strategy) [3]. TOGAF places it in Phase B, with use in Phase A for vision and prioritisation, and names the artifacts *Business Capability Map* (diagram) and *Business Capabilities catalog* [1][2][11]. There is no C4 model level for it: the map sits above any system.
 - **Deeper meaning:** the map shows the enterprise "at rest"; value streams and processes show it "in motion" [4][3]. Its value is stability: a capability model is independent of org structure, processes, applications and product portfolio [1], so it can anchor cross-maps to org units, value-stream stages, applications and initiatives. A capability only says that something must exist, not how well; "how well" is added by a heat-map overlay [1].
 - **Leaves out:** sequence and flow, organisation units, roles, systems, technology and the product catalogue. Each of these is a separate view or cross-map [1][4].
-- **Definition used here:** the *model* is the full, defined set of capabilities (commonly 3–6 levels deep [1]); the *map* is its one-page picture (2–3 levels [3]). ArchiMate defines a Capability as "an ability that an active structure element, such as an organization, person, or system, possesses" [3].
+- **Definition used here:** the *model* is the full, defined set of capabilities (commonly 3–6 levels deep [1]); the *map* is its one-page picture (2–3 levels [3]). ArchiMate defines a Capability as "an ability that an active structure element, such as an organisation, person, or system, possesses" [3].
 - **Version note:** this page follows ArchiMate 3.2. ArchiMate 4 (announced April 2026) renames layers to domains; this is not verified against the current spec text.
 
 | Concept | What it says | Naming | Stability |
 |---|---|---|---|
 | Capability | *What* the business can do | Noun or gerund ("Order Management") | Highest |
-| Business function | Behaviour grouped by skills, "closely aligned to an organization" [3] | Noun | Medium |
+| Business function | Behaviour grouped by skills, "closely aligned to an organisation" [3] | Noun | Medium |
 | Business process | *How*: time-ordered steps for a case | Verb-noun ("Handle Return") | Low |
 | Value stream (A2) | *How value accrues* to a stakeholder, in stages | Verb-noun ("Fulfil Customer Order") | High |
 | Organisation unit | *Who* | Department name | Lowest [1] |
@@ -59,7 +57,7 @@ status: draft
   - **A5 BPMN Process** for steps, gateways, hand-offs.
   - **A3 Business Context** for "who"; capability × org is a matrix, not a merged picture.
   - **C1 Application Landscape** when the reader needs systems; the overlay is a derived view.
-  - **A7 Conceptual Architecture** for "what are the parts"; a feature list is a capability map.
+  - **A7 Conceptual Architecture** for "what are the parts"; a list of business abilities is A1, a list of product features is B3.
   - **A8 Roadmap** for when change happens.
 -->
 - **Audience:** executives and sponsors (usually Level 1 only), strategy and portfolio leads, enterprise and business architects (more depth) [1].
@@ -75,7 +73,7 @@ status: draft
   - Choose **A5 BPMN Process** when the question is steps, gateways or hand-offs.
   - Choose **A3 Business Context** (or a stakeholder map) when the question is "who"; capability × org is a matrix, not a merged picture.
   - Choose **C1 Application Landscape** when the reader needs systems; a capability-to-application overlay is a derived view and must be labelled as such.
-  - Choose **A7 Conceptual Architecture** when the question is "what are the parts": an architecture shows components, while a list of features is a capability map.
+  - Choose **A7 Conceptual Architecture** when the question is "what are the parts": an architecture shows components. A list of business abilities is a capability map (A1); a list of product features is a feature tree (B3).
   - Choose **A8 Target Architecture and Roadmap** for when change happens; a current-vs-target maturity heat map feeds it.
 
 ## Notation and elements {#notation}

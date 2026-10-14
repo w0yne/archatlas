@@ -1,7 +1,7 @@
 # Target Architecture & Transition Roadmap (目标架构与演进路线图)
 <!-- Generated from content/en/types/A8-target-roadmap.md by tools/build_skill_refs.py. Do not edit. -->
 > Where are we, where are we going, which stable intermediate states lie between, and which bodies of work move us from one state to the next, in what order and why?
-Scope: One solution or domain from baseline to target over a stated horizon: the states, the work packages between them, their dependencies and the value each state delivers. Neighbours: A7, A1, C1.
+Scope: One solution or domain from baseline to target over a stated horizon: the states, the work packages between them, their dependencies and the value each state delivers. Neighbours: A1, A7, C1.
 
 ## Meaning
 A roadmap answers "where are we, where are we going, what are the stable steps in between, and which work moves us along?" In ISO/IEC/IEEE 42010 terms it is an evolution / migration viewpoint concerned with sequence, dependencies, value and risk per step, and the viability of each interim state. In TOGAF, Phases B–D develop baseline and target architectures and their gap analysis, Phase E consolidates gaps into work packages and identifies **Transition Architectures**, and Phase F finalises the **Architecture Roadmap**. In ArchiMate it is the Migration or Implementation and Migration viewpoint. Each transition state is a decision point: a coherent architecture where stakeholders could stop and still keep the value. It leaves out detailed design, task-level schedules and rationale prose.

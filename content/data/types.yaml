@@ -16,7 +16,8 @@
 #   levels      keys of `facets.levels` (abstraction)
 #   phases      keys of `facets.phases` (lifecycle)
 #   scope       key of `facets.scope`
-#   formal      kind: standard (formal specification) | method (published
+#   formal      kind of the notation the drawing follows: standard (formal
+#               specification) | method (published
 #               method or approach) | convention (no standard; practice only)
 #               basis: one line naming what the drawing follows
 #   standards   [{name, url}] primary references (accessed 2026-10-14 unless
@@ -92,7 +93,7 @@ terms:
   - en: application architecture diagram
     zh: 应用架构图
     types: [C1, C3]
-    note: {en: "Portfolio of many applications (C1) or the inside of one application (C3).", zh: "企业级指多应用全景（C1）；单系统级指容器图（C3）。"}
+    note: {en: "Portfolio of many applications (C1) or the running applications and data stores of one system (C3).", zh: "企业级指多应用全景（C1）；单系统级指容器图（C3）。"}
   - en: business architecture diagram
     zh: 业务架构图
     types: [A1, A2, A5]
@@ -108,7 +109,7 @@ terms:
   - en: swimlane diagram
     zh: 泳道图
     types: [E4, A5]
-    note: {en: "Lightweight hand-offs (E4) or BPMN pools and lanes with message flows (A5).", zh: "轻量交接（E4），或 BPMN 的池 / 道与消息流（A5）。"}
+    note: {en: "Lightweight hand-offs (E4) or BPMN pools and lanes with message flows (A5).", zh: "轻量交接（E4），或 BPMN 的池 / 泳道与消息流（A5）。"}
   - en: physical architecture diagram
     zh: 物理架构图
     types: [G1, G3]
@@ -124,7 +125,7 @@ terms:
   - en: value stream map
     zh: 价值流图
     types: [A2, A9]
-    note: {en: "Business-architecture value stream without times (A2) or Lean value-stream map with process and lead times (A9).", zh: "业务架构价值流，不含时间（A2）；或含处理 / 提前期的精益价值流图（A9）。"}
+    note: {en: "Business-architecture value stream without times (A2) or Lean value-stream map with process and lead times (A9).", zh: "业务架构价值流，不含时间（A2）；或含处理时间与前置时间的精益价值流图（A9）。"}
   - en: reference architecture
     zh: 参考架构
     types: [G2, A7, C3]
@@ -165,7 +166,7 @@ types:
     - {name: "ArchiMate 3.2 Specification, Example Viewpoints (Capability Map)", url: "https://pubs.opengroup.org/architecture/archimate3-doc/ch-Example-Viewpoints.html"}
     - {name: "TOGAF Series Guide: Business Capabilities, Version 2 (G211)", url: "https://publications.opengroup.org/g211"}
   variants: [capability map, capability heat map (one assessment lens per map)]
-  neighbours: [A2, C1, A7, A8]
+  neighbours: [A2, A5, A7, A8, C1]
   research: done
   status: draft
   changes:
@@ -177,8 +178,8 @@ types:
   family: A
   names: {en: Value stream (business architecture), zh: 价值流（业务架构）}
   aliases:
-    en: [value stream diagram, value stream stages, value stream capability cross-map]
-    zh: [价值流阶段图, 价值流能力映射]
+    en: [value stream diagram, value stream stages, value stream capability cross-map, value stream, value stream map (TOGAF artifact), value stream / capability cross-map]
+    zh: [价值流阶段图, 价值流能力映射, 价值流, 价值流阶段, 价值流—能力映射]
   question:
     en: Which stages does a stakeholder pass through, from trigger to delivered value, and which capabilities enable each stage?
     zh: 从触发到交付价值，干系人经过哪些价值阶段？每个阶段由哪些能力支撑？
@@ -191,7 +192,7 @@ types:
   standards:
     - {name: "TOGAF Series Guide: Value Streams (G178)", url: "https://publications.opengroup.org/g178"}
     - {name: "ArchiMate 3.2 Specification", url: "https://pubs.opengroup.org/architecture/archimate3-doc/"}
-  neighbours: [A9, A1, A5, A6]
+  neighbours: [A1, A5, A6, A9]
   research: done
   status: draft
   changes:
@@ -203,8 +204,8 @@ types:
   family: A
   names: {en: Business context diagram, zh: 业务上下文图}
   aliases:
-    en: [business context, business environment diagram]
-    zh: [业务背景图, 业务环境图]
+    en: [business context, business environment diagram, business context (arc42 §3.1)]
+    zh: [业务背景图, 业务环境图, 范围图（业务视角）]
   question:
     en: Which outside parties does the business or initiative deal with, and what do they exchange (goods, money, information, obligations)?
     zh: 业务或项目与哪些外部方打交道？彼此交换什么（货物、资金、信息、义务）？
@@ -217,7 +218,7 @@ types:
   standards:
     - {name: "arc42, section 3: Context and Scope", url: "https://docs.arc42.org/section-3/"}
     - {name: "C4 model: System Context diagram (software counterpart)", url: "https://c4model.com/diagrams/system-context"}
-  neighbours: [C2, B4, H3]
+  neighbours: [B4, C2, H3]
   research: done
   status: draft
   changes:
@@ -229,8 +230,8 @@ types:
   family: A
   names: {en: "Business scenario matrix (role × activity)", zh: 业务场景矩阵（角色 × 活动）}
   aliases:
-    en: [scenario coverage matrix, role-activity matrix, business scenario map]
-    zh: [业务场景地图, 场景覆盖矩阵]
+    en: [scenario coverage matrix, role-activity matrix, business scenario map, role–activity scope matrix, actor–goal matrix]
+    zh: [业务场景地图, 场景覆盖矩阵, 业务场景清单, 角色-场景矩阵]
   question:
     en: Which roles take part in which business activities, and in which release is each scenario supported?
     zh: 哪些角色参与哪些业务活动？每个场景在哪个版本支持？
@@ -243,7 +244,7 @@ types:
   standards:
     - {name: "TOGAF Business Scenarios (a different technique; named to avoid confusion)", url: "https://pubs.opengroup.org/togaf-standard/business-architecture/business-scenarios.html"}
     - {name: "Agile Alliance glossary: story mapping (column backbone)", url: "https://agilealliance.org/glossary/story-mapping/"}
-  neighbours: [B1, B2, A6, H1]
+  neighbours: [A6, B1, B2, H1]
   research: done
   status: draft
   changes:
@@ -255,14 +256,14 @@ types:
   family: A
   names: {en: Business process diagram (BPMN), zh: 业务流程图（BPMN）}
   aliases:
-    en: [BPMN diagram, BPMN collaboration diagram, BPMN process diagram, process map]
-    zh: [BPMN 流程图, 业务流程建模图, BPMN 协作图]
+    en: [BPMN diagram, BPMN collaboration diagram, BPMN process diagram, process map, swimlane process diagram, process flow diagram]
+    zh: [BPMN 流程图, 业务流程建模图, BPMN 协作图, 业务流程图, 协作图]
   question:
     en: How does a business case run from start to end, who does each step, where does it branch, and what passes between participants?
     zh: 一件业务如何从开始走到结束？每一步谁做、在哪分支、参与方之间传递什么？
   asks: [scope, behaviour]
   audiences: [business, product, developers]
-  levels: [concept]
+  levels: [concept, logical]
   phases: [requirements, design]
   scope: system
   formal: {kind: standard, basis: "OMG BPMN 2.0.2 (2014); ISO/IEC 19510:2013 equals BPMN 2.0.1 with the same notation"}
@@ -270,7 +271,7 @@ types:
     - {name: "OMG BPMN 2.0.2", url: "https://www.omg.org/spec/BPMN/2.0.2/"}
     - {name: "ISO/IEC 19510:2013", url: "https://www.iso.org/standard/62652.html"}
   variants: [process diagram, collaboration diagram (pools + message flows)]
-  neighbours: [E4, E2, A2, E1]
+  neighbours: [A1, A2, A6, A9, E1, E2, E3, E4]
   research: done
   status: draft
   changes:
@@ -282,7 +283,7 @@ types:
   family: A
   names: {en: Customer or user journey map, zh: 用户旅程图}
   aliases:
-    en: [customer journey map, user journey map, UX journey map]
+    en: [customer journey map, user journey map, UX journey map, CJM, journey map]
     zh: [客户旅程图, 顾客旅程地图, 体验旅程图]
   question:
     en: For one persona in one scenario, which stages do they go through, what do they do, think and feel, and where are the opportunities?
@@ -296,7 +297,7 @@ types:
   standards:
     - {name: "NN/g: Journey Mapping 101", url: "https://www.nngroup.com/articles/journey-mapping-101/"}
     - {name: "Shostack, Designing Services That Deliver (service blueprint, neighbour)", url: "https://hbr.org/1984/01/designing-services-that-deliver"}
-  neighbours: [B2, A4, A2]
+  neighbours: [A2, A4, A5, B2, E4]
   research: done
   status: draft
   changes:
@@ -307,8 +308,8 @@ types:
   family: A
   names: {en: Conceptual architecture (solution overview), zh: 概念架构图（方案概览）}
   aliases:
-    en: [solution overview, solution concept diagram, high-level architecture, architecture on a page, block diagram]
-    zh: [方案概览图, 方案总览, 高层架构图, 一页纸架构, 方案构想图]
+    en: [solution overview, solution concept diagram, high-level architecture, architecture on a page, block diagram, functional diagram]
+    zh: [方案概览图, 方案总览, 高层架构图, 一页纸架构, 方案构想图, 概念架构图]
   question:
     en: Which major blocks make up the solution and what is each one for, in terms the business understands?
     zh: 方案由哪些大块组成？每一块在业务上起什么作用？
@@ -321,7 +322,7 @@ types:
   standards:
     - {name: "TOGAF Standard, Architecture Content (solution concept diagram)", url: "https://pubs.opengroup.org/togaf-standard/architecture-content/chap03.html"}
     - {name: "C4 model: notation (title, legend, consistent shapes)", url: "https://c4model.com/diagrams/notation"}
-  neighbours: [C2, C3, C1, A8]
+  neighbours: [A1, A8, C1, C2, C3, C5, I2]
   research: done
   status: draft
   changes:
@@ -332,8 +333,8 @@ types:
   family: A
   names: {en: Target architecture and transition roadmap, zh: 目标架构与演进路线图}
   aliases:
-    en: [architecture roadmap, transition architecture, migration roadmap, as-is to-be roadmap, plateau diagram]
-    zh: [演进路线图, 架构路线图, 迁移路线图, 过渡架构]
+    en: [architecture roadmap, transition architecture, migration roadmap, as-is to-be roadmap, plateau diagram, baseline / target / transition architecture, as-is / to-be roadmap, migration view, capability roadmap]
+    zh: [演进路线图, 架构路线图, 迁移路线图, 过渡架构, 现状 / 目标 / 过渡架构, 迁移视图, 平台期图, 能力路线图, 稳定态图]
   question:
     en: What does it look like today, where is it going, which coherent transition states lead there, and what value does each state deliver?
     zh: 现状是什么、目标是什么、经过哪些可独立交付价值的过渡态、每一步交付什么？
@@ -346,7 +347,7 @@ types:
   standards:
     - {name: "TOGAF Standard, ADM techniques", url: "https://pubs.opengroup.org/togaf-standard/adm-techniques/chap03.html"}
     - {name: "ArchiMate 3.2 Specification", url: "https://pubs.opengroup.org/architecture/archimate3-doc/"}
-  neighbours: [A7, A1, C1]
+  neighbours: [A1, A7, C1]
   research: done
   status: draft
   changes:
@@ -357,8 +358,8 @@ types:
   family: A
   names: {en: Lean value-stream map (VSM), zh: 精益价值流图（VSM）}
   aliases:
-    en: [VSM, material and information flow diagram, lean value stream mapping]
-    zh: [精益价值流映射, 物料与信息流图]
+    en: [VSM, material and information flow diagram, lean value stream mapping, current-state map, future-state map]
+    zh: [精益价值流映射, 物料与信息流图, 价值流程图, 精益价值流程图, 现状图, 未来状态图]
   question:
     en: How do material and information flow through a delivery process, and where is time spent waiting rather than working?
     zh: 物料与信息如何在交付过程中流动？时间花在处理上还是等待上？
@@ -370,7 +371,7 @@ types:
   formal: {kind: method, basis: "Lean value-stream mapping (Rother and Shook, Learning to See; Lean Enterprise Institute)"}
   standards:
     - {name: "Lean Enterprise Institute: value-stream mapping", url: "https://www.lean.org/lexicon-terms/value-stream-mapping/"}
-  neighbours: [A2, A5, G4]
+  neighbours: [A2, A5, E4, G4]
   research: done
   status: draft
   split_from: A2
@@ -383,8 +384,8 @@ types:
   family: B
   names: {en: Use case diagram, zh: 用例图}
   aliases:
-    en: [UML use case diagram]
-    zh: [UML 用例图]
+    en: [UML use case diagram, actor–use-case diagram]
+    zh: [UML 用例图, 参与者—用例图]
   question:
     en: Which user goals does the system support, and for which actors?
     zh: 系统支持哪些用户目标（用例）？分别给哪些参与者？
@@ -408,7 +409,7 @@ types:
   names: {en: User story map, zh: 用户故事地图}
   aliases:
     en: [story map, story mapping]
-    zh: [故事地图]
+    zh: [故事地图, 用户故事映射]
   question:
     en: What does the user do end to end, what is the smallest useful first release, and how are later releases sliced?
     zh: 用户端到端要做哪些事？最小可用的第一个版本是什么？后续如何切片交付？
@@ -421,7 +422,7 @@ types:
   standards:
     - {name: "Jeff Patton: user story mapping", url: "https://jpattonassociates.com/user-story-mapping/"}
     - {name: "Agile Alliance glossary: story mapping", url: "https://agilealliance.org/glossary/story-mapping/"}
-  neighbours: [A4, A6, B3]
+  neighbours: [A4, A6, B1, B3]
   research: pending
   status: draft
 
@@ -431,7 +432,7 @@ types:
   names: {en: Feature tree (functional decomposition), zh: 功能树（功能分解）}
   aliases:
     en: [functional decomposition, requirements breakdown structure, feature breakdown]
-    zh: [需求树, 功能分解图, 需求分解结构, 特性树]
+    zh: [需求树, 功能分解图, 需求分解结构, 特性树, 功能特性树]
   question:
     en: Which functions does the product contain, down to which estimable level, and with which priority?
     zh: 产品包含哪些功能？拆到可估算的哪一层？优先级如何？
@@ -443,7 +444,7 @@ types:
   formal: {kind: convention, basis: "No graphical standard; priorities often use MoSCoW (DSDM)"}
   standards:
     - {name: "DSDM Project Framework: MoSCoW prioritisation", url: "https://www.agilebusiness.org/dsdm-project-framework/moscow-prioritisation.html"}
-  neighbours: [B2, B1, C5]
+  neighbours: [B2, C5]
   research: pending
   status: draft
 
@@ -452,8 +453,8 @@ types:
   family: B
   names: {en: Scope diagram, zh: 范围图}
   aliases:
-    en: [scope and context diagram, in-scope out-of-scope diagram]
-    zh: [范围上下文图, 范围边界图]
+    en: [scope and context diagram, in-scope out-of-scope diagram, scope boundary map]
+    zh: [范围上下文图, 范围边界图, 范围内外图]
   question:
     en: What is in and out of scope for this phase, and which outside parties does it touch?
     zh: 这一期做什么、不做什么？与哪些外部方对接？
@@ -465,7 +466,7 @@ types:
   formal: {kind: convention, basis: "Context diagram with explicit in/out-of-scope regions (variant of C2 / DFD level 0)"}
   standards:
     - {name: "arc42, section 3: Context and Scope", url: "https://docs.arc42.org/section-3/"}
-  neighbours: [C2, A3, B1]
+  neighbours: [A3, B1, C2]
   research: pending
   status: draft
   changes:
@@ -477,8 +478,8 @@ types:
   family: C
   names: {en: Application landscape, zh: 应用全景图}
   aliases:
-    en: [application portfolio view, application communication diagram, system landscape diagram, IT landscape]
-    zh: [应用地图, 系统全景图, 应用组合图]
+    en: [application portfolio view, application communication diagram, system landscape diagram, IT landscape, Application Architecture (portfolio sense), Application Landscape Map, Application Cooperation View, System Landscape Diagram (C4 model), Cluster Map]
+    zh: [应用地图, 系统全景图, 应用组合图, 应用协作视图, IT 蓝图]
   question:
     en: Which applications exist in the estate, who owns them, what state are they in, and how do they depend on each other?
     zh: 企业或产品线有哪些应用？各归谁、处于什么状态、如何互相依赖？
@@ -492,7 +493,7 @@ types:
     - {name: "C4 model: System Landscape diagram", url: "https://c4model.com/diagrams/system-landscape"}
     - {name: "ArchiMate 3.2 Specification, Example Viewpoints", url: "https://pubs.opengroup.org/architecture/archimate3-doc/ch-Example-Viewpoints.html"}
   variants: [layered or grouped landscape, application communication map, capability × application matrix]
-  neighbours: [C2, C6, A1, A7]
+  neighbours: [A1, A7, A8, C2, C3, C5, C6, I2]
   research: done
   status: draft
   changes:
@@ -504,8 +505,8 @@ types:
   family: C
   names: {en: System context diagram (C4 model level 1), zh: 系统上下文图（C4 模型第 1 层）}
   aliases:
-    en: [system context diagram, system environment diagram, level 0 DFD, context-level DFD]
-    zh: [系统上下文图, 系统环境图, 0 层数据流图]
+    en: [system context diagram, system environment diagram, context-level DFD, C4 model Level 1, DFD Level 0, Structured-analysis Context Diagram]
+    zh: [系统上下文图, 系统环境图, 0 层数据流图, C4 模型第 1 层, 业务上下文, 顶层数据流图（0 层）]
   question:
     en: What is the software system, who uses it, and which other systems does it depend on?
     zh: 我们的软件系统是什么？谁在用？依赖哪些外部系统？
@@ -518,7 +519,7 @@ types:
   standards:
     - {name: "C4 model: System Context diagram", url: "https://c4model.com/diagrams/system-context"}
     - {name: "arc42, section 3: Context and Scope", url: "https://docs.arc42.org/section-3/"}
-  neighbours: [C3, B4, A3, C1]
+  neighbours: [A3, A7, B4, C1, C3, C6, D2]
   research: done
   status: draft
   changes:
@@ -529,8 +530,8 @@ types:
   family: C
   names: {en: Container diagram (C4 model level 2), zh: 容器图（C4 模型第 2 层）}
   aliases:
-    en: [container view, high-level technical architecture diagram, runtime building-block view]
-    zh: [容器视图, C4 第二层, 运行单元图]
+    en: [container view, high-level technical architecture diagram, runtime building-block view, C4 model Level 2, High-level System Diagram, Building Block View Level 1 (arc42), High-level Technical Architecture Diagram (loose)]
+    zh: [容器视图, C4 第二层, 运行单元图, C4 模型第 2 层, 技术架构图（口语，含义宽泛）, 系统架构图（口语，含义宽泛）]
   question:
     en: Which separately running applications and data stores make up the system, what technology does each use, and how do they communicate?
     zh: 系统由哪些独立运行的应用和数据存储组成？各用什么技术？如何通信？
@@ -543,7 +544,7 @@ types:
   standards:
     - {name: "C4 model: Container diagram", url: "https://c4model.com/diagrams/container"}
     - {name: "C4 model: Container abstraction", url: "https://c4model.com/abstractions/container"}
-  neighbours: [C2, C4, G1, C5]
+  neighbours: [A7, C1, C2, C4, C5, C6, E1, F2, G1, G2]
   research: done
   status: draft
   changes:
@@ -554,8 +555,8 @@ types:
   family: C
   names: {en: Component diagram (C4 model level 3), zh: 组件图（C4 模型第 3 层）}
   aliases:
-    en: [component view, white-box view of a container, internal structure diagram]
-    zh: [组件视图, 容器内部结构图, 内部结构图]
+    en: [component view, white-box view of a container, internal structure diagram, C4 model Level 3, Building Block View Level 2 (arc42)]
+    zh: [组件视图, 容器内部结构图, 内部结构图, C4 模型第 3 层]
   question:
     en: Inside one container, which components exist, what is each responsible for, and which calls which?
     zh: 某个容器内部有哪些组件？各自负责什么？谁调用谁？
@@ -568,7 +569,7 @@ types:
   standards:
     - {name: "C4 model: Component diagram", url: "https://c4model.com/diagrams/component"}
     - {name: "OMG UML 2.5.1 (component diagrams)", url: "https://www.omg.org/spec/UML/2.5.1/"}
-  neighbours: [C3, C5, C8]
+  neighbours: [C3, C5, C8, E1]
   research: done
   status: draft
   changes:
@@ -579,8 +580,8 @@ types:
   family: C
   names: {en: Logical architecture diagram, zh: 逻辑架构图}
   aliases:
-    en: [logical view, logical building-block view, technology-neutral component diagram]
-    zh: [逻辑视图, 逻辑构件视图]
+    en: [logical view, logical building-block view, technology-neutral component diagram, functional view, building block view (level 1), logical application architecture]
+    zh: [逻辑视图, 逻辑构件视图, 功能视图, 逻辑组件图]
   question:
     en: Seen by responsibility and without technology choices, which modules and interfaces must the system have?
     zh: 只从职责看、不涉及技术选型，系统要有哪些模块和接口？
@@ -593,7 +594,7 @@ types:
   standards:
     - {name: "arc42, section 5: Building Block View", url: "https://docs.arc42.org/section-5/"}
     - {name: "Kruchten, The 4+1 View Model (logical view)", url: "https://www.cs.ubc.ca/~gregor/teaching/papers/4+1view-architecture.pdf"}
-  neighbours: [C3, C4, C8, I1]
+  neighbours: [A7, B3, C1, C3, C4, C6, C7, C8, G2, I1]
   research: done
   status: draft
   changes:
@@ -604,8 +605,8 @@ types:
   family: C
   names: {en: Integration and interface diagram, zh: 集成与接口图}
   aliases:
-    en: [integration diagram, interface map, integration architecture, interface catalog, API landscape]
-    zh: [集成架构图, 接口关系图, 系统集成图, 接口清单]
+    en: [integration diagram, interface map, integration architecture, interface catalog, API landscape, integration landscape, application interaction matrix, event topology]
+    zh: [集成架构图, 接口关系图, 系统集成图, 接口清单, 应用通信图, 应用交互矩阵, 事件拓扑图, API 全景图]
   question:
     en: Which interfaces connect the systems, in which integration style and direction, with which protocol, authentication and failure semantics?
     zh: 系统之间有哪些接口？用什么集成方式、方向、协议、认证方式和失败语义？
@@ -620,7 +621,7 @@ types:
     - {name: "OpenAPI Specification", url: "https://spec.openapis.org/oas/latest.html"}
     - {name: "AsyncAPI Specification", url: "https://www.asyncapi.com/docs/reference/specification/latest"}
   variants: [interface map with table, event or async topology, API landscape]
-  neighbours: [C1, E1, F2, D3]
+  neighbours: [C1, C2, C3, C5, C7, E1, F2]
   research: done
   status: draft
   changes:
@@ -631,14 +632,14 @@ types:
   family: C
   names: {en: Bounded context map (DDD), zh: 限界上下文映射（DDD）}
   aliases:
-    en: [context map, DDD context map, strategic design map]
-    zh: [上下文映射图, DDD 战略设计图, 领域上下文图]
+    en: [context map, DDD context map, strategic design map, team map (organisational variant)]
+    zh: [上下文映射图, DDD 战略设计图, 领域上下文图, DDD 上下文映射, 战略设计图, 团队映射图]
   question:
     en: Which model boundaries exist in the domain, and which relationship patterns connect them?
     zh: 领域中有哪些模型边界？它们之间用什么关系模式连接？
   asks: [structure, integration]
   audiences: [architects, developers, business]
-  levels: [logical]
+  levels: [concept, logical]
   phases: [design]
   scope: system
   formal: {kind: method, basis: "Domain-Driven Design (Evans 2003; DDD Reference 2015 adds Partnership and Big Ball of Mud)"}
@@ -657,8 +658,8 @@ types:
   family: C
   names: {en: Layered architecture diagram, zh: 分层架构图}
   aliases:
-    en: [layer diagram, n-layer architecture, hexagonal architecture, onion architecture, clean architecture]
-    zh: [层次结构图, 技术分层图, 六边形架构, 洋葱架构, 整洁架构]
+    en: [layer diagram, n-layer architecture, hexagonal architecture, onion architecture, clean architecture, presentation-domain-data layering, hexagonal architecture (variant), ports and adapters (variant), onion architecture (variant), clean architecture (variant)]
+    zh: [层次结构图, 技术分层图, 六边形架构, 洋葱架构, 整洁架构, 端口与适配器]
   question:
     en: Which layers does the code have, what is each responsible for, and which dependency directions are allowed?
     zh: 代码分几层？每层负责什么？允许哪些依赖方向？
@@ -672,7 +673,7 @@ types:
     - {name: "Fowler: PresentationDomainDataLayering", url: "https://martinfowler.com/bliki/PresentationDomainDataLayering.html"}
     - {name: "Cockburn: Hexagonal architecture", url: "https://alistair.cockburn.us/hexagonal-architecture/"}
   variants: [strict or relaxed layer stack, dependency-inward (hexagonal, onion, clean)]
-  neighbours: [C4, C5, I2, G1]
+  neighbours: [C4, C5, C7, G1, I2]
   research: done
   status: draft
   changes:
@@ -684,8 +685,8 @@ types:
   family: D
   names: {en: Entity-relationship diagram, zh: 实体关系图}
   aliases:
-    en: [ER diagram, ERD, data model diagram, conceptual data model, logical data model]
-    zh: [ER 图, 数据模型图, 概念数据模型, 逻辑数据模型]
+    en: [ER diagram, ERD, data model diagram, conceptual data model, logical data model, information model, domain model (UML class style), crow's foot diagram]
+    zh: [ER 图, 数据模型图, 概念数据模型, 逻辑数据模型, E-R 图, 信息模型, 领域模型]
   question:
     en: Which business objects does the system manage, and how are they related, with which cardinalities?
     zh: 系统管理哪些业务对象？它们之间是什么关系、基数如何？
@@ -698,7 +699,7 @@ types:
   standards:
     - {name: "OMG UML 2.5.1 (class diagrams)", url: "https://www.omg.org/spec/UML/2.5.1/"}
   variants: [conceptual, logical, physical]
-  neighbours: [D2, D3, E3]
+  neighbours: [D2, D3, E3, F3]
   research: done
   status: draft
   changes:
@@ -709,8 +710,8 @@ types:
   family: D
   names: {en: Data flow diagram (DFD), zh: 数据流图（DFD）}
   aliases:
-    en: [DFD, data flow chart]
-    zh: [数据流程图, 数据流向图]
+    en: [DFD, data flow chart, data flow model, process model (structured analysis), bubble chart, context diagram (top level)]
+    zh: [数据流程图, 数据流向图, 0 层图]
   question:
     en: Where does data come from, which processes transform it, where is it stored, and where does it go?
     zh: 数据从哪来、经过哪些加工、存在哪、流到哪？
@@ -723,7 +724,7 @@ types:
   standards:
     - {name: "Data-flow diagram (overview of notations)", url: "https://en.wikipedia.org/wiki/Data-flow_diagram"}
   variants: [context level, level 1, level n]
-  neighbours: [F2, E2, D3, C2]
+  neighbours: [C2, D1, D3, E2, F2]
   research: done
   status: draft
   changes:
@@ -734,8 +735,8 @@ types:
   family: D
   names: {en: Data lineage and ownership map, zh: 数据血缘与归属图}
   aliases:
-    en: [data lineage diagram, lineage graph, data ownership map, data asset map]
-    zh: [数据血缘图, 数据归属图, 数据资产地图]
+    en: [data lineage diagram, lineage graph, data ownership map, data asset map, data lineage graph, lineage DAG, data provenance graph, data domain map, data stewardship map]
+    zh: [数据血缘图, 数据归属图, 数据资产地图, 血缘关系图, 数据溯源图, 数据责任图, 数据分布图]
   question:
     en: Where did a dataset or result come from, what derives from it, and who is accountable for it?
     zh: 某份数据或结果从哪里来、又派生出什么？由谁负责？
@@ -748,7 +749,7 @@ types:
   standards:
     - {name: "OpenLineage object model", url: "https://openlineage.io/docs/spec/object-model"}
   variants: [lineage graph, ownership map]
-  neighbours: [D2, H1, C6]
+  neighbours: [D1, D2, H1]
   research: done
   status: draft
   changes:
@@ -760,8 +761,8 @@ types:
   family: E
   names: {en: Sequence diagram, zh: 时序图}
   aliases:
-    en: [UML sequence diagram, runtime view, C4 dynamic diagram, message sequence chart]
-    zh: [序列图, 运行时视图, 交互时序图]
+    en: [UML sequence diagram, runtime view, C4 dynamic diagram, message sequence chart, MSC, C4 dynamic diagram (sequence style), runtime-view scenario, call-flow diagram, ladder diagram]
+    zh: [序列图, 运行时视图, 交互时序图, 顺序图, 调用链时序图]
   question:
     en: For one scenario, in what order do the participants exchange which messages?
     zh: 在一个场景中，各参与者按什么顺序交换哪些消息？
@@ -776,7 +777,7 @@ types:
     - {name: "C4 model: Dynamic diagram", url: "https://c4model.com/diagrams/dynamic"}
     - {name: "arc42, section 6: Runtime View", url: "https://docs.arc42.org/section-6/"}
   variants: [happy path, error path, system-level or container-level lifelines]
-  neighbours: [E2, C6, F1, A5]
+  neighbours: [A5, C3, C4, C6, E2, E3, E4, F1, I1]
   research: done
   status: draft
   changes:
@@ -787,8 +788,8 @@ types:
   family: E
   names: {en: Activity diagram or flowchart, zh: 活动图 / 流程图}
   aliases:
-    en: [activity diagram, UML activity diagram, program flowchart, control flow diagram]
-    zh: [活动图, UML 活动图, 程序流程图, 控制流图]
+    en: [activity diagram, UML activity diagram, program flowchart, control flow diagram, control-flow diagram, process flow diagram (informal), workflow diagram (informal)]
+    zh: [活动图, UML 活动图, 程序流程图, 控制流图, 控制流程图, 处理逻辑图]
   question:
     en: Which steps, decisions and parallel branches make up one piece of logic?
     zh: 一段处理逻辑由哪些步骤、判断和并行分支组成？
@@ -801,7 +802,7 @@ types:
   standards:
     - {name: "OMG UML 2.5.1", url: "https://www.omg.org/spec/UML/2.5.1/"}
     - {name: "ISO 5807:1985 flowchart symbols", url: "https://www.iso.org/standard/11955.html"}
-  neighbours: [E4, A5, E3, D2]
+  neighbours: [A5, D2, E1, E3, E4]
   research: done
   status: draft
   changes:
@@ -812,8 +813,8 @@ types:
   family: E
   names: {en: State machine diagram, zh: 状态机图}
   aliases:
-    en: [state diagram, statechart, state transition diagram]
-    zh: [状态图, 状态迁移图, 状态转换图]
+    en: [state diagram, statechart, state transition diagram, statechart diagram, state-transition diagram, lifecycle diagram, finite-state machine (FSM) diagram]
+    zh: [状态图, 状态迁移图, 状态转换图, 生命周期图]
   question:
     en: Which states can one object be in, which events move it between them, and which transitions are not allowed?
     zh: 一个对象有哪些状态？什么事件使它迁移？哪些迁移不允许？
@@ -827,7 +828,7 @@ types:
     - {name: "OMG UML 2.5.1", url: "https://www.omg.org/spec/UML/2.5.1/"}
     - {name: "W3C SCXML", url: "https://www.w3.org/TR/scxml/"}
   variants: [behavioural state machine, protocol state machine]
-  neighbours: [E2, D1, E1]
+  neighbours: [A5, D1, E1, E2]
   research: done
   status: draft
   changes:
@@ -838,8 +839,8 @@ types:
   family: E
   names: {en: Swimlane or cross-functional flowchart, zh: 泳道流程图（跨职能流程图）}
   aliases:
-    en: [cross-functional flowchart, swimlane flowchart, Rummler-Brache diagram]
-    zh: [跨职能流程图, 泳道流程图]
+    en: [cross-functional flowchart, swimlane flowchart, Rummler-Brache diagram, swim-lane flowchart, functional flowchart, functional bands (Visio 2007)]
+    zh: [跨职能流程图, 泳道流程图, 跨部门流程图, 职责流程图]
   question:
     en: In one process, which role or system performs each step, and where are the hand-offs?
     zh: 一个流程中，每一步由哪个角色或系统完成？在哪里交接？
@@ -852,7 +853,7 @@ types:
   standards:
     - {name: "OMG UML 2.5.1 (activity partitions)", url: "https://www.omg.org/spec/UML/2.5.1/"}
     - {name: "OMG BPMN 2.0.2 (pools and lanes)", url: "https://www.omg.org/spec/BPMN/2.0.2/"}
-  neighbours: [A5, E2, H1]
+  neighbours: [A5, A6, A9, E1, E2, H1]
   research: done
   status: draft
   changes:
@@ -864,7 +865,7 @@ types:
   family: F
   names: {en: Authentication and authorization flow, zh: 认证与授权流程图}
   aliases:
-    en: [identity flow, sign-in flow, SSO flow, OAuth flow, OIDC flow, delegated access flow]
+    en: [identity flow, sign-in flow, SSO flow, OAuth flow, OIDC flow, delegated access flow, delegated API access flow]
     zh: [身份认证流程图, 统一登录流程图, 委托访问流程图]
   question:
     en: Who proves which identity to whom, what authority is conveyed, and where is access actually allowed or refused?
@@ -880,7 +881,7 @@ types:
     - {name: "RFC 9700 OAuth 2.0 Security Best Current Practice", url: "https://www.rfc-editor.org/rfc/rfc9700"}
     - {name: "OpenID Connect Core 1.0", url: "https://openid.net/specs/openid-connect-core-1_0.html"}
   variants: [user sign-in, delegated API call, machine-to-machine]
-  neighbours: [E1, F3, F2]
+  neighbours: [E1, F2, F3]
   research: done
   status: draft
   changes:
@@ -891,8 +892,8 @@ types:
   family: F
   names: {en: Threat-model data-flow diagram with trust boundaries, zh: 威胁建模数据流图（含信任边界）}
   aliases:
-    en: [threat-model DFD, security data-flow diagram, trust boundary diagram]
-    zh: [威胁建模数据流图, 安全数据流图, 信任边界图]
+    en: [threat-model DFD, security data-flow diagram, trust boundary diagram, DFD with trust boundaries, STRIDE diagram, trust-boundary diagram]
+    zh: [威胁建模数据流图, 安全数据流图, 信任边界图, 含信任边界的数据流图]
   question:
     en: Which data crosses which changes of authority or trust, and where could security properties fail?
     zh: 哪些数据跨越了权限或信任的变化？安全属性可能在哪里失效？
@@ -905,7 +906,7 @@ types:
   standards:
     - {name: "OWASP Threat Modeling Cheat Sheet", url: "https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html"}
     - {name: "Threat Modeling Manifesto", url: "https://www.threatmodelingmanifesto.org/"}
-  neighbours: [D2, F1, G3, C6]
+  neighbours: [C3, C6, D2, F1, F3, G3]
   research: done
   status: draft
   changes:
@@ -917,8 +918,8 @@ types:
   family: F
   names: {en: Access-control model, zh: 访问控制模型}
   aliases:
-    en: [authorization model, permission model, RBAC model, role-permission matrix, ABAC policy model, ReBAC graph]
-    zh: [权限模型, 授权模型, 角色权限矩阵]
+    en: [authorization model, permission model, RBAC model, role-permission matrix, ABAC policy model, ReBAC graph, relationship-based authorization graph]
+    zh: [权限模型, 授权模型, 角色权限矩阵, 基于属性的授权模型, 基于关系的授权模型]
   question:
     en: Under which rules can a subject perform an action on a resource, in which scope?
     zh: 在什么规则下，主体可以在什么范围内对资源执行什么操作？
@@ -927,12 +928,12 @@ types:
   levels: [logical]
   phases: [design, build]
   scope: system
-  formal: {kind: standard, basis: "RBAC (ANSI/INCITS 359), ABAC (NIST SP 800-162); ReBAC has influential models but no graphical standard"}
+  formal: {kind: convention, basis: "No graphical standard; the models follow RBAC (ANSI/INCITS 359) and ABAC (NIST SP 800-162); ReBAC has influential models"}
   standards:
     - {name: "NIST Role-Based Access Control project", url: "https://csrc.nist.gov/projects/role-based-access-control"}
     - {name: "NIST SP 800-162 (ABAC)", url: "https://csrc.nist.gov/pubs/sp/800/162/upd2/final"}
   variants: [RBAC matrix or hierarchy, ABAC conditions, ReBAC relationship graph]
-  neighbours: [F1, D1, H1]
+  neighbours: [D1, F1, F2, H1]
   research: done
   status: draft
   changes:
@@ -945,8 +946,8 @@ types:
   family: G
   names: {en: Deployment diagram, zh: 部署图}
   aliases:
-    en: [deployment view, software-to-infrastructure mapping, C4 deployment diagram]
-    zh: [部署视图, 部署架构图]
+    en: [deployment view, software-to-infrastructure mapping, C4 deployment diagram, runtime infrastructure view]
+    zh: [部署视图, 部署架构图, 软件与基础设施映射图]
   question:
     en: Where do the software instances run, in which environment, and how does their placement support operational needs?
     zh: 软件实例运行在哪里、哪个环境？部署位置如何满足运行要求？
@@ -960,7 +961,7 @@ types:
     - {name: "OMG UML 2.5.1", url: "https://www.omg.org/spec/UML/2.5.1/"}
     - {name: "C4 model: Deployment diagram", url: "https://c4model.com/diagrams/deployment"}
     - {name: "arc42, section 7: Deployment View", url: "https://docs.arc42.org/section-7/"}
-  neighbours: [C3, G2, G3, H2]
+  neighbours: [C3, C8, G2, G3, G4, H2, I1]
   research: done
   status: draft
   changes:
@@ -971,8 +972,8 @@ types:
   family: G
   names: {en: Cloud infrastructure architecture, zh: 云基础设施架构图}
   aliases:
-    en: [cloud architecture diagram, cloud solution architecture, provider infrastructure view]
-    zh: [云架构图, 云解决方案架构图, 云服务架构图]
+    en: [cloud architecture diagram, cloud solution architecture, provider infrastructure view, provider-specific infrastructure view, cloud reference architecture]
+    zh: [云架构图, 云解决方案架构图, 云服务架构图, 云参考架构]
   question:
     en: Which cloud services realise the workload, and which failure boundaries and trade-offs make the arrangement fit its requirements?
     zh: 用哪些云服务承载工作负载？哪些故障边界与权衡使这种安排满足需求？
@@ -986,7 +987,7 @@ types:
     - {name: "AWS Architecture Center", url: "https://aws.amazon.com/architecture/"}
     - {name: "Azure Well-Architected pillars", url: "https://learn.microsoft.com/en-us/azure/well-architected/pillars"}
     - {name: "Google Cloud Architecture Framework", url: "https://docs.cloud.google.com/architecture/framework"}
-  neighbours: [G1, G3, C3]
+  neighbours: [C3, C5, G1, G3, G4]
   research: done
   status: draft
   changes:
@@ -997,8 +998,8 @@ types:
   family: G
   names: {en: Network topology and connectivity view, zh: 网络拓扑与连通视图}
   aliases:
-    en: [network topology diagram, network diagram, logical network diagram, VPC topology, connectivity view]
-    zh: [网络拓扑图, 网络架构图, 逻辑网络图, 网络连通图]
+    en: [network topology diagram, network diagram, logical network diagram, VPC topology, connectivity view, physical network diagram, routing view, VPC or VNet topology, hybrid connectivity diagram]
+    zh: [网络拓扑图, 网络架构图, 逻辑网络图, 网络连通图, 物理网络图, 网络连通视图, 路由视图, 混合网络连接图]
   question:
     en: What can communicate with what, through which paths and controls, in normal and failure conditions?
     zh: 什么能与什么通信？经过哪些路径与控制？正常与故障时分别如何？
@@ -1012,7 +1013,7 @@ types:
     - {name: "RFC 1918 private address space", url: "https://www.rfc-editor.org/rfc/rfc1918"}
     - {name: "RFC 5737 IPv4 documentation addresses", url: "https://www.rfc-editor.org/rfc/rfc5737"}
   variants: [physical topology, logical adjacency, traffic path]
-  neighbours: [G1, G2, F2]
+  neighbours: [F2, G1, G2]
   research: done
   status: draft
   changes:
@@ -1023,8 +1024,8 @@ types:
   family: G
   names: {en: CI/CD and deployment pipeline, zh: CI/CD 与部署流水线图}
   aliases:
-    en: [CI/CD pipeline, deployment pipeline, release pipeline, software delivery pipeline, GitOps flow]
-    zh: [CI/CD 流水线图, 部署流水线图, 发布流水线, 交付流水线]
+    en: [CI/CD pipeline, deployment pipeline, release pipeline, software delivery pipeline, GitOps flow, GitOps delivery view]
+    zh: [CI/CD 流水线图, 部署流水线图, 发布流水线, 交付流水线, 软件交付管道图, 发布流水线图, 持续交付流水线, 软件交付流水线图]
   question:
     en: How does a change become a trusted release, which evidence allows each promotion, and what happens when it fails?
     zh: 一次变更如何成为可信的发布？每次晋级依据什么证据？失败时怎么办？
@@ -1039,7 +1040,7 @@ types:
     - {name: "Fowler: Continuous Delivery", url: "https://martinfowler.com/bliki/ContinuousDelivery.html"}
     - {name: "SLSA v1.2", url: "https://slsa.dev/spec/v1.2/"}
   variants: [delivery workflow, GitOps reconciliation]
-  neighbours: [G1, H2, A9]
+  neighbours: [A9, G1, G2, H2]
   research: done
   status: draft
   changes:
@@ -1065,7 +1066,7 @@ types:
   standards:
     - {name: "Atlassian: RACI chart", url: "https://www.atlassian.com/work-management/project-management/raci-chart"}
     - {name: "UK Government Security: agreeing roles and responsibilities", url: "https://www.security.gov.uk/policy-and-guidance/secure-by-design/activities/agreeing-roles-and-responsibilities/"}
-  neighbours: [H3, E4, D3]
+  neighbours: [A4, D3, E4, F3, H2, H3]
   research: done
   status: draft
   changes:
@@ -1135,7 +1136,7 @@ types:
     en: How can different stakeholders understand one architecture through views that answer their concerns and stay consistent?
     zh: 不同干系人如何通过各自关心的视图理解同一套架构，并保持视图之间一致？
   asks: [views]
-  audiences: [architects]
+  audiences: [architects, developers]
   levels: [concept, logical, physical]
   phases: [design]
   scope: system
@@ -1143,7 +1144,7 @@ types:
   standards:
     - {name: "Kruchten, Architectural Blueprints: The 4+1 View Model", url: "https://www.cs.ubc.ca/~gregor/teaching/papers/4+1view-architecture.pdf"}
     - {name: "ISO/IEC/IEEE 42010:2022", url: "https://www.iso.org/standard/74393.html"}
-  neighbours: [I2, C5, G1, E1]
+  neighbours: [C5, E1, G1, I2]
   research: done
   status: draft
   changes:
@@ -1167,7 +1168,7 @@ types:
   formal: {kind: standard, basis: "The Open Group ArchiMate 3.2 (2022), Layered Viewpoint (Appendix C, informative)"}
   standards:
     - {name: "ArchiMate 3.2 Specification, Example Viewpoints", url: "https://pubs.opengroup.org/architecture/archimate3-doc/ch-Example-Viewpoints.html"}
-  neighbours: [I1, A7, C8, C1]
+  neighbours: [A7, C1, C8, I1]
   research: done
   status: draft
   changes:

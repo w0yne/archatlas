@@ -3,20 +3,18 @@ code: E2
 slug: activity-flowchart
 family: E
 names:
-  en: Activity Diagram / Flowchart
+  en: Activity diagram or flowchart
   zh: 活动图 / 流程图
   aliases:
-    en: [activity diagram, flowchart, program flowchart, control-flow diagram, process flow diagram (informal), workflow diagram (informal)]
-    zh: [活动图, 流程图, 程序流程图, 控制流程图, 处理逻辑图]
-question: "What steps does this one behaviour go through, where does it decide, where does it run in parallel, and where does it end?"
-audiences: [developers, testers, business analysts, solution architects, operations engineers]
-level: logical
-phases: [design, build, review]
-scope: "One behaviour (a use case, request handler, job or procedure), about 8–20 nodes, optionally with up to 4–5 partitions"
-formal:
-  kind: standard
-  ref: "OMG UML 2.5.1 activity diagrams; ISO 5807:1985 flowchart symbols"
-neighbours: [E1, E3, E4, A5, D2]
+    en: [activity diagram, UML activity diagram, program flowchart, control flow diagram, control-flow diagram, process flow diagram (informal), workflow diagram (informal)]
+    zh: [活动图, UML 活动图, 程序流程图, 控制流图, 控制流程图, 处理逻辑图]
+question: What steps does this one behaviour go through, where does it decide, where does it run in parallel, and where does it end?
+audiences: [developers, business]
+levels: [logical]
+phases: [design, build]
+scope: One behaviour (a use case, request handler, job or procedure), about 8–20 nodes, optionally with up to 4–5 partitions
+formal: {kind: standard, ref: 'OMG UML 2.5.1 activity diagrams; ISO 5807:1985 flowchart symbols'}
+neighbours: [A5, D2, E1, E3, E4]
 status: draft
 ---
 

@@ -8,22 +8,22 @@ names:
   aliases:
     en: [power-interest grid, stakeholder matrix, stakeholder grid]
     zh: [干系人图, 利益相关者矩阵, 权力利益矩阵]
-question: "谁能影响这项举措，或会受到它的影响？应如何与各干系人沟通并促进其参与？"
+question: 谁能影响这项举措，或会受到它的影响？应如何与各干系人沟通并促进其参与？
 audiences: [leaders, business]
-level: strategy
+levels: [strategy]
 phases: [initiate]
-scope: "在明确时间点，对一项举措的干系人参与进行规划。"
-formal:
-  kind: method
-  ref: "权力-利益矩阵绘制实践；没有统一的图形标准。Nielsen Norman Group，Stakeholder Analysis for UX Projects：https://www.nngroup.com/articles/stakeholder-analysis/"
+scope: 在明确时间点，对一项举措的干系人参与进行规划。
+formal: {kind: method, ref: '权力-利益矩阵绘制实践；没有统一的图形标准。Nielsen Norman Group，Stakeholder Analysis for UX Projects：https://www.nngroup.com/articles/stakeholder-analysis/'}
 neighbours: [A3, H1]
 status: draft
-sourceRev: a082cec
+sourceRev: a5d2191
 translationOf: en/types/H3-stakeholder-map.md
 reviewed: false
 ---
 
 # 干系人地图（Stakeholder map）
+
+> 按对项目的权力与关注度摆放干系人，并为每一组给出沟通方式。
 
 ## 含义 {#meaning}
 <!-- skill: condense (4–6 lines) -->

@@ -1,7 +1,7 @@
 # Logical Architecture Diagram (逻辑架构图)
 <!-- Generated from content/en/types/C5-logical-architecture.md by tools/build_skill_refs.py. Do not edit. -->
 > Which technology-neutral building blocks must the system have, what is each responsible for, and through which named interfaces do they depend on each other and on external capabilities?
-Scope: One system or one solution, decomposed into responsibility blocks (one level, one page). Neighbours: A7, C1, C2, C3, C4, C6, C7, C8, G1, I1.
+Scope: One system or one solution, decomposed into responsibility blocks (one level, one page). Neighbours: A7, B3, C1, C3, C4, C6, C7, C8, G2, I1.
 
 ## Meaning
 A logical architecture diagram answers: *which blocks must exist, what does each own, and how do they depend on each other — whatever products or hosts will later realise them?* Its concerns are allocation of responsibility, traceability from requirements to blocks, change impact, make/buy/reuse decisions and splitting work between teams. Systems-engineering guidance warns that jumping straight from requirements to a physical design is a common mistake, because stakeholders revert to familiar solutions. In ISO/IEC/IEEE 42010 terms it is a view under a structural/functional viewpoint; in C4 model terms it sits beside the container level, but without the technology labels the C4 model requires.
@@ -15,16 +15,14 @@ A logical architecture diagram answers: *which blocks must exist, what does each
 **Deliberately left out:** products, frameworks and versions; hosts, networks, replicas and zones; runtime processes and concurrency; data schemas; call order of scenarios; class-level detail. Infrastructure appears only when it is functionally significant, such as a message bus that transforms data.
 
 ## When to use and how to choose
-- **Audience:** solution architects, developers and tech leads, product owners (requirement coverage), reviewers comparing build/buy options. Not for executives (use A7 or C1) or operators (use G1).
-- **Classic scenarios:** (1) compare technology or vendor options by mapping each onto one logical view; (2) turn requirements into blocks so each lands on exactly one owner; (3) split work and ownership between teams along block boundaries; (4) answer "what does the system consist of?" after a context diagram has been shown; (5) review a partner proposal for gaps and overlaps.
-- **When not to use:** the audience needs hosts, scaling or zones (G1/G2); technology is already fixed and readers are developers (C3/C4); you need call order or error paths (E1); the system is one small process (a short module list is enough); the boxes would only list features (that is a capability map, A1).
+- **Audience:** solution architects, developers, tech leads, product owners, reviewers of build/buy options; not executives (A7, C1) or operators (G1).
+- **Scenarios:** compare technology options on one logical view; assign each requirement to one block; split team ownership; answer "where does this responsibility live?".
+- **When not:** hosts or zones (G1/G2); technology fixed and readers are developers (C3/C4); call order (E1); boxes that only list features (A1 abilities, B3 features).
 - **vs neighbours:**
-  - Choose **A7 Conceptual architecture** when the reader wants coarse, business-level blocks without interfaces.
-  - Choose **C3 Container diagram** when runnable units, their technology and protocols matter; the C4 model requires a technology per container.
-  - Choose **C4 Component diagram** when you are inside *one* container and the components carry technology labels; C4 model components are not separately deployable. Decision rule: technology-neutral and system-wide → C5; technology-labelled and per container → C4.
-  - Choose **C6 Integration/interface** when protocol, authentication and SLA of each interface matter.
-  - Choose **C8 Layered architecture** when the point is an allowed-dependency *rule* inside code; a C5 may be grouped in bands, but states no such rule.
-  - Choose **G1 Deployment** when the question is where things run.
+  - **A7** for coarse business blocks; **C3** for runnable units with technology; **C4** inside one container with technology labels.
+  - **C6** for protocol, authentication and SLA per interface; **C8** for a dependency rule inside code; **G1** for where things run.
+  - **B3** for product features to build and prioritise; **C7** for domain-model boundaries and their relationships.
+  - **I1** when the logical view is one of several coordinated views (Kruchten's logical view is class-level).
 
 ## Notation and elements
 - **No standard notation.** Plain boxes are the default. UML component diagrams (suggested for the functional view), ArchiMate Application Components and Interfaces, or Capella logical architecture diagrams are optional formal choices. ArchiMate 3.2 (2022) is current; ArchiMate 4 was announced in April 2026 and renames layers to domains.

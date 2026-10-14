@@ -8,27 +8,37 @@ names:
   aliases:
     en: [4+1 architectural view model, Kruchten 4+1]
     zh: [4+1 架构视图模型, 克鲁岑 4+1 视图模型]
-question: "不同干系人如何通过回应各自关注点、又彼此一致的视图，理解同一套架构？"
-audiences: [architects]
-level: concept
+question: 不同干系人如何通过回应各自关注点、又彼此一致的视图，理解同一套架构？
+audiences: [architects, developers]
+levels: [concept, logical, physical]
 phases: [design]
 scope: system
-formal:
-  kind: method
-  ref: "Kruchten，Architectural Blueprints—The 4+1 View Model of Software Architecture（1995），IEEE Software 12(6)，第 42–50 页；https://www.cs.ubc.ca/~gregor/teaching/papers/4+1view-architecture.pdf"
-neighbours: [I2, C5, G1, E1]
+formal: {kind: method, ref: 'Kruchten，Architectural Blueprints—The 4+1 View Model of Software Architecture（1995），IEEE Software 12(6)，第 42–50 页；https://www.cs.ubc.ca/~gregor/teaching/papers/4+1view-architecture.pdf'}
+neighbours: [C5, E1, G1, I2]
 status: draft
-sourceRev: a082cec
+sourceRev: a5d2191
 translationOf: en/types/I1-four-plus-one.md
 reviewed: false
 ---
 
 # 4+1 视图模型（4+1 view model）
 
+> 同一软件架构的四个协调视图（逻辑、进程、开发、物理），由少数关键场景串联起来。
+
 ## 含义 {#meaning}
 <!-- skill: condense (4–6 lines) -->
 **本站采用的定义：** Kruchten 于 1995 年提出的多架构视图组织方法；它既不是一种标准化图形，也不是一套形式化表示法 [1]。
 **逻辑视图** 解释重要的抽象；**进程视图** 解释运行时并发与同步；**开发视图** 解释静态代码组织；**物理视图** 将执行单元映射到硬件。
+
+| 视图 | 关注点与典型读者 | 不包含 |
+|---|---|---|
+| 逻辑视图 | 重要的抽象与功能；领域专家、设计人员 | 完整的类清单、打包方式、处理器分配 |
+| 进程视图 | 并发、同步、通信、可用性、性能；集成人员 | 开发流程、业务流程 |
+| 开发视图 | 模块、子系统、依赖、可见性；开发与维护人员 | 线程、消息时序、部署位置 |
+| 物理视图 | 软件执行到节点和网络的映射；系统与运维工程师 | 每一条源码依赖和部署命令 |
+| +1 场景 | 用于发现并验证各视图的重要交互；所有读者 | 完整的用例目录 |
+
+后来的资料常把**开发视图**称为“实现视图”，把**物理视图**称为“部署视图”；使用时要说明对应的是原文中的哪个视图。“进程”指运行时并发，不是业务流程。
 **+1** 指对架构具有重要意义的场景，用于推动架构要素的发现并验证这些视图，并非完整的用例目录。
 视图之间的对应关系至关重要：一项逻辑职责可能跨越多个模块、进程和节点。名称相同并不能证明存在一一映射 [1]。
 该模型省略琐碎的实现细节。ISO/IEC/IEEE 42010:2022 规定架构描述的要求；arc42 提供文档模板。两者都不等同于 4+1，采用 4+1 也不能证明符合标准 [2][3]。
@@ -42,6 +52,7 @@ reviewed: false
 - **新人上手：** 区分网店代码包之间的依赖与运行时通信。
 - **演进：** 比较不同部署配置，或验证客服聊天机器人的恢复场景。
 - **不适用：** 一张聚焦的图就能回答问题时，不必建立完整视图集。可省略没有帮助的视图，或合并内容等同的逻辑视图与开发视图，并说明裁剪理由 [1]。
+- **同样不适用：** 用来替代详细的业务流程模型（A5）或企业应用组合视图（C1、I2）。
 - 只关注逻辑结构时选 **C5**，关注部署时选 **G1**，关注一次交互顺序时选 **E1**，关注企业服务的跨层支撑关系时选 **I2**。
 - 用 arc42 组织外围文档；选择 C4 model 图时应看其抽象层级，而不是机械对应数字“四” [3][4]。
 

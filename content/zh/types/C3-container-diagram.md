@@ -3,23 +3,21 @@ code: C3
 slug: container-diagram
 family: C
 names:
-  en: Container Diagram
-  zh: 容器图
+  en: Container diagram (C4 model level 2)
+  zh: 容器图（C4 模型第 2 层）
   aliases:
-    en: [C4 model Level 2, High-level System Diagram, Building Block View Level 1 (arc42), High-level Technical Architecture Diagram (loose)]
-    zh: [C4 模型第 2 层, 运行单元图, 技术架构图（口语，含义宽泛）, 系统架构图（口语，含义宽泛）]
-question: "这个系统由哪些独立运行的应用和数据存储构成？各自使用什么技术？它们如何通信？"
-audiences: [架构师, 开发人员, 运维与支持人员, 安全评审人员, 技术干系人]
-level: logical
-phases: [design, build, review, operate]
-scope: "一个软件系统：边界内的各个容器，以及与它们直接相连的人员和外部系统。"
-formal:
-  kind: method
-  ref: "C4 model (Simon Brown), Level 2 Container diagram; notation-independent, no versioned standard"
-neighbours: [C2, C4, C1, C5, C6, G1, E1, D2, F2, I2]
+    en: [container view, high-level technical architecture diagram, runtime building-block view, C4 model Level 2, High-level System Diagram, Building Block View Level 1 (arc42), High-level Technical Architecture Diagram (loose)]
+    zh: [容器视图, C4 第二层, 运行单元图, C4 模型第 2 层, 技术架构图（口语，含义宽泛）, 系统架构图（口语，含义宽泛）]
+question: 这个系统由哪些独立运行的应用和数据存储构成？各自使用什么技术？它们如何通信？
+audiences: [architects, developers, operations, security]
+levels: [logical]
+phases: [design, build]
+scope: 一个软件系统：边界内的各个容器，以及与它们直接相连的人员和外部系统。
+formal: {kind: method, ref: 'C4 model (Simon Brown), Level 2 Container diagram; notation-independent, no versioned standard'}
+neighbours: [A7, C1, C2, C4, C5, C6, E1, F2, G1, G2]
 status: draft
 translationOf: en/types/C3-container-diagram.md
-sourceRev: 6857dea
+sourceRev: a5d2191
 reviewed: false
 ---
 

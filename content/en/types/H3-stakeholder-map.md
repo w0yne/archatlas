@@ -8,20 +8,20 @@ names:
   aliases:
     en: [power-interest grid, stakeholder matrix, stakeholder grid]
     zh: [干系人图, 利益相关者矩阵, 权力利益矩阵]
-question: "Who can influence or is affected by the initiative, and how should each stakeholder be engaged?"
+question: Who can influence or is affected by the initiative, and how should each stakeholder be engaged?
 audiences: [leaders, business]
-level: strategy
+levels: [strategy]
 phases: [initiate]
-scope: "Stakeholder engagement for one initiative at a stated time."
-formal:
-  kind: method
-  ref: "Power-interest mapping practice; no universal graphical standard. Nielsen Norman Group, Stakeholder Analysis for UX Projects: https://www.nngroup.com/articles/stakeholder-analysis/"
+scope: Stakeholder engagement for one initiative at a stated time.
+formal: {kind: method, ref: 'Power-interest mapping practice; no universal graphical standard. Nielsen Norman Group, Stakeholder Analysis for UX Projects: https://www.nngroup.com/articles/stakeholder-analysis/'}
 neighbours: [A3, H1]
 status: draft
-sourceRev: "2026-10-14"
+sourceRev: '2026-10-14'
 ---
 
-# Stakeholder map
+# Stakeholder map (干系人地图（权力-利益矩阵）)
+
+> Stakeholders placed by their power over and interest in an initiative, with an engagement approach for each group.
 
 ## Meaning {#meaning}
 <!-- skill: condense (4–6 lines) -->
@@ -52,7 +52,7 @@ The familiar power–interest form is associated with Johnson and Scholes in his
 - **Optional:** attitude markers, assessment rationale, confidence, and a companion table of concerns, actions, owners, and review dates.
 - **Arrows:** none between stakeholders by default. Axis arrows mean increasing values; optional movement arrows mean an explicitly labeled observed or proposed change.
 - **Legend:** define attitude and movement markers; current position must differ from desired position. Interest must not silently encode attitude.
-- **Labels/layout:** short roles or groups, with a separate legend or table for detail; use shape/text as well as color. Low power does not remove a right to participate [4].
+- **Labels/layout:** short roles or groups, with a separate legend or table for detail; use shape/text as well as colour. Low power does not remove a right to participate [4].
 
 ## Best practices and anti-patterns {#practice}
 <!-- skill: condense (top 5 each, no citations) -->
@@ -91,7 +91,7 @@ These external examples are not scenarios reused in this page's authored sample.
 - [ ] Affected low-power groups were considered.
 - [ ] Engagement actions and review dates are recorded.
 - [ ] Movement arrows distinguish proposed from observed changes.
-- [ ] Labels and markers work without color.
+- [ ] Labels and markers work without colour.
 - [ ] Detail is appropriate for the intended audience.
 
 ## Evidence in a code repository {#evidence}

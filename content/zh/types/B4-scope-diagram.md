@@ -6,24 +6,24 @@ names:
   en: Scope diagram
   zh: 范围图
   aliases:
-    en: [in-scope out-of-scope diagram, scope boundary map]
-    zh: [范围内外图, 范围边界图]
-question: "这项举措纳入或排除哪些内容？哪些外部依赖仍需要开展工作？"
+    en: [scope and context diagram, in-scope out-of-scope diagram, scope boundary map]
+    zh: [范围上下文图, 范围边界图, 范围内外图]
+question: 这项举措纳入或排除哪些内容？哪些外部依赖仍需要开展工作？
 audiences: [leaders, product, architects]
-level: concept
+levels: [concept]
 phases: [initiate, requirements]
 scope: system
-formal:
-  kind: convention
-  ref: "Scope modeling — https://www.iiba.org/knowledgehub/business-analysis-body-of-knowledge-babok-guide/10-techniques/10-41-scope-modelling/"
-neighbours: [C2, A3, B1, D2, C6]
+formal: {kind: convention, ref: 'Scope modeling — https://www.iiba.org/knowledgehub/business-analysis-body-of-knowledge-babok-guide/10-techniques/10-41-scope-modelling/'}
+neighbours: [A3, B1, C2]
 status: draft
-sourceRev: a082cec
+sourceRev: a5d2191
 translationOf: en/types/B4-scope-diagram.md
 reviewed: false
 ---
 
 # 范围图（Scope diagram）
+
+> 这项举措包含什么、刻意排除什么，以及仍需依赖哪些外部方。
 
 ## 含义 {#meaning}
 <!-- skill: condense (4–6 lines) -->
@@ -71,7 +71,7 @@ reviewed: false
 - [arc42，HTML Sanity Checker 技术上下文](https://docs.arc42.org/examples/technical-context-1/) — 同一个公开项目的技术配图，将通道／制品与领域交换区分开。**许可：** 页面声明 CC BY-SA 4.0；改编前检查各项资源。
 - [C4 model，系统上下文图示例](https://c4model.com/diagrams/system-context) — 单系统视图和图例展示了相邻的上下文关注点。**许可：** 本次未核实具体资源的复用许可；仅提供链接。
 
-这些是**用于范围讨论的上下文范例**，不是四张相同类型的纳入／排除图。arc42 的配套视图来自同一项目，不是独立案例。已查阅正文和图示描述；不声称做过视觉审查。
+这些是**用于范围讨论的上下文范例**，不是四张相同类型的纳入／排除图。arc42 的配套视图来自同一项目，不是独立案例。
 
 ## 绘制步骤 {#recipe}
 <!-- skill: keep (≤25 lines) -->
@@ -116,12 +116,12 @@ reviewed: false
 
 ## 来源 {#sources}
 <!-- skill: omit -->
-1. IIBA — *BABOK Guide, 10.41 Scope Modelling* — https://www.iiba.org/knowledgehub/business-analysis-body-of-knowledge-babok-guide/10-techniques/10-41-scope-modelling/ — 访问于 2026-10-14，通过官方索引摘要获取；未取得完整章节。
-2. PMI — *Three proven ways business analysts help prevent scope creep* — https://www.pmi.org/learning/library/business-analysts-help-prevent-scope-creep-9352 — 访问于 2026-10-14；已查阅文章正文和图 2／3 的描述。
+1. IIBA — *BABOK Guide, 10.41 Scope Modelling* — https://www.iiba.org/knowledgehub/business-analysis-body-of-knowledge-babok-guide/10-techniques/10-41-scope-modelling/ — 访问于 2026-10-14。
+2. PMI — *Three proven ways business analysts help prevent scope creep* — https://www.pmi.org/learning/library/business-analysts-help-prevent-scope-creep-9352 — 访问于 2026-10-14。
 3. C4 model — *System context diagram* — https://c4model.com/diagrams/system-context — 访问于 2026-10-14。
 4. C4 model — *Notation* — https://c4model.com/diagrams/notation — 访问于 2026-10-14。
 5. arc42 — *Section 3: Context and Scope* — https://docs.arc42.org/section-3/ — 访问于 2026-10-14。
-6. Ed Yourdon — *Just Enough Structured Analysis, Chapter 9*，2006-01-31 修订版，公开 PDF 镜像 — https://www.businessanalystlearnings.com/s/Yourdon-DFD.pdf — 访问于 2026-10-14；相关正文确认了上下文与 Figure 0 的区别，以及外部数据存储的限定说明。
+6. Ed Yourdon — *Just Enough Structured Analysis, Chapter 9*，2006-01-31 修订版，公开 PDF 镜像 — https://www.businessanalystlearnings.com/s/Yourdon-DFD.pdf — 访问于 2026-10-14。
 7. arc42 — *Example Business Context: HTML Sanity Checker* — https://docs.arc42.org/examples/business-context-1/ — 访问于 2026-10-14。
 8. arc42 — *Example Technical Context: HTML Sanity Checker* — https://docs.arc42.org/examples/technical-context-1/ — 访问于 2026-10-14。
 

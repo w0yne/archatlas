@@ -8,22 +8,22 @@ names:
   aliases:
     en: [story map, story mapping]
     zh: [故事地图, 用户故事映射]
-question: "用户如何达成目标？哪些完整的增量可以支持或检验这段体验？"
+question: 用户如何达成目标？哪些完整的增量可以支持或检验这段体验？
 audiences: [product, developers, business]
-level: concept
+levels: [concept]
 phases: [requirements]
 scope: system
-formal:
-  kind: method
-  ref: "Jeff Patton, story mapping — https://www.jpattonassociates.com/the-new-backlog/"
-neighbours: [A4, A6, B3, B1]
+formal: {kind: method, ref: 'Jeff Patton, story mapping — https://www.jpattonassociates.com/the-new-backlog/'}
+neighbours: [A4, A6, B1, B3]
 status: draft
-sourceRev: a082cec
+sourceRev: a5d2191
 translationOf: en/types/B2-user-story-map.md
 reviewed: false
 ---
 
 # 用户故事地图（User story map）
+
+> 以一个用户端到端的活动为骨架，故事挂在下方，发布切片横向切过。
 
 ## 含义 {#meaning}
 <!-- skill: condense (4–6 lines) -->
@@ -39,9 +39,10 @@ reviewed: false
 - **场景：** 探索网上购物体验；选择结账原型；把一次发布切分为有用的增量；将客服聊天机器人功能放入既有旅程；暴露缺失步骤或无障碍需求。
 - **何时不用：** 规定精确分支／并发、承诺进度，或盘点内部模块。
 - 需要表达体验中的触点、想法和感受时，选择 **A6 用户旅程图** [5]。
-- 需要表达能力层次，而不需要叙事／发布语义时，选择 **B3 功能树**。
+- 需要表达功能层次，而不需要叙事／发布语义时，选择 **B3 功能树**。
 - 需要表达参与者与目标的关系时，选择 **B1 用例图**；需要精确行为时，选择 **E2 活动图／流程图**。
 - 路线图传达战略结果或时间安排；迭代看板跟踪工作状态。两者都不是故事地图的同义词。
+- 需要在业务活动层面展示多个角色的覆盖情况时，选择 **A4 业务场景矩阵**；故事地图讲的是一个用户的端到端故事。
 
 ## 表示法与元素 {#notation}
 <!-- skill: condense (bullets, ≤15 lines) -->
@@ -69,7 +70,7 @@ reviewed: false
 - [Patton，The New User Story Backlog is a Map](https://www.jpattonassociates.com/the-new-backlog/) — 汽车待办项／切片示例说明，完整的能力覆盖比逐个做完孤立功能更重要。**许可：** 未确认图片改编许可；不要描摹。
 - [Nielsen Norman Group，Mapping User Stories in Agile](https://www.nngroup.com/articles/user-story-mapping/) — 手机存入支票的完整地图把活动、详细任务和原型的学习结果联系起来。**许可：** 未确认开放图片许可；仅提供链接。
 
-这些是具体的教学示例，不是三份经过独立核验的生产项目待办列表。已查阅正文和描述，未对图片做视觉复核。
+这些是具体的教学示例，不是三份经过独立核验的生产项目待办列表。
 
 ## 绘制步骤 {#recipe}
 <!-- skill: keep (≤25 lines) -->

@@ -3,23 +3,21 @@ code: A4
 slug: scenario-matrix
 family: A
 names:
-  en: Business Scenario Matrix (Role × Activity)
-  zh: 业务场景矩阵（角色 × 业务活动）
+  en: Business scenario matrix (role × activity)
+  zh: 业务场景矩阵（角色 × 活动）
   aliases:
-    en: [scenario coverage matrix, role–activity scope matrix, actor–goal matrix]
+    en: [scenario coverage matrix, role-activity matrix, business scenario map, role–activity scope matrix, actor–goal matrix]
     zh: [业务场景地图, 场景覆盖矩阵, 业务场景清单, 角色-场景矩阵]
-question: "对每个角色而言，方案支持哪些业务活动？通过哪些场景支持？在哪个发布版本中提供？哪些组合是有意不覆盖的？"
-audiences: [业务负责人, 产品经理, 项目群或项目经理, 业务分析师, 架构师]
-level: concept
-phases: [discovery, planning, review]
-scope: "一个方案或业务领域：4–8 个角色 × 4–8 项业务活动，每个单元格写明场景并标注发布版本。"
-formal:
-  kind: convention
-  ref: "none (table convention; cell content follows Cockburn's user-goal level)"
-neighbours: [B1, B2, A6, A1, A2, H1]
+question: 对每个角色而言，方案支持哪些业务活动？通过哪些场景支持？在哪个发布版本中提供？哪些组合是有意不覆盖的？
+audiences: [business, product]
+levels: [concept]
+phases: [requirements]
+scope: 一个方案或业务领域：4–8 个角色 × 4–8 项业务活动，每个单元格写明场景并标注发布版本。
+formal: {kind: convention, ref: none (table convention; cell content follows Cockburn's user-goal level)}
+neighbours: [A6, B1, B2, H1]
 status: draft
 translationOf: en/types/A4-scenario-matrix.md
-sourceRev: 6857dea
+sourceRev: a5d2191
 reviewed: false
 ---
 

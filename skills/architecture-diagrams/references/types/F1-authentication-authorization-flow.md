@@ -1,7 +1,7 @@
 # Authentication and Authorization Flow (认证与授权流程图)
 <!-- Generated from content/en/types/F1-authentication-authorization-flow.md by tools/build_skill_refs.py. Do not edit. -->
 > Who proves which identity to whom, what authority is conveyed, and where is access actually permitted or refused?
-Scope: One scenario (browser sign-in, service acting for a user, or machine-only call) and one protected operation Neighbours: E1, F3, F2, C2, D2.
+Scope: One scenario (browser sign-in, service acting for a user, or machine-only call) and one protected operation Neighbours: E1, F2, F3.
 
 ## Meaning
 - **Question:** who proves which identity to whom, what authority is conveyed, and where is access permitted or refused? The view explains a chain of trust, not just HTTP traffic. Sign-in does not grant access to every object.

@@ -1,4 +1,4 @@
-# Stakeholder map
+# Stakeholder map (干系人地图（权力-利益矩阵）)
 <!-- Generated from content/en/types/H3-stakeholder-map.md by tools/build_skill_refs.py. Do not edit. -->
 > Who can influence or is affected by the initiative, and how should each stakeholder be engaged?
 Scope: Stakeholder engagement for one initiative at a stated time. Neighbours: A3, H1.
@@ -29,7 +29,7 @@ The familiar power–interest form is associated with Johnson and Scholes in his
 - **Optional:** attitude markers, assessment rationale, confidence, and a companion table of concerns, actions, owners, and review dates.
 - **Arrows:** none between stakeholders by default. Axis arrows mean increasing values; optional movement arrows mean an explicitly labeled observed or proposed change.
 - **Legend:** define attitude and movement markers; current position must differ from desired position. Interest must not silently encode attitude.
-- **Labels/layout:** short roles or groups, with a separate legend or table for detail; use shape/text as well as color. Low power does not remove a right to participate.
+- **Labels/layout:** short roles or groups, with a separate legend or table for detail; use shape/text as well as colour. Low power does not remove a right to participate.
 
 ## Best practices and anti-patterns
 | Best practice | Anti-pattern |
@@ -57,7 +57,7 @@ Quadrant labels vary across methods. A source that assesses interest *in a refor
 - [ ] Affected low-power groups were considered.
 - [ ] Engagement actions and review dates are recorded.
 - [ ] Movement arrows distinguish proposed from observed changes.
-- [ ] Labels and markers work without color.
+- [ ] Labels and markers work without colour.
 - [ ] Detail is appropriate for the intended audience.
 
 ## Evidence in a code repository

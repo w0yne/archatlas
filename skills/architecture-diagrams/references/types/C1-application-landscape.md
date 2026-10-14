@@ -1,12 +1,12 @@
 # Application Landscape (应用架构图)
 <!-- Generated from content/en/types/C1-application-landscape.md by tools/build_skill_refs.py. Do not edit. -->
 > Which applications exist in this scope, how are they grouped, and which depend on or exchange data with which?
-Scope: Many applications within one stated scope (enterprise, department or product line), drawn at application level only. Neighbours: A1, A7, A8, C2, C3, C6, C7, G1, I2.
+Scope: Many applications within one stated scope (enterprise, department or product line), drawn at application level only. Neighbours: A1, A7, A8, C2, C3, C5, C6, I2.
 
 ## Meaning
 It answers: *which applications do we have here, grouped how, and which depend on or exchange data with which?* It is a portfolio-level viewpoint in the ISO/IEC/IEEE 42010 sense: the concerns are overlap, ownership, change impact and integration hot spots. TOGAF places it in the application architecture domain (Application Portfolio catalog, Application Communication diagram); in ArchiMate it is close to the Application Cooperation viewpoint. It leaves out application internals (C3/C4/C5), hosting (G1), interface attributes such as protocol, authentication or SLA (C6), data schemas (D1) and process flow (A5).
 **Definition used here:** "application architecture" has two meanings, the portfolio of many applications (TOGAF, this type) and the internal design of one application. Many applications → C1; the parts of one application → C3, C5 or C8.
-**Three variants under this id:** (a) *grouped landscape*: applications placed in bands by layer, domain or capability (default); (b) *communication map*: relationship-centred, core applications in the middle (TOGAF Application Communication diagram, ArchiMate Application Cooperation view, the cluster maps of the EAM Pattern Catalog); (c) *capability × application matrix*: rows = capabilities, cells = applications, optionally as a heat map (TOGAF Application/Function matrix). The C4 model **System Landscape** diagram is the minimal form of (a)/(b): people and software systems at a stated scope, no containers and no portfolio metadata, "a system context diagram without a specific focus".
+**Three variants under this id:** (a) *grouped landscape*: applications placed in bands by layer, domain or capability (default); (b) *communication map*: relationship-centred, core applications in the middle (TOGAF Application Communication diagram, ArchiMate Application Cooperation view, the cluster maps of the EAM Pattern Catalog); (c) *capability × application matrix*, a derived view of A1: rows = capabilities, cells = applications, optionally as a heat map (TOGAF Application/Function matrix). The C4 model **System Landscape** diagram is the minimal form of (a)/(b): people and software systems at a stated scope, no containers and no portfolio metadata, "a system context diagram without a specific focus".
 
 ## When to use and how to choose
 - **Audience:** architects, IT leadership, portfolio and integration teams, security (blast radius), new architects joining.
@@ -18,6 +18,7 @@ It answers: *which applications do we have here, grouped how, and which depend o
   - Choose **C6** when every interface needs protocol, authentication, frequency or SLA.
   - Choose **A1** (with variant c here as an overlay) when the question is business capability coverage.
   - Choose **I2** when business, application and technology layers must appear in one ArchiMate view.
+  - Choose **A7** when non-technical readers need the main blocks of one solution, not the inventory of applications.
 
 ## Notation and elements
 - **Required:** application boxes named as the organisation names them, all of the same kind; grouping frames with one stated criterion (layer, domain, capability or owner), each application in exactly one group; directed relationship lines with a short label naming what flows or why; title with type, scope and date; legend for every colour, border and badge; a scope statement saying what is inside and what is external.
@@ -26,7 +27,7 @@ It answers: *which applications do we have here, grouped how, and which depend o
 - **Arrow semantics:** pick one and print it in the legend: "A → B = A depends on / calls B" (C4 model, Azure guidance) or "A → B = data flows from A to B" (ArchiMate flow). Never mix them; avoid double-headed arrows.
 - **Grouping:** the bands "channels / business applications / shared platform / external" are one common pattern, not a standard. Ask which axis fits the question.
 - **ArchiMate mapping (if a formal model is wanted):** Application Component per application, `serving` for "uses the service of", `flow` for data movement. Name the version: ArchiMate 3.2 (2022) is what most tools implement; ArchiMate 4 (announced April 2026) renames layers to "domains" and merges layer-specific behaviour elements. The ArchiMate 4 details are taken from published summaries and are not verified against the current spec text.
-- **TOGAF artefacts nearby:** Interface catalog, Application/Function, Application/Organization and Application Interaction matrices, Application and User Location diagram. These names are from TOGAF 9.x material; they are not verified against the current TOGAF 10 text.
+- **TOGAF artefacts nearby:** Interface catalog, Application/Function, Application/Organisation and Application Interaction matrices, Application and User Location diagram. These names are from TOGAF 9.x material; they are not verified against the current TOGAF 10 text.
 - **Detail and naming:** application level only. If you want to list modules or features in a box, open a C3 or C5 diagram instead. Peers use the same kind of name; never name an application after a capability.
 
 ## Best practices and anti-patterns

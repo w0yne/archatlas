@@ -3,20 +3,18 @@ code: A4
 slug: scenario-matrix
 family: A
 names:
-  en: Business Scenario Matrix (Role × Activity)
-  zh: 业务场景矩阵（角色 × 业务活动）
+  en: Business scenario matrix (role × activity)
+  zh: 业务场景矩阵（角色 × 活动）
   aliases:
-    en: [scenario coverage matrix, role–activity scope matrix, actor–goal matrix]
+    en: [scenario coverage matrix, role-activity matrix, business scenario map, role–activity scope matrix, actor–goal matrix]
     zh: [业务场景地图, 场景覆盖矩阵, 业务场景清单, 角色-场景矩阵]
-question: "For each role, which business activities does the solution support, through which scenarios, in which release, and which combinations are deliberately left out?"
-audiences: [business owners, product managers, programme or project managers, business analysts, architects]
-level: concept
-phases: [discovery, planning, review]
-scope: "One solution or business area: 4–8 roles × 4–8 business activities, with scenarios and a release marker per cell."
-formal:
-  kind: convention
-  ref: "none (table convention; cell content follows Cockburn's user-goal level)"
-neighbours: [B1, B2, A6, A1, A2, H1]
+question: For each role, which business activities does the solution support, through which scenarios, in which release, and which combinations are deliberately left out?
+audiences: [business, product]
+levels: [concept]
+phases: [requirements]
+scope: 'One solution or business area: 4–8 roles × 4–8 business activities, with scenarios and a release marker per cell.'
+formal: {kind: convention, ref: none (table convention; cell content follows Cockburn's user-goal level)}
+neighbours: [A6, B1, B2, H1]
 status: draft
 ---
 

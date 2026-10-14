@@ -1,7 +1,7 @@
 # Sequence Diagram (时序图)
 <!-- Generated from content/en/types/E1-sequence-diagram.md by tools/build_skill_refs.py. Do not edit. -->
 > For one scenario, which participants exchange which messages in what order, and where does the flow branch, loop or wait?
-Scope: One scenario (one trigger to one outcome), about 4–8 lifelines at one abstraction level, up to about 25 messages Neighbours: E2, E3, E4, C3, C4, F1, A5.
+Scope: One scenario (one trigger to one outcome), about 4–8 lifelines at one abstraction level, up to about 25 messages Neighbours: A5, C3, C4, C6, E2, E3, E4, F1, I1.
 
 ## Meaning
 - **Question:** in this one scenario, which participants exchange which messages, in what order, and where does the flow branch, loop or wait?
@@ -21,6 +21,8 @@ Scope: One scenario (one trigger to one outcome), about 4–8 lifelines at one a
   - A communication diagram when spatial relationships matter more than time order.
   - **F1** for OAuth/OIDC-style flows (a specialised sequence diagram).
   - **C3/C4** when the question is structure, not behaviour.
+  - Choose **C6** when the question is the list of interfaces with protocol, authentication and failure semantics, not the order of one scenario.
+  - Choose **I1** when several scenarios must tie the logical, process, development and physical views together; a sequence diagram is one such scenario.
 
 ## Notation and elements
 - **Formal or informal:** formal in UML 2.5.1. Most architecture sequence diagrams are sketches that keep lifelines, messages and frames.

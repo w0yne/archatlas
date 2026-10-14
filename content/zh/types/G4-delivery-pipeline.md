@@ -3,23 +3,21 @@ code: G4
 slug: delivery-pipeline
 family: G
 names:
-  en: CI/CD and Deployment Pipeline
-  zh: CI/CD 流水线图
+  en: CI/CD and deployment pipeline
+  zh: CI/CD 与部署流水线图
   aliases:
-    en: [CI/CD pipeline, deployment pipeline, software delivery pipeline, release pipeline, GitOps delivery view]
-    zh: [部署流水线图, 软件交付流水线图, 发布流水线图, 持续交付流水线]
-question: "一项变更如何成为可信的发布，每次晋级凭借什么证据，出现失败时会怎样？"
-audiences: [开发人员, 发布与平台工程师, 运维人员, 质量与安全评审人员, 变更控制负责人]
-level: logical
-phases: [design, delivery, review]
-scope: "一条从变更来源到目标环境的发布路径，包括制品、关卡、结果，以及在相关时负责调和期望状态的控制器"
-formal:
-  kind: convention
-  ref: "No graphical standard. Fowler's deployment-pipeline description and Humble and Farley's Continuous Delivery are the practice references; UML activity or BPMN may be used if their semantics are respected; SLSA supplies supply-chain assurance concepts, not notation"
-neighbours: [G1, E3, H1]
+    en: [CI/CD pipeline, deployment pipeline, release pipeline, software delivery pipeline, GitOps flow, GitOps delivery view]
+    zh: [CI/CD 流水线图, 部署流水线图, 发布流水线, 交付流水线, 软件交付管道图, 发布流水线图, 持续交付流水线, 软件交付流水线图]
+question: 一项变更如何成为可信的发布，每次晋级凭借什么证据，出现失败时会怎样？
+audiences: [developers, operations, security]
+levels: [physical]
+phases: [build, operate]
+scope: 一条从变更来源到目标环境的发布路径，包括制品、关卡、结果，以及在相关时负责调和期望状态的控制器
+formal: {kind: convention, ref: 'No graphical standard. Fowler''s deployment-pipeline description and Humble and Farley''s Continuous Delivery are the practice references; UML activity or BPMN may be used if their semantics are respected; SLSA supplies supply-chain assurance concepts, not notation'}
+neighbours: [A9, G1, G2, H2]
 status: draft
 translationOf: en/types/G4-delivery-pipeline.md
-sourceRev: 674f366
+sourceRev: a5d2191
 reviewed: false
 ---
 
@@ -50,6 +48,9 @@ reviewed: false
   - 发布状态及其迁移，选 **E3**。
   - 问题是每一步由谁负责时，选 **H1**。
   - 如果构建身份和证明（attestation）占主导，单独的供应链信任视图比作业图更合适。
+  - 问题是从需求到上线的交付流程中时间损耗在哪里（前置时间、等待时间）时，选 **A9**。
+  - 需要表达流水线部署到的云服务及其故障边界时，选 **G2**。
+  - 需要表达发布后用于验证、并触发恢复的观测信号时，选 **H2**。
 
 ## 表示法与元素 {#notation}
 <!-- skill: condense (bullets, ≤15 lines) -->

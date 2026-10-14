@@ -3,23 +3,21 @@ code: A7
 slug: conceptual-architecture
 family: A
 names:
-  en: Conceptual Architecture / Solution Overview
-  zh: 概念架构图 / 方案概览图
+  en: Conceptual architecture (solution overview)
+  zh: 概念架构图（方案概览）
   aliases:
-    en: [solution concept diagram, solution overview, high-level architecture, architecture on a page, block diagram, functional diagram, layered view]
-    zh: [概念架构图, 方案概览图, 方案总览, 高层架构图, 一页纸架构, 方案构想图]
-question: "这个方案由哪些大的部分组成，每个部分为业务做什么，它们彼此之间以及与外部世界之间如何依赖？"
-audiences: [高管, 业务发起人, 指导委员会与评审委员会, 客户方干系人, 新加入的团队成员]
-level: concept
-phases: [discovery, planning, review]
-scope: "把一个方案在其上下文之下展开一层：明确边界内的 5–9 个与技术无关的构建块，用户、渠道和外部系统位于边缘。"
-formal:
-  kind: method
-  ref: "TOGAF Solution Concept diagram (Phase A artifact, TOGAF 9.1 §35.6.2); informal notation; ArchiMate 3.2 Layered viewpoint as the formal option"
-neighbours: [C1, C2, C3, C5, A1, A8]
+    en: [solution overview, solution concept diagram, high-level architecture, architecture on a page, block diagram, functional diagram]
+    zh: [方案概览图, 方案总览, 高层架构图, 一页纸架构, 方案构想图, 概念架构图]
+question: 这个方案由哪些大的部分组成，每个部分为业务做什么，它们彼此之间以及与外部世界之间如何依赖？
+audiences: [leaders, business, architects]
+levels: [concept]
+phases: [initiate, design]
+scope: 把一个方案在其上下文之下展开一层：明确边界内的 5–9 个与技术无关的构建块，用户、渠道和外部系统位于边缘。
+formal: {kind: method, ref: 'TOGAF Solution Concept diagram (Phase A artifact, TOGAF 9.1 §35.6.2); informal notation; ArchiMate 3.2 Layered viewpoint as the formal option'}
+neighbours: [A1, A8, C1, C2, C3, C5, I2]
 status: draft
 translationOf: en/types/A7-conceptual-architecture.md
-sourceRev: 6857dea
+sourceRev: a5d2191
 reviewed: false
 ---
 
@@ -37,13 +35,14 @@ reviewed: false
 <!-- skill: condense (bullets, ≤12 lines) -->
 - **受众：**高管、发起人、指导委员会与评审委员会、客户方干系人、新成员；架构师把它用作架构文档包的封面页。
 - **场景：**愿景工作坊上让发起人就要建设的内容达成一致（如网店平台重构）；方案建议书中的“一页纸方案”；架构评审的开场页；新人入职；某种反复出现的方案模式的参考图 [14][15][16]。
-- **不适用的情况：**工程师需要接口、部署或调用顺序（C3、C5、G1、E1）；真正的问题只是范围（C2）或整个应用资产（C1）；要讲的是迁移（A8）；内容是功能清单（A1）。
+- **不适用的情况：**工程师需要接口、部署或调用顺序（C3、C5、G1、E1）；真正的问题只是范围（C2）或整个应用资产（C1）；要讲的是迁移（A8）；内容是业务能力清单（A1）或产品功能清单（B3）。
 - **与相邻类型的区别：**
   - 受众只需要了解范围时，选 **C2 系统上下文图**；A7 把这个黑盒打开一层。
   - 涉及整个企业的众多系统时，选 **C1 应用全景图**；A7 只针对一个方案。
   - 表达业务必须具备哪些能力时，选 **A1 能力图**；A7 展示由哪些部分来交付这些能力 [9]。
   - 要讲的是随时间推移的变化时，选 **A8 目标架构与路线图**；把这张 A7 复用为目标图景。
   - 一旦读者问起哪个服务调用哪个 API，就改用 **C3 / C5**。
+  - 需要在一张视图中用正式的 ArchiMate 关系呈现业务、应用和技术元素时，选 **I2**。
 
 ## 表示法与元素 {#notation}
 <!-- skill: condense (bullets, ≤15 lines) -->
@@ -68,7 +67,7 @@ reviewed: false
 ### 反模式
 
 1. “Marketecture”：只有图标、方框之间没有连线、箭头无标签、抽象层级含混 [17]。
-2. 把功能清单画成方框；那是能力图。架构视图展示的是组成部分；功能最多作为标签出现 [9]。
+2. 把功能清单画成方框。业务能力应画成能力图（A1），产品功能应画成功能树（B3）；架构视图展示的是组成部分，功能最多作为标签出现 [9]。
 3. 同级元素抽象层级混杂，例如一行里同时有一个容器、一个参与者和一个流程步骤 [4]。
 4. 方框内写句子或要点列表，图标只作装饰而不表达含义 [5]。
 5. 把非重点的子系统完整画出，或者在图上写工作备注（“TBD”“待定”），而不是使用“计划中”之类的图例类别 [4]。

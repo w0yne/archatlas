@@ -3,19 +3,17 @@ code: D2
 slug: data-flow-diagram
 family: D
 names:
-  en: Data Flow Diagram
-  zh: 数据流图
+  en: Data flow diagram (DFD)
+  zh: 数据流图（DFD）
   aliases:
-    en: [DFD, data flow model, process model (structured analysis), bubble chart, context diagram (top level), threat-model DFD]
-    zh: [数据流程图, 数据流向图, 上下文图, 0 层图]
-question: "Where does data come from, which processing transforms it, where is it kept, and where does it go?"
-audiences: [architects, systems and business analysts, security reviewers, privacy and audit staff]
-level: logical
-phases: [discovery, design, review]
-scope: "One system, one level per diagram: a context diagram, or one decomposition of a single process (3-9 processes)"
-formal:
-  kind: method
-  ref: "Structured Analysis: DeMarco 1978 (Yourdon/DeMarco symbols) and Gane & Sarson 1979; no ISO or OMG standard. Threat-model dialect adds trust boundaries"
+    en: [DFD, data flow chart, data flow model, process model (structured analysis), bubble chart, context diagram (top level)]
+    zh: [数据流程图, 数据流向图, 0 层图]
+question: Where does data come from, which processing transforms it, where is it kept, and where does it go?
+audiences: [architects, business, security]
+levels: [logical]
+phases: [requirements, design]
+scope: 'One system, one level per diagram: a context diagram, or one decomposition of a single process (3-9 processes)'
+formal: {kind: method, ref: 'Structured Analysis: DeMarco 1978 (Yourdon/DeMarco symbols) and Gane & Sarson 1979; no ISO or OMG standard. Threat-model dialect adds trust boundaries'}
 neighbours: [C2, D1, D3, E2, F2]
 status: draft
 ---
@@ -43,6 +41,7 @@ status: draft
   - **D3 Lineage** for concrete datasets across jobs and runs; a DFD is a design-time model.
   - **F2 Threat Model** for the security workflow; it uses this dialect plus threat annotations.
   - **E2 Activity Flowchart** for control flow; a DFD arrow is data, never "then".
+  - Choose **D1 Entity-relationship diagram** when the question is which business objects exist and how they relate, not how data moves.
 -->
 - **Audience:** architects, analysts, security reviewers, privacy and audit staff.
 - **Classic scenarios:**
@@ -56,6 +55,7 @@ status: draft
   - Choose **D3 Lineage** to trace concrete datasets across jobs and runs; a DFD is a design-time logical model.
   - Choose **F2 Threat Model** for the security workflow; it uses this page's dialect (DFD plus trust boundaries) and adds threat annotations.
   - Choose **E2 Activity Flowchart** for control flow. A DFD arrow is data, never "then".
+  - Choose **D1 Entity-relationship diagram** when the question is which business objects exist and how they relate, not how data moves.
 
 ## Notation and elements {#notation}
 <!-- skill: condense (bullets, ≤15 lines) -->

@@ -3,23 +3,21 @@ code: E2
 slug: activity-flowchart
 family: E
 names:
-  en: Activity Diagram / Flowchart
+  en: Activity diagram or flowchart
   zh: 活动图 / 流程图
   aliases:
-    en: [activity diagram, flowchart, program flowchart, control-flow diagram, process flow diagram (informal), workflow diagram (informal)]
-    zh: [活动图, 流程图, 程序流程图, 控制流程图, 处理逻辑图]
-question: "这一个行为经过哪些步骤？在哪里做判断、在哪里并行执行、在哪里结束？"
-audiences: [开发人员, 测试人员, 业务分析师, 解决方案架构师, 运维工程师]
-level: logical
-phases: [design, build, review]
-scope: "一个行为（一个用例、请求处理器、作业或操作流程），约 8–20 个节点，可选最多 4–5 个分区"
-formal:
-  kind: standard
-  ref: "OMG UML 2.5.1 activity diagrams; ISO 5807:1985 flowchart symbols"
-neighbours: [E1, E3, E4, A5, D2]
+    en: [activity diagram, UML activity diagram, program flowchart, control flow diagram, control-flow diagram, process flow diagram (informal), workflow diagram (informal)]
+    zh: [活动图, UML 活动图, 程序流程图, 控制流图, 控制流程图, 处理逻辑图]
+question: 这一个行为经过哪些步骤？在哪里做判断、在哪里并行执行、在哪里结束？
+audiences: [developers, business]
+levels: [logical]
+phases: [design, build]
+scope: 一个行为（一个用例、请求处理器、作业或操作流程），约 8–20 个节点，可选最多 4–5 个分区
+formal: {kind: standard, ref: 'OMG UML 2.5.1 activity diagrams; ISO 5807:1985 flowchart symbols'}
+neighbours: [A5, D2, E1, E3, E4]
 status: draft
 translationOf: en/types/E2-activity-flowchart.md
-sourceRev: 674f366
+sourceRev: a5d2191
 reviewed: false
 ---
 

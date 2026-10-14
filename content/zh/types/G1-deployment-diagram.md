@@ -3,23 +3,21 @@ code: G1
 slug: deployment-diagram
 family: G
 names:
-  en: Deployment Diagram
+  en: Deployment diagram
   zh: 部署图
   aliases:
-    en: [deployment view, software-to-infrastructure mapping, runtime infrastructure view, physical architecture diagram]
-    zh: [部署视图, 软件与基础设施映射图, 物理架构图]
-question: "软件实例和制品运行在哪里，这种部署位置如何支撑容量、故障切换和归属等运维需求？"
-audiences: [开发人员, 平台与基础设施工程师, 运维人员, 架构师, 安全评审人员]
-level: physical
-phases: [design, delivery, operations, review]
-scope: "一个具名环境（例如生产环境），展示承载节点以及部署在其上的软件实例"
-formal:
-  kind: standard
-  ref: "OMG UML 2.5.1 Deployments (nodes, execution environments, artifacts, deployment); C4 model deployment diagram as a pragmatic variant; arc42 section 7 for documentation"
-neighbours: [C3, G2, G3, G4, E1]
+    en: [deployment view, software-to-infrastructure mapping, C4 deployment diagram, runtime infrastructure view]
+    zh: [部署视图, 部署架构图, 软件与基础设施映射图]
+question: 软件实例和制品运行在哪里，这种部署位置如何支撑容量、故障切换和归属等运维需求？
+audiences: [operations, architects, security]
+levels: [physical]
+phases: [design, operate]
+scope: 一个具名环境（例如生产环境），展示承载节点以及部署在其上的软件实例
+formal: {kind: standard, ref: 'OMG UML 2.5.1 Deployments (nodes, execution environments, artifacts, deployment); C4 model deployment diagram as a pragmatic variant; arc42 section 7 for documentation'}
+neighbours: [C3, C8, G2, G3, G4, H2, I1]
 status: draft
 translationOf: en/types/G1-deployment-diagram.md
-sourceRev: 674f366
+sourceRev: a5d2191
 reviewed: false
 ---
 
@@ -51,6 +49,9 @@ reviewed: false
   - 问题是路由、分段和可达性时，选 **G3**。
   - 变更如何到达这个环境，选 **G4**。
   - 随时间变化的行为，选 **E1**（或 arc42 运行时视图）。
+  - 分层指的是带依赖规则的代码分层时，选 **C8**；部署层级不等于代码分层。
+  - 问题是如何观测运行中的系统、告警发给谁，而不是系统运行在哪里时，选 **H2**。
+  - 这张部署视图作为 4+1 描述中的物理视图、需要与其他视图保持一致时，选 **I1**。
 
 ## 表示法与元素 {#notation}
 <!-- skill: condense (bullets, ≤15 lines) -->

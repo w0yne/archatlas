@@ -1,7 +1,7 @@
 # Swimlane / Cross-functional Flowchart (泳道流程图)
 <!-- Generated from content/en/types/E4-swimlane-cross-functional.md by tools/build_skill_refs.py. Do not edit. -->
 > In this process, which role or system performs each step, and where does work or information pass from one to another?
-Scope: One process from trigger to outcome, at most about 6 lanes and 20 steps, happy path Neighbours: A5, E1, E2, A6, C3.
+Scope: One process from trigger to outcome, at most about 6 lanes and 20 steps, happy path Neighbours: A5, A6, A9, E1, E2, H1.
 
 ## Meaning
 - **Question:** in this process, which role or system performs each step, and where does work or information pass from one to another?
@@ -17,6 +17,8 @@ Scope: One process from trigger to outcome, at most about 6 lanes and 20 steps, 
 - **When not to use:** more than about 6 lanes or a flow crossing lanes at every step (merge or split); order of calls is the point (E1); the whole flow sits in one actor (E2); a standard is required for automation or compliance (A5).
 - **E4 or A5:** choose **A5 BPMN** when the actors are business roles and the notation must carry BPMN semantics for owners or tooling; choose **E4** for a lightweight hand-off picture, especially with systems as lanes. A5 is the formal sibling, not the same drawing.
 - **Other neighbours:** **E1** for call order and sync vs async; **E2** when lanes are incidental; **A6** for customer emotions; **C3** for static structure.
+- Choose **A9 Lean value-stream map** when the question is where time is lost between steps (process and waiting time), not who performs each step.
+- Choose **H1 RACI matrix** when the question is who is responsible, accountable, consulted or informed for each activity, regardless of order.
 
 ## Notation and elements
 - **Formal or informal:** informal convention, aligned with flowchart and BPMN usage.

@@ -3,20 +3,18 @@ code: G3
 slug: network-topology
 family: G
 names:
-  en: Network Topology and Connectivity View
-  zh: 网络拓扑图
+  en: Network topology and connectivity view
+  zh: 网络拓扑与连通视图
   aliases:
-    en: [network topology diagram, logical network diagram, physical network diagram, connectivity view, routing view, VPC or VNet topology, hybrid connectivity diagram]
-    zh: [逻辑网络图, 物理网络图, 网络连通视图, 路由视图, 混合网络连接图]
-question: "What can communicate with what, through which paths and controls, in normal and in failure conditions?"
-audiences: [network engineers, security engineers, platform operators, architects, connectivity partners]
-level: physical
-phases: [design, delivery, operations, review]
-scope: "One declared view (physical links, logical adjacency, or one traffic path) over the networks, segments, gateways and endpoints that matter"
-formal:
-  kind: convention
-  ref: "No graphical standard. RFC 1918, RFC 5737 and RFC 3849 govern addressing and documentation ranges; provider networking documentation defines platform semantics"
-neighbours: [G1, G2, F2, E1]
+    en: [network topology diagram, network diagram, logical network diagram, VPC topology, connectivity view, physical network diagram, routing view, VPC or VNet topology, hybrid connectivity diagram]
+    zh: [网络拓扑图, 网络架构图, 逻辑网络图, 网络连通图, 物理网络图, 网络连通视图, 路由视图, 混合网络连接图]
+question: What can communicate with what, through which paths and controls, in normal and in failure conditions?
+audiences: [operations, security, architects]
+levels: [physical]
+phases: [design, operate]
+scope: One declared view (physical links, logical adjacency, or one traffic path) over the networks, segments, gateways and endpoints that matter
+formal: {kind: convention, ref: 'No graphical standard. RFC 1918, RFC 5737 and RFC 3849 govern addressing and documentation ranges; provider networking documentation defines platform semantics'}
+neighbours: [F2, G1, G2]
 status: draft
 ---
 

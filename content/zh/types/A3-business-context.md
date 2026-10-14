@@ -3,23 +3,21 @@ code: A3
 slug: business-context
 family: A
 names:
-  en: Business Context Diagram
+  en: Business context diagram
   zh: 业务上下文图
   aliases:
-    en: [context diagram, context-level DFD, business context (arc42 §3.1), scope diagram (business view)]
+    en: [business context, business environment diagram, business context (arc42 §3.1)]
     zh: [业务背景图, 业务环境图, 范围图（业务视角）]
-question: "我们的系统或举措内部包含什么？外部有哪些人或事物与我们交换什么？"
-audiences: [高管, 业务负责人, 业务分析师, 架构师, 团队新成员]
-level: concept
-phases: [discovery, planning, review]
-scope: "一个系统、举措或业务单元，画成黑盒，并画出与它交换信息、货物、资金或义务的每一个外部参与方。"
-formal:
-  kind: convention
-  ref: "Context-level DFD (Yourdon–DeMarco / Gane–Sarson); arc42 §3.1 business context; C4 model System Context at software level"
-neighbours: [H3, B4, C2, A2, A7, C6]
+question: 我们的系统或举措内部包含什么？外部有哪些人或事物与我们交换什么？
+audiences: [leaders, business, architects]
+levels: [strategy, concept]
+phases: [initiate, requirements]
+scope: 一个系统、举措或业务单元，画成黑盒，并画出与它交换信息、货物、资金或义务的每一个外部参与方。
+formal: {kind: method, ref: Context-level DFD (Yourdon–DeMarco / Gane–Sarson); arc42 §3.1 business context; C4 model System Context at software level}
+neighbours: [B4, C2, H3]
 status: draft
 translationOf: en/types/A3-business-context.md
-sourceRev: 674f366
+sourceRev: a5d2191
 reviewed: false
 ---
 

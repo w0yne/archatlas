@@ -3,20 +3,18 @@ code: E4
 slug: swimlane-cross-functional
 family: E
 names:
-  en: Swimlane / Cross-functional Flowchart
-  zh: 泳道流程图
+  en: Swimlane or cross-functional flowchart
+  zh: 泳道流程图（跨职能流程图）
   aliases:
-    en: [swimlane diagram, swim-lane flowchart, cross-functional flowchart, Rummler-Brache diagram, functional flowchart, functional bands (Visio 2007)]
-    zh: [泳道图, 跨职能流程图, 跨部门流程图, 职责流程图]
-question: "In this process, which role or system performs each step, and where does work or information pass from one to another?"
-audiences: [process owners, business analysts, developers, testers, operations]
-level: logical
-phases: [discovery, design, review]
-scope: "One process from trigger to outcome, at most about 6 lanes and 20 steps, happy path"
-formal:
-  kind: convention
-  ref: "Informal cross-functional flowchart (Rummler-Brache tradition); formal equivalents are BPMN 2.0.2 pools and lanes and UML 2.5.1 activity partitions"
-neighbours: [A5, E1, E2, A6, C3]
+    en: [cross-functional flowchart, swimlane flowchart, Rummler-Brache diagram, swim-lane flowchart, functional flowchart, functional bands (Visio 2007)]
+    zh: [跨职能流程图, 泳道流程图, 跨部门流程图, 职责流程图]
+question: In this process, which role or system performs each step, and where does work or information pass from one to another?
+audiences: [developers, operations, business]
+levels: [logical]
+phases: [design, operate]
+scope: One process from trigger to outcome, at most about 6 lanes and 20 steps, happy path
+formal: {kind: convention, ref: Informal cross-functional flowchart (Rummler-Brache tradition); formal equivalents are BPMN 2.0.2 pools and lanes and UML 2.5.1 activity partitions}
+neighbours: [A5, A6, A9, E1, E2, H1]
 status: draft
 ---
 
@@ -41,6 +39,8 @@ status: draft
 - **When not to use:** more than about 6 lanes or a flow crossing lanes at every step (merge or split); order of calls is the point (E1); the whole flow sits in one actor (E2); a standard is required for automation or compliance (A5).
 - **E4 or A5:** choose **A5 BPMN** when the actors are business roles and the notation must carry BPMN semantics for owners or tooling; choose **E4** for a lightweight hand-off picture, especially with systems as lanes. A5 is the formal sibling, not the same drawing.
 - **Other neighbours:** **E1** for call order and sync vs async; **E2** when lanes are incidental; **A6** for customer emotions; **C3** for static structure.
+- Choose **A9 Lean value-stream map** when the question is where time is lost between steps (process and waiting time), not who performs each step.
+- Choose **H1 RACI matrix** when the question is who is responsible, accountable, consulted or informed for each activity, regardless of order.
 -->
 - **Audience:** process owners, analysts, developers, testers and operations. A good bridge between business and IT.
 - **Classic scenarios:**
@@ -56,6 +56,8 @@ status: draft
   - Choose **E2 Activity** when lanes are incidental and the logic is the point; E2 with partitions is formally the same diagram.
   - Choose **A6 Journey Map** when customer emotions and touchpoints matter (it has its own line of visibility).
   - Choose **C3 Container Diagram** for static structure, not flow.
+  - Choose **A9 Lean value-stream map** when the question is where time is lost between steps (process and waiting time), not who performs each step.
+  - Choose **H1 RACI matrix** when the question is who is responsible, accountable, consulted or informed for each activity, regardless of order.
 
 ## Notation and elements {#notation}
 <!-- skill: condense (bullets, ≤15 lines) -->

@@ -1,7 +1,7 @@
-# ArchiMate layered view
+# ArchiMate layered view (ArchiMate 分层视图)
 <!-- Generated from content/en/types/I2-archimate-layered-view.md by tools/build_skill_refs.py. Do not edit. -->
 > How do business behaviour, applications and technology support one another, and what is affected by a change?
-Scope: enterprise Neighbours: I1, A7, C8, C1.
+Scope: enterprise Neighbours: A7, C1, C8, I1.
 
 ## Meaning
 **Definition used here:** the informative **Layered Viewpoint, Appendix C.1.5 of ArchiMate 3.2**, within a standardized modeling language; it is not the whole language.
@@ -17,51 +17,51 @@ This page targets **3.2 explicitly**. ArchiMate 4 was released in April 2026; do
 - **Consolidation:** compare the shop's baseline and target support chains.
 - **Service review:** find a support chatbot service without a known consumer or realization.
 - **Do not use:** detailed request order, API payloads, exhaustive inventory, or inferred business structure without domain evidence.
-- Choose Application Usage or Technology Usage for a narrower dependency slice; Service Realization for implementation behavior; Implementation and Deployment for artifact allocation.
-- Choose **C8** for code-layer dependencies, **A7** for informal conceptual bands, **C1** for a system portfolio, or **I1** for organizing several software views.
+- Choose Application Usage or Technology Usage for a narrower dependency slice; Service Realization for implementation behaviour; Implementation and Deployment for artifact allocation.
+- Choose **C8** for code-layer dependencies, **A7** for informal conceptual bands, **C1** for a system portfolio, or **I1** for organising several software views.
 
 ## Notation and elements
 - **Required by this recipe:** scope, typed elements, meaningful cross-layer relations, and a legend. No fixed element inventory is mandatory.
 - Select actors/roles, processes/functions, components, services, and nodes as needed; information objects, interfaces, artifacts, and internal detail are optional.
 - **Serving:** provider → consumer; solid line/open arrowhead. It expresses supplied functionality, not request direction.
 - **Realization:** concrete → abstract; dashed line/hollow triangle. A function realizes a service; an artifact realizes a component.
-- **Assignment:** performer/host → behavior/artifact; solid line, source dot, filled target arrowhead. Example: Node → Artifact.
+- **Assignment:** performer/host → behaviour/artifact; solid line, source dot, filled target arrowhead. Example: Node → Artifact.
 - **Deployment:** `Node —Assignment→ Artifact —Realization→ Application Component`; “hosted-on” is not a generic ArchiMate relationship.
 - **Access** represents reading/writing passive structure; **Triggering** represents temporal/causal dependency; **Flow** represents transfer. Use their distinct standard glyphs.
 - Validate source/relation/target combinations and derived shortcuts against the metamodel and normative Appendix B. Selecting all core relationship types does not legalize every pair.
-- Name structure with nouns and behavior with actions. Explain nesting; a background band alone establishes no relationship.
-- Yellow/blue/green are optional conventions, with no formal color semantics.
+- Name structure with nouns and behaviour with actions. Explain nesting; a background band alone establishes no relationship.
+- Yellow/blue/green are optional conventions, with no formal colour semantics.
 - Keep uncertainty in evidence annotations or a table. Never repurpose formal dashed lines as “inferred.”
 
 ## Best practices and anti-patterns
 - Select one bounded concern; avoid an enterprise inventory on one page.
-- Separate performers, behavior, services, and consumers; avoid unlabeled “supports” lines.
+- Separate performers, behaviour, services, and consumers; avoid unlabeled “supports” lines.
 - Preserve standard direction; avoid reversing Serving to resemble an API request.
 - Validate exact relation pairs; avoid arbitrary cross-layer realization or generic hosting arrows.
-- Keep comparable groups consistent and color redundant; avoid fixed layer counts or color-only typing.
+- Keep comparable groups consistent and colour redundant; avoid fixed layer counts or colour-only typing.
 
 ## Drawing recipe
 1. Fix the concern, boundary, baseline/target state, and ArchiMate version.
-2. Inventory evidenced business behavior, application services, and technology support.
+2. Inventory evidenced business behaviour, application services, and technology support.
 3. Assign exact types and validate relationships before arranging boxes.
 4. Align providers and consumers in useful bands; business above application above technology is optional.
-5. Use short names, type icons, sparse color, and service bands where helpful.
+5. Use short names, type icons, sparse colour, and service bands where helpful.
 6. Preserve arrow direction and glyphs; explain nesting and annotate evidence separately.
 7. Trace a checkout concern through the chain; split dense detail into focused views.
 8. Review semantic validity and readability; an informal renderer output needs an explicit label.
 
 **Self-check**
 - [ ] Scope and version are explicit.
-- [ ] Components, behavior, and services are distinct.
+- [ ] Components, behaviour, and services are distinct.
 - [ ] Every relationship is permitted for its endpoint types.
 - [ ] Serving and Realization point in the correct directions.
 - [ ] Deployment uses artifact/allocation semantics.
-- [ ] Layer count and color are not treated as normative.
+- [ ] Layer count and colour are not treated as normative.
 - [ ] Evidence status does not alter formal line styles.
 - [ ] Labels, glyphs, and endpoints remain readable.
 
 ## Evidence in a code repository
-- Components/behavior: implementation responsibilities, handlers, entry points, build boundaries.
+- Components/behaviour: implementation responsibilities, handlers, entry points, build boundaries.
 - Services/consumers: interface contracts, clients, configuration, and integration tests.
 - Artifacts/allocation: build outputs, image references, deployment manifests, and infrastructure definitions.
 - Information: schemas and read/write code; names alone do not establish business meaning.

@@ -1,7 +1,7 @@
 # Component Diagram (组件图)
 <!-- Generated from content/en/types/C4-component-diagram.md by tools/build_skill_refs.py. Do not edit. -->
 > Inside this one container, which components does it consist of, what is each responsible for and built with, and how do they depend on each other and on other containers?
-Scope: Exactly one container: its components inside a container boundary, plus the other containers, people and systems directly connected to them. Neighbours: C3, C5, C8, E1, D1, G1.
+Scope: Exactly one container: its components inside a container boundary, plus the other containers, people and systems directly connected to them. Neighbours: C3, C5, C8, E1.
 
 ## Meaning
 It answers: *inside this one container, what are the major components, what is each responsible for and built with, and who calls whom, including the other containers they depend on?* It is Level 3 of the C4 model, Simon Brown's notation-independent method (no versioned standard), and in arc42 the building-block view, level 2, the white box of one level-1 block. It is a developer-facing view of internal structure. It leaves out other containers' internals, classes (C4 model Level 4, the code diagram), deployment and sequences over time.

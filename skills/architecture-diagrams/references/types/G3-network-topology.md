@@ -1,7 +1,7 @@
 # Network Topology and Connectivity View (网络拓扑图)
 <!-- Generated from content/en/types/G3-network-topology.md by tools/build_skill_refs.py. Do not edit. -->
 > What can communicate with what, through which paths and controls, in normal and in failure conditions?
-Scope: One declared view (physical links, logical adjacency, or one traffic path) over the networks, segments, gateways and endpoints that matter Neighbours: G1, G2, F2, E1.
+Scope: One declared view (physical links, logical adjacency, or one traffic path) over the networks, segments, gateways and endpoints that matter Neighbours: F2, G1, G2.
 
 ## Meaning
 - **Question:** what can communicate with what, through which paths and controls, and what happens when a link or zone fails?

@@ -1,7 +1,7 @@
 # CI/CD and Deployment Pipeline (CI/CD 流水线图)
 <!-- Generated from content/en/types/G4-delivery-pipeline.md by tools/build_skill_refs.py. Do not edit. -->
 > How does a change become a trusted release, which evidence allows each promotion, and what happens when something fails?
-Scope: One release path from change source to target environments, with artifacts, gates, outcomes and, where relevant, the controller that reconciles desired state Neighbours: G1, E3, H1.
+Scope: One release path from change source to target environments, with artifacts, gates, outcomes and, where relevant, the controller that reconciles desired state Neighbours: A9, G1, G2, H2.
 
 ## Meaning
 - **Question:** how does a change become a trusted release, which evidence permits each promotion, and what happens on failure?
@@ -19,6 +19,9 @@ Scope: One release path from change source to target environments, with artifact
   - **E3** for release states and transitions.
   - **H1** for who is accountable for each step.
   - If build identities and attestations dominate, use a separate supply-chain trust view.
+  - Choose **A9** when the question is where time is lost in the flow from request to production (lead time, waiting time).
+  - Choose **G2** for the cloud services and failure boundaries the pipeline deploys into.
+  - Choose **H2** for the signals that verify a release after deployment and trigger recovery.
 
 ## Notation and elements
 - **Formal or informal:** informal process or dependency-graph convention. A vendor's pipeline UI has its own model; do not present it as universal.

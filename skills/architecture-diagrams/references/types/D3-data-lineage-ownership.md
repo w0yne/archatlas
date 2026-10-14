@@ -1,7 +1,7 @@
 # Data Lineage and Ownership Map (数据血缘与数据归属图)
 <!-- Generated from content/en/types/D3-data-lineage-ownership.md by tools/build_skill_refs.py. Do not edit. -->
 > Where did this dataset or answer come from, what breaks downstream if it changes, and who is accountable for it?
-Scope: One anchor (a dataset, report or answer) with a bounded upstream or downstream trace, about 20 nodes, at dataset granularity; ownership shown as an overlay Neighbours: D2, D1, H1, F3, E2.
+Scope: One anchor (a dataset, report or answer) with a bounded upstream or downstream trace, about 20 nodes, at dataset granularity; ownership shown as an overlay Neighbours: D1, D2, H1.
 
 ## Meaning
 - **Questions:** *lineage* asks where a dataset, report or answer came from, what transformed it and what breaks downstream if it changes. *Ownership* asks who is accountable for its definition, quality and access.
@@ -17,8 +17,9 @@ Scope: One anchor (a dataset, report or answer) with a bounded upstream or downs
 - **vs neighbours:**
   - **D2 Data Flow Diagram** for designed flow; D3 for observed or derived provenance.
   - **H1 RACI Matrix** if ownership is the only question.
-  - **F3 Access Control Model** for who may read or write; ownership is accountability, not permission.
+  - **F3 Access-control model** for who may read or write; ownership is accountability, not permission.
   - **E2 Activity Flowchart** for job ordering and triggers.
+  - Choose **D1 Entity-relationship diagram** for the structure of the entities themselves; D3 shows where datasets come from and who owns them.
 
 ## Notation and elements
 - **Formal or informal:** informal convention. The defensible default is a left-to-right DAG using OpenLineage semantics.

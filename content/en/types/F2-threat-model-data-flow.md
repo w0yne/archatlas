@@ -3,20 +3,18 @@ code: F2
 slug: threat-model-data-flow
 family: F
 names:
-  en: Threat-Model Data-Flow Diagram
-  zh: 威胁建模数据流图
+  en: Threat-model data-flow diagram with trust boundaries
+  zh: 威胁建模数据流图（含信任边界）
   aliases:
-    en: [security data-flow diagram, DFD with trust boundaries, STRIDE diagram, trust-boundary diagram]
-    zh: [安全数据流图, 含信任边界的数据流图, 信任边界图]
-question: "What data crosses which changes of authority or trust assumptions, and where could security properties fail?"
-audiences: [security engineers, solution architects, developers, privacy specialists, service owners]
-level: logical
-phases: [design, review]
-scope: "One feature or subsystem, with its assets, entry points and trust boundaries; linked to a separate threat register"
-formal:
-  kind: convention
-  ref: "Classic data-flow-diagram symbols plus security annotations; practice from the OWASP Threat Modeling Cheat Sheet and Microsoft's documented STRIDE approach. Not a universal graphical standard"
-neighbours: [D2, F1, F3, G3, C3]
+    en: [threat-model DFD, security data-flow diagram, trust boundary diagram, DFD with trust boundaries, STRIDE diagram, trust-boundary diagram]
+    zh: [威胁建模数据流图, 安全数据流图, 信任边界图, 含信任边界的数据流图]
+question: What data crosses which changes of authority or trust assumptions, and where could security properties fail?
+audiences: [security, architects]
+levels: [logical]
+phases: [design]
+scope: One feature or subsystem, with its assets, entry points and trust boundaries; linked to a separate threat register
+formal: {kind: method, ref: Classic data-flow-diagram symbols plus security annotations; practice from the OWASP Threat Modeling Cheat Sheet and Microsoft's documented STRIDE approach. Not a universal graphical standard}
+neighbours: [C3, C6, D2, F1, F3, G3]
 status: draft
 ---
 
@@ -44,6 +42,7 @@ status: draft
   - **F3** for permission rules.
   - **G3** for routing and connectivity.
   - **C3** for the structure this DFD is usually derived from.
+  - Choose **C6 Integration and interface diagram** for the full interface inventory; its authentication and data-classification columns feed the trust-boundary analysis here.
 -->
 - **Audience:** security engineers, architects, developers, privacy specialists, service owners.
 - **Classic scenarios:**
@@ -54,10 +53,11 @@ status: draft
 - **When not to use:** as a network inventory, as a penetration-test result, or as proof that all STRIDE threats are eliminated.
 - **vs neighbours:**
   - Choose **D2 Data-Flow Diagram** for ordinary data processing without a trust analysis.
-  - Choose **F1 Authentication Flow** for one identity exchange step by step.
+  - Choose **F1 Authentication and authorization flow** for one identity exchange step by step.
   - Choose **F3 Access-Control Model** for the permission rules.
   - Choose **G3 Network Topology** for routing and connectivity.
   - Choose **C3 Container Diagram** for the structural view this DFD is usually derived from.
+  - Choose **C6 Integration and interface diagram** for the full interface inventory; its authentication and data-classification columns feed the trust-boundary analysis here.
 
 ## Notation and elements {#notation}
 <!-- skill: condense (bullets, ≤15 lines) -->
@@ -86,7 +86,7 @@ status: draft
 ### Anti-patterns
 1. **A boundary drawn around the whole system** or around each cloud component, which explains nothing.
 2. **Unlabelled arrows** (no data name) or arrows used for sequence or dependency.
-3. **Omitting internal flows mechanically** because they cross no boundary.
+3. **Omitting internal flows mechanically** because they cross no boundary, or removing refusal and abuse paths to tidy the figure; in a security view they are often the point.
 4. **Threat text crammed onto the diagram** so that it becomes unreadable and unowned.
 5. **Presenting the picture as a completed assessment,** or showing proposed controls as if they were in place.
 
@@ -104,7 +104,7 @@ status: draft
 3. Draw the smallest model that keeps those distinctions; name every payload on its arrow.
 4. Layout: external entities on the outer edges, processes in the middle, stores at the bottom; flow direction left to right. Boundaries are dashed containers with a short label of the trust change.
 5. Inspect every boundary crossing and each important internal flow; keep or justify each one.
-6. Assign stable IDs (E1, P1, S1, F1 style) and emit a threat/mitigation register as a separate table.
+6. Assign stable IDs (EE-1, P-1, DS-1, DF-1 style, so they never collide with catalogue codes) and emit a threat/mitigation register as a separate table.
 7. Colour: neutral fills; one accent for boundaries; a second marker only for "proposed / unverified". Keep symbols from one DFD set, with a legend.
 8. Review with a system expert; label gaps instead of guessing.
 

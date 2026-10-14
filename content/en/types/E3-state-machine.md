@@ -3,20 +3,18 @@ code: E3
 slug: state-machine
 family: E
 names:
-  en: State Machine Diagram
+  en: State machine diagram
   zh: 状态机图
   aliases:
-    en: [statechart, statechart diagram, state diagram, state-transition diagram, lifecycle diagram, finite-state machine (FSM) diagram]
-    zh: [状态图, 状态迁移图, 状态转换图, 生命周期图, Statechart]
-question: "What states can this one thing be in, which events move it between states, what happens on each move, and which moves are impossible?"
-audiences: [developers, testers, product owners, operations]
-level: logical
-phases: [design, build, review, operate]
-scope: "One entity, job, connection or component over its whole life, one diagram per entity"
-formal:
-  kind: standard
-  ref: "OMG UML 2.5.1 state machines (behavioral and protocol); Harel statecharts (1987); W3C SCXML 1.0 (2015) for the executable form"
-neighbours: [E2, E1, A5, D1, E4]
+    en: [state diagram, statechart, state transition diagram, statechart diagram, state-transition diagram, lifecycle diagram, finite-state machine (FSM) diagram]
+    zh: [状态图, 状态迁移图, 状态转换图, 生命周期图]
+question: What states can this one thing be in, which events move it between states, what happens on each move, and which moves are impossible?
+audiences: [developers, product]
+levels: [logical]
+phases: [design, build]
+scope: One entity, job, connection or component over its whole life, one diagram per entity
+formal: {kind: standard, ref: OMG UML 2.5.1 state machines (behavioral and protocol); Harel statecharts (1987); W3C SCXML 1.0 (2015) for the executable form}
+neighbours: [A5, D1, E1, E2]
 status: draft
 ---
 

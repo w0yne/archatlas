@@ -1,7 +1,7 @@
 # State Machine Diagram (状态机图)
 <!-- Generated from content/en/types/E3-state-machine.md by tools/build_skill_refs.py. Do not edit. -->
 > What states can this one thing be in, which events move it between states, what happens on each move, and which moves are impossible?
-Scope: One entity, job, connection or component over its whole life, one diagram per entity Neighbours: E2, E1, A5, D1, E4.
+Scope: One entity, job, connection or component over its whole life, one diagram per entity Neighbours: A5, D1, E1, E2.
 
 ## Meaning
 - **Question:** what states can one thing be in, which events or conditions move it between states, what happens on each move, and which moves are impossible? Everything not drawn is implicitly forbidden, so the diagram finds gaps (no way out of "Failed").

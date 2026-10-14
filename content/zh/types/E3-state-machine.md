@@ -3,23 +3,21 @@ code: E3
 slug: state-machine
 family: E
 names:
-  en: State Machine Diagram
+  en: State machine diagram
   zh: 状态机图
   aliases:
-    en: [statechart, statechart diagram, state diagram, state-transition diagram, lifecycle diagram, finite-state machine (FSM) diagram]
-    zh: [状态图, 状态迁移图, 状态转换图, 生命周期图, Statechart]
-question: "这一个事物可能处于哪些状态？哪些事件使它在状态之间迁移？每次迁移时发生什么？哪些迁移是不可能的？"
-audiences: [开发人员, 测试人员, 产品负责人, 运维人员]
-level: logical
-phases: [design, build, review, operate]
-scope: "一个实体、作业、连接或组件的完整生命周期，每个实体一张图"
-formal:
-  kind: standard
-  ref: "OMG UML 2.5.1 state machines (behavioral and protocol); Harel statecharts (1987); W3C SCXML 1.0 (2015) for the executable form"
-neighbours: [E2, E1, A5, D1, E4]
+    en: [state diagram, statechart, state transition diagram, statechart diagram, state-transition diagram, lifecycle diagram, finite-state machine (FSM) diagram]
+    zh: [状态图, 状态迁移图, 状态转换图, 生命周期图]
+question: 这一个事物可能处于哪些状态？哪些事件使它在状态之间迁移？每次迁移时发生什么？哪些迁移是不可能的？
+audiences: [developers, product]
+levels: [logical]
+phases: [design, build]
+scope: 一个实体、作业、连接或组件的完整生命周期，每个实体一张图
+formal: {kind: standard, ref: OMG UML 2.5.1 state machines (behavioral and protocol); Harel statecharts (1987); W3C SCXML 1.0 (2015) for the executable form}
+neighbours: [A5, D1, E1, E2]
 status: draft
 translationOf: en/types/E3-state-machine.md
-sourceRev: 674f366
+sourceRev: a5d2191
 reviewed: false
 ---
 

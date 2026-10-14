@@ -3,20 +3,18 @@ code: A7
 slug: conceptual-architecture
 family: A
 names:
-  en: Conceptual Architecture / Solution Overview
-  zh: 概念架构图 / 方案概览图
+  en: Conceptual architecture (solution overview)
+  zh: 概念架构图（方案概览）
   aliases:
-    en: [solution concept diagram, solution overview, high-level architecture, architecture on a page, block diagram, functional diagram, layered view]
-    zh: [概念架构图, 方案概览图, 方案总览, 高层架构图, 一页纸架构, 方案构想图]
-question: "What big parts make up this solution, what does each part do for the business, and how do they depend on each other and on the outside world?"
-audiences: [executives, business sponsors, steering and review boards, customer stakeholders, new team members]
-level: concept
-phases: [discovery, planning, review]
-scope: "One solution opened one level below its context: 5–9 technology-neutral building blocks inside an explicit boundary, with users, channels and external systems at the edge."
-formal:
-  kind: method
-  ref: "TOGAF Solution Concept diagram (Phase A artifact, TOGAF 9.1 §35.6.2); informal notation; ArchiMate 3.2 Layered viewpoint as the formal option"
-neighbours: [C1, C2, C3, C5, A1, A8]
+    en: [solution overview, solution concept diagram, high-level architecture, architecture on a page, block diagram, functional diagram]
+    zh: [方案概览图, 方案总览, 高层架构图, 一页纸架构, 方案构想图, 概念架构图]
+question: What big parts make up this solution, what does each part do for the business, and how do they depend on each other and on the outside world?
+audiences: [leaders, business, architects]
+levels: [concept]
+phases: [initiate, design]
+scope: 'One solution opened one level below its context: 5–9 technology-neutral building blocks inside an explicit boundary, with users, channels and external systems at the edge.'
+formal: {kind: method, ref: 'TOGAF Solution Concept diagram (Phase A artifact, TOGAF 9.1 §35.6.2); informal notation; ArchiMate 3.2 Layered viewpoint as the formal option'}
+neighbours: [A1, A8, C1, C2, C3, C5, I2]
 status: draft
 ---
 
@@ -34,13 +32,14 @@ A conceptual architecture answers "what big parts make up this solution, what do
 <!-- skill: condense (bullets, ≤12 lines) -->
 - **Audience:** executives, sponsors, steering and review boards, customer stakeholders, new joiners; architects use it as the cover page of an architecture pack.
 - **Scenarios:** a vision workshop that aligns sponsors on what is being built (an online shop replatforming); a proposal "solution on a page"; the opening slide of an architecture review; onboarding; a reference picture for a recurring solution pattern [14][15][16].
-- **When not to use:** engineers need interfaces, deployment or sequencing (C3, C5, G1, E1); the real question is scope only (C2) or the whole estate (C1); the story is a migration (A8); the content is a feature inventory (A1).
+- **When not to use:** engineers need interfaces, deployment or sequencing (C3, C5, G1, E1); the real question is scope only (C2) or the whole estate (C1); the story is a migration (A8); the content is a list of business abilities (A1) or of product features (B3).
 - **vs neighbours:**
   - Choose **C2 system context** when the audience only needs scope; A7 opens that black box one level.
   - Choose **C1 application landscape** for many systems across the enterprise; A7 is one solution.
   - Choose **A1 capability map** for what the business must be able to do; A7 shows which parts deliver it [9].
   - Choose **A8 target and roadmap** when the story is change over time; reuse this A7 as the target picture.
   - Choose **C3 / C5** as soon as readers ask which service calls which API.
+  - Choose **I2** when business, application and technology elements and their formal ArchiMate relationships must appear in one view.
 
 ## Notation and elements {#notation}
 <!-- skill: condense (bullets, ≤15 lines) -->
@@ -65,7 +64,7 @@ A conceptual architecture answers "what big parts make up this solution, what do
 ### Anti-patterns
 
 1. "Marketecture": logos only, boxes without lines, unlabelled arrows, ambiguous levels of abstraction [17].
-2. A feature list drawn as boxes; that is a capability map. An architecture view shows parts; features become tags at most [9].
+2. A feature list drawn as boxes. Business abilities belong in a capability map (A1) and product features in a feature tree (B3); an architecture view shows parts, and features become tags at most [9].
 3. Mixed abstraction among siblings, e.g. a container, an actor and a process step in one row [4].
 4. Sentences or bullet lists inside boxes, and icons that decorate rather than mean something [5].
 5. A non-focus subsystem drawn in full, or working notes ("TBD", "pending") on the figure instead of a legend category such as "planned" [4].

@@ -1,14 +1,14 @@
-# Scope diagram
+# Scope diagram (范围图)
 <!-- Generated from content/en/types/B4-scope-diagram.md by tools/build_skill_refs.py. Do not edit. -->
 > What does this initiative include or exclude, and which external dependencies still require work?
-Scope: system Neighbours: C2, A3, B1, D2, C6.
+Scope: system Neighbours: A3, B1, C2.
 
 ## Meaning
 A scope diagram answers **what an initiative includes or excludes and which dependencies affect that agreement**. Its concern is responsibility for change and delivery, not merely where software runs.
 **Definition used here:** an informal inclusion/exclusion map, optionally paired with a context diagram. It is not another name for the C4 model's System Context diagram or a DFD.
 A payment provider can be outside an online shop's system boundary while its integration is inside a checkout project's scope. System, delivery, ownership, and trust boundaries are different facts.
 Context views instead describe a subject and its environment: C4 model context emphasizes people/systems; arc42 separates domain exchanges from technical channels; DFD context emphasizes data crossing a whole-system process.
-The scope map omits detailed behavior, deployment, and complete interface contracts. Its diagram cannot itself establish stakeholder agreement; link the decision baseline.
+The scope map omits detailed behaviour, deployment, and complete interface contracts. Its diagram cannot itself establish stakeholder agreement; link the decision baseline.
 
 ## When to use and how to choose
 - **Audience:** sponsors, product owners, analysts, architects, and delivery/integration teams.
@@ -44,7 +44,7 @@ The scope map omits detailed behavior, deployment, and complete interface contra
 3. Gather agreed inclusions, exclusions, dependencies, and unresolved decisions.
 4. Keep external system ownership separate from integration work in scope.
 5. Lay out labeled scope regions; for a context companion, center the subject and group relevant neighbors.
-6. Use short labels, restrained color, and explicit edge meanings; keep contracts in a table.
+6. Use short labels, restrained colour, and explicit edge meanings; keep contracts in a table.
 7. Check evidence and companion views; record disagreements without inventing agreement.
 
 **Self-check**

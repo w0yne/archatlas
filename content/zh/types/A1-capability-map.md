@@ -3,23 +3,21 @@ code: A1
 slug: capability-map
 family: A
 names:
-  en: Business Capability Map
+  en: Business capability map
   zh: 业务能力图
   aliases:
-    en: [capability map, business capability model, capability heat map, capability landscape]
-    zh: [能力地图, 业务能力模型, 能力热力图]
-question: "业务必须具备哪些能力（不论由谁、以何种方式、用哪个系统来完成）？其中哪些能力强、哪些弱、哪些缺失、哪些具有战略意义？"
-audiences: [高管, 业务发起人, 战略与投资组合负责人, 企业架构师, 业务架构师]
-level: strategy
-phases: [discovery, planning, review]
-scope: "一个企业或业务单元，一页呈现 2–3 个能力层级，可选叠加一种评估热力图"
-formal:
-  kind: standard
-  ref: "ArchiMate 3.2 Capability element and Capability Map viewpoint; TOGAF Series Guide: Business Capabilities, Version 2 (G211, 2022) and BIZBOK Guide for content rules"
-neighbours: [A2, A5, A3, C1, A7, A8]
+    en: [capability map, capability heat map, capability landscape, business capability model]
+    zh: [能力地图, 能力热力图, 业务能力模型]
+question: 业务必须具备哪些能力（不论由谁、以何种方式、用哪个系统来完成）？其中哪些能力强、哪些弱、哪些缺失、哪些具有战略意义？
+audiences: [leaders, business, architects]
+levels: [strategy]
+phases: [initiate]
+scope: 一个企业或业务单元，一页呈现 2–3 个能力层级，可选叠加一种评估热力图
+formal: {kind: standard, ref: 'ArchiMate 3.2 Capability element and Capability Map viewpoint; TOGAF Series Guide: Business Capabilities, Version 2 (G211, 2022) and BIZBOK Guide for content rules'}
+neighbours: [A2, A5, A7, A8, C1]
 status: draft
 translationOf: en/types/A1-capability-map.md
-sourceRev: 674f366
+sourceRev: a5d2191
 reviewed: false
 ---
 
@@ -59,7 +57,7 @@ reviewed: false
   - 当问题是步骤、网关或交接时，选择 **A5 BPMN 流程**。
   - 当问题是“谁”时，选择 **A3 业务上下文**（或干系人地图）；能力 × 组织是一张矩阵，而不是合并成一张图。
   - 当读者需要看到系统时，选择 **C1 应用全景图**；能力到应用的叠加是派生视图，必须如此标注。
-  - 当问题是“由哪些部分组成”时，选择 **A7 概念架构**：架构展示组件，而一份功能清单则是能力图。
+  - 当问题是“由哪些部分组成”时，选择 **A7 概念架构**：架构展示组件。业务能力清单是能力图（A1）；产品功能清单是功能树（B3）。
   - 当问题是变化何时发生时，选择 **A8 目标架构与路线图**；现状与目标态的成熟度热力图可作为它的输入。
 
 ## 表示法与元素 {#notation}

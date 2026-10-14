@@ -1,7 +1,7 @@
 # Cloud Infrastructure Architecture (云基础设施架构图)
 <!-- Generated from content/en/types/G2-cloud-infrastructure-architecture.md by tools/build_skill_refs.py. Do not edit. -->
 > Which cloud capabilities realise the workload, and which trade-offs make that arrangement fit its requirements?
-Scope: One workload on one provider (or a stated multi-provider split), showing selected services, responsibilities, the main request and data path, and real location or failure boundaries Neighbours: G1, G3, C3, C5, G4.
+Scope: One workload on one provider (or a stated multi-provider split), showing selected services, responsibilities, the main request and data path, and real location or failure boundaries Neighbours: C3, C5, G1, G3, G4.
 
 ## Meaning
 - **Question:** which cloud capabilities realise this workload, and what trade-offs make the arrangement fit its reliability, security, operations, performance and cost goals?

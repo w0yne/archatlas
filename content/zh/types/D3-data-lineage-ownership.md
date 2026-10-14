@@ -3,23 +3,21 @@ code: D3
 slug: data-lineage-ownership
 family: D
 names:
-  en: Data Lineage and Ownership Map
-  zh: 数据血缘与数据归属图
+  en: Data lineage and ownership map
+  zh: 数据血缘与归属图
   aliases:
-    en: [data lineage graph, lineage DAG, data provenance graph, data map, data ownership map, data domain map, data stewardship map]
-    zh: [数据血缘图, 血缘关系图, 数据溯源图, 数据地图, 数据资产地图, 数据归属图, 数据责任图, 数据分布图]
-question: "这个数据集或这个答案从哪里来？它一旦变更，下游会有什么受影响？谁对它负责？"
-audiences: [数据治理负责人, 数据所有者与数据管理员, 隐私与合规官, 数据工程师, 分析使用者, 架构师]
-level: logical
-phases: [design, operation, review]
-scope: "一个锚点（一个数据集、报表或答案），向上游或下游追溯有限范围，约 20 个节点，粒度为数据集；归属以叠加层形式呈现"
-formal:
-  kind: convention
-  ref: "No graphical standard. Runtime lineage metadata is standardised by OpenLineage (Job, Run, Dataset, facets); ownership roles follow data-governance practice (owner, steward)"
-neighbours: [D2, D1, H1, F3, E2]
+    en: [data lineage diagram, lineage graph, data ownership map, data asset map, data lineage graph, lineage DAG, data provenance graph, data domain map, data stewardship map]
+    zh: [数据血缘图, 数据归属图, 数据资产地图, 血缘关系图, 数据溯源图, 数据责任图, 数据分布图]
+question: 这个数据集或这个答案从哪里来？它一旦变更，下游会有什么受影响？谁对它负责？
+audiences: [architects, security, business]
+levels: [logical]
+phases: [design, operate]
+scope: 一个锚点（一个数据集、报表或答案），向上游或下游追溯有限范围，约 20 个节点，粒度为数据集；归属以叠加层形式呈现
+formal: {kind: convention, ref: 'No graphical standard. Runtime lineage metadata is standardised by OpenLineage (Job, Run, Dataset, facets); ownership roles follow data-governance practice (owner, steward)'}
+neighbours: [D1, D2, H1]
 status: draft
 translationOf: en/types/D3-data-lineage-ownership.md
-sourceRev: 674f366
+sourceRev: a5d2191
 reviewed: false
 ---
 
@@ -50,6 +48,7 @@ reviewed: false
   - 如果只关心归属，选 **H1 RACI 矩阵**；当所有者必须标注在数据流上时，D3 才是合适的位置。
   - 要表达谁可以读写，选 **F3 访问控制模型**；归属是问责，不是权限。
   - 要表达作业顺序和触发关系，选 **E2 活动图/流程图**或编排器的 DAG。
+  - 需要表达实体本身的结构时，选 **D1 实体关系图**；D3 表达数据集的来源与归属。
 
 ## 表示法与元素 {#notation}
 <!-- skill: condense (bullets, ≤15 lines) -->

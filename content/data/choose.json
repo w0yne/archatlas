@@ -314,7 +314,8 @@
         "developers"
       ],
       "levels": [
-        "concept"
+        "concept",
+        "logical"
       ],
       "phases": [
         "requirements",
@@ -786,6 +787,7 @@
         "business"
       ],
       "levels": [
+        "concept",
         "logical"
       ],
       "phases": [
@@ -1371,7 +1373,8 @@
         "views"
       ],
       "audiences": [
-        "architects"
+        "architects",
+        "developers"
       ],
       "levels": [
         "concept",
@@ -2202,7 +2205,9 @@
         "G4",
         "H2"
       ],
-      "views": []
+      "views": [
+        "I1"
+      ]
     },
     "operations": {
       "value": [
@@ -2376,12 +2381,42 @@
       "code": "E2"
     },
     {
+      "text": "actor–goal matrix",
+      "lang": "en",
+      "code": "A4"
+    },
+    {
+      "text": "actor–use-case diagram",
+      "lang": "en",
+      "code": "B1"
+    },
+    {
       "text": "API landscape",
       "lang": "en",
       "code": "C6"
     },
     {
+      "text": "Application Architecture (portfolio sense)",
+      "lang": "en",
+      "code": "C1"
+    },
+    {
       "text": "application communication diagram",
+      "lang": "en",
+      "code": "C1"
+    },
+    {
+      "text": "Application Cooperation View",
+      "lang": "en",
+      "code": "C1"
+    },
+    {
+      "text": "application interaction matrix",
+      "lang": "en",
+      "code": "C6"
+    },
+    {
+      "text": "Application Landscape Map",
       "lang": "en",
       "code": "C1"
     },
@@ -2406,6 +2441,11 @@
       "code": "A8"
     },
     {
+      "text": "as-is / to-be roadmap",
+      "lang": "en",
+      "code": "A8"
+    },
+    {
       "text": "as-is to-be roadmap",
       "lang": "en",
       "code": "A8"
@@ -2414,6 +2454,11 @@
       "text": "authorization model",
       "lang": "en",
       "code": "F3"
+    },
+    {
+      "text": "baseline / target / transition architecture",
+      "lang": "en",
+      "code": "A8"
     },
     {
       "text": "block diagram",
@@ -2436,12 +2481,37 @@
       "code": "A5"
     },
     {
+      "text": "bubble chart",
+      "lang": "en",
+      "code": "D2"
+    },
+    {
+      "text": "building block view (level 1)",
+      "lang": "en",
+      "code": "C5"
+    },
+    {
+      "text": "Building Block View Level 1 (arc42)",
+      "lang": "en",
+      "code": "C3"
+    },
+    {
+      "text": "Building Block View Level 2 (arc42)",
+      "lang": "en",
+      "code": "C4"
+    },
+    {
       "text": "business capability model",
       "lang": "en",
       "code": "A1"
     },
     {
       "text": "business context",
+      "lang": "en",
+      "code": "A3"
+    },
+    {
+      "text": "business context (arc42 §3.1)",
       "lang": "en",
       "code": "A3"
     },
@@ -2471,6 +2541,31 @@
       "code": "E1"
     },
     {
+      "text": "C4 dynamic diagram (sequence style)",
+      "lang": "en",
+      "code": "E1"
+    },
+    {
+      "text": "C4 model Level 1",
+      "lang": "en",
+      "code": "C2"
+    },
+    {
+      "text": "C4 model Level 2",
+      "lang": "en",
+      "code": "C3"
+    },
+    {
+      "text": "C4 model Level 3",
+      "lang": "en",
+      "code": "C4"
+    },
+    {
+      "text": "call-flow diagram",
+      "lang": "en",
+      "code": "E1"
+    },
+    {
       "text": "capability heat map",
       "lang": "en",
       "code": "A1"
@@ -2486,12 +2581,27 @@
       "code": "A1"
     },
     {
+      "text": "capability roadmap",
+      "lang": "en",
+      "code": "A8"
+    },
+    {
       "text": "CI/CD pipeline",
       "lang": "en",
       "code": "G4"
     },
     {
+      "text": "CJM",
+      "lang": "en",
+      "code": "A6"
+    },
+    {
       "text": "clean architecture",
+      "lang": "en",
+      "code": "C8"
+    },
+    {
+      "text": "clean architecture (variant)",
       "lang": "en",
       "code": "C8"
     },
@@ -2501,9 +2611,19 @@
       "code": "G2"
     },
     {
+      "text": "cloud reference architecture",
+      "lang": "en",
+      "code": "G2"
+    },
+    {
       "text": "cloud solution architecture",
       "lang": "en",
       "code": "G2"
+    },
+    {
+      "text": "Cluster Map",
+      "lang": "en",
+      "code": "C1"
     },
     {
       "text": "component view",
@@ -2526,6 +2646,11 @@
       "code": "C3"
     },
     {
+      "text": "context diagram (top level)",
+      "lang": "en",
+      "code": "D2"
+    },
+    {
       "text": "context map",
       "lang": "en",
       "code": "C7"
@@ -2541,6 +2666,11 @@
       "code": "E2"
     },
     {
+      "text": "control-flow diagram",
+      "lang": "en",
+      "code": "E2"
+    },
+    {
       "text": "cross-functional flowchart",
       "lang": "en",
       "code": "E4"
@@ -2549,6 +2679,16 @@
       "text": "cross-layer enterprise view",
       "lang": "en",
       "code": "I2"
+    },
+    {
+      "text": "crow's foot diagram",
+      "lang": "en",
+      "code": "D1"
+    },
+    {
+      "text": "current-state map",
+      "lang": "en",
+      "code": "A9"
     },
     {
       "text": "customer journey map",
@@ -2561,12 +2701,27 @@
       "code": "D3"
     },
     {
+      "text": "data domain map",
+      "lang": "en",
+      "code": "D3"
+    },
+    {
       "text": "data flow chart",
       "lang": "en",
       "code": "D2"
     },
     {
+      "text": "data flow model",
+      "lang": "en",
+      "code": "D2"
+    },
+    {
       "text": "data lineage diagram",
+      "lang": "en",
+      "code": "D3"
+    },
+    {
+      "text": "data lineage graph",
       "lang": "en",
       "code": "D3"
     },
@@ -2581,12 +2736,27 @@
       "code": "D3"
     },
     {
+      "text": "data provenance graph",
+      "lang": "en",
+      "code": "D3"
+    },
+    {
+      "text": "data stewardship map",
+      "lang": "en",
+      "code": "D3"
+    },
+    {
       "text": "DDD context map",
       "lang": "en",
       "code": "C7"
     },
     {
       "text": "delegated access flow",
+      "lang": "en",
+      "code": "F1"
+    },
+    {
+      "text": "delegated API access flow",
       "lang": "en",
       "code": "F1"
     },
@@ -2606,6 +2776,21 @@
       "code": "D2"
     },
     {
+      "text": "DFD Level 0",
+      "lang": "en",
+      "code": "C2"
+    },
+    {
+      "text": "DFD with trust boundaries",
+      "lang": "en",
+      "code": "F2"
+    },
+    {
+      "text": "domain model (UML class style)",
+      "lang": "en",
+      "code": "D1"
+    },
+    {
       "text": "ER diagram",
       "lang": "en",
       "code": "D1"
@@ -2616,14 +2801,54 @@
       "code": "D1"
     },
     {
+      "text": "event topology",
+      "lang": "en",
+      "code": "C6"
+    },
+    {
       "text": "feature breakdown",
       "lang": "en",
       "code": "B3"
     },
     {
+      "text": "finite-state machine (FSM) diagram",
+      "lang": "en",
+      "code": "E3"
+    },
+    {
+      "text": "functional bands (Visio 2007)",
+      "lang": "en",
+      "code": "E4"
+    },
+    {
       "text": "functional decomposition",
       "lang": "en",
       "code": "B3"
+    },
+    {
+      "text": "functional diagram",
+      "lang": "en",
+      "code": "A7"
+    },
+    {
+      "text": "functional flowchart",
+      "lang": "en",
+      "code": "E4"
+    },
+    {
+      "text": "functional view",
+      "lang": "en",
+      "code": "C5"
+    },
+    {
+      "text": "future-state map",
+      "lang": "en",
+      "code": "A9"
+    },
+    {
+      "text": "GitOps delivery view",
+      "lang": "en",
+      "code": "G4"
     },
     {
       "text": "GitOps flow",
@@ -2636,14 +2861,34 @@
       "code": "C8"
     },
     {
+      "text": "hexagonal architecture (variant)",
+      "lang": "en",
+      "code": "C8"
+    },
+    {
       "text": "high-level architecture",
       "lang": "en",
       "code": "A7"
     },
     {
+      "text": "High-level System Diagram",
+      "lang": "en",
+      "code": "C3"
+    },
+    {
       "text": "high-level technical architecture diagram",
       "lang": "en",
       "code": "C3"
+    },
+    {
+      "text": "High-level Technical Architecture Diagram (loose)",
+      "lang": "en",
+      "code": "C3"
+    },
+    {
+      "text": "hybrid connectivity diagram",
+      "lang": "en",
+      "code": "G3"
     },
     {
       "text": "identity flow",
@@ -2656,12 +2901,22 @@
       "code": "B4"
     },
     {
+      "text": "information model",
+      "lang": "en",
+      "code": "D1"
+    },
+    {
       "text": "integration architecture",
       "lang": "en",
       "code": "C6"
     },
     {
       "text": "integration diagram",
+      "lang": "en",
+      "code": "C6"
+    },
+    {
+      "text": "integration landscape",
       "lang": "en",
       "code": "C6"
     },
@@ -2686,9 +2941,19 @@
       "code": "C1"
     },
     {
+      "text": "journey map",
+      "lang": "en",
+      "code": "A6"
+    },
+    {
       "text": "Kruchten 4+1",
       "lang": "en",
       "code": "I1"
+    },
+    {
+      "text": "ladder diagram",
+      "lang": "en",
+      "code": "E1"
     },
     {
       "text": "layer diagram",
@@ -2701,14 +2966,24 @@
       "code": "A9"
     },
     {
-      "text": "level 0 DFD",
+      "text": "lifecycle diagram",
       "lang": "en",
-      "code": "C2"
+      "code": "E3"
+    },
+    {
+      "text": "lineage DAG",
+      "lang": "en",
+      "code": "D3"
     },
     {
       "text": "lineage graph",
       "lang": "en",
       "code": "D3"
+    },
+    {
+      "text": "logical application architecture",
+      "lang": "en",
+      "code": "C5"
     },
     {
       "text": "logical building-block view",
@@ -2746,9 +3021,19 @@
       "code": "A8"
     },
     {
+      "text": "migration view",
+      "lang": "en",
+      "code": "A8"
+    },
+    {
       "text": "monitoring architecture diagram",
       "lang": "en",
       "code": "H2"
+    },
+    {
+      "text": "MSC",
+      "lang": "en",
+      "code": "E1"
     },
     {
       "text": "n-layer architecture",
@@ -2786,9 +3071,19 @@
       "code": "C8"
     },
     {
+      "text": "onion architecture (variant)",
+      "lang": "en",
+      "code": "C8"
+    },
+    {
       "text": "permission model",
       "lang": "en",
       "code": "F3"
+    },
+    {
+      "text": "physical network diagram",
+      "lang": "en",
+      "code": "G3"
     },
     {
       "text": "plateau diagram",
@@ -2796,14 +3091,39 @@
       "code": "A8"
     },
     {
+      "text": "ports and adapters (variant)",
+      "lang": "en",
+      "code": "C8"
+    },
+    {
       "text": "power-interest grid",
       "lang": "en",
       "code": "H3"
     },
     {
+      "text": "presentation-domain-data layering",
+      "lang": "en",
+      "code": "C8"
+    },
+    {
+      "text": "process flow diagram",
+      "lang": "en",
+      "code": "A5"
+    },
+    {
+      "text": "process flow diagram (informal)",
+      "lang": "en",
+      "code": "E2"
+    },
+    {
       "text": "process map",
       "lang": "en",
       "code": "A5"
+    },
+    {
+      "text": "process model (structured analysis)",
+      "lang": "en",
+      "code": "D2"
     },
     {
       "text": "program flowchart",
@@ -2812,6 +3132,11 @@
     },
     {
       "text": "provider infrastructure view",
+      "lang": "en",
+      "code": "G2"
+    },
+    {
+      "text": "provider-specific infrastructure view",
       "lang": "en",
       "code": "G2"
     },
@@ -2832,6 +3157,11 @@
     },
     {
       "text": "ReBAC graph",
+      "lang": "en",
+      "code": "F3"
+    },
+    {
+      "text": "relationship-based authorization graph",
       "lang": "en",
       "code": "F3"
     },
@@ -2861,6 +3191,16 @@
       "code": "F3"
     },
     {
+      "text": "role–activity scope matrix",
+      "lang": "en",
+      "code": "A4"
+    },
+    {
+      "text": "routing view",
+      "lang": "en",
+      "code": "G3"
+    },
+    {
       "text": "Rummler-Brache diagram",
       "lang": "en",
       "code": "E4"
@@ -2871,7 +3211,17 @@
       "code": "C3"
     },
     {
+      "text": "runtime infrastructure view",
+      "lang": "en",
+      "code": "G1"
+    },
+    {
       "text": "runtime view",
+      "lang": "en",
+      "code": "E1"
+    },
+    {
+      "text": "runtime-view scenario",
       "lang": "en",
       "code": "E1"
     },
@@ -2882,6 +3232,11 @@
     },
     {
       "text": "scope and context diagram",
+      "lang": "en",
+      "code": "B4"
+    },
+    {
+      "text": "scope boundary map",
       "lang": "en",
       "code": "B4"
     },
@@ -2941,7 +3296,17 @@
       "code": "E3"
     },
     {
+      "text": "state-transition diagram",
+      "lang": "en",
+      "code": "E3"
+    },
+    {
       "text": "statechart",
+      "lang": "en",
+      "code": "E3"
+    },
+    {
+      "text": "statechart diagram",
       "lang": "en",
       "code": "E3"
     },
@@ -2961,9 +3326,29 @@
       "code": "C7"
     },
     {
+      "text": "STRIDE diagram",
+      "lang": "en",
+      "code": "F2"
+    },
+    {
+      "text": "Structured-analysis Context Diagram",
+      "lang": "en",
+      "code": "C2"
+    },
+    {
+      "text": "swim-lane flowchart",
+      "lang": "en",
+      "code": "E4"
+    },
+    {
       "text": "swimlane flowchart",
       "lang": "en",
       "code": "E4"
+    },
+    {
+      "text": "swimlane process diagram",
+      "lang": "en",
+      "code": "A5"
     },
     {
       "text": "system context diagram",
@@ -2979,6 +3364,16 @@
       "text": "system landscape diagram",
       "lang": "en",
       "code": "C1"
+    },
+    {
+      "text": "System Landscape Diagram (C4 model)",
+      "lang": "en",
+      "code": "C1"
+    },
+    {
+      "text": "team map (organisational variant)",
+      "lang": "en",
+      "code": "C7"
     },
     {
       "text": "technology-neutral component diagram",
@@ -3002,6 +3397,11 @@
     },
     {
       "text": "trust boundary diagram",
+      "lang": "en",
+      "code": "F2"
+    },
+    {
+      "text": "trust-boundary diagram",
       "lang": "en",
       "code": "F2"
     },
@@ -3031,6 +3431,16 @@
       "code": "A6"
     },
     {
+      "text": "value stream",
+      "lang": "en",
+      "code": "A2"
+    },
+    {
+      "text": "value stream / capability cross-map",
+      "lang": "en",
+      "code": "A2"
+    },
+    {
       "text": "value stream capability cross-map",
       "lang": "en",
       "code": "A2"
@@ -3041,9 +3451,19 @@
       "code": "A2"
     },
     {
+      "text": "value stream map (TOGAF artifact)",
+      "lang": "en",
+      "code": "A2"
+    },
+    {
       "text": "value stream stages",
       "lang": "en",
       "code": "A2"
+    },
+    {
+      "text": "VPC or VNet topology",
+      "lang": "en",
+      "code": "G3"
     },
     {
       "text": "VPC topology",
@@ -3061,6 +3481,16 @@
       "code": "C4"
     },
     {
+      "text": "workflow diagram (informal)",
+      "lang": "en",
+      "code": "E2"
+    },
+    {
+      "text": "0 层图",
+      "lang": "zh",
+      "code": "D2"
+    },
+    {
       "text": "0 层数据流图",
       "lang": "zh",
       "code": "C2"
@@ -3069,6 +3499,11 @@
       "text": "4+1 架构视图模型",
       "lang": "zh",
       "code": "I1"
+    },
+    {
+      "text": "API 全景图",
+      "lang": "zh",
+      "code": "C6"
     },
     {
       "text": "ArchiMate 分层视点",
@@ -3086,6 +3521,21 @@
       "code": "A5"
     },
     {
+      "text": "C4 模型第 1 层",
+      "lang": "zh",
+      "code": "C2"
+    },
+    {
+      "text": "C4 模型第 2 层",
+      "lang": "zh",
+      "code": "C3"
+    },
+    {
+      "text": "C4 模型第 3 层",
+      "lang": "zh",
+      "code": "C4"
+    },
+    {
       "text": "C4 第二层",
       "lang": "zh",
       "code": "C3"
@@ -3096,14 +3546,29 @@
       "code": "G4"
     },
     {
+      "text": "DDD 上下文映射",
+      "lang": "zh",
+      "code": "C7"
+    },
+    {
       "text": "DDD 战略设计图",
       "lang": "zh",
       "code": "C7"
     },
     {
+      "text": "E-R 图",
+      "lang": "zh",
+      "code": "D1"
+    },
+    {
       "text": "ER 图",
       "lang": "zh",
       "code": "D1"
+    },
+    {
+      "text": "IT 蓝图",
+      "lang": "zh",
+      "code": "C1"
     },
     {
       "text": "RACI 职责分配矩阵",
@@ -3136,9 +3601,24 @@
       "code": "I2"
     },
     {
+      "text": "业务上下文",
+      "lang": "zh",
+      "code": "C2"
+    },
+    {
       "text": "业务场景地图",
       "lang": "zh",
       "code": "A4"
+    },
+    {
+      "text": "业务场景清单",
+      "lang": "zh",
+      "code": "A4"
+    },
+    {
+      "text": "业务流程图",
+      "lang": "zh",
+      "code": "A5"
     },
     {
       "text": "业务流程建模图",
@@ -3159,6 +3639,16 @@
       "text": "业务能力模型",
       "lang": "zh",
       "code": "A1"
+    },
+    {
+      "text": "事件拓扑图",
+      "lang": "zh",
+      "code": "C6"
+    },
+    {
+      "text": "云参考架构",
+      "lang": "zh",
+      "code": "G2"
     },
     {
       "text": "云服务架构图",
@@ -3186,7 +3676,27 @@
       "code": "G4"
     },
     {
+      "text": "价值流",
+      "lang": "zh",
+      "code": "A2"
+    },
+    {
+      "text": "价值流—能力映射",
+      "lang": "zh",
+      "code": "A2"
+    },
+    {
+      "text": "价值流程图",
+      "lang": "zh",
+      "code": "A9"
+    },
+    {
       "text": "价值流能力映射",
+      "lang": "zh",
+      "code": "A2"
+    },
+    {
+      "text": "价值流阶段",
       "lang": "zh",
       "code": "A2"
     },
@@ -3204,6 +3714,11 @@
       "text": "信任边界图",
       "lang": "zh",
       "code": "F2"
+    },
+    {
+      "text": "信息模型",
+      "lang": "zh",
+      "code": "D1"
     },
     {
       "text": "克鲁岑 4+1 视图模型",
@@ -3231,7 +3746,32 @@
       "code": "B3"
     },
     {
+      "text": "功能特性树",
+      "lang": "zh",
+      "code": "B3"
+    },
+    {
+      "text": "功能视图",
+      "lang": "zh",
+      "code": "C5"
+    },
+    {
+      "text": "协作图",
+      "lang": "zh",
+      "code": "A5"
+    },
+    {
+      "text": "参与者—用例图",
+      "lang": "zh",
+      "code": "B1"
+    },
+    {
       "text": "发布流水线",
+      "lang": "zh",
+      "code": "G4"
+    },
+    {
+      "text": "发布流水线图",
       "lang": "zh",
       "code": "G4"
     },
@@ -3241,9 +3781,34 @@
       "code": "H2"
     },
     {
+      "text": "含信任边界的数据流图",
+      "lang": "zh",
+      "code": "F2"
+    },
+    {
+      "text": "团队映射图",
+      "lang": "zh",
+      "code": "C7"
+    },
+    {
       "text": "场景覆盖矩阵",
       "lang": "zh",
       "code": "A4"
+    },
+    {
+      "text": "基于关系的授权模型",
+      "lang": "zh",
+      "code": "F3"
+    },
+    {
+      "text": "基于属性的授权模型",
+      "lang": "zh",
+      "code": "F3"
+    },
+    {
+      "text": "处理逻辑图",
+      "lang": "zh",
+      "code": "E2"
     },
     {
       "text": "委托访问流程图",
@@ -3286,9 +3851,24 @@
       "code": "H3"
     },
     {
+      "text": "平台期图",
+      "lang": "zh",
+      "code": "A8"
+    },
+    {
       "text": "序列图",
       "lang": "zh",
       "code": "E1"
+    },
+    {
+      "text": "应用交互矩阵",
+      "lang": "zh",
+      "code": "C6"
+    },
+    {
+      "text": "应用协作视图",
+      "lang": "zh",
+      "code": "C1"
     },
     {
       "text": "应用地图",
@@ -3301,9 +3881,29 @@
       "code": "C1"
     },
     {
+      "text": "应用通信图",
+      "lang": "zh",
+      "code": "C6"
+    },
+    {
+      "text": "战略设计图",
+      "lang": "zh",
+      "code": "C7"
+    },
+    {
       "text": "技术分层图",
       "lang": "zh",
       "code": "C8"
+    },
+    {
+      "text": "技术架构图（口语，含义宽泛）",
+      "lang": "zh",
+      "code": "C3"
+    },
+    {
+      "text": "持续交付流水线",
+      "lang": "zh",
+      "code": "G4"
     },
     {
       "text": "授权模型",
@@ -3326,9 +3926,19 @@
       "code": "E2"
     },
     {
+      "text": "控制流程图",
+      "lang": "zh",
+      "code": "E2"
+    },
+    {
       "text": "故事地图",
       "lang": "zh",
       "code": "B2"
+    },
+    {
+      "text": "数据分布图",
+      "lang": "zh",
+      "code": "D3"
     },
     {
       "text": "数据归属图",
@@ -3351,7 +3961,17 @@
       "code": "D2"
     },
     {
+      "text": "数据溯源图",
+      "lang": "zh",
+      "code": "D3"
+    },
+    {
       "text": "数据血缘图",
+      "lang": "zh",
+      "code": "D3"
+    },
+    {
+      "text": "数据责任图",
       "lang": "zh",
       "code": "D3"
     },
@@ -3381,6 +4001,11 @@
       "code": "A7"
     },
     {
+      "text": "未来状态图",
+      "lang": "zh",
+      "code": "A9"
+    },
+    {
       "text": "权力利益矩阵",
       "lang": "zh",
       "code": "H3"
@@ -3401,6 +4026,11 @@
       "code": "D1"
     },
     {
+      "text": "概念架构图",
+      "lang": "zh",
+      "code": "A7"
+    },
+    {
       "text": "泳道流程图",
       "lang": "zh",
       "code": "E4"
@@ -3416,6 +4046,11 @@
       "code": "E2"
     },
     {
+      "text": "混合网络连接图",
+      "lang": "zh",
+      "code": "G3"
+    },
+    {
       "text": "演进路线图",
       "lang": "zh",
       "code": "A8"
@@ -3424,6 +4059,11 @@
       "text": "物料与信息流图",
       "lang": "zh",
       "code": "A9"
+    },
+    {
+      "text": "物理网络图",
+      "lang": "zh",
+      "code": "G3"
     },
     {
       "text": "特性树",
@@ -3446,6 +4086,26 @@
       "code": "E3"
     },
     {
+      "text": "现状 / 目标 / 过渡架构",
+      "lang": "zh",
+      "code": "A8"
+    },
+    {
+      "text": "现状图",
+      "lang": "zh",
+      "code": "A9"
+    },
+    {
+      "text": "生命周期图",
+      "lang": "zh",
+      "code": "E3"
+    },
+    {
+      "text": "用户故事映射",
+      "lang": "zh",
+      "code": "B2"
+    },
+    {
       "text": "监控架构图",
       "lang": "zh",
       "code": "H2"
@@ -3456,7 +4116,22 @@
       "code": "E2"
     },
     {
+      "text": "稳定态图",
+      "lang": "zh",
+      "code": "A8"
+    },
+    {
+      "text": "端口与适配器",
+      "lang": "zh",
+      "code": "C8"
+    },
+    {
       "text": "精益价值流映射",
+      "lang": "zh",
+      "code": "A9"
+    },
+    {
+      "text": "精益价值流程图",
       "lang": "zh",
       "code": "A9"
     },
@@ -3469,6 +4144,11 @@
       "text": "系统全景图",
       "lang": "zh",
       "code": "C1"
+    },
+    {
+      "text": "系统架构图（口语，含义宽泛）",
+      "lang": "zh",
+      "code": "C3"
     },
     {
       "text": "系统环境图",
@@ -3506,6 +4186,16 @@
       "code": "G3"
     },
     {
+      "text": "网络连通视图",
+      "lang": "zh",
+      "code": "G3"
+    },
+    {
+      "text": "职责流程图",
+      "lang": "zh",
+      "code": "E4"
+    },
+    {
       "text": "能力地图",
       "lang": "zh",
       "code": "A1"
@@ -3516,9 +4206,24 @@
       "code": "A1"
     },
     {
+      "text": "能力路线图",
+      "lang": "zh",
+      "code": "A8"
+    },
+    {
       "text": "范围上下文图",
       "lang": "zh",
       "code": "B4"
+    },
+    {
+      "text": "范围内外图",
+      "lang": "zh",
+      "code": "B4"
+    },
+    {
+      "text": "范围图（业务视角）",
+      "lang": "zh",
+      "code": "A3"
     },
     {
       "text": "范围边界图",
@@ -3526,9 +4231,24 @@
       "code": "B4"
     },
     {
+      "text": "血缘关系图",
+      "lang": "zh",
+      "code": "D3"
+    },
+    {
+      "text": "角色-场景矩阵",
+      "lang": "zh",
+      "code": "A4"
+    },
+    {
       "text": "角色权限矩阵",
       "lang": "zh",
       "code": "F3"
+    },
+    {
+      "text": "调用链时序图",
+      "lang": "zh",
+      "code": "E1"
     },
     {
       "text": "责任分配矩阵",
@@ -3546,9 +4266,39 @@
       "code": "E4"
     },
     {
+      "text": "跨部门流程图",
+      "lang": "zh",
+      "code": "E4"
+    },
+    {
+      "text": "路由视图",
+      "lang": "zh",
+      "code": "G3"
+    },
+    {
       "text": "身份认证流程图",
       "lang": "zh",
       "code": "F1"
+    },
+    {
+      "text": "软件与基础设施映射图",
+      "lang": "zh",
+      "code": "G1"
+    },
+    {
+      "text": "软件交付流水线图",
+      "lang": "zh",
+      "code": "G4"
+    },
+    {
+      "text": "软件交付管道图",
+      "lang": "zh",
+      "code": "G4"
+    },
+    {
+      "text": "迁移视图",
+      "lang": "zh",
+      "code": "A8"
     },
     {
       "text": "迁移路线图",
@@ -3577,6 +4327,11 @@
     },
     {
       "text": "逻辑构件视图",
+      "lang": "zh",
+      "code": "C5"
+    },
+    {
+      "text": "逻辑组件图",
       "lang": "zh",
       "code": "C5"
     },
@@ -3626,6 +4381,16 @@
       "code": "B3"
     },
     {
+      "text": "顶层数据流图（0 层）",
+      "lang": "zh",
+      "code": "C2"
+    },
+    {
+      "text": "顺序图",
+      "lang": "zh",
+      "code": "E1"
+    },
+    {
       "text": "顾客旅程地图",
       "lang": "zh",
       "code": "A6"
@@ -3634,6 +4399,11 @@
       "text": "领域上下文图",
       "lang": "zh",
       "code": "C7"
+    },
+    {
+      "text": "领域模型",
+      "lang": "zh",
+      "code": "D1"
     },
     {
       "text": "高层架构图",
@@ -3676,7 +4446,7 @@
         "C3"
       ],
       "note": {
-        "en": "Portfolio of many applications (C1) or the inside of one application (C3).",
+        "en": "Portfolio of many applications (C1) or the running applications and data stores of one system (C3).",
         "zh": "企业级指多应用全景（C1）；单系统级指容器图（C3）。"
       }
     },
@@ -3728,7 +4498,7 @@
       ],
       "note": {
         "en": "Lightweight hand-offs (E4) or BPMN pools and lanes with message flows (A5).",
-        "zh": "轻量交接（E4），或 BPMN 的池 / 道与消息流（A5）。"
+        "zh": "轻量交接（E4），或 BPMN 的池 / 泳道与消息流（A5）。"
       }
     },
     {
@@ -3777,7 +4547,7 @@
       ],
       "note": {
         "en": "Business-architecture value stream without times (A2) or Lean value-stream map with process and lead times (A9).",
-        "zh": "业务架构价值流，不含时间（A2）；或含处理 / 提前期的精益价值流图（A9）。"
+        "zh": "业务架构价值流，不含时间（A2）；或含处理时间与前置时间的精益价值流图（A9）。"
       }
     },
     {

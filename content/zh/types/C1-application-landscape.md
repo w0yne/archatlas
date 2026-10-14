@@ -3,23 +3,21 @@ code: C1
 slug: application-landscape
 family: C
 names:
-  en: Application Landscape
-  zh: 应用架构图（应用全景图）
+  en: Application landscape
+  zh: 应用全景图
   aliases:
-    en: [Application Architecture (portfolio sense), Application Landscape Map, Application Portfolio View, Application Communication Diagram, Application Cooperation View, System Landscape Diagram (C4 model), Cluster Map, IT Landscape]
-    zh: [应用全景图, 应用地图, 系统全景图, 应用组合图, 应用协作视图, IT 蓝图]
-question: "这个范围内有哪些应用，它们如何分组，哪些应用之间存在依赖或数据交换？"
-audiences: [企业架构师, 解决方案架构师, IT 管理层, 应用组合管理人员, 集成与平台团队, 安全与风险团队]
-level: logical
-phases: [discovery, planning, review, operate]
-scope: "在一个明确的范围（企业、部门或产品线）内的多个应用，只画到应用层级。"
-formal:
-  kind: convention
-  ref: "No single notation. Related: TOGAF 9.2 Application Communication diagram and Application Portfolio catalog; ArchiMate 3.2 Application Cooperation viewpoint; C4 model System Landscape diagram"
-neighbours: [A1, A7, A8, C2, C3, C6, C7, G1, I2]
+    en: [application portfolio view, application communication diagram, system landscape diagram, IT landscape, Application Architecture (portfolio sense), Application Landscape Map, Application Cooperation View, System Landscape Diagram (C4 model), Cluster Map]
+    zh: [应用地图, 系统全景图, 应用组合图, 应用协作视图, IT 蓝图]
+question: 这个范围内有哪些应用，它们如何分组，哪些应用之间存在依赖或数据交换？
+audiences: [architects, leaders]
+levels: [logical]
+phases: [initiate, design]
+scope: 在一个明确的范围（企业、部门或产品线）内的多个应用，只画到应用层级。
+formal: {kind: method, ref: 'No single notation. Related: TOGAF 9.2 Application Communication diagram and Application Portfolio catalog; ArchiMate 3.2 Application Cooperation viewpoint; C4 model System Landscape diagram'}
+neighbours: [A1, A7, A8, C2, C3, C5, C6, I2]
 status: draft
 translationOf: en/types/C1-application-landscape.md
-sourceRev: 6857dea
+sourceRev: a5d2191
 reviewed: false
 ---
 
@@ -31,7 +29,7 @@ reviewed: false
 <!-- skill: condense (4–6 lines) -->
 它回答的是：*这里有哪些应用，如何分组，哪些应用之间存在依赖或数据交换？*按 ISO/IEC/IEEE 42010 的含义，它是应用组合层面的视点：关注点是重叠、归属、变更影响和集成热点 [9]。TOGAF 将其置于应用架构域（应用组合目录（Application Portfolio catalog）、应用通信图（Application Communication diagram））[2][3]；在 ArchiMate 中，它接近应用协作视点（Application Cooperation viewpoint）[5]。它不包含应用内部结构（C3/C4/C5）、托管部署（G1）、协议、认证或 SLA 等接口属性（C6）、数据模式（D1）以及流程流转（A5）。
 **本站采用的定义：**“应用架构”有两层含义：多个应用组成的组合（TOGAF，即本类型）和单个应用的内部设计 [2][10]。多个应用 → C1；单个应用的组成部分 → C3、C5 或 C8。
-**本编号下的三种变体：**(a) *分组全景图*：应用按层、领域或能力放入横带（默认）；(b) *通信关系图*：以关系为中心，核心应用居中（TOGAF 应用通信图、ArchiMate 应用协作视图、EAM Pattern Catalog 中的聚类图（cluster map）[14]）；(c) *能力 × 应用矩阵*：行 = 能力，单元格 = 应用，可选地做成热力图（TOGAF 应用/功能矩阵（Application/Function matrix））[3][11]。C4 model 的**系统全景图**（System Landscape diagram）是 (a)/(b) 的最简形式：在明确的范围内只画人员和软件系统，不含容器和应用组合元数据，即“没有特定焦点的系统上下文图” [1]。
+**本编号下的三种变体：**(a) *分组全景图*：应用按层、领域或能力放入横带（默认）；(b) *通信关系图*：以关系为中心，核心应用居中（TOGAF 应用通信图、ArchiMate 应用协作视图、EAM Pattern Catalog 中的聚类图（cluster map）[14]）；(c) *能力 × 应用矩阵*（A1 的派生视图）：行 = 能力，单元格 = 应用，可选地做成热力图（TOGAF 应用/功能矩阵（Application/Function matrix））[3][11]。C4 model 的**系统全景图**（System Landscape diagram）是 (a)/(b) 的最简形式：在明确的范围内只画人员和软件系统，不含容器和应用组合元数据，即“没有特定焦点的系统上下文图” [1]。
 
 ## 何时使用与如何选择 {#choose}
 <!-- skill: condense (bullets, ≤12 lines) -->
@@ -44,6 +42,7 @@ reviewed: false
   - 每个接口都需要注明协议、认证、频率或 SLA 时，选 **C6**。
   - 问题是业务能力覆盖时，选 **A1**（可把这里的变体 c 作为叠加层）。
   - 需要在一张 ArchiMate 视图中同时呈现业务层、应用层和技术层时，选 **I2**。
+  - 非技术读者需要了解一个方案的主要组成，而不是应用清单时，选 **A7**。
 
 ## 表示法与元素 {#notation}
 <!-- skill: condense (bullets, ≤15 lines) -->

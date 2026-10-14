@@ -3,23 +3,21 @@ code: C6
 slug: integration-interface
 family: C
 names:
-  en: Integration / Interface Diagram
-  zh: 集成 / 接口图
+  en: Integration and interface diagram
+  zh: 集成与接口图
   aliases:
-    en: [integration diagram, interface map, integration architecture, integration landscape, application communication diagram, interface catalog, application interaction matrix, event topology, API landscape]
-    zh: [集成架构图, 接口关系图, 系统集成图, 应用通信图, 接口清单, 应用交互矩阵, 事件拓扑图, API 全景图]
-question: "系统之间有哪些接口？每个接口由谁发起、交换什么、采用哪种集成方式，又受哪份契约、哪些安全措施、哪个服务级别和哪些负责方约束？"
-audiences: [集成架构师, 双方开发人员, 对端系统负责人, 运维人员, 安全评审人员, 项目经理]
-level: logical
-phases: [planning, design, build, review]
-scope: "一组系统之间的接口（或对单个枢纽、单个合作方的特写），以关系图加一张必备的接口表来呈现。"
-formal:
-  kind: convention
-  ref: "none for the diagram; vocabulary from Enterprise Integration Patterns (2003) and TOGAF 9.x Phase C artefacts; contracts in OpenAPI 3.2.x / AsyncAPI 3.1.0"
-neighbours: [C1, C2, C3, C5, C7, D2, D3, E1, F2, G1]
+    en: [integration diagram, interface map, integration architecture, interface catalog, API landscape, integration landscape, application interaction matrix, event topology]
+    zh: [集成架构图, 接口关系图, 系统集成图, 接口清单, 应用通信图, 应用交互矩阵, 事件拓扑图, API 全景图]
+question: 系统之间有哪些接口？每个接口由谁发起、交换什么、采用哪种集成方式，又受哪份契约、哪些安全措施、哪个服务级别和哪些负责方约束？
+audiences: [architects, developers, operations]
+levels: [logical, physical]
+phases: [design, build]
+scope: 一组系统之间的接口（或对单个枢纽、单个合作方的特写），以关系图加一张必备的接口表来呈现。
+formal: {kind: convention, ref: none for the diagram; vocabulary from Enterprise Integration Patterns (2003) and TOGAF 9.x Phase C artefacts; contracts in OpenAPI 3.2.x / AsyncAPI 3.1.0}
+neighbours: [C1, C2, C3, C5, C7, E1, F2]
 status: draft
 translationOf: en/types/C6-integration-interface.md
-sourceRev: 674f366
+sourceRev: a5d2191
 reviewed: false
 ---
 
@@ -42,7 +40,7 @@ reviewed: false
 
 **同一类型下的三种变体：** (a) **接口关系图 + 表**（默认）：系统为节点，接口连线带编号，另附表格；(b) **事件 / 异步拓扑**：通道和主题作为一等节点，位于生产者和消费者之间 [8]；(c) **API 全景 / 目录**：一张按负责方、生命周期和消费方列出众多 API 的组合表。
 
-**有意不包含：** 字段级载荷（改为链接 OpenAPI/AsyncAPI/schema 文件）、系统内部（C4/C5）、单个场景中的调用顺序（E1）、主机和网络（G1）、数据血缘（D3）。
+**有意不包含：** 字段级载荷（改为链接 OpenAPI/AsyncAPI/schema 文件）、系统内部（C3–C5）、单个场景中的调用顺序（E1）、主机和网络（G1）、数据血缘（D3）。
 
 ## 何时使用与如何选择 {#choose}
 <!-- skill: condense (bullets, ≤12 lines) -->

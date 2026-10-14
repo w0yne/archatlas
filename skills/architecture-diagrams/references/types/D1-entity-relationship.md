@@ -1,7 +1,7 @@
 # Entity-Relationship Diagram (实体关系图)
 <!-- Generated from content/en/types/D1-entity-relationship.md by tools/build_skill_refs.py. Do not edit. -->
 > Which business things does the system keep information about, how are they related, and how many of each can take part in a relationship?
-Scope: One subject area or bounded context, about 5-15 entities, drawn at one stated level (conceptual or logical) Neighbours: D2, D3, E3, C7, F3.
+Scope: One subject area or bounded context, about 5-15 entities, drawn at one stated level (conceptual or logical) Neighbours: D2, D3, E3, F3.
 
 ## Meaning
 - **Question:** which business things does the system keep information about, and how are they related (and how many of each)? This is the "what is true about the domain" view, independent of process and time.
@@ -18,7 +18,8 @@ Scope: One subject area or bounded context, about 5-15 entities, drawn at one st
   - **D2 Data Flow Diagram** when data is moving; D1 shows structure.
   - **E3 State Machine** for one entity's lifecycle; a common pair is D1 plus one E3 per entity with a status field.
   - **C7 Bounded Context Map** for how contexts relate; draw one D1 per context, not one enterprise ER.
-  - **F3 Access Control Model** for permissions.
+  - **F3 Access-control model** for permissions.
+  - Choose **D3 Data lineage and ownership map** when the question is where data comes from, what derives from it and who owns it, rather than how entities relate.
 
 ## Notation and elements
 - **Formal or informal:** each notation is defined, but the level is a convention. Pick one notation, state it in a legend, never mix Chen diamonds with crow's feet.
@@ -38,7 +39,7 @@ Scope: One subject area or bounded context, about 5-15 entities, drawn at one st
 2. **One subject area per diagram.** Slice by bounded context or business function; reference shared entities instead of duplicating them.
 3. **Model with domain experts** and read every relationship aloud ("Each Order is placed by exactly one Customer").
 4. **Show optionality** (minimum 0 vs 1); it holds business rules that would otherwise hide in code.
-5. **Resolve N:M only at the logical level,** naming the associative entity after the real thing (`Enrolment`, not `StudentCourse`). Note cross-cutting patterns (tenant key, soft delete, audit) once instead of on every entity.
+5. **Resolve N:M only at the logical level,** naming the associative entity after the real thing (`OrderLine`, not `OrderProduct`). Note cross-cutting patterns (tenant key, soft delete, audit) once instead of on every entity.
 
 ### Anti-patterns
 1. **The database dump:** 100+ tables with all columns; comprehensiveness is the enemy of comprehensibility.

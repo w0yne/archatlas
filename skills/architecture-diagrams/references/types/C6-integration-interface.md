@@ -1,7 +1,7 @@
 # Integration / Interface Diagram (集成 / 接口图)
 <!-- Generated from content/en/types/C6-integration-interface.md by tools/build_skill_refs.py. Do not edit. -->
 > Which interfaces exist between systems, who initiates each, what is exchanged in which integration style, and under which contract, security, service level and ownership?
-Scope: The interfaces between a set of systems (or one hub or partner in close-up), drawn as a map plus a mandatory interface table. Neighbours: C1, C2, C3, C5, C7, D2, D3, E1, F2, G1.
+Scope: The interfaces between a set of systems (or one hub or partner in close-up), drawn as a map plus a mandatory interface table. Neighbours: C1, C2, C3, C5, C7, E1, F2.
 
 ## Meaning
 - **Question:** which interfaces connect these systems, who calls or publishes, what is exchanged, in which style, and who owns each side? Purpose: make coupling visible and negotiable; the table is the skeleton of the contract.

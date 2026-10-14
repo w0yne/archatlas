@@ -3,20 +3,18 @@ code: C2
 slug: system-context
 family: C
 names:
-  en: System Context Diagram
-  zh: 系统上下文图
+  en: System context diagram (C4 model level 1)
+  zh: 系统上下文图（C4 模型第 1 层）
   aliases:
-    en: [Context Diagram, C4 model Level 1, System Environment Diagram, Business Context (arc42), DFD Level 0, Structured-analysis Context Diagram]
-    zh: [上下文图, 系统环境图, C4 模型第 1 层, 业务上下文, 顶层数据流图（0 层）]
-question: "What is this system, who uses it, and which other systems does it depend on or exchange with?"
-audiences: [everyone, sponsors, product owners, business analysts, developers, operations, security, new joiners]
-level: concept
-phases: [discovery, planning, design, review]
-scope: "One software system as a black box, with the people and the external systems directly connected to it."
-formal:
-  kind: method
-  ref: "C4 model (Simon Brown), Level 1 System Context diagram; notation-independent, no versioned standard"
-neighbours: [C1, C3, B4, A3, A7, D2, C6, F2, G1]
+    en: [system context diagram, system environment diagram, context-level DFD, C4 model Level 1, DFD Level 0, Structured-analysis Context Diagram]
+    zh: [系统上下文图, 系统环境图, 0 层数据流图, C4 模型第 1 层, 业务上下文, 顶层数据流图（0 层）]
+question: What is this system, who uses it, and which other systems does it depend on or exchange with?
+audiences: [leaders, business, architects, developers, security]
+levels: [concept]
+phases: [initiate, requirements, design]
+scope: One software system as a black box, with the people and the external systems directly connected to it.
+formal: {kind: method, ref: 'C4 model (Simon Brown), Level 1 System Context diagram; notation-independent, no versioned standard'}
+neighbours: [A3, A7, B4, C1, C3, C6, D2]
 status: draft
 ---
 
@@ -37,10 +35,11 @@ It answers: *what is this system, who uses it, and which other systems does it d
 - **vs neighbours:**
   - Choose **C1** when many systems at enterprise or department scope matter; the C4 model System Landscape diagram is the bridge, "a system context diagram without a specific focus" [5].
   - Choose **C3** as soon as you need applications, data stores or technology inside the box.
-  - Choose **B4** (variant "context with scope exclusions") when negotiating what is in and out of scope.
+  - Choose **B4** (a separate scope diagram with in- and out-of-scope regions) when negotiating what is in and out of scope.
   - Choose **D2** when data flows and stores are the question: DFD lines name data, C2 lines name intent.
   - Choose **C6** for protocol, sync/async, authentication and SLA per interface (arc42 "technical context").
   - Choose **A3** for organisations, roles and stakeholder interest rather than systems.
+  - Choose **A7** when leaders need the solution's main blocks in business terms rather than the system's users and neighbours.
 
 ## Notation and elements {#notation}
 <!-- skill: condense (bullets, ≤15 lines) -->

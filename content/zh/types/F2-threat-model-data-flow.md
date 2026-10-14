@@ -3,23 +3,21 @@ code: F2
 slug: threat-model-data-flow
 family: F
 names:
-  en: Threat-Model Data-Flow Diagram
-  zh: 威胁建模数据流图
+  en: Threat-model data-flow diagram with trust boundaries
+  zh: 威胁建模数据流图（含信任边界）
   aliases:
-    en: [security data-flow diagram, DFD with trust boundaries, STRIDE diagram, trust-boundary diagram]
-    zh: [安全数据流图, 含信任边界的数据流图, 信任边界图]
-question: "哪些数据跨越了哪些权限变化或信任假设变化，安全属性可能在哪里失效？"
-audiences: [安全工程师, 解决方案架构师, 开发人员, 隐私专家, 服务负责人]
-level: logical
-phases: [design, review]
-scope: "一个功能或子系统，包括其资产、入口点和信任边界；关联一份独立的威胁登记表"
-formal:
-  kind: convention
-  ref: "Classic data-flow-diagram symbols plus security annotations; practice from the OWASP Threat Modeling Cheat Sheet and Microsoft's documented STRIDE approach. Not a universal graphical standard"
-neighbours: [D2, F1, F3, G3, C3]
+    en: [threat-model DFD, security data-flow diagram, trust boundary diagram, DFD with trust boundaries, STRIDE diagram, trust-boundary diagram]
+    zh: [威胁建模数据流图, 安全数据流图, 信任边界图, 含信任边界的数据流图]
+question: 哪些数据跨越了哪些权限变化或信任假设变化，安全属性可能在哪里失效？
+audiences: [security, architects]
+levels: [logical]
+phases: [design]
+scope: 一个功能或子系统，包括其资产、入口点和信任边界；关联一份独立的威胁登记表
+formal: {kind: method, ref: Classic data-flow-diagram symbols plus security annotations; practice from the OWASP Threat Modeling Cheat Sheet and Microsoft's documented STRIDE approach. Not a universal graphical standard}
+neighbours: [C3, C6, D2, F1, F3, G3]
 status: draft
 translationOf: en/types/F2-threat-model-data-flow.md
-sourceRev: 674f366
+sourceRev: a5d2191
 reviewed: false
 ---
 
@@ -46,10 +44,11 @@ reviewed: false
 - **不适用的情况：** 用作网络资产清单、渗透测试结果，或证明所有 STRIDE 威胁都已消除。
 - **与相邻类型的区别：**
   - 不做信任分析的普通数据处理，选 **D2 数据流图**。
-  - 逐步展示一次身份交换，选 **F1 认证流程图**。
+  - 逐步展示一次身份交换，选 **F1 认证与授权流程图**。
   - 权限规则，选 **F3 访问控制模型**。
   - 路由和连通性，选 **G3 网络拓扑**。
   - 这张 DFD 通常所依据的结构视图，选 **C3 容器图**。
+  - 需要完整的接口清单时，选 **C6 集成与接口图**；其中的认证与数据分级列是这里信任边界分析的输入。
 
 ## 表示法与元素 {#notation}
 <!-- skill: condense (bullets, ≤15 lines) -->
@@ -78,7 +77,7 @@ reviewed: false
 ### 反模式
 1. **把边界画在整个系统外围**或每个云组件外围，什么也说明不了。
 2. **无标签的箭头**（没有数据名称），或把箭头用于表示顺序或依赖。
-3. **机械地省略内部数据流**，只因为它们没有跨越边界。
+3. **机械地省略内部数据流**，只因为它们没有跨越边界；或者为了让图面整洁而删掉拒绝路径和滥用路径，而在安全视图里它们往往正是重点。
 4. **把威胁描述塞满图面**，使图难以阅读且无人负责。
 5. **把这张图当作已完成的评估来展示，** 或把提议的控制画得像已经落实。
 
@@ -96,7 +95,7 @@ reviewed: false
 3. 画出能保留这些区分的最小模型；在每条箭头上写明其载荷名称。
 4. 布局：外部实体放在外侧边缘，加工居中，存储在底部；数据流方向从左到右。边界用虚线框表示，并附简短标签说明信任变化。
 5. 检查每一处边界穿越和每条重要的内部数据流；逐一保留或说明理由。
-6. 分配稳定的 ID（E1、P1、S1、F1 这类形式），并另以表格输出威胁/缓解措施登记表。
+6. 分配稳定的 ID（EE-1、P-1、DS-1、DF-1 这类形式，避免与目录编号混淆），并另以表格输出威胁/缓解措施登记表。
 7. 颜色：中性填充；边界用一种强调色；仅为“提议 / 未核实”再加一种标记。符号取自同一套 DFD 符号集，并附图例。
 8. 与系统专家一起评审；对缺口加以标注，而不是猜测。
 

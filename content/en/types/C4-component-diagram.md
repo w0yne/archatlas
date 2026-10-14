@@ -3,20 +3,18 @@ code: C4
 slug: component-diagram
 family: C
 names:
-  en: Component Diagram
-  zh: 组件图
+  en: Component diagram (C4 model level 3)
+  zh: 组件图（C4 模型第 3 层）
   aliases:
-    en: [C4 model Level 3, White-box View of a Container, Building Block View Level 2 (arc42), Module Diagram, Internal Structure Diagram]
-    zh: [C4 模型第 3 层, 容器内部结构图, 模块图, 内部结构图]
-question: "Inside this one container, which components does it consist of, what is each responsible for and built with, and how do they depend on each other and on other containers?"
-audiences: [software architects, developers]
-level: logical
-phases: [design, build, review]
-scope: "Exactly one container: its components inside a container boundary, plus the other containers, people and systems directly connected to them."
-formal:
-  kind: method
-  ref: "C4 model (Simon Brown), Level 3 Component diagram; notation-independent, no versioned standard. Related: UML 2.5.1 component diagram (OMG), a different meaning of 'component'"
-neighbours: [C3, C5, C8, E1, D1, G1]
+    en: [component view, white-box view of a container, internal structure diagram, C4 model Level 3, Building Block View Level 2 (arc42)]
+    zh: [组件视图, 容器内部结构图, 内部结构图, C4 模型第 3 层]
+question: Inside this one container, which components does it consist of, what is each responsible for and built with, and how do they depend on each other and on other containers?
+audiences: [developers, architects]
+levels: [logical]
+phases: [design, build]
+scope: 'Exactly one container: its components inside a container boundary, plus the other containers, people and systems directly connected to them.'
+formal: {kind: method, ref: 'C4 model (Simon Brown), Level 3 Component diagram; notation-independent, no versioned standard. Related: UML 2.5.1 component diagram (OMG), a different meaning of ''component'''}
+neighbours: [C3, C5, C8, E1]
 status: draft
 ---
 

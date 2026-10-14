@@ -1,7 +1,7 @@
 # Customer / User Journey Map (用户旅程图 / 客户旅程图)
 <!-- Generated from content/en/types/A6-journey-map.md by tools/build_skill_refs.py. Do not edit. -->
 > What does one persona go through, phase by phase, to reach one goal; what do they do, think and feel; where are the pain points; and who owns each improvement?
-Scope: One persona, one scenario and goal, one product or service, 4–7 phases, from the customer's point of view. Neighbours: A5, A2, A4, B2.
+Scope: One persona, one scenario and goal, one product or service, 4–7 phases, from the customer's point of view. Neighbours: A2, A4, A5, B2, E4.
 
 ## Meaning
 A journey map answers "what does this person go through to reach this goal, and where does it hurt?" NN/g defines it as "a visualization of the process that a person goes through in order to accomplish a goal". Its point is the **outside-in** view: the customer's process, not the company's. In ISO/IEC/IEEE 42010 terms it serves an experience viewpoint. It is not a TOGAF artifact (business scenarios are the closest TOGAF technique), ArchiMate has no journey element, and the C4 model does not cover it. It deliberately leaves out internal processes and systems (except as touchpoint names), UI click paths and additional personas.

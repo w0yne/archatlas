@@ -8,22 +8,22 @@ names:
   aliases:
     en: [UML use case diagram, actor–use-case diagram]
     zh: [UML 用例图, 参与者—用例图]
-question: "主体支持哪些有价值的结果？哪些外部角色参与其中？"
+question: 主体支持哪些有价值的结果？哪些外部角色参与其中？
 audiences: [product, business, developers]
-level: concept
+levels: [concept]
 phases: [requirements]
 scope: system
-formal:
-  kind: standard
-  ref: "OMG UML 2.5.1, Chapter 18 — https://www.omg.org/spec/UML/2.5.1/PDF"
-neighbours: [A4, B2, B4, E1, E2]
+formal: {kind: standard, ref: 'OMG UML 2.5.1, Chapter 18 — https://www.omg.org/spec/UML/2.5.1/PDF'}
+neighbours: [A4, B2, B4]
 status: draft
-sourceRev: a082cec
+sourceRev: a5d2191
 translationOf: en/types/B1-use-case-diagram.md
 reviewed: false
 ---
 
 # 用例图（Use case diagram）
+
+> 系统边界外的参与者，连接到系统所支持的用户目标；不表达顺序、界面或内部结构。
 
 ## 含义 {#meaning}
 <!-- skill: condense (4–6 lines) -->
@@ -42,6 +42,7 @@ UML 定义语义和表示法，不规定固定版式、配色或椭圆数量上�
 - 需要表达已约定的纳入项和排除项时，选择 **B4 范围图**；需要表达外部系统与交换关系时，选择 **C2 系统上下文图**。
 - 需要表达有序行为、分支和时序时，选择 **E1 时序图**或 **E2 活动图／流程图**。
 - 用配套的**文字用例**说明前置条件、成功行为、备选路径和后置条件；一个椭圆并不包含这些细节。
+- 问题是哪些角色参与哪些业务活动、在哪个版本支持，而不是系统提供哪些用例时，选择 **A4 业务场景矩阵**。
 
 ## 表示法与元素 {#notation}
 <!-- skill: condense (bullets, ≤15 lines) -->
@@ -70,7 +71,7 @@ UML 定义语义和表示法，不规定固定版式、配色或椭圆数量上�
 - [UML-Diagrams，自动售票机示例](https://www.uml-diagrams.org/use-case-diagrams-examples.html) — 一个购票目标，加上顾客与支撑系统的参与，说明小图也可以完整。**许可：** 未确认开放图片许可；仅提供链接。
 - [UML-Diagrams，网上购物示例](https://www.uml-diagrams.org/examples/online-shopping-use-case-diagram-example.html) — 概览与聚焦结账／认证的视图展示了如何逐步展开细节。**许可：** 未确认开放图片许可；不要描摹原图。
 
-这些范例通过来源正文和图示描述核对，未做视觉层面的规范符合性审查。其中的具体分解方式是教学选择，不是通用要求。
+其中的具体分解方式是教学选择，不是通用要求。
 
 ## 绘制步骤 {#recipe}
 <!-- skill: keep (≤25 lines) -->
@@ -114,11 +115,11 @@ UML 定义语义和表示法，不规定固定版式、配色或椭圆数量上�
 
 ## 来源 {#sources}
 <!-- skill: omit -->
-1. OMG — *Unified Modeling Language 2.5.1*，第 18 章，尤其是 §§18.1 和 18.2.2 — https://www.omg.org/spec/UML/2.5.1/PDF — 访问于 2026-10-14；已核对相关规范正文和图示描述。
-2. UML-Diagrams — *Use Case Diagrams Reference* — https://www.uml-diagrams.org/use-case-reference.html — 访问于 2026-10-14；表示法的二手解释。
+1. OMG — *Unified Modeling Language 2.5.1*，第 18 章，尤其是 §§18.1 和 18.2.2 — https://www.omg.org/spec/UML/2.5.1/PDF — 访问于 2026-10-14。
+2. UML-Diagrams — *Use Case Diagrams Reference* — https://www.uml-diagrams.org/use-case-reference.html — 访问于 2026-10-14。
 3. UML-Diagrams — *UML Use Case Diagram Examples* — https://www.uml-diagrams.org/use-case-diagrams-examples.html — 访问于 2026-10-14。
 4. UML-Diagrams — *Online Shopping Use Case Diagram Example* — https://www.uml-diagrams.org/examples/online-shopping-use-case-diagram-example.html — 访问于 2026-10-14。
-5. OMG — *About UML 2.5.1* — https://www.omg.org/spec/UML/2.5.1/About-UML — 访问于 2026-10-14；正式版本于 2017 年 12 月采纳。
+5. OMG — *About UML 2.5.1* — https://www.omg.org/spec/UML/2.5.1/About-UML — 访问于 2026-10-14。
 
 ## 示例 {#sample}
 <!-- skill: path only -->

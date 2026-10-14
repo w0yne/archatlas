@@ -3,20 +3,18 @@ code: G4
 slug: delivery-pipeline
 family: G
 names:
-  en: CI/CD and Deployment Pipeline
-  zh: CI/CD 流水线图
+  en: CI/CD and deployment pipeline
+  zh: CI/CD 与部署流水线图
   aliases:
-    en: [CI/CD pipeline, deployment pipeline, software delivery pipeline, release pipeline, GitOps delivery view]
-    zh: [部署流水线图, 软件交付管道图, 发布流水线图, 持续交付流水线]
-question: "How does a change become a trusted release, which evidence allows each promotion, and what happens when something fails?"
-audiences: [developers, release and platform engineers, operators, quality and security reviewers, change-control owners]
-level: logical
-phases: [design, delivery, review]
-scope: "One release path from change source to target environments, with artifacts, gates, outcomes and, where relevant, the controller that reconciles desired state"
-formal:
-  kind: convention
-  ref: "No graphical standard. Fowler's deployment-pipeline description and Humble and Farley's Continuous Delivery are the practice references; UML activity or BPMN may be used if their semantics are respected; SLSA supplies supply-chain assurance concepts, not notation"
-neighbours: [G1, E3, H1]
+    en: [CI/CD pipeline, deployment pipeline, release pipeline, software delivery pipeline, GitOps flow, GitOps delivery view]
+    zh: [CI/CD 流水线图, 部署流水线图, 发布流水线, 交付流水线, 软件交付管道图, 发布流水线图, 持续交付流水线, 软件交付流水线图]
+question: How does a change become a trusted release, which evidence allows each promotion, and what happens when something fails?
+audiences: [developers, operations, security]
+levels: [physical]
+phases: [build, operate]
+scope: One release path from change source to target environments, with artifacts, gates, outcomes and, where relevant, the controller that reconciles desired state
+formal: {kind: convention, ref: 'No graphical standard. Fowler''s deployment-pipeline description and Humble and Farley''s Continuous Delivery are the practice references; UML activity or BPMN may be used if their semantics are respected; SLSA supplies supply-chain assurance concepts, not notation'}
+neighbours: [A9, G1, G2, H2]
 status: draft
 ---
 
@@ -43,6 +41,9 @@ status: draft
   - **E3** for release states and transitions.
   - **H1** for who is accountable for each step.
   - If build identities and attestations dominate, use a separate supply-chain trust view.
+  - Choose **A9** when the question is where time is lost in the flow from request to production (lead time, waiting time).
+  - Choose **G2** for the cloud services and failure boundaries the pipeline deploys into.
+  - Choose **H2** for the signals that verify a release after deployment and trigger recovery.
 -->
 - **Audience:** developers, release and platform engineers, operators, reviewers and change-control owners.
 - **Classic scenarios:**
@@ -57,6 +58,9 @@ status: draft
   - Choose **E3** for release states and their transitions.
   - Choose **H1** when the question is who is accountable for each step.
   - If build identities and attestations dominate, a separate supply-chain trust view is more suitable than a job diagram.
+  - Choose **A9** when the question is where time is lost in the flow from request to production (lead time, waiting time).
+  - Choose **G2** for the cloud services and failure boundaries the pipeline deploys into.
+  - Choose **H2** for the signals that verify a release after deployment and trigger recovery.
 
 ## Notation and elements {#notation}
 <!-- skill: condense (bullets, ≤15 lines) -->

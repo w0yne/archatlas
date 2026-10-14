@@ -3,23 +3,21 @@ code: D2
 slug: data-flow-diagram
 family: D
 names:
-  en: Data Flow Diagram
-  zh: 数据流图
+  en: Data flow diagram (DFD)
+  zh: 数据流图（DFD）
   aliases:
-    en: [DFD, data flow model, process model (structured analysis), bubble chart, context diagram (top level), threat-model DFD]
-    zh: [数据流程图, 数据流向图, 上下文图, 0 层图]
-question: "数据从哪里来，经过哪些加工被转换，保存在哪里，又流向哪里？"
-audiences: [架构师, 系统分析师和业务分析师, 安全评审人员, 隐私与审计人员]
-level: logical
-phases: [discovery, design, review]
-scope: "一个系统，每张图一个层级：一张上下文图，或对单个加工的一次分解（3-9 个加工）"
-formal:
-  kind: method
-  ref: "Structured Analysis: DeMarco 1978 (Yourdon/DeMarco symbols) and Gane & Sarson 1979; no ISO or OMG standard. Threat-model dialect adds trust boundaries"
+    en: [DFD, data flow chart, data flow model, process model (structured analysis), bubble chart, context diagram (top level)]
+    zh: [数据流程图, 数据流向图, 0 层图]
+question: 数据从哪里来，经过哪些加工被转换，保存在哪里，又流向哪里？
+audiences: [architects, business, security]
+levels: [logical]
+phases: [requirements, design]
+scope: 一个系统，每张图一个层级：一张上下文图，或对单个加工的一次分解（3-9 个加工）
+formal: {kind: method, ref: 'Structured Analysis: DeMarco 1978 (Yourdon/DeMarco symbols) and Gane & Sarson 1979; no ISO or OMG standard. Threat-model dialect adds trust boundaries'}
 neighbours: [C2, D1, D3, E2, F2]
 status: draft
 translationOf: en/types/D2-data-flow-diagram.md
-sourceRev: 674f366
+sourceRev: a5d2191
 reviewed: false
 ---
 
@@ -49,6 +47,7 @@ reviewed: false
   - 要跨作业和运行追踪具体数据集时，选 **D3 血缘**；DFD 是设计期的逻辑模型。
   - 走安全流程时，选 **F2 威胁模型**；它使用本页的方言（DFD 加信任边界），并添加威胁标注。
   - 表达控制流时，选 **E2 活动流程图**。DFD 的箭头是数据，从不表示“然后”。
+  - 问题是有哪些业务对象、彼此如何关联，而不是数据如何流动时，选 **D1 实体关系图**。
 
 ## 表示法与元素 {#notation}
 <!-- skill: condense (bullets, ≤15 lines) -->

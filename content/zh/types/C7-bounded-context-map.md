@@ -3,23 +3,21 @@ code: C7
 slug: bounded-context-map
 family: C
 names:
-  en: Bounded Context Map
-  zh: 限界上下文映射图
+  en: Bounded context map (DDD)
+  zh: 限界上下文映射（DDD）
   aliases:
     en: [context map, DDD context map, strategic design map, team map (organisational variant)]
-    zh: [上下文映射图, DDD 上下文映射, 战略设计图, 团队映射图]
-question: "在这个系统内部及其周边，存在哪些各自拥有一致语言的不同模型？每条边界上又存在怎样的权力、协调或转换关系？"
-audiences: [架构师, 领域专家, 产品负责人, 技术负责人, 工程经理, 平台团队]
-level: concept
-phases: [discovery, planning, design, review]
-scope: "一个系统或一片系统全景中的限界上下文（或其背后的团队），以及每条边界上的关系；每张图约 5–12 个上下文。"
-formal:
-  kind: method
-  ref: "Domain-Driven Design: Evans, DDD (2003) and DDD Reference (2015, CC BY 4.0); no graphical standard"
-neighbours: [C1, C2, C3, C5, C6, C8, D1]
+    zh: [上下文映射图, DDD 战略设计图, 领域上下文图, DDD 上下文映射, 战略设计图, 团队映射图]
+question: 在这个系统内部及其周边，存在哪些各自拥有一致语言的不同模型？每条边界上又存在怎样的权力、协调或转换关系？
+audiences: [architects, developers, business]
+levels: [concept, logical]
+phases: [design]
+scope: 一个系统或一片系统全景中的限界上下文（或其背后的团队），以及每条边界上的关系；每张图约 5–12 个上下文。
+formal: {kind: method, ref: 'Domain-Driven Design: Evans, DDD (2003) and DDD Reference (2015, CC BY 4.0); no graphical standard'}
+neighbours: [C5, C6, C8]
 status: draft
 translationOf: en/types/C7-bounded-context-map.md
-sourceRev: 674f366
+sourceRev: a5d2191
 reviewed: false
 ---
 

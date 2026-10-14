@@ -1,7 +1,7 @@
 # Business Scenario Matrix (业务场景矩阵)
 <!-- Generated from content/en/types/A4-scenario-matrix.md by tools/build_skill_refs.py. Do not edit. -->
 > For each role, which business activities does the solution support, through which scenarios, in which release, and which combinations are deliberately left out?
-Scope: One solution or business area: 4–8 roles × 4–8 business activities, with scenarios and a release marker per cell. Neighbours: B1, B2, A6, A1, A2, H1.
+Scope: One solution or business area: 4–8 roles × 4–8 business activities, with scenarios and a release marker per cell. Neighbours: A6, B1, B2, H1.
 
 ## Meaning
 - **Question:** for each role, which business activities does the solution support, through which concrete scenarios, and in which release? Equally: which role × activity combinations are **deliberately not covered**?

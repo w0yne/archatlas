@@ -3,20 +3,18 @@ code: C8
 slug: layered-architecture
 family: C
 names:
-  en: Layered Architecture Diagram
+  en: Layered architecture diagram
   zh: 分层架构图
   aliases:
-    en: [layer diagram, layered view, N-layer architecture, presentation-domain-data layering, hexagonal architecture (variant), ports and adapters (variant), onion architecture (variant), clean architecture (variant)]
-    zh: [层次结构图, 技术分层图, 六边形架构, 端口与适配器, 洋葱架构, 整洁架构]
-question: "Into which responsibility layers is one application's code divided, and which dependency directions are allowed and which forbidden?"
-audiences: [developers, tech leads, code reviewers, architects, new joiners]
-level: logical
-phases: [design, build, review]
-scope: "One application, service or bounded context: its code layers (or rings) and the dependency rule between them."
-formal:
-  kind: convention
-  ref: "none for the picture; semantics: SEI layered style ('allowed-to-use', CMU/SEI-2000-SR-004), Evans' Layered Architecture pattern, Clean Architecture Dependency Rule"
-neighbours: [C3, C4, C5, C7, G1, I2]
+    en: [layer diagram, n-layer architecture, hexagonal architecture, onion architecture, clean architecture, presentation-domain-data layering, hexagonal architecture (variant), ports and adapters (variant), onion architecture (variant), clean architecture (variant)]
+    zh: [层次结构图, 技术分层图, 六边形架构, 洋葱架构, 整洁架构, 端口与适配器]
+question: Into which responsibility layers is one application's code divided, and which dependency directions are allowed and which forbidden?
+audiences: [developers, architects]
+levels: [logical]
+phases: [design, build]
+scope: 'One application, service or bounded context: its code layers (or rings) and the dependency rule between them.'
+formal: {kind: convention, ref: 'none for the picture; semantics: SEI layered style (''allowed-to-use'', CMU/SEI-2000-SR-004), Evans'' Layered Architecture pattern, Clean Architecture Dependency Rule'}
+neighbours: [C4, C5, C7, G1, I2]
 status: draft
 ---
 
