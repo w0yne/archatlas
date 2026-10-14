@@ -35,6 +35,13 @@ status: draft
 
 ## When to use and how to choose {#choose}
 <!-- skill: condense (bullets, ≤12 lines) -->
+<!-- skill-text
+- **Audience:** process owners, analysts, developers, testers, operations; a bridge between business and IT.
+- **Scenarios:** order fulfilment across customer, shop web app, payment provider, warehouse; integration between two applications (two BPMN pools with message flows); refund approval across support, finance and the payment provider; incident procedure across support, engineering, vendor; as-is vs to-be (count and remove hand-offs).
+- **When not to use:** more than about 6 lanes or a flow crossing lanes at every step (merge or split); order of calls is the point (E1); the whole flow sits in one actor (E2); a standard is required for automation or compliance (A5).
+- **E4 or A5:** choose **A5 BPMN** when the actors are business roles and the notation must carry BPMN semantics for owners or tooling; choose **E4** for a lightweight hand-off picture, especially with systems as lanes. A5 is the formal sibling, not the same drawing.
+- **Other neighbours:** **E1** for call order and sync vs async; **E2** when lanes are incidental; **A6** for customer emotions; **C3** for static structure.
+-->
 - **Audience:** process owners, analysts, developers, testers and operations. A good bridge between business and IT.
 - **Classic scenarios:**
   1. Order fulfilment: customer, shop web app, payment provider and warehouse, from "place order" to "order shipped".

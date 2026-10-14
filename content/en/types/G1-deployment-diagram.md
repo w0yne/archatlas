@@ -34,6 +34,17 @@ status: draft
 
 ## When to use and how to choose {#choose}
 <!-- skill: condense (bullets, ≤12 lines) -->
+<!-- skill-text
+- **Audience:** developers, platform engineers, operators, architects, security reviewers.
+- **Scenarios:** deployment readiness review of production; translating logical services onto a managed container platform; finding a shared failure domain (two "replicas" on one host or disk); planning replicas and failover for the order database; placing an edge cache or in-store device next to cloud services.
+- **When not to use:** to explain a customer journey (E1 or an A-family view); to claim disaster recovery without evidence of replication and recovery behaviour.
+- **vs neighbours:**
+  - **C3** for the logical containers; G1 adds where they run.
+  - **G2** for which cloud services and trade-offs fit.
+  - **G3** for routing, segmentation, reachability.
+  - **G4** for how a change reaches this environment.
+  - **E1** (or arc42 runtime view) for behaviour over time.
+-->
 - **Audience:** developers, platform engineers, operators, architects and security reviewers.
 - **Classic scenarios:**
   1. Deployment readiness review for the online shop's production environment.
@@ -124,7 +135,7 @@ status: draft
 
 ## Template {#template}
 <!-- skill: keep (≤3 lines) -->
-Model template: `assets/templates/G1.json` · Layout template: `nested` · hosting nodes become nested `boundary` groups (region, cluster, host), software instances become `primary` nodes inside them, managed or external nodes use the `external` style, and communication becomes `call` or `data` edges with a protocol label; `evidence` records declared versus observed.
+Model template: `assets/templates/G1.json` · Layout template: `nested` · hosting nodes become nested `boundary` groups (region, cluster, host), software instances become `component` nodes with style `primary` inside them, managed or external nodes use the `external` style, and communication becomes `call` or `data` edges with a protocol label; `evidence.status` records declared (`doc-only`) versus observed (`verified`).
 
 ## Sources {#sources}
 <!-- skill: omit -->

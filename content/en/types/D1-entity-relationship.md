@@ -34,6 +34,16 @@ status: draft
 
 ## When to use and how to choose {#choose}
 <!-- skill: condense (bullets, ≤12 lines) -->
+<!-- skill-text
+- **Audience:** architects, developers, analysts, governance leads; product owners and business experts for the conceptual level only.
+- **Scenarios:** agreeing the shop vocabulary (customer, order, payment, shipment) before building; a new service's persistence boundary; explaining an existing schema (reverse-engineered logical view); migration mapping of two systems' entities; tenancy and sharing relations.
+- **When not to use:** who does what when (E1, E2, A5); a dump of every table of a large database (generate it with a schema tool); how data moves between systems (D2, C6).
+- **vs neighbours:**
+  - **D2 Data Flow Diagram** when data is moving; D1 shows structure.
+  - **E3 State Machine** for one entity's lifecycle; a common pair is D1 plus one E3 per entity with a status field.
+  - **C7 Bounded Context Map** for how contexts relate; draw one D1 per context, not one enterprise ER.
+  - **F3 Access Control Model** for permissions.
+-->
 - **Audience:** architects, developers, analysts and governance leads; product owners and business experts for the conceptual level only.
 - **Classic scenarios:**
   1. Agreeing the vocabulary of the shop (customer, order, payment, shipment) with the business before building.
@@ -123,7 +133,7 @@ status: draft
 
 ## Template {#template}
 <!-- skill: keep (≤3 lines) -->
-Model template: `assets/templates/D1.json` · Layout template: `er` · entities become `nodes` (kind entity, attributes in `sub`), a bounded context or subject area becomes a `boundary` group, relationships become `assoc` edges whose `cardinality{from,to}` carries min/max and whose `label` is the verb; the level goes in the title.
+Model template: `assets/templates/D1.json` · Layout template: `er` · entities become `nodes` of kind `entity` (attribute strings in `attributes`, key markers such as `PK`/`FK` first), a bounded context or subject area becomes a `boundary` group, relationships become edges with `dir` `--` whose `cardinality{from,to}` carries min/max and whose `label` is the verb; the level goes in the title.
 
 ## Sources {#sources}
 <!-- skill: omit -->

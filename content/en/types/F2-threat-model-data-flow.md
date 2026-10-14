@@ -34,6 +34,17 @@ status: draft
 
 ## When to use and how to choose {#choose}
 <!-- skill: condense (bullets, ≤12 lines) -->
+<!-- skill-text
+- **Audience:** security engineers, architects, developers, privacy specialists, service owners.
+- **Scenarios:** a new public API for third-party resellers; a payment-provider webhook or external identity provider; a multi-tenant upload and processing flow; a change of hosting or privilege boundary (for example moving the chatbot's order lookup into its own service).
+- **When not to use:** as a network inventory, a penetration-test result, or proof that all STRIDE threats are eliminated.
+- **vs neighbours:**
+  - **D2 Data-Flow** for ordinary processing without trust analysis.
+  - **F1** for one identity exchange step by step.
+  - **F3** for permission rules.
+  - **G3** for routing and connectivity.
+  - **C3** for the structure this DFD is usually derived from.
+-->
 - **Audience:** security engineers, architects, developers, privacy specialists, service owners.
 - **Classic scenarios:**
   1. A new public API in the shop for third-party resellers.
@@ -124,7 +135,7 @@ status: draft
 
 ## Template {#template}
 <!-- skill: keep (≤3 lines) -->
-Model template: `assets/templates/F2.json` · Layout template: `nested` · trust boundaries become `boundary` groups (nestable), external entities, processes and stores are nodes with distinct `kind`, named data flows are `data` edges with a one-way `dir`; element and flow IDs go in `tags` for linking to the threat register.
+Model template: `assets/templates/F2.json` · Layout template: `nested` · trust boundaries become `boundary` groups (nestable), external entities are `external` nodes, processes `component` nodes and stores `store` nodes, named data flows are `data` edges with a one-way `dir`; element and flow IDs go in `tags` for linking to the threat register.
 
 ## Sources {#sources}
 <!-- skill: omit -->

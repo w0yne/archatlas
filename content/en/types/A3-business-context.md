@@ -115,7 +115,7 @@ status: draft
 
 ## Template {#template}
 <!-- skill: keep (≤3 lines) -->
-Model template: `assets/templates/A3.json` · Layout template: `nested` · The subject is the single boundary node, externals are `external`/`actor` nodes in edge groups, and each exchange is a labelled edge with `kind` set to the flow type.
+Model template: `assets/templates/A3.json` · Layout template: `nested` · the subject is one `system` node with style `primary`, externals are `external` or `actor` nodes around it, and each exchange is a labelled edge whose `kind` is `data`, `call` or `message` (the flow type goes in the label).
 
 ## Sources {#sources}
 <!-- skill: omit -->

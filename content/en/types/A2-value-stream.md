@@ -35,6 +35,17 @@ status: draft
 
 ## When to use and how to choose {#choose}
 <!-- skill: condense (bullets, ≤12 lines) -->
+<!-- skill-text
+- **Audience:** executives, business and enterprise architects, portfolio and strategy leads.
+- **Scenarios:** scoping a replatforming ("Fulfil Customer Order": Discover Product → Place Order → Settle Payment → Fulfil Order → Deliver Goods); finding the weak enabler by heat-mapping the capabilities under each stage; customer support ("Resolve Customer Query") with chatbot and agents as stakeholders; internal streams ("Onboard Supplier"); input to an A8 roadmap.
+- **When not to use:** detailed workflow or SLAs (A5, E2); time, waste or waiting (A9); system structure (C family); exceptions and branches (A5, E family).
+- **vs neighbours:**
+  - **A1 Capability Map** for "what abilities, how good"; combine through the cross-map.
+  - **A9 Lean Value-Stream Map** for where time and waste sit in today's flow.
+  - **A5 BPMN Process** for task order, decisions, roles, exceptions.
+  - **A6 Journey Map** for the customer's experience; A2 is the enterprise's delivery of value.
+  - **A8 Roadmap** for when change happens. A Porter value chain is an economic view, not a stakeholder value stream.
+-->
 - **Audience:** executives, business and enterprise architects, portfolio and strategy leads.
 - **Classic scenarios:**
   1. Scoping a replatforming of an online shop: "Fulfil Customer Order" for the shopper, with Discover Product → Place Order → Settle Payment → Fulfil Order → Deliver Goods (pattern from TOGAF's "Acquire Retail Product" [1]).
@@ -121,7 +132,7 @@ status: draft
 
 ## Template {#template}
 <!-- skill: keep (≤3 lines) -->
-Model template: `assets/templates/A2.json` · Layout template: `tree` · stages are rank-ordered nodes in one left-to-right row (stakeholder first, value proposition last); cross-mapped capabilities are child nodes ranked beneath their stage.
+Model template: `assets/templates/A2.json` · Layout template: `tree` · stages are `task` nodes chained by edges in one left-to-right row (the trigger and the outcome are `event` nodes); capabilities cross-mapped to a stage are listed in its `tags`.
 
 ## Sources {#sources}
 <!-- skill: omit -->

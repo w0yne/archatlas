@@ -34,6 +34,16 @@ status: draft
 
 ## When to use and how to choose {#choose}
 <!-- skill: condense (bullets, ≤12 lines) -->
+<!-- skill-text
+- **Audience:** data governance, owners and stewards, privacy and compliance officers, data engineers, analytics consumers, architects.
+- **Scenarios:** impact analysis ("if `customer.email` changes type, what breaks?"); trust in an answer (which sources, jobs and indices fed a chatbot reply, who owns each); audit evidence for personal data; data mesh domain ownership; incident triage (failed upstream job, stale downstream datasets).
+- **When not to use:** the logical design of a new system (D2); hand-drawn column-level lineage for a large estate (generate, then summarise); when nobody will maintain it, since a stale map is worse than none.
+- **vs neighbours:**
+  - **D2 Data Flow Diagram** for designed flow; D3 for observed or derived provenance.
+  - **H1 RACI Matrix** if ownership is the only question.
+  - **F3 Access Control Model** for who may read or write; ownership is accountability, not permission.
+  - **E2 Activity Flowchart** for job ordering and triggers.
+-->
 - **Audience:** data governance, owners and stewards, privacy and compliance officers, data engineers, analytics consumers, architects.
 - **Classic scenarios:**
   1. Impact analysis: "if we change the `customer.email` type, which dashboards and models break?" [4][5].
@@ -127,7 +137,7 @@ status: draft
 
 ## Template {#template}
 <!-- skill: keep (≤3 lines) -->
-Model template: `assets/templates/D3.json` · Layout template: `layered` · datasets and jobs are `nodes` (kind dataset or job; owner and steward in `sub`, classification in `tags`), owning domains are `lane` or `layer` groups, "feeds" relations are `data` edges `->` from producer to consumer, and the evidence source and date go in the footer.
+Model template: `assets/templates/D3.json` · Layout template: `layered` · datasets are `store` nodes and jobs are `component` nodes (owner and steward in `sub`, classification in `tags`), owning domains are `lane` or `layer` groups, "feeds" relations are `data` edges `->` from producer to consumer, and the evidence source and date go in `meta.description`.
 
 ## Sources {#sources}
 <!-- skill: omit -->

@@ -34,6 +34,17 @@ status: draft
 
 ## When to use and how to choose {#choose}
 <!-- skill: condense (bullets, ≤12 lines) -->
+<!-- skill-text
+- **Audience:** architects, identity engineers, developers, security reviewers; a plain-language variant serves business owners.
+- **Scenarios:** a shopper signs in, then loads order history through an API; the order API calls the payment API on behalf of the shopper; a nightly job calls the stock API with no end user (machine to machine); step-up sign-in or session renewal.
+- **When not to use:** a background job has no end user, so do not draw a human sign-in; F1 is not the permission model or a network design.
+- **vs neighbours:**
+  - **E1 Sequence** for a general interaction without identity focus.
+  - **F3 Access-Control Model** for the permission rules.
+  - **F2 Threat-Model DFD** for what can go wrong at trust boundaries.
+  - **C2 System Context** to show which identity providers exist, without the exchange.
+  - **D2 Data-Flow** for data movement rather than proof movement.
+-->
 - **Audience:** architects, identity engineers, developers, security reviewers; a plain-language variant serves business owners.
 - **Classic scenarios:**
   1. A shopper signs in to the shop web app, then loads their order history through an API.
@@ -123,7 +134,7 @@ status: draft
 
 ## Template {#template}
 <!-- skill: keep (≤3 lines) -->
-Model template: `assets/templates/F1.json` · Layout template: `sequence` · participants become nodes (person, client, issuer, API, resource) with a lifeline each; proofs and requests become numbered `message` edges with `step`; the allow/refuse alternative becomes a sequence `frame`; verification and enforcement are `activations` on the issuer and API.
+Model template: `assets/templates/F1.json` · Layout template: `sequence` · participants are `lifeline` nodes (person, client, identity provider, API, resource); proofs and requests are numbered `message` edges with `step`; the allow/refuse alternative is a `frames` entry labelled `alt` over its step range; verification and enforcement are `activations` on the identity provider and the API.
 
 ## Sources {#sources}
 <!-- skill: omit -->

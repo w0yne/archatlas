@@ -26,6 +26,13 @@ status: draft
 
 ## Meaning {#meaning}
 <!-- skill: condense (4–6 lines) -->
+<!-- skill-text
+- **Question:** which interfaces connect these systems, who calls or publishes, what is exchanged, in which style, and who owns each side? Purpose: make coupling visible and negotiable; the table is the skeleton of the contract.
+- **Sources:** no single standard. Enterprise Integration Patterns (four styles: file transfer, shared database, remote call, messaging), TOGAF Interface Catalog and Application Communication diagram, the Interface Control Document, OpenAPI and AsyncAPI contracts.
+- **Definition used here:** C6 is *between* systems, partners included; C3 is *inside* one system. Offer a logical variant (no protocol column) and a technical one (with protocol).
+- **Variants:** (a) interface map + table (default); (b) event topology with channels as nodes; (c) API landscape table by owner, lifecycle, consumers.
+- **Leaves out:** field-level payloads (link the spec), system internals (C3–C5), call order (E1), hosts (G1), lineage (D3).
+-->
 
 An integration diagram answers: *which interfaces connect these systems, who calls or publishes, what is exchanged, in which style, and who owns each side?* Its real purpose is to make **coupling visible and negotiable**: it is the artefact two teams, or a company and a partner, agree on before writing code, and its table is the skeleton of the contract. In ISO/IEC/IEEE 42010 terms its concerns are interoperability, coupling, security of exchanges, ownership and change impact [10]. In SEI Views and Beyond it is a component-and-connector view with connectors as first-class elements [11].
 
@@ -56,6 +63,16 @@ No single standard defines the diagram. It draws on four traditions:
 
 ## Notation and elements {#notation}
 <!-- skill: condense (bullets, ≤15 lines) -->
+<!-- skill-text
+- **Nodes:** systems; external parties in a distinct style with the owning organisation named; mediating infrastructure that carries meaning (broker, API gateway, integration platform, file share) as nodes, not hidden in lines.
+- **Edges:** one per interface or interface group with a stable ID (I-01…) and a verb-phrase label; unidirectional, label agrees with the arrow, no bare "uses", legend explains every line style.
+- **Arrows:** one meaning, either *initiator → provider* or *data flow*; asynchronous paths run producer → channel → consumer. Convention: solid = synchronous, dashed = asynchronous message or event, dotted with a file mark = batch/file transfer.
+- **Interface table (mandatory), integration style first:** Integration style (file transfer / shared database / RPC-API / messaging; a shared database is hidden coupling) · ID and initiator → provider (matches the line) · Purpose · Interaction pattern (request-reply, command, event notification, event-carried state, publish-subscribe, batch).
+- **Table, continued (required):** Protocol/transport (omit in the logical variant) · Format and contract link (OpenAPI/AsyncAPI/schema; do not inline fields) · Authentication/authorisation · Volume and SLA (mark example numbers "illustrative") · Owner on both sides (a named team or role).
+- **Table, conditional/optional:** Failure semantics (retry, idempotency, ordering, dead-letter, de-duplication) required if critical · Lifecycle/version · Data classification.
+- **Source of truth:** machine-readable contracts in the repository; generate or cross-check the table from them.
+- **Size:** about 8–15 nodes at level 1 (heuristic); level 2 shows one hub or partner in full.
+-->
 
 - **Nodes:** systems; external parties in a distinct style with the owning organisation named; **mediating infrastructure that carries meaning** (broker, API gateway, integration platform, file share) as nodes, not hidden inside lines [12].
 - **Edges:** one per interface or interface group, with a stable **ID** (I-01…) and a verb-phrase label ("authorises payment"). Lines are unidirectional, the label agrees with the arrow, there are no bare "uses" labels, and the legend explains every line style [13][14].
@@ -149,7 +166,7 @@ No single standard defines the diagram. It draws on four traditions:
 ## Template {#template}
 <!-- skill: keep (≤3 lines) -->
 
-Model template: `assets/templates/C6.json` · Layout template: `grid_table` · The `tables[]` interface table (style-first columns) is the primary output; `nodes`/`edges` with `step` IDs render the companion map, and each edge ID must match one table row.
+Model template: `assets/templates/C6.json` · Layout template: `grid_table` · the `tables[]` interface table (style-first columns) is the primary output; `grid_table` takes tables only, so the companion map is a second model whose edge `step` or `label` carries the interface ID of the matching table row.
 
 ## Sources {#sources}
 <!-- skill: omit -->

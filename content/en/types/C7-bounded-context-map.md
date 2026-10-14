@@ -135,7 +135,7 @@ A context map answers: *which models with their own language exist here, and who
 ## Template {#template}
 <!-- skill: keep (≤3 lines) -->
 
-Model template: `assets/templates/C7.json` · Layout template: `nested` · Each context is a `boundary` group (optional team in `sub`, role chips such as OHS/ACL in `tags`); `edges` carry the pattern label with `dir` `->` for upstream→downstream or `--` for symmetric.
+Model template: `assets/templates/C7.json` · Layout template: `nested` · each context is a `boundary` group holding one `component` node per key model (team in the node `sub`, role chips such as OHS/ACL in its `tags`); `edges` carry the pattern label with `dir` `->` for upstream→downstream or `--` for symmetric.
 
 ## Sources {#sources}
 <!-- skill: omit -->
