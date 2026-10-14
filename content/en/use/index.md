@@ -3,7 +3,7 @@ title: Install and use the skill
 ---
 # Install and use the skill
 
-archatlas 0.1.0 is a **pre-release in this repository**: the English skill, 40 diagram references, SVG renderer, packer and evaluation harness exist. No PyPI release is available. Cross-host release smoke tests and the first comparative evaluation are still pending.
+archatlas 0.1.0 is a **pre-release in this repository**: the English skill, 40 diagram references, SVG renderer, packer and evaluation harness exist. No PyPI release is available. The first three-host comparison is complete for skill revision 3847acb and did not meet the release gate. It does not certify the current revision: targeted retesting and release certification are pending. [Read the first-run report](/evaluation-report.txt).
 
 ## Option A: use a reviewed clone
 

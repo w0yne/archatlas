@@ -57,4 +57,4 @@ The [installation guide](/use/) distinguishes clone and bundle layouts for Claud
 
 The initial target is editable-text SVG plus model JSON. draw.io and native PowerPoint exports are future interfaces, not available features. A clean geometry check does not replace semantic or visual review.
 
-Version 0.1.0 is a pre-release in this repository: 40 diagram types in English and Chinese, the skill, SVG renderer, packer and evaluation harness are present. No PyPI package or public release bundle is published. Sample refinements, cross-host smoke tests and the first comparative evaluation remain pending. [See commands and current limits](/use/formats).
+Version 0.1.0 is a pre-release in this repository: 40 diagram types in English and Chinese, the skill, SVG renderer, packer and evaluation harness are present. No PyPI package or public release bundle is published. The first three-host comparison is complete for skill revision 3847acb and did not meet the release gate. It does not certify the current revision: targeted retesting and release certification are pending. [Read the first-run report](/evaluation-report.txt). [See commands and current limits](/use/formats).

@@ -8,7 +8,7 @@ archatlas combines a diagram-type atlas with an English-language Agent Skill nam
 
 ## Status
 
-0.1.0 pre-release: the repository contains 40 diagram types in English and Chinese, the skill, working SVG renderer, packer and evaluation harness. Sample refinements, cross-host smoke tests and the first comparative evaluation remain pending. No PyPI package or public release bundle is published.
+0.1.0 pre-release: the repository contains 40 diagram types in English and Chinese, the skill, working SVG renderer, packer and evaluation harness. The first three-host comparison is complete for skill revision 3847acb and did not meet the release gate. It does not certify the current revision: targeted retesting and release certification are pending. [Read the retained report](evals/reports/2026-10-14-first-full.md). No PyPI package or public release bundle is published.
 
 ## What it does
 
@@ -63,7 +63,7 @@ The site uses VitePress 1.6.4. Its dependency audit currently reports upstream d
 
 ## Compatibility and limits
 
-Host documentation/help research: Claude Code 2.1.285, Codex 0.160.1, Pi 1.1.0. Functional release smoke tests and output-quality evaluations are **pending**. A successful build is not a visual review. Without image input, report visual review pending and hand previews to a suitable reviewer.
+Host documentation/help research: Claude Code 2.1.285, Codex 0.160.1, Pi 1.1.0. The retained first comparison used these hosts on revision 3847acb; it failed the release quality gate. Fresh packaged-install smoke tests and quality certification for the current revision remain pending. A successful build is not a visual review. Without image input, report visual review pending and hand previews to a suitable reviewer.
 
 ## Contribute and license
 

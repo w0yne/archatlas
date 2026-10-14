@@ -1,7 +1,7 @@
 ---
 title: 从代码仓库到架构图
 translationOf: en/use/code-to-diagram.md
-sourceRev: bca58c9299c22a5a05f98bf81e38393e6e1d1713
+sourceRev: 2389b26ba4db27b8a7bebafa0adfb5bc7da45a2f
 reviewed: true
 ---
 # 从代码仓库到架构图
@@ -29,7 +29,7 @@ reviewed: true
 | E2 | Worker 消费该事件 | workers/orders.py:18 | verified | 未观测实际部署 |
 | E3 | Worker 部署在独立可用区 | 仅架构说明 | doc-only | 绘制位置前需要确认 |
 
-推断的边用虚线并在图例中解释；仅文档（doc-only）与冲突（conflict）应明确标出。代码声明不等于部署实况，未调用的授权 helper 也不代表门禁已经执行。
+使用明确的证据标签标出推断（inferred）、仅文档（doc-only）和冲突（conflict）。只有不违背所选表示法时才用虚线表示推断；例如 UML 返回消息已有自己的线型，不能混用。请在图例中解释证据编码。代码声明不等于部署实况，未调用的授权 helper 也不代表门禁已经执行。
 
 ## 保持只读分析
 

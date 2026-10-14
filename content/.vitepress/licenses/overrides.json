@@ -1,0 +1,14 @@
+{
+  "@docsearch/css@3.8.2": {
+    "file": "docsearch.txt",
+    "source": "https://github.com/algolia/docsearch/blob/v3.8.2/LICENSE"
+  },
+  "@docsearch/js@3.8.2": {
+    "file": "docsearch.txt",
+    "source": "https://github.com/algolia/docsearch/blob/v3.8.2/LICENSE"
+  },
+  "@docsearch/react@3.8.2": {
+    "file": "docsearch.txt",
+    "source": "https://github.com/algolia/docsearch/blob/v3.8.2/LICENSE"
+  }
+}

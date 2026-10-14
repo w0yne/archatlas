@@ -4,7 +4,7 @@ description: 按类别、读者、抽象层次和生命周期阶段浏览架构�
 sidebar: false
 aside: false
 translationOf: en/use/catalogue.md
-sourceRev: bca58c9299c22a5a05f98bf81e38393e6e1d1713
+sourceRev: 2389b26ba4db27b8a7bebafa0adfb5bc7da45a2f
 reviewed: true
 ---
 # 图类型目录
@@ -17,4 +17,4 @@ reviewed: true
 
 ## 关于可用状态
 
-“即将推出”表示目录中已有该条目，但讲解页尚未接入。已上线的页面中，样图也可能仍标注为“准备中”。这两种可用状态都不能代替视觉复核，也不代表已完成发布前评测。
+当前参考页与模板生成的 SVG 样图已经存在。重新生成只能验证同步，不能证明完整的表示法合规或读者理解。参阅[渲染器限制](/zh/use/formats)与[各修订的评测状态](/zh/improve/evals)。未来尚无正文的新条目会标注“即将推出”。

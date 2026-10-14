@@ -5,7 +5,7 @@ aside: false
 title: 先选对视图，再画方框
 description: 架构图类型指南与可移植的绘图 skill。
 translationOf: en/index.md
-sourceRev: bca58c9299c22a5a05f98bf81e38393e6e1d1713
+sourceRev: 2389b26ba4db27b8a7bebafa0adfb5bc7da45a2f
 reviewed: true
 ---
 <script setup>
@@ -60,4 +60,4 @@ const { theme } = useData();
 
 首个输出是保留可编辑文字的 SVG 与模型 JSON。draw.io 和原生 PowerPoint 导出属于未来接口，目前不可用。几何检查不能代替语义或视觉复核。
 
-仓库中的 0.1.0 为预发布版本：40 类图的中英文文档、skill、SVG 渲染器、打包工具和评测框架已经存在。尚未发布 PyPI 包或公开发布压缩包；样例完善、跨代理冒烟测试和首次对比评测仍待完成。[查看命令与限制](/zh/use/formats)。
+仓库中的 0.1.0 为预发布版本：40 类图的中英文文档、skill、SVG 渲染器、打包工具和评测框架已经存在。尚未发布 PyPI 包或公开发布压缩包；针对 skill 修订 3847acb 的首轮三宿主对比评测已完成，但未通过发布门槛。它不代表当前修订的结论：当前版本的针对性复测与发布认证仍待完成。[查阅首轮报告](/evaluation-report.txt)。[查看命令与限制](/zh/use/formats)。

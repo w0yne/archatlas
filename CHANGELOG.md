@@ -6,6 +6,18 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+### Verification status / 验证状态
+
+- The first comparison of skill revision `3847acb` is complete and failed the release gate. Current-revision retesting/certification remains pending; see the [retained report](evals/reports/2026-10-14-first-full.md) and [release checklist](docs/RELEASE.md).
+- 首轮对比已完成，修订 `3847acb` 未通过发布门槛；当前修订仍待复测与认证，不因构建成功而宣称质量通过。
+
+### Fixed / 修正
+
+- Built-site distribution now includes full third-party copyright/licence texts derived from emitted client modules, explicit embedded-icon notices and bilingual About links. Missing notices fail the build.
+- 静态站点随构建交付实际模块及内嵌图标的完整许可通知，并提供双语入口；不再把开发依赖清单当成分发清单。
+- Reviewed expanded selection aliases and the added developer multi-view recommendation in Chinese, without hand-editing generated blocks.
+- 中文选图页已核对扩充别名及开发者多视图推荐，生成块仍由原生成器维护。
+
 ### Added
 
 **Skill**
