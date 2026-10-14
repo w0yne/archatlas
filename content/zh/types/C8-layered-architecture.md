@@ -17,7 +17,7 @@ formal: {kind: convention, ref: 'none for the picture; semantics: SEI layered st
 neighbours: [C4, C5, C7, G1, I2]
 status: draft
 translationOf: en/types/C8-layered-architecture.md
-sourceRev: 88db750
+sourceRev: 61fe367
 reviewed: false
 ---
 
