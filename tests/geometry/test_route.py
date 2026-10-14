@@ -1,10 +1,34 @@
 """Geometry contracts for the standalone orthogonal router."""
 
 from copy import deepcopy
+import json
+from pathlib import Path
 
 import pytest
 
-from archatlas.layout.route import crosses, route, segment_hits_rect
+from archatlas.layout.route import crosses, route, segment_hits_rect, backtrack, _overlap
+
+
+@pytest.mark.parametrize("case", ["s1", "s3", "s10"])
+def test_evaluation_routes_avoid_shared_strokes_and_large_reversals(case):
+    # Anonymous rectangle/segment geometry captured from the second evaluation:
+    # a folded route, a visibility-search overlap, and a crowded context port.
+    path = Path(__file__).parents[1] / "fixtures/regressions" / f"route-{case}.json"
+    data = json.loads(path.read_text())
+    points = route(*data["args"], **data["kwargs"])
+    assert backtrack(points) <= 16
+    previous = data["kwargs"]["previous"]
+    assert not any(_overlap(a, b, c, d) > 1 for a, b in zip(points, points[1:])
+                   for line in previous for c, d in zip(line, line[1:]))
+    if case == "s10":
+        assert not any(crosses(a, b, c, d) for a, b in zip(points, points[1:])
+                       for line in previous for c, d in zip(line, line[1:]))
+    assert_clear(points, data["args"][2])
+
+
+def test_overlap_survives_float_roundoff_at_svg_precision():
+    assert _overlap((0, 348.725), (100, 348.725),
+                    (40, 348.72499999999997), (80, 348.72499999999997)) == 40
 
 
 def test_return_flow_does_not_retrace_the_arrival_segment():

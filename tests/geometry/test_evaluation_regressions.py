@@ -123,6 +123,12 @@ def test_shared_port_is_reallocated_and_bad_manual_routes_are_reported():
                         (b[0] + 20, a[1] - 600), (b[0], a[1] - 600), b]
     rules = {f["rule"] for f in check_svg(render_svg(scene))["findings"]}
     assert {"edge-u-turn", "edge-overlap", "edge-detour"} <= rules
+    # A route can fold back across several bends without an adjacent U-turn,
+    # and still be well below the old 2x-distance detour threshold.
+    duplicate.points = [(318, 241.2), (334, 241.2), (334, 195.2),
+                        (835.375, 195.2), (835.375, 241.2), (851.375, 241.2)]
+    rules = {f["rule"] for f in check_svg(render_svg(scene))["findings"]}
+    assert "edge-foldback" in rules
 
 
 def test_inferred_nodes_and_documented_edges_have_dashes_and_evidence_legend():

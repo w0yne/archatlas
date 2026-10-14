@@ -6,7 +6,7 @@ from xml.etree import ElementTree as ET
 
 from .contrast import ratio
 from ..fonts.measure import FontMetrics, _cjk
-from ..layout.route import segment_hits_rect, crosses, _overlap
+from ..layout.route import segment_hits_rect, crosses, backtrack, _overlap, _CLEARANCE
 
 
 def overlap(a, b, tolerance=1):
@@ -245,6 +245,10 @@ def check_svg(svg, metrics=None):
         length = sum(abs(b[0] - a[0]) + abs(b[1] - a[1]) for a, b in segments)
         if source != target and direct > 0 and length > 2 * direct + 1:
             add("edge-detour", "Connector is longer than twice its endpoint Manhattan distance", [id], severity="warning")
+        # Ignore short port/obstacle stubs on a long route. Flag reversals when
+        # their extra travel exceeds both two stubs and 10% of direct distance.
+        if source != target and backtrack(points) > max(2 * _CLEARANCE, .05 * direct) + .001:
+            add("edge-foldback", "Connector doubles back significantly; consider another port or corridor", [id], severity="warning")
         for endpoint, point in ((source, points[0]), (target, points[-1])):
             if endpoint not in shapes:
                 add("edge-endpoint", "Connector endpoint has no declared shape", [id, endpoint])
