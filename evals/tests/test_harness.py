@@ -1,4 +1,5 @@
 """Core invariants of the evaluation harness. Run: python3 -m unittest discover -s evals/tests"""
+import json
 import os
 import re
 import sys
@@ -103,9 +104,6 @@ class ChecksTest(unittest.TestCase):
             self.assertTrue(res["script"] and res["external_refs"])
 
 
-if __name__ == "__main__":
-    unittest.main()
-
 
 class TraceFactsTest(unittest.TestCase):
     def test_forbidden_counts_executed_commands_not_heredoc_text(self):
@@ -114,3 +112,35 @@ class TraceFactsTest(unittest.TestCase):
         self.assertEqual(run_eval.trace_facts(["cd fixture && ./mvnw spring-boot:run"])["trace"]["forbidden"], 1)
         self.assertEqual(run_eval.trace_facts(["docker compose up -d"])["trace"]["forbidden"], 1)
 
+
+class RescoreTest(unittest.TestCase):
+    def test_rescored_grade_is_preferred_and_the_original_kept(self):
+        import report
+        with tempfile.TemporaryDirectory() as d:
+            run = Path(d) / "results" / "S2-autonomous-codex-skill"
+            run.mkdir(parents=True)
+            (run / "record.json").write_text('{"run": "S2-autonomous-codex-skill", "host": "codex", "arm": "skill", "scenario": "S2"}')
+            (run / "turn1.events.jsonl").write_text("")
+            (run / "grade.json").write_text('{"grade": {"notes": "original"}}')
+            runs, _ = report.load_runs([run.parent], grade_file="grade.rescored.json")
+            self.assertEqual(runs[0]["_grade"]["grade"]["notes"], "original")
+            self.assertFalse(runs[0]["_rescored"])
+            (run / "grade.rescored.json").write_text('{"grade": {"notes": "rescored"}}')
+            runs, _ = report.load_runs([run.parent], grade_file="grade.rescored.json")
+            self.assertEqual(runs[0]["_grade"]["grade"]["notes"], "rescored")
+            self.assertTrue(runs[0]["_rescored"])
+            self.assertEqual(json.loads((run / "grade.json").read_text())["grade"]["notes"], "original")
+
+    def test_single_trigger_item_can_be_selected(self):
+        with mock.patch.object(run_eval, "run_one", return_value={"run": "x", "argv": []}) as run_one, \
+                tempfile.TemporaryDirectory() as d:
+            hosts = Path(d) / "hosts.yaml"
+            hosts.write_text("pi: {model: m}\n")
+            run_eval.main(["--hosts", str(hosts), "--scenario", "T5", "--host", "pi", "--out", str(Path(d) / "out"),
+                           "--dry-run"])
+            ids = [c.args[0]["id"] for c in run_one.call_args_list]
+            self.assertEqual(ids, ["T5"])
+
+
+if __name__ == "__main__":
+    unittest.main()

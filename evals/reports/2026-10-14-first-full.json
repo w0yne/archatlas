@@ -5036,5 +5036,139 @@
       ],
       "evidence_dir": "pi-skill/S10-autonomous-pi-skill"
     }
-  ]
+  ],
+  "rescored": {
+    "report": "2026-10-14-first-full-rescored.json",
+    "note": "Original numbers in this file are unchanged; see the 'Rescored' section of the Markdown report.",
+    "summary": {
+      "claude/noskill": {
+        "runs": 10,
+        "gate_pass": 2,
+        "median": {
+          "semantic": 2.0,
+          "structure": 2,
+          "flow": 2,
+          "readability": 1,
+          "compliance": 1.0,
+          "honesty": 2.0
+        },
+        "mean_score": 1.78,
+        "cost_usd": 2.41,
+        "wall_s": 418,
+        "tokens_in": 130,
+        "tokens_out": 44447,
+        "tokens_cache_read": 1655989,
+        "renderer_used": 0
+      },
+      "claude/skill": {
+        "runs": 10,
+        "gate_pass": 7,
+        "median": {
+          "semantic": 2.0,
+          "structure": 3,
+          "flow": 1,
+          "readability": 2,
+          "compliance": 2.0,
+          "honesty": 3.0
+        },
+        "mean_score": 2.1,
+        "cost_usd": 4.58,
+        "wall_s": 594,
+        "tokens_in": 236,
+        "tokens_out": 67158,
+        "tokens_cache_read": 4566097,
+        "renderer_used": 9
+      },
+      "codex/noskill": {
+        "runs": 10,
+        "gate_pass": 2,
+        "median": {
+          "semantic": 2.0,
+          "structure": 2,
+          "flow": 2,
+          "readability": 2,
+          "compliance": 1.0,
+          "honesty": 1.5
+        },
+        "mean_score": 1.6,
+        "cost_usd": 3.32,
+        "wall_s": 740,
+        "tokens_in": 3640606,
+        "tokens_out": 80683,
+        "tokens_cache_read": 3218519,
+        "renderer_used": 0
+      },
+      "codex/skill": {
+        "runs": 10,
+        "gate_pass": 8,
+        "median": {
+          "semantic": 2.0,
+          "structure": 2,
+          "flow": 2,
+          "readability": 2,
+          "compliance": 2.0,
+          "honesty": 2.0
+        },
+        "mean_score": 1.85,
+        "cost_usd": 4.29,
+        "wall_s": 1137,
+        "tokens_in": 6215058,
+        "tokens_out": 47118,
+        "tokens_cache_read": 5567210,
+        "renderer_used": 9
+      },
+      "pi/noskill": {
+        "runs": 10,
+        "gate_pass": 1,
+        "median": {
+          "semantic": 2.0,
+          "structure": 2,
+          "flow": 1,
+          "readability": 1,
+          "compliance": 1.0,
+          "honesty": 2.5
+        },
+        "mean_score": 1.64,
+        "cost_usd": 1.03,
+        "wall_s": 414,
+        "tokens_in": 202,
+        "tokens_out": 40547,
+        "tokens_cache_read": 1211557,
+        "renderer_used": 0
+      },
+      "pi/skill": {
+        "runs": 10,
+        "gate_pass": 6,
+        "median": {
+          "semantic": 2.0,
+          "structure": 3,
+          "flow": 2,
+          "readability": 2,
+          "compliance": 1.0,
+          "honesty": 3.0
+        },
+        "mean_score": 2.15,
+        "cost_usd": 2.23,
+        "wall_s": 595,
+        "tokens_in": 306,
+        "tokens_out": 59573,
+        "tokens_cache_read": 3403245,
+        "renderer_used": 9
+      }
+    },
+    "skill_wins": {
+      "claude": {
+        "wins": 6,
+        "of": 10
+      },
+      "codex": {
+        "wins": 7,
+        "of": 10
+      },
+      "pi": {
+        "wins": 8,
+        "of": 10
+      }
+    }
+  }
 }

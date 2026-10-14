@@ -5,7 +5,8 @@ For every run directory (one `record.json` per run) under the given results dirs
 grader builds one input file (scenario, rubric, trace facts, replies, produced files),
 renders produced SVGs to PNG when CairoSVG is available, and asks a grader model
 through Pi in an isolated sandbox (no tools, no session, no extensions). The answer is
-saved as `grade.json` next to `record.json`; existing grades are kept unless --force.
+saved as `grade.json` next to `record.json` (or the name given with --grade-file, which
+keeps an earlier grade intact when re-scoring); existing grades are kept unless --force.
 
 The grader model is chosen per graded host so that a run is not graded by the model
 that produced it (`grader.models` in the hosts file):
@@ -129,8 +130,8 @@ def parse_answer(events: str) -> tuple[dict | None, dict]:
         return None, {"usage": usage, "cost_usd": round(cost, 5), "raw": text[-2000:]}
 
 
-def grade_one(run_dir: Path, rec: dict, scenario: dict, cfg: dict, force: bool) -> str:
-    target = run_dir / "grade.json"
+def grade_one(run_dir: Path, rec: dict, scenario: dict, cfg: dict, force: bool, grade_file: str = "grade.json") -> str:
+    target = run_dir / grade_file
     if target.exists() and not force:
         return f"{run_dir.name}: kept"
     model = cfg["models"][rec["host"]]
@@ -158,7 +159,12 @@ def main(argv=None) -> int:
     ap.add_argument("results", type=Path, nargs="+")
     ap.add_argument("--jobs", type=int, default=4)
     ap.add_argument("--force", action="store_true")
+    ap.add_argument("--grade-file", default="grade.json", help="file name for the grade next to record.json")
+    ap.add_argument("--host", action="append", default=[], help="only grade runs of this host (repeatable)")
+    ap.add_argument("--scenario", action="append", default=[], help="only grade this scenario id (repeatable)")
     args = ap.parse_args(argv)
+    if "/" in args.grade_file or not args.grade_file.endswith(".json"):
+        ap.error("--grade-file must be a plain *.json file name")
     cfg = (yaml.safe_load(args.hosts.read_text(encoding="utf-8")) or {}).get("grader")
     if not cfg:
         ap.error("hosts file has no `grader` section")
@@ -169,9 +175,11 @@ def main(argv=None) -> int:
             rec = json.loads(rec_path.read_text())
             if rec.get("error") or rec.get("scenario", "").startswith("T") or "exit_codes" not in rec:
                 continue
+            if (args.host and rec["host"] not in args.host) or (args.scenario and rec["scenario"] not in args.scenario):
+                continue
             work.append((rec_path.parent, rec, scenarios[rec["scenario"]]))
     with ThreadPoolExecutor(max_workers=args.jobs) as pool:
-        for line in pool.map(lambda w: grade_one(*w, cfg, args.force), work):
+        for line in pool.map(lambda w: grade_one(*w, cfg, args.force, args.grade_file), work):
             print(line, flush=True)
     return 0
 
