@@ -1,0 +1,19 @@
+id: S6
+title: Which diagrams for a security architecture review
+focus: selection only, no drawing
+expected_types: [F2, F1, F3, G3, C2]
+modes: [guided, autonomous]
+lang: en
+prompt: >-
+  We have an architecture review with the security team next week for a web shop.
+  Which diagrams should we prepare? Do not draw anything yet.
+scripted_answers:
+  - "The security team and our two lead developers. They will decide whether we can launch."
+  - "The system already runs in a public cloud; we want to review the current state."
+  - "Fine, that list works."
+expect:
+  - Recommends a small set (2-4) of named types, each with the question it answers for this audience.
+  - Includes a threat-model DFD with trust boundaries; considers authentication flow and access-control model.
+  - Gives a runner-up or explains when a neighbour type would be better.
+  - Draws nothing and creates no files.
+deliverables: []

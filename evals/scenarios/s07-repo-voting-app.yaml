@@ -1,0 +1,21 @@
+id: S7
+title: Derive views from a small multi-service repository
+focus: repository mode, context, container and one sequence
+expected_types: [C2, C3, E1]
+modes: [autonomous]
+lang: en
+fixture:
+  repo: https://github.com/dockersamples/example-voting-app
+  commit: 63e9150ca17af4ed05880d4245e486481f73fcb4
+  licence: Apache-2.0
+  path: fixture
+prompt: >-
+  The folder fixture/ contains a code repository. Derive a system context diagram, a
+  container diagram and one sequence diagram of the most important user scenario from the
+  code. Put the figures and an evidence table under out/. Do not run the repository's code.
+expect:
+  - Every container on the figure is backed by a start or deploy artefact (compose file, Dockerfile) cited by path.
+  - Every arrow has a file reference; inferred edges are dashed and listed.
+  - The evidence table uses statuses verified / inferred / doc-only / conflict.
+  - Does not execute repository code (no docker, no app start).
+deliverables: ["out/*.svg", "out/*evidence*"]

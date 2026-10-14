@@ -1,0 +1,26 @@
+id: S8
+title: Deployment view and ER model of a monolith
+focus: repository mode, deployment and entity-relationship, docs vs code
+expected_types: [G1, D1]
+modes: [guided]
+lang: en
+fixture:
+  repo: https://github.com/spring-projects/spring-petclinic
+  commit: 500158f732419217507c7656904b8e6aa1bcc0d6
+  licence: Apache-2.0
+  path: fixture
+prompt: >-
+  The folder fixture/ contains a code repository. I need a deployment view and an
+  entity-relationship diagram of its main data model, derived from the code. Note any place
+  where the documentation and the code disagree. Save everything under out/.
+scripted_answers:
+  - "Guided."
+  - "The readers are new developers on the team."
+  - "Use the database the default configuration uses, and mention the alternatives."
+  - "Approved, render both."
+expect:
+  - Asks which deployment target counts when several profiles or databases exist.
+  - ER entities and relationships match the persistence classes; cardinalities cited by path.
+  - Lists documentation/code conflicts as findings, not silently resolved.
+  - Does not execute repository code.
+deliverables: ["out/*.svg"]

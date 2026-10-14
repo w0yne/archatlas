@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="360" viewBox="0 0 720 360" font-family="sans-serif" font-size="13">
+  <title>Online shop: containers (deliberately hard to read)</title>
+  <desc>Synthetic evaluation fixture with overflowing labels, bullet lists in boxes and mixed English and Chinese text.</desc>
+  <rect width="720" height="360" fill="#ffffff"/>
+  <rect x="20" y="40" width="680" height="300" fill="none" stroke="#666" stroke-dasharray="6 4"/>
+  <text x="28" y="34">Online shop 网店系统</text>
+  <rect x="40" y="70" width="140" height="70" fill="#dbe8f7" stroke="#336"/>
+  <text x="48" y="92">Web storefront 网页商城 (single-page app)</text>
+  <text x="48" y="110">• browse • cart • checkout</text>
+  <rect x="290" y="70" width="140" height="70" fill="#dbe8f7" stroke="#336"/>
+  <text x="298" y="92">Order API 订单服务接口层</text>
+  <text x="298" y="110">• create order • list orders • cancel</text>
+  <text x="298" y="128">• refunds • admin tools</text>
+  <rect x="540" y="70" width="140" height="70" fill="#dbe8f7" stroke="#336"/>
+  <text x="548" y="92">Payment adapter 支付适配器</text>
+  <rect x="290" y="230" width="140" height="70" fill="#f2e6d0" stroke="#633"/>
+  <text x="298" y="252">Orders database 订单数据库 (relational)</text>
+  <line x1="180" y1="105" x2="290" y2="105" stroke="#333"/>
+  <line x1="430" y1="105" x2="540" y2="105" stroke="#333"/>
+  <line x1="360" y1="140" x2="360" y2="230" stroke="#333"/>
+  <text x="190" y="98">calls JSON over HTTPS 调用</text>
+  <text x="440" y="98">charges card, async callback 回调</text>
+  <text x="366" y="190">reads and writes SQL</text>
+</svg>
