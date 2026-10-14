@@ -19,7 +19,7 @@ formal:
 neighbours: [A1, A9, A5, A6, A8]
 status: draft
 translationOf: en/types/A2-value-stream.md
-sourceRev: 6857dea
+sourceRev: a082cec
 reviewed: false
 ---
 
@@ -124,7 +124,7 @@ reviewed: false
 
 ## 模板 {#template}
 <!-- skill: keep (≤3 lines) -->
-模型模板：`assets/templates/A2.json` · 版式模板：`tree` · 阶段是排成一行、从左到右按序排列的节点（干系人在最前，价值主张在最后）；交叉映射的能力是排在所属阶段下方的子节点。
+模型模板：`assets/templates/A2.json` · 布局模板：`tree` · 阶段是由边串联、排成一行从左到右的 `task` 节点；与某个阶段交叉映射的能力列在该节点的 `tags` 中。
 
 ## 来源 {#sources}
 <!-- skill: omit -->

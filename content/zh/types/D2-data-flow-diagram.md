@@ -19,7 +19,7 @@ formal:
 neighbours: [C2, D1, D3, E2, F2]
 status: draft
 translationOf: en/types/D2-data-flow-diagram.md
-sourceRev: 72ec5c8
+sourceRev: 674f366
 reviewed: false
 ---
 
@@ -134,7 +134,7 @@ reviewed: false
 
 ## 模板 {#template}
 <!-- skill: keep (≤3 lines) -->
-模型模板：`assets/templates/D2.json` · 布局模板：`nested` · 外部实体、加工和存储都是 `nodes`（kind 为 external、process、store；存储的编号放在 `sub`），信任边界是围绕各区域的 `boundary` 分组，数据流是 `data` 连线，其 `label` 为数据名词，`dir` 为 `->`。
+模型模板：`assets/templates/D2.json` · 布局模板：`nested` · 外部实体是 `external` 节点，加工是 `component` 节点，存储是 `store` 节点（存储编号如 D1 放在 `sub`），信任边界是围绕各区域的 `boundary` 分组，数据流是 `data` 边，其 `label` 为数据名词，`dir` 为 `->`。
 
 ## 来源 {#sources}
 <!-- skill: omit -->

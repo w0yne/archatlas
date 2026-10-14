@@ -19,7 +19,7 @@ formal:
 neighbours: [A5, E1, E2, A6, C3]
 status: draft
 translationOf: en/types/E4-swimlane-cross-functional.md
-sourceRev: 72ec5c8
+sourceRev: 674f366
 reviewed: false
 ---
 

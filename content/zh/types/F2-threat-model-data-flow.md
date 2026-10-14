@@ -19,7 +19,7 @@ formal:
 neighbours: [D2, F1, F3, G3, C3]
 status: draft
 translationOf: en/types/F2-threat-model-data-flow.md
-sourceRev: 72ec5c8
+sourceRev: 674f366
 reviewed: false
 ---
 
@@ -127,7 +127,7 @@ reviewed: false
 
 ## 模板 {#template}
 <!-- skill: keep (≤3 lines) -->
-模型模板：`assets/templates/F2.json` · 布局模板：`nested` · 信任边界成为 `boundary` 分组（可嵌套），外部实体、加工和存储是具有不同 `kind` 的节点，具名数据流是带单向 `dir` 的 `data` 边；元素 ID 和数据流 ID 放在 `tags` 中，用于关联威胁登记表。
+模型模板：`assets/templates/F2.json` · 布局模板：`nested` · 信任边界成为 `boundary` 分组（可嵌套），外部实体是 `external` 节点，加工是 `component` 节点，存储是 `store` 节点，具名数据流是带单向 `dir` 的 `data` 边；元素 ID 和数据流 ID 放在 `tags` 中，用于关联威胁登记表。
 
 ## 来源 {#sources}
 <!-- skill: omit -->

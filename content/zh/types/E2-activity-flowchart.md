@@ -19,7 +19,7 @@ formal:
 neighbours: [E1, E3, E4, A5, D2]
 status: draft
 translationOf: en/types/E2-activity-flowchart.md
-sourceRev: 72ec5c8
+sourceRev: 674f366
 reviewed: false
 ---
 
@@ -132,7 +132,7 @@ reviewed: false
 
 ## 模板 {#template}
 <!-- skill: keep (≤3 lines) -->
-模型模板：`assets/templates/E2.json` · 布局模板：`lanes` · 动作、判断、分叉和终点是 `nodes`（`kind` 承载 UML 形状），按自上而下的流向布局；分区是 `lane` 分组；控制流是 kind 为 `call` 的 `edges`，守卫条件作为 `label`，对象流使用 kind `data`。
+模型模板：`assets/templates/E2.json` · 布局模板：`lanes` · 动作是 `task` 节点，判断和合并是 `gateway` 节点，分叉和汇合是 `band` 节点，`initial` 和 `final` 标示开始与结束；分区是 `lane` 分组；控制流是 kind 为 `call` 的边，守卫条件作为 `label`，对象流使用 kind `data`。
 
 ## 参考来源 {#sources}
 <!-- skill: omit -->

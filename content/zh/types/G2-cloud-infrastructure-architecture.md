@@ -19,7 +19,7 @@ formal:
 neighbours: [G1, G3, C3, C5, G4]
 status: draft
 translationOf: en/types/G2-cloud-infrastructure-architecture.md
-sourceRev: 72ec5c8
+sourceRev: 674f366
 reviewed: false
 ---
 

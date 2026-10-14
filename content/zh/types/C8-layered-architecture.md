@@ -19,7 +19,7 @@ formal:
 neighbours: [C3, C4, C5, C7, G1, I2]
 status: draft
 translationOf: en/types/C8-layered-architecture.md
-sourceRev: 6857dea
+sourceRev: 674f366
 reviewed: false
 ---
 
@@ -143,7 +143,7 @@ reviewed: false
 ## 模板 {#template}
 <!-- skill: keep (≤3 lines) -->
 
-模型模板：`assets/templates/C8.json` · 布局模板：`layered` · 每个 kind 为 `layer` 的 `groups[]` 条目成为一条带有模块标签的条带；kind 为 `dependency` 的 `edges` 表示允许的依赖（实线）或运行时依赖（虚线）；`meta` 保存变体和规则语句。
+模型模板：`assets/templates/C8.json` · 布局模板：`layered` · 每个 kind 为 `layer` 的 `groups[]` 条目成为一条带 `component` 节点（作为模块标签）的条带；kind 为 `dependency` 的 `edges` 表示允许的依赖（实线）或运行时依赖（`dashed` 虚线）；`meta.description` 保存变体和规则语句。
 
 ## 来源 {#sources}
 <!-- skill: omit -->

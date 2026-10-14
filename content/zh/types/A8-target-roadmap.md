@@ -19,7 +19,7 @@ formal:
 neighbours: [A7, A1, C1]
 status: draft
 translationOf: en/types/A8-target-roadmap.md
-sourceRev: 6857dea
+sourceRev: 674f366
 reviewed: false
 ---
 
@@ -118,7 +118,7 @@ reviewed: false
 
 ## 模板 {#template}
 <!-- skill: keep (≤3 lines) -->
-模型模板：`assets/templates/A8.json` · 布局模板：`tree` · 各状态从左到右排序（基线 → 过渡状态 → 目标）；工作包挂在相邻状态之间，彼此以 `dependency` 边相连；构建块的状态来自样式标记（`planned`、`shared`、`external`）。
+模型模板：`assets/templates/A8.json` · 布局模板：`tree` · 各状态是从左到右排成一条链的 `state` 节点（基线 → 目标），工作包是相邻状态之间的 `task` 节点，以 `dependency` 边相连；节点的 `style`（`planned`、`shared`、`external`）标示构建块的状态。
 
 ## 来源 {#sources}
 <!-- skill: omit -->

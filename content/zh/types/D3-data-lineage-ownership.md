@@ -19,7 +19,7 @@ formal:
 neighbours: [D2, D1, H1, F3, E2]
 status: draft
 translationOf: en/types/D3-data-lineage-ownership.md
-sourceRev: 72ec5c8
+sourceRev: 674f366
 reviewed: false
 ---
 
@@ -130,7 +130,7 @@ reviewed: false
 
 ## 模板 {#template}
 <!-- skill: keep (≤3 lines) -->
-模型模板：`assets/templates/D3.json` · 布局模板：`layered` · 数据集和作业是 `nodes`（kind 为 dataset 或 job；所有者和管理员放在 `sub`，分级放在 `tags`），所属领域是 `lane` 或 `layer` 分组，“供给”关系是从生产者指向使用方的 `data` 边 `->`，证据来源和日期放在页脚。
+模型模板：`assets/templates/D3.json` · 布局模板：`layered` · 数据集是 `store` 节点，作业是 `component` 节点（所有者和管理员放在 `sub`，分级放在 `tags`），所属领域是 `lane` 或 `layer` 分组，“供给”关系是从生产者指向使用方的 `data` 边 `->`，证据来源和日期写入 `meta.description`。
 
 ## 参考来源 {#sources}
 <!-- skill: omit -->

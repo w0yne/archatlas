@@ -19,7 +19,7 @@ formal:
 neighbours: [A2, A5, E4, G4, A8]
 status: draft
 translationOf: en/types/A9-lean-value-stream-map.md
-sourceRev: 6857dea
+sourceRev: 674f366
 reviewed: false
 ---
 
@@ -128,7 +128,7 @@ reviewed: false
 
 ## 模板 {#template}
 <!-- skill: keep (≤3 lines) -->
-模型模板：`assets/templates/A9.json` · 版式模板：`tree` · 处理步骤是从左到右按序排列的节点，数据框是其子节点，排队是步骤之间的节点，时间线是最后一行按序排列的等待/PT 片段并附合计。
+模型模板：`assets/templates/A9.json` · 布局模板：`tree` · 处理步骤是排成一行、从左到右的 `task` 节点，步骤之间放一个 `queue` 节点；流程数据框写在节点的 `sub` 或 `attributes` 中；合计（前置时间、处理时间、活动比）写入 `meta.description`，因为渲染器暂不绘制时间线行。
 
 ## 来源 {#sources}
 <!-- skill: omit -->
