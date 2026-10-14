@@ -1,0 +1,74 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "C5",
+    "title": "Online shop: logical architecture",
+    "lang": "en",
+    "audience": "architects",
+    "state": "as-is"
+  },
+  "layout": {
+    "template": "layered",
+    "profile": "doc"
+  },
+  "groups": [
+    {
+      "id": "g_b",
+      "title": "Online shop",
+      "kind": "boundary"
+    },
+    {
+      "id": "g_p",
+      "title": "Presentation",
+      "kind": "frame",
+      "parent": "g_b"
+    },
+    {
+      "id": "g_d",
+      "title": "Domain",
+      "kind": "frame",
+      "parent": "g_b"
+    },
+    {
+      "id": "g_i",
+      "title": "Infrastructure",
+      "kind": "frame",
+      "parent": "g_b"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "ui",
+      "kind": "component",
+      "label": "Storefront UI",
+      "parent": "g_p"
+    },
+    {
+      "id": "ord",
+      "kind": "component",
+      "label": "Order logic",
+      "parent": "g_d",
+      "style": "primary"
+    },
+    {
+      "id": "pay",
+      "kind": "component",
+      "label": "Payment gateway adapter",
+      "parent": "g_i"
+    },
+    {
+      "id": "ext",
+      "kind": "external",
+      "label": "Payment provider",
+      "style": "external"
+    }
+  ],
+  "edges": [
+    {
+      "from": "pay",
+      "to": "ext",
+      "label": "charge",
+      "kind": "dependency"
+    }
+  ]
+}

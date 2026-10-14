@@ -1,0 +1,69 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "G2",
+    "title": "Online shop: cloud infrastructure",
+    "lang": "en",
+    "audience": "operations and architects",
+    "state": "as-is"
+  },
+  "layout": {
+    "template": "layered",
+    "profile": "doc"
+  },
+  "groups": [
+    {
+      "id": "g_e",
+      "title": "Edge",
+      "kind": "layer"
+    },
+    {
+      "id": "g_cmp",
+      "title": "Compute",
+      "kind": "layer"
+    },
+    {
+      "id": "g_d",
+      "title": "Data",
+      "kind": "layer"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "cdn",
+      "kind": "component",
+      "label": "CDN",
+      "sub": "caches pages",
+      "parent": "g_e"
+    },
+    {
+      "id": "app",
+      "kind": "component",
+      "label": "App service",
+      "sub": "runs the shop",
+      "parent": "g_cmp",
+      "style": "primary"
+    },
+    {
+      "id": "sql",
+      "kind": "store",
+      "label": "Managed database",
+      "sub": "orders",
+      "parent": "g_d"
+    }
+  ],
+  "edges": [
+    {
+      "from": "g_e",
+      "to": "g_cmp",
+      "label": "forwards",
+      "kind": "call"
+    },
+    {
+      "from": "g_cmp",
+      "to": "g_d",
+      "label": "reads and writes",
+      "kind": "data"
+    }
+  ]
+}

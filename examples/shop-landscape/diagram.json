@@ -1,0 +1,149 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "C1",
+    "title": "t",
+    "lang": "en",
+    "audience": "IT and business leads",
+    "state": "as-is",
+    "legend": [
+      {
+        "label": "lg_pl",
+        "style": "shared"
+      },
+      {
+        "label": "lg_ex",
+        "style": "external"
+      }
+    ]
+  },
+  "layout": {
+    "template": "layered",
+    "profile": "doc"
+  },
+  "groups": [
+    {
+      "id": "g_ch",
+      "title": "g_ch",
+      "kind": "layer"
+    },
+    {
+      "id": "g_app",
+      "title": "g_app",
+      "kind": "layer"
+    },
+    {
+      "id": "g_pl",
+      "title": "g_pl",
+      "kind": "layer"
+    },
+    {
+      "id": "g_ex",
+      "title": "g_ex",
+      "kind": "layer"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "web",
+      "kind": "system",
+      "label": "web",
+      "parent": "g_ch"
+    },
+    {
+      "id": "mob",
+      "kind": "system",
+      "label": "mob",
+      "parent": "g_ch"
+    },
+    {
+      "id": "chat",
+      "kind": "system",
+      "label": "chat",
+      "parent": "g_ch"
+    },
+    {
+      "id": "shop",
+      "kind": "system",
+      "label": "shop",
+      "sub": "shop_s",
+      "parent": "g_app",
+      "style": "primary"
+    },
+    {
+      "id": "back",
+      "kind": "system",
+      "label": "back",
+      "parent": "g_app",
+      "style": "peer"
+    },
+    {
+      "id": "bot",
+      "kind": "system",
+      "label": "bot",
+      "parent": "g_app",
+      "style": "peer"
+    },
+    {
+      "id": "idp",
+      "kind": "system",
+      "label": "idp",
+      "parent": "g_pl",
+      "style": "shared"
+    },
+    {
+      "id": "notif",
+      "kind": "system",
+      "label": "notif",
+      "parent": "g_pl",
+      "style": "shared"
+    },
+    {
+      "id": "search",
+      "kind": "system",
+      "label": "search",
+      "parent": "g_pl",
+      "style": "shared"
+    },
+    {
+      "id": "pay",
+      "kind": "external",
+      "label": "pay",
+      "parent": "g_ex",
+      "style": "external"
+    },
+    {
+      "id": "car",
+      "kind": "external",
+      "label": "car",
+      "parent": "g_ex",
+      "style": "external"
+    },
+    {
+      "id": "mail",
+      "kind": "external",
+      "label": "mail",
+      "parent": "g_ex",
+      "style": "external"
+    }
+  ],
+  "edges": [
+    {
+      "from": "g_ch",
+      "to": "g_app",
+      "label": "api",
+      "kind": "call"
+    },
+    {
+      "from": "g_app",
+      "to": "g_pl",
+      "label": "api",
+      "kind": "call"
+    },
+    {
+      "from": "g_pl",
+      "to": "g_ex",
+      "kind": "call"
+    }
+  ]
+}

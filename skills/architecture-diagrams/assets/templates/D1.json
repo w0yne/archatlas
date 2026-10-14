@@ -1,0 +1,103 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "D1",
+    "title": "Online shop: logical data model",
+    "lang": "en",
+    "audience": "developers and analysts",
+    "state": "as-is"
+  },
+  "layout": {
+    "template": "er",
+    "profile": "doc",
+    "columns": 4
+  },
+  "nodes": [
+    {
+      "id": "customer",
+      "kind": "entity",
+      "label": "customer",
+      "attributes": [
+        "PK customer_id",
+        "name",
+        "email"
+      ],
+      "size_hint": {
+        "width": 170
+      }
+    },
+    {
+      "id": "order",
+      "kind": "entity",
+      "label": "order",
+      "attributes": [
+        "PK order_id",
+        "FK customer_id",
+        "placed_at",
+        "status"
+      ],
+      "size_hint": {
+        "width": 170
+      }
+    },
+    {
+      "id": "order_line",
+      "kind": "entity",
+      "label": "order_line",
+      "attributes": [
+        "PK order_line_id",
+        "FK order_id",
+        "FK product_id",
+        "quantity"
+      ],
+      "size_hint": {
+        "width": 170
+      }
+    },
+    {
+      "id": "product",
+      "kind": "entity",
+      "label": "product",
+      "attributes": [
+        "PK product_id",
+        "name",
+        "price"
+      ],
+      "size_hint": {
+        "width": 170
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "customer",
+      "to": "order",
+      "label": "places",
+      "cardinality": {
+        "from": "1",
+        "to": "N"
+      },
+      "dir": "--"
+    },
+    {
+      "from": "order",
+      "to": "order_line",
+      "label": "contains",
+      "cardinality": {
+        "from": "1",
+        "to": "N"
+      },
+      "dir": "--"
+    },
+    {
+      "from": "product",
+      "to": "order_line",
+      "label": "is for",
+      "cardinality": {
+        "from": "1",
+        "to": "N"
+      },
+      "dir": "--"
+    }
+  ]
+}

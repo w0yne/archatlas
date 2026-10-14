@@ -1,0 +1,58 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "H3",
+    "title": "Online shop: stakeholder map",
+    "lang": "en",
+    "audience": "project team",
+    "state": "as-is"
+  },
+  "layout": {
+    "template": "grid_table",
+    "profile": "doc"
+  },
+  "tables": [
+    {
+      "id": "q",
+      "title": "Influence by interest",
+      "columns": [
+        "Influence",
+        "Low interest",
+        "High interest"
+      ],
+      "rows": [
+        [
+          "High influence",
+          "Finance (keep satisfied)",
+          "Shop manager (manage closely)"
+        ],
+        [
+          "Low influence",
+          "Carrier (monitor)",
+          "Customer (keep informed)"
+        ]
+      ]
+    },
+    {
+      "id": "s",
+      "title": "Companion table",
+      "columns": [
+        "Stakeholder",
+        "Attitude",
+        "Next step"
+      ],
+      "rows": [
+        [
+          "Shop manager",
+          "supportive",
+          "Weekly review"
+        ],
+        [
+          "Finance",
+          "neutral",
+          "Share cost plan"
+        ]
+      ]
+    }
+  ]
+}

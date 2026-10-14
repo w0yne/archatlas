@@ -1,0 +1,99 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "F1",
+    "title": "Online shop: sign-in and API access",
+    "lang": "en",
+    "audience": "security and developers",
+    "state": "as-is"
+  },
+  "layout": {
+    "template": "sequence",
+    "profile": "doc"
+  },
+  "nodes": [
+    {
+      "id": "user",
+      "kind": "lifeline",
+      "label": "Customer",
+      "size_hint": {
+        "width": 150
+      }
+    },
+    {
+      "id": "idp",
+      "kind": "lifeline",
+      "label": "Identity",
+      "size_hint": {
+        "width": 150
+      }
+    },
+    {
+      "id": "api",
+      "kind": "lifeline",
+      "label": "Order API",
+      "size_hint": {
+        "width": 150
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "user",
+      "to": "idp",
+      "label": "Sign in",
+      "step": 1,
+      "kind": "call"
+    },
+    {
+      "from": "idp",
+      "to": "user",
+      "label": "Access token",
+      "step": 2,
+      "kind": "call",
+      "dashed": true
+    },
+    {
+      "from": "user",
+      "to": "api",
+      "label": "Request with token",
+      "step": 3,
+      "kind": "call"
+    },
+    {
+      "from": "api",
+      "to": "idp",
+      "label": "Verify token",
+      "step": 4,
+      "kind": "call"
+    },
+    {
+      "from": "api",
+      "to": "user",
+      "label": "Order list",
+      "step": 5,
+      "kind": "call",
+      "dashed": true
+    }
+  ],
+  "frames": [
+    {
+      "id": "alt1",
+      "label": "token valid",
+      "from_step": 4,
+      "to_step": 5
+    }
+  ],
+  "activations": [
+    {
+      "node": "idp",
+      "from_step": 1,
+      "to_step": 2
+    },
+    {
+      "node": "api",
+      "from_step": 3,
+      "to_step": 5
+    }
+  ]
+}

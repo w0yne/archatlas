@@ -1,0 +1,58 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "A6",
+    "title": "Online shop: customer journey",
+    "lang": "en",
+    "audience": "product team",
+    "state": "as-is"
+  },
+  "layout": {
+    "template": "grid_table",
+    "profile": "doc"
+  },
+  "tables": [
+    {
+      "id": "j",
+      "title": "Journey of a first purchase",
+      "columns": [
+        "Row",
+        "Discover",
+        "Order",
+        "Receive"
+      ],
+      "rows": [
+        [
+          "Action",
+          "Search",
+          "Check out",
+          "Unpack"
+        ],
+        [
+          "Thought",
+          "Is it fair priced?",
+          "Is paying safe?",
+          "Is it as shown?"
+        ],
+        [
+          "Emotion",
+          "neutral",
+          "worried",
+          "happy"
+        ],
+        [
+          "Pain point",
+          "Many similar results",
+          "Long form",
+          "Late delivery"
+        ],
+        [
+          "Touchpoint",
+          "Web storefront",
+          "Web storefront",
+          "Parcel, email"
+        ]
+      ]
+    }
+  ]
+}

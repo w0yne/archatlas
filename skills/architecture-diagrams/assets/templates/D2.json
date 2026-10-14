@@ -1,0 +1,69 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "D2",
+    "title": "Online shop: data flow, order data",
+    "lang": "en",
+    "audience": "analysts and security",
+    "state": "as-is"
+  },
+  "layout": {
+    "template": "nested",
+    "profile": "doc",
+    "columns": 3
+  },
+  "groups": [
+    {
+      "id": "g_in",
+      "title": "Shop",
+      "kind": "boundary"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "cust",
+      "kind": "external",
+      "label": "Customer",
+      "style": "external"
+    },
+    {
+      "id": "val",
+      "kind": "component",
+      "label": "Validate order",
+      "parent": "g_in"
+    },
+    {
+      "id": "st",
+      "kind": "store",
+      "label": "Orders",
+      "sub": "D1",
+      "parent": "g_in"
+    },
+    {
+      "id": "pay",
+      "kind": "external",
+      "label": "Payment provider",
+      "style": "external"
+    }
+  ],
+  "edges": [
+    {
+      "from": "cust",
+      "to": "val",
+      "label": "Order details",
+      "kind": "data"
+    },
+    {
+      "from": "val",
+      "to": "st",
+      "label": "Valid order",
+      "kind": "data"
+    },
+    {
+      "from": "st",
+      "to": "pay",
+      "label": "Amount to charge",
+      "kind": "data"
+    }
+  ]
+}

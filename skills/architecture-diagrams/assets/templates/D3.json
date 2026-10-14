@@ -1,0 +1,68 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "D3",
+    "title": "Online shop: data lineage and ownership",
+    "lang": "en",
+    "audience": "data owners",
+    "state": "as-is"
+  },
+  "layout": {
+    "template": "layered",
+    "profile": "doc"
+  },
+  "groups": [
+    {
+      "id": "g_src",
+      "title": "Ordering domain",
+      "kind": "layer"
+    },
+    {
+      "id": "g_rep",
+      "title": "Reporting domain",
+      "kind": "layer"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "orders",
+      "kind": "store",
+      "label": "orders",
+      "sub": "owner: Ordering team",
+      "tags": [
+        "internal"
+      ],
+      "parent": "g_src"
+    },
+    {
+      "id": "job",
+      "kind": "component",
+      "label": "Daily sales job",
+      "parent": "g_rep"
+    },
+    {
+      "id": "sales",
+      "kind": "store",
+      "label": "daily_sales",
+      "sub": "owner: Reporting team",
+      "tags": [
+        "internal"
+      ],
+      "parent": "g_rep"
+    }
+  ],
+  "edges": [
+    {
+      "from": "orders",
+      "to": "job",
+      "label": "feeds",
+      "kind": "data"
+    },
+    {
+      "from": "job",
+      "to": "sales",
+      "label": "writes",
+      "kind": "data"
+    }
+  ]
+}

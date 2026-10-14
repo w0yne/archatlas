@@ -1,0 +1,76 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "G1",
+    "title": "Online shop: deployment",
+    "lang": "en",
+    "audience": "operations and developers",
+    "state": "as-is"
+  },
+  "layout": {
+    "template": "nested",
+    "profile": "doc",
+    "columns": 3
+  },
+  "groups": [
+    {
+      "id": "g_c",
+      "title": "Cluster",
+      "kind": "boundary"
+    },
+    {
+      "id": "g_h",
+      "title": "Host A",
+      "kind": "boundary",
+      "parent": "g_c"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "api",
+      "kind": "component",
+      "label": "Order API",
+      "sub": "2 replicas",
+      "parent": "g_h",
+      "style": "primary"
+    },
+    {
+      "id": "web",
+      "kind": "component",
+      "label": "Storefront",
+      "parent": "g_h"
+    },
+    {
+      "id": "db",
+      "kind": "store",
+      "label": "Managed database",
+      "style": "external"
+    },
+    {
+      "id": "pay",
+      "kind": "external",
+      "label": "Payment provider",
+      "style": "external"
+    }
+  ],
+  "edges": [
+    {
+      "from": "web",
+      "to": "api",
+      "label": "HTTP",
+      "kind": "call"
+    },
+    {
+      "from": "api",
+      "to": "db",
+      "label": "SQL",
+      "kind": "data"
+    },
+    {
+      "from": "api",
+      "to": "pay",
+      "label": "HTTPS",
+      "kind": "call"
+    }
+  ]
+}

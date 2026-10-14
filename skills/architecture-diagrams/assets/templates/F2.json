@@ -1,0 +1,108 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "F2",
+    "title": "Checkout: trust boundaries",
+    "lang": "en",
+    "audience": "security reviewers",
+    "state": "as-is"
+  },
+  "layout": {
+    "template": "nested",
+    "profile": "doc",
+    "direction": "LR",
+    "columns": 2
+  },
+  "groups": [
+    {
+      "id": "g_net",
+      "title": "Internet",
+      "kind": "frame",
+      "dashed": true
+    },
+    {
+      "id": "g_edge",
+      "title": "Public edge",
+      "kind": "frame",
+      "dashed": true
+    },
+    {
+      "id": "g_tp",
+      "title": "Payment provider",
+      "kind": "frame",
+      "dashed": true,
+      "style": "external"
+    },
+    {
+      "id": "g_int",
+      "title": "Internal network",
+      "kind": "frame",
+      "dashed": true
+    }
+  ],
+  "nodes": [
+    {
+      "id": "shopper",
+      "kind": "external",
+      "label": "Shopper's browser",
+      "parent": "g_net",
+      "style": "external"
+    },
+    {
+      "id": "gw",
+      "kind": "component",
+      "label": "API gateway",
+      "parent": "g_edge"
+    },
+    {
+      "id": "ord",
+      "kind": "component",
+      "label": "Order service",
+      "parent": "g_int",
+      "style": "primary"
+    },
+    {
+      "id": "db",
+      "kind": "store",
+      "label": "Orders database",
+      "parent": "g_int"
+    },
+    {
+      "id": "pay",
+      "kind": "external",
+      "label": "Payment API",
+      "parent": "g_tp",
+      "style": "external"
+    }
+  ],
+  "edges": [
+    {
+      "from": "shopper",
+      "to": "gw",
+      "label": "Order request",
+      "step": 1,
+      "kind": "data"
+    },
+    {
+      "from": "gw",
+      "to": "ord",
+      "label": "Validated request",
+      "step": 2,
+      "kind": "data"
+    },
+    {
+      "from": "ord",
+      "to": "db",
+      "label": "Order record",
+      "step": 3,
+      "kind": "data"
+    },
+    {
+      "from": "ord",
+      "to": "pay",
+      "label": "Card token",
+      "step": 4,
+      "kind": "data"
+    }
+  ]
+}

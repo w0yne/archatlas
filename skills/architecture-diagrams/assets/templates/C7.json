@@ -1,0 +1,69 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "C7",
+    "title": "Online shop: bounded contexts",
+    "lang": "en",
+    "audience": "architects and teams",
+    "state": "as-is"
+  },
+  "layout": {
+    "template": "nested",
+    "profile": "doc"
+  },
+  "groups": [
+    {
+      "id": "g_o",
+      "title": "Ordering",
+      "kind": "boundary"
+    },
+    {
+      "id": "g_c",
+      "title": "Catalogue",
+      "kind": "boundary"
+    },
+    {
+      "id": "g_s",
+      "title": "Support",
+      "kind": "boundary"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "o",
+      "kind": "component",
+      "label": "Order model",
+      "parent": "g_o",
+      "tags": [
+        "OHS"
+      ]
+    },
+    {
+      "id": "c",
+      "kind": "component",
+      "label": "Product model",
+      "parent": "g_c"
+    },
+    {
+      "id": "s",
+      "kind": "component",
+      "label": "Case model",
+      "parent": "g_s",
+      "tags": [
+        "ACL"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": "g_c",
+      "to": "g_o",
+      "label": "supplier / customer"
+    },
+    {
+      "from": "g_o",
+      "to": "g_s",
+      "label": "published language"
+    }
+  ]
+}

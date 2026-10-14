@@ -1,0 +1,79 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "A7",
+    "title": "Online shop: conceptual architecture",
+    "lang": "en",
+    "audience": "architects and business leads",
+    "state": "as-is"
+  },
+  "layout": {
+    "template": "layered",
+    "profile": "doc"
+  },
+  "groups": [
+    {
+      "id": "g_b",
+      "title": "Online shop",
+      "kind": "boundary"
+    },
+    {
+      "id": "g_ch",
+      "title": "Channels",
+      "kind": "layer",
+      "parent": "g_b"
+    },
+    {
+      "id": "g_ap",
+      "title": "Applications",
+      "kind": "layer",
+      "parent": "g_b"
+    },
+    {
+      "id": "g_da",
+      "title": "Data",
+      "kind": "layer",
+      "parent": "g_b"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "web",
+      "kind": "component",
+      "label": "Storefront",
+      "parent": "g_ch"
+    },
+    {
+      "id": "ord",
+      "kind": "component",
+      "label": "Ordering",
+      "parent": "g_ap"
+    },
+    {
+      "id": "cat",
+      "kind": "component",
+      "label": "Catalogue",
+      "parent": "g_ap"
+    },
+    {
+      "id": "db",
+      "kind": "store",
+      "label": "Shop data",
+      "parent": "g_da"
+    },
+    {
+      "id": "pay",
+      "kind": "external",
+      "label": "Payment provider",
+      "style": "external"
+    }
+  ],
+  "edges": [
+    {
+      "from": "g_ch",
+      "to": "g_ap",
+      "label": "uses",
+      "kind": "call"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "C8",
+    "title": "Online shop: layers and allowed dependencies",
+    "lang": "en",
+    "audience": "developers",
+    "state": "as-is"
+  },
+  "layout": {
+    "template": "layered",
+    "profile": "doc"
+  },
+  "groups": [
+    {
+      "id": "g_ui",
+      "title": "Presentation",
+      "kind": "layer"
+    },
+    {
+      "id": "g_dom",
+      "title": "Domain",
+      "kind": "layer"
+    },
+    {
+      "id": "g_data",
+      "title": "Data access",
+      "kind": "layer"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "ctl",
+      "kind": "component",
+      "label": "Controllers",
+      "parent": "g_ui"
+    },
+    {
+      "id": "svc",
+      "kind": "component",
+      "label": "Order services",
+      "parent": "g_dom"
+    },
+    {
+      "id": "repo",
+      "kind": "component",
+      "label": "Repositories",
+      "parent": "g_data"
+    }
+  ],
+  "edges": [
+    {
+      "from": "g_ui",
+      "to": "g_dom",
+      "label": "may use",
+      "kind": "dependency"
+    },
+    {
+      "from": "g_dom",
+      "to": "g_data",
+      "label": "may use",
+      "kind": "dependency"
+    }
+  ]
+}

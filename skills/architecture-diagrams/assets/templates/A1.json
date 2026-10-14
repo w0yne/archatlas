@@ -1,0 +1,74 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "A1",
+    "title": "Online shop: capability map",
+    "lang": "en",
+    "audience": "business leads",
+    "state": "as-is"
+  },
+  "layout": {
+    "template": "layered",
+    "profile": "doc"
+  },
+  "groups": [
+    {
+      "id": "g_core",
+      "title": "Core",
+      "kind": "layer"
+    },
+    {
+      "id": "g_enable",
+      "title": "Enabling",
+      "kind": "layer"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "cat",
+      "kind": "component",
+      "label": "Catalogue",
+      "parent": "g_core"
+    },
+    {
+      "id": "ord",
+      "kind": "component",
+      "label": "Order handling",
+      "parent": "g_core",
+      "style": "primary"
+    },
+    {
+      "id": "ful",
+      "kind": "component",
+      "label": "Fulfilment",
+      "parent": "g_core"
+    },
+    {
+      "id": "sup",
+      "kind": "component",
+      "label": "Customer support",
+      "parent": "g_enable",
+      "style": "planned"
+    },
+    {
+      "id": "fin",
+      "kind": "component",
+      "label": "Finance",
+      "parent": "g_enable"
+    },
+    {
+      "id": "mkt",
+      "kind": "component",
+      "label": "Marketing",
+      "parent": "g_enable"
+    }
+  ],
+  "edges": [
+    {
+      "from": "g_core",
+      "to": "g_enable",
+      "label": "supported by",
+      "kind": "dependency"
+    }
+  ]
+}

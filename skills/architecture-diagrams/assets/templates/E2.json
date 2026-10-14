@@ -1,0 +1,88 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "E2",
+    "title": "Online shop: order fulfilment flow",
+    "lang": "en",
+    "audience": "developers and operations",
+    "state": "as-is"
+  },
+  "layout": {
+    "template": "lanes",
+    "profile": "doc",
+    "direction": "LR",
+    "columns": 4
+  },
+  "groups": [
+    {
+      "id": "l_a",
+      "title": "Shop",
+      "kind": "lane"
+    },
+    {
+      "id": "l_b",
+      "title": "Warehouse",
+      "kind": "lane"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "i",
+      "kind": "initial",
+      "label": "Start",
+      "parent": "l_a"
+    },
+    {
+      "id": "a1",
+      "kind": "task",
+      "label": "Receive order",
+      "parent": "l_a",
+      "size_hint": {
+        "width": 150
+      }
+    },
+    {
+      "id": "d1",
+      "kind": "gateway",
+      "label": "In stock?",
+      "parent": "l_a",
+      "size_hint": {
+        "width": 110
+      }
+    },
+    {
+      "id": "a2",
+      "kind": "task",
+      "label": "Pick and pack",
+      "parent": "l_b",
+      "size_hint": {
+        "width": 150
+      }
+    },
+    {
+      "id": "f",
+      "kind": "final",
+      "label": "End",
+      "parent": "l_b"
+    }
+  ],
+  "edges": [
+    {
+      "from": "i",
+      "to": "a1"
+    },
+    {
+      "from": "a1",
+      "to": "d1"
+    },
+    {
+      "from": "d1",
+      "to": "a2",
+      "label": "yes"
+    },
+    {
+      "from": "a2",
+      "to": "f"
+    }
+  ]
+}

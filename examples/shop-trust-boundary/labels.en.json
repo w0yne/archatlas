@@ -1,0 +1,17 @@
+{
+  "t": "Checkout: trust boundaries",
+  "g_net": "Internet",
+  "g_edge": "Public edge",
+  "g_int": "Internal network",
+  "g_tp": "Payment provider",
+  "shopper": "Shopper's browser",
+  "gw": "API gateway",
+  "ord": "Order service",
+  "db": "Orders database",
+  "pay": "Payment API",
+  "d1": "Order request",
+  "d2": "Validated request",
+  "d3": "Order record",
+  "d4": "Card token",
+  "lg": "Dashed frame = trust boundary"
+}

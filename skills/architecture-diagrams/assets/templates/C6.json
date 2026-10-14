@@ -1,0 +1,54 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "C6",
+    "title": "Online shop: interface table",
+    "lang": "en",
+    "audience": "integration team",
+    "state": "as-is"
+  },
+  "layout": {
+    "template": "grid_table",
+    "profile": "doc"
+  },
+  "tables": [
+    {
+      "id": "i",
+      "title": "Interfaces",
+      "columns": [
+        "ID",
+        "From",
+        "To",
+        "Style",
+        "Data",
+        "Trigger"
+      ],
+      "rows": [
+        [
+          "I1",
+          "Order API",
+          "Payment provider",
+          "REST, synchronous",
+          "Charge request",
+          "Checkout"
+        ],
+        [
+          "I2",
+          "Order API",
+          "Email service",
+          "Message, asynchronous",
+          "Receipt",
+          "Order paid"
+        ],
+        [
+          "I3",
+          "Order API",
+          "Carrier",
+          "File, batch",
+          "Shipment list",
+          "Nightly"
+        ]
+      ]
+    }
+  ]
+}

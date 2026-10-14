@@ -1,0 +1,120 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "E1",
+    "title": "t",
+    "lang": "en",
+    "audience": "developers",
+    "state": "as-is"
+  },
+  "layout": {
+    "template": "sequence",
+    "profile": "doc"
+  },
+  "nodes": [
+    {
+      "id": "cust",
+      "kind": "lifeline",
+      "label": "cust",
+      "size_hint": {
+        "width": 150
+      }
+    },
+    {
+      "id": "api",
+      "kind": "lifeline",
+      "label": "api",
+      "size_hint": {
+        "width": 150
+      }
+    },
+    {
+      "id": "inv",
+      "kind": "lifeline",
+      "label": "inv",
+      "size_hint": {
+        "width": 150
+      }
+    },
+    {
+      "id": "pay",
+      "kind": "lifeline",
+      "label": "pay",
+      "size_hint": {
+        "width": 150
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "cust",
+      "to": "api",
+      "label": "m1",
+      "step": 1,
+      "kind": "call"
+    },
+    {
+      "from": "api",
+      "to": "inv",
+      "label": "m2",
+      "step": 2,
+      "kind": "call"
+    },
+    {
+      "from": "inv",
+      "to": "api",
+      "label": "m3",
+      "step": 3,
+      "kind": "call",
+      "dashed": true
+    },
+    {
+      "from": "api",
+      "to": "pay",
+      "label": "m4",
+      "step": 4,
+      "kind": "call"
+    },
+    {
+      "from": "pay",
+      "to": "api",
+      "label": "m5",
+      "step": 5,
+      "kind": "call",
+      "dashed": true
+    },
+    {
+      "from": "api",
+      "to": "cust",
+      "label": "m6",
+      "step": 6,
+      "kind": "call",
+      "dashed": true
+    }
+  ],
+  "frames": [
+    {
+      "id": "loop1",
+      "label": "f1",
+      "from_step": 2,
+      "to_step": 3
+    }
+  ],
+  "activations": [
+    {
+      "node": "api",
+      "from_step": 1,
+      "to_step": 6
+    },
+    {
+      "node": "inv",
+      "from_step": 2,
+      "to_step": 3
+    },
+    {
+      "node": "pay",
+      "from_step": 4,
+      "to_step": 5
+    }
+  ]
+}

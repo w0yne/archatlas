@@ -1,0 +1,64 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "A9",
+    "title": "Online shop: fulfilment value stream map",
+    "lang": "en",
+    "audience": "operations",
+    "state": "as-is"
+  },
+  "layout": {
+    "template": "tree",
+    "profile": "doc"
+  },
+  "nodes": [
+    {
+      "id": "p1",
+      "kind": "task",
+      "label": "Pick",
+      "sub": "PT 6 min"
+    },
+    {
+      "id": "q1",
+      "kind": "queue",
+      "label": "Packing queue",
+      "sub": "wait 4 h"
+    },
+    {
+      "id": "p2",
+      "kind": "task",
+      "label": "Pack",
+      "sub": "PT 4 min"
+    },
+    {
+      "id": "q2",
+      "kind": "queue",
+      "label": "Handover queue",
+      "sub": "wait 12 h"
+    },
+    {
+      "id": "p3",
+      "kind": "task",
+      "label": "Hand over to carrier",
+      "sub": "PT 2 min"
+    }
+  ],
+  "edges": [
+    {
+      "from": "p1",
+      "to": "q1"
+    },
+    {
+      "from": "q1",
+      "to": "p2"
+    },
+    {
+      "from": "p2",
+      "to": "q2"
+    },
+    {
+      "from": "q2",
+      "to": "p3"
+    }
+  ]
+}

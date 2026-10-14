@@ -1,0 +1,67 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "G4",
+    "title": "Online shop: delivery pipeline",
+    "lang": "en",
+    "audience": "developers and operations",
+    "state": "as-is"
+  },
+  "layout": {
+    "template": "tree",
+    "profile": "doc"
+  },
+  "nodes": [
+    {
+      "id": "trg",
+      "kind": "event",
+      "label": "Merge to main",
+      "size_hint": {
+        "width": 110
+      }
+    },
+    {
+      "id": "bld",
+      "kind": "task",
+      "label": "Build"
+    },
+    {
+      "id": "tst",
+      "kind": "task",
+      "label": "Test"
+    },
+    {
+      "id": "reg",
+      "kind": "store",
+      "label": "Image registry"
+    },
+    {
+      "id": "dep",
+      "kind": "task",
+      "label": "Deploy"
+    }
+  ],
+  "edges": [
+    {
+      "from": "trg",
+      "to": "bld"
+    },
+    {
+      "from": "bld",
+      "to": "tst",
+      "kind": "dependency"
+    },
+    {
+      "from": "tst",
+      "to": "reg",
+      "label": "image",
+      "kind": "data"
+    },
+    {
+      "from": "reg",
+      "to": "dep",
+      "label": "pull",
+      "kind": "call"
+    }
+  ]
+}

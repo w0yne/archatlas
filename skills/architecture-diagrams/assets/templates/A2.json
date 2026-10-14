@@ -1,0 +1,62 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "A2",
+    "title": "Online shop: value stream, order to delivery",
+    "lang": "en",
+    "audience": "business leads",
+    "state": "as-is"
+  },
+  "layout": {
+    "template": "tree",
+    "profile": "doc"
+  },
+  "nodes": [
+    {
+      "id": "s1",
+      "kind": "task",
+      "label": "Customer orders"
+    },
+    {
+      "id": "s2",
+      "kind": "task",
+      "label": "Pay"
+    },
+    {
+      "id": "s3",
+      "kind": "task",
+      "label": "Pack"
+    },
+    {
+      "id": "s4",
+      "kind": "task",
+      "label": "Deliver"
+    },
+    {
+      "id": "s5",
+      "kind": "event",
+      "label": "Goods received",
+      "size_hint": {
+        "width": 110
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "s1",
+      "to": "s2"
+    },
+    {
+      "from": "s2",
+      "to": "s3"
+    },
+    {
+      "from": "s3",
+      "to": "s4"
+    },
+    {
+      "from": "s4",
+      "to": "s5"
+    }
+  ]
+}

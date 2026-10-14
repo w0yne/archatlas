@@ -1,0 +1,16 @@
+{
+  "t": "Online shop: system context",
+  "cust": "Customer",
+  "agent": "Support agent",
+  "shop": "Online shop",
+  "shop_s": "sells goods to customers",
+  "pay": "Payment provider",
+  "car": "Carrier",
+  "mail": "Email service",
+  "e1": "Browses and orders",
+  "e2": "Answers questions",
+  "e4": "Charges cards",
+  "e5": "Books shipments",
+  "e6": "Sends receipts",
+  "lg_ext": "External system"
+}
