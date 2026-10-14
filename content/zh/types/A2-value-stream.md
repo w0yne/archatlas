@@ -23,7 +23,7 @@ sourceRev: a082cec
 reviewed: false
 ---
 
-# 价值流（业务架构）（Value Stream (Business Architecture)）
+# 业务架构价值流（Value Stream）
 
 > 一行从左到右排列的价值阶段，展示触发干系人如何最终获得所承诺的价值；支撑能力堆叠在下方，不标注任何时间。
 
@@ -40,13 +40,13 @@ reviewed: false
 <!-- skill: condense (bullets, ≤12 lines) -->
 - **受众：** 高管、业务架构师和企业架构师、投资组合与战略负责人。
 - **典型场景：**
-  1. 界定网店平台重构的范围：面向购物者的“Fulfil Customer Order”，阶段为 Discover Product → Place Order → Settle Payment → Fulfil Order → Deliver Goods（模式参照 TOGAF 的“Acquire Retail Product”[1]）。
+  1. 界定网店平台重构的范围：面向顾客的“Fulfil Customer Order”，阶段为 Discover Product → Place Order → Settle Payment → Fulfil Order → Deliver Goods（模式参照 TOGAF 的“Acquire Retail Product”[1]）。
   2. 找出薄弱的支撑能力：对每个阶段下的能力做热力图，例如 Fulfil Order 下标红的“Inventory Management”[1][3]。
-  3. 客户支持：“Resolve Customer Query”，由客户触发，客服聊天机器人和客服人员是参与干系人，终点为“Customer issue resolved”。
+  3. 顾客支持：“Resolve Customer Query”，由顾客触发，客服聊天机器人和客服人员是参与干系人，终点为“Customer issue resolved”。
   4. 由员工或合作伙伴触发的内部价值流，例如面向仓库的“Onboard Supplier”（参见 TOGAF“Recruit Employee”）[1]。
   5. 基于能力的规划：带能力热力图的阶段作为 A8 路线图的输入。
 - **何时不用：** 详细工作流、SLA 或某个团队的操作规程（A5、E2）；时间、浪费或等待分析（A9）；系统结构（C 族）；异常和分支（A5、E 族）。
-- **与相邻类型对比：**
+- **与相邻类型的区别：**
   - 关注“有哪些能力、水平如何”时，选择 **A1 业务能力图**；两者通过交叉映射结合 [1][3]。
   - 问题是当前运营流程中的时间和浪费在哪里时，选择 **A9 精益价值流图**。
   - 关注一个案例的任务顺序、决策、角色或异常时，选择 **A5 BPMN 流程** [6]。
@@ -89,10 +89,10 @@ reviewed: false
 - [The Open Group blog: ArchiMate 3.1, the new version of the standard](https://blog.opengroup.org/2019/11/05/archimate-3-1-specification-the-new-version-of-the-standard) — 一张 ArchiMate 价值流交叉映射图，含阶段、价值流动以及实现某一结果的分组能力。© The Open Group。
 - [SAFe: Operational Value Streams](https://framework.scaledagile.com/operational-value-streams) — 该术语在敏捷领域的含义，便于识别和区分。© Scaled Agile。
 
-## 绘制方法 {#recipe}
+## 绘制步骤 {#recipe}
 <!-- skill: keep (≤25 lines) -->
 1. 确认图类型：关注干系人、价值或能力 → 本页；关注时间、浪费或等待 → A9。不清楚就问。
-2. 表头：动宾结构的名称、触发干系人、价值主张。标题要传达核心信息，例如“Fulfil Customer Order: shopper receives paid goods in five stages”（履行客户订单：购物者经五个阶段收到已付款的商品）。
+2. 表头：动宾结构的名称、触发干系人、价值主张。标题要传达核心信息，例如“Fulfil Customer Order: shopper receives paid goods in five stages”（履行顾客订单：顾客经五个阶段收到已付款的商品）。
 3. 以表格起草 4–8 个阶段（名称、进入条件、退出条件、价值项、参与方）；检查每个退出条件是否等于下一个阶段的进入条件。
 4. 版式：一行大小相同的 V 形箭头，从左到右；干系人在左端，价值主张在右端；每个 V 形箭头 2–3 个词，不用项目符号。
 5. 交叉映射（可选）：每个阶段一列，下方放 2–6 个能力块，使用 A1 中的名称；被多个阶段使用的能力以相同样式重复出现。
@@ -117,7 +117,7 @@ reviewed: false
 ## 引导模式问题 {#questions}
 <!-- skill: keep (≤8 lines) -->
 1. 问题是干系人价值和支撑能力，还是流程中的时间和浪费？（价值和能力；否则改用 A9）
-2. 谁触发这条价值流？对他们而言“完成”意味着什么？（购物者；“收到正确的商品，且支付安全”）
+2. 谁触发这条价值流？对他们而言“完成”意味着什么？（顾客；“收到正确的商品，且支付安全”）
 3. 现状、目标态，还是两者？（现状）
 4. 是否交叉映射能力？对照哪份能力清单？（是，若有 A1 能力图则对照它）
 5. 是否对能力做热力图？用哪一个评估标准？（除非某项决策需要，否则不做热力图）

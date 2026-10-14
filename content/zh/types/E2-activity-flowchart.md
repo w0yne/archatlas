@@ -46,7 +46,7 @@ reviewed: false
   4. 推导测试路径：每个判断分支对应一个测试用例。
   5. 运维手册（runbook）：新卖家入驻，或恢复一次失败的导入。
 - **不适用的情况：** 重点是多个参与者之间相互交接工作（E4、A5）；重点是某个实体的状态（E3）；在一页上画整个系统的行为（应按用例拆分）；简单的线性步骤，此时编号列表更清楚。
-- **与相邻图型的区别：**
+- **与相邻类型的区别：**
   - 同一对象在其生命周期内响应事件，选 **E3 状态机图**；一个操作流程从头执行到结束，选 E2。
   - 职责交接是重点时，选 **E4 泳道图**。UML 活动图原生支持*活动分区（activity partition）*（即泳道）[9]，所以 E4 本质上就是带分区的 E2；在这里用少量分区没有问题。
   - 面向业务受众、标准业务事件或自动化业务流程，选 **A5 BPMN**。有研究比较了 BPMN 与 UML 活动图对新手的可读性 [10][11]；这里只读了二手综述。
@@ -134,7 +134,7 @@ reviewed: false
 <!-- skill: keep (≤3 lines) -->
 模型模板：`assets/templates/E2.json` · 布局模板：`lanes` · 动作是 `task` 节点，判断和合并是 `gateway` 节点，分叉和汇合是 `band` 节点，`initial` 和 `final` 标示开始与结束；分区是 `lane` 分组；控制流是 kind 为 `call` 的边，守卫条件作为 `label`，对象流使用 kind `data`。
 
-## 参考来源 {#sources}
+## 来源 {#sources}
 <!-- skill: omit -->
 1. ISO 5807:1985 — https://www.iso.org/standard/11955.html — 访问于 2026-10-14
 2. ISO 5807:1985 preview (iTeh) — https://cdn.standards.iteh.ai/samples/11955/1b7dd254a2a54fd7a89d616dc0570e18/ISO-5807-1985.pdf — 访问于 2026-10-14

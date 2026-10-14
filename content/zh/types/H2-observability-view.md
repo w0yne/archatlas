@@ -23,7 +23,7 @@ translationOf: en/types/H2-observability-view.md
 reviewed: false
 ---
 
-# 可观测性视图
+# 可观测性视图（Observability view）
 
 ## 含义 {#meaning}
 <!-- skill: condense (4–6 lines) -->

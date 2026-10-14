@@ -23,7 +23,7 @@ translationOf: en/types/B2-user-story-map.md
 reviewed: false
 ---
 
-# 用户故事地图
+# 用户故事地图（User story map）
 
 ## 含义 {#meaning}
 <!-- skill: condense (4–6 lines) -->
@@ -71,7 +71,7 @@ reviewed: false
 
 这些是具体的教学示例，不是三份经过独立核验的生产项目待办列表。已查阅正文和描述，未对图片做视觉复核。
 
-## 绘制方法 {#recipe}
+## 绘制步骤 {#recipe}
 <!-- skill: keep (≤25 lines) -->
 1. 选定目标用户、目标、范围，以及现状或拟议体验。
 2. 阅读研究与场景，用简短叙事讲述用户的故事。

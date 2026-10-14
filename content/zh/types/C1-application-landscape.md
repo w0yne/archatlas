@@ -23,7 +23,7 @@ sourceRev: 6857dea
 reviewed: false
 ---
 
-# 应用架构图 / 应用全景图（Application Landscape）
+# 应用全景图（Application landscape）
 
 > 一个范围内的应用地图：按一个明确的标准分组，并以主要依赖关系相连。
 

@@ -84,7 +84,7 @@ reviewed: false
 - [arc42 section 5: Building block view](https://docs.arc42.org/section-5/) — C4 model 之外的对应做法，带黑盒模板以及关于细化哪些构建块的建议（CC BY-SA 4.0）。
 - [uml-diagrams.org: component diagram reference](https://www.uml-diagrams.org/component-diagrams-reference.html) — 提供接口和需求接口、端口和装配连接器，适用于需要 UML 表示法时。
 
-## 绘图步骤 {#recipe}
+## 绘制步骤 {#recipe}
 <!-- skill: keep (≤25 lines) -->
 1. 确认是哪一个容器以及绘制原因（评审、熟悉、重构）；如果没有 C3，先确认 C3。
 2. 识别该容器的风格（分层、功能模块、六边形、模块化单体）；代码不明确时询问。
@@ -127,7 +127,7 @@ reviewed: false
 <!-- skill: keep (≤3 lines) -->
 模型模板：`assets/templates/C4.json` · 布局模板：`nested` · 容器用一个 `boundary` 分组，内含 `component` 节点；其他 `container`、`store`、`queue` 和 `external` 节点在其外部；叶子节点之间的连线带标签。
 
-## 参考来源 {#sources}
+## 来源 {#sources}
 <!-- skill: omit -->
 1. C4 model — Component diagram — https://c4model.com/diagrams/component — 访问于 2026-10-14
 2. C4 model — FAQ — https://c4model.com/faq — 访问于 2026-10-14

@@ -23,7 +23,7 @@ translationOf: en/types/B3-feature-tree.md
 reviewed: false
 ---
 
-# 功能树与功能分解
+# 功能树与功能分解（Feature tree and functional decomposition）
 
 ## 含义 {#meaning}
 <!-- skill: condense (4–6 lines) -->
@@ -73,7 +73,7 @@ MoSCoW 是可选的优先级注释，不是树的语法；“Won't Have”表示
 
 这些范例展示不同的建模模式，而不是同义概念。已核对正文和图注；不声称做过视觉审查或图片改编。
 
-## 绘制方法 {#recipe}
+## 绘制步骤 {#recipe}
 <!-- skill: keep (≤25 lines) -->
 1. 选择功能、需求、能力或可变性模式，并明确命名。
 2. 确定根节点、边界、受众、基线和来源证据。

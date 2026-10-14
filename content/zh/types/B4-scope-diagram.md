@@ -23,7 +23,7 @@ translationOf: en/types/B4-scope-diagram.md
 reviewed: false
 ---
 
-# 范围图
+# 范围图（Scope diagram）
 
 ## 含义 {#meaning}
 <!-- skill: condense (4–6 lines) -->
@@ -73,7 +73,7 @@ reviewed: false
 
 这些是**用于范围讨论的上下文范例**，不是四张相同类型的纳入／排除图。arc42 的配套视图来自同一项目，不是独立案例。已查阅正文和图示描述；不声称做过视觉审查。
 
-## 绘制方法 {#recipe}
+## 绘制步骤 {#recipe}
 <!-- skill: keep (≤25 lines) -->
 1. 选择交付范围或一种明确命名的上下文变体，说明受众和基线。
 2. 确定举措／主体，解释其边界含义。

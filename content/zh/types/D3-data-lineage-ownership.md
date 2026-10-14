@@ -45,7 +45,7 @@ reviewed: false
   4. 数据网格与领域设计：哪个领域拥有哪些数据产品，谁依赖它们 [7]。
   5. 故障排查：某个上游作业失败后，哪些下游数据集已经过期（运行级血缘）[2][3]。
 - **不适用的情况：** 新系统的逻辑设计（用 D2）；为大规模数据资产手工绘制表级或字段级血缘（应先自动生成，再做摘要）；没有人会维护时，因为过时的图比没有图更糟。
-- **与相邻图型的区别：**
+- **与相邻类型的区别：**
   - 要表达数据按设计应如何流动，选 **D2 数据流图**；要表达观测到的或推导出的溯源，选 D3。
   - 如果只关心归属，选 **H1 RACI 矩阵**；当所有者必须标注在数据流上时，D3 才是合适的位置。
   - 要表达谁可以读写，选 **F3 访问控制模型**；归属是问责，不是权限。
@@ -132,7 +132,7 @@ reviewed: false
 <!-- skill: keep (≤3 lines) -->
 模型模板：`assets/templates/D3.json` · 布局模板：`layered` · 数据集是 `store` 节点，作业是 `component` 节点（所有者和管理员放在 `sub`，分级放在 `tags`），所属领域是 `lane` 或 `layer` 分组，“供给”关系是从生产者指向使用方的 `data` 边 `->`，证据来源和日期写入 `meta.description`。
 
-## 参考来源 {#sources}
+## 来源 {#sources}
 <!-- skill: omit -->
 1. OpenLineage, Object Model（Job、带 UUID 运行 id 的 Run、Dataset、facet；已复核）— https://openlineage.io/docs/spec/object-model — 访问于 2026-10-14
 2. OpenLineage, specification (GitHub) — https://github.com/OpenLineage/OpenLineage/blob/main/spec/OpenLineage.md — 访问于 2026-10-14

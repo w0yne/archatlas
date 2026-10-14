@@ -13,7 +13,7 @@ import { useData } from 'vitepress';
 import workflow from '../.vitepress/fixtures/workflow.svg?raw';
 const { theme } = useData();
 </script>
-<p class="atlas-kicker">有意图的架构</p>
+<p class="atlas-kicker">架构，从意图出发</p>
 
 # 先选对视图，再画方框
 
@@ -23,7 +23,7 @@ const { theme } = useData();
 
 <Figure :svg="workflow" caption="这是一套绘图工作流，不保证结果自动正确。" />
 
-## 一个问题，一个对的视图。 {#explore}
+## 一个问题，一个对的视图 {#explore}
 
 上下文图说明系统的周边环境；时序图说明一次交互；权限模型说明权限归属。从读者需要理解什么出发，而不是从偏爱的表示法出发。
 
@@ -37,7 +37,7 @@ const { theme } = useData();
 - **根据描述绘图。** 确定受众和边界，审阅线框图，然后渲染并检查。
 - **读取代码仓库。** 把证据追溯到模型和选定的视图中。代码中的声明不能证明已部署的行为。
 
-## SVG 优先，坦诚说明局限。
+## SVG 优先，坦诚说明局限
 
 首个目标是保留可编辑文字的 SVG 加模型 JSON。draw.io 和原生 PowerPoint 导出是未来的接口，目前不可用。几何检查通过不能代替语义复核或视觉复核。
 

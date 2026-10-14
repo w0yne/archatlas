@@ -53,7 +53,7 @@ reviewed: false
   4. UI 组件行为，例如客服聊天输入框：空闲、输入中、发送中、出错 [8]。
   5. 发现缺陷：生产环境中出现的不可能迁移、缺失的终止状态。
 - **不适用的情况：** 没有持久状态的操作流程（E2）；把几个互不相关的对象画在一页上（应分别画几张图）；所谓的状态其实是由不同人负责的工作流步骤（用 A5 或 E4，再为案例对象配一张小的 E3）。
-- **与相邻图型的区别：**
+- **与相邻类型的区别：**
   - 从头执行到结束的操作流程选 **E2 活动图**；长期存在、响应事件的事物选 E3。
   - 一个场景中的消息选 **E1 时序图**；一个场景可能驱动多个 E3 迁移。
   - 跨参与者的业务流程选 **A5 BPMN 流程图**；一个 BPMN 任务常常会改变多个实体的状态。
@@ -143,7 +143,7 @@ reviewed: false
 <!-- skill: keep (≤3 lines) -->
 模型模板：`assets/templates/E3.json` · 布局模板：`statechart` · 状态是 `state` 节点（伪状态用 `initial` 和 `final`），复合状态是 `frame` 分组，每条迁移是 kind 为 `call` 的边，`label` = `event [guard] / effect`；`evidence.status` 区分已核实与推断的迁移。
 
-## 参考来源 {#sources}
+## 来源 {#sources}
 <!-- skill: omit -->
 1. D. Harel, "Statecharts: a visual formalism for complex systems", *Science of Computer Programming* 8(3), 1987 — https://www.sciencedirect.com/science/article/pii/0167642387900359 — 访问于 2026-10-14
 2. Harel 1987 PDF (state-machine.com) — https://www.state-machine.com/doc/Harel87.pdf — 访问于 2026-10-14
