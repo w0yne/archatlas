@@ -16,7 +16,7 @@ scope: system
 formal: {kind: method, ref: 'Jeff Patton, story mapping — https://www.jpattonassociates.com/the-new-backlog/'}
 neighbours: [A4, A6, B1, B3]
 status: draft
-sourceRev: a082cec
+sourceRev: a5d2191
 translationOf: en/types/B2-user-story-map.md
 reviewed: false
 ---

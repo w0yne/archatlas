@@ -17,7 +17,7 @@ formal: {kind: convention, ref: 'No graphical standard. RFC 1918, RFC 5737 and R
 neighbours: [F2, G1, G2]
 status: draft
 translationOf: en/types/G3-network-topology.md
-sourceRev: 674f366
+sourceRev: a5d2191
 reviewed: false
 ---
 

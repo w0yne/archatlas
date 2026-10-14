@@ -16,7 +16,7 @@ scope: enterprise
 formal: {kind: standard, ref: 'The Open Group，ArchiMate 3.2（2022），附录 C.1.5 中的资料性分层视点；https://pubs.opengroup.org/architecture/archimate3-doc/ch-Example-Viewpoints.html'}
 neighbours: [A7, C1, C8, I1]
 status: draft
-sourceRev: a082cec
+sourceRev: a5d2191
 translationOf: en/types/I2-archimate-layered-view.md
 reviewed: false
 ---

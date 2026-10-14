@@ -17,7 +17,7 @@ formal: {kind: convention, ref: none for the diagram; vocabulary from Enterprise
 neighbours: [C1, C2, C3, C5, C7, E1, F2]
 status: draft
 translationOf: en/types/C6-integration-interface.md
-sourceRev: 674f366
+sourceRev: a5d2191
 reviewed: false
 ---
 

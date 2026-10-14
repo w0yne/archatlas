@@ -16,7 +16,7 @@ scope: 某个环境中的遥测路径及相关运维响应。
 formal: {kind: convention, ref: '没有统一的图形标准；参考 OpenTelemetry 信号概念：https://opentelemetry.io/docs/concepts/signals/ 以及 SRE 监控实践：https://sre.google/sre-book/monitoring-distributed-systems/'}
 neighbours: [G1, G4, H1]
 status: draft
-sourceRev: a082cec
+sourceRev: a5d2191
 translationOf: en/types/H2-observability-view.md
 reviewed: false
 ---

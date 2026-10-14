@@ -17,7 +17,7 @@ formal: {kind: method, ref: 'TOGAF Solution Concept diagram (Phase A artifact, T
 neighbours: [A1, A8, C1, C2, C3, C5, I2]
 status: draft
 translationOf: en/types/A7-conceptual-architecture.md
-sourceRev: 6857dea
+sourceRev: a5d2191
 reviewed: false
 ---
 
