@@ -17,7 +17,7 @@ formal: {kind: standard, ref: 'OMG UML 2.5.1 Deployments (nodes, execution envir
 neighbours: [C3, C8, G2, G3, G4, H2, I1]
 status: draft
 translationOf: en/types/G1-deployment-diagram.md
-sourceRev: 1ed1739
+sourceRev: 88db750
 reviewed: false
 ---
 

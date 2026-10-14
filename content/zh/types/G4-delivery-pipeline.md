@@ -17,7 +17,7 @@ formal: {kind: convention, ref: 'No graphical standard. Fowler''s deployment-pip
 neighbours: [A9, G1, G2, H2]
 status: draft
 translationOf: en/types/G4-delivery-pipeline.md
-sourceRev: 1ed1739
+sourceRev: 88db750
 reviewed: false
 ---
 

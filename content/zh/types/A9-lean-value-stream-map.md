@@ -17,7 +17,7 @@ formal: {kind: method, ref: 'Rother & Shook, Learning to See (Lean Enterprise In
 neighbours: [A2, A5, E4, G4]
 status: draft
 translationOf: en/types/A9-lean-value-stream-map.md
-sourceRev: 1ed1739
+sourceRev: 88db750
 reviewed: false
 ---
 

@@ -17,7 +17,7 @@ formal: {kind: convention, ref: 'A concern-based diagram family, not a notation.
 neighbours: [E1, F2, F3]
 status: draft
 translationOf: en/types/F1-authentication-authorization-flow.md
-sourceRev: 1ed1739
+sourceRev: 88db750
 reviewed: false
 ---
 

@@ -17,7 +17,7 @@ formal: {kind: standard, ref: 'OMG BPMN 2.0.2 (formal/13-12-09, Jan 2014); ISO/I
 neighbours: [A1, A2, A6, A9, E1, E2, E3, E4]
 status: draft
 translationOf: en/types/A5-bpmn-process.md
-sourceRev: fc9afb7
+sourceRev: 5137fae
 reviewed: false
 ---
 

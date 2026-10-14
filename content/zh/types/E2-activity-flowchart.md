@@ -17,7 +17,7 @@ formal: {kind: standard, ref: 'OMG UML 2.5.1 activity diagrams; ISO 5807:1985 fl
 neighbours: [A5, D2, E1, E3, E4]
 status: draft
 translationOf: en/types/E2-activity-flowchart.md
-sourceRev: 1ed1739
+sourceRev: 88db750
 reviewed: false
 ---
 
