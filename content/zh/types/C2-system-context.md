@@ -6,8 +6,8 @@ names:
   en: System context diagram (C4 model level 1)
   zh: 系统上下文图（C4 模型第 1 层）
   aliases:
-    en: [system context diagram, system environment diagram, context-level DFD, C4 model Level 1, DFD Level 0, Structured-analysis Context Diagram]
-    zh: [系统上下文图, 系统环境图, 0 层数据流图, C4 模型第 1 层, 业务上下文, 顶层数据流图（0 层）]
+    en: [system context diagram, system environment diagram, context-level DFD, C4 model Level 1, Structured-analysis Context Diagram]
+    zh: [系统上下文图, 系统环境图, 上下文级数据流图, C4 模型第 1 层]
 question: 这是什么系统？谁在使用它？它依赖哪些其他系统，或与哪些系统交换信息？
 audiences: [leaders, business, architects, developers, security]
 levels: [concept]
@@ -27,7 +27,7 @@ reviewed: false
 
 ## 含义 {#meaning}
 <!-- skill: condense (4–6 lines) -->
-它回答：*这是什么系统？谁在使用它？它依赖哪些其他系统，或与哪些系统交换信息？* 其关注点是范围与边界：就系统止于何处达成一致，并且技术人员和非技术人员都能读懂 [1]。它是 C4 model 的第 1 层。C4 model 由 Simon Brown 提出，是一种与表示法无关的方法，而非有版本的标准 [2][6][7]；同一思想也见于结构化分析中的上下文图（DFD 0 层）[10]、系统工程中的关注系统（system of interest）上下文 [11]，以及 arc42 第 3 节“上下文与范围”（Context and Scope）[8]。ISO/IEC/IEEE 42010 不规定表示法；本图是上下文视点下的一个视图 [19]。它有意略去方框内部的一切、技术选型、协议和部署，以及所有不直接相连的系统 [1][13]。
+它回答：*这是什么系统？谁在使用它？它依赖哪些其他系统，或与哪些系统交换信息？* 其关注点是范围与边界：就系统止于何处达成一致，并且技术人员和非技术人员都能读懂 [1]。它是 C4 model 的第 1 层。C4 model 由 Simon Brown 提出，是一种与表示法无关的方法，而非有版本的标准 [2][6][7]；同一思想也见于结构化分析中的上下文图（上下文级 DFD；“0 层”这一叫法有人指它，也有人指它下面的一层）[10]、系统工程中的关注系统（system of interest）上下文 [11]，以及 arc42 第 3 节“上下文与范围”（Context and Scope）[8]。ISO/IEC/IEEE 42010 不规定表示法；本图是上下文视点下的一个视图 [19]。它有意略去方框内部的一切、技术选型、协议和部署，以及所有不直接相连的系统 [1][13]。
 **本站采用的定义：** *软件系统*（software system）是一个团队构建、拥有并能看到其内部的东西；该团队拥有的数据库或队列属于方框内部，而不是邻居 [4]。产品领域、限界上下文（bounded context）和能力通常不是软件系统 [4]。
 
 ## 何时使用与如何选择 {#choose}

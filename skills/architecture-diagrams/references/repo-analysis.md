@@ -34,7 +34,7 @@ Use when the user wants diagrams of an existing codebase, or the diagrams they n
 
 **10. Render views.** Choose types from the map below; apply `principles.md`; every figure carries a legend line for evidence status. In the model, copy each claim's status into `evidence.status` on the matching node or edge (with `refs` to the file and lines); every claim that is not `verified` must carry its status so it renders dashed or marked. Check the rendered figure: if an inferred edge is solid, the model is wrong. Offer the standard companion view when the question needs two (for example access rules with trust boundaries).
 
-**11. Self-check.** For each arrow, can you point to the file? For each box, does it appear in some start or deploy artefact (a directory alone is not a runtime unit)? Compare with the repository's own diagrams in both directions and report gaps.
+**11. Self-check.** For each arrow, can you point to the file? For each runtime or deployment box, does it appear in some start or deploy artefact (a directory alone is not a runtime unit)? Business roles and logical concepts cite evidence of their own kind (documents, names in code, the user's confirmation). Compare with the repository's own diagrams in both directions and report gaps.
 
 ## Evidence table (deliver it with the diagrams)
 

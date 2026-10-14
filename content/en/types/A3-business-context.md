@@ -7,7 +7,7 @@ names:
   zh: 业务上下文图
   aliases:
     en: [business context, business environment diagram, business context (arc42 §3.1)]
-    zh: [业务背景图, 业务环境图, 范围图（业务视角）]
+    zh: [业务背景图, 业务环境图]
 question: What is inside our system or initiative, and who or what outside it exchanges what with us?
 audiences: [leaders, business, architects]
 levels: [strategy, concept]

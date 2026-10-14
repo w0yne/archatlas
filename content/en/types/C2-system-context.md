@@ -6,8 +6,8 @@ names:
   en: System context diagram (C4 model level 1)
   zh: 系统上下文图（C4 模型第 1 层）
   aliases:
-    en: [system context diagram, system environment diagram, context-level DFD, C4 model Level 1, DFD Level 0, Structured-analysis Context Diagram]
-    zh: [系统上下文图, 系统环境图, 0 层数据流图, C4 模型第 1 层, 业务上下文, 顶层数据流图（0 层）]
+    en: [system context diagram, system environment diagram, context-level DFD, C4 model Level 1, Structured-analysis Context Diagram]
+    zh: [系统上下文图, 系统环境图, 上下文级数据流图, C4 模型第 1 层]
 question: What is this system, who uses it, and which other systems does it depend on or exchange with?
 audiences: [leaders, business, architects, developers, security]
 levels: [concept]
@@ -24,7 +24,7 @@ status: draft
 
 ## Meaning {#meaning}
 <!-- skill: condense (4–6 lines) -->
-It answers: *what is this system, who uses it, and which other systems does it depend on or exchange with?* The concern is scope and boundary: an agreement on where the system stops, readable by technical and non-technical people alike [1]. It is Level 1 of the C4 model, created by Simon Brown, which is a notation-independent method, not a versioned standard [2][6][7]; the same idea is the structured-analysis context diagram (DFD level 0) [10], the systems-engineering context of a system of interest [11] and arc42 section 3 "Context and Scope" [8]. ISO/IEC/IEEE 42010 prescribes no notation; this is a view under a context viewpoint [19]. It deliberately leaves out everything inside the box, technology choices, protocols and deployment, and every system not directly connected [1][13].
+It answers: *what is this system, who uses it, and which other systems does it depend on or exchange with?* The concern is scope and boundary: an agreement on where the system stops, readable by technical and non-technical people alike [1]. It is Level 1 of the C4 model, created by Simon Brown, which is a notation-independent method, not a versioned standard [2][6][7]; the same idea is the structured-analysis context diagram (the context-level DFD; "level 0" is used for it by some authors and for the next level down by others) [10], the systems-engineering context of a system of interest [11] and arc42 section 3 "Context and Scope" [8]. ISO/IEC/IEEE 42010 prescribes no notation; this is a view under a context viewpoint [19]. It deliberately leaves out everything inside the box, technology choices, protocols and deployment, and every system not directly connected [1][13].
 **Definition used here:** a *software system* is what one team builds, owns and can see inside; a database or queue that team owns is inside the box, not a neighbour [4]. Product domains, bounded contexts and capabilities are usually not software systems [4].
 
 ## When to use and how to choose {#choose}

@@ -2859,11 +2859,6 @@
       "code": "C3"
     },
     {
-      "text": "context diagram (top level)",
-      "lang": "en",
-      "code": "D2"
-    },
-    {
       "text": "context map",
       "lang": "en",
       "code": "C7"
@@ -2987,11 +2982,6 @@
       "text": "DFD",
       "lang": "en",
       "code": "D2"
-    },
-    {
-      "text": "DFD Level 0",
-      "lang": "en",
-      "code": "C2"
     },
     {
       "text": "DFD with trust boundaries",
@@ -3699,16 +3689,6 @@
       "code": "E2"
     },
     {
-      "text": "0 层图",
-      "lang": "zh",
-      "code": "D2"
-    },
-    {
-      "text": "0 层数据流图",
-      "lang": "zh",
-      "code": "C2"
-    },
-    {
       "text": "4+1 架构视图模型",
       "lang": "zh",
       "code": "I1"
@@ -3809,14 +3789,14 @@
       "code": "C7"
     },
     {
+      "text": "上下文级数据流图",
+      "lang": "zh",
+      "code": "C2"
+    },
+    {
       "text": "业务-应用-技术视图",
       "lang": "zh",
       "code": "I2"
-    },
-    {
-      "text": "业务上下文",
-      "lang": "zh",
-      "code": "C2"
     },
     {
       "text": "业务场景地图",
@@ -4434,11 +4414,6 @@
       "code": "B4"
     },
     {
-      "text": "范围图（业务视角）",
-      "lang": "zh",
-      "code": "A3"
-    },
-    {
       "text": "范围边界图",
       "lang": "zh",
       "code": "B4"
@@ -4594,11 +4569,6 @@
       "code": "B3"
     },
     {
-      "text": "顶层数据流图（0 层）",
-      "lang": "zh",
-      "code": "C2"
-    },
-    {
       "text": "顺序图",
       "lang": "zh",
       "code": "E1"
@@ -4688,6 +4658,18 @@
       "note": {
         "en": "Software system and its neighbours (C2); business exchanges (A3); in/out of scope (B4).",
         "zh": "软件系统与外部（C2）；业务往来（A3）；范围内外（B4）。"
+      }
+    },
+    {
+      "en": "DFD level 0",
+      "zh": "0 层数据流图",
+      "types": [
+        "D2",
+        "C2"
+      ],
+      "note": {
+        "en": "Two numbering conventions exist: some authors call the context-level DFD (one process, C2-like) 'level 0', others mean the first decomposition below it (D2). Say 'context-level DFD' or 'first-level DFD' instead.",
+        "zh": "存在两种编号习惯：有人把只有一个处理的上下文级数据流图（类似 C2）叫作 0 层，也有人指它下面的第一层分解（D2）。请改说“上下文级数据流图”或“第一层数据流图”。"
       }
     },
     {

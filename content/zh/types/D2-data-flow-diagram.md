@@ -6,8 +6,8 @@ names:
   en: Data flow diagram (DFD)
   zh: 数据流图（DFD）
   aliases:
-    en: [DFD, data flow chart, data flow model, process model (structured analysis), bubble chart, context diagram (top level)]
-    zh: [数据流程图, 数据流向图, 0 层图]
+    en: [DFD, data flow chart, data flow model, process model (structured analysis), bubble chart]
+    zh: [数据流程图, 数据流向图]
 question: 数据从哪里来，经过哪些加工被转换，保存在哪里，又流向哪里？
 audiences: [architects, business, security]
 levels: [logical]
@@ -43,7 +43,7 @@ reviewed: false
   4. 集成分析：订单、支付和仓库发货之间交换哪些数据项。
 - **不适用的情况：** 调用顺序或重试（E1）；分支逻辑（E2）；团队之间的交接（E4、A5）；运行时基础设施（G1）。
 - **与相邻类型的区别：**
-  - 关注人员和系统时，选 **C2 系统上下文图**；关注数据项时，选 0 层 DFD。
+  - 关注人员和系统时，选 **C2 系统上下文图**；关注数据项时，选上下文级 DFD。
   - 要跨作业和运行追踪具体数据集时，选 **D3 血缘**；DFD 是设计期的逻辑模型。
   - 走安全流程时，选 **F2 威胁模型**；它使用本页的方言（DFD 加信任边界），并添加威胁标注。
   - 表达控制流时，选 **E2 活动流程图**。DFD 的箭头是数据，从不表示“然后”。
