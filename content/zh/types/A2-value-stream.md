@@ -16,7 +16,7 @@ scope: "一条价值流：一个触发干系人、一个价值主张和约 4–8
 formal:
   kind: standard
   ref: "ArchiMate 3.2 Value Stream element and Value Stream viewpoint; TOGAF Series Guide: Value Streams (G178, republished 2022 for TOGAF 10); BIZBOK Guide"
-neighbours: [A1, A2b, A5, A6, A8]
+neighbours: [A1, A9, A5, A6, A8]
 status: draft
 translationOf: en/types/A2-value-stream.md
 sourceRev: 6857dea
@@ -33,7 +33,7 @@ reviewed: false
 - **视点：** ArchiMate *Value Stream viewpoint*：“a structured overview of a value stream, the capabilities supporting the stages in that value stream, the value created, and the stakeholders involved”（对一条价值流、支撑其各阶段的能力、所创造的价值及相关干系人的结构化概览）（业务经理和架构师；设计与决策；范围：战略）[6]。TOGAF 阶段 B；制品为 *Value Stream Map*（图）、*Value Stream Stages catalog*（目录）和 *Value Stream/Capability matrix*（矩阵）[1][5]。没有对应的 C4 model 层级。
 - **深层含义：** 在商业模式层面展示企业的“动态”面貌，与 A1 业务能力图（“静态”面貌）互为搭档 [2][6]。一个阶段可以映射到多个流程，一个流程也可以实现多个阶段 [1][6]。干系人在每个阶段之后都可能停下，因此退出条件比箭头更重要 [1]。
 - **不包含：** 决策与网关、每个步骤的角色、系统、持续时间、等待时间和异常。
-- **本站采用的定义：** 价值流是“an end-to-end collection of activities that create a result for a customer, who may be the ultimate customer or an internal end-user”（为客户创造结果的端到端活动集合，客户可以是最终客户，也可以是内部最终用户）（BIZBOK）[2]；ArchiMate 的定义是“a sequence of activities that create an overall result for a customer, stakeholder, or end user”（为客户、干系人或最终用户创造整体结果的一系列活动）[6]。“value stream map”一词还有另外两种含义：一是带处理时间和等待时间的**精益价值流图**（Lean value-stream map），有单独的页面（[A2b](./A2b-lean-value-stream-map.md)）；二是 SAFe 的运营价值流和开发价值流 [9]。TOGAF 和 Business Architecture Guild 都声明其价值流不是精益价值流 [1][2]。切勿在这张图上标注时间。
+- **本站采用的定义：** 价值流是“an end-to-end collection of activities that create a result for a customer, who may be the ultimate customer or an internal end-user”（为客户创造结果的端到端活动集合，客户可以是最终客户，也可以是内部最终用户）（BIZBOK）[2]；ArchiMate 的定义是“a sequence of activities that create an overall result for a customer, stakeholder, or end user”（为客户、干系人或最终用户创造整体结果的一系列活动）[6]。“value stream map”一词还有另外两种含义：一是带处理时间和等待时间的**精益价值流图**（Lean value-stream map），有单独的页面（[A9](./A9-lean-value-stream-map.md)）；二是 SAFe 的运营价值流和开发价值流 [9]。TOGAF 和 Business Architecture Guild 都声明其价值流不是精益价值流 [1][2]。切勿在这张图上标注时间。
 - **版本说明：** TOGAF 指南编号为 G178，2022 年作为 TOGAF 10 的一部分重新发布 [4]。Value Stream 元素自 ArchiMate 3.1（2019）起存在 [8]；本页依据 3.2。ArchiMate 4（2026 年 4 月发布）尚未对照现行规范原文核实。
 
 ## 何时使用与如何选择 {#choose}
@@ -45,10 +45,10 @@ reviewed: false
   3. 客户支持：“Resolve Customer Query”，由客户触发，客服聊天机器人和客服人员是参与干系人，终点为“Customer issue resolved”。
   4. 由员工或合作伙伴触发的内部价值流，例如面向仓库的“Onboard Supplier”（参见 TOGAF“Recruit Employee”）[1]。
   5. 基于能力的规划：带能力热力图的阶段作为 A8 路线图的输入。
-- **何时不用：** 详细工作流、SLA 或某个团队的操作规程（A5、E2）；时间、浪费或等待分析（A2b）；系统结构（C 族）；异常和分支（A5、E 族）。
+- **何时不用：** 详细工作流、SLA 或某个团队的操作规程（A5、E2）；时间、浪费或等待分析（A9）；系统结构（C 族）；异常和分支（A5、E 族）。
 - **与相邻类型对比：**
   - 关注“有哪些能力、水平如何”时，选择 **A1 业务能力图**；两者通过交叉映射结合 [1][3]。
-  - 问题是当前运营流程中的时间和浪费在哪里时，选择 **A2b 精益价值流图**。
+  - 问题是当前运营流程中的时间和浪费在哪里时，选择 **A9 精益价值流图**。
   - 关注一个案例的任务顺序、决策、角色或异常时，选择 **A5 BPMN 流程** [6]。
   - 关注客户体验（情绪、触点）时，选择 **A6 旅程图**；A2 讲的是企业如何交付价值，由外向内，但不涉及体验。
   - 关注变化何时发生时，选择 **A8 目标架构与路线图**；带能力热力图的 A2 是它的输入。
@@ -76,7 +76,7 @@ reviewed: false
 5. **价值流和能力一起起草；** TOGAF 指出：“one should not exist without the other for very long”（二者不应长期脱离对方而单独存在）[1]。
 
 ### 反模式
-1. **在业务阶段上标注精益时间**（处理时间、等待时间、前置时间）。那是另一种图（A2b）；TOGAF 指出精益 VSM 不适合做能力交叉映射 [1]。
+1. **在业务阶段上标注精益时间**（处理时间、等待时间、前置时间）。那是另一种图（A9）；TOGAF 指出精益 VSM 不适合做能力交叉映射 [1]。
 2. **阶段过多或细到任务级**（检查、审批、发邮件），把价值流变成了流程 [1][6]。
 3. **把组织单元当作阶段**（“Finance step”），或没有触发干系人 [1][2]。
 4. **在价值流内部画分支或网关；** 应通过退出条件来表达中途停止的可能 [1]。
@@ -91,7 +91,7 @@ reviewed: false
 
 ## 绘制方法 {#recipe}
 <!-- skill: keep (≤25 lines) -->
-1. 确认图类型：关注干系人、价值或能力 → 本页；关注时间、浪费或等待 → A2b。不清楚就问。
+1. 确认图类型：关注干系人、价值或能力 → 本页；关注时间、浪费或等待 → A9。不清楚就问。
 2. 表头：动宾结构的名称、触发干系人、价值主张。标题要传达核心信息，例如“Fulfil Customer Order: shopper receives paid goods in five stages”（履行客户订单：购物者经五个阶段收到已付款的商品）。
 3. 以表格起草 4–8 个阶段（名称、进入条件、退出条件、价值项、参与方）；检查每个退出条件是否等于下一个阶段的进入条件。
 4. 版式：一行大小相同的 V 形箭头，从左到右；干系人在左端，价值主张在右端；每个 V 形箭头 2–3 个词，不用项目符号。
@@ -116,7 +116,7 @@ reviewed: false
 
 ## 引导模式问题 {#questions}
 <!-- skill: keep (≤8 lines) -->
-1. 问题是干系人价值和支撑能力，还是流程中的时间和浪费？（价值和能力；否则改用 A2b）
+1. 问题是干系人价值和支撑能力，还是流程中的时间和浪费？（价值和能力；否则改用 A9）
 2. 谁触发这条价值流？对他们而言“完成”意味着什么？（购物者；“收到正确的商品，且支付安全”）
 3. 现状、目标态，还是两者？（现状）
 4. 是否交叉映射能力？对照哪份能力清单？（是，若有 A1 能力图则对照它）

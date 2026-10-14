@@ -1,5 +1,5 @@
 ---
-code: A2b
+code: A9
 slug: lean-value-stream-map
 family: A
 names:
@@ -18,7 +18,7 @@ formal:
   ref: "Rother & Shook, Learning to See (Lean Enterprise Institute, 1998); LEI icon set (de-facto, no ISO notation); Martin & Osterling, Value Stream Mapping (2013) for office and service work"
 neighbours: [A2, A5, E4, G4, A8]
 status: draft
-translationOf: en/types/A2b-lean-value-stream-map.md
+translationOf: en/types/A9-lean-value-stream-map.md
 sourceRev: 6857dea
 reviewed: false
 ---
@@ -49,8 +49,8 @@ reviewed: false
 - **与相邻类型对比：**
   - 问题是价值如何到达干系人、由哪些能力支撑时，选择 **A2 价值流**；切勿在那里标注时间。
   - 问题是一个案例的任务顺序、决策和异常时，选择 **A5 BPMN 流程**。
-  - 问题是每一步由谁或哪个系统完成时，选择 **E4 泳道图**；A2b 展示的是工作停留了多久。
-  - 问题是构建和发布阶段本身时，选择 **G4 交付流水线**；A2b 衡量的是这些阶段周围的等待。
+  - 问题是每一步由谁或哪个系统完成时，选择 **E4 泳道图**；A9 展示的是工作停留了多久。
+  - 问题是构建和发布阶段本身时，选择 **G4 交付流水线**；A9 衡量的是这些阶段周围的等待。
   - 需要多步骤的变革计划时，选择 **A8 目标架构与路线图**；一张未来状态图只是带改善爆炸点的一个目标。
 
 ## 表示法与元素 {#notation}
@@ -128,7 +128,7 @@ reviewed: false
 
 ## 模板 {#template}
 <!-- skill: keep (≤3 lines) -->
-模型模板：`assets/templates/A2b.json` · 版式模板：`tree` · 处理步骤是从左到右按序排列的节点，数据框是其子节点，排队是步骤之间的节点，时间线是最后一行按序排列的等待/PT 片段并附合计。
+模型模板：`assets/templates/A9.json` · 版式模板：`tree` · 处理步骤是从左到右按序排列的节点，数据框是其子节点，排队是步骤之间的节点，时间线是最后一行按序排列的等待/PT 片段并附合计。
 
 ## 来源 {#sources}
 <!-- skill: omit -->
@@ -144,5 +144,5 @@ reviewed: false
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-![A2b 示例：网店从下单到送货上门的现状图，含处理框、排队以及处理时间与等待时间对比的时间线](/samples/A2b-lean-value-stream-map.svg)
+![A9 示例：网店从下单到送货上门的现状图，含处理框、排队以及处理时间与等待时间对比的时间线](/samples/A9-lean-value-stream-map.svg)
 *示例待生成（由渲染器根据 `examples/` 生成）。*

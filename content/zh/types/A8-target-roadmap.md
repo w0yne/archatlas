@@ -7,7 +7,7 @@ names:
   zh: 目标架构与演进路线图
   aliases:
     en: [architecture roadmap, baseline / target / transition architecture, as-is / to-be roadmap, migration roadmap, migration view, plateau diagram, capability roadmap]
-    zh: [架构路线图, 演进路线图, 迁移路线图, 现状 / 目标 / 过渡架构, 迁移视图, 平台期图, 能力路线图]
+    zh: [架构路线图, 演进路线图, 迁移路线图, 现状 / 目标 / 过渡架构, 迁移视图, 稳定态图, 能力路线图]
 question: "我们现在在哪里，要去哪里，中间有哪些稳定的过渡状态，哪些工作把我们从一个状态推进到下一个状态，按什么顺序，为什么？"
 audiences: [高管与发起人, 架构评审委员会, 项目组合与项目群经理, 资金审批委员会, 交付负责人]
 level: strategy

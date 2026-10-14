@@ -1,7 +1,7 @@
 ---
-code: A3b
+code: H3
 slug: stakeholder-map
-family: A
+family: H
 names:
   en: Stakeholder Map (Power–Interest Grid)
   zh: 干系人地图（权力–利益矩阵）
@@ -18,7 +18,7 @@ formal:
   ref: "Power/interest grid (Johnson & Scholes, Exploring Corporate Strategy, 2nd ed. 1993, after Mendelow 1981); TOGAF Stakeholder Management technique"
 neighbours: [A3, H1, A1, I2]
 status: draft
-translationOf: en/types/A3b-stakeholder-map.md
+translationOf: en/types/H3-stakeholder-map.md
 sourceRev: 6857dea
 reviewed: false
 ---
@@ -117,7 +117,7 @@ reviewed: false
 
 ## 模板 {#template}
 <!-- skill: keep (≤3 lines) -->
-模型模板：`assets/templates/A3b.json` · 版式模板：`grid_table` · 一个 2×2 的 `tables[]` 条目承载四个象限；干系人是带态度标记的单元格条目，配套表格是第二张表。
+模型模板：`assets/templates/H3.json` · 版式模板：`grid_table` · 一个 2×2 的 `tables[]` 条目承载四个象限；干系人是带态度标记的单元格条目，配套表格是第二张表。
 
 ## 来源 {#sources}
 <!-- skill: omit -->
@@ -134,5 +134,5 @@ reviewed: false
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-![A3b 示例：网店结账流程改版的权力–利益矩阵，以角色形式标绘财务、支付服务商、客服、仓储运营和数据保护](/samples/A3b-stakeholder-map.svg)
+![H3 示例：网店结账流程改版的权力–利益矩阵，以角色形式标绘财务、支付服务商、客服、仓储运营和数据保护](/samples/H3-stakeholder-map.svg)
 *示例待生成（由渲染器根据 `examples/` 生成）。*
