@@ -18,7 +18,7 @@ formal:
   ref: "Jeff Patton, story mapping — https://www.jpattonassociates.com/the-new-backlog/"
 neighbours: [A4, A6, B3, B1]
 status: draft
-sourceRev: "e788c6788614339113be54b7afe4cb3e1340c063"
+sourceRev: a082cec
 translationOf: en/types/B2-user-story-map.md
 reviewed: false
 ---
@@ -108,7 +108,8 @@ reviewed: false
 
 ## 模板 {#template}
 <!-- skill: keep (≤3 lines) -->
-集成目标：`assets/templates/B2.json`；版式为 `grid_table`。活动列、分组任务卡片和带标签的切片带表达叙事与范围，而不是执行状态列。
+模型模板：`assets/templates/B2.json` · 布局模板：`grid_table` · 一个 `tables[]` 条目：活动为列，发布切片为行，故事文字写在单元格中。
+近似表示：这是一张表格，不绘制任务卡片和切片带；它表达叙事与范围，而不是执行状态列。
 
 ## 来源 {#sources}
 <!-- skill: omit -->
@@ -120,6 +121,5 @@ reviewed: false
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-计划资源：`/samples/B2-user-story-map.svg`。
-
-**图注：** 网店购物者发现商品、进行比较、结账并跟踪配送；一个原型切片检验完整的购物目标。生成的示例尚未提供。
+![B2 示例：网店购物者的用户故事地图，含一个原型切片](/samples/B2-user-story-map.svg)
+*网店购物者发现商品、进行比较、结账并跟踪配送；一个原型切片检验完整的购物目标。*

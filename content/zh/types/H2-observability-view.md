@@ -18,7 +18,7 @@ formal:
   ref: "没有统一的图形标准；参考 OpenTelemetry 信号概念：https://opentelemetry.io/docs/concepts/signals/ 以及 SRE 监控实践：https://sre.google/sre-book/monitoring-distributed-systems/"
 neighbours: [G1, G4, H1]
 status: draft
-sourceRev: "e788c6788614339113be54b7afe4cb3e1340c063"
+sourceRev: a082cec
 translationOf: en/types/H2-observability-view.md
 reviewed: false
 ---
@@ -113,7 +113,8 @@ reviewed: false
 
 ## 模板 {#template}
 <!-- skill: keep (≤3 lines) -->
-待集成目标：`assets/templates/H2.json`；逻辑流水线采用 `layered` 布局，部署边界采用 `nested` 布局。模型模板尚未提供。
+模型模板：`assets/templates/H2.json` · 布局模板：`layered` · 各层（埋点、采集、分析、响应）是 `layer` 分组，内含 `component`、`store` 和 `person` 节点，层间用 `data` 和 `async` 边连接，拟议策略使用样式 `planned`。
+部署边界改用 `nested` 布局和 `boundary` 分组。
 
 ## 来源 {#sources}
 <!-- skill: omit -->
@@ -135,6 +136,5 @@ reviewed: false
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-`/samples/H2-observability-view.svg`
-
-预期示例，尚未提供：原创网店遥测路径，从结账埋点到采集、分析，以及责任明确的告警路径。拟议策略将与实际测得的行为清楚区分。
+![H2 示例：网店结账的可观测性](/samples/H2-observability-view.svg)
+*从结账埋点到采集、分析，以及有明确负责人的告警路径。告警策略是拟议的，不是实际测得的行为。*

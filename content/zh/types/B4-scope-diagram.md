@@ -18,7 +18,7 @@ formal:
   ref: "Scope modeling — https://www.iiba.org/knowledgehub/business-analysis-body-of-knowledge-babok-guide/10-techniques/10-41-scope-modelling/"
 neighbours: [C2, A3, B1, D2, C6]
 status: draft
-sourceRev: "e788c6788614339113be54b7afe4cb3e1340c063"
+sourceRev: a082cec
 translationOf: en/types/B4-scope-diagram.md
 reviewed: false
 ---
@@ -111,7 +111,8 @@ reviewed: false
 
 ## 模板 {#template}
 <!-- skill: keep (≤3 lines) -->
-集成目标：`assets/templates/B4.json`；版式为 `nested`。范围区域包含工作／能力；若节点和箭头描述的是运行中的系统边界，应另用上下文视图。
+模型模板：`assets/templates/B4.json` · 布局模板：`nested` · 范围区域是 `boundary` 分组（范围内；范围外，`dashed`；依赖，样式 `external`），其中包含 `component` 节点。
+若节点和箭头描述的是运行中的系统边界，应另用上下文视图。
 
 ## 来源 {#sources}
 <!-- skill: omit -->
@@ -126,6 +127,5 @@ reviewed: false
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-计划资源：`/samples/B4-scope-diagram.svg`。
-
-**图注：** 一次结账版本交付包含支付集成和订单确认，排除会员积分计划，并将外部服务商记录为依赖。生成的示例尚未提供。
+![B4 示例：一次结账版本的范围](/samples/B4-scope-diagram.svg)
+*一次结账版本交付包含支付集成和订单确认，排除会员积分计划，并将外部服务商记录为依赖。*

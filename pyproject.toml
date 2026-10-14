@@ -13,6 +13,8 @@ dependencies = ["Pillow>=10,<13", "fonttools>=4.50,<5", "jsonschema>=4.20,<5"]
 [project.optional-dependencies]
 preview = ["CairoSVG>=2.7,<3"]
 test = ["pytest>=8,<10"]
+# Everything the tests, tools/ and evals/ need: pip install -e '.[dev]'
+dev = ["pytest>=8,<10", "PyYAML>=6,<7"]
 
 [project.scripts]
 atlas = "archatlas.cli:main"
@@ -22,3 +24,6 @@ where = ["src"]
 
 [tool.setuptools.package-data]
 archatlas = ["model/schema.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests", "evals/tests"]
