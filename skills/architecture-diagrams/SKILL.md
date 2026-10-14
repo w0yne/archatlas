@@ -134,9 +134,10 @@ is delivered in Step 6. Never modify the repository you analyse unless asked.
 5. Build one evidence table (`#, claim, evidence, status, note`). Status is `verified`, `inferred`, `doc-only` or `conflict`. Code, infrastructure files and configuration beat prose; disagreements are findings.
 6. Render the requested views from that table. Copy each row's status into the model's `evidence.status`
    on the matching node or edge (anything not `verified` must carry its status), so inferred edges render
-   dashed; mark doc-only elements; add a legend and an "assumptions and conflicts" list. Deliver the
+   dashed (where the notation gives line style a formal meaning, use an evidence tag or legend mark
+   instead); mark doc-only elements; add a legend and an "assumptions and conflicts" list. Deliver the
    evidence table next to the diagrams.
-7. Self-check: every arrow has a file reference; every box appears in a start or deploy artefact.
+7. Self-check: every arrow has a file reference; every runtime or deployment unit appears in a start or deploy artefact; business roles and logical concepts cite evidence of their own kind.
 
 ## Core rules (always apply)
 
@@ -144,11 +145,11 @@ is delivered in Step 6. Never modify the repository you analyse unless asked.
 2. Pick the type from the catalogue and name it. One question per diagram.
 3. Agree a text wireframe before rendering.
 4. Every element traces to a requirement or a source. Mark additions you proposed as proposed; keep verified, inferred and target design distinguishable.
-5. An architecture view shows components, not feature lists. Siblings in a row are the same kind of thing.
+5. A structure view shows components, not feature lists (business abilities → A1, product features → B3). Siblings in a row are the same kind of thing.
 6. Every element sits inside exactly one visible boundary or is explicitly external.
 7. An arrow ends exactly on what it connects; a group-level link ends on the group border. Keep flows short; no long lines that fold back; avoid crossings.
 8. Short names and small tags. No bullet lists or sentences in boxes, no working notes, status words, assumptions or internal references on the figure.
-9. Draw the happy path; errors get their own figure. Follow the chosen notation strictly.
+9. Focus on the main scenario but keep the retries, refusals and abuse paths the question needs; move only unrelated branches to another figure. Follow the chosen notation strictly.
 10. Render, check, look, and say truthfully whether the visual review happened. Never delete or translate
     labels the user wrote.
 

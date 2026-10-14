@@ -7,7 +7,7 @@ names:
   zh: 业务上下文图
   aliases:
     en: [business context, business environment diagram, business context (arc42 §3.1)]
-    zh: [业务背景图, 业务环境图, 范围图（业务视角）]
+    zh: [业务背景图, 业务环境图]
 question: 我们的系统或举措内部包含什么？外部有哪些人或事物与我们交换什么？
 audiences: [leaders, business, architects]
 levels: [strategy, concept]
@@ -17,7 +17,7 @@ formal: {kind: method, ref: Context-level DFD (Yourdon–DeMarco / Gane–Sarson
 neighbours: [B4, C2, H3]
 status: draft
 translationOf: en/types/A3-business-context.md
-sourceRev: 88db750
+sourceRev: 4aff572
 reviewed: false
 ---
 

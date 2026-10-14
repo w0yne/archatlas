@@ -275,6 +275,7 @@ which meaning they have in mind, or choose one and say which.
 - *application architecture diagram* → [C1 Application landscape](/types/c1-application-landscape), [C3 Container diagram (C4 model level 2)](/types/c3-container-diagram). Portfolio of many applications (C1) or the running applications and data stores of one system (C3). Inside one running application is C4, not C3.
 - *business architecture diagram* → [A1 Business capability map](/types/a1-capability-map), [A2 Value stream (business architecture)](/types/a2-value-stream), [A5 Business process diagram (BPMN)](/types/a5-bpmn-process). A family, not one diagram: capabilities (A1), value streams (A2), processes (A5).
 - *context diagram* → [C2 System context diagram (C4 model level 1)](/types/c2-system-context), [A3 Business context diagram](/types/a3-business-context), [B4 Scope diagram](/types/b4-scope-diagram). Software system and its neighbours (C2); business exchanges (A3); in/out of scope (B4).
+- *DFD level 0* → [D2 Data flow diagram (DFD)](/types/d2-data-flow-diagram), [C2 System context diagram (C4 model level 1)](/types/c2-system-context). Two numbering conventions exist: some authors call the context-level DFD (one process, C2-like) 'level 0', others mean the first decomposition below it (D2). Say 'context-level DFD' or 'first-level DFD' instead.
 - *flowchart* → [E2 Activity diagram or flowchart](/types/e2-activity-flowchart), [A5 Business process diagram (BPMN)](/types/a5-bpmn-process), [E4 Swimlane or cross-functional flowchart](/types/e4-swimlane-cross-functional). Logic of one procedure (E2); business process with BPMN semantics (A5); hand-offs between roles or systems (E4).
 - *swimlane diagram* → [E4 Swimlane or cross-functional flowchart](/types/e4-swimlane-cross-functional), [A5 Business process diagram (BPMN)](/types/a5-bpmn-process). Lightweight hand-offs (E4) or BPMN pools and lanes with message flows (A5).
 - *physical architecture diagram* → [G1 Deployment diagram](/types/g1-deployment-diagram), [G3 Network topology and connectivity view](/types/g3-network-topology). Software placed on infrastructure (G1) or the network (G3). State which.
@@ -354,7 +355,6 @@ Other names that do map to a single type:
 - conceptual data model → [D1 Entity-relationship diagram](/types/d1-entity-relationship)
 - connectivity view → [G3 Network topology and connectivity view](/types/g3-network-topology)
 - container view → [C3 Container diagram (C4 model level 2)](/types/c3-container-diagram)
-- context diagram (top level) → [D2 Data flow diagram (DFD)](/types/d2-data-flow-diagram)
 - context map → [C7 Bounded context map (DDD)](/types/c7-bounded-context-map)
 - context-level DFD → [C2 System context diagram (C4 model level 1)](/types/c2-system-context)
 - control flow diagram → [E2 Activity diagram or flowchart](/types/e2-activity-flowchart)
@@ -380,7 +380,6 @@ Other names that do map to a single type:
 - deployment pipeline → [G4 CI/CD and deployment pipeline](/types/g4-delivery-pipeline)
 - deployment view → [G1 Deployment diagram](/types/g1-deployment-diagram)
 - DFD → [D2 Data flow diagram (DFD)](/types/d2-data-flow-diagram)
-- DFD Level 0 → [C2 System context diagram (C4 model level 1)](/types/c2-system-context)
 - DFD with trust boundaries → [F2 Threat-model data-flow diagram with trust boundaries](/types/f2-threat-model-data-flow)
 - domain model (UML class style) → [D1 Entity-relationship diagram](/types/d1-entity-relationship)
 - ER diagram → [D1 Entity-relationship diagram](/types/d1-entity-relationship)

@@ -68,7 +68,7 @@ Each question comes with a recommendation. In guided mode, follow this checklist
 5. **External systems** — which to show, kept at the edge.
 6. **Inside the main system** — what makes it distinctive (components, not feature lists).
 7. **Interface labels** — a generic label, or named endpoints? (Some audiences do not want endpoint names.)
-8. **Flows** — happy path only or error branches too? Where does the story start?
+8. **Flows** — which retries, refusals or error branches does the question need (keep those; split off the rest)? Where does the story start?
 Type-specific questions live in `references/types/<code>-<slug>.md` (section "Guided-mode questions").
 
 ## 6. Plain-language restatements for vague words

@@ -17,7 +17,7 @@ formal: {kind: method, ref: 'TOGAF Solution Concept diagram (Phase A artifact, T
 neighbours: [A1, A8, C1, C2, C3, C5, I2]
 status: draft
 translationOf: en/types/A7-conceptual-architecture.md
-sourceRev: 88db750
+sourceRev: 4aff572
 reviewed: false
 ---
 
@@ -27,7 +27,7 @@ reviewed: false
 
 ## 含义 {#meaning}
 <!-- skill: condense (4–6 lines) -->
-概念架构回答的是：“这个方案由哪些大的部分组成，每个部分做什么，它们彼此如何依赖？”按 ISO/IEC/IEEE 42010 的说法，它是一种概览视点，关注点是范围、主要构建块和方案思路。TOGAF 将其定义为**方案构想图**（Solution Concept diagram），属于阶段 A 的制品：“方案的高层定向”，明确是一张“铅笔草图”，用于“让干系人快速入门并达成一致” [1][2]。C4 model 没有概念层级；A7 位于系统上下文（C2）视图和容器（C3）视图之间 [3]。它不包含产品、版本、协议和部署，也不包含功能清单（A1）、流程步骤（A5、E4）以及从现状到目标态的路径（A8）。
+概念架构回答的是：“这个方案由哪些大的部分组成，每个部分做什么，它们彼此如何依赖？”按 ISO/IEC/IEEE 42010 的说法，它是一种概览视点，关注点是范围、主要构建块和方案思路。TOGAF 将其定义为**方案构想图**（Solution Concept diagram），属于阶段 A 的制品：“方案的高层定向”，明确是一张“铅笔草图”，用于“让干系人快速入门并达成一致” [1][2]。C4 model 没有概念层级；A7 位于系统上下文（C2）视图和容器（C3）视图之间 [3]。它不包含产品、版本、协议和部署，也不包含业务能力清单（A1）、产品功能分解（B3）、流程步骤（A5、E4）以及从现状到目标态的路径（A8）。
 
 **本站采用的定义：***表示法*是非正式的（方框、分组、箭头），但*制品*是有定义的（TOGAF 方案构想图）。Azure 把这种与技术无关的层级称为“框图或功能图” [5]。arc42 将它与其构建块视图（building block view）的第 1 层白盒对应 [13]，DoDAF OV-1 是一种相关的作战概念图 [8]。“Marketecture”（营销架构图）是对其劣质版本的贬称 [17]。本页中的 ArchiMate 引用均依据 **ArchiMate 3.2**；参见“表示法”一节中的版本说明。
 

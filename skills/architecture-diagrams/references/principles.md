@@ -5,15 +5,15 @@ These are the generic rules distilled from many review rounds; the numbers are f
 ## Before drawing
 
 1. **State audience, purpose and as-is or to-be first.** Depth and vocabulary depend on them; a business-plus-technical overview is neither a marketing slide nor a deployment diagram.
-2. **Pick the type from a catalogue and name it.** A wrong type or viewpoint costs the most rework (for example a context picture cannot show internals; a feature list is a capability map, not an architecture view). Naming the type gives the user a steering vocabulary.
+2. **Pick the type from a catalogue and name it.** A wrong type or viewpoint costs the most rework (for example a context picture cannot show internals; a list of business abilities is a capability map (A1), a breakdown of product features is a feature tree (B3), and neither is a structure view). Naming the type gives the user a steering vocabulary.
 3. **One question per diagram.** A diagram that answers two questions answers neither; split them across figures in one deliverable. Different figures may use different notations.
 4. **Agree a text wireframe before rendering.** Layout changes are cheap in text and expensive in SVG.
-5. **Trace every element to a requirement or a source.** Mark elements added from best practice as proposed. Keep verified, inferred and target design distinguishable. Non-verified edges render dashed. **[planned: evidence check]**
+5. **Trace every element to a requirement or a source.** Mark elements added from best practice as proposed. Keep verified, inferred and target design distinguishable. Mark non-verified claims visibly: dashed lines where line style carries no notation meaning; where it does (UML, BPMN, ArchiMate), keep the formal line and add an evidence tag or legend mark. Require a start or deploy artefact only for runtime and deployment units; business roles and logical concepts need evidence of their own kind (documents, interviews, code names). **[planned: evidence check]**
 6. **Verify names and steps against code or documents.** One wrong interface name invalidates the figure for technical readers.
 
 ## Structure
 
-7. **An architecture view shows components, not features.** Feature lists form a capability map. Features may appear as small tags inside a component.
+7. **A structure view (landscape, context, container, component, logical, layered) shows components, not features.** Business abilities belong in a capability map (A1); product feature breakdowns belong in a feature tree (B3). Inside a structure view, features may appear as small tags on a component.
 8. **Siblings are the same kind of thing.** Do not mix containers, actors, process steps and capabilities in one row. **[planned]**
 9. **One layering scheme for every system in the figure,** so systems can be compared side by side.
 10. **Boundaries are explicit.** Each element sits visibly inside exactly one system boundary or is explicitly external. **[auto]**
@@ -40,7 +40,7 @@ These are the generic rules distilled from many review rounds; the numbers are f
 25. **An arrow ends exactly on what it connects.** A group-level link ends on the group border; it must not run into or across an unrelated region. **[auto: arrow-through-box, boundary-membership]**
 26. **Short, local flows.** No long lines that run to the far side and fold back; arrange or pair the systems instead (for example pools with message flows at aligned heights). Avoid crossings. **[auto: warning]**
 27. **Follow the chosen notation strictly.** Sequence: lifelines are real nameable systems; prerequisites come before the steps that need them; activations end at the return; a loop frame encloses the whole round trip. Generalise mechanisms into one named step unless the audience needs the protocol.
-28. **Happy path first; errors in their own figure.** One scenario per flow figure. Start at the trigger the audience cares about.
+28. **Focus on the main scenario, and keep the paths the question needs.** One scenario per flow figure, starting at the trigger the audience cares about. Keep retries, refusals, compensations and abuse paths whenever the question is about them (a retry policy, an access decision, a threat model); move only unrelated branches to their own figure.
 
 ## Process and quality assurance
 

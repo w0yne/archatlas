@@ -6,8 +6,8 @@ names:
   en: Data flow diagram (DFD)
   zh: 数据流图（DFD）
   aliases:
-    en: [DFD, data flow chart, data flow model, process model (structured analysis), bubble chart, context diagram (top level)]
-    zh: [数据流程图, 数据流向图, 0 层图]
+    en: [DFD, data flow chart, data flow model, process model (structured analysis), bubble chart]
+    zh: [数据流程图, 数据流向图]
 question: Where does data come from, which processing transforms it, where is it kept, and where does it go?
 audiences: [architects, business, security]
 levels: [logical]
@@ -51,7 +51,7 @@ status: draft
   4. Integration analysis: which data items cross between orders, payment and warehouse shipping.
 - **When not to use:** order of calls or retries (E1); branching logic (E2); hand-offs between teams (E4, A5); runtime infrastructure (G1).
 - **vs neighbours:**
-  - Choose **C2 System Context** when the people and systems matter; choose a level-0 DFD when the data items matter.
+  - Choose **C2 System Context** when the people and systems matter; choose a context-level DFD when the data items matter.
   - Choose **D3 Lineage** to trace concrete datasets across jobs and runs; a DFD is a design-time logical model.
   - Choose **F2 Threat Model** for the security workflow; it uses this page's dialect (DFD plus trust boundaries) and adds threat annotations.
   - Choose **E2 Activity Flowchart** for control flow. A DFD arrow is data, never "then".

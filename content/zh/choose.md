@@ -2,7 +2,7 @@
 title: 如何选择架构图
 description: 按读者和图要回答的问题，选出合适的架构图类型。
 translationOf: en/choose.md
-sourceRev: bca58c9299c22a5a05f98bf81e38393e6e1d1713
+sourceRev: 4aff57217f59787fc10713d19948d8dd81a4217f
 reviewed: true
 ---
 
@@ -274,6 +274,7 @@ reviewed: true
 - *应用架构图（application architecture diagram）* → [C1 应用全景图](/zh/types/c1-application-landscape)、[C3 容器图（C4 模型第 2 层）](/zh/types/c3-container-diagram)。多应用全景用 C1，单个系统的可运行应用与数据存储用 C3。单个运行应用的内部组件是 C4，不是 C3。
 - *业务架构图（business architecture diagram）* → [A1 业务能力图](/zh/types/a1-capability-map)、[A2 价值流（业务架构）](/zh/types/a2-value-stream)、[A5 业务流程图（BPMN）](/zh/types/a5-bpmn-process)。是一类图而不是一张图：能力（A1）、价值流（A2）、流程（A5）。
 - *上下文图（context diagram）* → [C2 系统上下文图（C4 模型第 1 层）](/zh/types/c2-system-context)、[A3 业务上下文图](/zh/types/a3-business-context)、[B4 范围图](/zh/types/b4-scope-diagram)。软件系统与外部（C2）；业务往来（A3）；范围内外（B4）。
+- *0 层数据流图（DFD level 0）* → [D2 数据流图（DFD）](/zh/types/d2-data-flow-diagram)、[C2 系统上下文图（C4 模型第 1 层）](/zh/types/c2-system-context)。存在两种编号习惯：有人把只有一个处理的上下文级数据流图（类似 C2）叫作 0 层，也有人指它下面的第一层分解（D2）。请改说“上下文级数据流图”或“第一层数据流图”。
 - *流程图（flowchart）* → [E2 活动图 / 流程图](/zh/types/e2-activity-flowchart)、[A5 业务流程图（BPMN）](/zh/types/a5-bpmn-process)、[E4 泳道流程图（跨职能流程图）](/zh/types/e4-swimlane-cross-functional)。一段处理逻辑（E2）；有 BPMN 语义的业务流程（A5）；角色 / 系统间交接（E4）。
 - *泳道图（swimlane diagram）* → [E4 泳道流程图（跨职能流程图）](/zh/types/e4-swimlane-cross-functional)、[A5 业务流程图（BPMN）](/zh/types/a5-bpmn-process)。轻量交接（E4），或 BPMN 的池 / 泳道与消息流（A5）。
 - *物理架构图（physical architecture diagram）* → [G1 部署图](/zh/types/g1-deployment-diagram)、[G3 网络拓扑与连通视图](/zh/types/g3-network-topology)。软件部署到基础设施（G1）或网络（G3），需说明是哪种。
@@ -297,8 +298,6 @@ reviewed: true
 下面这些叫法只对应一种类型：
 
 <!-- BEGIN GENERATED: aliases -->
-- 0 层图 → [D2 数据流图（DFD）](/zh/types/d2-data-flow-diagram)
-- 0 层数据流图 → [C2 系统上下文图（C4 模型第 1 层）](/zh/types/c2-system-context)
 - 4+1 架构视图模型 → [I1 4+1 视图模型](/zh/types/i1-four-plus-one)
 - API 全景图 → [C6 集成与接口图](/zh/types/c6-integration-interface)
 - ArchiMate 分层视点 → [I2 ArchiMate 分层视图](/zh/types/i2-archimate-layered-view)
@@ -319,8 +318,8 @@ reviewed: true
 - UML 用例图 → [B1 用例图](/zh/types/b1-use-case-diagram)
 - 一页纸架构 → [A7 概念架构图（方案概览）](/zh/types/a7-conceptual-architecture)
 - 上下文映射图 → [C7 限界上下文映射（DDD）](/zh/types/c7-bounded-context-map)
+- 上下文级数据流图 → [C2 系统上下文图（C4 模型第 1 层）](/zh/types/c2-system-context)
 - 业务-应用-技术视图 → [I2 ArchiMate 分层视图](/zh/types/i2-archimate-layered-view)
-- 业务上下文 → [C2 系统上下文图（C4 模型第 1 层）](/zh/types/c2-system-context)
 - 业务场景地图 → [A4 业务场景矩阵（角色 × 活动）](/zh/types/a4-scenario-matrix)
 - 业务场景清单 → [A4 业务场景矩阵（角色 × 活动）](/zh/types/a4-scenario-matrix)
 - 业务流程图 → [A5 业务流程图（BPMN）](/zh/types/a5-bpmn-process)
@@ -444,7 +443,6 @@ reviewed: true
 - 能力路线图 → [A8 目标架构与演进路线图](/zh/types/a8-target-roadmap)
 - 范围上下文图 → [B4 范围图](/zh/types/b4-scope-diagram)
 - 范围内外图 → [B4 范围图](/zh/types/b4-scope-diagram)
-- 范围图（业务视角） → [A3 业务上下文图](/zh/types/a3-business-context)
 - 范围边界图 → [B4 范围图](/zh/types/b4-scope-diagram)
 - 血缘关系图 → [D3 数据血缘与归属图](/zh/types/d3-data-lineage-ownership)
 - 角色-场景矩阵 → [A4 业务场景矩阵（角色 × 活动）](/zh/types/a4-scenario-matrix)
@@ -476,7 +474,6 @@ reviewed: true
 - 集成架构图 → [C6 集成与接口图](/zh/types/c6-integration-interface)
 - 需求分解结构 → [B3 功能树（功能分解）](/zh/types/b3-feature-tree)
 - 需求树 → [B3 功能树（功能分解）](/zh/types/b3-feature-tree)
-- 顶层数据流图（0 层） → [C2 系统上下文图（C4 模型第 1 层）](/zh/types/c2-system-context)
 - 顺序图 → [E1 时序图](/zh/types/e1-sequence-diagram)
 - 顾客旅程地图 → [A6 用户旅程图](/zh/types/a6-journey-map)
 - 领域上下文图 → [C7 限界上下文映射（DDD）](/zh/types/c7-bounded-context-map)

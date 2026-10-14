@@ -102,6 +102,10 @@ terms:
     zh: 上下文图
     types: [C2, A3, B4]
     note: {en: "Software system and its neighbours (C2); business exchanges (A3); in/out of scope (B4).", zh: "软件系统与外部（C2）；业务往来（A3）；范围内外（B4）。"}
+  - en: DFD level 0
+    zh: 0 层数据流图
+    types: [D2, C2]
+    note: {en: "Two numbering conventions exist: some authors call the context-level DFD (one process, C2-like) 'level 0', others mean the first decomposition below it (D2). Say 'context-level DFD' or 'first-level DFD' instead.", zh: "存在两种编号习惯：有人把只有一个处理的上下文级数据流图（类似 C2）叫作 0 层，也有人指它下面的第一层分解（D2）。请改说“上下文级数据流图”或“第一层数据流图”。"}
   - en: flowchart
     zh: 流程图
     types: [E2, A5, E4]
@@ -205,7 +209,7 @@ types:
   names: {en: Business context diagram, zh: 业务上下文图}
   aliases:
     en: [business context, business environment diagram, business context (arc42 §3.1)]
-    zh: [业务背景图, 业务环境图, 范围图（业务视角）]
+    zh: [业务背景图, 业务环境图]
   question:
     en: Which outside parties does the business or initiative deal with, and what do they exchange (goods, money, information, obligations)?
     zh: 业务或项目与哪些外部方打交道？彼此交换什么（货物、资金、信息、义务）？
@@ -463,7 +467,7 @@ types:
   levels: [concept]
   phases: [initiate, requirements]
   scope: system
-  formal: {kind: convention, basis: "Context diagram with explicit in/out-of-scope regions (variant of C2 / DFD level 0)"}
+  formal: {kind: convention, basis: "Context diagram with explicit in/out-of-scope regions (related to C2 and the context-level DFD)"}
   standards:
     - {name: "arc42, section 3: Context and Scope", url: "https://docs.arc42.org/section-3/"}
   neighbours: [A3, B1, C2]
@@ -505,8 +509,8 @@ types:
   family: C
   names: {en: System context diagram (C4 model level 1), zh: 系统上下文图（C4 模型第 1 层）}
   aliases:
-    en: [system context diagram, system environment diagram, context-level DFD, C4 model Level 1, DFD Level 0, Structured-analysis Context Diagram]
-    zh: [系统上下文图, 系统环境图, 0 层数据流图, C4 模型第 1 层, 业务上下文, 顶层数据流图（0 层）]
+    en: [system context diagram, system environment diagram, context-level DFD, C4 model Level 1, Structured-analysis Context Diagram]
+    zh: [系统上下文图, 系统环境图, 上下文级数据流图, C4 模型第 1 层]
   question:
     en: What is the software system, who uses it, and which other systems does it depend on?
     zh: 我们的软件系统是什么？谁在用？依赖哪些外部系统？
@@ -710,8 +714,8 @@ types:
   family: D
   names: {en: Data flow diagram (DFD), zh: 数据流图（DFD）}
   aliases:
-    en: [DFD, data flow chart, data flow model, process model (structured analysis), bubble chart, context diagram (top level)]
-    zh: [数据流程图, 数据流向图, 0 层图]
+    en: [DFD, data flow chart, data flow model, process model (structured analysis), bubble chart]
+    zh: [数据流程图, 数据流向图]
   question:
     en: Where does data come from, which processes transform it, where is it stored, and where does it go?
     zh: 数据从哪来、经过哪些加工、存在哪、流到哪？
