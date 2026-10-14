@@ -1,0 +1,7 @@
+interface:
+  display_name: "Architecture Diagrams"
+  short_description: "Choose, draw and check architecture diagrams as editable SVG, or derive them from a code repository"
+  default_prompt: "Use this skill to pick the right architecture diagram for my audience and question, then draw it."
+
+policy:
+  allow_implicit_invocation: true
