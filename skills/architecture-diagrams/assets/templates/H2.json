@@ -1,0 +1,111 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "H2",
+    "title": "Online shop: observability of checkout",
+    "lang": "en",
+    "audience": "operations and developers",
+    "state": "as-is"
+  },
+  "layout": {
+    "template": "layered",
+    "profile": "doc"
+  },
+  "groups": [
+    {
+      "id": "g_i",
+      "title": "Instrument",
+      "kind": "layer"
+    },
+    {
+      "id": "g_c",
+      "title": "Collect",
+      "kind": "layer"
+    },
+    {
+      "id": "g_a",
+      "title": "Analyse",
+      "kind": "layer"
+    },
+    {
+      "id": "g_r",
+      "title": "Respond",
+      "kind": "layer"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "web",
+      "kind": "component",
+      "label": "Storefront",
+      "sub": "traces, errors",
+      "parent": "g_i"
+    },
+    {
+      "id": "api",
+      "kind": "component",
+      "label": "Order API",
+      "sub": "metrics, logs, traces",
+      "parent": "g_i"
+    },
+    {
+      "id": "col",
+      "kind": "component",
+      "label": "Telemetry collector",
+      "parent": "g_c",
+      "style": "shared"
+    },
+    {
+      "id": "met",
+      "kind": "store",
+      "label": "Metrics store",
+      "parent": "g_a"
+    },
+    {
+      "id": "trc",
+      "kind": "store",
+      "label": "Trace store",
+      "parent": "g_a"
+    },
+    {
+      "id": "dash",
+      "kind": "component",
+      "label": "Checkout dashboard",
+      "parent": "g_a"
+    },
+    {
+      "id": "alert",
+      "kind": "component",
+      "label": "Alert: order failures",
+      "sub": "proposed",
+      "parent": "g_r",
+      "style": "planned"
+    },
+    {
+      "id": "duty",
+      "kind": "person",
+      "label": "On-call team",
+      "parent": "g_r"
+    }
+  ],
+  "edges": [
+    {
+      "from": "g_i",
+      "to": "g_c",
+      "label": "emit",
+      "kind": "data"
+    },
+    {
+      "from": "g_c",
+      "to": "g_a",
+      "label": "store",
+      "kind": "data"
+    },
+    {
+      "from": "g_a",
+      "to": "g_r",
+      "label": "notify",
+      "kind": "async"
+    }
+  ]
+}

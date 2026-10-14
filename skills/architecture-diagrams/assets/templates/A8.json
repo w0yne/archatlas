@@ -15,30 +15,45 @@
     {
       "id": "now",
       "kind": "state",
-      "label": "Today: single shop"
+      "label": "Today: single shop",
+      "size_hint": {
+        "width": 110
+      }
     },
     {
       "id": "wp1",
       "kind": "task",
       "label": "Add support chatbot",
-      "style": "planned"
+      "style": "planned",
+      "size_hint": {
+        "width": 110
+      }
     },
     {
       "id": "mid",
       "kind": "state",
-      "label": "Chatbot answers FAQs"
+      "label": "Chatbot answers FAQs",
+      "size_hint": {
+        "width": 110
+      }
     },
     {
       "id": "wp2",
       "kind": "task",
       "label": "Connect orders to chatbot",
-      "style": "planned"
+      "style": "planned",
+      "size_hint": {
+        "width": 110
+      }
     },
     {
       "id": "end",
       "kind": "state",
       "label": "Chatbot handles order questions",
-      "style": "planned"
+      "style": "planned",
+      "size_hint": {
+        "width": 110
+      }
     }
   ],
   "edges": [

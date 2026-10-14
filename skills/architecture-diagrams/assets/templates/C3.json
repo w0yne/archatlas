@@ -10,7 +10,7 @@
   "layout": {
     "template": "nested",
     "profile": "doc",
-    "columns": 3
+    "columns": 2
   },
   "groups": [
     {
@@ -23,14 +23,20 @@
     {
       "id": "cust",
       "kind": "person",
-      "label": "Customer"
+      "label": "Customer",
+      "size_hint": {
+        "width": 160
+      }
     },
     {
       "id": "web",
       "kind": "container",
       "label": "Web storefront",
       "sub": "browser app",
-      "parent": "g_s"
+      "parent": "g_s",
+      "size_hint": {
+        "width": 160
+      }
     },
     {
       "id": "api",
@@ -38,19 +44,28 @@
       "label": "Order API",
       "sub": "REST service",
       "parent": "g_s",
-      "style": "primary"
+      "style": "primary",
+      "size_hint": {
+        "width": 160
+      }
     },
     {
       "id": "db",
       "kind": "store",
       "label": "Shop database",
-      "parent": "g_s"
+      "parent": "g_s",
+      "size_hint": {
+        "width": 160
+      }
     },
     {
       "id": "pay",
       "kind": "external",
       "label": "Payment provider",
-      "style": "external"
+      "style": "external",
+      "size_hint": {
+        "width": 160
+      }
     }
   ],
   "edges": [

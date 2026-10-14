@@ -41,26 +41,38 @@
       "id": "ui",
       "kind": "component",
       "label": "Storefront UI",
-      "parent": "g_p"
+      "parent": "g_p",
+      "size_hint": {
+        "width": 160
+      }
     },
     {
       "id": "ord",
       "kind": "component",
       "label": "Order logic",
       "parent": "g_d",
-      "style": "primary"
+      "style": "primary",
+      "size_hint": {
+        "width": 160
+      }
     },
     {
       "id": "pay",
       "kind": "component",
       "label": "Payment gateway adapter",
-      "parent": "g_i"
+      "parent": "g_i",
+      "size_hint": {
+        "width": 160
+      }
     },
     {
       "id": "ext",
       "kind": "external",
       "label": "Payment provider",
-      "style": "external"
+      "style": "external",
+      "size_hint": {
+        "width": 160
+      }
     }
   ],
   "edges": [

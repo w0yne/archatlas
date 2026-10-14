@@ -16,31 +16,46 @@
       "id": "p1",
       "kind": "task",
       "label": "Pick",
-      "sub": "PT 6 min"
+      "sub": "PT 6 min",
+      "size_hint": {
+        "width": 110
+      }
     },
     {
       "id": "q1",
       "kind": "queue",
       "label": "Packing queue",
-      "sub": "wait 4 h"
+      "sub": "wait 4 h",
+      "size_hint": {
+        "width": 110
+      }
     },
     {
       "id": "p2",
       "kind": "task",
       "label": "Pack",
-      "sub": "PT 4 min"
+      "sub": "PT 4 min",
+      "size_hint": {
+        "width": 110
+      }
     },
     {
       "id": "q2",
       "kind": "queue",
       "label": "Handover queue",
-      "sub": "wait 12 h"
+      "sub": "wait 12 h",
+      "size_hint": {
+        "width": 110
+      }
     },
     {
       "id": "p3",
       "kind": "task",
       "label": "Hand over to carrier",
-      "sub": "PT 2 min"
+      "sub": "PT 2 min",
+      "size_hint": {
+        "width": 110
+      }
     }
   ],
   "edges": [

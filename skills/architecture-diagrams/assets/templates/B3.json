@@ -1,0 +1,135 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "B3",
+    "title": "Online shop: feature tree",
+    "lang": "en",
+    "audience": "product team",
+    "state": "as-is"
+  },
+  "layout": {
+    "template": "tree",
+    "profile": "doc"
+  },
+  "nodes": [
+    {
+      "id": "shop",
+      "kind": "system",
+      "label": "Online shop",
+      "style": "primary",
+      "size_hint": {
+        "width": 160
+      }
+    },
+    {
+      "id": "browse",
+      "kind": "component",
+      "label": "Browse",
+      "size_hint": {
+        "width": 160
+      }
+    },
+    {
+      "id": "order",
+      "kind": "component",
+      "label": "Order",
+      "size_hint": {
+        "width": 160
+      }
+    },
+    {
+      "id": "fulfil",
+      "kind": "component",
+      "label": "Fulfil",
+      "size_hint": {
+        "width": 160
+      }
+    },
+    {
+      "id": "search",
+      "kind": "task",
+      "label": "Search catalogue",
+      "size_hint": {
+        "width": 160
+      }
+    },
+    {
+      "id": "filter",
+      "kind": "task",
+      "label": "Filter products",
+      "size_hint": {
+        "width": 160
+      }
+    },
+    {
+      "id": "cart",
+      "kind": "task",
+      "label": "Manage cart",
+      "size_hint": {
+        "width": 160
+      }
+    },
+    {
+      "id": "check",
+      "kind": "task",
+      "label": "Check out",
+      "size_hint": {
+        "width": 160
+      }
+    },
+    {
+      "id": "pack",
+      "kind": "task",
+      "label": "Pack and ship",
+      "size_hint": {
+        "width": 160
+      }
+    },
+    {
+      "id": "return",
+      "kind": "task",
+      "label": "Handle returns",
+      "size_hint": {
+        "width": 160
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "shop",
+      "to": "browse"
+    },
+    {
+      "from": "shop",
+      "to": "order"
+    },
+    {
+      "from": "shop",
+      "to": "fulfil"
+    },
+    {
+      "from": "browse",
+      "to": "search"
+    },
+    {
+      "from": "browse",
+      "to": "filter"
+    },
+    {
+      "from": "order",
+      "to": "cart"
+    },
+    {
+      "from": "order",
+      "to": "check"
+    },
+    {
+      "from": "fulfil",
+      "to": "pack"
+    },
+    {
+      "from": "fulfil",
+      "to": "return"
+    }
+  ]
+}

@@ -17,28 +17,40 @@
       "kind": "event",
       "label": "Merge to main",
       "size_hint": {
-        "width": 110
+        "width": 100
       }
     },
     {
       "id": "bld",
       "kind": "task",
-      "label": "Build"
+      "label": "Build",
+      "size_hint": {
+        "width": 150
+      }
     },
     {
       "id": "tst",
       "kind": "task",
-      "label": "Test"
+      "label": "Test",
+      "size_hint": {
+        "width": 150
+      }
     },
     {
       "id": "reg",
       "kind": "store",
-      "label": "Image registry"
+      "label": "Image registry",
+      "size_hint": {
+        "width": 150
+      }
     },
     {
       "id": "dep",
       "kind": "task",
-      "label": "Deploy"
+      "label": "Deploy",
+      "size_hint": {
+        "width": 150
+      }
     }
   ],
   "edges": [
@@ -49,13 +61,18 @@
     {
       "from": "bld",
       "to": "tst",
+      "label": "tests",
       "kind": "dependency"
     },
     {
-      "from": "tst",
+      "from": "bld",
       "to": "reg",
       "label": "image",
       "kind": "data"
+    },
+    {
+      "from": "tst",
+      "to": "dep"
     },
     {
       "from": "reg",

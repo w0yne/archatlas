@@ -24,26 +24,38 @@
       "id": "cust",
       "kind": "external",
       "label": "Customer",
-      "style": "external"
+      "style": "external",
+      "size_hint": {
+        "width": 160
+      }
     },
     {
       "id": "val",
       "kind": "component",
       "label": "Validate order",
-      "parent": "g_in"
+      "parent": "g_in",
+      "size_hint": {
+        "width": 160
+      }
     },
     {
       "id": "st",
       "kind": "store",
       "label": "Orders",
       "sub": "D1",
-      "parent": "g_in"
+      "parent": "g_in",
+      "size_hint": {
+        "width": 160
+      }
     },
     {
       "id": "pay",
       "kind": "external",
       "label": "Payment provider",
-      "style": "external"
+      "style": "external",
+      "size_hint": {
+        "width": 160
+      }
     }
   ],
   "edges": [

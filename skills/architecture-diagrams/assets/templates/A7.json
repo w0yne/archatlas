@@ -41,31 +41,46 @@
       "id": "web",
       "kind": "component",
       "label": "Storefront",
-      "parent": "g_ch"
+      "parent": "g_ch",
+      "size_hint": {
+        "width": 120
+      }
     },
     {
       "id": "ord",
       "kind": "component",
       "label": "Ordering",
-      "parent": "g_ap"
+      "parent": "g_ap",
+      "size_hint": {
+        "width": 120
+      }
     },
     {
       "id": "cat",
       "kind": "component",
       "label": "Catalogue",
-      "parent": "g_ap"
+      "parent": "g_ap",
+      "size_hint": {
+        "width": 120
+      }
     },
     {
       "id": "db",
       "kind": "store",
       "label": "Shop data",
-      "parent": "g_da"
+      "parent": "g_da",
+      "size_hint": {
+        "width": 120
+      }
     },
     {
       "id": "pay",
       "kind": "external",
       "label": "Payment provider",
-      "style": "external"
+      "style": "external",
+      "size_hint": {
+        "width": 120
+      }
     }
   ],
   "edges": [

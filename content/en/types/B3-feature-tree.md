@@ -109,7 +109,8 @@ These illustrate different modeling modes, not synonyms. Text and captions were 
 
 ## Template {#template}
 <!-- skill: keep (≤3 lines) -->
-Integration target: `assets/templates/B3.json`; layout `tree`. The default is functional decomposition; variability mode additionally requires group markers, constraints, and semantic validation beyond tree layout.
+Model template: `assets/templates/B3.json` · Layout template: `tree` · the root is a `system` node and features are `component` and `task` nodes linked by `edges` from parent to child, laid out top to bottom.
+Functional decomposition only: variability mode (group markers, constraints, semantic validation) is not supported.
 
 ## Sources {#sources}
 <!-- skill: omit -->
@@ -123,6 +124,5 @@ Integration target: `assets/templates/B3.json`; layout `tree`. The default is fu
 
 ## Sample {#sample}
 <!-- skill: path only -->
-Planned asset: `/samples/B3-feature-tree.svg`.
-
-**Caption:** An online shop's functions decompose into browsing, ordering, and fulfilment, with detailed functions grouped under each. This is a functional hierarchy, not a variability model. The generated sample is not yet available.
+![B3 sample: feature tree of an online shop](/samples/B3-feature-tree.svg)
+*An online shop's functions decompose into browsing, ordering, and fulfilment, with detailed functions grouped under each. This is a functional hierarchy, not a variability model.*

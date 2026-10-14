@@ -32,25 +32,37 @@
       "label": "Order API",
       "sub": "2 replicas",
       "parent": "g_h",
-      "style": "primary"
+      "style": "primary",
+      "size_hint": {
+        "width": 150
+      }
     },
     {
       "id": "web",
       "kind": "component",
       "label": "Storefront",
-      "parent": "g_h"
+      "parent": "g_h",
+      "size_hint": {
+        "width": 150
+      }
     },
     {
       "id": "db",
       "kind": "store",
       "label": "Managed database",
-      "style": "external"
+      "style": "external",
+      "size_hint": {
+        "width": 150
+      }
     },
     {
       "id": "pay",
       "kind": "external",
       "label": "Payment provider",
-      "style": "external"
+      "style": "external",
+      "size_hint": {
+        "width": 150
+      }
     }
   ],
   "edges": [

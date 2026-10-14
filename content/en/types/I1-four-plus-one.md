@@ -116,8 +116,8 @@ Figure descriptions were checked through text extraction; images were not visual
 
 ## Template {#template}
 <!-- skill: keep (≤3 lines) -->
-Integration target: `assets/templates/I1.json` with layout `layered`, for an overview index of views and scenarios.
-The model template is not yet provided; the overview must link to substantive views, not substitute for them.
+Model template: `assets/templates/I1.json` · Layout template: `layered` · views and scenarios are `layer` groups holding `component` and `task` nodes, joined by a `dependency` edge from the scenarios to the views.
+This is an overview index: it must link to the substantive views, not substitute for them.
 
 ## Sources {#sources}
 <!-- skill: omit -->
@@ -128,4 +128,5 @@ The model template is not yet provided; the overview must link to substantive vi
 
 ## Sample {#sample}
 <!-- skill: path only -->
-Expected sample: `/samples/I1-four-plus-one.svg` — not yet provided. Caption: an online shop's logical, process, development, and physical views connected by checkout and recovery scenarios.
+![I1 sample: 4+1 views of an online shop](/samples/I1-four-plus-one.svg)
+*An online shop's logical, process, development and physical views, connected by checkout and recovery scenarios.*

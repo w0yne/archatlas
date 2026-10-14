@@ -110,7 +110,8 @@ These external examples are not scenarios reused in this page's authored sample.
 
 ## Template {#template}
 <!-- skill: keep (≤3 lines) -->
-Integration target: `assets/templates/H3.json`; layout `grid_table`, with four quadrants and a companion engagement table. The model template is not yet provided.
+Model template: `assets/templates/H3.json` · Layout template: `grid_table` · two `tables[]` entries: a 2×2 influence-by-interest grid and a companion engagement table.
+Approximate: the quadrants are plain table cells, not a drawn plane.
 
 ## Sources {#sources}
 <!-- skill: omit -->
@@ -124,6 +125,5 @@ Integration target: `assets/templates/H3.json`; layout `grid_table`, with four q
 
 ## Sample {#sample}
 <!-- skill: path only -->
-`/samples/H3-stakeholder-map.svg`
-
-Expected sample, not yet provided: an original online-shop checkout engagement grid with generic roles and a companion action table. Placements will be explicitly hypothetical and will not rank real people or organizations.
+![H3 sample: stakeholder map for an online-shop checkout engagement](/samples/H3-stakeholder-map.svg)
+*An online-shop checkout engagement grid with generic roles and a companion action table. Placements are hypothetical and do not rank real people or organizations.*

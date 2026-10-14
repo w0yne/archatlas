@@ -1,84 +1,80 @@
-# Stakeholder Map (干系人地图)
+# Stakeholder map
 <!-- Generated from content/en/types/H3-stakeholder-map.md by tools/build_skill_refs.py. Do not edit. -->
-> Whose support do we need, how much power and interest does each party have, and how do we engage them?
-Scope: All stakeholder roles or groups of one initiative, plotted on power and interest, with an engagement approach per quadrant. Neighbours: A3, H1, A1, I2.
+> Who can influence or is affected by the initiative, and how should each stakeholder be engaged?
+Scope: Stakeholder engagement for one initiative at a stated time. Neighbours: A3, H1.
 
 ## Meaning
-- **Question:** whose support does the initiative need, how much power and interest does each party have, and how should each be engaged?
-- **Concern:** this is the ISO/IEC/IEEE 42010 stakeholder → concern link made explicit. It is a **project and governance** artefact: TOGAF's Stakeholder Management technique uses it to plan communication and to choose which views each group gets.
-- **Left out on purpose:** flows and exchanges (A3), architecture content of any kind, and responsibilities per activity (H1 RACI).
-- **Definition used here:** the power × interest grid as published by Johnson & Scholes (*Exploring Corporate Strategy*, 2nd ed., 1993) as a development of **Mendelow (1981)**. Mendelow's original grid was **power × dynamism** and set how intensively to scan the environment. The citation "Mendelow 1991" is a misdating.
-- **Sensitivity:** TOGAF notes that stakeholder mapping information is potentially sensitive and keeps it informal. Treat the grid as **internal**: it often rates real people and groups.
+A stakeholder map connects assessed power and interest to engagement choices. It makes concerns and influence visible, including parties who never use the system. It supports governance and communication, rather than depicting software architecture.
+
+**Definition used here:** a power–interest grid, not a stakeholder catalog, onion diagram, or relationship network. Those are related methods with different meanings. Interest is attention or stake in the initiative, not necessarily support for it.
+
+There is no universal diagram version. Mendelow's primary 1981 paper concerns power and environmental dynamism; do not misdate it as 1991 or equate its axes with this grid. The map omits exchanges, workflow, and activity-level accountability.
+
+The familiar power–interest form is associated with Johnson and Scholes in historical accounts. The cited secondary account's exact edition/date was not independently established here, so no first-edition claim is made. Maps are time-bound assessments, not measurements of a person's worth or permission to ignore affected groups.
 
 ## When to use and how to choose
-- **Audience:** sponsor, programme or project manager, lead architect; restricted circulation.
-- **Scenarios:** planning engagement for the online shop's checkout redesign (finance, legal, security, support, warehouse operations, payment provider); finding hidden stakeholders (data protection, tax, works council) before requirements freeze; deciding which diagrams each group receives; re-ranking at each phase gate.
-- **When not to use:** in any deck that leaves the core team (use roles only, or a plain list); with fewer than about six stakeholders (a list is enough); to show who exchanges what with the system (A3).
-- **vs neighbours:**
-  - Choose **A3 Business Context Diagram** when the question is who interacts with the system and what flows; it has flows, not axes.
-  - Choose **H1 RACI Matrix** when you need responsibility per activity, not engagement per stakeholder.
-  - Choose an **ArchiMate Stakeholder / Motivation view** (I2) when you must trace stakeholders → drivers → goals → requirements formally.
+- **Audience:** initiative sponsors, delivery leads, business analysts, and architects planning engagement.
+- **Scenarios:** planning an online-shop checkout redesign; identifying overlooked affected groups; choosing review participants and views; revisiting engagement after scope changes.
+- **When not:** a short stakeholder list already answers the question, or the required view is system structure, dependencies, or exchanges.
+- **A3 business context:** shows parties and business exchanges; it has flows rather than influence rankings.
+- **H1 RACI:** assigns responsibility per activity; a powerful stakeholder is not automatically accountable for every task.
+- **Onion/catalog/network:** choose these for proximity, an inventory of concerns, or relationships respectively; they are not exact grid aliases.
+- Choose audience-appropriate detail. Roles reduce personal identification but may still reveal sensitive assessments; there is no universal “internal only” rule.
 
 ## Notation and elements
-- **Required:** two axes, *Interest →* (x) and *Power ↑* (y), each Low/High or 1–5; four labelled quadrants: **Key Players** (manage closely), **Keep Satisfied**, **Keep Informed**, **Minimal Effort** (monitor); stakeholders plotted as short labels.
-- **Plot roles or groups**, not personal names, whenever the map may circulate.
-- **Optional third dimension:** attitude (supporter / neutral / critic) by marker shape or colour, with a legend. Arrows may show a planned move (e.g. Keep Informed → Key Players).
-- **Companion table** (TOGAF stakeholder catalog columns): stakeholder | involvement | quadrant | key concerns | views they need.
-- **Onion variant (BABOK):** concentric rings: solution, people who use it, the hosting organisation, external parties such as customers, regulators and suppliers.
-- **Lines:** none between stakeholders; this is not a network diagram.
-- **Formal alternative:** ArchiMate Stakeholder viewpoint with Stakeholder, Driver, Assessment and Goal elements.
-- TOGAF 10 quadrant names and catalog columns were taken from TOGAF 9.2 text and secondary guides; not verified against the current spec text.
+- **Required:** initiative, assessment date, stakeholder labels, defined power and interest axes, scale/thresholds, and engagement interpretation.
+- **Convention here:** interest increases rightward; power increases upward. Define power as ability to affect the initiative's outcome, not merely job seniority.
+- **Quadrants:** high/high = engage closely; high power/low interest = keep satisfied; low power/high interest = keep informed/involved; low/low = monitor.
+- **Scores:** use agreed qualitative categories or documented criteria. Numeric scales do not create objective precision; retain uncertainty outside the plotted point.
+- **Optional:** attitude markers, assessment rationale, confidence, and a companion table of concerns, actions, owners, and review dates.
+- **Arrows:** none between stakeholders by default. Axis arrows mean increasing values; optional movement arrows mean an explicitly labeled observed or proposed change.
+- **Legend:** define attitude and movement markers; current position must differ from desired position. Interest must not silently encode attitude.
+- **Labels/layout:** short roles or groups, with a separate legend or table for detail; use shape/text as well as color. Low power does not remove a right to participate.
 
 ## Best practices and anti-patterns
-### Best practices
+| Best practice | Anti-pattern |
+| --- | --- |
+| Identify affected groups as well as decision-makers. | Plotting only managers or direct system users. |
+| Agree criteria and record the basis for placements. | Inventing influence scores from job titles or commit counts. |
+| Distinguish interest, impact, and attitude. | Calling low-interest stakeholders opponents. |
+| Link assessments to concrete engagement and revisit them. | A static quadrant label with no action or review date. |
+| Match assessment detail to the audience and purpose. | Publishing identifiable judgments simply because names were replaced by roles. |
 
-1. Gather broadly before scoring: use the 42010 stakeholder classes and the five TOGAF stakeholder groups (corporate functions, end users, project organisation, operations, external).
-2. **Score with the sponsor; never invent scores.** Power and interest are judgements, not data.
-3. Add **attitude**, and attach an **engagement action** to every quadrant.
-4. **Revisit at each phase.** Stakeholders and their power change; mapping is not a one-time activity.
-5. Use the grid to **choose views**: TOGAF's final step tailors the catalogs, matrices and diagrams each group receives.
-
-### Anti-patterns
-
-1. Power/interest colouring sprayed onto a context diagram: one figure, two questions.
-2. Named individuals placed in "Minimal Effort" in a circulated deck.
-3. A grid with no action attached; the analysis never turns into engagement.
-4. Only end users plotted; regulators, finance, operations and suppliers forgotten.
-5. Attributing power × interest to "Mendelow 1991".
+Quadrant labels vary across methods. A source that assesses interest *in a reform succeeding* may use different labels from a grid of interest *in the initiative*. State that distinction rather than importing labels such as “blocker” into every map.
 
 ## Drawing recipe
-1. Confirm who will see the map. If it may leave the core team, use roles or groups only and drop attitude.
-2. Gather stakeholders as roles or groups with the checklists above; aim for 6–20.
-3. Score power and interest with the user (High/Low or 1–5). Never guess.
-4. Draw a square 2×2 grid; axis labels *Interest →* and *Power ↑*; quadrant names in the corners.
-5. Plot short labels (≤ 3 words); attitude by marker shape, with a legend; optional arrows for planned moves.
-6. Put concerns and engagement actions in a companion table, not on the grid.
-7. Colour: neutral quadrants (one light tint for Key Players at most); attitude markers use shape first, colour second.
-8. Footer "Internal — stakeholder analysis" whenever real groups or names appear.
+1. Set initiative, date, audience, and the engagement decision the map should support.
+2. Gather decision-makers and affected groups; agree power/interest criteria with informed participants.
+3. Record placement evidence and uncertainty; do not infer scores from repository activity.
+4. Draw a 2×2 grid with interest increasing rightward and power upward; label thresholds and quadrants.
+5. Place short role labels; keep attitude optional and distinct. Use neutral fills, text/shape markers, and a legend.
+6. Put concerns, engagement actions, owners, and review dates in a companion table; check audience suitability.
 
 **Self-check**
-
-- [ ] Axes and all four quadrants are labelled.
-- [ ] Every point is a role or group, or the figure is marked internal.
-- [ ] Scores came from the user, not the drawer.
-- [ ] Regulators, finance, operations and suppliers were considered.
-- [ ] Each quadrant has an engagement action in the companion table.
-- [ ] The grid is a separate figure from the context diagram.
-- [ ] Any attribution reads "Johnson & Scholes, after Mendelow 1981".
+- [ ] Scope, date, axes, and thresholds are clear.
+- [ ] Placements have an agreed basis; unknowns are explicit.
+- [ ] Interest is separate from attitude and impact.
+- [ ] Affected low-power groups were considered.
+- [ ] Engagement actions and review dates are recorded.
+- [ ] Movement arrows distinguish proposed from observed changes.
+- [ ] Labels and markers work without color.
+- [ ] Detail is appropriate for the intended audience.
 
 ## Evidence in a code repository
-- **From code:** almost nothing. CODEOWNERS, team labels and issue assignees hint at internal groups; ADR deciders hint at who holds decision power.
-- **Limit:** power, interest, attitude and external stakeholders come only from interviews and the sponsor. Never infer them; ask.
+- Governance documents, ADRs, runbooks, and issue discussions identify candidate groups and stated concerns.
+- `CODEOWNERS` and approval rules show review authority within their technical scope only.
+- Record paths, revisions, and evidence status; distinguish a documented role from an assessed influence level.
+- Power, interest, attitude, and external affected groups need contextual evidence and participant validation; code alone cannot establish them.
 
 ## Guided-mode questions
-1. Who will see this map? (Core team only; roles instead of names otherwise.)
-2. Grid, onion or both? (Grid.)
-3. Which scale for power and interest? (High/Low.)
-4. Should attitude be shown? (Yes, internal copy only.)
-5. Here is a candidate list from the standard groups; who is missing? (Add regulators and suppliers.)
+1. Which initiative and engagement decision should this map support?
+2. Who will see it, and what assessment detail is appropriate?
+3. How will power and interest be defined, and who can validate placements?
+4. Which affected groups, engagement actions, and review dates must be included?
 
 ## Template
-Model template: `assets/templates/H3.json` · Layout template: `grid_table` · A 2×2 `tables[]` entry holds the quadrants; stakeholders are cell items carrying attitude tags, and the companion table is a second table.
+Model template: `assets/templates/H3.json` · Layout template: `grid_table` · two `tables[]` entries: a 2×2 influence-by-interest grid and a companion engagement table.
+Approximate: the quadrants are plain table cells, not a drawn plane.
 
 ## Sample
 Figure: `samples/H3-stakeholder-map.svg` (published with the site)

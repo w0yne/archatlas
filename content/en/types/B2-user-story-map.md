@@ -106,7 +106,8 @@ These are worked teaching illustrations, not three independently verified produc
 
 ## Template {#template}
 <!-- skill: keep (≤3 lines) -->
-Integration target: `assets/templates/B2.json`; layout `grid_table`. Activity columns, grouped task cards, and labeled slice bands express narrative and scope, not execution-state columns.
+Model template: `assets/templates/B2.json` · Layout template: `grid_table` · one `tables[]` entry with activity columns, release slices as rows and the story text in the cells.
+Approximate: it is a table; task cards and slice bands are not drawn, and it expresses narrative and scope, not execution-state columns.
 
 ## Sources {#sources}
 <!-- skill: omit -->
@@ -118,6 +119,5 @@ Integration target: `assets/templates/B2.json`; layout `grid_table`. Activity co
 
 ## Sample {#sample}
 <!-- skill: path only -->
-Planned asset: `/samples/B2-user-story-map.svg`.
-
-**Caption:** An online shopper discovers items, compares them, checks out, and tracks delivery; a prototype slice tests one complete shopping goal. The generated sample is not yet available.
+![B2 sample: a user story map for an online shopper with a prototype slice](/samples/B2-user-story-map.svg)
+*An online shopper discovers items, compares them, checks out, and tracks delivery; a prototype slice tests one complete shopping goal.*

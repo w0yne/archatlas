@@ -109,7 +109,8 @@ These are **context examples used in scope discussions**, not four identical inc
 
 ## Template {#template}
 <!-- skill: keep (≤3 lines) -->
-Integration target: `assets/templates/B4.json`; layout `nested`. Scope regions contain work/capabilities; use a separate context view when nodes and arrows describe an operating system boundary.
+Model template: `assets/templates/B4.json` · Layout template: `nested` · scope regions are `boundary` groups (in scope, out of scope with `dashed`, dependency in style `external`) that contain `component` nodes.
+Use a separate context view when nodes and arrows describe an operating system boundary.
 
 ## Sources {#sources}
 <!-- skill: omit -->
@@ -124,6 +125,5 @@ Integration target: `assets/templates/B4.json`; layout `nested`. Scope regions c
 
 ## Sample {#sample}
 <!-- skill: path only -->
-Planned asset: `/samples/B4-scope-diagram.svg`.
-
-**Caption:** A checkout release includes payment integration and order confirmation, excludes a loyalty program, and records an external provider as a dependency. The generated sample is not yet available.
+![B4 sample: scope of a checkout release](/samples/B4-scope-diagram.svg)
+*A checkout release includes payment integration and order confirmation, excludes a loyalty program, and records an external provider as a dependency.*

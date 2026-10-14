@@ -10,7 +10,7 @@
   "layout": {
     "template": "nested",
     "profile": "doc",
-    "columns": 3
+    "columns": 2
   },
   "groups": [
     {
@@ -24,31 +24,46 @@
       "id": "ctl",
       "kind": "component",
       "label": "Order controller",
-      "parent": "g_api"
+      "parent": "g_api",
+      "size_hint": {
+        "width": 160
+      }
     },
     {
       "id": "svc",
       "kind": "component",
       "label": "Order service",
       "parent": "g_api",
-      "style": "primary"
+      "style": "primary",
+      "size_hint": {
+        "width": 160
+      }
     },
     {
       "id": "repo",
       "kind": "component",
       "label": "Order repository",
-      "parent": "g_api"
+      "parent": "g_api",
+      "size_hint": {
+        "width": 160
+      }
     },
     {
       "id": "db",
       "kind": "store",
-      "label": "Shop database"
+      "label": "Shop database",
+      "size_hint": {
+        "width": 160
+      }
     },
     {
       "id": "pay",
       "kind": "external",
       "label": "Payment provider",
-      "style": "external"
+      "style": "external",
+      "size_hint": {
+        "width": 160
+      }
     }
   ],
   "edges": [
