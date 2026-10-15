@@ -64,7 +64,8 @@ def render_png(svg: Path, dest: Path) -> Path | None:
         return None
 
 
-def build_input(run_dir: Path, rec: dict, scenario: dict, tmp: Path) -> tuple[Path, list[Path]]:
+def build_input(run_dir: Path, rec: dict, scenario: dict, tmp: Path,
+                addenda: tuple[Path, ...] = ()) -> tuple[Path, list[Path]]:
     replies = []
     adapter_cls = ADAPTERS[rec["host"]]
     adapter = adapter_cls.__new__(adapter_cls)
@@ -95,6 +96,7 @@ def build_input(run_dir: Path, rec: dict, scenario: dict, tmp: Path) -> tuple[Pa
                                        "scripted_answers", "fixture", "environment")}
     text = "\n\n".join([
         PROMPT.read_text(encoding="utf-8"),
+        *(p.read_text(encoding="utf-8") for p in addenda),
         "## SCENARIO\n```yaml\n" + yaml.safe_dump(sc, allow_unicode=True, sort_keys=False) + f"mode_run: {rec.get('mode')}\narm: {rec.get('arm')}\n```",
         "## RUBRIC\n" + RUBRIC.read_text(encoding="utf-8"),
         "## TRACE FACTS\n```json\n" + json.dumps({"trace": rec.get("trace"), "skill_loaded": rec.get("skill_loaded"),
@@ -130,7 +132,8 @@ def parse_answer(events: str) -> tuple[dict | None, dict]:
         return None, {"usage": usage, "cost_usd": round(cost, 5), "raw": text[-2000:]}
 
 
-def grade_one(run_dir: Path, rec: dict, scenario: dict, cfg: dict, force: bool, grade_file: str = "grade.json") -> str:
+def grade_one(run_dir: Path, rec: dict, scenario: dict, cfg: dict, force: bool, grade_file: str = "grade.json",
+              addenda: tuple[Path, ...] = ()) -> str:
     target = run_dir / grade_file
     if target.exists() and not force:
         return f"{run_dir.name}: kept"
@@ -138,7 +141,7 @@ def grade_one(run_dir: Path, rec: dict, scenario: dict, cfg: dict, force: bool, 
     pi = shutil.which(cfg.get("binary", "pi"))
     with tempfile.TemporaryDirectory(prefix="archatlas-grade-") as d:
         sb = Sandbox(Path(d)).create()
-        inp, images = build_input(run_dir, rec, scenario, sb.tmp)
+        inp, images = build_input(run_dir, rec, scenario, sb.tmp, addenda)
         env = isolated_env(sb, pi, {"PI_CODING_AGENT_DIR": str(sb.home / ".pi/agent"), "PI_SKIP_VERSION_CHECK": "1",
                                     **cfg.get("env", {})}, cfg.get("pass_env", []))
         argv = [pi, "-p", "--mode", "json", "--no-tools", "--no-session", "--no-extensions", "--no-skills",
@@ -161,6 +164,9 @@ def main(argv=None) -> int:
     ap.add_argument("--force", action="store_true")
     ap.add_argument("--grade-file", default="grade.json", help="file name for the grade next to record.json")
     ap.add_argument("--host", action="append", default=[], help="only grade runs of this host (repeatable)")
+    ap.add_argument("--addendum", action="append", type=Path, default=[],
+                    help="extra instruction or reference file appended to the grader prompt (repeatable), "
+                         "e.g. grader/visual-note.md and docs/STYLE.md")
     ap.add_argument("--scenario", action="append", default=[], help="only grade this scenario id (repeatable)")
     args = ap.parse_args(argv)
     if "/" in args.grade_file or not args.grade_file.endswith(".json"):
@@ -179,7 +185,7 @@ def main(argv=None) -> int:
                 continue
             work.append((rec_path.parent, rec, scenarios[rec["scenario"]]))
     with ThreadPoolExecutor(max_workers=args.jobs) as pool:
-        for line in pool.map(lambda w: grade_one(*w, cfg, args.force, args.grade_file), work):
+        for line in pool.map(lambda w: grade_one(*w, cfg, args.force, args.grade_file, tuple(args.addendum)), work):
             print(line, flush=True)
     return 0
 

@@ -142,5 +142,23 @@ class RescoreTest(unittest.TestCase):
             self.assertEqual(ids, ["T5"])
 
 
+class GalleryTest(unittest.TestCase):
+    def test_inline_svg_is_sanitised_and_ids_are_prefixed(self):
+        import gallery
+        svg = ('<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" '
+               'width="10" height="10" onload="x()"><script>alert(1)</script>'
+               '<foreignObject><div>x</div></foreignObject>'
+               '<defs><marker id="arrow"/></defs><image href="https://example.com/a.png"/>'
+               '<use xlink:href="#arrow"/><path marker-end="url(#arrow)" onclick="y()"/>'
+               '<rect style="fill:url(https://example.com/x)"/></svg>')
+        out = gallery.sanitise_svg(svg, "g1")
+        for bad in ("script", "foreignObject", "onload", "onclick", "example.com"):
+            self.assertNotIn(bad, out)
+        self.assertIn('id="g1-arrow"', out)
+        self.assertIn("url(#g1-arrow)", out)
+        self.assertIn('href="#g1-arrow"', out)
+        self.assertIsNone(gallery.sanitise_svg("<html/>", "g2"))
+
+
 if __name__ == "__main__":
     unittest.main()
