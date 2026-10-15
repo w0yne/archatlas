@@ -116,7 +116,7 @@ It answers: *which separately running applications and data stores make up this 
 
 ## Template {#template}
 <!-- skill: keep (≤3 lines) -->
-Model template: `assets/templates/C3.json` · Layout template: `statechart` · one `boundary` group for the system containing `frame` groups (front ends, services, data stores) of `container`, `store` and `queue` nodes ranked by the request path; `person` and `external` nodes outside it; chips carry the technology, the subject service has style `primary`, and edges carry a label (no step numbers on a structure view).
+Model template: `assets/templates/C3.json` · Layout template: `statechart` · one `boundary` group for the system containing `frame` groups (front ends, services) of `container` nodes ranked by the request path, a separate group for the shop's `store` and `queue` nodes, and `person` and `external` nodes outside; chips carry the technology, the subject service has style `primary`, and edges carry no step numbers on a structure view.
 
 ## Sources {#sources}
 <!-- skill: omit -->
@@ -150,4 +150,4 @@ Model template: `assets/templates/C3.json` · Layout template: `statechart` · o
 ## Sample {#sample}
 <!-- skill: path only -->
 ![C3 sample: containers of an online shop](/samples/C3-container-diagram.svg)
-*Containers of the online shop. Inside the system boundary three zones group the front ends (web storefront, mobile app), the services (API gateway, order service, catalogue service, chatbot service) and the data stores (shop database, search index, order event queue). Chips give each container’s technology and the order service is the subject (the dark card). The customer, the payment provider and the language model service are outside.*
+*Containers of the online shop. Inside the system boundary, front ends (web storefront) and services (order service, catalogue service) are grouped in zones, and the shop’s data stores (shop database, search index, order event queue) sit in their own zone beside them. Chips give each container’s technology and the order service is the subject (the dark card). The customer and the payment provider are outside.*

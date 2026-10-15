@@ -9,7 +9,7 @@
   "Shipped": "已发货",
   "In transit": "运输中",
   "Delivered": "已送达",
-  "Return window open": "可退货期内",
+  "Closes after 30 days": "30 天后关闭",
   "Refunded": "已退款",
   "Money returned": "款项已退回",
   "Cancelled": "已取消",
@@ -18,10 +18,8 @@
   "pay [amount ok] / reserve stock": "支付 [金额正确] / 预留库存",
   "ship / notify customer": "发货 / 通知顾客",
   "deliver": "送达",
-  "close [window over]": "关闭 [退货期已过]",
   "return [within 30 days] / refund": "退货 [30 天内] / 退款",
   "close": "关闭",
   "cancel [before payment]": "取消 [支付前]",
-  "cancel [before shipping] / refund": "取消 [发货前] / 退款",
   "Transition: event [guard] / effect": "迁移：事件 [守卫] / 动作"
 }

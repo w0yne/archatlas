@@ -32,9 +32,12 @@
     "legend_mode": "replace"
   },
   "layout": {
-    "template": "layered",
+    "template": "statechart",
     "profile": "doc",
-    "columns": 3
+    "direction": "LR",
+    "spacing": {
+      "rank_gap": 56
+    }
   },
   "nodes": [
     {

@@ -115,7 +115,7 @@ It answers: *which applications do we have here, grouped how, and which depend o
 
 ## Template {#template}
 <!-- skill: keep (≤3 lines) -->
-Model template: `assets/templates/C1.json` · Layout template: `layered` · groups of kind `layer` become bands; `system` and `external` nodes are placed in their band; edges route between bands (variant c uses `tables[]` rendered with `grid_table`).
+Model template: `assets/templates/C1.json` · Layout template: `statechart` (left to right; the `layered` template stacks the same layers top to bottom) · groups of kind `layer` become zones ranked by the edges between them; `system` and `external` nodes are placed in their band; edges route between bands (variant c uses `tables[]` rendered with `grid_table`).
 
 ## Sources {#sources}
 <!-- skill: omit -->

@@ -205,6 +205,12 @@
           "maximum": 8,
           "description": "Maximum grid columns; wraps at the configured canvas width limit."
         },
+        "max_width": {
+          "type": "number",
+          "minimum": 320,
+          "maximum": 4000,
+          "description": "Width at which grid rows wrap and the wide-view warning starts (doc profile). Default: document_width times wide_view_ratio."
+        },
         "profile": {
           "enum": [
             "slide",

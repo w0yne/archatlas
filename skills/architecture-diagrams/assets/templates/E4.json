@@ -36,61 +36,40 @@
     {
       "id": "t2",
       "kind": "task",
-      "label": "Check order and reason",
+      "label": "Approve return",
       "parent": "l_s",
       "badge": 2
     },
     {
       "id": "t3",
       "kind": "task",
-      "label": "Approve return",
-      "parent": "l_s",
+      "label": "Send parcel",
+      "parent": "l_c",
       "badge": 3
     },
     {
       "id": "t4",
       "kind": "task",
-      "label": "Print label and send parcel",
-      "parent": "l_c",
+      "label": "Inspect item",
+      "parent": "l_w",
       "badge": 4
     },
     {
       "id": "t5",
-      "kind": "task",
-      "label": "Receive parcel",
-      "parent": "l_w",
-      "badge": 5
-    },
-    {
-      "id": "t6",
-      "kind": "task",
-      "label": "Inspect item",
-      "parent": "l_w",
-      "badge": 6
-    },
-    {
-      "id": "t7",
-      "kind": "task",
-      "label": "Restock item",
-      "parent": "l_w",
-      "badge": 7
-    },
-    {
-      "id": "t8",
       "kind": "task",
       "label": "Refund payment",
       "parent": "l_f",
       "chips": [
         "Within 5 days"
       ],
-      "badge": 8
+      "badge": 5
     },
     {
-      "id": "t9",
+      "id": "t6",
       "kind": "task",
       "label": "Receive refund notice",
       "parent": "l_c",
-      "badge": 9
+      "badge": 6
     }
   ],
   "edges": [
@@ -102,37 +81,22 @@
     {
       "from": "t2",
       "to": "t3",
-      "label": "Eligible order"
+      "label": "Return label"
     },
     {
       "from": "t3",
       "to": "t4",
-      "label": "Return label"
+      "label": "Parcel"
     },
     {
       "from": "t4",
       "to": "t5",
-      "label": "Parcel"
+      "label": "Result"
     },
     {
       "from": "t5",
       "to": "t6",
-      "label": "Received item"
-    },
-    {
-      "from": "t6",
-      "to": "t7",
-      "label": "Good condition"
-    },
-    {
-      "from": "t6",
-      "to": "t8",
-      "label": "Inspection result"
-    },
-    {
-      "from": "t8",
-      "to": "t9",
-      "label": "Refund notice"
+      "label": "Notice"
     }
   ],
   "groups": [
