@@ -19,7 +19,7 @@
   "layout": {
     "template": "statechart",
     "profile": "doc",
-    "direction": "TB",
+    "direction": "LR",
     "spacing": {
       "rank_gap": 36
     }
@@ -59,7 +59,7 @@
       "kind": "state",
       "label": "Delivered",
       "chips": [
-        "Return window open"
+        "Closes after 30 days"
       ]
     },
     {
@@ -109,12 +109,6 @@
     },
     {
       "from": "deliv",
-      "to": "f",
-      "label": "close [window over]",
-      "kind": "call"
-    },
-    {
-      "from": "deliv",
       "to": "refd",
       "label": "return [within 30 days] / refund",
       "kind": "call"
@@ -129,12 +123,6 @@
       "from": "new",
       "to": "cancelled",
       "label": "cancel [before payment]",
-      "kind": "call"
-    },
-    {
-      "from": "paid",
-      "to": "cancelled",
-      "label": "cancel [before shipping] / refund",
       "kind": "call"
     },
     {

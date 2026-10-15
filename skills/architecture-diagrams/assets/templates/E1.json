@@ -10,7 +10,10 @@
   },
   "layout": {
     "template": "sequence",
-    "profile": "doc"
+    "profile": "doc",
+    "spacing": {
+      "document_width": 1300
+    }
   },
   "nodes": [
     {

@@ -118,7 +118,7 @@ reviewed: false
 
 ## 模板 {#template}
 <!-- skill: keep (≤3 lines) -->
-模型模板：`assets/templates/C1.json` · 布局模板：`layered` · 类型为 `layer` 的分组渲染为横带；`system` 和 `external` 节点放在各自的横带中；边在横带之间布线（变体 c 使用以 `grid_table` 渲染的 `tables[]`）。
+模型模板：`assets/templates/C1.json` · 布局模板：`statechart`（从左到右；`layered` 模板则把同样的层自上而下堆叠）· 类型为 `layer` 的分组渲染为按分组间连线分层的分区；`system` 和 `external` 节点放在各自的横带中；边在横带之间布线（变体 c 使用以 `grid_table` 渲染的 `tables[]`）。
 
 ## 来源 {#sources}
 <!-- skill: omit -->

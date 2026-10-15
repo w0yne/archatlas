@@ -35,16 +35,22 @@
   "layout": {
     "template": "statechart",
     "profile": "doc",
-    "direction": "TB",
+    "direction": "LR",
+    "max_width": 1700,
     "spacing": {
-      "rank_gap": 48
+      "rank_gap": 28,
+      "group_padding": 12,
+      "node_gap": 16
     }
   },
   "nodes": [
     {
       "id": "cust",
       "kind": "person",
-      "label": "Customer"
+      "label": "Customer",
+      "size_hint": {
+        "width": 128
+      }
     },
     {
       "id": "web",
@@ -54,27 +60,10 @@
       "sub": "Catalogue and cart",
       "chips": [
         "Browser app"
-      ]
-    },
-    {
-      "id": "mob",
-      "kind": "container",
-      "label": "Mobile app",
-      "parent": "g_front",
-      "sub": "Same flows on a phone",
-      "chips": [
-        "Native"
-      ]
-    },
-    {
-      "id": "gw",
-      "kind": "container",
-      "label": "API gateway",
-      "parent": "g_svc",
-      "sub": "Routes and limits",
-      "chips": [
-        "HTTPS"
-      ]
+      ],
+      "size_hint": {
+        "width": 128
+      }
     },
     {
       "id": "api",
@@ -86,7 +75,10 @@
       "chips": [
         "REST",
         "Stateless"
-      ]
+      ],
+      "size_hint": {
+        "width": 128
+      }
     },
     {
       "id": "cat",
@@ -96,17 +88,10 @@
       "sub": "Products and prices",
       "chips": [
         "REST"
-      ]
-    },
-    {
-      "id": "bot",
-      "kind": "container",
-      "label": "Chatbot service",
-      "parent": "g_svc",
-      "sub": "Replies to questions",
-      "chips": [
-        "New"
-      ]
+      ],
+      "size_hint": {
+        "width": 128
+      }
     },
     {
       "id": "db",
@@ -116,17 +101,10 @@
       "sub": "Orders and products",
       "chips": [
         "Relational"
-      ]
-    },
-    {
-      "id": "idx",
-      "kind": "store",
-      "label": "Search index",
-      "parent": "g_data",
-      "sub": "Product search",
-      "chips": [
-        "Derived"
-      ]
+      ],
+      "size_hint": {
+        "width": 128
+      }
     },
     {
       "id": "q",
@@ -136,7 +114,23 @@
       "sub": "Paid and shipped",
       "chips": [
         "Queue"
-      ]
+      ],
+      "size_hint": {
+        "width": 128
+      }
+    },
+    {
+      "id": "idx",
+      "kind": "store",
+      "label": "Search index",
+      "parent": "g_data",
+      "sub": "Product search",
+      "chips": [
+        "Derived"
+      ],
+      "size_hint": {
+        "width": 128
+      }
     },
     {
       "id": "pay",
@@ -145,63 +139,36 @@
       "style": "external",
       "chips": [
         "HTTPS"
-      ]
-    },
-    {
-      "id": "llm",
-      "kind": "external",
-      "label": "Language model service",
-      "style": "external"
+      ],
+      "size_hint": {
+        "width": 128
+      }
     }
   ],
   "edges": [
     {
       "from": "cust",
       "to": "web",
-      "label": "Browses",
-      "kind": "call"
-    },
-    {
-      "from": "cust",
-      "to": "mob",
       "kind": "call"
     },
     {
       "from": "web",
-      "to": "gw",
-      "label": "Calls API",
-      "kind": "call"
-    },
-    {
-      "from": "mob",
-      "to": "gw",
-      "kind": "call"
-    },
-    {
-      "from": "gw",
       "to": "api",
       "kind": "call"
     },
     {
-      "from": "gw",
+      "from": "api",
       "to": "cat",
-      "kind": "call"
-    },
-    {
-      "from": "gw",
-      "to": "bot",
       "kind": "call"
     },
     {
       "from": "api",
       "to": "db",
-      "label": "Reads and writes",
       "kind": "data"
     },
     {
       "from": "api",
       "to": "q",
-      "label": "Publishes",
       "kind": "async"
     },
     {
@@ -212,12 +179,6 @@
     {
       "from": "api",
       "to": "pay",
-      "label": "Charges cards",
-      "kind": "call"
-    },
-    {
-      "from": "bot",
-      "to": "llm",
       "kind": "call"
     }
   ],
@@ -244,10 +205,10 @@
     },
     {
       "id": "g_data",
-      "title": "Data stores",
-      "kind": "frame",
-      "parent": "g_s",
-      "tint": "data"
+      "title": "Data stores of the shop",
+      "kind": "boundary",
+      "tint": "data",
+      "dashed": false
     }
   ]
 }

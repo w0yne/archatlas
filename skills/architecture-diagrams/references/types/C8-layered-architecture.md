@@ -84,7 +84,7 @@ Scope: One application, service or bounded context: its code layers (or rings) a
 5. Shall I also emit a conformance rule file (ArchUnit or import-linter) from the diagram? (Default: offer it as a next step.)
 
 ## Template
-Model template: `assets/templates/C8.json` · Layout template: `layered` · each `groups[]` entry of kind `layer` becomes a band with `component` nodes as module chips; `edges` of kind `dependency` show allowed (solid) or runtime (`dashed`) dependencies; `meta.description` holds the variant and the rule sentence.
+Model template: `assets/templates/C8.json` · Layout template: `statechart` (left to right; `layered` stacks the layers top to bottom) · each `groups[]` entry of kind `layer` becomes a zone with `component` nodes as module chips; `edges` of kind `dependency` show allowed (solid) or runtime (`dashed`) dependencies; `meta.description` holds the variant and the rule sentence.
 
 ## Sample
 Figure: `samples/C8-layered-architecture.svg` (published with the site)
