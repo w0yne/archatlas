@@ -110,7 +110,8 @@ Use `init` for a complete starting model. The following is a summary, not a
 replacement for schema validation.
 
 - **layout:** template, direction (`LR|TB`), columns (maximum 1–8), profile,
-  spacing overrides. `slide`/`slide-16x9` keeps 1440×810; overflow is reported.
+  max_width (the width at which grid rows wrap and the wide-view warning starts; default
+  1.5 × 1120 = 1680 for `doc`), spacing overrides. `slide`/`slide-16x9` keeps 1440×810; overflow is reported.
   `doc`/`doc-1120xN` prefers 1120px width and grows as needed; the default wide-view
   warning limit is 1.5 times the preferred width. It does not paginate or shrink text.
 - **nodes:** id, kind, label; optional sub (keep brief), parent group, tags (small
