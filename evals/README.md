@@ -17,6 +17,8 @@ installed and once without it (DESIGN §8).
 | `run_eval.py` | Runner: sandbox, fixtures, turns, metrics, `results.json` and `report.md` |
 | `adapters/{claude,codex,pi}.py` | One adapter per host: config, command line, event parsing |
 | `grade.py`, `grader/prompt.md` | Model grader: scores each finished run against `rubric.md`, writes `grade.json` |
+| `gallery.py` | One self-contained HTML page of the runs' SVGs (inlined, sanitised) with scores and verdicts |
+| `grader/visual-note.md` | Optional grader addendum (`grade.py --addendum`) for a visual-quality note against `docs/STYLE.md` |
 | `report.py` | Aggregates runs and grades into `reports/<name>.md` and `.json` |
 | `reports/` | Committed reports; raw results stay outside the repository |
 | `hosts.example.yaml` | Template for your local hosts file |
