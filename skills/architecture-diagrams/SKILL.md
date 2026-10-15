@@ -110,7 +110,7 @@ at the result as `references/review.md` describes. Do not claim a visual review 
 
 ## Step 6 — Deliver
 
-Deliver the SVG, the model JSON (the editable source), a preview image if one could be made,
+Deliver one SVG and one model JSON per view, each under one stable name (no second copy of a figure under another name), a preview image if one could be made,
 and a reply of at most about eight lines plus the wireframe block: type and audience, assumptions,
 what is verified versus inferred or proposed, checks run (measured or estimate mode),
 visual review status, companion views delivered or offered, open questions.
@@ -158,7 +158,7 @@ is delivered in Step 6. Never modify the repository you analyse unless asked.
 6. Every element sits inside exactly one visible boundary or is explicitly external.
 7. An arrow ends exactly on what it connects; a group-level link ends on the group border. Keep flows short; no long lines that fold back; avoid crossings.
 8. Short names and small tags. No bullet lists or sentences in boxes, no working notes, status words, assumptions or internal references on the figure.
-   Rich structure replaces words: zones for boundaries, one emphasis colour, chips, numbered steps, one legend (see "Visual hierarchy" in `references/principles.md`).
+   Rich structure replaces words: zones for boundaries, exactly one `primary` focus element (the subject; none if the view has no single subject), chips, one legend. Number only sequence and process steps; never number structure views. Sequence: subject lifeline `primary`, few narrow fragments. See "Visual hierarchy" in `references/principles.md`.
 9. Focus on the main scenario but keep the retries, refusals and abuse paths the question needs; move only unrelated branches to another figure. Follow the chosen notation strictly.
 10. Render, check, look, and say truthfully whether the visual review happened. Never delete or translate
     labels the user wrote.

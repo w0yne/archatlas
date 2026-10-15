@@ -9,18 +9,9 @@
     "subtitle": "Region A, two availability zones",
     "legend": [
       {
-        "label": "Proposed, not yet built",
-        "style": "highlight",
-        "symbol": "box"
-      },
-      {
         "label": "Request path",
         "kind": "call",
         "dir": "->"
-      },
-      {
-        "label": "Numbers 1–2: write path",
-        "symbol": "box"
       }
     ],
     "legend_mode": "replace"
@@ -60,11 +51,9 @@
       "kind": "component",
       "label": "App service",
       "parent": "z1",
-      "style": "highlight",
       "chips": [
         "3 instances"
-      ],
-      "badge": 1
+      ]
     },
     {
       "id": "db",
@@ -73,15 +62,13 @@
       "parent": "z1",
       "chips": [
         "Writes"
-      ],
-      "badge": 2
+      ]
     },
     {
       "id": "a2",
       "kind": "component",
       "label": "App service",
       "parent": "z2",
-      "style": "highlight",
       "chips": [
         "3 instances"
       ]

@@ -119,7 +119,7 @@ reviewed: false
 
 ## 模板 {#template}
 <!-- skill: keep (≤3 lines) -->
-模型模板：`assets/templates/C3.json` · 布局模板：`statechart` · 系统用一个 `boundary` 分组，内含若干 `frame` 分组（前端、服务、数据存储），其中的 `container`、`store` 和 `queue` 节点按请求路径分层；`person` 和 `external` 节点在其外部；标签（chips）标注技术，`badge` 给关键路径编号，连线带标签。
+模型模板：`assets/templates/C3.json` · 布局模板：`statechart` · 系统用一个 `boundary` 分组，内含若干 `frame` 分组（前端、服务、数据存储），其中的 `container`、`store` 和 `queue` 节点按请求路径分层；`person` 和 `external` 节点在其外部；标签（chips）标注技术，主体服务使用 `primary` 样式，连线带标签（结构图不加步骤编号）。
 
 ## 来源 {#sources}
 <!-- skill: omit -->
@@ -153,4 +153,4 @@ reviewed: false
 ## 示例图 {#sample}
 <!-- skill: path only -->
 ![C3 示例：网店的容器图](/samples/C3-container-diagram.zh.svg)
-*网店的容器图。系统边界内三个分区分别容纳前端（网页商城、移动应用）、服务（API 网关、订单服务、商品目录服务、机器人服务）和数据存储（商城数据库、搜索索引、订单事件队列）。标签给出各容器的技术类型，编号 1–4 依次标出订单路径：网页商城、网关、订单服务、数据库。顾客、支付服务商和语言模型服务在边界之外。*
+*网店的容器图。系统边界内三个分区分别容纳前端（网页商城、移动应用）、服务（API 网关、订单服务、商品目录服务、机器人服务）和数据存储（商城数据库、搜索索引、订单事件队列）。标签给出各容器的技术类型，订单服务是本图主体（深色卡片）。顾客、支付服务商和语言模型服务在边界之外。*

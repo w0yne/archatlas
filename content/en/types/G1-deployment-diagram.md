@@ -139,7 +139,7 @@ status: draft
 
 ## Template {#template}
 <!-- skill: keep (≤3 lines) -->
-Model template: `assets/templates/G1.json` · Layout template: `statechart` · hosting segments become `boundary` groups (cluster, public and application subnets, managed data services), software instances become `component` nodes (the focus one with style `highlight`) and data services `store` nodes inside them, external nodes use the `external` style, chips carry the protocol or replica count, and communication becomes `call` or `data` edges; `evidence.status` records declared (`doc-only`) versus observed (`verified`).
+Model template: `assets/templates/G1.json` · Layout template: `statechart` · hosting segments become `boundary` groups (cluster, public and application subnets, managed data services), software instances become `component` nodes (the subject one with style `primary`) and data services `store` nodes inside them, external nodes use the `external` style, chips carry the protocol or replica count, and communication becomes `call` or `data` edges; `evidence.status` records declared (`doc-only`) versus observed (`verified`).
 
 ## Sources {#sources}
 <!-- skill: omit -->
@@ -153,4 +153,4 @@ Model template: `assets/templates/G1.json` · Layout template: `statechart` · h
 ## Sample {#sample}
 <!-- skill: path only -->
 ![G1 sample: production deployment of an online shop](/samples/G1-deployment-diagram.svg)
-*Production deployment (current) of the online shop: a content delivery network in front of a production cluster whose public subnet holds the load balancer and storefront and whose application subnet holds the order API and the chatbot service (replica counts are illustrative). The order API writes to a primary database and reads from a replica in the managed data services, and calls an external payment provider; the chatbot calls a language model service. Chips carry the protocol or role, and badges 1–2 mark the order write path.*
+*Production deployment (current) of the online shop: a content delivery network in front of a production cluster whose public subnet holds the load balancer and storefront and whose application subnet holds the order API and the chatbot service (replica counts are illustrative). The order API writes to a primary database and reads from a replica in the managed data services, and calls an external payment provider; the chatbot calls a language model service. Chips carry the protocol or role, and the order API is the subject (the dark card).*

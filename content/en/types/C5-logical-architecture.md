@@ -145,7 +145,7 @@ A logical architecture diagram answers: *which blocks must exist, what does each
 ## Template {#template}
 <!-- skill: keep (≤3 lines) -->
 
-Model template: `assets/templates/C5.json` · Layout template: `statechart` · groups of kind `frame` hold the responsibility blocks inside one `boundary` and are ranked by dependency; externals sit outside it, a `highlight` style marks the blocks that carry the main flow, and `edges` of kind `call` carry operation labels.
+Model template: `assets/templates/C5.json` · Layout template: `statechart` · groups of kind `frame` hold the responsibility blocks inside one `boundary` and are ranked by dependency; externals sit outside it, the subject block has style `primary`, and `edges` of kind `call` carry operation labels.
 
 ## Sources {#sources}
 <!-- skill: omit -->
@@ -170,4 +170,4 @@ Model template: `assets/templates/C5.json` · Layout template: `statechart` · g
 ## Sample {#sample}
 <!-- skill: path only -->
 ![C5 sample: logical view of an online shop with responsibility blocks](/samples/C5-logical-architecture.svg)
-*Logical view of the online shop: building blocks grouped by responsibility in tinted zones (Selling: catalogue, cart, checkout; Fulfilment: order management, stock, shipping; Payments: payment handling, invoicing; Customer support: chat assistant). The amber blocks carry the main flow from checkout to order management and payment handling; each dependency is labelled with what is exchanged, and the payment provider and carrier sit outside the boundary.*
+*Logical view of the online shop: building blocks grouped by responsibility in tinted zones (Selling: catalogue, cart, checkout; Fulfilment: order management, stock, shipping; Payments: payment handling, invoicing; Customer support: chat assistant). Order management is the subject (the dark block); each dependency is labelled with what is exchanged, and the payment provider and carrier sit outside the boundary.*

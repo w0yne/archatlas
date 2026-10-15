@@ -108,11 +108,12 @@ replacement for schema validation.
   `doc`/`doc-1120xN` prefers 1120px width and grows as needed; the default wide-view
   warning limit is 1.5 times the preferred width. It does not paginate or shrink text.
 - **nodes:** id, kind, label; optional sub (keep brief), parent group, tags (small
-  text labels), chips (short labels, each a string or `{label, style}`), badge (step or
-  reference number 1–999, or 1–4 characters), shape (`card|database|document|queue|callout`),
+  text labels), chips (short labels, each a string or `{label, style}`), badge (an integer 1–999 or 1–4 characters; use it for step numbers
+  on sequence and process steps only), shape (`card|database|document|queue|callout`),
   style, size_hint, evidence, attributes (ER field strings), rank (minimum flow rank,
-  integer 0–100). Styles: primary/peer/external/shared/planned/highlight (`highlight` is the
-  one warm emphasis colour for the subject of the figure).
+  integer 0–100). Styles: primary/peer/external/shared/planned/highlight. `primary` (solid blue)
+  is the single focus element of a view, the subject; ordinary elements use `peer`.
+  `highlight` (warm) is a status marker or callout explained in the legend, not a second focus.
   Kinds: person, system, container, component, store, queue, external, actor,
   lifeline, state, entity, task, event, gateway, band, initial, final, note,
   process, dataset, job, pipeline, use_case, document, callout. `store` draws a cylinder,
@@ -150,9 +151,11 @@ frames and explicit/generated edge IDs. An omitted edge id becomes `edge-1`, etc
 
 ### Visual components
 
-The default style is one family: tinted zones with header bands for boundaries and layers, solid
-blue for the subject's peers, one warm highlight for the subject, green for shared, gray for
-external, purple for planned. Components are visual, not facts: explain every colour, chip colour
+The default style is one family: tinted zones with header bands for boundaries and layers, light
+blue for ordinary elements, one solid-blue `primary` focus element for the subject, a warm highlight
+only as a legend-explained marker or callout, green for shared, gray for external, purple for planned.
+Badges and step numbers are for sequence and process steps only; a sequence's subject lifeline is
+the one `primary` lifeline. Components are visual, not facts: explain every colour, chip colour
 and badge in the legend (`meta.legend`), and see "Visual hierarchy" in `principles.md`.
 
 Layout hints that follow from the engine: `nested` and `layered` place children in declaration
@@ -160,7 +163,7 @@ order on a grid (`layout.columns`), so order siblings by flow; `statechart` rank
 edges inside each group, which suits flow diagrams with zones (use `direction` `LR` or `TB`);
 `lanes` with `direction: TB` draws vertical swimlanes. Edge labels widen the gaps between ranks:
 put a protocol or role in a chip and keep labels for the exchange itself. The checker warns above
-12 nodes in one view; richness comes from zones, chips and badges rather than more boxes.
+12 nodes in one view; richness comes from zones and chips rather than more boxes.
 
 ### Meaningful legends and languages
 

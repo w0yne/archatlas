@@ -12,11 +12,6 @@
         "label": "Allowed: upper layer uses the one below",
         "kind": "call",
         "dir": "->"
-      },
-      {
-        "label": "Main path of placing an order",
-        "style": "highlight",
-        "symbol": "box"
       }
     ],
     "legend_mode": "replace"
@@ -58,8 +53,7 @@
       "id": "po",
       "kind": "component",
       "label": "Place-order use case",
-      "parent": "l2",
-      "style": "highlight"
+      "parent": "l2"
     },
     {
       "id": "rf",
@@ -78,7 +72,6 @@
       "kind": "component",
       "label": "Order",
       "parent": "l3",
-      "style": "highlight",
       "chips": [
         "Aggregate"
       ]

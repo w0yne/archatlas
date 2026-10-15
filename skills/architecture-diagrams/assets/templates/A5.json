@@ -6,14 +6,7 @@
     "lang": "en",
     "audience": "business and operations",
     "state": "as-is",
-    "subtitle": "BPMN collaboration: the shop pool and the customer as a black box",
-    "legend": [
-      {
-        "label": "Task on the refund path",
-        "style": "highlight",
-        "symbol": "box"
-      }
-    ]
+    "subtitle": "BPMN collaboration: the shop pool and the customer as a black box"
   },
   "layout": {
     "template": "lanes",
@@ -47,8 +40,7 @@
       "id": "lab",
       "kind": "task",
       "label": "Send return label",
-      "parent": "l_s",
-      "style": "highlight"
+      "parent": "l_s"
     },
     {
       "id": "rcv",
@@ -60,15 +52,13 @@
       "id": "ins",
       "kind": "task",
       "label": "Inspect item",
-      "parent": "l_w",
-      "style": "highlight"
+      "parent": "l_w"
     },
     {
       "id": "ref",
       "kind": "task",
       "label": "Refund payment",
-      "parent": "l_f",
-      "style": "highlight"
+      "parent": "l_f"
     },
     {
       "id": "ok",

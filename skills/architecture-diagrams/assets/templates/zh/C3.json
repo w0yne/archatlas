@@ -40,9 +40,8 @@
   "Reads and writes": "读写",
   "Publishes": "发布",
   "Charges cards": "扣款",
-  "Focus service": "重点服务",
+  "Subject of this view": "本图主体",
   "Outside our control": "不受我方控制",
   "Synchronous call": "同步调用",
-  "Asynchronous message": "异步消息",
-  "Numbers 1–4: path of an order": "编号 1–4：订单路径"
+  "Asynchronous message": "异步消息"
 }

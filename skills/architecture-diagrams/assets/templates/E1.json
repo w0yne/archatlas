@@ -33,6 +33,7 @@
       "id": "api",
       "kind": "lifeline",
       "label": "Order API",
+      "style": "primary",
       "size_hint": {
         "width": 130
       }
@@ -117,16 +118,9 @@
     },
     {
       "from": "api",
-      "to": "inv",
-      "label": "Release items",
-      "step": 9,
-      "kind": "call"
-    },
-    {
-      "from": "api",
       "to": "web",
       "label": "Order rejected",
-      "step": 10,
+      "step": 9,
       "kind": "call",
       "dashed": true
     }
@@ -145,7 +139,7 @@
       "operator": "alt",
       "label": "Payment outcome",
       "from_step": 6,
-      "to_step": 10,
+      "to_step": 9,
       "operands": [
         {
           "guard": "card accepted",
@@ -155,7 +149,7 @@
         {
           "guard": "else: card declined",
           "from_step": 8,
-          "to_step": 10
+          "to_step": 9
         }
       ]
     }
@@ -169,7 +163,7 @@
     {
       "node": "api",
       "from_step": 2,
-      "to_step": 10
+      "to_step": 9
     },
     {
       "node": "inv",

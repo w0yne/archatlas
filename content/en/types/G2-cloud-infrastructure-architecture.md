@@ -146,4 +146,4 @@ Model template: `assets/templates/G2.json` · Layout template: `statechart` · p
 ## Sample {#sample}
 <!-- skill: path only -->
 ![G2 sample: proposed cloud infrastructure of an online shop on a generic provider](/samples/G2-cloud-infrastructure-architecture.svg)
-*Proposed cloud infrastructure on a generic provider: a CDN at the edge, a load balancer in the network and security zone, an app service and a database in each of two availability zones (primary database in zone 1, replica in zone 2) and managed object storage, a message queue and monitoring. Amber marks the proposed compute tier and badges 1–2 the write path; nothing here is built yet.*
+*Proposed cloud infrastructure on a generic provider: a CDN at the edge, a load balancer in the network and security zone, an app service and a database in each of two availability zones (primary database in zone 1, replica in zone 2) and managed object storage, a message queue and monitoring. The figure has no single subject, so nothing is emphasised; nothing here is built yet.*

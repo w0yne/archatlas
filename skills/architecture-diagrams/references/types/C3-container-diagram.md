@@ -81,7 +81,7 @@ It answers: *which separately running applications and data stores make up this 
 5. May I read the repository and deployment files, and do you want an editable source? (yes; diagrams-as-code source plus SVG)
 
 ## Template
-Model template: `assets/templates/C3.json` · Layout template: `statechart` · one `boundary` group for the system containing `frame` groups (front ends, services, data stores) of `container`, `store` and `queue` nodes ranked by the request path; `person` and `external` nodes outside it; chips carry the technology, `badge` numbers the key path, and edges carry a label.
+Model template: `assets/templates/C3.json` · Layout template: `statechart` · one `boundary` group for the system containing `frame` groups (front ends, services, data stores) of `container`, `store` and `queue` nodes ranked by the request path; `person` and `external` nodes outside it; chips carry the technology, the subject service has style `primary`, and edges carry a label (no step numbers on a structure view).
 
 ## Sample
 Figure: `samples/C3-container-diagram.svg` (published with the site)
