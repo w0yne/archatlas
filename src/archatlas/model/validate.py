@@ -49,6 +49,9 @@ def validate(model):
         if not table["columns"] or any(len(row) != len(table["columns"]) for row in table["rows"]):
             raise ModelError(f"{table['id']}: table rows must match non-empty columns")
     template = model["layout"]["template"]
+    focus = model["layout"].get("focus")
+    if focus and focus not in {n["id"] for n in model.get("nodes", [])}:
+        raise ModelError("layout.focus must name a node in this view")
     if template == "sequence":
         if groups or model.get("tables"):
             raise ModelError("Sequence uses frames, not containment groups or tables")

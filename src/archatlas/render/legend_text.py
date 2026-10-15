@@ -78,6 +78,8 @@ def style_label(style, model):
 
 def group_label(kind, model):
     default = GROUPS[kind]
+    if kind == "frame" and model["layout"]["template"] == "sequence":
+        default = ("Interaction fragment", "交互片段")
     if kind in ("boundary", "frame"):
         default = {"F2": ("Trust boundary", "信任边界"),
                    "G1": ("Deployment boundary", "部署边界"),

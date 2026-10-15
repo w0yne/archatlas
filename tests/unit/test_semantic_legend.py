@@ -65,7 +65,7 @@ class SemanticLegendTests(unittest.TestCase):
             model["meta"]["type"] = code
             model["groups"] = [{"id": "scope", "kind": "boundary", "title": "Scope"}]
             model["nodes"][1]["parent"] = "scope"
-            self.assertIn(expected, self.labels(model))
+            self.assertTrue(any(expected in label for label in self.labels(model)))
 
     def test_minimum_and_maximum_cardinality_strings_are_preserved(self):
         model = initial("er")

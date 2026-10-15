@@ -85,7 +85,46 @@
               "symbol": {
                 "enum": [
                   "line",
-                  "box"
+                  "box",
+                  "zone",
+                  "badge",
+                  "text"
+                ]
+              },
+              "tint": {
+                "enum": [
+                  "app",
+                  "tech",
+                  "data",
+                  "biz",
+                  "security",
+                  "neutral"
+                ]
+              },
+              "band": {
+                "type": "boolean"
+              },
+              "shape": {
+                "enum": [
+                  "card",
+                  "database",
+                  "document",
+                  "queue",
+                  "callout"
+                ]
+              },
+              "badge": {
+                "oneOf": [
+                  {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 999
+                  },
+                  {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 4
+                  }
                 ]
               }
             },
@@ -229,6 +268,13 @@
               "maximum": 80
             }
           }
+        },
+        "focus": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+        },
+        "ordered": {
+          "type": "boolean"
         }
       },
       "required": [
@@ -678,6 +724,20 @@
           },
           "required": [],
           "additionalProperties": false
+        },
+        "badge": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 999
+            },
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4
+            }
+          ]
         }
       },
       "required": [

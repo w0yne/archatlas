@@ -36,6 +36,8 @@ def resolve(model, labels):
                 item["badge"] = text(item["badge"])
     for entry in model["meta"].get("legend", []):
         entry["label"] = text(entry["label"])
+        if isinstance(entry.get("badge"), str):
+            entry["badge"] = text(entry["badge"])
     for mapping in model["meta"].get("legend_labels", {}).values():
         for key, value in mapping.items():
             mapping[key] = text(value)

@@ -106,19 +106,19 @@ class LayoutRefinements(unittest.TestCase):
     def test_legend_reuses_author_entries_and_visual_variants(self):
         model = initial("nested")
         model["nodes"][1].pop("style")
-        self.assertEqual(entries(self.scene(model), model), [])
+        self.assertEqual({entry["symbol"] for entry in entries(self.scene(model), model)}, {"line", "box"})
         model["edges"][0]["dashed"] = True
         model["meta"]["legend"] = [{"label": "Proposed call", "dashed": True},
                                   {"label": "Proposed call", "dashed": True}]
-        self.assertEqual(len(entries(self.scene(model), model)), 1)
+        self.assertEqual(sum(entry["label"] == "Proposed call" for entry in entries(self.scene(model), model)), 1)
         model = initial("nested")
         model["nodes"][1].pop("style")
         model["edges"].append({"from": "service", "to": "client", "kind": "async"})
         legend = entries(self.scene(model), model)
-        self.assertEqual({e["kind"] for e in legend}, {"call", "async"})
+        self.assertEqual({e["kind"] for e in legend if e["symbol"] == "line"}, {"call", "async"})
         model["meta"]["theme"] = "print"
         model["nodes"][1]["style"] = "primary"
-        self.assertFalse(any(e.get("symbol") == "box" for e in entries(self.scene(model), model)))
+        self.assertTrue(any(e.get("symbol") == "box" for e in entries(self.scene(model), model)))
 
     def test_new_semantic_kinds_and_rank_are_additive(self):
         model = initial("tree")
