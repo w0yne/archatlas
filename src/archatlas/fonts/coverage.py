@@ -27,6 +27,17 @@ def font_info(path: str, index: int = 0) -> tuple[str, str, frozenset[int]]:
     return family, style, coverage
 
 
+@lru_cache(maxsize=256)
+def font_weight(path: str, index: int = 0) -> int:
+    """Return the face's actual default weight, not a synthetic bold estimate."""
+    from fontTools.ttLib import TTFont
+
+    with open(path, "rb") as source, TTFont(source, fontNumber=index, lazy=True) as font:
+        if "OS/2" in font:
+            return int(font["OS/2"].usWeightClass)
+        return 700 if font["head"].macStyle & 1 else 400
+
+
 def collection_faces(path: str) -> list[tuple[int, str, str]]:
     """Inspect TTC/OTC face names, including regional CJK faces."""
     from fontTools.ttLib import TTCollection

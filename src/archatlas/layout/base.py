@@ -15,6 +15,10 @@ class Box:
     parent: str = ""
     dashed: bool = False
     event_type: str = ""
+    shape: str = "card"
+    tint: str = "app"
+    band: bool = True
+    header_height: float = 0
 
     @property
     def rect(self):
@@ -53,6 +57,7 @@ class Text:
     runs: list = field(default_factory=list)
     source: str = ""
     line_widths: list = field(default_factory=list)
+    weight: int = 400
 
     @property
     def left(self):

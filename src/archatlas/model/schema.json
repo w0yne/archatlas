@@ -57,7 +57,8 @@
                   "peer",
                   "external",
                   "shared",
-                  "planned"
+                  "planned",
+                  "highlight"
                 ]
               },
               "dashed": {
@@ -126,6 +127,10 @@
               }
             }
           }
+        },
+        "subtitle": {
+          "type": "string",
+          "minLength": 1
         }
       },
       "required": [
@@ -437,7 +442,9 @@
             "dataset",
             "job",
             "pipeline",
-            "use_case"
+            "use_case",
+            "document",
+            "callout"
           ]
         },
         "label": {
@@ -464,7 +471,8 @@
             "peer",
             "external",
             "shared",
-            "planned"
+            "planned",
+            "highlight"
           ]
         },
         "size_hint": {
@@ -505,6 +513,63 @@
             "start",
             "end"
           ]
+        },
+        "shape": {
+          "enum": [
+            "card",
+            "database",
+            "document",
+            "queue",
+            "callout"
+          ]
+        },
+        "badge": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 999
+            },
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4
+            }
+          ]
+        },
+        "chips": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "label": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "style": {
+                    "enum": [
+                      "primary",
+                      "peer",
+                      "external",
+                      "shared",
+                      "planned",
+                      "highlight"
+                    ]
+                  }
+                },
+                "required": [
+                  "label"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          }
         }
       },
       "required": [
@@ -581,7 +646,8 @@
             "peer",
             "external",
             "shared",
-            "planned"
+            "planned",
+            "highlight"
           ]
         },
         "evidence": {
@@ -650,10 +716,24 @@
             "peer",
             "external",
             "shared",
-            "planned"
+            "planned",
+            "highlight"
           ]
         },
         "dashed": {
+          "type": "boolean"
+        },
+        "tint": {
+          "enum": [
+            "app",
+            "tech",
+            "data",
+            "biz",
+            "security",
+            "neutral"
+          ]
+        },
+        "band": {
           "type": "boolean"
         }
       },

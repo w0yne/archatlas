@@ -10,7 +10,7 @@ import unittest
 from unittest.mock import patch
 
 from archatlas.fonts import FontMetrics
-from archatlas.fonts.coverage import CJK_SAMPLE, font_info
+from archatlas.fonts.coverage import CJK_SAMPLE, font_info, font_weight
 from archatlas.fonts.discover import discover
 
 
@@ -142,6 +142,21 @@ class EstimateTests(unittest.TestCase):
                 patch("archatlas.fonts.discover._os_font_roots", return_value=[]):
             self.assertEqual(discover(), [])
 
+    def test_weight_estimates_and_validation(self):
+        metrics = FontMetrics(paths=[], lang="zh")
+        self.assertEqual(metrics.width("API中文", weight=700), metrics.width("API中文"))
+        self.assertEqual(metrics.wrap("Check\u00adout", 96, weight=700), ["Check-", "out"])
+        self.assertEqual(metrics.required_width("Check\u00adout", weight=700), 96)
+        self.assertTrue(metrics.runs("中", weight=700)[0]["family"].startswith('"Noto Sans CJK SC",'))
+        self.assertEqual(metrics.measured_with, "estimate")
+        self.assertIn("cjk-glyph-coverage", [w["rule"] for w in metrics.warnings])
+        for invalid in (0, 500, "bold", None):
+            with self.subTest(weight=invalid):
+                for name, args in (("width", ("",)), ("wrap", ("", 100)),
+                                   ("required_width", ("",)), ("runs", ("",))):
+                    with self.assertRaises(ValueError):
+                        getattr(metrics, name)(*args, weight=invalid)
+
 
 @unittest.skipUnless(HAS_FONT_LIBRARIES, "Pillow and fontTools are optional")
 class MeasuredTests(unittest.TestCase):
@@ -156,10 +171,11 @@ class MeasuredTests(unittest.TestCase):
     @classmethod
     def tearDownClass(cls):
         font_info.cache_clear()
+        font_weight.cache_clear()
         cls.temporary.cleanup()
 
     @classmethod
-    def make_font(cls, filename, family, codepoints, advance):
+    def make_font(cls, filename, family, codepoints, advance, weight=400):
         from fontTools.fontBuilder import FontBuilder
         from fontTools.pens.ttGlyphPen import TTGlyphPen
 
@@ -181,11 +197,15 @@ class MeasuredTests(unittest.TestCase):
         builder.setupGlyf(glyphs)
         builder.setupHorizontalMetrics({name: (advance, 0) for name in order})
         builder.setupHorizontalHeader(ascent=800, descent=-200)
-        builder.setupNameTable({"familyName": family, "styleName": "Regular",
-                                "uniqueFontIdentifier": family,
-                                "fullName": family, "psName": family.replace(" ", "")})
+        style = "Bold" if weight == 700 else "Regular"
+        name = f"{family} {style}"
+        builder.setupNameTable({"familyName": family, "styleName": style,
+                                "uniqueFontIdentifier": name,
+                                "fullName": name, "psName": name.replace(" ", "")})
         builder.setupOS2(sTypoAscender=800, sTypoDescender=-200,
-                         usWinAscent=800, usWinDescent=200)
+                         usWinAscent=800, usWinDescent=200, usWeightClass=weight,
+                         fsSelection=0x20 if weight == 700 else 0x40)
+        builder.font["head"].macStyle = 1 if weight == 700 else 0
         builder.setupPost()
         builder.setupMaxp()
         path = cls.root / filename
@@ -210,6 +230,52 @@ class MeasuredTests(unittest.TestCase):
         json.dumps(report)
         self.assertNotIn(ord("中"), font_info(str(self.latin))[2])
         self.assertIn(ord("中"), font_info(str(self.cjk))[2])
+
+    def test_bold_face_advances_drive_all_text_apis(self):
+        bold = self.make_font("latin-bold.ttf", "Noto Sans", range(32, 127), 750, 700)
+        cjk_bold = self.make_font("cjk-bold.ttf", "Noto Sans CJK SC",
+                                  {ord(c) for c in CJK_SAMPLE}, 1200, 700)
+        metrics = FontMetrics(paths=[bold, cjk_bold, self.latin, self.cjk])
+        for weight, advance in ((700, 69), (400, 50), (700, 69)):
+            with self.subTest(weight=weight):
+                self.assertEqual(metrics.runs("API中", weight),
+                                 [{"text": "API", "family": "Noto Sans"},
+                                  {"text": "中", "family": "Noto Sans CJK SC"}])
+                self.assertAlmostEqual(metrics.width("API中", 20, weight), advance)
+                self.assertAlmostEqual(metrics.width("API中", 12.5, weight),
+                                       advance * 12.5 / 20, delta=1 / 64)
+        self.assertEqual(metrics.wrap("Checkout Shipped", 128), ["Checkout Shipped"])
+        self.assertEqual(metrics.wrap("Checkout Shipped", 128, weight=700), ["Checkout", "Shipped"])
+        self.assertEqual(metrics.wrap("Check\u00adout", 72, weight=700), ["Check-", "out"])
+        self.assertEqual(metrics.required_width("Check\u00adout", weight=700), 72)
+        self.assertEqual(metrics.required_width("Checkout Shipped", weight=700), 96)
+        self.assertEqual(metrics.measured_with, "pillow")
+        self.assertEqual(metrics.warnings, [])
+
+    def test_bold_fallback_family_matches_measured_face(self):
+        bold = self.make_font("fallback-bold.ttf", "Fallback Sans", range(32, 127), 750, 700)
+        metrics = FontMetrics(paths=[self.latin, bold, self.cjk])
+        self.assertEqual(metrics.width("API", weight=700), 36)
+        self.assertEqual(metrics.runs("API", weight=700),
+                         [{"text": "API", "family": "Fallback Sans"}])
+        self.assertEqual(metrics.width("API"), 24)
+        self.assertEqual(metrics.runs("API"), [{"text": "API", "family": "Noto Sans"}])
+        self.assertEqual(metrics.measured_with, "pillow")
+        # Regular CJK coverage cannot stand in for a measured bold CJK face.
+        self.assertEqual(metrics.width("中文", weight=700), 32)
+        self.assertTrue(metrics.runs("中文", weight=700)[0]["family"].startswith('"Noto Sans CJK SC",'))
+        self.assertEqual(metrics.measured_with, "estimate")
+        self.assertIn("font-weight-unavailable", [w["rule"] for w in metrics.warnings])
+        self.assertIn("cjk-glyph-coverage", [w["rule"] for w in metrics.warnings])
+
+    def test_unavailable_bold_is_estimated_not_reported_as_regular_measurement(self):
+        metrics = FontMetrics(paths=[self.latin])
+        self.assertEqual(metrics.width("API"), 24)
+        self.assertEqual(metrics.width("API", weight=700), 48)
+        self.assertEqual(metrics.runs("API", weight=700),
+                         [{"text": "API", "family": "sans-serif"}])
+        self.assertEqual(metrics.measured_with, "estimate")
+        self.assertIn("font-weight-unavailable", [w["rule"] for w in metrics.warnings])
 
     def test_missing_glyph_uses_estimate_instead_of_notdef(self):
         metrics = FontMetrics(paths=[self.latin])

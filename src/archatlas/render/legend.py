@@ -20,7 +20,8 @@ def entries(scene, model):
                                       entry.get("symbol", "line")))
 
     for entry in model["meta"].get("legend", []):
-        append(dict(entry), any(k in entry for k in ("style", "dashed", "symbol", "kind", "dir")))
+        encoded = any(k in entry for k in ("style", "dashed", "symbol", "kind", "dir"))
+        append(dict(entry) if encoded else {**entry, "symbol": "text"}, encoded)
     if model["meta"].get("legend_mode", "auto") == "replace":
         return result
     variants = {}
@@ -82,4 +83,13 @@ def entries(scene, model):
                     local(model, (" — elements" if symbol == "box" else " — relationships",
                                   "（元素）" if symbol == "box" else "（关系）")),
                     "style": style, "dashed": item.get("dashed", True), "symbol": symbol}, cover=False)
+    asset_labels = {
+        "database": ("Data store (cylinder)", "数据存储（圆柱）"),
+        "document": ("Document", "文档"), "queue": ("Queue", "队列"),
+        "callout": ("Note or example", "说明或示例"),
+    }
+    for box in scene.boxes:
+        if box.role == "node" and box.shape in asset_labels:
+            append({"label": local(model, asset_labels[box.shape]), "symbol": "box",
+                    "style": box.style, "shape": box.shape}, cover=False)
     return result

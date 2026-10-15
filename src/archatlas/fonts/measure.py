@@ -3,7 +3,7 @@
 import math
 import unicodedata
 
-from .coverage import CJK_SAMPLE, font_info
+from .coverage import CJK_SAMPLE, font_info, font_weight
 from .discover import discover
 
 _NO_START = frozenset("，。、）；：！？】》〉」』〕］｝,.;:!?)]}")
@@ -52,6 +52,11 @@ def _positive(value, name):
         raise ValueError(f"{name} must be a finite positive number")
 
 
+def _weight(value):
+    if value not in (400, 700):
+        raise ValueError("weight must be 400 or 700")
+
+
 class FontMetrics:
     """Measure with installed fonts in the same order as the SVG font stack.
 
@@ -59,6 +64,9 @@ class FontMetrics:
     ``lang="zh"`` (including zh region tags), or observing actual CJK text,
     enables an explicit CJK family stack even without optional dependencies.
     Verified runs retain their measured family; missing CJK runs use the stack.
+    Weights 400 and 700 select real upright regular/bold faces. An unavailable
+    weight uses estimates, never the regular face's advance as a bold measure.
+    Runs keep their existing shape; SVG callers apply the requested font-weight.
     Missing dependencies or glyphs produce warnings, ``measured_with=estimate``
     and ``padding_factor=1.12``. Width itself does not include this box padding.
     Subset embedding is deferred; this API never downloads or embeds fonts.
@@ -70,8 +78,11 @@ class FontMetrics:
         self.measured_with = "pillow"
         self.padding_factor = 1
         self._faces = []
+        self._weights = []
         self._coverage = set()
-        self._pending = iter(discover(paths))
+        self._weight_coverage = {400: set(), 700: set()}
+        candidates = discover(paths)
+        self._pending = {weight: iter(candidates) for weight in (400, 700)}
         self._image_font = None
         self._font_cache = {}
         self._choice_cache = {}
@@ -88,7 +99,7 @@ class FontMetrics:
         # Prime Latin and Chinese fallback before callers read .family.
         required = {ord(c) for c in "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
                     "0123456789" + CJK_SAMPLE}
-        while not required.issubset(self._coverage) and self._load_next():
+        while not required.issubset(self._weight_coverage[400]) and self._load_next():
             pass
         if not self._faces:
             self._estimate("font-unavailable", "No usable fonts found; using "
@@ -114,11 +125,14 @@ class FontMetrics:
         self._estimate("cjk-glyph-coverage", "CJK glyph coverage is unverified "
                        "or CJK measurement used conservative estimates.")
 
-    def _load_next(self):
-        for face in self._pending:
+    def _load_next(self, weight=400):
+        for face in self._pending[weight]:
             try:
-                family, _, coverage = font_info(face.path, face.index)
-                if not coverage.difference(self._coverage):
+                if font_weight(face.path, face.index) != weight:
+                    continue
+                family, style, coverage = font_info(face.path, face.index)
+                if (any(slant in style.lower() for slant in ("italic", "oblique"))
+                        or not coverage.difference(self._weight_coverage[weight])):
                     continue
                 font = self._image_font.truetype(face.path, 16, index=face.index)
                 font.getlength(" ")
@@ -127,7 +141,9 @@ class FontMetrics:
                            "read or measured and was skipped.")
                 continue
             self._faces.append((face, family, coverage))
+            self._weights.append(weight)
             self._coverage.update(coverage)
+            self._weight_coverage[weight].update(coverage)
             self._font_cache[(len(self._faces) - 1, 16)] = font
             return True
         return False
@@ -139,17 +155,18 @@ class FontMetrics:
         names.extend(family for _, family, _ in self._faces)
         return _family_stack(names)
 
-    def runs(self, text):
+    def runs(self, text, weight=400):
         """Resolve explicit font runs for SVG readers lacking font fallback.
 
         Family names, never local font paths, enter the exported document.
         Missing CJK runs contain a CSS family stack beginning with Noto Sans
         CJK SC, for readers that only honor the first family.
         """
+        _weight(weight)
         self._cjk_text = self._cjk_text or any(_cjk(c) for c in text)
         runs = []
         for char in text.replace(_SOFT_HYPHEN, ""):
-            face = self._choice(char)
+            face = self._choice(char, weight)
             if face is not None:
                 family = self._faces[face][1]
             elif _cjk(char):
@@ -164,17 +181,22 @@ class FontMetrics:
                 runs.append({"text": char, "family": family})
         return runs
 
-    def _choice(self, char):
-        if char in self._choice_cache:
-            return self._choice_cache[char]
+    def _choice(self, char, weight=400):
+        key = (char, weight)
+        if key in self._choice_cache:
+            return self._choice_cache[key]
         code = ord(char)
         while True:
             for index, (_, _, coverage) in enumerate(self._faces):
-                if code in coverage:
-                    self._choice_cache[char] = index
+                if self._weights[index] == weight and code in coverage:
+                    self._choice_cache[key] = index
                     return index
-            if self._image_font is None or not self._load_next():
-                self._choice_cache[char] = None
+            if self._image_font is None or not self._load_next(weight):
+                self._choice_cache[key] = None
+                if code in self._coverage:
+                    self._estimate("font-weight-unavailable",
+                                   f"No verified face covers some text at weight {weight}; "
+                                   "using conservative estimates.")
                 return None
 
     @staticmethod
@@ -207,15 +229,16 @@ class FontMetrics:
             self._cjk_estimate()
         return self._estimated_width(text, size)
 
-    def width(self, text, size=16) -> float:
+    def width(self, text, size=16, weight=400) -> float:
         """Return the maximum line advance in pixels (without box padding)."""
         _positive(size, "size")
+        _weight(weight)
         self._cjk_text = self._cjk_text or any(_cjk(c) for c in text)
         widths = []
         for line in _paragraphs(text.replace(_SOFT_HYPHEN, "")):
             total, run, previous = 0.0, "", None
             for char in line.rstrip("\r"):
-                selected = self._choice(char)
+                selected = self._choice(char, weight)
                 if run and selected != previous:
                     total += self._run_width(run, previous, size)
                     run = ""
@@ -226,7 +249,7 @@ class FontMetrics:
             widths.append(total)
         return float(max(widths, default=0))
 
-    def wrap(self, text, max_width, size=16) -> list[str]:
+    def wrap(self, text, max_width, size=16, weight=400) -> list[str]:
         """Greedily wrap words/CJK; preserve explicit newlines.
 
         Only whitespace, CJK boundaries and explicit soft hyphens permit a
@@ -235,6 +258,7 @@ class FontMetrics:
         """
         _positive(max_width, "max_width")
         _positive(size, "size")
+        _weight(weight)
         lines = []
         for paragraph in _paragraphs(text):
             chars = _clusters(paragraph.strip())
@@ -248,7 +272,7 @@ class FontMetrics:
                 remaining = [end for end in boundaries if end > start]
                 for end in remaining:
                     candidate = self._line_text(chars, start, end)
-                    if self.width(candidate, size) <= max_width:
+                    if self.width(candidate, size, weight) <= max_width:
                         best = end
                     elif chars[end - 1] != _SOFT_HYPHEN:
                         # A discretionary hyphen can be wider than the rest
@@ -264,19 +288,20 @@ class FontMetrics:
                     start += 1
         return lines
 
-    def required_width(self, text, size=16) -> float:
+    def required_width(self, text, size=16, weight=400) -> float:
         """Longest unbreakable unit in pixels, without box padding.
 
         Uses the same word, soft-hyphen and kinsoku boundaries as ``wrap``.
         A discretionary break includes the visible hyphen's advance.
         """
         _positive(size, "size")
+        _weight(weight)
         widths = [0.0]
         for paragraph in _paragraphs(text):
             chars = _clusters(paragraph.strip())
             start = 0
             for end in self._break_positions(chars):
-                widths.append(self.width(self._line_text(chars, start, end).strip(), size))
+                widths.append(self.width(self._line_text(chars, start, end).strip(), size, weight))
                 start = end
         return float(max(widths))
 
@@ -320,9 +345,10 @@ class FontMetrics:
         return {
             "fonts": [
                 {"family": family, "path": face.path, "index": face.index,
+                 "weight": self._weights[index],
                  "glyph_count": len(coverage),
                  "cjk_covered": sum(ord(c) in coverage for c in CJK_SAMPLE)}
-                for face, family, coverage in self._faces
+                for index, (face, family, coverage) in enumerate(self._faces)
             ],
             "family": self.family,
             "cjk_coverage": {
