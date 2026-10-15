@@ -17,7 +17,7 @@ formal: {kind: convention, ref: Informal cross-functional flowchart (Rummler-Bra
 neighbours: [A5, A6, A9, E1, E2, H1]
 status: draft
 translationOf: en/types/E4-swimlane-cross-functional.md
-sourceRev: 9065169
+sourceRev: 68c7e31
 reviewed: false
 ---
 
