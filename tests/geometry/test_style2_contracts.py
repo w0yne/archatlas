@@ -93,7 +93,8 @@ def test_auto_legend_covers_tints_bands_badges_and_only_used_styles():
         {"label": "Call", "kind": "call", "symbol": "line"},
         {"label": "Reply", "dashed": True, "symbol": "line"}])
     lines = [e for e in entries(layout(model), model) if e["symbol"] == "line"]
-    assert [(e["label"], e["dashed"]) for e in lines] == [("Call", False), ("Reply", True)]
+    assert [(e["label"], e["dashed"]) for e in lines] == [
+        ("Call / Numbers show flow order", False), ("Reply / Numbers show flow order", True)]
     model = initial("nested")
     model["edges"].append({"from": "service", "to": "client", "kind": "data"})
     model["meta"].update(legend_mode="replace",
@@ -114,7 +115,8 @@ def test_edge_badges_are_references_unless_order_is_declared():
     model = initial("nested")
     model["edges"][0]["step"] = 1
     model["meta"].update(legend_mode="replace", legend=[])
-    assert "Numbers are labels for reference" in [e["label"] for e in entries(layout(model), model)]
+    assert any("Numbers are labels for reference" in e["label"] and e["symbol"] == "line"
+               for e in entries(layout(model), model))
 
 
 def test_qa_detects_inward_ports_and_accumulated_short_overlaps():

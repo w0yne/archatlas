@@ -62,6 +62,7 @@ def render_svg(scene, namespace=None):
         attrs = {"id": prefix + "-shape-" + box.role + "-" + box.id, "data-id": box.id, "data-role": box.role,
                  "data-parent": box.parent, "data-kind": box.kind,
                  "data-style": box.style, "data-tint": box.tint, "data-band": str(box.band).lower(),
+                 "data-band-axis": "x" if box.header_width else "y",
                  "data-shape": box.shape,
                  "fill": theme["zones"][box.tint][0] if box.role in ("group", "legend-zone") else theme[box.style][0],
                  "stroke": theme["zones"][box.tint][2] if box.role in ("group", "legend-zone") else theme[box.style][1],
@@ -124,14 +125,15 @@ def render_svg(scene, namespace=None):
         else:
             SubElement(root, "rect", {**attrs, "x": number(box.x), "y": number(box.y),
                                       "width": number(box.w), "height": number(box.h),
-                                      "rx": number(0 if box.kind == "frame" else tokens["pill_radius"] if box.role == "chip" else
-                                                   tokens["zone_radius"] if box.role == "group" else
+                                      "rx": number(0 if box.kind == "frame" else tokens["pill_radius"] if box.role == "chip" or box.kind == "chip" else
+                                                   tokens["zone_radius"] if box.role in ("group", "legend-zone") else
                                                    12 if box.kind in ("task", "state") else tokens["card_radius"]
-                                                   if box.role in ("node", "legend-panel") else 2)})
+                                                   if box.role in ("node", "legend-panel", "legend-swatch") else 2)})
         if box.role in ("group", "legend-zone") and box.band and box.header_height:
+            hx, hy, hw, hh = box.header_rect
             SubElement(root, "rect", {"data-role": "header-band", "data-parent": box.id,
-                         "x": number(box.x + 2), "y": number(box.y + 2),
-                         "width": number(box.w - 4), "height": number(min(box.header_height, box.h) - 4),
+                         "x": number(hx + 2), "y": number(hy + 2),
+                         "width": number(hw - 4), "height": number(hh - 4),
                          "rx": number(0 if box.kind == "frame" else tokens["card_radius"]), "fill": theme["zones"][box.tint][1]})
         if box.shape == "queue":
             inset = min(8, box.h / 4)
@@ -139,8 +141,9 @@ def render_svg(scene, namespace=None):
                 SubElement(root, "polyline", {"points": f"{number(box.x + offset)},{number(box.y + inset)} {number(box.x + offset)},{number(box.y + box.h - inset)}",
                                               "fill": "none", "stroke": attrs["stroke"], "stroke-width": "1"})
         if box.shape == "callout":
-            SubElement(root, "rect", {"x": number(box.x + 3), "y": number(box.y + 10),
-                                      "width": "4", "height": number(box.h - 20), "rx": "2", "fill": attrs["stroke"]})
+            inset = min(10, box.h / 4)
+            SubElement(root, "rect", {"x": number(box.x + 3), "y": number(box.y + inset),
+                                      "width": "4", "height": number(box.h - 2 * inset), "rx": "2", "fill": attrs["stroke"]})
     for edge in scene.edges:
         attrs = {"id": prefix + "-edge-" + edge.id, "data-id": edge.id,
                  "data-role": "frame-separator" if edge.kind == "frame-separator" else "edge",

@@ -19,10 +19,16 @@ class Box:
     tint: str = "app"
     band: bool = True
     header_height: float = 0
+    header_width: float = 0
 
     @property
     def rect(self):
         return (self.x, self.y, self.w, self.h)
+
+    @property
+    def header_rect(self):
+        return (self.x, self.y, min(self.header_width, self.w), self.h) if self.header_width else \
+            (self.x, self.y, self.w, min(self.header_height, self.h))
 
     @property
     def glyph_rect(self):

@@ -99,6 +99,89 @@ def outward_from_shape(point, neighbour, element):
     return (point[0] - x - w / 2) * dx + (point[1] - y - h / 2) * dy > 0
 
 
+def header_backtrack(points, headers):
+    """Lower bound on reversal forced by header bands separating the endpoints.
+
+    A band spanning both endpoint x coordinates and separating their y
+    coordinates must be passed on the left or right (and vice versa).
+    Bounds on the same axis overlap, so take their maximum, not their sum.
+    """
+    required = [0.0, 0.0]
+    for _, rect in headers:
+        if rect is None or min(rect[2:]) <= 0:
+            continue
+        for axis in (0, 1):
+            other = 1 - axis
+            low, high = sorted((points[0][other], points[-1][other]))
+            if low <= rect[other] and high >= rect[other] + rect[other + 2]:
+                start, end = sorted((points[0][axis], points[-1][axis]))
+                distance = max(0, min(start - rect[axis], rect[axis] + rect[axis + 2] - end))
+                required[axis] = max(required[axis], distance)
+    return sum(required)
+
+
+def check_encodings(elements, add):
+    """Match visible encodings to captioned swatches, using SVG paint and glyphs."""
+    bands = {e.get("data-parent"): e for e in elements if e.get("data-role") == "header-band"}
+    markers = {e.get("id"): e for e in elements if e.tag.rsplit("}", 1)[-1] == "marker"}
+    captions = {e.get("data-id"): e for e in elements
+                if e.get("data-role") == "legend" and "".join(e.itertext()).strip()}
+    paints = ("fill", "stroke", "stroke-width", "stroke-dasharray", "fill-opacity", "stroke-opacity")
+
+    def paint(element):
+        return tuple(element.get(key, "") for key in paints)
+
+    def marker(value):
+        match = re.fullmatch(r"url\(#([A-Za-z0-9_-]+)\)", value)
+        definition = markers.get(match[1]) if match else None
+        if definition is None:
+            return value
+        return tuple((child.tag, tuple(sorted(child.attrib.items()))) for child in definition)
+
+    def signature(element):
+        role, kind = element.get("data-role"), element.get("data-kind")
+        tag = element.tag.rsplit("}", 1)[-1]
+        if role == "edge":
+            return ("line", paint(element), marker(element.get("marker-start", "")),
+                    marker(element.get("marker-end", "")))
+        if role in ("group", "legend-zone"):
+            band = bands.get(element.get("data-id"))
+            return ("zone", tag, paint(element), element.get("rx", ""),
+                    (paint(band), element.get("data-band-axis", "y")) if band is not None else None)
+        if role in ("badge", "edge-badge", "legend-badge"):
+            return "badge", tag, paint(element)
+        # Dimensions and position are not encodings. Rounded corners, asset
+        # glyphs, a final-state inner ring and circle/oval distinction are.
+        circular = (element.get("rx") == element.get("ry")) if tag == "ellipse" else None
+        return ("box", tag, paint(element), element.get("data-shape", "card"),
+                element.get("rx", "") if tag == "rect" else "", circular, kind == "final",
+                tuple((child.tag, paint(child)) for child in element))
+
+    actual, swatches, captioned = {}, set(), set()
+    for element in elements:
+        role, kind = element.get("data-role"), element.get("data-kind")
+        is_swatch = role in ("legend-zone", "legend-swatch", "legend-badge") or (role == "edge" and kind == "legend")
+        is_actual = role in ("node", "group", "chip", "badge", "edge-badge") or (
+            role == "edge" and kind not in ("legend", "lifeline"))
+        if not (is_swatch or is_actual):
+            continue
+        key = signature(element)
+        id = element.get("data-id", "")
+        if is_actual:
+            actual.setdefault(key, []).append(id)
+        else:
+            match = re.fullmatch(r"(?:__legend-swatch-|legend-line-)(\d+)", id)
+            caption = "legend-" + match[1] if match else ""
+            if caption in captions:
+                swatches.add(key)
+                captioned.add(caption)
+    for key, ids in actual.items():
+        if key not in swatches:
+            add("unexplained-encoding", "Visible encoding has no matching captioned legend swatch", ids)
+    for id in sorted(captions.keys() - captioned):
+        add("unexplained-encoding", "Legend caption has no visual swatch", [id])
+
+
 def check_svg(svg, metrics=None):
     findings = []
 
@@ -263,14 +346,23 @@ def check_svg(svg, metrics=None):
             if overlap(rect, text_rect):
                 add("sequence-annotation-overlap", "Activation crosses fragment or message text", [id, tid], [rect, text_rect])
     lifelines = {e.get("data-from") for _, _, e in edges if e.get("data-kind") == "lifeline"}
+    headers = [(e.get("data-parent", ""), shape_box(e)) for e in elements
+               if e.get("data-role") == "header-band"]
     for id, points, e in edges:
         source, target = e.get("data-from"), e.get("data-to")
+        if e.get("data-kind") == "legend":
+            continue
+        # Use the rendered band, including its actual inset and height. Ancestor
+        # membership permits crossing a zone body, never its title band. Valid
+        # group ports touch the outer border from outside and need no exemption.
+        for owner, rect in headers:
+            if rect and any(segment_hits_rect(a, b, rect) for a, b in zip(points, points[1:])):
+                add("edge-crosses-header", "Connector crosses a zone or frame header band",
+                    [id, owner], [rect])
         if e.get("data-kind") == "lifeline":
             for tid, rect in annotations:
                 if any(segment_hits_rect(a, b, rect, padding=2) for a, b in zip(points, points[1:])):
                     add("sequence-annotation-overlap", "Lifeline crosses fragment or message text", [id, tid], [rect])
-            continue
-        if e.get("data-kind") == "legend":
             continue
         if len(points) < 2:
             continue
@@ -280,13 +372,17 @@ def check_svg(svg, metrics=None):
             add("edge-u-turn", "Connector reverses direction and retraces its stroke", [id], severity="warning")
         direct = abs(points[-1][0] - points[0][0]) + abs(points[-1][1] - points[0][1])
         length = sum(abs(b[0] - a[0]) + abs(b[1] - a[1]) for a, b in segments)
+        required = header_backtrack(points, headers)
         routes.append({"id": id, "length": length, "endpoint_distance": direct,
-                       "backtrack": backtrack(points), "bends": max(0, len(points) - 2)})
-        if source != target and direct > 0 and length > 2 * direct + 1:
-            add("edge-detour", "Connector is longer than twice its endpoint Manhattan distance", [id], severity="warning")
+                       "backtrack": backtrack(points), "header_backtrack": required,
+                       "bends": max(0, len(points) - 2)})
+        if source != target and direct > 0 and length - 2 * required > 2 * direct + 1:
+            add("edge-detour", "Connector exceeds twice its endpoint Manhattan distance after required header avoidance",
+                [id], severity="warning")
         # Ignore short port/obstacle stubs on a long route. Flag reversals when
         # their extra travel exceeds both two stubs and 10% of direct distance.
-        if source != target and backtrack(points) > max(2 * _CLEARANCE, .05 * direct) + .001:
+        # Discount only the lower bound proven by separating rendered headers.
+        if source != target and backtrack(points) - required > max(2 * _CLEARANCE, .05 * direct) + .001:
             add("edge-foldback", "Connector doubles back significantly; consider another port or corridor", [id], severity="warning")
         for endpoint, point, neighbour in ((source, points[0], points[1]), (target, points[-1], points[-2])):
             if endpoint not in shapes:
@@ -352,6 +448,7 @@ def check_svg(svg, metrics=None):
     for warning in metrics.warnings:
         if warning not in details.get("warnings", []):
             add(warning["rule"], warning["message"], severity="warning")
+    check_encodings(elements, add)
     for finding in findings:
         for allow in details.get("allow", []):
             if allow["rule"] == finding["rule"] and finding["elements"] == [allow["element"]]:
