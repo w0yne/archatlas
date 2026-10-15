@@ -72,6 +72,7 @@ class Layout:
         self.rank_gap = max(self.gap, self.spacing["rank_gap"])
         self.pad, self.header = self.spacing["group_padding"], self.spacing["group_header"]
         self.document_width = self.spacing["document_width"]
+        self.max_width = model["layout"].get("max_width", self.document_width * self.spacing["wide_view_ratio"])
         self.nodes = {n["id"]: ({**n, "style": "primary"} if n["id"] == model["layout"].get("focus") else n)
                       for n in model.get("nodes", [])}
         self.groups = {g["id"]: g for g in model.get("groups", [])}
@@ -192,7 +193,7 @@ class Layout:
 
     def available_width(self, parent=None):
         profile = self.model["layout"].get("profile", "doc")
-        width = 1440 if profile in ("slide", "slide-16x9") else self.document_width
+        width = 1440 if profile in ("slide", "slide-16x9") else self.max_width
         depth = len(self.ancestors(parent)) if parent else 0
         return width - 80 - 2 * self.pad * depth
 
@@ -201,8 +202,6 @@ class Layout:
             return {}, (160, 64)
         cols = 1 if vertical else min(columns or self.model["layout"].get("columns", 3), len(ids))
         limit = self.available_width(parent)
-        if self.template not in ("nested", "layered", "statechart", "tree"):
-            limit += self.document_width * (self.spacing["wide_view_ratio"] - 1)
         while cols > 1:
             widths = [max(self.dimensions[id][0] for i, id in enumerate(ids) if i % cols == col)
                       for col in range(cols)]
@@ -975,7 +974,7 @@ class Layout:
         profile = self.model["layout"].get("profile", "doc")
         scene.width = 1440 if profile in ("slide", "slide-16x9") else max(self.document_width, right + 40)
         scene.height = 810 if profile in ("slide", "slide-16x9") else max(300, legend_bottom + 40)
-        if profile in ("doc", "doc-1120xN") and scene.width > self.document_width * self.spacing["wide_view_ratio"]:
+        if profile in ("doc", "doc-1120xN") and scene.width > self.max_width:
             scene.warnings.append({"rule": "wide-view", "message": "Content exceeds the theme's wide-view limit; split the view or configure the target width"})
         if self.template == "sequence":
             content_width = right + 40

@@ -1,4 +1,4 @@
-"""Profile width is a packing constraint, never a request to shrink fonts."""
+"""The wrap width (layout.max_width) is a packing constraint, never a request to shrink fonts."""
 import pytest
 
 from archatlas.cli import initial
@@ -11,7 +11,7 @@ from archatlas.check import check_svg
 @pytest.mark.parametrize("direction", ["LR", "TB"])
 def test_rows_wrap_within_profile_and_preserve_reading_order(template, direction):
     model = initial(template)
-    model["layout"].update(columns=8, direction=direction)
+    model["layout"].update(columns=8, direction=direction, max_width=1120)
     model["nodes"] = [{"id": f"n{i}", "kind": "state" if template == "statechart" else "component",
                        "label": f"Element {i}", "parent": "inner"} for i in range(8)]
     model["groups"] = [{"id": "outer", "kind": "boundary", "title": "Outer"},
@@ -24,9 +24,25 @@ def test_rows_wrap_within_profile_and_preserve_reading_order(template, direction
     assert not check_svg(render_svg(scene))["errors"]
 
 
+def test_max_width_is_a_setting_with_a_wide_default():
+    def rows(**layout):
+        model = initial("layered")
+        model["layout"].update(columns=6, **layout)
+        model["groups"] = [{"id": "band", "kind": "layer", "title": "Band"}]
+        model["nodes"] = [{"id": f"n{i}", "kind": "component", "label": f"Element {i}", "parent": "band"} for i in range(6)]
+        model["edges"] = []
+        return len({b.y for b in layout_boxes(model)})
+    assert rows() == 1
+    assert rows(max_width=700) > 1
+
+
+def layout_boxes(model):
+    return [b for b in layout(model).boxes if b.role == "node"]
+
+
 def test_horizontal_state_ranks_wrap_without_changing_edges():
     model = initial("statechart")
-    model["layout"]["direction"] = "LR"
+    model["layout"].update(direction="LR", max_width=1120)
     model["nodes"] = [{"id": f"s{i}", "kind": "state", "label": f"State {i}"} for i in range(7)]
     model["edges"] = [{"from": f"s{i}", "to": f"s{i+1}"} for i in range(6)]
     scene = layout(model)
@@ -38,7 +54,7 @@ def test_horizontal_state_ranks_wrap_without_changing_edges():
 
 def test_wrapped_ranks_use_each_rows_own_height():
     model = initial("statechart")
-    model["layout"]["direction"] = "LR"
+    model["layout"].update(direction="LR", max_width=1120)
     model["nodes"] = [{"id": "a", "kind": "state", "label": "Entry", "style": "external"},
                       {"id": "b", "kind": "state", "label": "Expanded scope",
                        "size_hint": {"width": 800, "height": 800}}]
