@@ -63,6 +63,22 @@ class PackSkillTest(unittest.TestCase):
             report = pack_skill.verify(za[0])
             self.assertEqual(sum(line.endswith("SKILL.md ok") for line in report), len(pack_skill.HOST_SKILL_DIRS))
 
+    def test_local_state_in_the_skill_folder_is_not_packed(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            skill = Path(tmp) / "src" / pack_skill.SKILL.name
+            shutil.copytree(pack_skill.SKILL, skill)
+            for state in (".atlas-venv/pyvenv.cfg", "out/diagram.svg", "scripts/__pycache__/x.pyc"):
+                (skill / state).parent.mkdir(parents=True, exist_ok=True)
+                (skill / state).write_text("local\n")
+            original = pack_skill.SKILL
+            pack_skill.SKILL = skill
+            self.addCleanup(setattr, pack_skill, "SKILL", original)
+            staged = pack_skill.stage(Path(tmp) / "stage")
+            packed = {p.relative_to(staged).as_posix() for p in staged.rglob("*")}
+            self.assertIn("SKILL.md", packed)
+            self.assertFalse({p for p in packed if p.startswith((".atlas-venv", "out"))})
+            self.assertFalse({p for p in packed if "__pycache__" in p})
+
 
 if __name__ == "__main__":
     unittest.main()

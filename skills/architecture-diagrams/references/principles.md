@@ -2,6 +2,8 @@
 
 These are the generic rules distilled from many review rounds; the numbers are for reference inside this skill, quote the text rather than the number. The ten that must always be remembered are also listed in `SKILL.md`. Rules marked **[auto]** are checked mechanically by `scripts/atlas check`; **[planned]** marks checks that are not implemented yet; the others need judgement.
 
+**Priority.** Safety and truth come first, then the selected notation (its line styles, arrowheads, cardinalities and identifiers), then the user's constraints, then the defaults below. The style and density rules are defaults with reasons: adapt them when the question, the notation or the viewing size requires it, and say so. Suggested counts are heuristics, never a reason to omit required information.
+
 ## Before drawing
 
 1. **State audience, purpose and as-is or to-be first.** Depth and vocabulary depend on them; a business-plus-technical overview is neither a marketing slide nor a deployment diagram.
@@ -31,21 +33,21 @@ These are the generic rules distilled from many review rounds; the numbers are f
 19. **Keep widely known terms; drop specialist acronyms** the audience does not use. Balance: every label must earn its place; less but sufficient.
 20. **Full name plus abbreviation once in titles and headers; short form elsewhere.** Use the name the audience officially uses.
 21. **Titles carry the message.** No subtitle that restates the diagram type; no internal iteration labels in titles ("simplified", "v2", "draft"). A small type caption is allowed only in a documentation page, not in the figure.
-22. **Every number, badge, multiplier or glyph needs an obvious meaning or a legend.** Do not use notation glyphs the audience will misread. If a small marker renders badly, remove it rather than tweak it. **[planned: unexplained-marker check]**
+22. **Every number, badge, multiplier or glyph needs an obvious meaning or a legend.** Do not use notation glyphs the audience will misread. If an optional decorative marker renders badly, remove it rather than tweak it; if a required notation mark renders badly, replace it with a legible form that keeps its meaning (for example a text cardinality instead of a crow's foot). **[planned: unexplained-marker check]**
 23. **Decoration is not clarity.** Icons only when they carry meaning; prefer clear boundaries and flows.
 24. **Use a type scale** (title > element name > body > note). Dense figures may use smaller text when the audience will zoom; never shrink labels to fit. **[auto: minimum size]**
 
 ## Lines and flows
 
 25. **An arrow ends exactly on what it connects.** A group-level link ends on the group border; it must not run into or across an unrelated region. **[auto: arrow-through-box, boundary-membership]**
-26. **Short, local flows.** No long lines that run to the far side and fold back; arrange or pair the systems instead (for example pools with message flows at aligned heights). Avoid crossings. **[auto: warning]**
+26. **Short, local flows.** No long lines that run to the far side and fold back; arrange or pair the systems instead (for example pools with message flows at aligned heights). Reduce crossings where the layout allows; explain an unavoidable one instead of redrawing for it. **[auto: warning]**
 27. **Follow the chosen notation strictly.** Sequence: lifelines are real nameable systems; prerequisites come before the steps that need them; activations end at the return; a loop frame encloses the whole round trip. Generalise mechanisms into one named step unless the audience needs the protocol.
 28. **Focus on the main scenario, and keep the paths the question needs.** One scenario per flow figure, starting at the trigger the audience cares about. Keep retries, refusals, compensations and abuse paths whenever the question is about them (a retry policy, an access decision, a threat model); move only unrelated branches to their own figure.
 
 ## Process and quality assurance
 
-29. **Ask one question at a time with a recommended default; answer the user's questions before redrawing.** Keep a decision log.
-30. **For a figure that keeps failing review, sketch two alternative layouts in text, pick or merge, and suggest an independent review** of the rendered result. Alternatives converge faster than serial redraws.
+29. **In guided clarification, ask one question at a time with a recommended default; answer the user's questions before redrawing.** Keep a decision log.
+30. **For a figure that keeps failing review, sketch two alternative layouts in text, pick or merge, and suggest an independent review** of the rendered result. Alternatives converge faster than serial redraws. Stop refining when the meaning is right, labels are readable, errors are fixed and remaining warnings are explained; cosmetic passes are not required.
 31. **Render and inspect every version.** Check label backgrounds for every text anchor (start, middle, end), overlaps, consistent page orientation in documents, and readability at presentation size. **[auto + review]**
 32. **Keep related figures in one deliverable** and give the same step numbers and names to the same things across figures.
 
@@ -54,17 +56,17 @@ These are the generic rules distilled from many review rounds; the numbers are f
 "Few words" and "rich visual structure" are compatible: words stay short, and structure carries the meaning. The renderer's one default style is built on these rules; apply them to hand-drawn figures too.
 
 33. **Show boundaries with zones, not sentences.** A system boundary, layer, subnet, lane or trust zone is a tinted group with a header band holding its name. Use one tint per role (business, application, technology, data, security, neutral) and keep that mapping across all figures of one deliverable. A tint is a colour role, not a claim about content: say what it means in the legend.
-34. **Exactly one focus element per view, the subject.** Style it `primary` (solid blue, white text): the system in a context view, the service in a container view, the central entity in a data model, the subject lifeline in a sequence. Every other ordinary element is a calm `peer`; never give several elements `primary`, and never repeat the focus style on peers "because they are important too". Shared services are green, outside parties gray, planned elements purple, and each such colour needs a legend entry. The warm `highlight` is not a second focus: use it for a status marker or a callout that the legend explains (for example "new this year"), sparingly. A view with no single subject (layers, state machines, matrices, process lanes) has no focus element. If everything is emphasised, nothing is.
+34. **One focus element when the view has a single subject.** Style it `primary` (solid blue, white text): the system in a context view, the service in a container view, the central entity in a data model, the subject lifeline in a sequence. Every other ordinary element is a calm `peer`; never give several elements `primary`, and never repeat the focus style on peers "because they are important too". Shared services are green, outside parties gray, planned elements purple, and each such colour needs a legend entry. The warm `highlight` is not a second focus: use it for a status marker or a callout that the legend explains (for example "new this year"), sparingly. A view with no single subject (layers, state machines, matrices, process lanes, peer comparisons, assessment maps) has no focus element; do not invent one. If everything is emphasised, nothing is.
 35. **Chips instead of bullet text.** A short technology, protocol, status or ownership word belongs in a chip on the element (`Relational`, `HTTPS`, `New`), not in a sentence inside the box. Keep chips to one to three per element and use one chip style per meaning.
-36. **Number only where order matters.** Badges and step numbers belong on sequence diagrams and on process or swimlane steps, where the reader follows a sequence. Do not number context, container, deployment, logical, layer or data views: readers take numbers as time order. Never use a number as an unexplained reference label, and do not add a legend entry that explains numbers. Where numbers are used, start at 1 without gaps and make the order the real one.
+36. **Step numbers only where order matters.** Step numbers belong on sequence diagrams and on process or swimlane steps, where the reader follows a sequence; on context, container, deployment, logical, layer or data views readers would take them as time order. Stable reference IDs that the notation or the user's documents use (threat IDs such as `DF-1`, requirement or control IDs) are identifiers, not order: keep them and say so in the legend. Where step numbers are used, start at 1 without gaps and make the order the real one.
 37. **Shape says kind.** Databases are cylinders, queues are queue shapes, documents are folded cards, people are stick figures or person cards. Use a shape only where it separates kinds the reader must tell apart; do not add icons for decoration.
 38. **One legend, consistent meaning.** Every colour, line style, chip colour and badge used must appear in one legend, with reader-facing words (not style names). The same meaning keeps the same look in every figure.
-39. **Density follows the question.** Roughly 12 to 30 elements are fine when zones group them and the emphasis is clear; beyond that, split the view. Never shrink text to fit; widen, re-flow or split.
+39. **Density follows the question and the viewing size.** A slide carries fewer elements than a zoomable document; zones and clear emphasis let a view carry more. The checker's node-count warning is a prompt to consider splitting, not a limit: explain it when the question needs the elements. Never shrink text to fit; widen, re-flow or split.
 40. **Sequence diagrams: emphasise the subject lifeline and keep fragments narrow.** Style the subject lifeline `primary` and leave the others `peer`. Use few fragments (one `alt` or `loop` per figure is normal), give each `alt` operand a real guard and at least one message, and put the retry or failure path in a single operand rather than several. Keep only the participants the scenario needs so that fragments stay narrow and the figure is not tall.
-41. **One file per view.** Deliver each view once, under one stable name (for example `context.svg` beside `context.json`). Do not leave a second copy of the same figure under another name or in another folder, and delete drafts before you report.
+41. **One file per view.** Deliver each view once, under one stable name (for example `context.svg` beside `context.json`), and link it once in the reply. Keep user files and earlier versions. Remove only temporary files this run created, when cleanup is permitted; otherwise name the final files and leave the rest untouched.
 
 ## Where each kind of rule lives
 - Always in mind: `SKILL.md` (core rules).
 - Family-specific drawing advice and checklists: `references/types/<code>-<slug>.md`.
-- Mechanically detectable: `scripts/atlas check` (see `rendering.md`).
-- Process and review: `interaction.md`, `review.md`.
+- Mechanically detectable: `scripts/atlas check` (see `references/rendering.md`).
+- Process and review: `references/interaction.md`, `references/review.md`.

@@ -347,8 +347,13 @@ def render_selection_md(cat: dict, tree: dict) -> str:
         "     content/data/selection-tree.yaml. Do not edit by hand. -->",
         "# Choosing a diagram type",
         "",
-        "Use this file to pick one or two types before drawing. Then read",
-        "`types/<code>-<slug>.md` (for example `types/C3-container-diagram.md`) for the chosen type only.",
+        "Use this file only when the type is not yet chosen; a type the user already named needs only",
+        "its reference, `references/types/<code>-<slug>.md` (for example",
+        "`references/types/C3-container-diagram.md`). Paths are relative to the skill folder.",
+        "",
+        "Read only what resolves the choice: §1 common requests and §2 the decision tree first;",
+        "§3 audience × question matrix, §4 lifecycle phase and §5 ambiguous names only for an actual",
+        "ambiguity; §6 catalogue and aliases to map an unfamiliar name to a code and file.",
         "",
         "## 1. First questions",
         "",
@@ -382,7 +387,7 @@ def render_selection_md(cat: dict, tree: dict) -> str:
         aliases = "; ".join(t["aliases"].get("en", []) + t["aliases"].get("zh", []))
         formal = t["formal"]["kind"][0].upper()
         pending = " (research pending)" if t["research"] == "pending" else ""
-        ref = f"`types/{ref_file(t)}`" if (REF_DIR / ref_file(t)).exists() else "none yet"
+        ref = f"`references/types/{ref_file(t)}`" if (REF_DIR / ref_file(t)).exists() else "none yet"
         out.append(f"| {t['code']} | {t['names']['en']}{pending} | {ref} | {formal} | "
                    f"{t['question']['en']} | {aliases} |")
     return "\n".join(out) + "\n"

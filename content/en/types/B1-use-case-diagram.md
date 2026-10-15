@@ -108,8 +108,8 @@ Their specific decompositions are teaching choices, not universal requirements.
 
 ## Template {#template}
 <!-- skill: keep (≤3 lines) -->
-Model template: `assets/templates/B1.json` · Layout template: `nested` · actors are `actor` nodes outside one `boundary` group that holds the use cases as `task` nodes; actor–use-case links are `assoc` edges with `dir` `--`.
-Approximate: the renderer draws no UML actor figures, use-case ellipses or include/extend markers, so generic boxes alone do not establish UML conformance.
+Model template: `assets/templates/B1.json` · Layout template: `nested` · actors are `actor` nodes (stick figures) outside one `boundary` group that holds the use cases as `use_case` nodes (ellipses); actor–use-case links are `assoc` edges with `dir` `--`.
+Approximate: include/extend have no dedicated marker (label a dashed `dependency` edge «include» or «extend»), so the figure alone does not establish UML conformance.
 
 ## Sources {#sources}
 <!-- skill: omit -->

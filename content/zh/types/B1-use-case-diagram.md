@@ -16,7 +16,7 @@ scope: system
 formal: {kind: standard, ref: 'OMG UML 2.5.1, Chapter 18 — https://www.omg.org/spec/UML/2.5.1/PDF'}
 neighbours: [A4, B2, B4]
 status: draft
-sourceRev: 5137fae
+sourceRev: 2955b3d
 translationOf: en/types/B1-use-case-diagram.md
 reviewed: false
 ---
@@ -110,8 +110,8 @@ UML 定义语义和表示法，不规定固定版式、配色或椭圆数量上�
 
 ## 模板 {#template}
 <!-- skill: keep (≤3 lines) -->
-模型模板：`assets/templates/B1.json` · 布局模板：`nested` · 参与者是一个 `boundary` 分组之外的 `actor` 节点，该分组内的用例是 `task` 节点；参与者与用例之间的连线是 `dir` 为 `--` 的 `assoc` 边。
-近似表示：渲染器不绘制 UML 参与者小人、用例椭圆或 include/extend 标记，仅使用通用方框不能证明符合 UML。
+模型模板：`assets/templates/B1.json` · 布局模板：`nested` · 参与者是一个 `boundary` 分组之外的 `actor` 节点（小人图形），该分组内的用例是 `use_case` 节点（椭圆）；参与者与用例之间的连线是 `dir` 为 `--` 的 `assoc` 边。
+近似表示：include/extend 没有专用标记（用标注 «include» 或 «extend» 的虚线 `dependency` 边表示），仅凭图形不能证明符合 UML。
 
 ## 来源 {#sources}
 <!-- skill: omit -->

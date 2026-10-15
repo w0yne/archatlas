@@ -111,6 +111,11 @@ Diagram-specific manual composition, 3D forms, cloud silhouettes and chevrons ar
 outside this component set. Automatic layouts still need semantic and visual
 review; a successful geometry check alone is not a visual pass.
 
+When the automatic layout does not suit a figure, placing it by hand with these
+tokens is a supported path: the skill's
+[hand-authored SVG guide](../skills/architecture-diagrams/references/hand-authored-svg.md)
+lists the annotations `atlas check` needs and what the check can and cannot judge.
+
 ## Focus, sequence fragments and link identifiers
 
 Use `layout.focus: "node-id"` to select a subject without changing the input

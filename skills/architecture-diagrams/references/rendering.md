@@ -6,6 +6,10 @@ SVG is the primary output; model JSON is the editable source. Schema version is
 `scripts/lib/archatlas/model/schema.json`. Nodes have no absolute-position fields;
 edge `waypoints` are the explicit manual routing override.
 
+Read only the section you need: §1 install and dependency fallback; §2 commands and exit codes;
+§3 model fields, visual components, legends and languages; §4 layout, fonts and routing;
+§5 checks; §6 when the renderer cannot run. Placing a figure by hand: `references/hand-authored-svg.md`.
+
 ## 1. Install and invoke
 
 From a reviewed repository checkout, create and activate a virtual environment,
@@ -25,24 +29,26 @@ CairoSVG supplies PNG/contact-sheet rendering and also needs the platform's Cair
 library. Playwright needs Chromium and its platform libraries; follow Playwright's
 platform dependency instructions if Chromium cannot launch.
 
-The installed command is `atlas`. From the skill folder, `scripts/atlas` is the
-same CLI: it prefers a release bundle's `scripts/lib`, otherwise the installed
-library. In an unpacked bundle (or an installed skill folder), set up a virtual environment
-in your working folder and install the skill's own core requirements:
+The installed command is `atlas`. In the skill folder (SKILL_ROOT), `scripts/atlas`
+is the same CLI: it prefers a release bundle's `scripts/lib`, otherwise the installed
+library, and it switches to `SKILL_ROOT/.atlas-venv` by itself when that venv exists.
+In an unpacked bundle or an installed skill folder, create that venv from SKILL_ROOT:
 
 ```sh
 python3 -m venv .atlas-venv
-.atlas-venv/bin/python -m pip install -r <skill>/scripts/requirements.txt
-.atlas-venv/bin/python <skill>/scripts/atlas fonts doctor
+.atlas-venv/bin/python -m pip install -r scripts/requirements.txt
+scripts/atlas fonts doctor
 ```
 
-Then run every command as `.atlas-venv/bin/python <skill>/scripts/atlas …`. If
+If SKILL_ROOT is read-only, create the venv in the approved working folder
+(WORK_ROOT) instead and run every command as
+`WORK_ROOT/.atlas-venv/bin/python SKILL_ROOT/scripts/atlas …`. If
 `python3 -m venv` or pip is unavailable, or installing is not permitted, do not
 install into the system Python. **Required dependency:** the renderer needs
 `jsonschema` and its dependencies for model validation. If they or the renderer
 library are missing, commands fail with exit 2 and an install hint; automatic
-rendering/checks did not run. Keep the model and use the hand-written SVG fallback
-in §6 if needed, explicitly reporting that it is not validated renderer output.
+rendering/checks did not run. Keep the model and follow §6, explicitly reporting
+that the figure is not validated renderer output.
 **Measurement fallback:** only when required dependencies are available, missing
 Pillow/fontTools or fonts/glyphs can produce conservative estimates with warnings
 and `measured_with: estimate`; report the actual mode returned by the tool.
@@ -156,14 +162,15 @@ blue for ordinary elements, one solid-blue `primary` focus element for the subje
 only as a legend-explained marker or callout, green for shared, gray for external, purple for planned.
 Badges and step numbers are for sequence and process steps only; a sequence's subject lifeline is
 the one `primary` lifeline. Components are visual, not facts: explain every colour, chip colour
-and badge in the legend (`meta.legend`), and see "Visual hierarchy" in `principles.md`.
+and badge in the legend (`meta.legend`), and see "Visual hierarchy" in `references/principles.md`.
 
 Layout hints that follow from the engine: `nested` and `layered` place children in declaration
 order on a grid (`layout.columns`), so order siblings by flow; `statechart` ranks nodes by their
 edges inside each group, which suits flow diagrams with zones (use `direction` `LR` or `TB`);
 `lanes` with `direction: TB` draws vertical swimlanes. Edge labels widen the gaps between ranks:
 put a protocol or role in a chip and keep labels for the exchange itself. The checker warns above
-12 nodes in one view; richness comes from zones and chips rather than more boxes.
+12 nodes in one view: consider splitting, or explain the warning when the question needs the
+elements. Richness comes from zones and chips rather than more boxes.
 
 ### Meaningful legends and languages
 
@@ -235,15 +242,12 @@ consistency and other human judgments still need review.
 
 Fix errors in the model, re-render, and run check again on the new SVG with the
 same language. Fix warnings or record element-specific reasons; a reason does not
-turn an exit 1 into 0. After automated checks, make previews and follow `review.md`.
+turn an exit 1 into 0. After automated checks, make previews and follow `references/review.md`.
 The CLI's `visual_review: pending` never means that somebody looked at the image.
 
-## 6. Fallback
+## 6. When the renderer cannot run
 
-If the renderer cannot run, report the missing dependency and keep the model.
-A hand-written SVG is a fallback, not a validated renderer output. Use live text,
-explicit background, title/description, local markers and conservative text space;
-then measure and inspect it with available tools. The static checker requires
-Archatlas ownership metadata and refuses to claim complete checks for arbitrary
-SVG/CSS/transforms. If no rasteriser is available, say “preview not produced” and
-“visual review pending”.
+Report the missing dependency and keep the model. Place the figure by hand as
+`references/hand-authored-svg.md` describes; the checker needs the same required
+dependencies, so report that automatic checks did not run. If no rasteriser is
+available, say “preview not produced” and “visual review pending”.

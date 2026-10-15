@@ -7,18 +7,18 @@ visual review (can the reader understand it?). Automated success proves neither.
 
 Model and semantic review → render → check the emitted SVG → fix the model →
 re-render/re-check → preview and visual review. Review the exact final bytes.
-From the skill folder, with its dependencies installed:
+Paths are relative to the skill folder; `out/` is the output folder (see `SKILL.md`):
 
 ```sh
 scripts/atlas render out/model.json -o out/ --lang en
-scripts/atlas check out/diagram.svg --model out/model.json --lang en --fail-on warning --report out/findings.json
+scripts/atlas check out/diagram.svg --model out/model.json --lang en --report out/findings.json
 scripts/atlas check out/diagram.svg --model out/model.json --lang en --browser --report out/browser.findings.json
 scripts/atlas preview out/diagram.svg -o out/preview.png
 scripts/atlas sheet out/*.svg -o out/sheet.jpg
 ```
 
 Browser checking needs the optional Playwright dependency and Chromium; previews
-need CairoSVG/Cairo. Installation and exact output/exit-code rules: `rendering.md`.
+need CairoSVG/Cairo. Installation and exact output/exit-code rules: `references/rendering.md`.
 `check --lang` does not translate an existing SVG. Missing tools are not a pass.
 
 ## 2. Semantic review
@@ -33,7 +33,9 @@ need CairoSVG/Cairo. Installation and exact output/exit-code rules: `rendering.m
 - Revisions: compare the labels before and after. Every user-written label is still present, in its
   original language (mixed English/Chinese stays mixed); none was deleted or translated to fit.
 - Repository diagrams: every non-verified claim carries `evidence.status` in the model and is visibly
-  marked (dashed edge, doc-only mark) on the figure.
+  marked on the figure (a dashed edge where line style has no formal meaning, otherwise an evidence
+  tag or legend mark; a doc-only mark). The notation's own line styles, arrowheads and cardinalities
+  are still present.
 - Companion views: does each one answer its own question in its own notation (for example F2 marks
   trust boundaries and the data crossing them), rather than regrouping the main view?
 - Does the chosen notation require information this template cannot express?
@@ -49,10 +51,14 @@ Neither mode guarantees glyph identity or absence of tofu: inspect CJK text. In 
 (`measured_with: estimate`) never state that Chinese/CJK text displays correctly unless you viewed a
 preview rendered with a CJK-capable font.
 
-Fix errors. Fix or explain warnings per element; model `allow` entries keep
-reasons but do not suppress errors or alter the failure threshold. Exit 0 at the
-default error threshold may still include warnings. Run `--fail-on warning` when
-the acceptance condition requires none. A valid source model and matching
+Errors are a hard gate. Fix a warning that misleads or hides text; explain the
+others per element with their impact (model `allow` entries keep reasons but do
+not suppress errors or alter the failure threshold). Exit 0 at the default error
+threshold may still include warnings; add `--fail-on warning` only when the
+acceptance condition requires none. Do not redraw only to remove an unavoidable
+crossing. Stop when the meaning is right, labels are readable at the intended
+size, errors are fixed and the remaining warnings are explained, or when the user
+asks to stop. A valid source model and matching
 node/edge identities do not prove that every visible word or relationship is correct.
 
 ## 4. Visual review

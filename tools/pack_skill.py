@@ -7,6 +7,7 @@ any host's skills directory:
   - scripts/lib/archatlas/  the renderer library (pure Python), used by
     scripts/atlas when archatlas is not pip-installed
   - LICENSE, NOTICE, THIRD_PARTY_NOTICES.md
+Local state in the skill folder (a renderer venv, outputs, caches) is left out.
 Third-party Python packages (Pillow, fonttools, jsonschema) are not bundled;
 they are installed with `pip install -r scripts/requirements.txt`.
 
@@ -35,6 +36,9 @@ SKILL = ROOT / "skills" / "architecture-diagrams"
 LIBRARY = ROOT / "src" / "archatlas"
 LEGAL = ("LICENSE", "NOTICE", "THIRD_PARTY_NOTICES.md")
 IGNORE = shutil.ignore_patterns("__pycache__", "*.pyc", ".DS_Store")
+# Local state a skill folder gathers in use (renderer venv, outputs, tool caches)
+# is never release content.
+LOCAL_STATE = (".atlas-venv", ".venv", "out", ".pytest_cache", ".mypy_cache", ".ruff_cache")
 ZIP_DATE = (1980, 1, 1, 0, 0, 0)
 NAME_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 # User-level skills directories per host, relative to the user's home.
@@ -81,9 +85,9 @@ def check_skill(folder: Path) -> list[str]:
             errors.append(f"SKILL.md references missing {ref}")
     sel = folder / "references" / "selection.md"
     if sel.is_file():
-        for ref in sorted(set(re.findall(r"`(types/[^`\s<>]+\.md)`", sel.read_text(encoding="utf-8")))):
-            if not (folder / "references" / ref).is_file():
-                warnings.append(f"selection.md points to missing references/{ref}")
+        for ref in sorted(set(re.findall(r"`(references/types/[^`\s<>]+\.md)`", sel.read_text(encoding="utf-8")))):
+            if not (folder / ref).is_file():
+                warnings.append(f"selection.md points to missing {ref}")
     atlas = folder / "scripts" / "atlas"
     if atlas.exists() and not os.access(atlas, os.X_OK):
         errors.append("scripts/atlas is not executable")
@@ -94,7 +98,8 @@ def check_skill(folder: Path) -> list[str]:
 
 def stage(dest: Path) -> Path:
     folder = dest / SKILL.name
-    shutil.copytree(SKILL, folder, ignore=shutil.ignore_patterns("__pycache__", "*.pyc", ".DS_Store", "lib"))
+    shutil.copytree(SKILL, folder, ignore=shutil.ignore_patterns(
+        "__pycache__", "*.pyc", ".DS_Store", "lib", *LOCAL_STATE))
     shutil.copytree(LIBRARY, folder / "scripts" / "lib" / LIBRARY.name, ignore=IGNORE)
     for name in LEGAL:
         src = ROOT / name
