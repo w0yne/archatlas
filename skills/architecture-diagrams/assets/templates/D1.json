@@ -14,8 +14,8 @@
         "dir": "--"
       },
       {
-        "label": "Entity at the centre of the model",
-        "style": "highlight",
+        "label": "Subject of this view",
+        "style": "primary",
         "symbol": "box"
       }
     ]
@@ -44,7 +44,7 @@
       "id": "order",
       "kind": "entity",
       "label": "Order",
-      "style": "highlight",
+      "style": "primary",
       "chips": [
         "Sales"
       ],

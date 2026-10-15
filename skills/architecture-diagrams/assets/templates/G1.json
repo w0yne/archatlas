@@ -13,8 +13,8 @@
         "symbol": "box"
       },
       {
-        "label": "Focus service",
-        "style": "highlight",
+        "label": "Subject of this view",
+        "style": "primary",
         "symbol": "box"
       },
       {
@@ -26,10 +26,6 @@
         "label": "Synchronous call",
         "kind": "call",
         "dir": "->"
-      },
-      {
-        "label": "Numbers 1–2: order write path",
-        "symbol": "box"
       }
     ],
     "legend_mode": "replace"
@@ -68,11 +64,10 @@
       "kind": "component",
       "label": "Order API",
       "parent": "app",
-      "style": "highlight",
+      "style": "primary",
       "chips": [
         "2 replicas"
-      ],
-      "badge": 1
+      ]
     },
     {
       "id": "bot",
@@ -91,8 +86,7 @@
       "chips": [
         "SQL",
         "Writes"
-      ],
-      "badge": 2
+      ]
     },
     {
       "id": "rep",

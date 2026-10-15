@@ -9,8 +9,8 @@
     "subtitle": "Building blocks grouped by responsibility",
     "legend": [
       {
-        "label": "Block that carries the main flow",
-        "style": "highlight",
+        "label": "Subject of this view",
+        "style": "primary",
         "symbol": "box"
       },
       {
@@ -56,8 +56,7 @@
       "kind": "component",
       "label": "Checkout",
       "parent": "g_sell",
-      "sub": "Turns a cart into an order",
-      "style": "highlight"
+      "sub": "Turns a cart into an order"
     },
     {
       "id": "ord",
@@ -65,7 +64,7 @@
       "label": "Order management",
       "parent": "g_ful",
       "sub": "Order lifecycle",
-      "style": "highlight"
+      "style": "primary"
     },
     {
       "id": "stock",
@@ -86,8 +85,7 @@
       "kind": "component",
       "label": "Payment handling",
       "parent": "g_pay",
-      "sub": "Charges and refunds",
-      "style": "highlight"
+      "sub": "Charges and refunds"
     },
     {
       "id": "inv",

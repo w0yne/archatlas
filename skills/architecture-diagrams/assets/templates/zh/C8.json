@@ -26,6 +26,5 @@
   "Event publisher": "事件发布器",
   "Queue": "队列",
   "may use": "可使用",
-  "Allowed: upper layer uses the one below": "允许：上层使用下一层",
-  "Main path of placing an order": "下单的主路径"
+  "Allowed: upper layer uses the one below": "允许：上层使用下一层"
 }

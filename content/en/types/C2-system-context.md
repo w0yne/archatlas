@@ -116,7 +116,7 @@ It answers: *what is this system, who uses it, and which other systems does it d
 
 ## Template {#template}
 <!-- skill: keep (≤3 lines) -->
-Model template: `assets/templates/C2.json` · Layout template: `statechart` · the system is one `system` node with style `highlight` inside a `boundary` group (with sibling systems of the same platform), `person` nodes on the left and `external` nodes on the right are ranked by their edges; short `sub` descriptions, chips for role, and `edges` with intent labels and no technology field.
+Model template: `assets/templates/C2.json` · Layout template: `statechart` · the system is one `system` node with style `primary` inside a `boundary` group (with sibling systems of the same platform), `person` nodes on the left and `external` nodes on the right are ranked by their edges; short `sub` descriptions, chips for role, and `edges` with intent labels and no technology field.
 
 ## Sources {#sources}
 <!-- skill: omit -->
@@ -143,4 +143,4 @@ Model template: `assets/templates/C2.json` · Layout template: `statechart` · t
 ## Sample {#sample}
 <!-- skill: path only -->
 ![C2 sample: system context of an online shop with people and external systems](/samples/C2-system-context.svg)
-*System context of the online shop. Inside the dashed platform boundary are the online shop (the subject, highlighted), the support chatbot and the back office; outside are three people (customer, support agent, shop admin) on the left and four external systems on the right (payment provider, carrier, email service, language model service). Each element has a one-line description, and arrows are labelled with the exchange; the email arrow is asynchronous.*
+*System context of the online shop. Inside the dashed platform boundary are the online shop (the subject, the dark card), the support chatbot and the back office; outside are three people (customer, support agent, shop admin) on the left and four external systems on the right (payment provider, carrier, email service, language model service). Each element has a one-line description, and arrows are labelled with the exchange; the email arrow is asynchronous.*

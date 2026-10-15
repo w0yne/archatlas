@@ -24,7 +24,5 @@
   "Message queue": "消息队列",
   "Monitoring": "监控",
   "Alerts": "告警",
-  "Proposed, not yet built": "拟议，尚未建设",
-  "Request path": "请求路径",
-  "Numbers 1–2: write path": "编号 1–2：写入路径"
+  "Request path": "请求路径"
 }

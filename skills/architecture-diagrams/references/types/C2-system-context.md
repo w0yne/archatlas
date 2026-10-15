@@ -81,7 +81,7 @@ It answers: *what is this system, who uses it, and which other systems does it d
 5. Arrows mean "who calls whom" or "which data flows"; as-is or to-be? (who calls whom; as-is, planned links marked in the legend)
 
 ## Template
-Model template: `assets/templates/C2.json` · Layout template: `statechart` · the system is one `system` node with style `highlight` inside a `boundary` group (with sibling systems of the same platform), `person` nodes on the left and `external` nodes on the right are ranked by their edges; short `sub` descriptions, chips for role, and `edges` with intent labels and no technology field.
+Model template: `assets/templates/C2.json` · Layout template: `statechart` · the system is one `system` node with style `primary` inside a `boundary` group (with sibling systems of the same platform), `person` nodes on the left and `external` nodes on the right are ranked by their edges; short `sub` descriptions, chips for role, and `edges` with intent labels and no technology field.
 
 ## Sample
 Figure: `samples/C2-system-context.svg` (published with the site)

@@ -17,7 +17,7 @@ formal: {kind: standard, ref: 'OMG UML 2.5.1 Deployments (nodes, execution envir
 neighbours: [C3, C8, G2, G3, G4, H2, I1]
 status: draft
 translationOf: en/types/G1-deployment-diagram.md
-sourceRev: 61fe367
+sourceRev: 9065169
 reviewed: false
 ---
 
@@ -128,7 +128,7 @@ reviewed: false
 
 ## 模板 {#template}
 <!-- skill: keep (≤3 lines) -->
-模型模板：`assets/templates/G1.json` · 布局模板：`statechart` · 承载网段成为 `boundary` 分组（集群、公共子网、应用子网、托管数据服务），软件实例成为 `component` 节点（重点实例用 `highlight` 样式），数据服务成为 `store` 节点，外部节点使用 `external` 样式，标签（chips）标注协议或副本数，通信成为 `call` 或 `data` 边；`evidence.status` 记录声明（`doc-only`）与观察（`verified`）之别。
+模型模板：`assets/templates/G1.json` · 布局模板：`statechart` · 承载网段成为 `boundary` 分组（集群、公共子网、应用子网、托管数据服务），软件实例成为 `component` 节点（主体实例用 `primary` 样式），数据服务成为 `store` 节点，外部节点使用 `external` 样式，标签（chips）标注协议或副本数，通信成为 `call` 或 `data` 边；`evidence.status` 记录声明（`doc-only`）与观察（`verified`）之别。
 
 ## 来源 {#sources}
 <!-- skill: omit -->
@@ -142,4 +142,4 @@ reviewed: false
 ## 示例 {#sample}
 <!-- skill: path only -->
 ![G1 示例：网店的生产环境部署](/samples/G1-deployment-diagram.zh.svg)
-*网店生产环境部署（现状）：内容分发网络位于生产集群之前；集群的公共子网内是负载均衡器和商城前端，应用子网内是订单接口和机器人服务（副本数仅为示意）。订单接口写入托管数据服务中的主数据库、从只读副本读取，并调用外部支付服务商；机器人调用语言模型服务。标签标明协议或角色，编号 1–2 标出订单写入路径。*
+*网店生产环境部署（现状）：内容分发网络位于生产集群之前；集群的公共子网内是负载均衡器和商城前端，应用子网内是订单接口和机器人服务（副本数仅为示意）。订单接口写入托管数据服务中的主数据库、从只读副本读取，并调用外部支付服务商；机器人调用语言模型服务。标签标明协议或角色，订单接口是本图主体（深色卡片）。*

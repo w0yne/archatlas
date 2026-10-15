@@ -49,5 +49,5 @@
   "is paid by": "由…支付",
   "may lead to": "可能产生",
   "Cardinality at each end: minimum..maximum (* = many)": "两端基数：最小..最大（* 表示多）",
-  "Entity at the centre of the model": "模型中心的实体"
+  "Subject of this view": "本图主体"
 }

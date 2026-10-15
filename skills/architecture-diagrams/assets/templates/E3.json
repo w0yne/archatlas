@@ -9,11 +9,6 @@
     "subtitle": "Lifecycle of one order, transitions as event [guard] / effect",
     "legend": [
       {
-        "label": "Main path of a successful order",
-        "style": "highlight",
-        "symbol": "box"
-      },
-      {
         "label": "Transition: event [guard] / effect",
         "kind": "call",
         "dir": "->"
@@ -47,7 +42,6 @@
       "id": "paid",
       "kind": "state",
       "label": "Paid",
-      "style": "highlight",
       "chips": [
         "Stock reserved"
       ]
@@ -56,7 +50,6 @@
       "id": "shipped",
       "kind": "state",
       "label": "Shipped",
-      "style": "highlight",
       "chips": [
         "In transit"
       ]
@@ -65,7 +58,6 @@
       "id": "deliv",
       "kind": "state",
       "label": "Delivered",
-      "style": "highlight",
       "chips": [
         "Return window open"
       ]

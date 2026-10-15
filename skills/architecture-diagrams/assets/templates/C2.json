@@ -10,7 +10,7 @@
     "legend": [
       {
         "label": "Subject of this view",
-        "style": "highlight",
+        "style": "primary",
         "symbol": "box"
       },
       {
@@ -47,7 +47,7 @@
       "label": "Online shop",
       "parent": "g_shop",
       "sub": "Catalogue, cart, orders",
-      "style": "highlight",
+      "style": "primary",
       "chips": [
         "Core"
       ]

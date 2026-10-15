@@ -37,6 +37,6 @@
   "Card": "银行卡",
   "Parcel": "包裹",
   "Status": "状态",
-  "Block that carries the main flow": "承载主流程的构建块",
+  "Subject of this view": "本图主体",
   "Arrow: dependency, labelled with the operation": "箭头：依赖，标注操作"
 }

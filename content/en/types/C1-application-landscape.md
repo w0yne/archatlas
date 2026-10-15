@@ -146,4 +146,4 @@ Model template: `assets/templates/C1.json` · Layout template: `layered` · grou
 ## Sample {#sample}
 <!-- skill: path only -->
 ![C1 sample: application landscape of an online shop in four layers](/samples/C1-application-landscape.svg)
-*Application landscape of the online shop in four layers, each a tinted zone: channels (web storefront, mobile app, support chat widget), business applications (shop, back office, support chatbot), shared platform (identity, notifications, search) and external services (payment provider, carrier, email service). Chips name the access type or ownership, the dark card is the core application, amber marks what is new this year, and arrows between layers say what flows.*
+*Application landscape of the online shop in four layers, each a tinted zone: channels (web storefront, mobile app, support chat widget), business applications (shop, back office, support chatbot), shared platform (identity, notifications, search) and external services (payment provider, carrier, email service). Chips name the access type or ownership, the dark card is the subject (the shop), and arrows between layers say what flows.*

@@ -25,6 +25,7 @@
       "id": "app",
       "kind": "lifeline",
       "label": "Web app",
+      "style": "primary",
       "size_hint": {
         "width": 150
       }

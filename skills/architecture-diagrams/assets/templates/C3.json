@@ -9,8 +9,8 @@
     "subtitle": "What runs inside the shop and how requests flow",
     "legend": [
       {
-        "label": "Focus service",
-        "style": "highlight",
+        "label": "Subject of this view",
+        "style": "primary",
         "symbol": "box"
       },
       {
@@ -28,10 +28,6 @@
         "kind": "async",
         "dir": "->",
         "dashed": true
-      },
-      {
-        "label": "Numbers 1–4: path of an order",
-        "symbol": "box"
       }
     ],
     "legend_mode": "replace"
@@ -58,8 +54,7 @@
       "sub": "Catalogue and cart",
       "chips": [
         "Browser app"
-      ],
-      "badge": 1
+      ]
     },
     {
       "id": "mob",
@@ -79,8 +74,7 @@
       "sub": "Routes and limits",
       "chips": [
         "HTTPS"
-      ],
-      "badge": 2
+      ]
     },
     {
       "id": "api",
@@ -88,12 +82,11 @@
       "label": "Order service",
       "parent": "g_svc",
       "sub": "Places and tracks orders",
-      "style": "highlight",
+      "style": "primary",
       "chips": [
         "REST",
         "Stateless"
-      ],
-      "badge": 3
+      ]
     },
     {
       "id": "cat",
@@ -123,8 +116,7 @@
       "sub": "Orders and products",
       "chips": [
         "Relational"
-      ],
-      "badge": 4
+      ]
     },
     {
       "id": "idx",

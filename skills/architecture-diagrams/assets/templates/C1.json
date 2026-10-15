@@ -9,13 +9,8 @@
     "subtitle": "Who uses which application, and what each depends on",
     "legend": [
       {
-        "label": "Core application",
+        "label": "Subject of this view",
         "style": "primary",
-        "symbol": "box"
-      },
-      {
-        "label": "New this year",
-        "style": "highlight",
         "symbol": "box"
       },
       {
@@ -96,7 +91,6 @@
       "label": "Support chatbot",
       "parent": "g_app",
       "sub": "answers and hand-offs",
-      "style": "highlight",
       "chips": [
         "New"
       ]

@@ -23,6 +23,5 @@
   "close": "关闭",
   "cancel [before payment]": "取消 [支付前]",
   "cancel [before shipping] / refund": "取消 [发货前] / 退款",
-  "Main path of a successful order": "成功订单的主路径",
   "Transition: event [guard] / effect": "迁移：事件 [守卫] / 动作"
 }

@@ -17,7 +17,7 @@ formal: {kind: convention, ref: 'none for the picture; semantics: SEI layered st
 neighbours: [C4, C5, C7, G1, I2]
 status: draft
 translationOf: en/types/C8-layered-architecture.md
-sourceRev: 61fe367
+sourceRev: 9065169
 reviewed: false
 ---
 
@@ -164,4 +164,4 @@ reviewed: false
 ## 示例 {#sample}
 <!-- skill: path only -->
 ![C8 示例：单个容器内的分层架构及允许的依赖](/samples/C8-layered-architecture.zh.svg)
-*订单服务容器内部的分层架构，自上而下四个着色层：展示层（订单控制器、购物车控制器、回调入口）、应用层（下单用例、退款用例、订单查询）、领域层（订单、定价规则、库存策略）和数据访问层（订单仓储、支付网关客户端、事件发布器）。标注“可使用”的箭头是仅有的允许依赖，每条都指向下一层；琥珀色方块位于下单的主路径上。*
+*订单服务容器内部的分层架构，自上而下四个着色层：展示层（订单控制器、购物车控制器、回调入口）、应用层（下单用例、退款用例、订单查询）、领域层（订单、定价规则、库存策略）和数据访问层（订单仓储、支付网关客户端、事件发布器）。标注“可使用”的箭头是仅有的允许依赖，每条都指向下一层，没有突出单一主体。*

@@ -17,7 +17,7 @@ formal: {kind: method, ref: 'C4 model (Simon Brown), Level 1 System Context diag
 neighbours: [A3, A7, B4, C1, C3, C6, D2]
 status: draft
 translationOf: en/types/C2-system-context.md
-sourceRev: 61fe367
+sourceRev: 9065169
 reviewed: false
 ---
 
@@ -119,7 +119,7 @@ reviewed: false
 
 ## 模板 {#template}
 <!-- skill: keep (≤3 lines) -->
-模型模板：`assets/templates/C2.json` · 布局模板：`statechart` · 系统是 `boundary` 分组（含同一平台的其他系统）内样式为 `highlight` 的 `system` 节点，左侧 `person` 节点、右侧 `external` 节点按连线自动分层；`sub` 简短说明，标签（chips）标注角色，`edges` 带意图标签且没有技术字段。
+模型模板：`assets/templates/C2.json` · 布局模板：`statechart` · 系统是 `boundary` 分组（含同一平台的其他系统）内样式为 `primary` 的 `system` 节点，左侧 `person` 节点、右侧 `external` 节点按连线自动分层；`sub` 简短说明，标签（chips）标注角色，`edges` 带意图标签且没有技术字段。
 
 ## 来源 {#sources}
 <!-- skill: omit -->
@@ -146,4 +146,4 @@ reviewed: false
 ## 示例图 {#sample}
 <!-- skill: path only -->
 ![C2 示例：网店的系统上下文，含人员和外部系统](/samples/C2-system-context.zh.svg)
-*网店的系统上下文。虚线平台边界内是网上商城（本图主体，高亮）、客服机器人和后台；边界外左侧是三类人员（顾客、客服人员、商城管理员），右侧是四个外部系统（支付服务商、承运商、邮件服务、语言模型服务）。每个元素带一行说明，箭头标注交换内容；邮件箭头是异步的。*
+*网店的系统上下文。虚线平台边界内是网上商城（本图主体，深色卡片）、客服机器人和后台；边界外左侧是三类人员（顾客、客服人员、商城管理员），右侧是四个外部系统（支付服务商、承运商、邮件服务、语言模型服务）。每个元素带一行说明，箭头标注交换内容；邮件箭头是异步的。*
