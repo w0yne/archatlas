@@ -17,7 +17,7 @@ formal: {kind: method, ref: 'Chen 1976; crow''s foot (Everest 1976), Barker, IDE
 neighbours: [D2, D3, E3, F3]
 status: draft
 translationOf: en/types/D1-entity-relationship.md
-sourceRev: 61fe367
+sourceRev: 9065169
 reviewed: false
 ---
 

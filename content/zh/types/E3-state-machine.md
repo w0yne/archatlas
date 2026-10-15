@@ -17,7 +17,7 @@ formal: {kind: standard, ref: OMG UML 2.5.1 state machines (behavioral and proto
 neighbours: [A5, D1, E1, E2]
 status: draft
 translationOf: en/types/E3-state-machine.md
-sourceRev: 61fe367
+sourceRev: 9065169
 reviewed: false
 ---
 
