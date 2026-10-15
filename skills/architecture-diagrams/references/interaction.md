@@ -1,19 +1,21 @@
 # Interaction: modes, brief, questions, decision log
 
 Read this in Step 0–3 of `SKILL.md`, and whenever you are unsure whether to ask or to decide.
+Read only the section you need: §1 modes, §2 asking which mode, §3 when autonomous mode still asks,
+§4 brief, §5 question bank, §6 vague words, §7 answer first, §8 decision log, §9 fallbacks.
 
 ## 1. Two modes, one workflow
 
 | | Autonomous | Guided |
 |---|---|---|
 | Brief | Infer from the request. Put assumptions at the top of the reply. | Ask the missing fields one question at a time. Each question carries a recommended default ("I suggest X because Y — OK?"). |
-| Type choice | Pick the best fit, name one runner-up. | Ask the "First questions" of `selection.md` §1 (audience and purpose → question → scope → current or target), skipping any already answered, then recommend one or two types. |
-| Wireframe | Print it in the reply, then render in the same turn. | Print it and stop; render only after explicit approval. |
+| Type choice | Pick the best fit, name one runner-up. | Ask the "First questions" of `references/selection.md` §1 (audience and purpose → question → scope → current or target), skipping any already answered, then recommend one or two types. |
+| Wireframe | Print it before drawing, then draw in the same turn; no confirmation needed. | Print it and stop; draw only after explicit approval. |
 | Questions | Only when a wrong guess would change the meaning (see §3). | Also confirm inferred items (repository mode) and names. |
 | Ambiguous quality words | Restate as a concrete property and carry on as an assumption. | Ask which concrete property is meant. |
-| Revisions | Apply feedback, list what changed. | Same, and re-show the decision log. |
+| Revisions | Apply feedback, list what changed. Re-print the wireframe only if it changed. | Same, and re-show the decision log. |
 
-Both modes keep the same three gates: a one-paragraph brief, a text wireframe, and a self-review against `principles.md` before anything is shown.
+Both modes keep the same three gates: a one-paragraph brief, a text wireframe, and a self-review against `references/principles.md` before anything is shown.
 
 ## 2. Asking which mode (once)
 
@@ -56,11 +58,12 @@ Keep it to one paragraph in the reply. Update it when the user corrects somethin
 
 ## 5. Question bank (ask only the relevant ones, in this order)
 
-Each question comes with a recommendation. In guided mode, follow this checklist for every question:
-1. Ask exactly one question per message, with its recommended default. Never bundle questions ("I need two answers first" is two questions: ask one).
+Each question comes with a recommendation. In guided mode, follow this checklist for every clarification turn:
+1. Ask one consequential question, with its recommended default. Never bundle questions ("I need two answers first" is two questions: ask one).
 2. Stop and wait for the answer; do not add a second question, a draft or a render to that message.
 3. Record the answer in the decision log, then ask the next question or show the wireframe.
-**Budget:** skip anything the request, the chosen type or an earlier answer already settles. Ask the type-specific questions first, then the generic ones below; at most five questions before the wireframe. Fold the rest into the wireframe as stated defaults the user can correct.
+Messages that are not clarification turns (the wireframe for approval, the final delivery) need not ask a question.
+**Budget:** skip anything the request, the chosen type or an earlier answer already settles. Ask the type-specific questions first, then the generic ones below; usually no more than five before the wireframe. Fold the rest into the wireframe as stated defaults the user can correct.
 1. **Audience and purpose** — business, technical, mixed? Review draft or final handout?
 2. **Current or target state?** — or both as two figures.
 3. **Type** — one or two candidates from the catalogue, with the reason for each.
@@ -73,7 +76,7 @@ Type-specific questions live in `references/types/<code>-<slug>.md` (section "Gu
 
 ## 6. Plain-language restatements for vague words
 
-When a quality word appears, restate it and confirm (guided) or assume it (autonomous):
+When a quality word appears, restate it as a concrete property: guided asks which property is meant; autonomous states it as an assumption and proceeds without waiting:
 - "intuitive / clearer" → structure is visible: what each system contains, how pieces connect, who can reach what; not simpler wording.
 - "simple" → fewer elements at one level of abstraction, not fewer facts.
 - "detailed / complete" → which extra layer of detail, for which audience?

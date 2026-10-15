@@ -9,9 +9,9 @@
 | HTML wrapper | `HTMLExporter` Python API | Simple responsive SVG plus caption; no HTML CLI command and no print-pagination engine. |
 | draw.io / PowerPoint | Not implemented | No CLI exporter, import or lossless round trip. A bitmap is not native editable shapes. |
 
-Installation, CLI options, reports and the fixing loop are in `rendering.md`.
-Install from the reviewed checkout or bundle; the project is not yet published
-as a PyPI package. Renderer, preview and browser-check dependencies are distinct.
+Installation, CLI options, reports and the fixing loop are in `references/rendering.md`.
+Install from the reviewed checkout or bundle; no PyPI package is needed or endorsed.
+Renderer, preview and browser-check dependencies are distinct.
 An unavailable optional dependency produces a tool error; it does not create a preview.
 
 ## HTML API example
