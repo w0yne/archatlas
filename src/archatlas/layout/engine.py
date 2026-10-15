@@ -190,16 +190,23 @@ class Layout:
             **{f"attribute-{i}": value for i, value in enumerate(node.get("attributes", []))}}
         return width, height
 
-    def arrange(self, ids, vertical=False, columns=None):
+    def available_width(self, parent=None):
+        profile = self.model["layout"].get("profile", "doc")
+        width = 1440 if profile in ("slide", "slide-16x9") else self.document_width
+        depth = len(self.ancestors(parent)) if parent else 0
+        return width - 80 - 2 * self.pad * depth
+
+    def arrange(self, ids, vertical=False, columns=None, parent=None):
         if not ids:
             return {}, (160, 64)
         cols = 1 if vertical else min(columns or self.model["layout"].get("columns", 3), len(ids))
-        limit = 1440 if self.model["layout"].get("profile") in ("slide", "slide-16x9") \
-            else self.document_width * self.spacing["wide_view_ratio"]
+        limit = self.available_width(parent)
+        if self.template not in ("nested", "layered", "statechart", "tree"):
+            limit += self.document_width * (self.spacing["wide_view_ratio"] - 1)
         while cols > 1:
             widths = [max(self.dimensions[id][0] for i, id in enumerate(ids) if i % cols == col)
                       for col in range(cols)]
-            if sum(widths) + (cols - 1) * self.gap + 80 + 2 * self.pad <= limit:
+            if sum(widths) + (cols - 1) * self.gap <= limit:
                 break
             cols -= 1
         rows = math.ceil(len(ids) / cols)
@@ -220,12 +227,13 @@ class Layout:
                 self.measure_group(child)
         group = self.groups[id]
         vertical = self.template == "lanes" and group["kind"] == "lane" and self.model["layout"].get("direction", "TB") == "TB"
-        if self.template in ("statechart", "tree"):
-            offsets = self.rank_positions(ids)
+        if self.template in ("statechart", "tree") or (
+                self.template == "er" and all(child in self.nodes for child in ids)):
+            offsets = self.entity_positions(ids, parent=id) if self.template == "er" else self.rank_positions(ids, parent=id)
             w = max((x + self.dimensions[child][0] for child, (x, y) in offsets.items()), default=160)
             h = max((y + self.dimensions[child][1] for child, (x, y) in offsets.items()), default=64)
         else:
-            offsets, (w, h) = self.arrange(ids, vertical=vertical)
+            offsets, (w, h) = self.arrange(ids, vertical=vertical, parent=id)
         title_width = self.metrics.width(group["title"], 16, weight=700)
         w = max(w, min(title_width, 700), self.metrics.required_width(group["title"], 16, weight=700))
         title = self.metrics.wrap(group["title"], w, 16, weight=700)
@@ -241,11 +249,13 @@ class Layout:
             box = Box(id, x, y, w, h, "group", item["kind"], style, item.get("parent", ""),
                       item.get("dashed", item["kind"] == "boundary"))
             self.scene.boxes.append(box)
+            side_header = getattr(self, "lane_header_width", 0)
             title = text_box(self.metrics, id + "-title", item["title"],
-                             x + self.pad, y + 12, w - 2 * self.pad, 16, id, "group-title")
+                             x + self.pad, y + 12, (side_header or w) - 2 * self.pad, 16, id, "group-title")
             box.tint = item.get("tint", {"shared": "tech", "planned": "data", "external": "neutral",
                                         "highlight": "biz"}.get(style, "app"))
             box.band, box.header_height = item.get("band", True), title.h + 24
+            box.header_width = side_header
             self.scene.texts.append(title)
             for child, (dx, dy) in self.offsets[id].items():
                 self.place(child, x + dx, y + dy)
@@ -312,6 +322,8 @@ class Layout:
                     self.measure_group(id)
         if self.template in ("tree", "statechart"):
             offsets = self.rank_positions(roots)
+        elif self.template == "er" and not self.groups:
+            offsets = self.entity_positions(roots)
         elif self.template != "lanes":
             vertical = self.template == "layered" or \
                 (self.template == "lanes" and self.model["layout"].get("direction") == "LR") or \
@@ -323,6 +335,37 @@ class Layout:
             self.place(id, 40 + x, self.top + y)
         self.connect()
 
+    def entity_positions(self, ids, parent=None):
+        """Keep independent relationship clusters together in the entity grid."""
+        neighbours = {id: set() for id in ids}
+        for a, b in self.projected_edges(ids):
+            neighbours[a].add(b)
+            neighbours[b].add(a)
+        components, remaining = [], set(ids)
+        for id in ids:
+            if id not in remaining:
+                continue
+            pending, component = [id], set()
+            while pending:
+                member = pending.pop()
+                if member not in remaining:
+                    continue
+                remaining.remove(member)
+                component.add(member)
+                pending.extend(neighbours[member] & remaining)
+            components.append([id for id in ids if id in component])
+        result, top = {}, 0
+        for component in components:
+            offsets, (width, height) = self.arrange(component,
+                vertical=self.model["layout"].get("direction") == "TB", parent=parent)
+            row_widths = {}
+            for id, (x, y) in offsets.items():
+                row_widths[y] = max(row_widths.get(y, 0), x + self.dimensions[id][0])
+            for id, (x, y) in offsets.items():
+                result[id] = x + (width - row_widths[y]) / 2, top + y
+            top += height + self.rank_gap
+        return result
+
     def lane_positions(self):
         """Use one global time axis, with independent cross-axis lane packing."""
         ids = list(self.nodes)
@@ -330,7 +373,10 @@ class Layout:
                             {id: n["rank"] for id, n in self.nodes.items() if "rank" in n})
         horizontal = self.model["layout"].get("direction", "TB") == "LR"
         axis, cross_axis = (0, 1) if horizontal else (1, 0)
-        axis_padding = self.pad if horizontal else self.header
+        self.lane_header_width = max([self.header] + [
+            self.metrics.width(group["title"], 16, weight=700) + 2 * self.pad
+            for group in self.groups.values()]) if horizontal else 0
+        axis_padding = self.lane_header_width if horizontal else self.header
         maximum_depth = max((len(self.ancestors(id)) - 1 for id in ids), default=0)
         flow, positions = 0, {}
         for layer in layers:
@@ -351,7 +397,7 @@ class Layout:
             bands = [[node for node in layer if node in direct] for layer in layers]
             cross_span = max((sum(self.dimensions[n][cross_axis] for n in band) +
                               max(0, len(band) - 1) * self.gap for band in bands), default=0)
-            inset = self.header if horizontal else self.pad
+            inset = self.pad
             for band in bands:
                 used = sum(self.dimensions[n][cross_axis] for n in band) + max(0, len(band) - 1) * self.gap
                 cursor = inset + (cross_span - used) / 2
@@ -398,14 +444,55 @@ class Layout:
                 edges.append((source, target))
         return edges
 
-    def rank_positions(self, ids):
+    def rank_positions(self, ids, parent=None):
         edges = self.projected_edges(ids)
         layers = rank_graph(ids, edges, {id: self.items[id]["rank"] for id in ids if "rank" in self.items[id]})
         ranks = {id: index for index, layer in enumerate(layers) for id in layer}
         if self.template == "tree" and any(ranks[a] >= ranks[b] for a, b in edges):
             raise ModelError("tree requires an acyclic graph; use statechart for cycles")
         vertical = self.model["layout"].get("direction") == "TB"
+        limit = self.available_width(parent)
+        if vertical:
+            # A wide rank continues on the next row in its original reading order.
+            wrapped = []
+            for layer in layers:
+                row, used = [], 0
+                for id in layer:
+                    width = self.dimensions[id][0]
+                    if row and used + self.gap + width > limit:
+                        wrapped.append(row)
+                        row, used = [], 0
+                    used += (self.gap if row else 0) + width
+                    row.append(id)
+                if row:
+                    wrapped.append(row)
+            layers = wrapped
         flow_axis, cross_axis = (1, 0) if vertical else (0, 1)
+        if not vertical:
+            rows, row, used = [], [], 0
+            for layer in layers:
+                width = max((self.dimensions[id][0] for id in layer), default=0)
+                if row and used + self.rank_gap + width > limit:
+                    rows.append(row)
+                    row, used = [], 0
+                used += (self.rank_gap if row else 0) + width
+                row.append(layer)
+            if row:
+                rows.append(row)
+            result, y = {}, 0
+            for row in rows:
+                heights = [sum(self.dimensions[id][1] for id in layer) +
+                           max(0, len(layer) - 1) * self.gap for layer in row]
+                height, x = max(heights, default=0), 0
+                for layer, used in zip(row, heights):
+                    width = max((self.dimensions[id][0] for id in layer), default=0)
+                    cross = y + (height - used) / 2
+                    for id in layer:
+                        result[id] = (x + (width - self.dimensions[id][0]) / 2, cross)
+                        cross += self.dimensions[id][1] + self.gap
+                    x += width + self.rank_gap
+                y += height + self.rank_gap
+            return result
         largest_cross = max((sum(self.dimensions[id][cross_axis] for id in layer) +
                              max(0, len(layer) - 1) * self.gap for layer in layers), default=0)
         result, flow = {}, 0
@@ -415,7 +502,7 @@ class Layout:
             span = max((self.dimensions[id][flow_axis] for id in layer), default=0)
             for id in layer:
                 position = (flow + (span - self.dimensions[id][flow_axis]) / 2, cross)
-                result[id] = position[::-1] if vertical else position
+                result[id] = position[::-1]
                 cross += self.dimensions[id][cross_axis] + self.gap
             flow += span + self.rank_gap
         return result
@@ -441,6 +528,11 @@ class Layout:
                           and t.owner not in (source.id, target.id)]
             obstacles += [t.rect for t in self.scene.texts
                           if t.owner in boxes and boxes[t.owner].kind == "actor"]
+            # Ancestor interiors remain traversable, but their reserved title
+            # strip is never a route corridor. Unrelated zones are already solid.
+            obstacles += [b.header_rect for b in self.scene.boxes
+                          if b.role == "group"
+                          and b.id not in (source.id, target.id) and b.header_height]
             same = [e for e in edges if (e["from"], e["to"]) == (edge["from"], edge["to"])]
             slot = sum(1 for e in edges[:i] if (e["from"], e["to"]) == (edge["from"], edge["to"]))
             points = route(source.glyph_rect, target.glyph_rect, obstacles, from_port=edge.get("from_port", "auto"),
@@ -615,7 +707,7 @@ class Layout:
             rect = (x - width / 2 - 5, y - 4, width + 10, height + 8)
             crossed = any(segment_hits_rect(a, b, rect, padding=2) for edge in self.scene.edges if edge.id != id
                           and edge.kind not in ("lifeline", "legend") for a, b in zip(edge.points, edge.points[1:]))
-            if x - width / 2 > 0 and y > 8 and not crossed and not any(intersects(rect, b, 3) for b in occupied):
+            if rect[0] >= 8 and rect[1] >= 8 and not crossed and not any(intersects(rect, b, 3) for b in occupied):
                 chosen = x, y
                 break
         if chosen is None:
@@ -632,12 +724,18 @@ class Layout:
             self.dimensions[node["id"]] = self.measure_node(node)
         width = max(w for w, _ in self.dimensions.values())
         height = max(h for _, h in self.dimensions.values())
+        # Message labels can wrap vertically; a long label must not inflate
+        # every participant gap in a sequence.
+        gap = self.gap
+        if len(nodes) * width + (len(nodes) - 1) * gap > self.available_width():
+            gap = max(self.spacing["node_gap"],
+                      min(gap, (self.available_width() - len(nodes) * width) / max(1, len(nodes) - 1)))
         centers = {}
         for i, node in enumerate(nodes):
             id = node["id"]
             self.dimensions[id] = (width, height)
-            self.place(id, 40 + i * (width + self.gap), self.top)
-            centers[id] = 40 + i * (width + self.gap) + width / 2
+            self.place(id, 40 + i * (width + gap), self.top)
+            centers[id] = 40 + i * (width + gap) + width / 2
         edges = sorted(enumerate(self.model.get("edges", [])), key=lambda pair: pair[1].get("step", pair[0] + 1))
         frames = sorted(enumerate(self.model.get("frames", [])),
                         key=lambda pair: (pair[1]["from_step"], -pair[1]["to_step"], pair[0]))
@@ -706,7 +804,9 @@ class Layout:
                 max((child["bottom"] + 10 for child in frame_info.values() if child["parent"] is info), default=0))
         self.scene.boxes = [Box(info["frame"]["id"], info["left"], info["top"], info["right"] - info["left"],
             info["bottom"] - info["top"], "group", "frame",
-            parent=info["parent"]["frame"]["id"] if info["parent"] else "") for info in frame_info.values()] + self.scene.boxes
+            parent=info["parent"]["frame"]["id"] if info["parent"] else "",
+            header_height=info["heading"].y + info["heading"].h - info["top"] + 8)
+            for info in frame_info.values()] + self.scene.boxes
         for i, edge in edges:
             id, step = edge.get("id", f"edge-{i + 1}"), edge.get("step", i + 1)
             y, a, b = ys[step], centers[edge["from"]], centers[edge["to"]]
@@ -729,6 +829,8 @@ class Layout:
         gutters = [text.rect for text in self.scene.texts if text.role in ("group-title", "operand-guard")]
         gutters += [(info["left"], text.y, info["right"] - info["left"], text.h)
                     for rows in bands.values() for info, text, _ in rows]
+        gutters += [(box.x, box.y, box.w, box.header_height)
+                    for box in self.scene.boxes if box.role == "group" and box.header_height]
         gutters += [box.rect for box in self.scene.boxes if box.role in ("label-bg", "edge-badge")]
         message_levels = list(ys.values()) + [ys[edge.get("step", i + 1)] + 24
                                              for i, edge in edges if edge["from"] == edge["to"]]
@@ -852,7 +954,9 @@ class Layout:
                     kind=entry.get("node_kind") or "component", style=entry.get("style", "peer"),
                     dashed=entry.get("dashed", False), shape=entry.get("shape", "card"),
                     tint=entry.get("tint", "app"), band=entry.get("band", True),
-                    header_height=8 if symbol == "zone" else 0, event_type=entry.get("event_type", "")))
+                    header_height=8 if symbol == "zone" else 0,
+                    header_width=8 if entry.get("band_axis") == "x" else 0,
+                    event_type=entry.get("event_type", "")))
                 if symbol == "badge":
                     scene.texts.append(text_box(self.metrics, id + "-text", str(entry["badge"]), gx + glyph_w / 2,
                         gy + (glyph_h - 15.4) / 2, glyph_w, 11, id, "badge-text", "middle", entry.get("style", "highlight")))
@@ -873,6 +977,15 @@ class Layout:
         scene.height = 810 if profile in ("slide", "slide-16x9") else max(300, legend_bottom + 40)
         if profile in ("doc", "doc-1120xN") and scene.width > self.document_width * self.spacing["wide_view_ratio"]:
             scene.warnings.append({"rule": "wide-view", "message": "Content exceeds the theme's wide-view limit; split the view or configure the target width"})
+        if self.template == "sequence":
+            content_width = right + 40
+            target_width = 1440 if profile in ("slide", "slide-16x9") else self.document_width
+            scale = min(1, target_width / content_width)
+            smallest = min((t.size for t in scene.texts if t.role != "legend"), default=12) * scale
+            if smallest < 11:
+                scene.warnings.append({"rule": "scaled-text-too-small",
+                    "message": f"At target width {target_width:g}, sequence text would be {smallest:.1f}px "
+                               "(minimum 11px); keep native size or split the sequence into related views"})
         for text in scene.texts:
             text.runs = [self.metrics.runs(line, weight=text.weight) for line in text.lines]
             text.line_widths = [self.metrics.width(line, text.size, weight=text.weight) for line in text.lines]

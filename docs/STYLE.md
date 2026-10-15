@@ -64,7 +64,7 @@ than silently cutting words.
 | Asset | Node `shape`: `card`, `database`, `document`, `queue`, or `callout`. Asset cap token: 12. Defaults: `store` → cylinder, `queue` → queue, `document` → folded document. `shape: "card"` can retain a rectangular store. |
 | Callout | `note` / `callout` defaults to a callout card and `highlight` style. Use normal `label`, `sub`, chips and containment for a short explanation or example. |
 | Connector | Stroke 1.8; default peer line `#4B5563`, primary line `#2563EB`. Measured label pills separate text from the route. Direction, open/filled arrowheads and dashes follow the relationship notation. |
-| Legend | A light panel groups compact swatches and semantic labels. Use `meta.legend` or `meta.legend_labels` for precise meanings. An authored label with no encoding fields is a text note, not an invented line symbol. |
+| Legend | A light panel groups compact swatches and semantic labels. Use `meta.legend` or `meta.legend_labels` for precise meanings. Each entry explains a visible encoding and includes its swatch. |
 
 `meta.subtitle`, node labels, `sub` and chip labels use the existing localization
 mechanism. Keep subtitles short and informative. Formal UML/BPMN symbols retain
@@ -80,7 +80,7 @@ This additive example keeps `archatlas: "0.1"`:
   "meta": {
     "type": "C3", "title": "Order processing", "lang": "en",
     "subtitle": "Runtime responsibilities",
-    "legend": [{"label": "1: Request entry point"}]
+    "legend": [{"label": "Request entry point", "symbol": "badge", "badge": 1}]
   },
   "layout": {"template": "nested", "direction": "LR", "profile": "doc"},
   "groups": [
@@ -139,14 +139,37 @@ to ordered. The legend states the numbering meaning even in `legend_mode:
 "replace"`. Node badges identify elements independently of link numbering.
 
 Automatic legends cover all visible node encodings, zone tints, header bands,
-dashed boundaries and badges, including a sole peer color. They reuse actual
+dashed boundaries, chips and badges, including a sole peer color. They reuse actual
 glyphs and paint, including asset silhouettes. Author entries override captions
 when their encoding fields match a visible encoding; typed entries with no
-match are omitted. A bare label or symbol-only entry is a text note. For precise
+match are omitted. Free prose without a matching encoding is omitted; keep
+general notes in the accompanying explanation. A symbol-only caption applies
+only when that symbol has one visible encoding; broader captions cannot replace
+more specific selectors. For precise
 zone captions, use `symbol: "zone"` with `tint`, `band` and/or `dashed`; badge
-entries can use `symbol: "badge"` and `badge`. The legacy `replace` mode still
-suppresses automatic style completion, so its author remains responsible for
-omitted meanings. Numbering meaning is always retained.
+entries can use `symbol: "badge"` and `badge`. The legacy `replace` mode overrides
+matching captions but now retains automatic completion of omitted encodings.
+Meanings with identical paint and geometry share one swatch; evidence and
+numbering explanations accompany that swatch rather than creating text-only rows.
+
+Layered and nested rows wrap at the selected profile width, including padding
+for enclosing groups. State ranks also wrap while preserving their reading
+order and relationships. A single indivisible label or group can still exceed
+the width; text is never reduced to make it fit. Sequence participants retain
+their input order, with smaller gaps when necessary and measured message wrapping.
+`scaled-text-too-small` warns when fitting the whole sequence to its target width
+would reduce its text below 11px. Use native-size viewing or split related views.
+A fragment that includes a message between the first and last participants
+correctly spans that whole interval.
+ER views keep disconnected relationship clusters in separate grid blocks and
+center partial rows, so an unrelated cluster cannot push a linked entity away.
+
+Horizontal swimlanes use a left header column so cross-lane messages can travel
+through the content area. Other zones retain their top header strips. Both are
+reserved routing obstacles, including headers of an endpoint's enclosing zone.
+`edge-crosses-header` detects crossings of the actual rendered band.
+`unexplained-encoding` checks visible paint and glyphs against captioned swatches,
+and detects captions that have no swatch.
 
 Routing checks retain detour, foldback, crossing and overlap findings. They
 also check inward endpoint directions and sum shared lengths across segments,
@@ -154,3 +177,6 @@ so splitting an overlap into short pieces does not hide it. Reports include
 per-edge length, endpoint distance, backtracking and bend count. A long monotone
 relationship can still be a placement problem even when its detour ratio is one;
 passing geometry QA does not certify the composition.
+The report also records `header_backtrack`, a geometric lower bound on reversal
+forced by a header separating the endpoints. Detour and foldback warnings
+discount only that unavoidable portion; total route length remains visible.

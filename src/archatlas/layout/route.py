@@ -208,7 +208,9 @@ def _candidates(a: Point, b: Point, start: str, end: str,
 def _visibility_route(a: Point, b: Point, start: str, end: str,
                       boxes: Sequence[Rect], previous: Sequence[tuple[Point, Point]],
                       xs: Sequence[float], ys: Sequence[float], *,
-                      allow_shared: bool = True) -> list[Point] | None:
+                      allow_shared: bool = True,
+                      max_cost: float = float("inf"),
+                      segment_cache: dict | None = None) -> list[Point] | None:
     """A* with arrival direction; never reverse to fake a port exit."""
     origin, goal = (xs.index(a[0]), ys.index(a[1])), (xs.index(b[0]), ys.index(b[1]))
     initial = (*origin, -1)
@@ -224,9 +226,14 @@ def _visibility_route(a: Point, b: Point, start: str, end: str,
         return abs(b[0] - p[0]) + abs(b[1] - p[1]) + _BEND * bends
 
     queue = [(remaining(a, -1), 0.0, initial)]
-    visibility: dict[tuple[Point, Point], bool] = {}
+    # Port searches share obstacles and previous strokes. Reuse the expensive
+    # segment geometry across those searches, but never across routing calls.
+    if segment_cache is None:
+        segment_cache = {}
     while queue:
-        _, cost, state = heappop(queue)
+        estimate, cost, state = heappop(queue)
+        if estimate > max_cost:
+            break
         if cost != distances[state]:
             continue
         ix, iy, incoming = state
@@ -250,14 +257,16 @@ def _visibility_route(a: Point, b: Point, start: str, end: str,
             if (jx, jy) == goal and not _outward(q, p, end):
                 continue
             edge = tuple(sorted((p, q)))
-            if edge not in visibility:
-                visibility[edge] = not any(_hits(p, q, box) for box in boxes)
-            if not visibility[edge]:
+            if edge not in segment_cache:
+                clear = not any(_hits(p, q, box) for box in boxes)
+                shared = sum(_overlap(p, q, c, d) for c, d in previous) if clear else 0
+                crossings = sum(_crosses(p, q, c, d) for c, d in previous) if clear else 0
+                segment_cache[edge] = clear, shared, crossings
+            clear, shared, crossings = segment_cache[edge]
+            if not clear:
                 continue
-            shared = sum(_overlap(p, q, c, d) for c, d in previous)
             if shared > 0 and not allow_shared:
                 continue
-            crossings = sum(_crosses(p, q, c, d) for c, d in previous)
             # A grid vertex may split a proper crossing across two graph edges.
             if incoming != -1 and incoming // 2 == axis:
                 for c, d in previous:
@@ -271,7 +280,7 @@ def _visibility_route(a: Point, b: Point, start: str, end: str,
             following = (jx, jy, direction)
             next_cost = cost + extra
             estimate = next_cost + remaining(q, direction)
-            if next_cost < distances.get(following, float("inf")):
+            if estimate <= max_cost and next_cost < distances.get(following, float("inf")):
                 distances[following] = next_cost
                 parents[following] = (ix, iy, incoming)
                 heappush(queue, (estimate, next_cost, following))
@@ -403,20 +412,39 @@ def route(
                 if not any(_hits(p, q, box) for p, q in zip(points, points[1:]) for box in boxes):
                     valid.append(points)
         separate = [points for points in valid if not _rank(points, old_segments)[0]]
+        segment_cache = {}
         if separate:
-            return min(separate, key=lambda points: _rank(points, old_segments))
+            best = min(separate, key=lambda points: _rank(points, old_segments))
+            direct = abs(best[-1][0] - best[0][0]) + abs(best[-1][1] - best[0][1])
+            # Simple candidates can miss a shorter multi-bend path through zone
+            # gaps, or a clear corridor around an existing stroke. Search those
+            # defects with the current score bounding the work.
+            crossing = any(_crosses(a, b, c, d) for a, b in zip(best, best[1:])
+                           for c, d in old_segments)
+            if crossing or (source != target and backtrack(best) > max(2 * _CLEARANCE, .05 * direct)):
+                for a, b, start, end, xs, ys in grids:
+                    points = _visibility_route(a, b, start, end, boxes, old_segments, xs, ys,
+                                               allow_shared=False, max_cost=_score(best, old_segments),
+                                               segment_cache=segment_cache)
+                    if points and _rank(points, old_segments) < _rank(best, old_segments):
+                        best = points
+            return best
         # A cheap candidate can share a short stroke while a clear path needs
         # another bend. Search for that path before accepting ambiguous overlap.
+        bound = float("inf")
         for a, b, start, end, xs, ys in grids:
             points = _visibility_route(a, b, start, end, boxes, old_segments, xs, ys,
-                                       allow_shared=False)
+                                       allow_shared=False, max_cost=bound,
+                                       segment_cache=segment_cache)
             if points and not _rank(points, old_segments)[0]:
                 separate.append(points)
+                bound = min(bound, _score(points, old_segments))
         if separate:
             return min(separate, key=lambda points: _rank(points, old_segments))
         if not valid:
             for a, b, start, end, xs, ys in grids:
-                points = _visibility_route(a, b, start, end, boxes, old_segments, xs, ys)
+                points = _visibility_route(a, b, start, end, boxes, old_segments, xs, ys,
+                                           segment_cache=segment_cache)
                 if points:
                     valid.append(points)
         if valid:

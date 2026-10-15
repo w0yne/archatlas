@@ -35,15 +35,15 @@ class SemanticLegendTests(unittest.TestCase):
     def test_sequence_reply_is_distinct_from_inferred_request(self):
         model = initial("sequence")
         model["edges"].append({"from": "service", "to": "client", "dashed": True})
-        self.assertIn("Request", self.labels(model))
-        self.assertIn("Reply (dashed)", self.labels(model))
+        self.assertIn("Request / Numbers show flow order", self.labels(model))
+        self.assertIn("Reply (dashed) / Numbers show flow order", self.labels(model))
         model["edges"][1]["evidence"] = {"status": "inferred"}
-        self.assertIn("Request (unverified)", self.labels(model))
-        self.assertNotIn("Reply (dashed)", self.labels(model))
+        self.assertTrue(any("Request (unverified)" in label for label in self.labels(model)))
+        self.assertFalse(any("Reply (dashed)" in label for label in self.labels(model)))
         model["meta"]["lang"] = "zh"
-        self.assertIn("请求（未经核实）", self.labels(model))
+        self.assertTrue(any("请求（未经核实）" in label for label in self.labels(model)))
 
-    def test_authored_meanings_localize_and_replace_mode_is_exact(self):
+    def test_authored_meanings_localize_and_replace_mode_keeps_encodings(self):
         model = initial("nested")
         model["meta"].update(type="C2", legend_labels={
             "edges": {"call": "@request"}, "styles": {"primary": "@focus"}})
@@ -54,10 +54,11 @@ class SemanticLegendTests(unittest.TestCase):
             resolved = load(path, "zh")
             self.assertIn("提交订单", self.labels(resolved))
             self.assertIn("网店", self.labels(resolved))
-            resolved["meta"].update(legend_mode="replace", legend=[{"label": "实线表示提交订单"}])
-            self.assertEqual(self.labels(resolved), ["实线表示提交订单"])
+            resolved["meta"].update(legend_mode="replace", legend=[
+                {"label": "实线表示提交订单", "symbol": "line"}])
+            self.assertEqual(self.labels(resolved), ["实线表示提交订单", "范围内元素", "网店"])
             resolved["meta"]["legend"] = []
-            self.assertEqual(self.labels(resolved), [])
+            self.assertEqual(self.labels(resolved), ["提交订单", "范围内元素", "网店"])
 
     def test_trust_and_deployment_boundaries_have_different_meanings(self):
         for code, expected in (("F2", "Trust boundary"), ("G1", "Deployment boundary")):
