@@ -28,17 +28,19 @@ class Box:
     def glyph_rect(self):
         """Visible symbol bounds; rect also reserves an actor's label footprint."""
         if self.kind == "actor":
+            if self.role == "legend-swatch":
+                return self.rect
             return (self.x + self.w / 2 - 28, self.y, 56, 80)
         return self.rect
 
     @property
     def actor_parts(self):
-        x, y, w, _ = self.glyph_rect
+        x, y, w, h = self.glyph_rect
         cx = x + w / 2
-        return ((cx, y + 10, 10),
-                [[(cx, y + 20), (cx, y + 54)],
-                 [(x, y + 40), (x + w, y + 40)],
-                 [(cx - 24, y + 80), (cx, y + 54), (cx + 24, y + 80)]])
+        return ((cx, y + h / 8, h / 8),
+                [[(cx, y + h / 4), (cx, y + h * .675)],
+                 [(x, y + h / 2), (x + w, y + h / 2)],
+                 [(cx - w * 3 / 7, y + h), (cx, y + h * .675), (cx + w * 3 / 7, y + h)]])
 
 
 @dataclass
@@ -79,6 +81,8 @@ class Connector:
     dashed: bool = False
     kind: str = "call"
     marker_kind: str = ""
+    badge: str = ""
+    numbered: bool = False
 
 
 @dataclass

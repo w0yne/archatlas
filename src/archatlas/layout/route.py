@@ -5,7 +5,8 @@ clearance is impossible, routing retries against their actual borders, then
 raises ValueError if no route exists. Manual waypoints are the exact internal
 points: they bypass obstacle avoidance but must form an orthogonal connector.
 Crossings, substantial backtracking and collinear shared lengths are penalized.
-Occupied sides offer multiple free ports; a visibility search seeks separate
+Automatic sides offer bounded alignment ports; occupied sides offer free ports.
+A visibility search seeks separate
 corridors before accepting shared strokes when simple candidates overlap.
 """
 
@@ -208,15 +209,24 @@ def _visibility_route(a: Point, b: Point, start: str, end: str,
                       boxes: Sequence[Rect], previous: Sequence[tuple[Point, Point]],
                       xs: Sequence[float], ys: Sequence[float], *,
                       allow_shared: bool = True) -> list[Point] | None:
-    """Dijkstra on adjacent visible grid intersections, with arrival-axis state."""
+    """A* with arrival direction; never reverse to fake a port exit."""
     origin, goal = (xs.index(a[0]), ys.index(a[1])), (xs.index(b[0]), ys.index(b[1]))
     initial = (*origin, -1)
     distances = {initial: 0.0}
     parents: dict[tuple[int, int, int], tuple[int, int, int]] = {}
-    queue = [(0.0, initial)]
+
+    def remaining(p, incoming):
+        axis = (0 if start in ("e", "w") else 1) if incoming == -1 else incoming // 2
+        end_axis = 0 if end in ("e", "w") else 1
+        # Ignore obstacles and departure signs: an admissible lower bound,
+        # including the bends needed to arrive on the target's requested axis.
+        bends = 1 if axis != end_axis else 2 if p[1 - axis] != b[1 - axis] else 0
+        return abs(b[0] - p[0]) + abs(b[1] - p[1]) + _BEND * bends
+
+    queue = [(remaining(a, -1), 0.0, initial)]
     visibility: dict[tuple[Point, Point], bool] = {}
     while queue:
-        cost, state = heappop(queue)
+        _, cost, state = heappop(queue)
         if cost != distances[state]:
             continue
         ix, iy, incoming = state
@@ -227,10 +237,13 @@ def _visibility_route(a: Point, b: Point, start: str, end: str,
                 state = parents[state]
                 points.append((xs[state[0]], ys[state[1]]))
             return _simplify(reversed(points))
-        for jx, jy, axis in ((ix - 1, iy, 0), (ix + 1, iy, 0),
-                             (ix, iy - 1, 1), (ix, iy + 1, 1)):
+        for direction, (jx, jy) in enumerate(((ix - 1, iy), (ix + 1, iy),
+                                               (ix, iy - 1), (ix, iy + 1))):
             if not (0 <= jx < len(xs) and 0 <= jy < len(ys)):
                 continue
+            if (jx, jy) == origin or (incoming != -1 and direction == (incoming ^ 1)):
+                continue
+            axis = direction // 2
             q = (xs[jx], ys[jy])
             if incoming == -1 and not _outward(p, q, start):
                 continue
@@ -242,25 +255,26 @@ def _visibility_route(a: Point, b: Point, start: str, end: str,
             if not visibility[edge]:
                 continue
             shared = sum(_overlap(p, q, c, d) for c, d in previous)
-            if shared > 1 and not allow_shared:
+            if shared > 0 and not allow_shared:
                 continue
             crossings = sum(_crosses(p, q, c, d) for c, d in previous)
             # A grid vertex may split a proper crossing across two graph edges.
-            if incoming == axis:
+            if incoming != -1 and incoming // 2 == axis:
                 for c, d in previous:
                     if axis == 0 and c[0] == d[0] == p[0]:
                         crossings += min(c[1], d[1]) < p[1] < max(c[1], d[1])
                     elif axis == 1 and c[1] == d[1] == p[1]:
                         crossings += min(c[0], d[0]) < p[0] < max(c[0], d[0])
             extra = abs(q[0] - p[0]) + abs(q[1] - p[1])
-            extra += _BEND * (incoming != -1 and incoming != axis) + _CROSSING * crossings
+            extra += _BEND * (incoming != -1 and incoming // 2 != axis) + _CROSSING * crossings
             extra += _OVERLAP * shared
-            following = (jx, jy, axis)
+            following = (jx, jy, direction)
             next_cost = cost + extra
+            estimate = next_cost + remaining(q, direction)
             if next_cost < distances.get(following, float("inf")):
                 distances[following] = next_cost
                 parents[following] = (ix, iy, incoming)
-                heappush(queue, (next_cost, following))
+                heappush(queue, (estimate, next_cost, following))
     return None
 
 
@@ -279,7 +293,8 @@ def route(
     """Return an orthogonal polyline with endpoints on the requested box sides.
 
     Ports are ``n|e|s|w|auto``. Zero-based slots evenly spread ports along a
-    side. ``previous`` is a sequence of polylines (two-point segments work too).
+    side; automatic sides also try alignment within neighbouring slot midpoints.
+    ``previous`` is a sequence of polylines (two-point segments work too).
     Inputs are never mutated. Ties use coordinate order, independent of obstacle
     ordering. Automatic choices score length, bends, crossings, backtracking and
     occupied ports, preferring separate strokes. A visibility graph handles
@@ -304,20 +319,44 @@ def route(
         old_segments.extend((a, b) for a, b in zip(points, points[1:]) if a != b)
     manual = tuple(_numbers(point, 2) for point in waypoints)
 
-    def available_ports(box, side, fraction):
+    def available_ports(box, side, fraction, other, automatic):
         point = _port(box, side, fraction)
-        if manual or source == target or point not in {p for segment in old_segments for p in segment}:
+        if manual or source == target:
             return [point]
         axis = 1 if side in ("e", "w") else 0
+        choices = [point]
+        if automatic:
+            # Align toward the other box within neighbouring slot midpoints,
+            # leaving a corner margin. Explicit/manual ports retain the
+            # original exact fractional contract.
+            projected = (other[axis] + other[axis + 2] / 2 - box[axis]) / box[axis + 2]
+            half_slot = .5 / (slots + 1)
+            aligned = _port(box, side, max(fraction - half_slot,
+                                          min(fraction + half_slot, projected)))
+            if aligned != point:
+                choices.append(aligned)
+        def occupied_point(p):
+            return any(abs((b[0] - a[0]) * (p[1] - a[1]) - (b[1] - a[1]) * (p[0] - a[0])) < 1e-6
+                       and min(a[0], b[0]) - 1e-6 <= p[0] <= max(a[0], b[0]) + 1e-6
+                       and min(a[1], b[1]) - 1e-6 <= p[1] <= max(a[1], b[1]) + 1e-6
+                       for a, b in old_segments)
+        free = [p for p in choices if not occupied_point(p)]
+        if len(free) == len(choices):
+            return free
         occupied = {0.0, 1.0}
-        for segment in old_segments:
-            for p in segment:
-                f = (p[axis] - box[axis]) / box[axis + 2]
-                if 0 < f < 1 and _port(box, side, f) == p:
-                    occupied.add(f)
+        normal = 1 - axis
+        for a, b in old_segments:
+            if a[normal] != b[normal]:
+                t = (point[normal] - a[normal]) / (b[normal] - a[normal])
+                values = [a[axis] + t * (b[axis] - a[axis])] if 0 <= t <= 1 else []
+            else:
+                values = [a[axis], b[axis]] if abs(a[normal] - point[normal]) < 1e-6 else []
+            occupied.update((value - box[axis]) / box[axis + 2] for value in values
+                            if box[axis] < value < box[axis] + box[axis + 2])
         bounds = sorted(occupied)
-        return [_port(box, side, (low + high) / 2)
-                for low, high in zip(bounds, bounds[1:])]
+        return sorted(set(free) | {_port(box, side, (low + high) / 2)
+                                  for low, high in zip(bounds, bounds[1:])
+                                  if not occupied_point(_port(box, side, (low + high) / 2))}) or [point]
 
     pairs = []
     for start in _NORMAL if from_port == "auto" else (from_port,):
@@ -325,8 +364,8 @@ def route(
             f = g = (slot + 1) / (slots + 1)
             if source == target and start == end:
                 f, g = (slot + 0.65) / (slots + 1), (slot + 1.35) / (slots + 1)
-            for a in available_ports(source, start, f):
-                for b in available_ports(target, end, g):
+            for a in available_ports(source, start, f, target, from_port == "auto"):
+                for b in available_ports(target, end, g, source, to_port == "auto"):
                     if a != b:
                         pairs.append((a, b, start, end))
     if manual:
@@ -371,7 +410,7 @@ def route(
         for a, b, start, end, xs, ys in grids:
             points = _visibility_route(a, b, start, end, boxes, old_segments, xs, ys,
                                        allow_shared=False)
-            if points:
+            if points and not _rank(points, old_segments)[0]:
                 separate.append(points)
         if separate:
             return min(separate, key=lambda points: _rank(points, old_segments))

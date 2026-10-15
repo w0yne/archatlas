@@ -43,6 +43,7 @@ class Layout:
         bold_text = [model["meta"]["title"]]
         bold_text += [node["label"] for node in model.get("nodes", [])]
         bold_text += [str(node["badge"]) for node in model.get("nodes", []) if "badge" in node]
+        bold_text += [str(edge["badge"]) for edge in model.get("edges", []) if "badge" in edge]
         bold_text += [group["title"] for group in model.get("groups", [])]
         bold_text += [table["title"] for table in model.get("tables", []) if table.get("title")]
         bold_text += [frame[key] for frame in model.get("frames", []) for key in ("label", "guard") if frame.get(key)]
@@ -61,10 +62,18 @@ class Layout:
             self.gap = max(self.gap, max(metrics.required_width(e["label"], 12)
                                         for e in model.get("edges", []) if e.get("label")) +
                            2 * self.spacing["label_clearance"])
+        for edge in model.get("edges", []):
+            if "badge" in edge:
+                diameter = self.badge_diameter(str(edge["badge"]))
+                label = edge.get("label", "")
+                label_width = max(min(metrics.width(label, 12), self.spacing["label_width"]),
+                                  metrics.required_width(label, 12))
+                self.gap = max(self.gap, diameter + (8 + label_width if label else 0) + 2 * self.spacing["label_clearance"])
         self.rank_gap = max(self.gap, self.spacing["rank_gap"])
         self.pad, self.header = self.spacing["group_padding"], self.spacing["group_header"]
         self.document_width = self.spacing["document_width"]
-        self.nodes = {n["id"]: n for n in model.get("nodes", [])}
+        self.nodes = {n["id"]: ({**n, "style": "primary"} if n["id"] == model["layout"].get("focus") else n)
+                      for n in model.get("nodes", [])}
         self.groups = {g["id"]: g for g in model.get("groups", [])}
         self.items = {**self.nodes, **self.groups}
         crossings = {}
@@ -149,8 +158,7 @@ class Layout:
         badge_h = 0
         if node.get("badge") is not None:
             label = str(node["badge"])
-            diameter = max(self.components["badge_diameter"],
-                           math.hypot(metrics.width(label, 11, weight=700), 15.4) + self.components["badge_padding"])
+            diameter = self.badge_diameter(label)
             self.badges[node["id"]] = (label, diameter)
             badge_h = diameter + 8
         asset_padding = 2 * self.components["asset_cap"] if node_shape(node) in ("database", "document") else 0
@@ -443,15 +451,15 @@ class Layout:
             previous.append(points)
             self.add_edge(id, edge, points)
             value = edge.get("label", "")
-            if "step" in edge:
+            if "step" in edge and "badge" not in edge:
                 value = f"{edge['step']}. {value}".strip()
             if edge.get("cardinality"):
                 for end, point, neighbour in (("from", points[0], points[1]), ("to", points[-1], points[-2])):
                     cardinality = edge["cardinality"].get(end)
                     if cardinality:
                         self.cardinality_label(id + "-" + end, cardinality, point, neighbour)
-            if value:
-                self.edge_label(id, value, points)
+            if value or edge.get("badge") is not None:
+                self.edge_label(id, value, points, str(edge.get("badge", "")))
 
     def glyph_port(self, box, point, neighbour):
         """Extend the final orthogonal segment from bounds to the visible stroke."""
@@ -543,46 +551,78 @@ class Layout:
         dashed = edge.get("dashed", status != "verified" or edge.get("kind") in ("message", "reply"))
         self.scene.edges.append(Connector(id, points, edge["from"], edge["to"], edge.get("style", "peer"),
                                            edge.get("dir", "--" if self.template == "er" else "->"),
-                                           dashed, edge.get("kind", "call")))
+                                           dashed, edge.get("kind", "call"), badge=str(edge.get("badge", "")),
+                                           numbered="step" in edge or "badge" in edge or self.template == "sequence"))
 
-    def edge_label(self, id, value, points):
+    def badge_diameter(self, value):
+        return max(self.components["badge_diameter"],
+                   math.hypot(self.metrics.width(value, 11, weight=700), 15.4) + self.components["badge_padding"]) if value else 0
+
+    def annotation(self, id, value, width, badge=""):
+        text = text_box(self.metrics, id + "-label", value, 0, 0, width, 12, id, "edge-label", "middle")
+        diameter = self.badge_diameter(badge)
+        gap = 8 if badge and value else 0
+        return text, diameter, text.w + diameter + gap, max(text.h, diameter)
+
+    def put_annotation(self, id, text, badge, diameter, x, y):
+        gap = 8 if badge and text.source else 0
+        height = max(text.h, diameter)
+        if badge:
+            bid = "__" + id + "-badge"
+            left = x - (text.w + diameter + gap) / 2
+            top = y + (height - diameter) / 2
+            self.scene.boxes.append(Box(bid, left, top, diameter, diameter, "edge-badge",
+                                        style="highlight", parent=id))
+            self.scene.texts.append(text_box(self.metrics, bid + "-text", badge, left + diameter / 2,
+                top + (diameter - 15.4) / 2, diameter, 11, bid, "badge-text", "middle", "highlight"))
+        if text.source:
+            text.x, text.y = x + (diameter + gap) / 2, y + (height - text.h) / 2
+            self.scene.texts.append(text)
+            self.scene.boxes.append(Box("__" + id + "-background", text.left - 5, text.y - 4,
+                                        text.w + 10, text.h + 8, "label-bg", parent=id))
+
+    def edge_label(self, id, value, points, badge=""):
         segments = sorted(zip(points, points[1:]), key=lambda ab: -(abs(ab[0][0] - ab[1][0]) + abs(ab[0][1] - ab[1][1])))
         longest = segments[0]
         label_width = min(self.spacing["label_width"], max(16, abs(longest[0][0] - longest[1][0]) - 24)) \
             if longest[0][1] == longest[1][1] else self.spacing["label_width"]
-        text = text_box(self.metrics, id + "-label", value, 0, 0, label_width, 12, id, "edge-label", "middle")
+        text, diameter, width, height = self.annotation(id, value, label_width, badge)
+        occupied = [b.glyph_rect for b in self.scene.boxes if b.role != "group"]
+        occupied += [t.rect for t in self.scene.texts]
         candidates = []
         for a, b in segments:
-            for fraction in (0.5, 0.35, 0.65):
-                mx, my = a[0] + (b[0] - a[0]) * fraction, a[1] + (b[1] - a[1]) * fraction
+            centers = [(a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f) for f in (.5, .35, .65)]
+            if a[1] == b[1]:
+                centers += [(x, a[1]) for left, _, w, _ in occupied
+                            for x in (left - width / 2 - 8, left + w + width / 2 + 8)
+                            if min(a[0], b[0]) <= x <= max(a[0], b[0])]
+            else:
+                centers += [(a[0], y) for _, top, _, h in occupied
+                            for y in (top - height / 2 - 8, top + h + height / 2 + 8)
+                            if min(a[1], b[1]) <= y <= max(a[1], b[1])]
+            for mx, my in centers:
                 if a[1] == b[1]:
                     for offset in (1, 2, 3):
                         clearance = self.spacing["label_clearance"] * offset
-                        candidates.extend([(mx, my - text.h - clearance), (mx, my + clearance)])
+                        candidates.extend([(mx, my - height - clearance), (mx, my + clearance)])
                 else:
                     for offset in (1, 2, 3):
                         clearance = self.spacing["label_clearance"] * offset
-                        candidates.extend([(mx + text.w / 2 + clearance, my - text.h / 2),
-                                           (mx - text.w / 2 - clearance, my - text.h / 2)])
-        occupied = [b.glyph_rect for b in self.scene.boxes if b.role != "group"]
-        occupied += [t.rect for t in self.scene.texts]
+                        candidates.extend([(mx + width / 2 + clearance, my - height / 2),
+                                           (mx - width / 2 - clearance, my - height / 2)])
         chosen = None
         for x, y in candidates:
-            rect = (x - text.w / 2 - 5, y - 4, text.w + 10, text.h + 8)
+            rect = (x - width / 2 - 5, y - 4, width + 10, height + 8)
             crossed = any(segment_hits_rect(a, b, rect, padding=2) for edge in self.scene.edges if edge.id != id
                           and edge.kind not in ("lifeline", "legend") for a, b in zip(edge.points, edge.points[1:]))
-            if x - text.w / 2 > 0 and y > 8 and not crossed and not any(intersects(rect, b, 3) for b in occupied):
+            if x - width / 2 > 0 and y > 8 and not crossed and not any(intersects(rect, b, 3) for b in occupied):
                 chosen = x, y
                 break
         if chosen is None:
             chosen = candidates[0]
             self.scene.warnings.append({"rule": "label-placement", "message": "No clear label slot; revise topology or waypoints",
                                         "elements": [id]})
-        text.x, text.y = chosen
-        self.scene.texts.append(text)
-        # Background and text use precisely the same measured box/anchor.
-        self.scene.boxes.append(Box("__" + id + "-background", text.left - 5, text.y - 4,
-                                    text.w + 10, text.h + 8, "label-bg", parent=id))
+        self.put_annotation(id, text, badge, diameter, *chosen)
 
     def sequence(self):
         nodes = list(self.nodes.values())
@@ -602,94 +642,128 @@ class Layout:
         frames = sorted(enumerate(self.model.get("frames", [])),
                         key=lambda pair: (pair[1]["from_step"], -pair[1]["to_step"], pair[0]))
         bands, frame_info = {}, {}
-        right = max(centers.values()) + width / 2 + 24
-        frame_words = [self.metrics.required_width(value, 12, weight=700)
-                       for _, frame in frames
-                       for value in [frame.get("label", ""), frame.get("guard", ""),
-                                     *(operand["guard"] for operand in frame.get("operands", []))]]
-        right = max(right, max(frame_words, default=0) + 48 + 24 * len(frames))
         for _, frame in frames:
-            parents = [info for info in frame_info.values()
-                       if info["frame"]["from_step"] <= frame["from_step"] and
-                       info["frame"]["to_step"] >= frame["to_step"]]
-            parent = parents[-1] if parents else None
-            depth = len(parents)
-            left, frame_right = 24 + depth * 12, right - depth * 12
+            involved = [edge for i, edge in edges if frame["from_step"] <= edge.get("step", i + 1) <= frame["to_step"]]
+            participants = {edge[end] for edge in involved for end in ("from", "to")}
+            left, right = min(centers[id] for id in participants) - 24, max(centers[id] for id in participants) + 24
+            for edge in involved:
+                if edge["from"] == edge["to"]:
+                    right = max(right, centers[edge["from"]] + width / 2 + 44)
             title = frame.get("operator", "")
             if frame.get("guard"):
                 title += " [" + frame["guard"].strip("[]") + "]"
             if frame.get("label"):
                 title += (" · " if title else "") + frame["label"]
-            heading = text_box(self.metrics, frame["id"] + "-title", title,
-                               left + 12, 0, frame_right - left - 24, 12, frame["id"], "group-title")
-            info = {"frame": frame, "left": left, "right": frame_right, "heading": heading,
-                    "parent": parent, "guards": []}
-            frame_info[frame["id"]] = info
+            values = [(title, 700)] + [("[" + op["guard"].strip("[]") + "]", 400) for op in frame.get("operands", [])]
+            needed = max(self.metrics.required_width(value, 12, weight=weight) for value, weight in values) + 24
+            right = max(right, left + needed)
+            parents = [info for info in frame_info.values() if info["frame"]["from_step"] <= frame["from_step"]
+                       and info["frame"]["to_step"] >= frame["to_step"]]
+            frame_info[frame["id"]] = {"frame": frame, "left": left, "right": right, "title": title,
+                                        "parent": parents[-1] if parents else None}
+        # An outer fragment encloses its children's padding, without extending
+        # to unrelated participants elsewhere in the view.
+        for info in reversed(list(frame_info.values())):
+            if info["parent"]:
+                parent = info["parent"]
+                parent["left"] = min(parent["left"], info["left"] - 10)
+                parent["right"] = max(parent["right"], info["right"] + 10)
+        for info in frame_info.values():
+            frame = info["frame"]
+            heading = text_box(self.metrics, frame["id"] + "-title", info["title"], info["left"] + 12, 0,
+                               info["right"] - info["left"] - 24, 12, frame["id"], "group-title")
+            info["heading"] = heading
             bands.setdefault(frame["from_step"], []).append((info, heading, False))
             for index, operand in enumerate(frame.get("operands", [])):
                 guard = text_box(self.metrics, frame["id"] + f"-guard-{index + 1}",
-                                 "[" + operand["guard"].strip("[]") + "]", left + 12, 0,
-                                 frame_right - left - 24, 12, frame["id"], "operand-guard")
-                info["guards"].append(guard)
+                    "[" + operand["guard"].strip("[]") + "]", info["left"] + 12, 0,
+                    info["right"] - info["left"] - 24, 12, frame["id"], "operand-guard")
                 bands.setdefault(operand["from_step"], []).append((info, guard, index > 0))
-        ys, cursor = {}, self.top + height + 32
+        ys, labels, cursor = {}, {}, self.top + height + 24
         for i, edge in edges:
-            step = edge.get("step", i + 1)
+            step, id = edge.get("step", i + 1), edge.get("id", f"edge-{i + 1}")
             for info, text, separator in bands.get(step, []):
-                text.y = cursor + 8
+                text.y = cursor + 6
                 if text is info["heading"]:
                     info["top"] = cursor
                 if separator:
-                    self.scene.edges.append(Connector(text.id + "-separator",
-                        [(info["left"], cursor), (info["right"], cursor)], "", "",
-                        direction="--", dashed=True, kind="frame-separator"))
+                    self.scene.edges.append(Connector(text.id + "-separator", [(info["left"], cursor), (info["right"], cursor)],
+                                                       "", "", direction="--", dashed=True, kind="frame-separator"))
                 self.scene.texts.append(text)
-                cursor += text.h + 16
-            label = f"{step}. {edge.get('label', '')}".strip()
-            label_height = len(self.metrics.wrap(label, max(self.metrics.required_width(label, 12),
-                                                          min(120, width + self.gap - 24)), 12)) * 16.8
-            ys[step] = cursor + label_height + 24
+                cursor += text.h + 12
+            span = abs(centers[edge["to"]] - centers[edge["from"]]) or width / 2 + 28
+            badge = str(edge.get("badge", ""))
+            value = edge.get("label", "") if badge else f"{step}. {edge.get('label', '')}".strip()
+            badge_space = self.badge_diameter(badge) + 8 if badge else 0
+            text, diameter, _, label_h = self.annotation(id, value, max(48, span - 32 - badge_space), badge)
+            labels[id] = (text, badge, diameter, cursor + 4)
+            ys[step] = cursor + label_h + 12
             ending = sum(info["frame"]["to_step"] == step for info in frame_info.values())
-            cursor = ys[step] + max(64 if edge["from"] == edge["to"] else 48, 32 + ending * 12 + 12)
-        bottom = cursor + 24
-        for node in nodes:
-            x = centers[node["id"]]
-            self.scene.edges.append(Connector(node["id"] + "-lifeline",
-                                               [(x, self.top + height), (x, bottom)],
-                                               node["id"], node["id"], direction="--", dashed=True, kind="lifeline"))
+            cursor = ys[step] + (24 if edge["from"] == edge["to"] else 0) + max(20, ending * 10 + 16)
         for info in reversed(list(frame_info.values())):
             last = next(edge for i, edge in edges if edge.get("step", i + 1) == info["frame"]["to_step"])
-            info["bottom"] = max(ys[info["frame"]["to_step"]] + (64 if last["from"] == last["to"] else 32),
-                                 max((child["bottom"] + 12 for child in frame_info.values()
-                                      if child["parent"] is info), default=0))
-        frame_boxes = []
-        for info in frame_info.values():
-            frame_boxes.append(Box(info["frame"]["id"], info["left"], info["top"],
-                                   info["right"] - info["left"], info["bottom"] - info["top"],
-                                   "group", "frame", parent=info["parent"]["frame"]["id"] if info["parent"] else ""))
-        self.scene.boxes = frame_boxes + self.scene.boxes
-        self.scene.edges.sort(key=lambda e: 0 if e.kind == "lifeline" else 1)
-        for index, activation in enumerate(self.model.get("activations", [])):
-            top, end = ys[activation["from_step"]] - 6, ys[activation["to_step"]] + 6
-            self.scene.boxes.append(Box(f"__activation-{index + 1}", centers[activation["node"]] - 5,
-                                       top, 10, end - top, "activation", parent=activation["node"]))
+            info["bottom"] = max(ys[info["frame"]["to_step"]] + (40 if last["from"] == last["to"] else 16),
+                max((child["bottom"] + 10 for child in frame_info.values() if child["parent"] is info), default=0))
+        self.scene.boxes = [Box(info["frame"]["id"], info["left"], info["top"], info["right"] - info["left"],
+            info["bottom"] - info["top"], "group", "frame",
+            parent=info["parent"]["frame"]["id"] if info["parent"] else "") for info in frame_info.values()] + self.scene.boxes
         for i, edge in edges:
-            id = edge.get("id", f"edge-{i + 1}")
-            y = ys[edge.get("step", i + 1)]
-            a, b = centers[edge["from"]], centers[edge["to"]]
+            id, step = edge.get("id", f"edge-{i + 1}"), edge.get("step", i + 1)
+            y, a, b = ys[step], centers[edge["from"]], centers[edge["to"]]
             if a != b:
                 sign = 1 if b > a else -1
                 for activation in self.model.get("activations", []):
-                    if activation["from_step"] <= edge.get("step", i + 1) <= activation["to_step"]:
+                    if activation["from_step"] <= step <= activation["to_step"]:
                         if activation["node"] == edge["from"]:
                             a += 5 * sign
                         if activation["node"] == edge["to"]:
                             b -= 5 * sign
+            elif any(activation["node"] == edge["from"] and activation["from_step"] <= step <= activation["to_step"]
+                     for activation in self.model.get("activations", [])):
+                a = b = a + 5
             points = [(a, y), (b, y)] if a != b else [(a, y), (a + width / 2 + 28, y),
-                                                                    (a + width / 2 + 28, y + 32), (a, y + 32)]
+                                                                    (a + width / 2 + 28, y + 24), (a, y + 24)]
             self.add_edge(id, edge, points)
-            label = f"{edge.get('step', i + 1)}. {edge.get('label', '')}".strip()
-            self.edge_label(id, label, points)
+            text, badge, diameter, top = labels[id]
+            self.put_annotation(id, text, badge, diameter, (points[0][0] + points[1][0]) / 2, top)
+        gutters = [text.rect for text in self.scene.texts if text.role in ("group-title", "operand-guard")]
+        gutters += [(info["left"], text.y, info["right"] - info["left"], text.h)
+                    for rows in bands.values() for info, text, _ in rows]
+        gutters += [box.rect for box in self.scene.boxes if box.role in ("label-bg", "edge-badge")]
+        message_levels = list(ys.values()) + [ys[edge.get("step", i + 1)] + 24
+                                             for i, edge in edges if edge["from"] == edge["to"]]
+
+        def segments(x, top, bottom, half_width=0):
+            cuts = sorted((max(top, y - 4), min(bottom, y + h + 4)) for left, y, w, h in gutters
+                          if left - 4 <= x + half_width and x - half_width <= left + w + 4 and y < bottom and y + h > top)
+            cursor = top
+            for start, end in cuts:
+                # Tiny islands between adjacent annotation rows must not look
+                # like separate executions. Keep short segments at real messages.
+                if start > cursor and (start - cursor >= 8 or any(cursor <= y <= start for y in message_levels)):
+                    yield cursor, start
+                cursor = max(cursor, end)
+            if cursor < bottom and (bottom - cursor >= 8 or any(cursor <= y <= bottom for y in message_levels)):
+                yield cursor, bottom
+
+        bottom = max(cursor + 12, max((info["bottom"] + 12 for info in frame_info.values()), default=0))
+        lifelines = []
+        for node in nodes:
+            id, x = node["id"], centers[node["id"]]
+            for index, (top, end) in enumerate(segments(x, self.top + height, bottom)):
+                segment_id = f"{id}-lifeline" + (f"-part-{index}" if index else "")
+                lifelines.append(Connector(segment_id, [(x, top), (x, end)], id, id,
+                                            style=node_style(node), direction="--", dashed=True, kind="lifeline"))
+        self.scene.edges = lifelines + self.scene.edges
+        for index, activation in enumerate(self.model.get("activations", [])):
+            x = centers[activation["node"]]
+            last_self_call = any(edge["from"] == edge["to"] and edge.get("step", i + 1) == activation["to_step"]
+                                 for i, edge in edges)
+            end = ys[activation["to_step"]] + (24 if last_self_call else 0) + 6
+            for part, (top, end) in enumerate(segments(x, ys[activation["from_step"]] - 6, end, 5)):
+                segment_id = f"__activation-{index + 1}" + (f"-part-{part}" if part else "")
+                self.scene.boxes.append(Box(segment_id, x - 5, top, 10, end - top,
+                                            "activation", style=node_style(self.nodes[activation["node"]]), parent=activation["node"]))
 
     def table(self, width=None):
         width = self.document_width - 80 if width is None else width
@@ -750,33 +824,53 @@ class Layout:
                     + [p[0] for e in scene.edges for p in e.points])
         legend = legend_entries(scene, self.model)
         x, y = 40, bottom + 40
-        legend_top = y
+        legend_top, row_height = y, 0
         legend_boxes = len(scene.boxes)
         for i, entry in enumerate(legend):
-            inset = 0 if entry.get("symbol") == "text" else 40
+            symbol = entry.get("symbol", "line")
+            glyph_w, glyph_h = 28, 16
+            if symbol == "badge":
+                value = str(entry["badge"])
+                glyph_w = glyph_h = self.badge_diameter(value)
+            elif symbol == "zone":
+                glyph_w, glyph_h = 32, 22
+            elif entry.get("node_kind") == "actor":
+                glyph_w = 12
+            elif entry.get("node_kind") in ("event", "initial", "final"):
+                glyph_w = 16
+            inset = 0 if symbol == "text" else max(40, glyph_w + 12)
             label = text_box(self.metrics, f"legend-{i}", entry["label"], x + inset, y, 260, 11, role="legend")
-            if x + label.w + 50 > right and x != 40:
-                x, y = 40, y + 48
-                label.x, label.y = x + inset, y
-            if entry.get("symbol") == "box":
-                scene.boxes.append(Box(f"__legend-swatch-{i}", x, y + 2, 28, 16, "legend-swatch",
-                                       style=entry.get("style", "peer"), dashed=entry.get("dashed", False),
-                                       shape=entry.get("shape", "card")))
-            elif entry.get("symbol") != "text":
-                scene.edges.append(Connector(f"legend-line-{i}", [(x, y + 10), (x + 28, y + 10)], "", "",
-                                             entry.get("style", "peer"), entry.get("dir", "--"),
-                                             entry.get("dashed", False), "legend", entry.get("kind", "")))
+            height = max(label.h, glyph_h if symbol != "text" else 0)
+            if x + inset + label.w + 12 > right and x != 40:
+                x, y, row_height = 40, y + row_height + 16, 0
+            label.x, label.y = x + inset, y + (height - label.h) / 2
+            gx, gy = x + max(0, (28 - glyph_w) / 2), y + (height - glyph_h) / 2
+            if symbol in ("box", "zone", "badge"):
+                id = f"__legend-swatch-{i}"
+                scene.boxes.append(Box(id, gx, gy, glyph_w, glyph_h,
+                    "legend-zone" if symbol == "zone" else "legend-badge" if symbol == "badge" else "legend-swatch",
+                    kind=entry.get("node_kind") or "component", style=entry.get("style", "peer"),
+                    dashed=entry.get("dashed", False), shape=entry.get("shape", "card"),
+                    tint=entry.get("tint", "app"), band=entry.get("band", True),
+                    header_height=8 if symbol == "zone" else 0, event_type=entry.get("event_type", "")))
+                if symbol == "badge":
+                    scene.texts.append(text_box(self.metrics, id + "-text", str(entry["badge"]), gx + glyph_w / 2,
+                        gy + (glyph_h - 15.4) / 2, glyph_w, 11, id, "badge-text", "middle", entry.get("style", "highlight")))
+            elif symbol != "text":
+                scene.edges.append(Connector(f"legend-line-{i}", [(x, y + height / 2), (x + 28, y + height / 2)], "", "",
+                    entry.get("style", "peer"), entry.get("dir", "--"), entry.get("dashed", False), "legend", entry.get("kind", "")))
             scene.texts.append(label)
+            row_height = max(row_height, height)
             x += label.w + inset + 36
+        legend_bottom = y + row_height
         if legend:
             legend_right = max(t.left + t.w for t in scene.texts if t.role == "legend")
-            legend_bottom = max(t.y + t.h for t in scene.texts if t.role == "legend")
             scene.boxes.insert(legend_boxes, Box("__legend-panel", 28, legend_top - 12,
-                                                max(200, legend_right - 12), legend_bottom - legend_top + 28,
-                                                "legend-panel", style="external"))
+                max(200, legend_right - 12), legend_bottom - legend_top + 28, "legend-panel", style="external"))
+            right = max(right, legend_right + 12)
         profile = self.model["layout"].get("profile", "doc")
         scene.width = 1440 if profile in ("slide", "slide-16x9") else max(self.document_width, right + 40)
-        scene.height = 810 if profile in ("slide", "slide-16x9") else max(300, y + 68)
+        scene.height = 810 if profile in ("slide", "slide-16x9") else max(300, legend_bottom + 40)
         if profile in ("doc", "doc-1120xN") and scene.width > self.document_width * self.spacing["wide_view_ratio"]:
             scene.warnings.append({"rule": "wide-view", "message": "Content exceeds the theme's wide-view limit; split the view or configure the target width"})
         for text in scene.texts:

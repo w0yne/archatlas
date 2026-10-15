@@ -85,6 +85,20 @@ def on_shape(point, element, tolerance=1):
            ((abs(point[1] - y) < tolerance or abs(point[1] - y - h) < tolerance) and x - tolerance <= point[0] <= x + w + tolerance)
 
 
+def outward_from_shape(point, neighbour, element):
+    """Check departure from closed shapes; actors can attach to internal strokes."""
+    if element.get("data-kind") == "actor":
+        return True
+    x, y, w, h = shape_box(element)
+    dx, dy = neighbour[0] - point[0], neighbour[1] - point[1]
+    if element.tag.rsplit("}", 1)[-1] == "rect":
+        return ((abs(point[0] - x) < 1 and dx < 0) or
+                (abs(point[0] - x - w) < 1 and dx > 0) or
+                (abs(point[1] - y) < 1 and dy < 0) or
+                (abs(point[1] - y - h) < 1 and dy > 0))
+    return (point[0] - x - w / 2) * dx + (point[1] - y - h / 2) * dy > 0
+
+
 def check_svg(svg, metrics=None):
     findings = []
 
@@ -135,7 +149,7 @@ def check_svg(svg, metrics=None):
     canvas = next((e.get("fill") for e in elements if e.get("data-role") == "canvas"), "#ffffff")
     for e in elements:
         role, id = e.get("data-role", ""), e.get("data-id", "")
-        if role in ("node", "group", "label-bg", "cell", "activation", "chip", "badge"):
+        if role in ("node", "group", "label-bg", "cell", "activation", "chip", "badge", "edge-badge"):
             box = shape_box(e)
             if box:
                 shapes[id] = (box, e)
@@ -236,13 +250,29 @@ def check_svg(svg, metrics=None):
                           (f.get("data-role") == "group" and contains(rect, box))
             if overlap(box, rect) and not containment:
                 add("shape-overlap", "Unrelated shapes overlap", [id, other], [box, rect])
-    edge_segments = []
+    edge_segments, routes = [], []
+    focus = [id for id, (_, shape) in shapes.items()
+             if shape.get("data-role") == "node" and shape.get("data-style") == "primary"]
+    if len(focus) > 1:
+        add("multiple-focus", "More than one primary/focus element; choose one subject for this view", focus, severity="warning")
+    annotations = [(id, rect) for id, rect, text in text_nodes
+                   if text.get("data-role") in ("group-title", "operand-guard", "edge-label")]
+    for id, rect, shape in ((id, rect, shape) for id, (rect, shape) in shapes.items()
+                             if shape.get("data-role") == "activation"):
+        for tid, text_rect in annotations:
+            if overlap(rect, text_rect):
+                add("sequence-annotation-overlap", "Activation crosses fragment or message text", [id, tid], [rect, text_rect])
     lifelines = {e.get("data-from") for _, _, e in edges if e.get("data-kind") == "lifeline"}
     for id, points, e in edges:
         source, target = e.get("data-from"), e.get("data-to")
-        if e.get("data-kind") in ("lifeline", "legend"):
+        if e.get("data-kind") == "lifeline":
+            for tid, rect in annotations:
+                if any(segment_hits_rect(a, b, rect, padding=2) for a, b in zip(points, points[1:])):
+                    add("sequence-annotation-overlap", "Lifeline crosses fragment or message text", [id, tid], [rect])
             continue
-        if not points:
+        if e.get("data-kind") == "legend":
+            continue
+        if len(points) < 2:
             continue
         segments = list(zip(points, points[1:]))
         if any((b[0] - a[0]) * (c[0] - b[0]) + (b[1] - a[1]) * (c[1] - b[1]) < 0
@@ -250,13 +280,15 @@ def check_svg(svg, metrics=None):
             add("edge-u-turn", "Connector reverses direction and retraces its stroke", [id], severity="warning")
         direct = abs(points[-1][0] - points[0][0]) + abs(points[-1][1] - points[0][1])
         length = sum(abs(b[0] - a[0]) + abs(b[1] - a[1]) for a, b in segments)
+        routes.append({"id": id, "length": length, "endpoint_distance": direct,
+                       "backtrack": backtrack(points), "bends": max(0, len(points) - 2)})
         if source != target and direct > 0 and length > 2 * direct + 1:
             add("edge-detour", "Connector is longer than twice its endpoint Manhattan distance", [id], severity="warning")
         # Ignore short port/obstacle stubs on a long route. Flag reversals when
         # their extra travel exceeds both two stubs and 10% of direct distance.
         if source != target and backtrack(points) > max(2 * _CLEARANCE, .05 * direct) + .001:
             add("edge-foldback", "Connector doubles back significantly; consider another port or corridor", [id], severity="warning")
-        for endpoint, point in ((source, points[0]), (target, points[-1])):
+        for endpoint, point, neighbour in ((source, points[0], points[1]), (target, points[-1], points[-2])):
             if endpoint not in shapes:
                 add("edge-endpoint", "Connector endpoint has no declared shape", [id, endpoint])
                 continue
@@ -268,6 +300,8 @@ def check_svg(svg, metrics=None):
                 on_port = on_shape(point, shapes[endpoint][1])
             if not on_port:
                 add("edge-port", "Connector does not terminate on its endpoint port", [id, endpoint], [shapes[endpoint][0]])
+            elif endpoint not in lifelines and not outward_from_shape(point, neighbour, shapes[endpoint][1]):
+                add("edge-port-direction", "Connector must leave/arrive from outside its endpoint", [id, endpoint])
         excluded = {source, target}
         for endpoint in (source, target):
             while endpoint in shapes and shapes[endpoint][1].get("data-parent"):
@@ -277,7 +311,8 @@ def check_svg(svg, metrics=None):
             if a[0] != b[0] and a[1] != b[1]:
                 add("orthogonal-route", "Connector segment is not orthogonal", [id])
             for sid, (rect, shape) in shapes.items():
-                if sid in excluded or shape.get("data-role") in ("label-bg", "activation"):
+                if sid in excluded or shape.get("data-role") in ("label-bg", "activation") or \
+                   (shape.get("data-role") == "edge-badge" and shape.get("data-parent") == id):
                     continue
                 if shape.get("data-role") == "group" and shape.get("data-kind") == "lane":
                     continue  # A lane partitions responsibility; flow may cross it.
@@ -292,13 +327,14 @@ def check_svg(svg, metrics=None):
                     if segment_hits_rect(a, b, rect, padding=2):
                         add("arrow-through-label", "Connector crosses unrelated text", [id, tid], [rect])
             edge_segments.append((id, a, b))
-    shared_pairs = set()
+    shared_pairs = {}
     for i, (id, a, b) in enumerate(edge_segments):
         for other, c, d in edge_segments[i + 1:]:
-            if _overlap(a, b, c, d) > 1:
-                shared_pairs.add(tuple(sorted({id, other})))
-    for pair in sorted(shared_pairs):
-        add("edge-overlap", "Connector strokes share a collinear segment", pair, severity="warning")
+            pair = tuple(sorted({id, other}))
+            shared_pairs[pair] = shared_pairs.get(pair, 0) + _overlap(a, b, c, d)
+    for pair, length in sorted(shared_pairs.items()):
+        if length > 1:
+            add("edge-overlap", f"Connector strokes share {length:.3f}px of collinear segments", pair, severity="warning")
     crossing_count = sum(1 for i, (id, a, b) in enumerate(edge_segments)
                          for other, c, d in edge_segments[i + 1:] if id != other and crosses(a, b, c, d))
     if crossing_count > 2:
@@ -322,6 +358,6 @@ def check_svg(svg, metrics=None):
                 finding["allow_reason"] = allow["reason"]
                 # A documented allowance never hides an error.
     return {"schemaVersion": 1, "measured_with": metrics.measured_with,
-            "crossings": crossing_count, "findings": findings,
+            "crossings": crossing_count, "routes": routes, "findings": findings,
             "errors": sum(f["severity"] == "error" for f in findings),
             "warnings": sum(f["severity"] == "warning" for f in findings)}

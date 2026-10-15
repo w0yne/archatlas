@@ -61,10 +61,11 @@ def render_svg(scene, namespace=None):
             continue
         attrs = {"id": prefix + "-shape-" + box.role + "-" + box.id, "data-id": box.id, "data-role": box.role,
                  "data-parent": box.parent, "data-kind": box.kind,
+                 "data-style": box.style, "data-tint": box.tint, "data-band": str(box.band).lower(),
                  "data-shape": box.shape,
-                 "fill": theme["zones"][box.tint][0] if box.role == "group" else theme[box.style][0],
-                 "stroke": theme["zones"][box.tint][2] if box.role == "group" else theme[box.style][1],
-                 "stroke-width": number(tokens["zone_stroke"] if box.role == "group" else
+                 "fill": theme["zones"][box.tint][0] if box.role in ("group", "legend-zone") else theme[box.style][0],
+                 "stroke": theme["zones"][box.tint][2] if box.role in ("group", "legend-zone") else theme[box.style][1],
+                 "stroke-width": number(tokens["zone_stroke"] if box.role in ("group", "legend-zone") else
                                          tokens["primary_stroke"] if box.style == "primary" else tokens["card_stroke"]),
                  "data-box": " ".join(number(v) for v in box.rect)}
         if box.dashed:
@@ -72,7 +73,7 @@ def render_svg(scene, namespace=None):
         if box.role == "legend-panel":
             attrs.update(fill=theme["canvas"], stroke=theme["muted"],
                          **{"stroke-width": "1", "stroke-opacity": "0.3"})
-        if box.role == "badge":
+        if box.role in ("badge", "edge-badge", "legend-badge"):
             SubElement(root, "circle", {**attrs, "cx": number(box.x + box.w / 2),
                                        "cy": number(box.y + box.h / 2), "r": number(box.w / 2)})
         elif box.shape == "database":
@@ -127,7 +128,7 @@ def render_svg(scene, namespace=None):
                                                    tokens["zone_radius"] if box.role == "group" else
                                                    12 if box.kind in ("task", "state") else tokens["card_radius"]
                                                    if box.role in ("node", "legend-panel") else 2)})
-        if box.role == "group" and box.band and box.header_height:
+        if box.role in ("group", "legend-zone") and box.band and box.header_height:
             SubElement(root, "rect", {"data-role": "header-band", "data-parent": box.id,
                          "x": number(box.x + 2), "y": number(box.y + 2),
                          "width": number(box.w - 4), "height": number(min(box.header_height, box.h) - 4),
@@ -144,9 +145,13 @@ def render_svg(scene, namespace=None):
         attrs = {"id": prefix + "-edge-" + edge.id, "data-id": edge.id,
                  "data-role": "frame-separator" if edge.kind == "frame-separator" else "edge",
                  "data-from": edge.source, "data-to": edge.target, "data-kind": edge.kind,
+                 "data-style": edge.style, "data-numbered": str(edge.numbered).lower(),
+                 "data-badge": edge.badge,
                  "points": " ".join(f"{number(x)},{number(y)}" for x, y in edge.points),
                  "fill": "none", "stroke": theme["lines"][edge.style], "stroke-width": number(tokens["edge_stroke"]),
                  "stroke-linejoin": "round"}
+        if edge.kind == "lifeline":
+            attrs["stroke-width"] = "1.6" if edge.style == "primary" else "1"
         marker_kind = edge.marker_kind or edge.kind
         marker = f"url(#{prefix}-marker-{edge.style}-{'open' if marker_kind in ('async', 'message', 'reply') else 'arrow'})"
         if edge.direction in ("->", "<->"):
@@ -168,7 +173,7 @@ def render_svg(scene, namespace=None):
     owners = {box.id: box for box in scene.boxes}
     for text in scene.texts:
         owner = owners.get(text.owner)
-        on_primary = owner and owner.role != "group" and owner.style == "primary"
+        on_primary = owner and owner.role not in ("group", "legend-zone") and owner.kind != "actor" and owner.style == "primary"
         fill = theme["on_primary"] if on_primary else theme["muted"] if text.role in ("sub", "subtitle", "legend") else theme["text"]
         attrs = {"id": prefix + "-text-" + text.role + "-" + text.id, "data-id": text.id, "data-role": text.role,
                  "data-owner": text.owner, "x": number(text.x), "y": number(text.y + text.size),

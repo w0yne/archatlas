@@ -110,3 +110,47 @@ The shared vocabulary does not reproduce every hand-composed guide diagram.
 Diagram-specific manual composition, 3D forms, cloud silhouettes and chevrons are
 outside this component set. Automatic layouts still need semantic and visual
 review; a successful geometry check alone is not a visual pass.
+
+## Focus, sequence fragments and link identifiers
+
+Use `layout.focus: "node-id"` to select a subject without changing the input
+node records. It renders that node as `primary`; in a sequence, its participant
+header, lifeline and activations share the emphasis. Other explicit primary
+nodes remain visible. QA reports `multiple-focus` when more than one node is
+primary, including a selected focus; it does not silently recolor the model.
+`highlight` remains a general annotation/category color, so the renderer does
+not infer focus from that color or from free-text legend captions.
+
+Sequence fragments span the interval from their first involved participant to
+their last, with room for self-calls and nested fragments. A participant between
+those endpoints can remain inside the interval even if it sends no message in
+that fragment. Guard/header rows reserve annotation gutters; lifelines and
+activation rectangles are segmented around them and message-label backgrounds.
+This preserves the model's activation ranges, rather than inventing execution
+events. Labels use the available message span and measured height to give the
+sequence a compact vertical rhythm. Select a focus explicitly when it matters.
+
+An edge may carry `badge: 3` (or a short string), rendered beside its label.
+Existing edge `step` numbers still render as text; an explicit badge replaces
+that displayed identifier while sequence step ordering remains unchanged. Outside sequence views,
+numbers are labels for reference by default: they do not establish temporal
+order. Set `layout.ordered: true` to declare flow order; sequence views default
+to ordered. The legend states the numbering meaning even in `legend_mode:
+"replace"`. Node badges identify elements independently of link numbering.
+
+Automatic legends cover all visible node encodings, zone tints, header bands,
+dashed boundaries and badges, including a sole peer color. They reuse actual
+glyphs and paint, including asset silhouettes. Author entries override captions
+when their encoding fields match a visible encoding; typed entries with no
+match are omitted. A bare label or symbol-only entry is a text note. For precise
+zone captions, use `symbol: "zone"` with `tint`, `band` and/or `dashed`; badge
+entries can use `symbol: "badge"` and `badge`. The legacy `replace` mode still
+suppresses automatic style completion, so its author remains responsible for
+omitted meanings. Numbering meaning is always retained.
+
+Routing checks retain detour, foldback, crossing and overlap findings. They
+also check inward endpoint directions and sum shared lengths across segments,
+so splitting an overlap into short pieces does not hide it. Reports include
+per-edge length, endpoint distance, backtracking and bend count. A long monotone
+relationship can still be a placement problem even when its detour ratio is one;
+passing geometry QA does not certify the composition.

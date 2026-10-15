@@ -45,7 +45,7 @@ _MEASURE = """async () => {
         return [Math.min(...xs), Math.min(...ys),
                 Math.max(...xs) - Math.min(...xs), Math.max(...ys) - Math.min(...ys)];
     }
-    const shapeRoles = new Set(['node', 'group', 'cell', 'label-bg', 'activation', 'chip', 'badge']);
+    const shapeRoles = new Set(['node', 'group', 'cell', 'label-bg', 'activation', 'chip', 'badge', 'edge-badge']);
     const shapes = [...svg.querySelectorAll('[data-role]')]
         .filter(e => shapeRoles.has(e.dataset.role))
         .map(e => ({id: e.dataset.id, role: e.dataset.role,
