@@ -6,6 +6,7 @@
     "lang": "en",
     "audience": "executives and business architects",
     "state": "as-is",
+    "subtitle": "Level 1 groups and Level 2 capabilities, one lens: maturity against target",
     "legend": [
       {
         "label": "At desired maturity",
@@ -28,61 +29,8 @@
   "layout": {
     "template": "layered",
     "profile": "doc",
-    "columns": 3
+    "columns": 2
   },
-  "groups": [
-    {
-      "id": "t_str",
-      "title": "Strategic",
-      "kind": "layer"
-    },
-    {
-      "id": "t_core",
-      "title": "Core",
-      "kind": "layer"
-    },
-    {
-      "id": "t_sup",
-      "title": "Supporting",
-      "kind": "layer"
-    },
-    {
-      "id": "l_prod",
-      "title": "Product Strategy",
-      "kind": "frame",
-      "parent": "t_str"
-    },
-    {
-      "id": "l_grow",
-      "title": "Customer Growth",
-      "kind": "frame",
-      "parent": "t_str"
-    },
-    {
-      "id": "l_ord",
-      "title": "Order Management",
-      "kind": "frame",
-      "parent": "t_core"
-    },
-    {
-      "id": "l_cust",
-      "title": "Customer Management",
-      "kind": "frame",
-      "parent": "t_core"
-    },
-    {
-      "id": "l_pay",
-      "title": "Payment Management",
-      "kind": "frame",
-      "parent": "t_sup"
-    },
-    {
-      "id": "l_inv",
-      "title": "Inventory Management",
-      "kind": "frame",
-      "parent": "t_sup"
-    }
-  ],
   "nodes": [
     {
       "id": "assort",
@@ -97,7 +45,9 @@
       "label": "Price Setting",
       "parent": "l_prod",
       "style": "external",
-      "sub": "gap 1"
+      "chips": [
+        "gap 1"
+      ]
     },
     {
       "id": "campaign",
@@ -105,7 +55,19 @@
       "label": "Campaign Planning",
       "parent": "l_grow",
       "style": "external",
-      "sub": "gap 1"
+      "chips": [
+        "gap 1"
+      ]
+    },
+    {
+      "id": "loyal",
+      "kind": "component",
+      "label": "Loyalty Programme",
+      "parent": "l_grow",
+      "style": "planned",
+      "chips": [
+        "new"
+      ]
     },
     {
       "id": "capture",
@@ -120,14 +82,9 @@
       "label": "Order Fulfilment",
       "parent": "l_ord",
       "style": "external",
-      "sub": "gap 1"
-    },
-    {
-      "id": "return",
-      "kind": "component",
-      "label": "Return Handling",
-      "parent": "l_ord",
-      "style": "shared"
+      "chips": [
+        "gap 1"
+      ]
     },
     {
       "id": "cdef",
@@ -142,7 +99,9 @@
       "label": "Customer Assistance",
       "parent": "l_cust",
       "style": "planned",
-      "sub": "new"
+      "chips": [
+        "new"
+      ]
     },
     {
       "id": "collect",
@@ -157,7 +116,9 @@
       "label": "Refund Settlement",
       "parent": "l_pay",
       "style": "external",
-      "sub": "gap 1"
+      "chips": [
+        "gap 1"
+      ]
     },
     {
       "id": "track",
@@ -172,6 +133,69 @@
       "label": "Stock Replenishment",
       "parent": "l_inv",
       "style": "shared"
+    }
+  ],
+  "edges": [],
+  "groups": [
+    {
+      "id": "t_str",
+      "title": "Strategic",
+      "kind": "layer",
+      "tint": "biz"
+    },
+    {
+      "id": "l_prod",
+      "title": "Product Strategy",
+      "kind": "frame",
+      "parent": "t_str",
+      "tint": "biz"
+    },
+    {
+      "id": "l_grow",
+      "title": "Customer Growth",
+      "kind": "frame",
+      "parent": "t_str",
+      "tint": "biz"
+    },
+    {
+      "id": "t_core",
+      "title": "Core",
+      "kind": "layer",
+      "tint": "app"
+    },
+    {
+      "id": "l_ord",
+      "title": "Order Management",
+      "kind": "frame",
+      "parent": "t_core",
+      "tint": "app"
+    },
+    {
+      "id": "l_cust",
+      "title": "Customer Management",
+      "kind": "frame",
+      "parent": "t_core",
+      "tint": "app"
+    },
+    {
+      "id": "t_sup",
+      "title": "Supporting",
+      "kind": "layer",
+      "tint": "tech"
+    },
+    {
+      "id": "l_pay",
+      "title": "Payment Management",
+      "kind": "frame",
+      "parent": "t_sup",
+      "tint": "tech"
+    },
+    {
+      "id": "l_inv",
+      "title": "Inventory Management",
+      "kind": "frame",
+      "parent": "t_sup",
+      "tint": "tech"
     }
   ]
 }

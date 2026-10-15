@@ -4,66 +4,200 @@
     "type": "G2",
     "title": "Online shop: cloud infrastructure on a generic provider (proposed)",
     "lang": "en",
-    "audience": "operations and architects",
-    "state": "to-be"
+    "audience": "platform engineers",
+    "state": "to-be",
+    "subtitle": "Region A, two availability zones",
+    "legend": [
+      {
+        "label": "Proposed, not yet built",
+        "style": "highlight",
+        "symbol": "box"
+      },
+      {
+        "label": "Request path",
+        "kind": "call",
+        "dir": "->"
+      },
+      {
+        "label": "Numbers 1–2: write path",
+        "symbol": "box"
+      }
+    ],
+    "legend_mode": "replace"
   },
   "layout": {
-    "template": "layered",
-    "profile": "doc"
-  },
-  "groups": [
-    {
-      "id": "g_e",
-      "title": "Edge (global)",
-      "kind": "layer"
-    },
-    {
-      "id": "g_cmp",
-      "title": "Compute (region A, zones 1 and 2)",
-      "kind": "layer"
-    },
-    {
-      "id": "g_d",
-      "title": "Data (region A, replica in zone 2)",
-      "kind": "layer"
+    "template": "statechart",
+    "profile": "doc",
+    "direction": "LR",
+    "spacing": {
+      "rank_gap": 24,
+      "group_padding": 16,
+      "node_gap": 24
     }
-  ],
+  },
   "nodes": [
     {
       "id": "cdn",
       "kind": "component",
       "label": "CDN",
-      "sub": "caches pages",
-      "parent": "g_e"
+      "parent": "edge",
+      "chips": [
+        "Cache",
+        "Firewall"
+      ]
     },
     {
-      "id": "app",
+      "id": "lb",
+      "kind": "component",
+      "label": "Load balancer",
+      "parent": "net",
+      "chips": [
+        "Layer 7"
+      ]
+    },
+    {
+      "id": "a1",
       "kind": "component",
       "label": "App service",
-      "sub": "runs the shop",
-      "parent": "g_cmp",
-      "style": "primary"
+      "parent": "z1",
+      "style": "highlight",
+      "chips": [
+        "3 instances"
+      ],
+      "badge": 1
     },
     {
-      "id": "sql",
+      "id": "db",
       "kind": "store",
-      "label": "Managed database",
-      "sub": "orders",
-      "parent": "g_d"
+      "label": "Primary database",
+      "parent": "z1",
+      "chips": [
+        "Writes"
+      ],
+      "badge": 2
+    },
+    {
+      "id": "a2",
+      "kind": "component",
+      "label": "App service",
+      "parent": "z2",
+      "style": "highlight",
+      "chips": [
+        "3 instances"
+      ]
+    },
+    {
+      "id": "rep",
+      "kind": "store",
+      "label": "Replica",
+      "parent": "z2",
+      "chips": [
+        "Reads",
+        "Copy of primary"
+      ]
+    },
+    {
+      "id": "obj",
+      "kind": "store",
+      "label": "Object storage",
+      "parent": "man",
+      "chips": [
+        "Images"
+      ]
+    },
+    {
+      "id": "mq",
+      "kind": "queue",
+      "label": "Message queue",
+      "parent": "man"
+    },
+    {
+      "id": "mon",
+      "kind": "component",
+      "label": "Monitoring",
+      "parent": "man",
+      "chips": [
+        "Alerts"
+      ]
     }
   ],
   "edges": [
     {
-      "from": "g_e",
-      "to": "g_cmp",
-      "label": "forwards requests",
+      "from": "cdn",
+      "to": "lb",
       "kind": "call"
     },
     {
-      "from": "g_cmp",
-      "to": "g_d",
-      "label": "reads and writes",
+      "from": "lb",
+      "to": "a1",
+      "kind": "call"
+    },
+    {
+      "from": "lb",
+      "to": "a2",
+      "kind": "call"
+    },
+    {
+      "from": "a1",
+      "to": "db",
       "kind": "data"
+    },
+    {
+      "from": "a2",
+      "to": "rep",
+      "kind": "data"
+    },
+    {
+      "from": "a1",
+      "to": "obj",
+      "kind": "data"
+    },
+    {
+      "from": "a2",
+      "to": "mq",
+      "kind": "async"
+    }
+  ],
+  "groups": [
+    {
+      "id": "edge",
+      "title": "Edge",
+      "kind": "frame",
+      "tint": "biz"
+    },
+    {
+      "id": "reg",
+      "title": "Region A",
+      "kind": "boundary",
+      "tint": "neutral"
+    },
+    {
+      "id": "net",
+      "title": "Network and security",
+      "kind": "frame",
+      "parent": "reg",
+      "tint": "security"
+    },
+    {
+      "id": "z1",
+      "title": "Zone 1",
+      "kind": "frame",
+      "parent": "reg",
+      "tint": "app"
+    },
+    {
+      "id": "z2",
+      "title": "Zone 2",
+      "kind": "frame",
+      "parent": "reg",
+      "tint": "app"
+    },
+    {
+      "id": "man",
+      "title": "Managed services",
+      "kind": "frame",
+      "parent": "reg",
+      "tint": "data"
     }
   ]
 }

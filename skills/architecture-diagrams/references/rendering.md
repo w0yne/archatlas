@@ -108,17 +108,23 @@ replacement for schema validation.
   `doc`/`doc-1120xN` prefers 1120px width and grows as needed; the default wide-view
   warning limit is 1.5 times the preferred width. It does not paginate or shrink text.
 - **nodes:** id, kind, label; optional sub (keep brief), parent group, tags (small
-  text labels), style, size_hint, evidence, attributes (ER field strings), rank
-  (minimum flow rank, integer 0–100). Styles: primary/peer/external/shared/planned.
+  text labels), chips (short labels, each a string or `{label, style}`), badge (step or
+  reference number 1–999, or 1–4 characters), shape (`card|database|document|queue|callout`),
+  style, size_hint, evidence, attributes (ER field strings), rank (minimum flow rank,
+  integer 0–100). Styles: primary/peer/external/shared/planned/highlight (`highlight` is the
+  one warm emphasis colour for the subject of the figure).
   Kinds: person, system, container, component, store, queue, external, actor,
   lifeline, state, entity, task, event, gateway, band, initial, final, note,
-  process, dataset, job, pipeline, use_case.
+  process, dataset, job, pipeline, use_case, document, callout. `store` draws a cylinder,
+  `queue` a queue, `document` a folded card and `callout` a note card by default.
 - **glyphs:** actor is a stick figure with its label below; person stays a card.
   use_case is an ellipse. An event may set event_type=start/end (thin/thick BPMN
   border); initial/final are UML state symbols. Descriptive kinds such as dataset
-  and pipeline remain cards, not a promise of complete formal notation.
+  and pipeline remain cards, not a promise of complete formal notation. Formal symbols
+  (actor, event, gateway, use_case, initial, final) keep their shape and take no chips or badge.
 - **groups:** id, title, kind (`boundary|layer|pool|lane|frame`), optional parent,
-  style, dashed. Explicit pool models in lanes reject sequence calls across pool
+  style, dashed, tint (`app|tech|data|biz|security|neutral`, a colour role) and band
+  (header band, default true). Explicit pool models in lanes reject sequence calls across pool
   boundaries and messages within one pool; messages require a dashed directed arrow.
 - **edges:** from/to; optional id, label, kind (`call|data|async|message|dependency|assoc`),
   dir (`->|<->|--`), step, from_port/to_port (`n|e|s|w|auto`), style, dashed,
@@ -130,14 +136,31 @@ replacement for schema validation.
 - **tables:** id, optional title, non-empty columns array, rows of matching length;
   column headings may be empty strings. grid_table can place tables beside a
   small nodes/edges/groups diagram. Merged cells are not supported.
-- **sequence:** frames (`id,label,from_step,to_step`) and activations
-  (`node,from_step,to_step`). Frames mark step ranges; they do not implement full
-  multi-operand UML alt/par semantics. Author the operator/guard in the label.
+- **sequence:** frames (`id`, `from_step`, `to_step`, `operator` of `loop|alt|opt|par|break|critical|seq|strict`,
+  `guard`, optional `label`) and activations (`node,from_step,to_step`). `alt` and `par` frames list
+  `operands` (`guard,from_step,to_step`) that partition the frame's steps; each operand is drawn as a
+  region with its own guard, split by a dashed separator. Frames must nest or be disjoint.
+- **meta:** type, title, optional subtitle (one short line of context, not the diagram type), lang,
+  audience, state, legend.
 - **allow:** element/rule/reason explanations. These are retained for review;
   they do not suppress errors or change the CLI failure threshold.
 
 IDs match `^[A-Za-z][A-Za-z0-9_-]*$` and are unique across nodes, groups, tables,
 frames and explicit/generated edge IDs. An omitted edge id becomes `edge-1`, etc.
+
+### Visual components
+
+The default style is one family: tinted zones with header bands for boundaries and layers, solid
+blue for the subject's peers, one warm highlight for the subject, green for shared, gray for
+external, purple for planned. Components are visual, not facts: explain every colour, chip colour
+and badge in the legend (`meta.legend`), and see "Visual hierarchy" in `principles.md`.
+
+Layout hints that follow from the engine: `nested` and `layered` place children in declaration
+order on a grid (`layout.columns`), so order siblings by flow; `statechart` ranks nodes by their
+edges inside each group, which suits flow diagrams with zones (use `direction` `LR` or `TB`);
+`lanes` with `direction: TB` draws vertical swimlanes. Edge labels widen the gaps between ranks:
+put a protocol or role in a chip and keep labels for the exchange itself. The checker warns above
+12 nodes in one view; richness comes from zones, chips and badges rather than more boxes.
 
 ### Meaningful legends and languages
 

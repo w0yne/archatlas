@@ -17,7 +17,7 @@ formal: {kind: standard, ref: OMG UML 2.5.1 state machines (behavioral and proto
 neighbours: [A5, D1, E1, E2]
 status: draft
 translationOf: en/types/E3-state-machine.md
-sourceRev: 88db750
+sourceRev: 61fe367
 reviewed: false
 ---
 
@@ -158,5 +158,5 @@ reviewed: false
 
 ## 示例图 {#sample}
 <!-- skill: path only -->
-![E3 示例：订单的状态机，含初始和终止状态](/samples/E3-state-machine.svg)
-*订单的状态：已下单、已支付、已发货和已取消，一个初始状态和一个终止状态。迁移按“事件 [守卫] / 效果”标注，例如“支付 [金额正确] / 预留库存”和“取消 [付款前]”；已送达的订单和已取消的订单都进入终止状态。*
+![E3 示例：订单的状态机，含初始与终止状态](/samples/E3-state-machine.zh.svg)
+*订单的状态：已下单、已支付、已发货、已送达、已退款和已取消，有一个初始状态和一个终止状态；每个状态带一个说明含义的标签，琥珀色状态构成主路径。迁移写作 事件 [守卫] / 动作，例如 支付 [金额正确] / 预留库存 和 取消 [支付前]。已送达的订单在退货期过后关闭，或在 30 天内退款；已取消的订单关闭；所有路径都到达终止状态。*

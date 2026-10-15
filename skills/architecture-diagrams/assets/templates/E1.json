@@ -5,7 +5,8 @@
     "title": "Place an order",
     "lang": "en",
     "audience": "developers",
-    "state": "as-is"
+    "state": "as-is",
+    "subtitle": "Happy path with one stock loop and one payment decision"
   },
   "layout": {
     "template": "sequence",
@@ -17,7 +18,15 @@
       "kind": "lifeline",
       "label": "Customer",
       "size_hint": {
-        "width": 150
+        "width": 130
+      }
+    },
+    {
+      "id": "web",
+      "kind": "lifeline",
+      "label": "Web storefront",
+      "size_hint": {
+        "width": 130
       }
     },
     {
@@ -25,7 +34,7 @@
       "kind": "lifeline",
       "label": "Order API",
       "size_hint": {
-        "width": 150
+        "width": 130
       }
     },
     {
@@ -33,7 +42,7 @@
       "kind": "lifeline",
       "label": "Inventory",
       "size_hint": {
-        "width": 150
+        "width": 130
       }
     },
     {
@@ -41,30 +50,37 @@
       "kind": "lifeline",
       "label": "Payment provider",
       "size_hint": {
-        "width": 150
+        "width": 130
       }
     }
   ],
   "edges": [
     {
       "from": "cust",
-      "to": "api",
+      "to": "web",
       "label": "Place order",
       "step": 1,
+      "kind": "call"
+    },
+    {
+      "from": "web",
+      "to": "api",
+      "label": "Create order",
+      "step": 2,
       "kind": "call"
     },
     {
       "from": "api",
       "to": "inv",
       "label": "Reserve item",
-      "step": 2,
+      "step": 3,
       "kind": "call"
     },
     {
       "from": "inv",
       "to": "api",
       "label": "Reserved",
-      "step": 3,
+      "step": 4,
       "kind": "call",
       "dashed": true
     },
@@ -72,22 +88,22 @@
       "from": "api",
       "to": "pay",
       "label": "Charge card",
-      "step": 4,
+      "step": 5,
       "kind": "call"
     },
     {
       "from": "pay",
       "to": "api",
       "label": "Payment confirmed",
-      "step": 5,
+      "step": 6,
       "kind": "call",
       "dashed": true
     },
     {
       "from": "api",
-      "to": "cust",
+      "to": "web",
       "label": "Order confirmed",
-      "step": 6,
+      "step": 7,
       "kind": "call",
       "dashed": true
     },
@@ -95,62 +111,75 @@
       "from": "pay",
       "to": "api",
       "label": "Payment declined",
-      "step": 7,
+      "step": 8,
       "kind": "call",
       "dashed": true
     },
     {
       "from": "api",
-      "to": "cust",
+      "to": "inv",
+      "label": "Release items",
+      "step": 9,
+      "kind": "call"
+    },
+    {
+      "from": "api",
+      "to": "web",
       "label": "Order rejected",
-      "step": 8,
+      "step": 10,
       "kind": "call",
       "dashed": true
     }
   ],
+  "groups": [],
   "frames": [
     {
       "id": "loop1",
       "operator": "loop",
       "guard": "each order line",
-      "from_step": 2,
-      "to_step": 3
+      "from_step": 3,
+      "to_step": 4
     },
     {
       "id": "alt1",
       "operator": "alt",
       "label": "Payment outcome",
-      "from_step": 5,
-      "to_step": 8,
+      "from_step": 6,
+      "to_step": 10,
       "operands": [
         {
           "guard": "card accepted",
-          "from_step": 5,
-          "to_step": 6
+          "from_step": 6,
+          "to_step": 7
         },
         {
           "guard": "else: card declined",
-          "from_step": 7,
-          "to_step": 8
+          "from_step": 8,
+          "to_step": 10
         }
       ]
     }
   ],
   "activations": [
     {
-      "node": "api",
+      "node": "web",
       "from_step": 1,
-      "to_step": 8
+      "to_step": 7
+    },
+    {
+      "node": "api",
+      "from_step": 2,
+      "to_step": 10
     },
     {
       "node": "inv",
-      "from_step": 2,
-      "to_step": 3
+      "from_step": 3,
+      "to_step": 4
     },
     {
       "node": "pay",
-      "from_step": 4,
-      "to_step": 7
+      "from_step": 5,
+      "to_step": 8
     }
   ]
 }

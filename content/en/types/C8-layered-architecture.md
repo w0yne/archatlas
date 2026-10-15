@@ -167,4 +167,4 @@ Model template: `assets/templates/C8.json` · Layout template: `layered` · each
 ## Sample {#sample}
 <!-- skill: path only -->
 ![C8 sample: layered architecture inside one container with allowed dependencies](/samples/C8-layered-architecture.svg)
-*Layered architecture inside one container: presentation (controllers), domain (order services) and data access (repositories). The arrows marked “may use” are the only allowed dependencies, each pointing downwards.*
+*Layered architecture inside the order service container, four tinted layers from top to bottom: presentation (order controller, cart controller, webhook endpoint), application (place-order use case, refund use case, order queries), domain (order, pricing rules, stock policy) and data access (order repository, payment gateway client, event publisher). The arrows marked “may use” are the only allowed dependencies, each pointing one layer down; the amber blocks follow the main path of placing an order.*

@@ -5,61 +5,184 @@
     "title": "Online shop: layers and allowed dependencies",
     "lang": "en",
     "audience": "developers",
-    "state": "as-is"
+    "state": "as-is",
+    "subtitle": "Inside the order service container",
+    "legend": [
+      {
+        "label": "Allowed: upper layer uses the one below",
+        "kind": "call",
+        "dir": "->"
+      },
+      {
+        "label": "Main path of placing an order",
+        "style": "highlight",
+        "symbol": "box"
+      }
+    ],
+    "legend_mode": "replace"
   },
   "layout": {
     "template": "layered",
-    "profile": "doc"
+    "profile": "doc",
+    "columns": 3
   },
-  "groups": [
-    {
-      "id": "g_ui",
-      "title": "Presentation",
-      "kind": "layer"
-    },
-    {
-      "id": "g_dom",
-      "title": "Domain",
-      "kind": "layer"
-    },
-    {
-      "id": "g_data",
-      "title": "Data access",
-      "kind": "layer"
-    }
-  ],
   "nodes": [
     {
-      "id": "ctl",
+      "id": "oc",
       "kind": "component",
-      "label": "Controllers",
-      "parent": "g_ui"
+      "label": "Order controller",
+      "parent": "l1",
+      "chips": [
+        "REST"
+      ]
     },
     {
-      "id": "svc",
+      "id": "cc",
       "kind": "component",
-      "label": "Order services",
-      "parent": "g_dom"
+      "label": "Cart controller",
+      "parent": "l1",
+      "chips": [
+        "REST"
+      ]
     },
     {
-      "id": "repo",
+      "id": "wh",
       "kind": "component",
-      "label": "Repositories",
-      "parent": "g_data"
+      "label": "Webhook endpoint",
+      "parent": "l1",
+      "chips": [
+        "HTTP"
+      ]
+    },
+    {
+      "id": "po",
+      "kind": "component",
+      "label": "Place-order use case",
+      "parent": "l2",
+      "style": "highlight"
+    },
+    {
+      "id": "rf",
+      "kind": "component",
+      "label": "Refund use case",
+      "parent": "l2"
+    },
+    {
+      "id": "qr",
+      "kind": "component",
+      "label": "Order queries",
+      "parent": "l2"
+    },
+    {
+      "id": "od",
+      "kind": "component",
+      "label": "Order",
+      "parent": "l3",
+      "style": "highlight",
+      "chips": [
+        "Aggregate"
+      ]
+    },
+    {
+      "id": "pr",
+      "kind": "component",
+      "label": "Pricing rules",
+      "parent": "l3",
+      "chips": [
+        "Policy"
+      ]
+    },
+    {
+      "id": "st",
+      "kind": "component",
+      "label": "Stock policy",
+      "parent": "l3",
+      "chips": [
+        "Policy"
+      ]
+    },
+    {
+      "id": "or",
+      "kind": "component",
+      "label": "Order repository",
+      "parent": "l4",
+      "chips": [
+        "SQL"
+      ]
+    },
+    {
+      "id": "pg",
+      "kind": "component",
+      "label": "Payment gateway client",
+      "parent": "l4",
+      "chips": [
+        "HTTPS"
+      ]
+    },
+    {
+      "id": "ev",
+      "kind": "component",
+      "label": "Event publisher",
+      "parent": "l4",
+      "chips": [
+        "Queue"
+      ]
     }
   ],
   "edges": [
     {
-      "from": "g_ui",
-      "to": "g_dom",
+      "from": "l1",
+      "to": "l2",
       "label": "may use",
-      "kind": "dependency"
+      "kind": "call"
     },
     {
-      "from": "g_dom",
-      "to": "g_data",
+      "from": "l2",
+      "to": "l3",
       "label": "may use",
-      "kind": "dependency"
+      "kind": "call"
+    },
+    {
+      "from": "l3",
+      "to": "l4",
+      "label": "may use",
+      "kind": "call"
+    }
+  ],
+  "groups": [
+    {
+      "id": "p",
+      "title": "Order service",
+      "kind": "boundary",
+      "tint": "app"
+    },
+    {
+      "id": "l1",
+      "title": "Presentation",
+      "kind": "layer",
+      "parent": "p",
+      "tint": "biz"
+    },
+    {
+      "id": "l2",
+      "title": "Application",
+      "kind": "layer",
+      "parent": "p",
+      "tint": "app"
+    },
+    {
+      "id": "l3",
+      "title": "Domain",
+      "kind": "layer",
+      "parent": "p",
+      "tint": "tech"
+    },
+    {
+      "id": "l4",
+      "title": "Data access",
+      "kind": "layer",
+      "parent": "p",
+      "tint": "data"
     }
   ]
 }

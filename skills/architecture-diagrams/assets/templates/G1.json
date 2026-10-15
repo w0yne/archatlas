@@ -6,94 +6,201 @@
     "lang": "en",
     "audience": "operations and developers",
     "state": "as-is",
+    "subtitle": "Where each runtime unit lives",
     "legend": [
       {
-        "label": "Solid frame: hosting node",
+        "label": "Solid frame: hosting network segment",
+        "symbol": "box"
+      },
+      {
+        "label": "Focus service",
+        "style": "highlight",
+        "symbol": "box"
+      },
+      {
+        "label": "Outside our control",
+        "style": "external",
+        "symbol": "box"
+      },
+      {
+        "label": "Synchronous call",
+        "kind": "call",
+        "dir": "->"
+      },
+      {
+        "label": "Numbers 1–2: order write path",
         "symbol": "box"
       }
-    ]
+    ],
+    "legend_mode": "replace"
   },
   "layout": {
-    "template": "nested",
+    "template": "statechart",
     "profile": "doc",
-    "columns": 3,
+    "direction": "LR",
     "spacing": {
-      "node_gap": 72
+      "rank_gap": 32,
+      "node_gap": 24,
+      "group_padding": 16
     }
   },
-  "groups": [
-    {
-      "id": "g_c",
-      "title": "Cluster",
-      "kind": "boundary",
-      "dashed": false
-    },
-    {
-      "id": "g_h",
-      "title": "Host A",
-      "kind": "boundary",
-      "parent": "g_c",
-      "dashed": false
-    }
-  ],
   "nodes": [
+    {
+      "id": "lb",
+      "kind": "component",
+      "label": "Load balancer",
+      "parent": "pub",
+      "chips": [
+        "HTTPS"
+      ]
+    },
     {
       "id": "web",
       "kind": "component",
       "label": "Storefront",
-      "parent": "g_h",
-      "size_hint": {
-        "width": 150
-      }
+      "parent": "pub",
+      "chips": [
+        "2 replicas"
+      ]
     },
     {
       "id": "api",
       "kind": "component",
       "label": "Order API",
-      "sub": "2 replicas (illustrative)",
-      "parent": "g_h",
-      "style": "primary",
-      "size_hint": {
-        "width": 150
-      }
+      "parent": "app",
+      "style": "highlight",
+      "chips": [
+        "2 replicas"
+      ],
+      "badge": 1
+    },
+    {
+      "id": "bot",
+      "kind": "component",
+      "label": "Chatbot service",
+      "parent": "app",
+      "chips": [
+        "1 replica"
+      ]
     },
     {
       "id": "db",
       "kind": "store",
-      "label": "Managed database",
-      "style": "external",
-      "size_hint": {
-        "width": 150
-      }
+      "label": "Primary database",
+      "parent": "dat",
+      "chips": [
+        "SQL",
+        "Writes"
+      ],
+      "badge": 2
+    },
+    {
+      "id": "rep",
+      "kind": "store",
+      "label": "Read replica",
+      "parent": "dat",
+      "chips": [
+        "SQL",
+        "Reads"
+      ]
+    },
+    {
+      "id": "cdn",
+      "kind": "external",
+      "label": "Content delivery network",
+      "style": "external"
     },
     {
       "id": "pay",
       "kind": "external",
       "label": "Payment provider",
       "style": "external",
-      "size_hint": {
-        "width": 150
-      }
+      "chips": [
+        "HTTPS"
+      ]
+    },
+    {
+      "id": "llm",
+      "kind": "external",
+      "label": "Language model service",
+      "style": "external",
+      "chips": [
+        "HTTPS"
+      ]
     }
   ],
   "edges": [
     {
+      "from": "cdn",
+      "to": "lb",
+      "kind": "call"
+    },
+    {
+      "from": "lb",
+      "to": "web",
+      "kind": "call"
+    },
+    {
       "from": "web",
       "to": "api",
-      "label": "HTTP",
+      "kind": "call"
+    },
+    {
+      "from": "web",
+      "to": "bot",
       "kind": "call"
     },
     {
       "from": "api",
       "to": "db",
-      "label": "SQL",
+      "kind": "data"
+    },
+    {
+      "from": "api",
+      "to": "rep",
       "kind": "data"
     },
     {
       "from": "api",
       "to": "pay",
-      "label": "HTTPS",
       "kind": "call"
+    },
+    {
+      "from": "bot",
+      "to": "llm",
+      "kind": "call"
+    }
+  ],
+  "groups": [
+    {
+      "id": "net",
+      "title": "Production cluster",
+      "kind": "boundary",
+      "tint": "neutral",
+      "dashed": false
+    },
+    {
+      "id": "pub",
+      "title": "Public subnet",
+      "kind": "boundary",
+      "parent": "net",
+      "tint": "biz",
+      "dashed": false
+    },
+    {
+      "id": "app",
+      "title": "Application subnet",
+      "kind": "boundary",
+      "parent": "net",
+      "tint": "app",
+      "dashed": false
+    },
+    {
+      "id": "dat",
+      "title": "Managed data services",
+      "kind": "boundary",
+      "tint": "data",
+      "dashed": false
     }
   ]
 }

@@ -5,7 +5,8 @@
     "title": "Shop: signed-in order history, authorization code flow (current)",
     "lang": "en",
     "audience": "security and developers",
-    "state": "as-is"
+    "state": "as-is",
+    "subtitle": "The shopper never receives the access token"
   },
   "layout": {
     "template": "sequence",
@@ -17,7 +18,7 @@
       "kind": "lifeline",
       "label": "Shopper",
       "size_hint": {
-        "width": 140
+        "width": 150
       }
     },
     {
@@ -25,7 +26,7 @@
       "kind": "lifeline",
       "label": "Web app",
       "size_hint": {
-        "width": 140
+        "width": 150
       }
     },
     {
@@ -33,7 +34,7 @@
       "kind": "lifeline",
       "label": "Identity provider",
       "size_hint": {
-        "width": 140
+        "width": 150
       }
     },
     {
@@ -41,7 +42,7 @@
       "kind": "lifeline",
       "label": "Order API",
       "size_hint": {
-        "width": 140
+        "width": 150
       }
     }
   ],
@@ -121,31 +122,47 @@
       "dashed": true
     },
     {
-      "from": "api",
-      "to": "app",
-      "label": "401 Unauthorized",
+      "from": "app",
+      "to": "user",
+      "label": "Show orders",
       "step": 11,
       "kind": "call",
       "dashed": true
+    },
+    {
+      "from": "api",
+      "to": "app",
+      "label": "401 Unauthorized",
+      "step": 12,
+      "kind": "call",
+      "dashed": true
+    },
+    {
+      "from": "app",
+      "to": "idp",
+      "label": "Start sign-in again",
+      "step": 13,
+      "kind": "call"
     }
   ],
+  "groups": [],
   "frames": [
     {
       "id": "alt1",
       "operator": "alt",
       "label": "Token check",
       "from_step": 10,
-      "to_step": 11,
+      "to_step": 13,
       "operands": [
         {
           "guard": "token valid",
           "from_step": 10,
-          "to_step": 10
+          "to_step": 11
         },
         {
           "guard": "else: token invalid or expired",
-          "from_step": 11,
-          "to_step": 11
+          "from_step": 12,
+          "to_step": 13
         }
       ]
     }
@@ -159,7 +176,7 @@
     {
       "node": "api",
       "from_step": 7,
-      "to_step": 11
+      "to_step": 12
     }
   ]
 }

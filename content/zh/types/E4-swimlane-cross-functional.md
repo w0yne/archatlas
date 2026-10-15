@@ -17,7 +17,7 @@ formal: {kind: convention, ref: Informal cross-functional flowchart (Rummler-Bra
 neighbours: [A5, A6, A9, E1, E2, H1]
 status: draft
 translationOf: en/types/E4-swimlane-cross-functional.md
-sourceRev: 88db750
+sourceRev: 61fe367
 reviewed: false
 ---
 
@@ -147,5 +147,5 @@ reviewed: false
 
 ## 示例图 {#sample}
 <!-- skill: path only -->
-![E4 示例：顾客、客服和仓库之间的退货泳道图](/samples/E4-swimlane-cross-functional.svg)
-*顾客、客服和仓库之间的退货泳道图：顾客的申请交给客服，客服批准后产生退货标签，交给仓库检查。每次交接都标注传递的内容。*
+![E4 示例：顾客、客服、仓库和财务之间的退货泳道图](/samples/E4-swimlane-cross-functional.zh.svg)
+*跨四条泳道（顾客、客服、仓库、财务）的退货流程：顾客的申请交给客服，客服批准后产生退货面单；顾客把包裹寄到仓库，仓库验货后要么入库，要么把结果交给财务退款，并通知顾客。编号标明步骤顺序，琥珀色任务决定结果，每次交接都标注传递的内容。*

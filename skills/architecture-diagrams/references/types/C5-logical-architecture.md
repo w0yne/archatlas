@@ -85,7 +85,7 @@ A logical architecture diagram answers: *which blocks must exist, what does each
 5. Which external capabilities and which 3–6 key interactions must appear? (Default: identity, payment provider, the main purchase request.)
 
 ## Template
-Model template: `assets/templates/C5.json` · Layout template: `layered` · Groups of kind `frame` become horizontal bands of responsibility blocks inside one `boundary`; externals sit outside it and `edges` of kind `dependency` carry operation labels.
+Model template: `assets/templates/C5.json` · Layout template: `statechart` · groups of kind `frame` hold the responsibility blocks inside one `boundary` and are ranked by dependency; externals sit outside it, a `highlight` style marks the blocks that carry the main flow, and `edges` of kind `call` carry operation labels.
 
 ## Sample
 Figure: `samples/C5-logical-architecture.svg` (published with the site)

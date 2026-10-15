@@ -1,5 +1,6 @@
 {
   "Shop: signed-in order history, authorization code flow (current)": "商城：登录后的订单历史，授权码流程（现状）",
+  "The shopper never receives the access token": "顾客始终拿不到访问令牌",
   "Shopper": "顾客",
   "Web app": "网页应用",
   "Identity provider": "身份提供方",
@@ -14,7 +15,9 @@
   "Fetch signing keys": "获取签名密钥",
   "Keys": "密钥",
   "Order list": "订单列表",
+  "Show orders": "显示订单",
   "401 Unauthorized": "401 未授权",
+  "Start sign-in again": "重新发起登录",
   "Token check": "令牌校验",
   "token valid": "令牌有效",
   "else: token invalid or expired": "否则：令牌无效或已过期"
