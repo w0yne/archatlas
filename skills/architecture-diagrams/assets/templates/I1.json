@@ -86,7 +86,7 @@
       "kind": "task",
       "label": "Recovery after failure",
       "parent": "g_s",
-      "style": "primary",
+      "style": "peer",
       "size_hint": {
         "width": 170
       }
