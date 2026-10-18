@@ -67,6 +67,10 @@ implementation variant. The selection guide groups 25 core entries, 10 named var
 5 method references. Honour every explicit legacy code, including method references.
 Read the named variant's own reference; grouping never substitutes the parent notation.
 
+For the shared Enterprise Service Assistant worked example, read
+`references/ai-service-assistant.md`. The seven bilingual views use frozen facts;
+`atlas init` templates remain small historical starters, not the new showcase.
+
 
 If the user already named the type (code or standard name), skip selection: read
 `references/types/<code>-<slug>.md` (list `references/types/` to find the file) and follow it.
