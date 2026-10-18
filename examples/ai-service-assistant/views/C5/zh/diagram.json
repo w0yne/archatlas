@@ -1,0 +1,197 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "C5",
+    "title": "C5 · 企业服务助手 — 逻辑架构",
+    "lang": "zh",
+    "state": "to-be",
+    "audience": "architects and reviewers",
+    "description": "Fictional teaching design; scenario.json version 1"
+  },
+  "layout": {
+    "template": "nested"
+  },
+  "nodes": [
+    {
+      "id": "C-web",
+      "kind": "component",
+      "label": "Web 门户",
+      "parent": "F-int",
+      "style": "peer",
+      "sub": "C-web · 对话与审批界面"
+    },
+    {
+      "id": "C-api",
+      "kind": "component",
+      "label": "应用 API/BFF",
+      "parent": "F-int",
+      "style": "peer",
+      "sub": "C-api · 会话、租户策略与审批"
+    },
+    {
+      "id": "DS-app",
+      "kind": "store",
+      "label": "应用记录",
+      "parent": "F-int",
+      "style": "peer",
+      "sub": "DS-app · 成员、对话、审批"
+    },
+    {
+      "id": "C-agent",
+      "kind": "component",
+      "label": "Agent 服务",
+      "parent": "F-asst",
+      "style": "peer",
+      "sub": "C-agent · 受限规划、检索、模型与工具"
+    },
+    {
+      "id": "C-tools",
+      "kind": "component",
+      "label": "MCP 工具网关",
+      "parent": "F-asst",
+      "style": "peer",
+      "sub": "C-tools · 验证委托；工具权限"
+    },
+    {
+      "id": "DS-index",
+      "kind": "store",
+      "label": "检索索引",
+      "parent": "F-know",
+      "style": "peer",
+      "sub": "DS-index · 派生分块、向量、租户与 ACL"
+    },
+    {
+      "id": "C-ingest",
+      "kind": "component",
+      "label": "摄取工作进程",
+      "parent": "F-know",
+      "style": "peer",
+      "sub": "C-ingest · 版本、分块、嵌入、索引"
+    },
+    {
+      "id": "X-idp",
+      "kind": "external",
+      "label": "企业 IdP / AS",
+      "style": "external",
+      "sub": "X-idp · 身份与委托"
+    },
+    {
+      "id": "X-model",
+      "kind": "external",
+      "label": "托管模型服务",
+      "style": "external",
+      "sub": "X-model · 生成文本与向量"
+    },
+    {
+      "id": "X-desk",
+      "kind": "external",
+      "label": "服务工单系统",
+      "style": "external",
+      "sub": "X-desk · 工单与服务目录"
+    },
+    {
+      "id": "X-doc",
+      "kind": "external",
+      "label": "文档源系统",
+      "style": "external",
+      "sub": "X-doc · 原始文档与访问策略"
+    }
+  ],
+  "edges": [
+    {
+      "id": "LOG-1",
+      "from": "C-web",
+      "to": "C-api",
+      "label": "对话、审批",
+      "kind": "call"
+    },
+    {
+      "id": "LOG-2",
+      "from": "C-api",
+      "to": "DS-app",
+      "label": "记录",
+      "kind": "call"
+    },
+    {
+      "id": "LOG-3",
+      "from": "C-api",
+      "to": "X-idp",
+      "label": "登录",
+      "kind": "call"
+    },
+    {
+      "id": "LOG-4",
+      "from": "C-api",
+      "to": "C-agent",
+      "label": "委托",
+      "kind": "call"
+    },
+    {
+      "id": "LOG-5",
+      "from": "C-agent",
+      "to": "C-tools",
+      "label": "工具调用",
+      "kind": "call"
+    },
+    {
+      "id": "LOG-6",
+      "from": "C-agent",
+      "to": "X-model",
+      "label": "生成",
+      "kind": "call"
+    },
+    {
+      "id": "LOG-7",
+      "from": "C-tools",
+      "to": "X-desk",
+      "label": "工单",
+      "kind": "call"
+    },
+    {
+      "id": "LOG-8",
+      "from": "C-agent",
+      "to": "DS-index",
+      "label": "检索",
+      "kind": "call"
+    },
+    {
+      "id": "LOG-9",
+      "from": "C-ingest",
+      "to": "DS-index",
+      "label": "分块",
+      "kind": "call"
+    },
+    {
+      "id": "LOG-10",
+      "from": "C-ingest",
+      "to": "X-doc",
+      "label": "读取文档",
+      "kind": "call"
+    }
+  ],
+  "groups": [
+    {
+      "id": "B-sys",
+      "title": "企业服务助手 · 逻辑块",
+      "kind": "boundary"
+    },
+    {
+      "id": "F-int",
+      "title": "交互与记录",
+      "kind": "boundary",
+      "parent": "B-sys"
+    },
+    {
+      "id": "F-asst",
+      "title": "辅助能力",
+      "kind": "boundary",
+      "parent": "B-sys"
+    },
+    {
+      "id": "F-know",
+      "title": "知识",
+      "kind": "boundary",
+      "parent": "B-sys"
+    }
+  ]
+}

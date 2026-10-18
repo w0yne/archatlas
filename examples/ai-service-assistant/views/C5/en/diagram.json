@@ -1,0 +1,197 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "C5",
+    "title": "C5 · Enterprise Service Assistant — logical architecture",
+    "lang": "en",
+    "state": "to-be",
+    "audience": "architects and reviewers",
+    "description": "Fictional teaching design; scenario.json version 1"
+  },
+  "layout": {
+    "template": "nested"
+  },
+  "nodes": [
+    {
+      "id": "C-web",
+      "kind": "component",
+      "label": "Web Portal",
+      "parent": "F-int",
+      "style": "peer",
+      "sub": "C-web · Chat and approval UI"
+    },
+    {
+      "id": "C-api",
+      "kind": "component",
+      "label": "Application API/BFF",
+      "parent": "F-int",
+      "style": "peer",
+      "sub": "C-api · Sessions, tenant policy, approvals"
+    },
+    {
+      "id": "DS-app",
+      "kind": "store",
+      "label": "Application records",
+      "parent": "F-int",
+      "style": "peer",
+      "sub": "DS-app · Memberships, chats, approvals"
+    },
+    {
+      "id": "C-agent",
+      "kind": "component",
+      "label": "Agent Service",
+      "parent": "F-asst",
+      "style": "peer",
+      "sub": "C-agent · Bounded plan, retrieve, model, tools"
+    },
+    {
+      "id": "C-tools",
+      "kind": "component",
+      "label": "MCP Tool Gateway",
+      "parent": "F-asst",
+      "style": "peer",
+      "sub": "C-tools · Verify delegation; tool policy"
+    },
+    {
+      "id": "DS-index",
+      "kind": "store",
+      "label": "Retrieval index",
+      "parent": "F-know",
+      "style": "peer",
+      "sub": "DS-index · Derived chunks, vectors, tenant ACL"
+    },
+    {
+      "id": "C-ingest",
+      "kind": "component",
+      "label": "Ingestion Worker",
+      "parent": "F-know",
+      "style": "peer",
+      "sub": "C-ingest · Version, chunk, embed, index"
+    },
+    {
+      "id": "X-idp",
+      "kind": "external",
+      "label": "Enterprise IdP / AS",
+      "style": "external",
+      "sub": "X-idp · Identity, delegation"
+    },
+    {
+      "id": "X-model",
+      "kind": "external",
+      "label": "Managed Model Service",
+      "style": "external",
+      "sub": "X-model · Generate text, embeddings"
+    },
+    {
+      "id": "X-desk",
+      "kind": "external",
+      "label": "Service Desk",
+      "style": "external",
+      "sub": "X-desk · Tickets and catalogue"
+    },
+    {
+      "id": "X-doc",
+      "kind": "external",
+      "label": "Document Repository",
+      "style": "external",
+      "sub": "X-doc · Source documents, access"
+    }
+  ],
+  "edges": [
+    {
+      "id": "LOG-1",
+      "from": "C-web",
+      "to": "C-api",
+      "label": "chat, approve",
+      "kind": "call"
+    },
+    {
+      "id": "LOG-2",
+      "from": "C-api",
+      "to": "DS-app",
+      "label": "records",
+      "kind": "call"
+    },
+    {
+      "id": "LOG-3",
+      "from": "C-api",
+      "to": "X-idp",
+      "label": "sign-in",
+      "kind": "call"
+    },
+    {
+      "id": "LOG-4",
+      "from": "C-api",
+      "to": "C-agent",
+      "label": "delegate",
+      "kind": "call"
+    },
+    {
+      "id": "LOG-5",
+      "from": "C-agent",
+      "to": "C-tools",
+      "label": "tool call",
+      "kind": "call"
+    },
+    {
+      "id": "LOG-6",
+      "from": "C-agent",
+      "to": "X-model",
+      "label": "generate",
+      "kind": "call"
+    },
+    {
+      "id": "LOG-7",
+      "from": "C-tools",
+      "to": "X-desk",
+      "label": "tickets",
+      "kind": "call"
+    },
+    {
+      "id": "LOG-8",
+      "from": "C-agent",
+      "to": "DS-index",
+      "label": "search",
+      "kind": "call"
+    },
+    {
+      "id": "LOG-9",
+      "from": "C-ingest",
+      "to": "DS-index",
+      "label": "chunks",
+      "kind": "call"
+    },
+    {
+      "id": "LOG-10",
+      "from": "C-ingest",
+      "to": "X-doc",
+      "label": "read docs",
+      "kind": "call"
+    }
+  ],
+  "groups": [
+    {
+      "id": "B-sys",
+      "title": "Enterprise Service Assistant · logical blocks",
+      "kind": "boundary"
+    },
+    {
+      "id": "F-int",
+      "title": "Interaction and records",
+      "kind": "boundary",
+      "parent": "B-sys"
+    },
+    {
+      "id": "F-asst",
+      "title": "Assistance",
+      "kind": "boundary",
+      "parent": "B-sys"
+    },
+    {
+      "id": "F-know",
+      "title": "Knowledge",
+      "kind": "boundary",
+      "parent": "B-sys"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "scenarioVersion": 1,
+  "entities": {
+    "X-idp": "X-idp",
+    "X-doc": "X-doc",
+    "X-desk": "X-desk",
+    "X-model": "X-model",
+    "S-assistant": "S-assistant"
+  },
+  "invariants": [
+    "I-delegation",
+    "I-ingest",
+    "I-authority"
+  ],
+  "projection": "focused view; omissions described in caption; not a deployed system"
+}

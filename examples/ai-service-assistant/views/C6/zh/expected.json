@@ -1,0 +1,23 @@
+{
+  "scenarioVersion": 1,
+  "entities": {
+    "X-idp": "X-idp",
+    "C-web": "C-web",
+    "C-api": "C-api",
+    "C-agent": "C-agent",
+    "X-model": "X-model",
+    "C-tools": "C-tools",
+    "X-desk": "X-desk",
+    "X-doc": "X-doc",
+    "C-ingest": "C-ingest",
+    "Q-ingest": "Q-ingest"
+  },
+  "invariants": [
+    "I-delegation",
+    "I-tokens",
+    "I-approval",
+    "I-idempotency",
+    "I-ingest"
+  ],
+  "projection": "focused view; omissions described in caption; not a deployed system"
+}
