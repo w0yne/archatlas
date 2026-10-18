@@ -4,7 +4,7 @@ description: 按类别、读者、抽象层次和生命周期阶段浏览架构�
 sidebar: false
 aside: false
 translationOf: en/use/catalogue.md
-sourceRev: 7002b1114ff60c6a028194c8376c71eee2b9d52d
+sourceRev: fd93a14fdf2adb567cd3777ed746c485dd7b11c9
 reviewed: true
 ---
 # 图类型目录
