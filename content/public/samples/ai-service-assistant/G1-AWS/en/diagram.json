@@ -1,0 +1,166 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "G2",
+    "title": "G1 / G2 · Enterprise Service Assistant on AWS",
+    "lang": "en",
+    "state": "to-be",
+    "audience": "architects and reviewers",
+    "description": "Fictional teaching design; scenario.json version 1"
+  },
+  "layout": {
+    "template": "nested"
+  },
+  "nodes": [
+    {
+      "id": "AWS-edge",
+      "kind": "component",
+      "label": "CloudFront + S3",
+      "style": "external",
+      "sub": "C-web static assets; global edge"
+    },
+    {
+      "id": "X-idp",
+      "kind": "external",
+      "label": "Enterprise IdP / AS",
+      "style": "external",
+      "sub": "External identity; delegation prerequisite"
+    },
+    {
+      "id": "AWS-alb",
+      "kind": "component",
+      "label": "Application Load Balancer",
+      "parent": "VPC",
+      "style": "peer",
+      "sub": "Public subnets · AZ-A + AZ-B"
+    },
+    {
+      "id": "AWS-tasks",
+      "kind": "component",
+      "label": "ECS Fargate services",
+      "parent": "VPC",
+      "style": "primary",
+      "sub": "C-api · C-agent · C-tools / separate ECS services · Each >=2 tasks · private subnets across AZ-A + AZ-B · Authenticated HTTPS; per-service IAM roles"
+    },
+    {
+      "id": "AWS-batch",
+      "kind": "component",
+      "label": "ECS Fargate jobs",
+      "parent": "VPC",
+      "style": "peer",
+      "sub": "C-ingest · C-eval / separate task identities · Scheduled in either AZ; no duplicate-job claim"
+    },
+    {
+      "id": "AWS-aurora",
+      "kind": "store",
+      "label": "Aurora PostgreSQL",
+      "parent": "VPC",
+      "style": "peer",
+      "sub": "DS-app writer + reader in different AZs · Service-managed storage spans 3 AZs"
+    },
+    {
+      "id": "AWS-search",
+      "kind": "store",
+      "label": "OpenSearch Service",
+      "parent": "VPC",
+      "style": "peer",
+      "sub": "DS-index · 2-AZ replicas · Zone awareness; no Standby mode"
+    },
+    {
+      "id": "AWS-s3",
+      "kind": "store",
+      "label": "Amazon S3",
+      "parent": "REGION",
+      "style": "peer",
+      "sub": "DS-doc · DS-eval; regional buckets"
+    },
+    {
+      "id": "AWS-sqs",
+      "kind": "queue",
+      "label": "SQS + DLQ",
+      "parent": "REGION",
+      "style": "peer",
+      "sub": "Q-ingest; regional queue / DLQ"
+    },
+    {
+      "id": "X-model",
+      "kind": "external",
+      "label": "Managed Model Service",
+      "parent": "REGION",
+      "style": "peer",
+      "sub": "Bedrock regional model endpoint"
+    },
+    {
+      "id": "AWS-ops",
+      "kind": "component",
+      "label": "CloudWatch · KMS · Secrets",
+      "parent": "REGION",
+      "style": "peer",
+      "sub": "Regional services; scoped IAM access"
+    }
+  ],
+  "edges": [
+    {
+      "id": "DEP-1",
+      "from": "AWS-edge",
+      "to": "AWS-alb",
+      "label": "HTTPS API origin",
+      "kind": "call"
+    },
+    {
+      "id": "DEP-2",
+      "from": "AWS-alb",
+      "to": "AWS-tasks",
+      "label": "HTTPS target group",
+      "kind": "call"
+    },
+    {
+      "id": "DEP-3",
+      "from": "AWS-tasks",
+      "to": "AWS-aurora",
+      "label": "SQL / TLS",
+      "kind": "call"
+    },
+    {
+      "id": "DEP-4",
+      "from": "AWS-tasks",
+      "to": "AWS-search",
+      "label": "HTTPS search",
+      "kind": "call"
+    },
+    {
+      "id": "DEP-5",
+      "from": "AWS-batch",
+      "to": "AWS-sqs",
+      "label": "Poll / acknowledge jobs",
+      "kind": "call"
+    },
+    {
+      "id": "DEP-6",
+      "from": "AWS-tasks",
+      "to": "X-model",
+      "label": "HTTPS model inference",
+      "kind": "call"
+    },
+    {
+      "id": "DEP-7",
+      "from": "AWS-batch",
+      "to": "AWS-s3",
+      "label": "S3 versioned objects",
+      "kind": "call"
+    }
+  ],
+  "groups": [
+    {
+      "id": "REGION",
+      "title": "AWS region · service availability checked before implementation",
+      "kind": "boundary"
+    },
+    {
+      "id": "VPC",
+      "title": "Customer VPC · application placement in two AZs",
+      "kind": "boundary",
+      "parent": "REGION"
+    }
+  ]
+}

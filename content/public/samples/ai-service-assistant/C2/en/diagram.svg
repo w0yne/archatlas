@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1080" lang="en" data-archatlas="0.1">
+<title>C2 · Enterprise Service Assistant — system context</title>
+<desc>Fictional target · People and directly connected external systems</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,4 L0,8 Z" fill="#4B5563"/></marker></defs>
+<rect data-role="canvas" width="1400" height="1080" fill="#ffffff"/>
+<text x="28" y="40" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="28" font-weight="700" fill="#1F2937">C2 · Enterprise Service Assistant — system context</text>
+<text x="28" y="72" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">Fictional target · People and directly connected external systems</text>
+<rect x="510" y="380" width="365" height="155" data-role="node" data-id="S-assistant" data-kind="system" fill="#1767B5" stroke="#03172E" stroke-width="2.4" rx="8"/>
+<text x="524" y="409" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#ffffff" data-owner="S-assistant" data-role="name">Enterprise Service Assistant</text>
+<text x="524" y="434" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#ffffff" data-owner="S-assistant" data-role="sub">System in scope</text>
+<text x="524" y="457" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#ffffff" data-owner="S-assistant" data-role="sub">Cited answers</text>
+<text x="524" y="480" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#ffffff" data-owner="S-assistant" data-role="sub">Approved service actions</text>
+<rect x="30" y="140" width="300" height="102" data-role="node" data-id="R-employee" data-kind="person" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="8"/>
+<text x="44" y="169" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="R-employee" data-role="name">Employee / approver</text>
+<text x="44" y="194" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="R-employee" data-role="sub">Person</text>
+<text x="44" y="217" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="R-employee" data-role="sub">Ask; approve own permitted requests</text>
+<polyline points="330,191 405,191 405,405 510,405" data-role="edge" data-id="CTX-1" data-from="R-employee" data-to="S-assistant" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="348" y="173" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">Asks and approves</text>
+<rect x="30" y="410" width="300" height="102" data-role="node" data-id="R-steward" data-kind="person" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="8"/>
+<text x="44" y="439" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="R-steward" data-role="name">Knowledge steward</text>
+<text x="44" y="464" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="R-steward" data-role="sub">Person</text>
+<text x="44" y="487" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="R-steward" data-role="sub">Maintain tenant knowledge and ACLs</text>
+<polyline points="330,461 405,461 405,453 510,453" data-role="edge" data-id="CTX-2" data-from="R-steward" data-to="S-assistant" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="348" y="443" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">Maintains knowledge</text>
+<rect x="30" y="740" width="300" height="102" data-role="node" data-id="R-operator" data-kind="person" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="8"/>
+<text x="44" y="769" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="R-operator" data-role="name">Platform operator</text>
+<text x="44" y="794" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="R-operator" data-role="sub">Person</text>
+<text x="44" y="817" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="R-operator" data-role="sub">Operate; no default data access</text>
+<polyline points="330,791 405,791 405,501 510,501" data-role="edge" data-id="CTX-3" data-from="R-operator" data-to="S-assistant" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="348" y="773" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">Operates services</text>
+<rect x="1050" y="140" width="320" height="102" data-role="node" data-id="X-idp" data-kind="external" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="0"/>
+<text x="1064" y="169" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="X-idp" data-role="name">Enterprise Identity</text>
+<text x="1064" y="194" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-idp" data-role="sub">External system</text>
+<text x="1064" y="217" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-idp" data-role="sub">Identity and constrained delegation</text>
+<polyline points="875,395 925,395 925,191 1050,191" data-role="edge" data-id="CTX-4" data-from="S-assistant" data-to="X-idp" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="880" y="169" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">Verifies identity</text>
+<rect x="1050" y="350" width="320" height="102" data-role="node" data-id="X-doc" data-kind="external" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="0"/>
+<text x="1064" y="379" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="X-doc" data-role="name">Document Repository</text>
+<text x="1064" y="404" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-doc" data-role="sub">External system</text>
+<text x="1064" y="427" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-doc" data-role="sub">Source documents and access policy</text>
+<polyline points="875,433 945,433 945,401 1050,401" data-role="edge" data-id="CTX-5" data-from="S-assistant" data-to="X-doc" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="880" y="379" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">Imports knowledge</text>
+<rect x="1050" y="570" width="320" height="102" data-role="node" data-id="X-desk" data-kind="external" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="0"/>
+<text x="1064" y="599" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="X-desk" data-role="name">Service Desk</text>
+<text x="1064" y="624" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-desk" data-role="sub">External system</text>
+<text x="1064" y="647" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-desk" data-role="sub">Catalogue, ticket read and create</text>
+<polyline points="875,471 965,471 965,621 1050,621" data-role="edge" data-id="CTX-6" data-from="S-assistant" data-to="X-desk" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="880" y="599" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">Requests tickets</text>
+<rect x="1050" y="780" width="320" height="102" data-role="node" data-id="X-model" data-kind="external" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="0"/>
+<text x="1064" y="809" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="X-model" data-role="name">Managed Model Service</text>
+<text x="1064" y="834" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-model" data-role="sub">External system</text>
+<text x="1064" y="857" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-model" data-role="sub">Generate text and embeddings</text>
+<polyline points="875,509 985,509 985,831 1050,831" data-role="edge" data-id="CTX-7" data-from="S-assistant" data-to="X-model" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="880" y="809" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">Requests drafts</text>
+<rect x="28" y="970" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-1" fill="#1767B5" stroke="#03172E" stroke-width="2.4" rx="8"/>
+<text x="82" y="987" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-1">Subject</text>
+<rect x="473" y="970" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-2" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="8"/>
+<text x="527" y="987" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-2">External party</text>
+<polyline points="918,980 960,980" data-role="edge" data-kind="legend" data-id="legend-line-3" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="972" y="987" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-3">Initiator → dependency</text>
+<rect x="28" y="1015" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-4" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="0"/>
+<text x="82" y="1032" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-4">External party</text>
+</svg>

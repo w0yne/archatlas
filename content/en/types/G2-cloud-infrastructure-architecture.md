@@ -20,6 +20,8 @@ status: draft
 
 # Cloud Infrastructure Architecture (云基础设施架构图)
 
+**Named variant of G1.** [Open Deployment & cloud architecture → G2](/types/g1-deployment-diagram#variant-g2). This compatibility page retains its recipe, checks, anchors and historical downloads.
+
 > A one-workload picture of the cloud services that realise it, why they are arranged this way, and where the real ownership and failure boundaries lie.
 
 ## Meaning {#meaning}
@@ -145,5 +147,9 @@ Model template: `assets/templates/G2.json` · Layout template: `statechart` · p
 
 ## Sample {#sample}
 <!-- skill: path only -->
-![G2 sample: proposed cloud infrastructure of an online shop on a generic provider](/samples/G2-cloud-infrastructure-architecture.svg)
-*Proposed cloud infrastructure on a generic provider: a CDN at the edge, a load balancer in the network and security zone, an app service and a database in each of two availability zones (primary database in zone 1, replica in zone 2) and managed object storage, a message queue and monitoring. The figure has no single subject, so nothing is emphasised; nothing here is built yet.*
+![G1-AWS · Enterprise Service Assistant](/samples/ai-service-assistant/G1-AWS/en/diagram.svg)
+*AWS implementation variant G2, used once as the G1 headline sample. The core G1 recipe stays vendor-neutral; a separate neutral sample is scheduled for P2b. ALB and each ECS application service span two AZs; C-ingest and C-eval are separate job identities scheduled in either AZ. Aurora has a cross-AZ reader, while its managed storage spans three AZs. OpenSearch uses two-AZ zone awareness and replicas, not Multi-AZ with Standby. CloudFront is global; S3, SQS, Bedrock, KMS, CloudWatch and Secrets Manager are regional services outside customer subnets. Check model availability, quotas and endpoint routing before implementation. Trade-offs: managed ECS avoids a cluster control plane; the search index adds operational cost; a single region avoids multi-region complexity but supplies no regional disaster-recovery guarantee. Generic original shapes, no vendor artwork.*
+
+[SVG](/samples/ai-service-assistant/G1-AWS/en/diagram.svg) · [Model JSON](/samples/ai-service-assistant/G1-AWS/en/diagram.json) · [Shared facts](/samples/ai-service-assistant/scenario.json)
+
+[Historical shop sample (regression fixture)](/samples/G2-cloud-infrastructure-architecture.svg) · [All seven views and assumptions](/use/ai-service-assistant).

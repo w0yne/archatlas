@@ -23,6 +23,8 @@ reviewed: false
 
 # 功能树与功能分解（Feature tree and functional decomposition）
 
+**方法参考。** 明确需要时仍可使用；不在默认25项核心目录中。此页与历史链接继续保留。
+
 > 把产品功能自上而下分解到可估算的叶子，并标出优先级；不表达流程，也不表达代码结构。
 
 ## 含义 {#meaning}

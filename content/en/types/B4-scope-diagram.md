@@ -21,6 +21,8 @@ sourceRev: '2026-10-14'
 
 # Scope diagram (范围图)
 
+**Named variant of C2.** [Open System context diagram (C4 model level 1) → B4](/types/c2-system-context#variant-b4). This compatibility page retains its recipe, checks, anchors and historical downloads.
+
 > What this initiative includes, what it deliberately excludes, and which outside dependencies it still needs.
 
 ## Meaning {#meaning}

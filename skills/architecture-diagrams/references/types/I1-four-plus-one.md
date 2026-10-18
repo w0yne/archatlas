@@ -2,6 +2,7 @@
 <!-- Generated from content/en/types/I1-four-plus-one.md by tools/build_skill_refs.py. Do not edit. -->
 > How can different stakeholders understand one architecture through views that answer their concerns and stay consistent?
 Scope: system Neighbours: C5, E1, G1, I2.
+Method reference: honour explicit requests; outside the default core catalogue.
 
 ## Meaning
 **Definition used here:** Kruchten's 1995 method organises several architectural views; it is neither one standardised diagram nor a formal notation.

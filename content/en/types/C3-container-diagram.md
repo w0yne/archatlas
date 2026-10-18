@@ -149,5 +149,9 @@ Model template: `assets/templates/C3.json` · Layout template: `statechart` · o
 
 ## Sample {#sample}
 <!-- skill: path only -->
-![C3 sample: containers of an online shop](/samples/C3-container-diagram.svg)
-*Containers of the online shop. Inside the system boundary, front ends (web storefront) and services (order service, catalogue service) are grouped in zones, and the shop’s data stores (shop database, search index, order event queue) sit in their own zone beside them. Chips give each container’s technology and the order service is the subject (the dark card). The customer and the payment provider are outside.*
+![C3 · Enterprise Service Assistant](/samples/ai-service-assistant/C3/en/diagram.svg)
+*Focused internal container view: six runtime units and five stores/queues, plus the external model dependency. The three other external interfaces (IdP, source repository and Service Desk) remain explicit in C2/F1; ingestion reaches the source, and Tools reaches Service Desk. The Agent includes a logical model gateway, not a seventh service. Only key dependencies are drawn: C-api also approves feedback export to DS-eval, C-ingest produces version jobs and consumes Q-ingest, and C-eval writes gated configuration proposals to DS-eval. Retrieval and citation access enforce current tenant/ACL policy. MCP means Model Context Protocol.*
+
+[SVG](/samples/ai-service-assistant/C3/en/diagram.svg) · [Model JSON](/samples/ai-service-assistant/C3/en/diagram.json) · [Shared facts](/samples/ai-service-assistant/scenario.json)
+
+[Historical shop sample (regression fixture)](/samples/C3-container-diagram.svg) · [All seven views and assumptions](/use/ai-service-assistant).

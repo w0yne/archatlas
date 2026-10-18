@@ -1,0 +1,145 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "F1",
+    "title": "F1 / E1 · Delegated tool access — allow and deny",
+    "lang": "en",
+    "state": "to-be",
+    "audience": "architects and reviewers",
+    "description": "Fictional teaching design; scenario.json version 1"
+  },
+  "layout": {
+    "template": "sequence"
+  },
+  "nodes": [
+    {
+      "id": "C-agent",
+      "kind": "lifeline",
+      "label": "Agent Service",
+      "style": "peer",
+      "sub": "C-agent"
+    },
+    {
+      "id": "X-idp",
+      "kind": "lifeline",
+      "label": "Enterprise IdP / AS",
+      "style": "external",
+      "sub": "X-idp"
+    },
+    {
+      "id": "C-tools",
+      "kind": "lifeline",
+      "label": "MCP Tool Gateway",
+      "style": "primary",
+      "sub": "C-tools"
+    },
+    {
+      "id": "X-desk",
+      "kind": "lifeline",
+      "label": "Service Desk",
+      "style": "external",
+      "sub": "X-desk"
+    }
+  ],
+  "edges": [
+    {
+      "id": "AUTH-1",
+      "from": "C-agent",
+      "to": "X-idp",
+      "label": "Exchange subject token + client auth",
+      "kind": "call",
+      "step": 1
+    },
+    {
+      "id": "AUTH-2",
+      "from": "X-idp",
+      "to": "C-agent",
+      "label": "Downscoped tool token",
+      "kind": "reply",
+      "dashed": true,
+      "step": 2
+    },
+    {
+      "id": "AUTH-3",
+      "from": "C-agent",
+      "to": "C-tools",
+      "label": "Tool token + bound approval",
+      "kind": "call",
+      "step": 3
+    },
+    {
+      "id": "AUTH-4",
+      "from": "C-tools",
+      "to": "X-desk",
+      "label": "Permitted request + connector credential",
+      "kind": "call",
+      "step": 4
+    },
+    {
+      "id": "AUTH-5",
+      "from": "X-desk",
+      "to": "C-tools",
+      "label": "Ticket result",
+      "kind": "reply",
+      "dashed": true,
+      "step": 5
+    },
+    {
+      "id": "AUTH-6",
+      "from": "C-tools",
+      "to": "C-agent",
+      "label": "401 / 403; stop before connector",
+      "kind": "reply",
+      "dashed": true,
+      "step": 6
+    },
+    {
+      "id": "AUTH-7",
+      "from": "X-idp",
+      "to": "C-agent",
+      "label": "invalid_grant / access_denied; stop",
+      "kind": "reply",
+      "dashed": true,
+      "step": 7
+    }
+  ],
+  "groups": [],
+  "frames": [
+    {
+      "id": "exchange",
+      "operator": "alt",
+      "from_step": 1,
+      "to_step": 7,
+      "operands": [
+        {
+          "guard": "AS permits delegation",
+          "from_step": 1,
+          "to_step": 6
+        },
+        {
+          "guard": "else AS denies",
+          "from_step": 7,
+          "to_step": 7
+        }
+      ]
+    },
+    {
+      "id": "tool-access",
+      "operator": "alt",
+      "from_step": 4,
+      "to_step": 6,
+      "operands": [
+        {
+          "guard": "valid proof, current policy, approval",
+          "from_step": 4,
+          "to_step": 5
+        },
+        {
+          "guard": "else deny",
+          "from_step": 6,
+          "to_step": 6
+        }
+      ]
+    }
+  ]
+}

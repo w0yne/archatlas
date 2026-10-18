@@ -3,8 +3,8 @@ code: G1
 slug: deployment-diagram
 family: G
 names:
-  en: Deployment diagram
-  zh: 部署图
+  en: Deployment & cloud architecture
+  zh: 部署与云架构图
   aliases:
     en: [deployment view, software-to-infrastructure mapping, C4 deployment diagram, runtime infrastructure view]
     zh: [部署视图, 部署架构图, 软件与基础设施映射图]
@@ -21,16 +21,20 @@ sourceRev: 9065169
 reviewed: false
 ---
 
-# 部署图（Deployment Diagram）
+<span id="部署图-deployment-diagram"></span>
+
+# 部署与云架构图（Deployment & cloud architecture）
 
 > 针对一个环境的图：把软件实例映射到承载它们的节点上，只保留在运维上有意义的连接。
+
+核心画法保持供应商中立：环境、承载节点、软件分配及故障域。AWS 云服务组成是具名 G2 实现变体，也是下方首幅样例。
 
 ## 含义 {#meaning}
 <!-- skill: condense (4–6 lines) -->
 - **问题：** 每个软件部分运行在哪里，这种部署位置对扩缩容、故障、归属和地理位置意味着什么？
 - **视点：** 架构描述意义上的部署视图或运维视图（ISO/IEC/IEEE 42010，仅公开范围部分 [6]）。UML 2.5.1 定义了正式元素（节点、设备、执行环境、制品、部署关系）[1]。C4 model 提供了一种务实的变体，把软件系统和容器的*实例*映射到一个环境中的部署节点上；它是一种辅助图，而不是第五个缩放层级 [2]。arc42 把部署（第 7 节）与运行时行为（第 6 节）分开 [3]。
 - **深层含义：** 这是一种分配视图。静态模型中的逻辑职责落实到执行基础设施上，而部署位置会带来相应后果。C4 model 的“容器”是可部署的软件构建块；Docker 容器只是运行它的一种方式。
-- **不包含：** 方法调用、源文件、业务旅程、完整的网络规则集（G3）以及云服务的取舍（G2）。
+- **不包含：** 方法调用、源文件、业务旅程、完整的网络规则集（G3）；云服务组成由下方具名 G2 实现变体说明。
 - **本站采用的定义：** *部署节点*（deployment node）是承载软件的任何事物：设备、虚拟机、托管平台或嵌套的执行环境 [1][2]。它不一定是物理服务器。“部署”指分配，而不是随时间变化的行为。
 
 ## 何时使用与如何选择 {#choose}
@@ -139,7 +143,35 @@ reviewed: false
 5. Structurizr, "Deployment view" — https://docs.structurizr.com/dsl/cookbook/deployment-view/ — 访问于 2026-10-14
 6. ISO/IEC/IEEE 42010:2022，仅公开范围部分；页面返回 HTTP 403，未审阅全文 — https://www.iso.org/standard/74393.html — 访问于 2026-10-14
 
+### G2 · 云基础设施架构图 {#variant-g2}
+
+编辑归组保留独立语义；使用本变体的画法与检查项。
+
+1. 在标题中写明工作负载、约束、受众、云服务商和状态，例如“托管平台上的网店店面：提议”。
+2. 先列出职责（提供页面、接收订单、运行作业、存储数据、认证）；再选择服务，每个角色一项。
+3. 布局：沿主要请求路径从左到右排列（客户端、边缘、计算、数据）。支撑服务（身份、密钥、监控）放在下方或上方的条带中，而不是主行里。
+4. 只对真实边界分组：云服务商账号或项目、区域、可用区，以及服务真正接入的网络。托管服务或全局服务放在网络框之外。
+5. 连线：每条箭头都标明含义；运行时用一种线型，异步事件或复制用另一种，管理用第三种。
+6. 文字：服务名加角色，约 3–6 个词；在图旁用简短注释写出两三个关键取舍。
+7. 颜色：中性填充，数据层级以及外部或托管服务使用不同的浅色调；只有当云服务商图标有助于识别且复用条款允许时才使用，否则使用带标签的普通形状。
+
+**自检清单**
+- [ ] 标题附近写明了状态（参考、提议、声明或观察）。
+- [ ] 每项服务都有其在工作负载中的角色，而不只是产品名。
+- [ ] 图例中解释了每种箭头类型。
+- [ ] 区域、可用区和网络边界符合云服务商的语义。
+- [ ] 托管服务或全局服务没有被放进它们不属于的子网。
+- [ ] 可用性或弹性声明写明了机制，否则不写。
+- [ ] 图附有假设以及两三个取舍。
+- [ ] 图标或图稿的复用依据已说明。
+
+[完整方法与历史样例](/zh/types/g2-cloud-infrastructure-architecture#meaning).
+
 ## 示例 {#sample}
 <!-- skill: path only -->
-![G1 示例：网店的生产环境部署](/samples/G1-deployment-diagram.zh.svg)
-*网店生产环境部署（现状）：内容分发网络位于生产集群之前；集群的公共子网内是负载均衡器和商城前端，应用子网内是订单接口和机器人服务（副本数仅为示意）。订单接口写入托管数据服务中的主数据库、从只读副本读取，并调用外部支付服务商；机器人调用语言模型服务。标签标明协议或角色，订单接口是本图主体（深色卡片）。*
+![G1-AWS · 企业服务助手](/samples/ai-service-assistant/G1-AWS/zh/diagram.svg)
+*AWS 实现变体 G2，同时作为 G1 首图，仅维护这一幅拓扑。G1 核心画法仍供应商中立；独立通用样例排入 P2b。ALB 与每个 ECS 应用服务跨两个 AZ；C-ingest、C-eval 使用独立任务身份，调度至任一 AZ。Aurora 有跨 AZ 读节点，其托管存储跨三个 AZ。OpenSearch 使用双 AZ 区域感知与副本，不是 Multi-AZ with Standby。CloudFront 为全球服务；S3、SQS、Bedrock、KMS、CloudWatch、Secrets Manager 是客户子网外的区域托管服务。实施前核对模型可用性、配额与端点路由。取舍：托管 ECS 减少集群控制面维护；搜索索引增加运维成本；单区域降低复杂度，但不承诺区域灾备。图形均为原创通用形状，无厂商素材。*
+
+[SVG](/samples/ai-service-assistant/G1-AWS/zh/diagram.svg) · [模型 JSON](/samples/ai-service-assistant/G1-AWS/zh/diagram.json) · [共享事实](/samples/ai-service-assistant/scenario.json)
+
+[历史 shop 样例（回归 fixture）](/samples/G1-deployment-diagram.zh.svg) · [七幅视图及假设](/zh/use/ai-service-assistant).

@@ -23,6 +23,8 @@ reviewed: false
 
 # 范围图（Scope diagram）
 
+**C2 的具名变体。** [进入系统上下文图（C4 模型第 1 层） → B4](/zh/types/c2-system-context#variant-b4)。此兼容页保留独立画法、检查项、原锚点和历史下载。
+
 > 这项举措包含什么、刻意排除什么，以及仍需依赖哪些外部方。
 
 ## 含义 {#meaning}

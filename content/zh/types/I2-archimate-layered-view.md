@@ -23,6 +23,8 @@ reviewed: false
 
 # ArchiMate 分层视图（ArchiMate layered view）
 
+**方法参考。** 明确需要时仍可使用；不在默认25项核心目录中。此页与历史链接继续保留。
+
 > 业务、应用、技术元素分层排布，用 ArchiMate 关系说明谁服务谁、谁实现谁。
 
 ## 含义 {#meaning}

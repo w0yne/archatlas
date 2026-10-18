@@ -1,13 +1,14 @@
-# Deployment Diagram (部署图)
+# Deployment & cloud architecture (部署与云架构图)
 <!-- Generated from content/en/types/G1-deployment-diagram.md by tools/build_skill_refs.py. Do not edit. -->
 > Where do the software instances and artifacts run, and how does that placement support operational needs such as capacity, failover and ownership?
 Scope: One named environment (for example production), showing hosting nodes and the software instances placed on them Neighbours: C3, C8, G2, G3, G4, H2, I1.
+Named variants (read their own recipes): G2 — `references/types/G2-cloud-infrastructure-architecture.md`.
 
 ## Meaning
 - **Question:** where does each piece of software run, and what does that placement imply for scaling, failure, ownership and location?
 - **Viewpoint:** a deployment or operations view in the sense of an architecture description (ISO/IEC/IEEE 42010 public scope only). UML 2.5.1 defines the formal elements (nodes, devices, execution environments, artifacts, deployment relationships). The C4 model offers a pragmatic variant that maps *instances* of software systems and containers to deployment nodes in one environment; it is a supporting diagram, not a fifth zoom level. arc42 keeps deployment (section 7) apart from runtime behaviour (section 6).
 - **Deeper meaning:** it is an allocation view. Logical responsibilities from the static model are realised on execution infrastructure, and the placement carries consequences. A C4 "container" is a deployable software building block; a Docker container is only one way to run it.
-- **Leaves out:** method calls, source files, business journeys, full network rule sets (G3) and cloud service trade-offs (G2).
+- **Leaves out:** method calls, source files, business journeys, full network rule sets (G3) ; cloud service composition belongs to the named G2 implementation variant below.
 - **Definition used here:** a *deployment node* is anything that hosts software: a device, VM, managed platform or nested execution environment. It is not necessarily a physical server. "Deployment" is allocation, not behaviour over time.
 
 ## When to use and how to choose
@@ -89,4 +90,4 @@ Scope: One named environment (for example production), showing hosting nodes and
 Model template: `assets/templates/G1.json` · Layout template: `statechart` · hosting segments become `boundary` groups (cluster, public and application subnets, managed data services), software instances become `component` nodes (the subject one with style `primary`) and data services `store` nodes inside them, external nodes use the `external` style, chips carry the protocol or replica count, and communication becomes `call` or `data` edges; `evidence.status` records declared (`doc-only`) versus observed (`verified`).
 
 ## Sample
-Figure: `samples/G1-deployment-diagram.svg` (published with the site)
+Figure: `samples/ai-service-assistant/G1-AWS/en/diagram.svg` (published with the site)

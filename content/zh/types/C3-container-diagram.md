@@ -152,5 +152,9 @@ reviewed: false
 
 ## 示例图 {#sample}
 <!-- skill: path only -->
-![C3 示例：网店的容器图](/samples/C3-container-diagram.zh.svg)
-*网店的容器图。系统边界内，前端（网页商城）和服务（订单服务、商品目录服务）分在各自的分区，商城的数据存储（商城数据库、搜索索引、订单事件队列）位于旁边的独立分区。标签给出各容器的技术类型，订单服务是本图主体（深色卡片）。顾客和支付服务商在边界之外。*
+![C3 · 企业服务助手](/samples/ai-service-assistant/C3/zh/diagram.svg)
+*聚焦内部容器：六个运行单元、五个存储/队列及外部模型依赖。身份、文档源、工单这三种外部接口见 C2/F1；摄取进程连接文档源，工具网关连接工单。Agent 内含逻辑模型网关，不是第七个服务。本图只画关键依赖：C-api 另负责批准反馈导出至 DS-eval，C-ingest 生产版本任务并消费 Q-ingest，C-eval 将经门禁的配置建议写入 DS-eval。检索与引用访问均检查当前 tenant/ACL。MCP 为 Model Context Protocol。*
+
+[SVG](/samples/ai-service-assistant/C3/zh/diagram.svg) · [模型 JSON](/samples/ai-service-assistant/C3/zh/diagram.json) · [共享事实](/samples/ai-service-assistant/scenario.json)
+
+[历史 shop 样例（回归 fixture）](/samples/C3-container-diagram.zh.svg) · [七幅视图及假设](/zh/use/ai-service-assistant).

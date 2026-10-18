@@ -23,6 +23,8 @@ reviewed: false
 
 # 认证与授权流程图（Authentication and Authorization Flow）
 
+**E1 的具名变体。** [进入时序图 → F1](/zh/types/e1-sequence-diagram#variant-f1)。此兼容页保留独立画法、检查项、原锚点和历史下载。
+
 > 针对单一场景的图：谁向谁证明身份，哪份凭证交给了哪个接收方，以及请求在哪一点被允许或拒绝。
 
 ## 含义 {#meaning}
@@ -140,5 +142,9 @@ reviewed: false
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-![F1 示例：已登录购物者的授权码流程，含拒绝分支](/samples/F1-authentication-authorization-flow.zh.svg)
-*购物者查看订单历史的授权码流程（示意，未对照真实部署验证）：网页应用通过重定向把购物者带到身份提供方，经后端通道用授权码换取访问令牌，再带令牌调用订单接口。接口取得签名密钥后，在一个备选分支框内校验令牌，框内有两个以虚线分隔的操作数：[令牌有效] 时返回订单列表，网页应用显示订单；[否则：令牌无效或已过期] 时回答 401 未授权，在受保护操作之前停止，网页应用重新发起登录。同一请求只会走其中一个操作数。购物者始终拿不到访问令牌。持有令牌的网页应用是深色生命线。*
+![F1 · 企业服务助手](/samples/ai-service-assistant/F1/zh/diagram.svg)
+*本图是下游委托；前置登录由 BFF 使用授权码 + PKCE 完成，并核对 state 与 nonce。ID/access token 保留在服务端，浏览器仅持安全会话 cookie。AS 明确签发 agent 范围的主体 token，Agent 以 agent-client 身份认证并交换。工具 token 由 enterprise-as 签发给 mcp-tool-gateway，包含员工主体、agent actor、已验证 tenant、许可 scopes 与短有效期。先核验签名、issuer、audience 和有效期，再执行当前策略与审批检查。AS 委托能力与工单连接器 scopes 都是未验证的教学假设；不支持时须重设身份方案，不能转发 audience 不符的 token。实线是后通道请求，虚线是应答；浏览器重定向属于前置登录而非本图。*
+
+[SVG](/samples/ai-service-assistant/F1/zh/diagram.svg) · [模型 JSON](/samples/ai-service-assistant/F1/zh/diagram.json) · [共享事实](/samples/ai-service-assistant/scenario.json)
+
+[历史 shop 样例（回归 fixture）](/samples/F1-authentication-authorization-flow.zh.svg) · [七幅视图及假设](/zh/use/ai-service-assistant).

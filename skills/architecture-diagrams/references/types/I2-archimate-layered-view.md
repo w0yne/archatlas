@@ -2,6 +2,7 @@
 <!-- Generated from content/en/types/I2-archimate-layered-view.md by tools/build_skill_refs.py. Do not edit. -->
 > How do business behaviour, applications and technology support one another, and what is affected by a change?
 Scope: enterprise Neighbours: A7, C1, C8, I1.
+Method reference: honour explicit requests; outside the default core catalogue.
 
 ## Meaning
 **Definition used here:** the informative **Layered Viewpoint, Appendix C.1.5 of ArchiMate 3.2**, within a standardized modeling language; it is not the whole language.

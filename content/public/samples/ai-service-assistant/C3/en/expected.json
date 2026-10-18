@@ -1,0 +1,25 @@
+{
+  "scenarioVersion": 1,
+  "entities": {
+    "C-web": "C-web",
+    "C-api": "C-api",
+    "C-tools": "C-tools",
+    "C-agent": "C-agent",
+    "DS-app": "DS-app",
+    "DS-index": "DS-index",
+    "C-ingest": "C-ingest",
+    "Q-ingest": "Q-ingest",
+    "DS-doc": "DS-doc",
+    "C-eval": "C-eval",
+    "DS-eval": "DS-eval",
+    "X-model": "X-model"
+  },
+  "invariants": [
+    "I-tenant",
+    "I-approval",
+    "I-delegation",
+    "I-eval",
+    "I-ingest"
+  ],
+  "projection": "focused view; omissions described in caption; not a deployed system"
+}

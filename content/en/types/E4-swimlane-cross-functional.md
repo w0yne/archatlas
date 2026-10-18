@@ -20,6 +20,8 @@ status: draft
 
 # Swimlane / Cross-functional Flowchart (泳道流程图)
 
+**Named variant of E2.** [Open Activity diagram or flowchart → E4](/types/e2-activity-flowchart#variant-e4). This compatibility page retains its recipe, checks, anchors and historical downloads.
+
 > A flowchart split into parallel lanes, one per role or system, so every hand-off between them is visible.
 
 ## Meaning {#meaning}

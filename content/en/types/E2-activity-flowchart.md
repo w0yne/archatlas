@@ -158,6 +158,31 @@ Model template: `assets/templates/E2.json` · Layout template: `lanes` · action
 
 Note: the UML 2.5.1 clause text was not read first-hand; element semantics come from sources 4, 8, 9 and 12 and are not verified against the primary text.
 
+### E4 · Swimlane or cross-functional flowchart {#variant-e4}
+
+Editorial grouping preserves the distinct notation; use this recipe and its checks.
+
+1. Fix the process boundary (trigger to outcome) and the lane granularity: roles, teams or systems, never a mix. Prefer at most 6 lanes. Put both in the title, e.g. "Place and ship an order, happy path".
+2. List steps as a table (step, performer lane, input, output, next); verify system steps against code or docs; show it to the user before drawing.
+3. Orientation: horizontal lanes with time left to right by default; vertical only for tall documents.
+4. Order lanes to minimise crossings. If two independent systems interact, draw them as adjacent lane groups (pools) with a visible boundary.
+5. Place steps column by column in time order; align parallel steps in one column; put each decision in the lane of the decider.
+6. Hand-offs: a short arrow across the lane boundary, labelled with what is passed; a distinct style (dashed) for cross-system messages, explained in a legend.
+7. Text: steps at most 5 words, lane labels at most 3 words; example cards, if any, sit outside the main flow and are labelled "example".
+8. Colour: neutral alternating lane tints; at most one accent for cross-boundary hand-offs or the focus system.
+
+**Self-check**
+- [ ] Every lane is one actor at a consistent level (all roles or all systems).
+- [ ] Every step sits in the lane of its performer.
+- [ ] Every cross-lane arrow is a real hand-off and says what passes.
+- [ ] Time runs along one axis; no backward folds or long detours.
+- [ ] Decisions have labelled exits; start and end are explicit.
+- [ ] At most about 6 lanes and 20 steps, or the process is split.
+- [ ] If BPMN symbols are used, BPMN rules hold (message flows only between pools); otherwise consider A5.
+- [ ] Happy path only, or error handling clearly separated.
+
+[Full method and historical sample](/types/e4-swimlane-cross-functional#meaning).
+
 ## Sample {#sample}
 <!-- skill: path only -->
 ![E2 sample: activity flow for a new order with both exits of the decision](/samples/E2-activity-flowchart.svg)

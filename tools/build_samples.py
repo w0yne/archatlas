@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
-"""Render one sample SVG per diagram type for the site and the skill references.
+"""Build historical rendered samples and manifest-driven hand-authored AI samples.
 
 Inputs (single source):
+  examples/ai-service-assistant/manifest.json               authored SVG/model pairs
   content/en/types/<code>-<slug>.md                          the list of types
   skills/architecture-diagrams/assets/templates/<code>.json  the model that draws the sample
   skills/architecture-diagrams/assets/templates/zh/<code>.json  optional Chinese labels: English label text -> Chinese
 
-Outputs (generated, do not edit by hand):
+Outputs (generated copies; edit authored sources under examples/):
   content/public/samples/<code>-<slug>.svg                   English
   content/public/samples/<code>-<slug>.zh.svg                only when a Chinese label file exists
 
@@ -36,6 +37,7 @@ from archatlas.fonts import FontMetrics  # noqa: E402
 from archatlas.layout import layout  # noqa: E402
 from archatlas.model import load  # noqa: E402
 from archatlas.render import render_svg  # noqa: E402
+from scenario_samples import sample_files  # noqa: E402
 
 PAGES = ROOT / "content/en/types"
 TEMPLATES = ROOT / "skills/architecture-diagrams/assets/templates"
@@ -69,6 +71,18 @@ def render_all(target: Path) -> list[str]:
                 with contextlib.redirect_stdout(io.StringIO()):
                     if atlas(["check", str(path), "--model", str(model), "--report", f"{tmp}/report.json"]):
                         problems.append(f"{path.name}: the SVG does not match its model")
+    # Author-owned artwork is checked and copied, never fed to auto layout.
+    for source, relative in sample_files():
+        path = target / relative
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_bytes(source.read_bytes())
+        if source.suffix == ".svg":
+            for finding in check_svg(source.read_text(), metrics)["findings"]:
+                problems.append(f"{relative}: {finding['severity']} {finding['rule']}: {finding['message']}")
+            with tempfile.TemporaryDirectory() as tmp, contextlib.redirect_stdout(io.StringIO()):
+                if atlas(["check", str(source), "--model", str(source.with_suffix(".json")),
+                          "--report", f"{tmp}/report.json"]):
+                    problems.append(f"{relative}: SVG/model contract failed")
     return problems
 
 
@@ -79,18 +93,16 @@ def main() -> int:
     with tempfile.TemporaryDirectory() as tmp:
         target = Path(tmp) if args.check else OUT
         problems = render_all(target)
-        names = {p.name for p in target.glob("*.svg")}
-        if not args.check:
-            for stale in sorted(p for p in OUT.glob("*.svg") if p.name not in names):
-                stale.unlink()
-        else:
+        # Compatibility assets are intentionally retained. A registry change must
+        # never silently erase a formerly published download.
+        names = {p.relative_to(target) for p in target.rglob("*") if p.is_file()}
+        if args.check:
             for name in sorted(names):
                 committed = OUT / name
                 if not committed.exists():
                     problems.append(f"{name}: missing; run tools/build_samples.py")
                 elif committed.read_bytes() != (Path(tmp) / name).read_bytes():
                     problems.append(f"{name}: stale; run tools/build_samples.py")
-            problems += [f"{p.name}: has no source" for p in sorted(OUT.glob("*.svg")) if p.name not in names]
     for problem in problems:
         print(problem, file=sys.stderr)
     if problems:

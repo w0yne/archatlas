@@ -1,0 +1,175 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "E1",
+    "title": "E1 · Create a service ticket — approval and refusal",
+    "lang": "en",
+    "state": "to-be",
+    "audience": "architects and reviewers",
+    "description": "Fictional teaching design; scenario.json version 1"
+  },
+  "layout": {
+    "template": "sequence"
+  },
+  "nodes": [
+    {
+      "id": "C-web",
+      "kind": "lifeline",
+      "label": "Web Portal",
+      "style": "peer",
+      "sub": "C-web"
+    },
+    {
+      "id": "C-api",
+      "kind": "lifeline",
+      "label": "Application API/BFF",
+      "style": "primary",
+      "sub": "C-api"
+    },
+    {
+      "id": "C-agent",
+      "kind": "lifeline",
+      "label": "Agent Service",
+      "style": "peer",
+      "sub": "C-agent"
+    },
+    {
+      "id": "C-tools",
+      "kind": "lifeline",
+      "label": "MCP Tool Gateway",
+      "style": "peer",
+      "sub": "C-tools"
+    },
+    {
+      "id": "X-desk",
+      "kind": "lifeline",
+      "label": "Service Desk",
+      "style": "external",
+      "sub": "X-desk"
+    }
+  ],
+  "edges": [
+    {
+      "id": "SEQ-1",
+      "from": "C-web",
+      "to": "C-api",
+      "label": "Submit requested action",
+      "kind": "call",
+      "step": 1
+    },
+    {
+      "id": "SEQ-2",
+      "from": "C-api",
+      "to": "C-agent",
+      "label": "Draft permitted tool request",
+      "kind": "call",
+      "step": 2
+    },
+    {
+      "id": "SEQ-3",
+      "from": "C-agent",
+      "to": "C-api",
+      "label": "Structured draft + parameter hash",
+      "kind": "reply",
+      "dashed": true,
+      "step": 3
+    },
+    {
+      "id": "SEQ-4",
+      "from": "C-api",
+      "to": "C-web",
+      "label": "Display exact draft + expiry",
+      "kind": "reply",
+      "dashed": true,
+      "step": 4
+    },
+    {
+      "id": "SEQ-5",
+      "from": "C-web",
+      "to": "C-api",
+      "label": "Approve exact draft",
+      "kind": "call",
+      "step": 5
+    },
+    {
+      "id": "SEQ-6",
+      "from": "C-api",
+      "to": "C-agent",
+      "label": "Approval ID + tenant + hash",
+      "kind": "call",
+      "step": 6
+    },
+    {
+      "id": "SEQ-7",
+      "from": "C-agent",
+      "to": "C-tools",
+      "label": "Draft + approval ID + tool token",
+      "kind": "call",
+      "step": 7
+    },
+    {
+      "id": "SEQ-8",
+      "from": "C-tools",
+      "to": "C-api",
+      "label": "Verify binding + current policy",
+      "kind": "call",
+      "step": 8
+    },
+    {
+      "id": "SEQ-9",
+      "from": "C-api",
+      "to": "C-tools",
+      "label": "Current approval / policy result",
+      "kind": "reply",
+      "dashed": true,
+      "step": 9
+    },
+    {
+      "id": "SEQ-10",
+      "from": "C-tools",
+      "to": "X-desk",
+      "label": "Create ticket + idempotency key",
+      "kind": "call",
+      "step": 10
+    },
+    {
+      "id": "SEQ-11",
+      "from": "X-desk",
+      "to": "C-tools",
+      "label": "Ticket ID (same key = same ticket)",
+      "kind": "reply",
+      "dashed": true,
+      "step": 11
+    },
+    {
+      "id": "SEQ-12",
+      "from": "C-tools",
+      "to": "C-agent",
+      "label": "Reject; no Service Desk call",
+      "kind": "reply",
+      "dashed": true,
+      "step": 12
+    }
+  ],
+  "groups": [],
+  "frames": [
+    {
+      "id": "approval-outcome",
+      "operator": "alt",
+      "from_step": 10,
+      "to_step": 12,
+      "operands": [
+        {
+          "guard": "valid approval and current permission",
+          "from_step": 10,
+          "to_step": 11
+        },
+        {
+          "guard": "else: expired, changed or denied",
+          "from_step": 12,
+          "to_step": 12
+        }
+      ]
+    }
+  ]
+}

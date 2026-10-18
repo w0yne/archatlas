@@ -23,6 +23,8 @@ reviewed: false
 
 # 概念架构图 / 方案概览图（Conceptual Architecture / Solution Overview）
 
+**C5 的具名变体。** [进入逻辑架构图 → A7](/zh/types/c5-logical-architecture#variant-a7)。此兼容页保留独立画法、检查项、原锚点和历史下载。
+
 > 用一页纸、以业务语言且不出现产品名称，展示一个方案由什么组成，让发起人和评审者在看详细视图之前先就整体形态达成一致。
 
 ## 含义 {#meaning}

@@ -21,6 +21,8 @@ sourceRev: '2026-10-14'
 
 # Stakeholder map (干系人地图（权力-利益矩阵）)
 
+**Method reference.** Available when explicitly requested; outside the default 25-entry catalogue. This page and its historical links remain supported.
+
 > Stakeholders placed by their power over and interest in an initiative, with an engagement approach for each group.
 
 ## Meaning {#meaning}

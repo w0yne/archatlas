@@ -1,0 +1,124 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "C2",
+    "title": "C2 · Enterprise Service Assistant — system context",
+    "lang": "en",
+    "state": "to-be",
+    "audience": "architects and reviewers",
+    "description": "Fictional teaching design; scenario.json version 1"
+  },
+  "layout": {
+    "template": "nested"
+  },
+  "nodes": [
+    {
+      "id": "S-assistant",
+      "kind": "system",
+      "label": "Enterprise Service Assistant",
+      "style": "primary",
+      "sub": "System in scope · Cited answers · Approved service actions"
+    },
+    {
+      "id": "R-employee",
+      "kind": "person",
+      "label": "Employee / approver",
+      "style": "external",
+      "sub": "Person · Ask; approve own permitted requests"
+    },
+    {
+      "id": "R-steward",
+      "kind": "person",
+      "label": "Knowledge steward",
+      "style": "external",
+      "sub": "Person · Maintain tenant knowledge and ACLs"
+    },
+    {
+      "id": "R-operator",
+      "kind": "person",
+      "label": "Platform operator",
+      "style": "external",
+      "sub": "Person · Operate; no default data access"
+    },
+    {
+      "id": "X-idp",
+      "kind": "external",
+      "label": "Enterprise Identity",
+      "style": "external",
+      "sub": "External system · Identity and constrained delegation"
+    },
+    {
+      "id": "X-doc",
+      "kind": "external",
+      "label": "Document Repository",
+      "style": "external",
+      "sub": "External system · Source documents and access policy"
+    },
+    {
+      "id": "X-desk",
+      "kind": "external",
+      "label": "Service Desk",
+      "style": "external",
+      "sub": "External system · Catalogue, ticket read and create"
+    },
+    {
+      "id": "X-model",
+      "kind": "external",
+      "label": "Managed Model Service",
+      "style": "external",
+      "sub": "External system · Generate text and embeddings"
+    }
+  ],
+  "edges": [
+    {
+      "id": "CTX-1",
+      "from": "R-employee",
+      "to": "S-assistant",
+      "label": "Asks and approves",
+      "kind": "call"
+    },
+    {
+      "id": "CTX-2",
+      "from": "R-steward",
+      "to": "S-assistant",
+      "label": "Maintains knowledge",
+      "kind": "call"
+    },
+    {
+      "id": "CTX-3",
+      "from": "R-operator",
+      "to": "S-assistant",
+      "label": "Operates services",
+      "kind": "call"
+    },
+    {
+      "id": "CTX-4",
+      "from": "S-assistant",
+      "to": "X-idp",
+      "label": "Verifies identity",
+      "kind": "call"
+    },
+    {
+      "id": "CTX-5",
+      "from": "S-assistant",
+      "to": "X-doc",
+      "label": "Imports knowledge",
+      "kind": "call"
+    },
+    {
+      "id": "CTX-6",
+      "from": "S-assistant",
+      "to": "X-desk",
+      "label": "Requests tickets",
+      "kind": "call"
+    },
+    {
+      "id": "CTX-7",
+      "from": "S-assistant",
+      "to": "X-model",
+      "label": "Requests drafts",
+      "kind": "call"
+    }
+  ],
+  "groups": []
+}

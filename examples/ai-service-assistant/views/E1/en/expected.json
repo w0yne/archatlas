@@ -1,0 +1,18 @@
+{
+  "scenarioVersion": 1,
+  "entities": {
+    "C-web": "C-web",
+    "C-api": "C-api",
+    "C-agent": "C-agent",
+    "C-tools": "C-tools",
+    "X-desk": "X-desk"
+  },
+  "invariants": [
+    "I-approval",
+    "I-authority",
+    "I-idempotency",
+    "I-bounds",
+    "I-tokens"
+  ],
+  "projection": "focused view; omissions described in caption; not a deployed system"
+}

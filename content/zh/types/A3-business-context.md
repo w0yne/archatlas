@@ -23,6 +23,8 @@ reviewed: false
 
 # 业务上下文图（Business Context Diagram）
 
+**C2 的具名变体。** [进入系统上下文图（C4 模型第 1 层） → A3](/zh/types/c2-system-context#variant-a3)。此兼容页保留独立画法、检查项、原锚点和历史下载。
+
 > 中间一个黑盒，四周是外部参与方，二者之间的每一项业务交换都用一条带标签的箭头表示。
 
 ## 含义 {#meaning}

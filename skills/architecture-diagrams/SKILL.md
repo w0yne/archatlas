@@ -3,8 +3,8 @@ name: architecture-diagrams
 description: >-
   Choose, draw and review software and enterprise architecture and design diagrams
   (system context, container, component, sequence, ER, state machine, deployment,
-  BPMN swimlane, access control and trust boundary, landscape, roadmap; about 40 types
-  in total) as editable SVG, either from a description or by reading a code repository and
+  BPMN swimlane, access control and trust boundary, landscape, roadmap; 25 core entries
+  plus named variants and method references, with 40 stable codes) as editable SVG, either from a description or by reading a code repository and
   deriving diagrams from evidence. Use when the user asks for an architecture or
   design diagram, asks which diagram type fits an audience or question, or wants
   diagrams of an existing codebase. Not for data charts or dashboards, UI mockups,
@@ -59,6 +59,14 @@ English/Chinese stays mixed). Never delete or translate labels to make them fit;
 layout, box size or wrapping, and change wording only when asked.
 
 ## Step 2 — Choose the type
+
+Start small: **C2 → C3 → one key E1 → G1**. Add F1 (identity/delegation) and F2
+(threat boundaries) for security questions; both retain mandatory checks and their own recipes.
+G1 is Deployment & cloud architecture: vendor-neutral placement plus a named AWS (G2)
+implementation variant. The selection guide groups 25 core entries, 10 named variants and
+5 method references. Honour every explicit legacy code, including method references.
+Read the named variant's own reference; grouping never substitutes the parent notation.
+
 
 If the user already named the type (code or standard name), skip selection: read
 `references/types/<code>-<slug>.md` (list `references/types/` to find the file) and follow it.

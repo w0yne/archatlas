@@ -2,6 +2,7 @@
 <!-- Generated from content/en/types/C5-logical-architecture.md by tools/build_skill_refs.py. Do not edit. -->
 > Which technology-neutral building blocks must the system have, what is each responsible for, and through which named interfaces do they depend on each other and on external capabilities?
 Scope: One system or one solution, decomposed into responsibility blocks (one level, one page). Neighbours: A7, B3, C1, C3, C4, C6, C7, C8, G2, I1.
+Named variants (read their own recipes): A7 — `references/types/A7-conceptual-architecture.md`.
 
 ## Meaning
 A logical architecture diagram answers: *which blocks must exist, what does each own, and how do they depend on each other — whatever products or hosts will later realise them?* Its concerns are allocation of responsibility, traceability from requirements to blocks, change impact, make/buy/reuse decisions and splitting work between teams. Systems-engineering guidance warns that jumping straight from requirements to a physical design is a common mistake, because stakeholders revert to familiar solutions. In ISO/IEC/IEEE 42010 terms it is a view under a structural/functional viewpoint; in C4 model terms it sits beside the container level, but without the technology labels the C4 model requires.

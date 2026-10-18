@@ -20,6 +20,8 @@ status: draft
 
 # Authentication and Authorization Flow (认证与授权流程图)
 
+**Named variant of E1.** [Open Sequence diagram → F1](/types/e1-sequence-diagram#variant-f1). This compatibility page retains its recipe, checks, anchors and historical downloads.
+
 > A scenario-specific picture of who proves an identity to whom, which proof is handed to which recipient, and the point where a request is allowed or refused.
 
 ## Meaning {#meaning}
@@ -148,5 +150,9 @@ Model template: `assets/templates/F1.json` · Layout template: `sequence` · par
 
 ## Sample {#sample}
 <!-- skill: path only -->
-![F1 sample: authorization code flow for a signed-in shopper, with a refusal branch](/samples/F1-authentication-authorization-flow.svg)
-*Authorization code flow for a shopper loading order history (illustrative, not verified against a real deployment): the web app sends the shopper to the identity provider by redirect, exchanges the code for an access token over the back channel and calls the order API with it. The API fetches signing keys, then checks the token in an alt frame with two operands split by a dashed line: under [token valid] it returns the order list and the web app shows the orders; under [else: token invalid or expired] it answers 401 Unauthorized, stops before the protected operation and the web app starts sign-in again. Only one operand runs for a given request. The shopper never receives the access token. The web app, which holds the token, is the dark lifeline.*
+![F1 · Enterprise Service Assistant](/samples/ai-service-assistant/F1/en/diagram.svg)
+*Downstream delegation after BFF authorization-code sign-in with PKCE, state and nonce validation. The BFF holds ID/access tokens server-side and exposes only a secure session cookie. The AS explicitly issues an agent-scoped subject token; the Agent authenticates as agent-client to exchange it. The tool token is issued by enterprise-as for mcp-tool-gateway, with employee subject, agent actor, verified tenant, allowed scopes and short expiry. Signature, issuer, audience and expiry validation precede policy and approval enforcement. The AS delegation capability and Service Desk connector scopes are unverified teaching assumptions; if unsupported, redesign instead of forwarding a token with the wrong audience. Solid arrows are back-channel requests, dashed arrows replies; browser redirects belong to the prerequisite sign-in, not this figure.*
+
+[SVG](/samples/ai-service-assistant/F1/en/diagram.svg) · [Model JSON](/samples/ai-service-assistant/F1/en/diagram.json) · [Shared facts](/samples/ai-service-assistant/scenario.json)
+
+[Historical shop sample (regression fixture)](/samples/F1-authentication-authorization-flow.svg) · [All seven views and assumptions](/use/ai-service-assistant).

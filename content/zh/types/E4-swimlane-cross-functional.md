@@ -23,6 +23,8 @@ reviewed: false
 
 # 泳道流程图（Swimlane / Cross-functional Flowchart）
 
+**E2 的具名变体。** [进入活动图 / 流程图 → E4](/zh/types/e2-activity-flowchart#variant-e4)。此兼容页保留独立画法、检查项、原锚点和历史下载。
+
 > 把流程图划分为并行的泳道，每个角色或系统一条，使它们之间的每一次交接都清晰可见。
 
 ## 含义 {#meaning}

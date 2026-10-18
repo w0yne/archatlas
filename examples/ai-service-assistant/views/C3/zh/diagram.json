@@ -1,0 +1,204 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "C3",
+    "title": "C3 · 企业服务助手 — 容器",
+    "lang": "zh",
+    "state": "to-be",
+    "audience": "architects and reviewers",
+    "description": "Fictional teaching design; scenario.json version 1"
+  },
+  "layout": {
+    "template": "nested"
+  },
+  "nodes": [
+    {
+      "id": "C-web",
+      "kind": "container",
+      "label": "Web 门户",
+      "parent": "B-system",
+      "style": "peer",
+      "sub": "C-web · TypeScript SPA · 对话与审批界面"
+    },
+    {
+      "id": "C-api",
+      "kind": "container",
+      "label": "应用 API/BFF",
+      "parent": "B-system",
+      "style": "primary",
+      "sub": "C-api · Python / HTTPS · 会话、租户策略与审批"
+    },
+    {
+      "id": "C-tools",
+      "kind": "container",
+      "label": "MCP 工具网关",
+      "parent": "B-system",
+      "style": "peer",
+      "sub": "C-tools · Python / MCP HTTPS · 验证委托；执行工具权限检查"
+    },
+    {
+      "id": "C-agent",
+      "kind": "container",
+      "label": "Agent 服务",
+      "parent": "B-system",
+      "style": "peer",
+      "sub": "C-agent · Python / HTTPS · 受限规划、检索、模型与工具"
+    },
+    {
+      "id": "DS-app",
+      "kind": "store",
+      "label": "应用记录",
+      "parent": "B-system",
+      "style": "peer",
+      "sub": "DS-app · PostgreSQL · 成员、对话、审批与审计"
+    },
+    {
+      "id": "DS-index",
+      "kind": "store",
+      "label": "检索索引",
+      "parent": "B-system",
+      "style": "peer",
+      "sub": "DS-index · OpenSearch · 派生分块、向量、租户与 ACL"
+    },
+    {
+      "id": "C-ingest",
+      "kind": "container",
+      "label": "摄取工作进程",
+      "parent": "B-system",
+      "style": "peer",
+      "sub": "C-ingest · Python / batch · 版本、分块、嵌入与索引"
+    },
+    {
+      "id": "Q-ingest",
+      "kind": "queue",
+      "label": "摄取队列 + DLQ",
+      "parent": "B-system",
+      "style": "peer",
+      "sub": "Q-ingest · SQS · 版本任务；重试 / DLQ"
+    },
+    {
+      "id": "DS-doc",
+      "kind": "store",
+      "label": "文档版本",
+      "parent": "B-system",
+      "style": "peer",
+      "sub": "DS-doc · S3 · 版本化原文与 ACL 快照"
+    },
+    {
+      "id": "C-eval",
+      "kind": "container",
+      "label": "评测任务",
+      "parent": "B-system",
+      "style": "peer",
+      "sub": "C-eval · Python / batch · 离线质量与成本门禁"
+    },
+    {
+      "id": "DS-eval",
+      "kind": "store",
+      "label": "评测数据集",
+      "parent": "B-system",
+      "style": "peer",
+      "sub": "DS-eval · S3 · 经批准的去标识数据与评测记录"
+    },
+    {
+      "id": "X-model",
+      "kind": "external",
+      "label": "托管模型服务",
+      "style": "external",
+      "sub": "Bedrock · 文本 / 向量"
+    }
+  ],
+  "edges": [
+    {
+      "id": "CON-1",
+      "from": "C-web",
+      "to": "C-api",
+      "label": "对话 / 审批 · HTTPS",
+      "kind": "call"
+    },
+    {
+      "id": "CON-2",
+      "from": "C-tools",
+      "to": "C-api",
+      "label": "读取审批 · HTTPS",
+      "kind": "call"
+    },
+    {
+      "id": "CON-3",
+      "from": "C-api",
+      "to": "C-agent",
+      "label": "委托 · HTTPS",
+      "kind": "call"
+    },
+    {
+      "id": "CON-4",
+      "from": "C-api",
+      "to": "DS-app",
+      "label": "会话 / 审批 · SQL",
+      "kind": "call"
+    },
+    {
+      "id": "CON-5",
+      "from": "C-agent",
+      "to": "DS-index",
+      "label": "tenant + ACL 检索",
+      "kind": "call"
+    },
+    {
+      "id": "CON-6",
+      "from": "C-agent",
+      "to": "C-tools",
+      "label": "受限 MCP · HTTPS",
+      "kind": "call"
+    },
+    {
+      "id": "CON-10",
+      "from": "C-ingest",
+      "to": "Q-ingest",
+      "label": "收取任务 · SQS",
+      "kind": "call"
+    },
+    {
+      "id": "CON-11",
+      "from": "C-ingest",
+      "to": "DS-index",
+      "label": "发布分块 · HTTPS",
+      "kind": "call"
+    },
+    {
+      "id": "CON-12",
+      "from": "C-ingest",
+      "to": "DS-doc",
+      "label": "版本原文 · S3 API",
+      "kind": "call"
+    },
+    {
+      "id": "CON-13",
+      "from": "C-eval",
+      "to": "DS-eval",
+      "label": "读写 · S3",
+      "kind": "call"
+    },
+    {
+      "id": "CON-14",
+      "from": "C-eval",
+      "to": "X-model",
+      "label": "评测 · HTTPS",
+      "kind": "call"
+    },
+    {
+      "id": "CON-16",
+      "from": "C-agent",
+      "to": "X-model",
+      "label": "生成 · HTTPS",
+      "kind": "call"
+    }
+  ],
+  "groups": [
+    {
+      "id": "B-system",
+      "title": "企业服务助手 · 自有应用与存储",
+      "kind": "boundary"
+    }
+  ]
+}

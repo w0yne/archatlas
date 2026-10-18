@@ -1,0 +1,166 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "D2",
+    "title": "D2 · Knowledge answer — logical DFD, level 1",
+    "lang": "en",
+    "state": "to-be",
+    "audience": "architects and reviewers",
+    "description": "Fictional teaching design; scenario.json version 1"
+  },
+  "layout": {
+    "template": "nested"
+  },
+  "nodes": [
+    {
+      "id": "X-doc",
+      "kind": "entity",
+      "label": "Document Repository",
+      "style": "external",
+      "sub": ""
+    },
+    {
+      "id": "R-employee",
+      "kind": "entity",
+      "label": "Employee / approver",
+      "style": "external",
+      "sub": ""
+    },
+    {
+      "id": "X-model",
+      "kind": "entity",
+      "label": "Managed Model Service",
+      "style": "external",
+      "sub": ""
+    },
+    {
+      "id": "P-ingest",
+      "kind": "process",
+      "label": "1. Prepare knowledge",
+      "style": "peer",
+      "sub": ""
+    },
+    {
+      "id": "P-retrieve",
+      "kind": "process",
+      "label": "2. Authorize retrieval",
+      "style": "peer",
+      "sub": ""
+    },
+    {
+      "id": "P-compose",
+      "kind": "process",
+      "label": "3. Compose answer",
+      "style": "peer",
+      "sub": ""
+    },
+    {
+      "id": "P-cite",
+      "kind": "process",
+      "label": "4. Authorize citations",
+      "style": "peer",
+      "sub": ""
+    },
+    {
+      "id": "DS-doc",
+      "kind": "store",
+      "label": "Document versions",
+      "style": "peer",
+      "sub": ""
+    },
+    {
+      "id": "DS-index",
+      "kind": "store",
+      "label": "Retrieval index",
+      "style": "peer",
+      "sub": ""
+    },
+    {
+      "id": "DS-app",
+      "kind": "store",
+      "label": "Application records",
+      "style": "peer",
+      "sub": ""
+    }
+  ],
+  "edges": [
+    {
+      "id": "DATA-1",
+      "from": "X-doc",
+      "to": "P-ingest",
+      "label": "Source + ACL",
+      "kind": "data"
+    },
+    {
+      "id": "DATA-2",
+      "from": "P-ingest",
+      "to": "DS-doc",
+      "label": "Document version",
+      "kind": "data"
+    },
+    {
+      "id": "DATA-3",
+      "from": "P-ingest",
+      "to": "DS-index",
+      "label": "Authorized chunks",
+      "kind": "data"
+    },
+    {
+      "id": "DATA-4",
+      "from": "DS-index",
+      "to": "P-retrieve",
+      "label": "Candidate chunks",
+      "kind": "data"
+    },
+    {
+      "id": "DATA-5",
+      "from": "R-employee",
+      "to": "P-retrieve",
+      "label": "Query + identity",
+      "kind": "data"
+    },
+    {
+      "id": "DATA-6",
+      "from": "P-retrieve",
+      "to": "P-compose",
+      "label": "Permitted context",
+      "kind": "data"
+    },
+    {
+      "id": "DATA-7",
+      "from": "P-compose",
+      "to": "X-model",
+      "label": "Grounded prompt",
+      "kind": "data"
+    },
+    {
+      "id": "DATA-8",
+      "from": "X-model",
+      "to": "P-compose",
+      "label": "Draft + citations",
+      "kind": "data"
+    },
+    {
+      "id": "DATA-9",
+      "from": "P-compose",
+      "to": "P-cite",
+      "label": "Answer",
+      "kind": "data"
+    },
+    {
+      "id": "DATA-10",
+      "from": "P-cite",
+      "to": "DS-app",
+      "label": "Audit record",
+      "kind": "data"
+    },
+    {
+      "id": "DATA-11",
+      "from": "P-cite",
+      "to": "R-employee",
+      "label": "Authorized citation link",
+      "kind": "data"
+    }
+  ],
+  "groups": []
+}

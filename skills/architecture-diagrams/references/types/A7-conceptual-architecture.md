@@ -2,6 +2,7 @@
 <!-- Generated from content/en/types/A7-conceptual-architecture.md by tools/build_skill_refs.py. Do not edit. -->
 > What big parts make up this solution, what does each part do for the business, and how do they depend on each other and on the outside world?
 Scope: One solution opened one level below its context: 5–9 technology-neutral building blocks inside an explicit boundary, with users, channels and external systems at the edge. Neighbours: A1, A8, C1, C2, C3, C5, I2.
+Named variant of C5; apply this reference's own recipe and checks.
 
 ## Meaning
 A conceptual architecture answers "what big parts make up this solution, what does each do, and how do they depend on each other?" In ISO/IEC/IEEE 42010 terms it is an overview viewpoint whose concerns are scope, major building blocks and the solution approach. TOGAF defines it as the **Solution Concept diagram**, a Phase A artifact: "a high-level orientation of the solution", explicitly a "pencil sketch", used "to quickly on-board and align stakeholders". The C4 model has no conceptual level; an A7 sits between the System Context (C2) and Container (C3) views. It leaves out products, versions, protocols and deployment, business capability lists (A1), product feature breakdowns (B3), process steps (A5, E4) and the path from as-is to to-be (A8).

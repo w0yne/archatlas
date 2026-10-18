@@ -167,6 +167,16 @@ def build_page(path: Path) -> tuple[str, list[str]]:
         f"> {meta['question']}",
         f"Scope: {meta['scope']} Neighbours: {neighbours}.",
     ]
+    catalogue = yaml.safe_load((ROOT / "content/data/types.yaml").read_text())["types"]
+    row = next(t for t in catalogue if t["code"] == meta["code"])
+    if row["catalogRole"] == "variant":
+        head.append(f"Named variant of {row['target']['code']}; apply this reference's own recipe and checks.")
+    elif row["catalogRole"] == "reference":
+        head.append("Method reference: honour explicit requests; outside the default core catalogue.")
+    children = [t for t in catalogue if t["catalogRole"] == "variant" and t["target"]["code"] == row["code"]]
+    if children:
+        head.append("Named variants (read their own recipes): " + "; ".join(
+            f"{t['code']} — `references/types/{t['code']}-{t['slug']}.md`" for t in children) + ".")
     text = "\n".join(head + body) + "\n"
     if text.count("\n") > TOTAL_LINES:
         problems.append(f"{name}: reference has {text.count(chr(10))} lines, budget {TOTAL_LINES}")

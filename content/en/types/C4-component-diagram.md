@@ -149,6 +149,30 @@ Model template: `assets/templates/C4.json` · Layout template: `nested` · one `
 23. C4 model — Container diagram — https://c4model.com/diagrams/container — accessed 2026-10-14
 24. S. Brown — Reverse-engineering architecture diagrams (talk) — https://www.youtube.com/watch?v=2Cz9ZDIlBeM — accessed 2026-10-14
 
+### C8 · Layered architecture diagram {#variant-c8}
+
+Editorial grouping preserves the distinct notation; use this recipe and its checks.
+
+1. Fix the scope to ONE application or service (e.g. the shop backend). For a whole estate, offer C2/C3/C7 first.
+2. List top-level packages and the import graph between them. Propose layers from the *actual* names; do not impose a template.
+3. Choose the variant: if infrastructure implements interfaces owned by the domain, use inward-dependency; otherwise use a stack and choose strict or relaxed.
+4. Each layer: name + a responsibility of 5–10 words + 2–5 real module chips (≤ ~25 chips in total).
+5. Stack layout: vertical, entry (web/API) on top, persistence and external clients at the bottom. Inward layout: core centred, driving adapters left, driven adapters right. Use equal band heights and put externals outside the frame.
+6. Arrows: one per allowed dependency, from user to used (or toward the core). At most three forbidden shortcuts, red dashed with "×".
+7. Show cross-cutting concerns once, as a sidebar, not as arrows from everything.
+8. Caption: the rule in one sentence + the variant name + the arrow legend. Colour: one neutral tint per layer family, domain accented, red only for violations; no technology logos.
+
+**Self-check**
+- [ ] One application or service only; no servers, replicas or subnets.
+- [ ] Variant named; dependency rule stated; arrow meaning in the legend.
+- [ ] Every layer has a responsibility and at least one real module name.
+- [ ] Arrows match the actual import graph, or are marked "intended".
+- [ ] No pass-through layer; 3–5 layers.
+- [ ] "Tier" appears only for physical deployment; not confused with the ArchiMate layered viewpoint.
+- [ ] Names equal repository package names, so a conformance rule can be generated.
+
+[Full method and historical sample](/types/c8-layered-architecture#meaning).
+
 ## Sample {#sample}
 <!-- skill: path only -->
 ![C4 sample: components of the order API](/samples/C4-component-diagram.svg)

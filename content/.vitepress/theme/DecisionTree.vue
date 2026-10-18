@@ -6,7 +6,10 @@ const { theme, lang } = useData();
 const locale = computed(() => lang.value.startsWith('zh') ? 'zh' : 'en');
 const t = computed(() => ui[locale.value]);
 const typeFor = code => theme.value.catalogue.types.find(type => type.code === code);
-const linkFor = type => withBase((locale.value === 'zh' ? '/zh' : '') + '/types/' + type.path + '.html');
+const linkFor = type => {
+ const target = typeFor(type.target?.code) || type;
+ return withBase((locale.value === 'zh' ? '/zh' : '') + '/types/' + target.path + '.html' + (type.catalogRole === 'variant' ? '#' + type.target.anchor : ''));
+};
 </script>
 <template>
  <div class="decision-tree" :aria-label="t.choose">
@@ -17,7 +20,7 @@ const linkFor = type => withBase((locale.value === 'zh' ? '/zh' : '') + '/types/
      <p class="branch-question">{{ branch.when[locale] }}</p>
      <ul :aria-label="t.recommendations" class="recommendations">
       <li v-for="code in branch.types" :key="code">
-       <a v-if="typeFor(code).available[locale]" :href="linkFor(typeFor(code))">{{ code }} · {{ typeFor(code).names[locale] }}</a>
+       <a v-if="typeFor(code).available[locale]" :href="linkFor(typeFor(code))">{{ code }} · {{ typeFor(code).names[locale] }}{{ typeFor(code).catalogRole === 'variant' ? ' → ' + typeFor(code).target.code : '' }}</a>
        <span v-else>{{ code }} · {{ typeFor(code).names[locale] }} <span class="coming-soon">({{ t.coming }})</span></span>
       </li>
      </ul>

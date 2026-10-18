@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1450" lang="zh" data-archatlas="0.1">
+<title>F1 / E1 · 工具委托访问 — 允许与拒绝</title>
+<desc>虚构目标设计 · 前提：BFF 已完成 OIDC 授权码 + PKCE；AS 支持受限委托</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,4 L0,8 Z" fill="#4B5563"/></marker></defs>
+<rect data-role="canvas" width="1400" height="1450" fill="#ffffff"/>
+<text x="28" y="40" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="28" font-weight="700" fill="#1F2937">F1 / E1 · 工具委托访问 — 允许与拒绝</text>
+<text x="28" y="72" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">虚构目标设计 · 前提：BFF 已完成 OIDC 授权码 + PKCE；AS 支持受限委托</text>
+<rect x="35" y="105" width="280" height="100" data-role="node" data-id="C-agent" data-kind="lifeline" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="49" y="134" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-agent" data-role="name">Agent 服务</text>
+<text x="49" y="159" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-agent" data-role="sub">C-agent</text>
+<polyline points="175,205 175,1080" fill="none" stroke="#666A73" stroke-width="1.2" stroke-dasharray="5 5" data-role="edge" data-kind="lifeline" data-id="life-C-agent" data-from="C-agent" data-to="C-agent"/>
+<rect x="385" y="105" width="280" height="100" data-role="node" data-id="X-idp" data-kind="lifeline" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="8"/>
+<text x="399" y="134" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="X-idp" data-role="name">企业 IdP / AS</text>
+<text x="399" y="159" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-idp" data-role="sub">X-idp</text>
+<polyline points="525,205 525,1080" fill="none" stroke="#666A73" stroke-width="1.2" stroke-dasharray="5 5" data-role="edge" data-kind="lifeline" data-id="life-X-idp" data-from="X-idp" data-to="X-idp"/>
+<rect x="735" y="105" width="280" height="100" data-role="node" data-id="C-tools" data-kind="lifeline" fill="#1767B5" stroke="#03172E" stroke-width="2.4" rx="8"/>
+<text x="749" y="134" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#ffffff" data-owner="C-tools" data-role="name">MCP 工具网关</text>
+<text x="749" y="159" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#ffffff" data-owner="C-tools" data-role="sub">C-tools</text>
+<polyline points="875,205 875,1080" fill="none" stroke="#666A73" stroke-width="1.2" stroke-dasharray="5 5" data-role="edge" data-kind="lifeline" data-id="life-C-tools" data-from="C-tools" data-to="C-tools"/>
+<rect x="1085" y="105" width="280" height="100" data-role="node" data-id="X-desk" data-kind="lifeline" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="8"/>
+<text x="1099" y="134" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="X-desk" data-role="name">服务工单系统</text>
+<text x="1099" y="159" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-desk" data-role="sub">X-desk</text>
+<polyline points="1225,205 1225,1080" fill="none" stroke="#666A73" stroke-width="1.2" stroke-dasharray="5 5" data-role="edge" data-kind="lifeline" data-id="life-X-desk" data-from="X-desk" data-to="X-desk"/>
+<rect x="35" y="220" width="1325" height="850" fill="#ffffff" fill-opacity="0" stroke="#666A73" stroke-width="1.4" data-kind="frame" data-id="exchange"/>
+<text x="45" y="243" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937">alt</text>
+<text x="90" y="245" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937">[AS 允许所请求的委托]</text>
+<rect x="55" y="555" width="1290" height="365" fill="#ffffff" fill-opacity="0" stroke="#666A73" stroke-width="1.4" data-kind="frame" data-id="tool-access"/>
+<text x="65" y="578" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937">alt</text>
+<text x="110" y="578" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937">[证明有效 + tenant/scope + 当前权限 + 审批]</text>
+<text x="895" y="625" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="700" fill="#1F2937">核验 → 执行授权</text>
+<line x1="55" y1="795" x2="1345" y2="795" stroke="#666A73" stroke-dasharray="5 5"/>
+<text x="70" y="825" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937">[否则：issuer/audience/有效期、actor、tenant、scope 或审批不符]</text>
+<line x1="35" y1="945" x2="1360" y2="945" stroke="#666A73" stroke-dasharray="5 5"/>
+<text x="50" y="975" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937">[否则：AS 拒绝交换；无工具 token]</text>
+<polyline points="175,295 525,295" data-role="edge" data-id="AUTH-1" data-from="C-agent" data-to="X-idp" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="187" y="283" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">交换主体 token + 客户端认证</text>
+<polyline points="525,360 175,360" data-role="edge" data-id="AUTH-2" data-from="X-idp" data-to="C-agent" data-kind="reply" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" stroke-dasharray="6 4"/>
+<text x="187" y="348" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">缩权工具 token</text>
+<polyline points="175,510 875,510" data-role="edge" data-id="AUTH-3" data-from="C-agent" data-to="C-tools" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="187" y="498" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">工具 token + 绑定审批</text>
+<polyline points="875,680 1225,680" data-role="edge" data-id="AUTH-4" data-from="C-tools" data-to="X-desk" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="887" y="668" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">许可请求 + 连接器凭据</text>
+<polyline points="1225,750 875,750" data-role="edge" data-id="AUTH-5" data-from="X-desk" data-to="C-tools" data-kind="reply" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" stroke-dasharray="6 4"/>
+<text x="887" y="738" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">工单结果</text>
+<polyline points="875,885 175,885" data-role="edge" data-id="AUTH-6" data-from="C-tools" data-to="C-agent" data-kind="reply" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" stroke-dasharray="6 4"/>
+<text x="187" y="873" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">401 / 403；连接器前终止</text>
+<polyline points="525,1020 175,1020" data-role="edge" data-id="AUTH-7" data-from="X-idp" data-to="C-agent" data-kind="reply" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" stroke-dasharray="6 4"/>
+<text x="187" y="1008" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">invalid_grant / access_denied；终止</text>
+<text x="28" y="1130" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937">交换客户端：agent-client · 输入 aud=agent-service · 主体=员工</text>
+<text x="28" y="1165" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937">工具 token：iss=enterprise-as · aud=mcp-tool-gateway · sub=员工 · act=agent-client</text>
+<text x="28" y="1200" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937">绑定声明：已验证 tenant · 许可工具 scopes · 短有效期 · 网关验证签名</text>
+<text x="28" y="1235" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937">浏览器仅持会话 cookie；ID token 不作 API 凭据。登录细节见共享场景。</text>
+<rect x="28" y="1320" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-1" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="82" y="1337" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-1">范围内元素</text>
+<rect x="473" y="1320" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-2" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="8"/>
+<text x="527" y="1337" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-2">外部角色 / 系统</text>
+<rect x="918" y="1320" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-3" fill="#1767B5" stroke="#03172E" stroke-width="2.4" rx="8"/>
+<text x="972" y="1337" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-3">本图主体</text>
+<polyline points="28,1375 70,1375" data-role="edge" data-kind="legend" data-id="legend-line-4" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="82" y="1382" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-4">发起方 → 依赖方</text>
+<polyline points="473,1375 515,1375" data-role="edge" data-kind="legend" data-id="legend-line-5" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" stroke-dasharray="6 4"/>
+<text x="527" y="1382" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-5">应答</text>
+</svg>

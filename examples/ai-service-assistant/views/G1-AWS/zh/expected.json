@@ -1,0 +1,23 @@
+{
+  "scenarioVersion": 1,
+  "entities": {
+    "AWS-edge": "AWS-edge",
+    "X-idp": "X-idp",
+    "AWS-alb": "AWS-alb",
+    "AWS-tasks": "AWS-tasks",
+    "AWS-batch": "AWS-batch",
+    "AWS-aurora": "AWS-aurora",
+    "AWS-search": "AWS-search",
+    "AWS-s3": "AWS-s3",
+    "AWS-sqs": "AWS-sqs",
+    "X-model": "X-model",
+    "AWS-ops": "AWS-ops"
+  },
+  "invariants": [
+    "I-operator",
+    "I-ingest",
+    "I-eval",
+    "I-delegation"
+  ],
+  "projection": "focused view; omissions described in caption; not a deployed system"
+}

@@ -1,0 +1,623 @@
+{
+  "version": 1,
+  "id": "enterprise-service-assistant",
+  "status": "fictional teaching design; not deployed or benchmarked",
+  "name": {
+    "en": "Enterprise Service Assistant",
+    "zh": "企业服务助手"
+  },
+  "tenants": [
+    "tenant-amber",
+    "tenant-birch",
+    "tenant-cedar"
+  ],
+  "entities": {
+    "S-assistant": {
+      "labels": {
+        "en": "Enterprise Service Assistant",
+        "zh": "企业服务助手"
+      },
+      "kind": "system",
+      "technology": "",
+      "responsibility": {
+        "en": "Cited answers and approved service actions",
+        "zh": "有据可查的回答与经审批的服务操作"
+      }
+    },
+    "R-employee": {
+      "labels": {
+        "en": "Employee / approver",
+        "zh": "员工 / 审批人"
+      },
+      "kind": "person",
+      "technology": "",
+      "responsibility": {
+        "en": "Ask; approve own permitted requests",
+        "zh": "提问；审批本人权限内的请求"
+      }
+    },
+    "R-steward": {
+      "labels": {
+        "en": "Knowledge steward",
+        "zh": "知识管理员"
+      },
+      "kind": "person",
+      "technology": "",
+      "responsibility": {
+        "en": "Maintain tenant knowledge and ACLs",
+        "zh": "维护本租户知识与访问规则"
+      }
+    },
+    "R-operator": {
+      "labels": {
+        "en": "Platform operator",
+        "zh": "平台运维员"
+      },
+      "kind": "person",
+      "technology": "",
+      "responsibility": {
+        "en": "Operate services, no implicit content rights",
+        "zh": "运维服务；不自动获得内容权限"
+      }
+    },
+    "C-web": {
+      "labels": {
+        "en": "Web Portal",
+        "zh": "Web 门户"
+      },
+      "kind": "container",
+      "technology": "TypeScript SPA",
+      "responsibility": {
+        "en": "Chat and approval UI",
+        "zh": "对话与审批界面"
+      }
+    },
+    "C-api": {
+      "labels": {
+        "en": "Application API/BFF",
+        "zh": "应用 API/BFF"
+      },
+      "kind": "container",
+      "technology": "Python / HTTPS",
+      "responsibility": {
+        "en": "Sessions, tenant policy, approvals",
+        "zh": "会话、租户策略与审批"
+      }
+    },
+    "C-agent": {
+      "labels": {
+        "en": "Agent Service",
+        "zh": "Agent 服务"
+      },
+      "kind": "container",
+      "technology": "Python / HTTPS",
+      "responsibility": {
+        "en": "Bounded plan, retrieve, model, tools",
+        "zh": "受限规划、检索、模型与工具"
+      }
+    },
+    "C-ingest": {
+      "labels": {
+        "en": "Ingestion Worker",
+        "zh": "摄取工作进程"
+      },
+      "kind": "container",
+      "technology": "Python / batch",
+      "responsibility": {
+        "en": "Version, chunk, embed and index",
+        "zh": "版本、分块、嵌入与索引"
+      }
+    },
+    "C-tools": {
+      "labels": {
+        "en": "MCP Tool Gateway",
+        "zh": "MCP 工具网关"
+      },
+      "kind": "container",
+      "technology": "Python / MCP HTTPS",
+      "responsibility": {
+        "en": "Verify delegation; enforce tool policy",
+        "zh": "验证委托；执行工具权限检查"
+      }
+    },
+    "C-eval": {
+      "labels": {
+        "en": "Evaluation Job",
+        "zh": "评测任务"
+      },
+      "kind": "container",
+      "technology": "Python / batch",
+      "responsibility": {
+        "en": "Offline quality and cost gates",
+        "zh": "离线质量与成本门禁"
+      }
+    },
+    "DS-app": {
+      "labels": {
+        "en": "Application records",
+        "zh": "应用记录"
+      },
+      "kind": "store",
+      "technology": "PostgreSQL",
+      "responsibility": {
+        "en": "Memberships, chats, approvals, audit",
+        "zh": "成员、对话、审批与审计"
+      }
+    },
+    "DS-doc": {
+      "labels": {
+        "en": "Document versions",
+        "zh": "文档版本"
+      },
+      "kind": "store",
+      "technology": "S3",
+      "responsibility": {
+        "en": "Versioned source and ACL snapshot",
+        "zh": "版本化原文与 ACL 快照"
+      }
+    },
+    "DS-index": {
+      "labels": {
+        "en": "Retrieval index",
+        "zh": "检索索引"
+      },
+      "kind": "store",
+      "technology": "OpenSearch",
+      "responsibility": {
+        "en": "Derived chunks, vectors, tenant ACL",
+        "zh": "派生分块、向量、租户与 ACL"
+      }
+    },
+    "DS-eval": {
+      "labels": {
+        "en": "Evaluation datasets",
+        "zh": "评测数据集"
+      },
+      "kind": "store",
+      "technology": "S3",
+      "responsibility": {
+        "en": "Approved deidentified data and runs",
+        "zh": "经批准的去标识数据与评测记录"
+      }
+    },
+    "Q-ingest": {
+      "labels": {
+        "en": "Ingestion queue + DLQ",
+        "zh": "摄取队列 + DLQ"
+      },
+      "kind": "queue",
+      "technology": "SQS",
+      "responsibility": {
+        "en": "Version jobs; bounded retry and quarantine",
+        "zh": "版本任务；有限重试与隔离"
+      }
+    },
+    "X-idp": {
+      "labels": {
+        "en": "Enterprise IdP / AS",
+        "zh": "企业 IdP / AS"
+      },
+      "kind": "external",
+      "technology": "OIDC / OAuth",
+      "responsibility": {
+        "en": "Identity and constrained delegation",
+        "zh": "身份与受限委托"
+      },
+      "viewLabels": {
+        "en": [
+          "Enterprise Identity"
+        ],
+        "zh": [
+          "企业身份服务"
+        ]
+      }
+    },
+    "X-doc": {
+      "labels": {
+        "en": "Document Repository",
+        "zh": "文档源系统"
+      },
+      "kind": "external",
+      "technology": "HTTPS connector",
+      "responsibility": {
+        "en": "Source documents and access policy",
+        "zh": "原始文档与访问策略"
+      }
+    },
+    "X-desk": {
+      "labels": {
+        "en": "Service Desk",
+        "zh": "服务工单系统"
+      },
+      "kind": "external",
+      "technology": "HTTPS",
+      "responsibility": {
+        "en": "Catalogue, ticket read and create",
+        "zh": "服务目录、工单读取与创建"
+      }
+    },
+    "X-model": {
+      "labels": {
+        "en": "Managed Model Service",
+        "zh": "托管模型服务"
+      },
+      "kind": "external",
+      "technology": "Amazon Bedrock",
+      "responsibility": {
+        "en": "Generate text and embeddings",
+        "zh": "生成文本与向量"
+      }
+    },
+    "P-ingest": {
+      "labels": {
+        "en": "1. Prepare knowledge",
+        "zh": "1. 准备知识"
+      },
+      "kind": "process",
+      "technology": "",
+      "responsibility": {
+        "en": "1. Prepare knowledge",
+        "zh": "1. 准备知识"
+      },
+      "owner": "C-ingest"
+    },
+    "P-retrieve": {
+      "labels": {
+        "en": "2. Authorize retrieval",
+        "zh": "2. 授权检索"
+      },
+      "kind": "process",
+      "technology": "",
+      "responsibility": {
+        "en": "2. Authorize retrieval",
+        "zh": "2. 授权检索"
+      },
+      "owner": "C-agent"
+    },
+    "P-compose": {
+      "labels": {
+        "en": "3. Compose answer",
+        "zh": "3. 生成回答"
+      },
+      "kind": "process",
+      "technology": "",
+      "responsibility": {
+        "en": "3. Compose answer",
+        "zh": "3. 生成回答"
+      },
+      "owner": "C-agent"
+    },
+    "P-cite": {
+      "labels": {
+        "en": "4. Authorize citations",
+        "zh": "4. 授权引用"
+      },
+      "kind": "process",
+      "technology": "",
+      "responsibility": {
+        "en": "4. Authorize citations",
+        "zh": "4. 授权引用"
+      },
+      "owner": "C-api"
+    },
+    "P-plan": {
+      "labels": {
+        "en": "1. Draft request",
+        "zh": "1. 起草请求"
+      },
+      "kind": "process",
+      "technology": "",
+      "responsibility": {
+        "en": "1. Draft request",
+        "zh": "1. 起草请求"
+      },
+      "owner": "C-agent"
+    },
+    "P-approve": {
+      "labels": {
+        "en": "2. Bind approval",
+        "zh": "2. 绑定审批"
+      },
+      "kind": "process",
+      "technology": "",
+      "responsibility": {
+        "en": "2. Bind approval",
+        "zh": "2. 绑定审批"
+      },
+      "owner": "C-api"
+    },
+    "P-execute": {
+      "labels": {
+        "en": "3. Reauthorize tool",
+        "zh": "3. 工具再授权"
+      },
+      "kind": "process",
+      "technology": "",
+      "responsibility": {
+        "en": "3. Reauthorize tool",
+        "zh": "3. 工具再授权"
+      },
+      "owner": "C-tools"
+    },
+    "P-export": {
+      "labels": {
+        "en": "Approve feedback export",
+        "zh": "批准反馈导出"
+      },
+      "kind": "process",
+      "technology": "",
+      "responsibility": {
+        "en": "Approve feedback export",
+        "zh": "批准反馈导出"
+      },
+      "owner": "C-api"
+    },
+    "AWS-edge": {
+      "labels": {
+        "en": "CloudFront + S3",
+        "zh": "CloudFront + S3"
+      },
+      "kind": "component",
+      "technology": "",
+      "responsibility": {
+        "en": "C-web static assets; global edge",
+        "zh": "C-web 静态资源；全球边缘"
+      }
+    },
+    "AWS-alb": {
+      "labels": {
+        "en": "Application Load Balancer",
+        "zh": "应用负载均衡器"
+      },
+      "kind": "component",
+      "technology": "",
+      "responsibility": {
+        "en": "Regional ingress across two AZs",
+        "zh": "双 AZ 的区域入口"
+      }
+    },
+    "AWS-tasks": {
+      "labels": {
+        "en": "ECS Fargate services",
+        "zh": "ECS Fargate 服务"
+      },
+      "kind": "component",
+      "technology": "",
+      "responsibility": {
+        "en": "C-api · C-agent · C-tools",
+        "zh": "C-api · C-agent · C-tools"
+      }
+    },
+    "AWS-batch": {
+      "labels": {
+        "en": "ECS Fargate jobs",
+        "zh": "ECS Fargate 任务"
+      },
+      "kind": "component",
+      "technology": "",
+      "responsibility": {
+        "en": "C-ingest · C-eval",
+        "zh": "C-ingest · C-eval"
+      }
+    },
+    "AWS-aurora": {
+      "labels": {
+        "en": "Aurora PostgreSQL",
+        "zh": "Aurora PostgreSQL"
+      },
+      "kind": "store",
+      "technology": "",
+      "responsibility": {
+        "en": "DS-app writer + cross-AZ reader",
+        "zh": "DS-app 写节点 + 跨 AZ 读节点"
+      }
+    },
+    "AWS-search": {
+      "labels": {
+        "en": "OpenSearch Service",
+        "zh": "OpenSearch Service"
+      },
+      "kind": "store",
+      "technology": "",
+      "responsibility": {
+        "en": "DS-index; two-AZ zone awareness",
+        "zh": "DS-index；双 AZ 区域感知"
+      }
+    },
+    "AWS-s3": {
+      "labels": {
+        "en": "Amazon S3",
+        "zh": "Amazon S3"
+      },
+      "kind": "store",
+      "technology": "",
+      "responsibility": {
+        "en": "DS-doc · DS-eval",
+        "zh": "DS-doc · DS-eval"
+      }
+    },
+    "AWS-sqs": {
+      "labels": {
+        "en": "SQS + DLQ",
+        "zh": "SQS + DLQ"
+      },
+      "kind": "queue",
+      "technology": "",
+      "responsibility": {
+        "en": "Q-ingest version jobs",
+        "zh": "Q-ingest 版本任务"
+      }
+    },
+    "AWS-ops": {
+      "labels": {
+        "en": "CloudWatch · KMS · Secrets",
+        "zh": "CloudWatch · KMS · Secrets"
+      },
+      "kind": "component",
+      "technology": "",
+      "responsibility": {
+        "en": "Telemetry, keys, scoped secrets",
+        "zh": "遥测、密钥、受限凭据"
+      }
+    }
+  },
+  "invariants": {
+    "I-tenant": {
+      "en": "Derive tenant and subject from the verified session. Enforce current tenant/ACL filters before retrieval and check current access again when a citation is opened. Never share content across tenants.",
+      "zh": "从已验证会话确定租户与主体。检索前执行当前 tenant/ACL 过滤，打开引用时再次核对当前权限；租户之间不共享内容。"
+    },
+    "I-approval": {
+      "en": "Approval binds tenant, subject, tool, canonical-parameter SHA-256 hash, expiry and idempotency key. Approval is a stored record, not model text. Reauthorize immediately before execution; reject stale, modified or cross-tenant requests.",
+      "zh": "审批绑定租户、主体、工具、规范参数 SHA-256 hash、有效期与幂等键。审批是持久记录而非模型文本；执行前重新授权，拒绝过期、篡改或跨租户请求。"
+    },
+    "I-authority": {
+      "en": "Model output, retrieved documents and guardrails never grant authority. Guardrails filter content; deterministic BFF and gateway checks enforce permissions.",
+      "zh": "模型输出、检索文档和 guardrails 均不授予权限。Guardrails 过滤内容，BFF 与网关的确定性检查执行权限控制。"
+    },
+    "I-delegation": {
+      "en": "The BFF is the confidential OIDC client (authorization code + PKCE; verifier stays server-side). The Agent Service is the authenticated token-exchange client. The enterprise AS must explicitly support the required constrained delegation (RFC 8693); this is an assumption, not a generic IdP promise.",
+      "zh": "BFF 是机密 OIDC 客户端（授权码 + PKCE；verifier 保留在服务端）。Agent 服务是已认证的 token exchange 客户端。企业 AS 必须明确支持所需的受限委托（RFC 8693）；这是前提，不是任意 IdP 的通用能力。"
+    },
+    "I-tokens": {
+      "en": "AS issues BFF access token aud=application-api, sub=employee, and a downscoped agent subject token aud=agent-service. Agent exchanges only that valid subject token, authenticating as agent-client; AS issues tool token iss=enterprise-as, aud=mcp-tool-gateway, sub=employee, act=agent-client, tenant, permitted scopes and short expiry. Tools verifies signature/issuer/audience/expiry, delegation actor, tenant and current policy; reject before Service Desk on any mismatch. Tokens for Service Desk are separate scoped connector credentials, never forwarded model or BFF tokens.",
+      "zh": "AS 签发 BFF access token（aud=application-api、sub=员工）及缩权的 agent 主体 token（aud=agent-service）。Agent 以 agent-client 身份认证，仅交换此有效主体 token；AS 签发工具 token：iss=enterprise-as、aud=mcp-tool-gateway、sub=员工、act=agent-client、tenant、许可 scopes 与短有效期。网关核验签名、issuer、audience、有效期、委托 actor、tenant 与当前策略；任一不符在工单调用前拒绝。工单使用独立受限连接器凭据，绝不转发模型或 BFF token。"
+    },
+    "I-idempotency": {
+      "en": "Persist execution intent and idempotency key before sending. Service Desk is assumed to support idempotent ticket creation by that key. After ambiguous timeouts reconcile by key; never blindly repeat a non-idempotent write.",
+      "zh": "发送前持久化执行意图与幂等键。假设工单服务支持按该键幂等创建；超时结果不明时按键对账，绝不盲重试非幂等写入。"
+    },
+    "I-ingest": {
+      "en": "Version documents with source ACLs; retries are bounded and failures go to DLQ. Only completely indexed versions become searchable; revocation/tombstone updates invalidate search and citation access.",
+      "zh": "文档版本携带源 ACL；重试有界、失败进入 DLQ；完整索引的版本才可检索，撤权或删除同步失效检索与引用访问。"
+    },
+    "I-eval": {
+      "en": "Feedback starts in DS-app. A steward approves deidentified/synthetic export to DS-eval. Offline C-eval uses an evaluation-only identity and versioned prompt/model/dataset; no production tool writes. Gate promotions on quality, safety, latency and token-cost measures without claiming measured scores.",
+      "zh": "反馈先存 DS-app。管理员批准去标识或合成数据导出至 DS-eval。离线 C-eval 使用评测专用身份及版本化 prompt/model/dataset，不可写生产工具；按质量、安全、延迟与 token 成本门禁晋级，不声称实测分数。"
+    },
+    "I-operator": {
+      "en": "Operators see service health and redacted telemetry, not tenant content by default. Logs omit raw tokens and document text. Admin changes are audited and do not bypass data-plane checks.",
+      "zh": "运维默认只见服务健康与脱敏遥测，不获得租户内容权限。日志不含原始 token 与文档正文；管理变更审计且不绕过数据面检查。"
+    },
+    "I-bounds": {
+      "en": "Exactly three tools: catalogue.lookup, ticket.read, ticket.create. Write requests require the initiating employee approval within current permissions. No arbitrary scripts, procurement, autonomous refunds or unbounded agent loops.",
+      "zh": "仅三种工具：catalogue.lookup、ticket.read、ticket.create。写请求要求发起员工在当前权限内审批；无任意脚本、采购、自主退款或无限循环。"
+    }
+  },
+  "tools": {
+    "catalogue.lookup": {
+      "scope": "catalogue:read",
+      "approval": false
+    },
+    "ticket.read": {
+      "scope": "ticket:read",
+      "approval": false
+    },
+    "ticket.create": {
+      "scope": "ticket:create",
+      "approval": true
+    }
+  },
+  "flows": {
+    "FL-ingest": {
+      "path": [
+        "X-doc",
+        "C-ingest",
+        "DS-doc",
+        "Q-ingest",
+        "C-ingest",
+        "DS-index"
+      ],
+      "rules": [
+        "I-tenant",
+        "I-ingest"
+      ]
+    },
+    "FL-answer": {
+      "path": [
+        "R-employee",
+        "C-web",
+        "C-api",
+        "C-agent",
+        "DS-index",
+        "X-model",
+        "C-api",
+        "C-web"
+      ],
+      "rules": [
+        "I-tenant",
+        "I-authority"
+      ]
+    },
+    "FL-write": {
+      "path": [
+        "C-agent",
+        "C-api",
+        "C-web",
+        "R-employee",
+        "C-web",
+        "C-api",
+        "C-agent",
+        "X-idp",
+        "C-agent",
+        "C-tools",
+        "X-desk"
+      ],
+      "rules": [
+        "I-approval",
+        "I-delegation",
+        "I-tokens",
+        "I-idempotency",
+        "I-bounds"
+      ]
+    },
+    "FL-eval": {
+      "path": [
+        "DS-app",
+        "P-export",
+        "DS-eval",
+        "C-eval",
+        "X-model",
+        "DS-eval"
+      ],
+      "rules": [
+        "I-eval",
+        "I-operator"
+      ]
+    }
+  },
+  "deployment": {
+    "status": "proposed teaching allocation; service availability and quotas must be checked before implementation",
+    "region": "one supported AWS region, selected at implementation time; no cross-region model routing assumed",
+    "zones": [
+      "AZ-A",
+      "AZ-B"
+    ],
+    "placement": {
+      "C-web": "S3 static origin + global CloudFront; executes in employee browser",
+      "C-api": "ECS Fargate desired >=2, one healthy task per AZ behind regional ALB",
+      "C-agent": "ECS Fargate desired >=2 across two AZs; internal HTTPS",
+      "C-tools": "ECS Fargate desired >=2 across two AZs; separate service identity",
+      "C-ingest": "ECS Fargate workers scheduled in either AZ from Q-ingest; idempotent version jobs",
+      "C-eval": "ECS Fargate scheduled task in either AZ; isolated evaluation IAM identity"
+    },
+    "stores": {
+      "DS-app": "Aurora PostgreSQL writer in one AZ, reader in other AZ; cluster storage across three AZs is service-managed, not a claim of three application AZs",
+      "DS-index": "OpenSearch provisioned domain, zone awareness across two AZs with replicas; not the distinct three-AZ Multi-AZ with Standby mode",
+      "DS-doc": "S3 regional versioned bucket outside customer subnets",
+      "DS-eval": "Separate S3 regional bucket/prefix policy, evaluation identity only",
+      "Q-ingest": "SQS regional queue and DLQ outside customer subnets"
+    },
+    "managed_services": [
+      "Amazon Bedrock regional model endpoint outside customer subnets",
+      "CloudWatch regional redacted telemetry and cost measures",
+      "KMS regional customer-managed keys",
+      "Secrets Manager regional scoped connector credentials"
+    ],
+    "exclusions": [
+      "EKS",
+      "multi-cloud",
+      "active-active regions",
+      "model training platform"
+    ]
+  }
+}

@@ -20,6 +20,8 @@ status: draft
 
 # Lean Value-Stream Map (精益价值流图)
 
+**Named variant of A2.** [Open Value stream (business architecture) → A9](/types/a2-value-stream#variant-a9). This compatibility page retains its recipe, checks, anchors and historical downloads.
+
 > A door-to-door map of one product or service flow that shows process boxes, queues, information flow and a timeline of process time against waiting time, drawn as a current state and a future state.
 
 ## Meaning {#meaning}

@@ -20,6 +20,8 @@ status: draft
 
 # Business Context Diagram (业务上下文图)
 
+**Named variant of C2.** [Open System context diagram (C4 model level 1) → A3](/types/c2-system-context#variant-a3). This compatibility page retains its recipe, checks, anchors and historical downloads.
+
 > One black box in the middle, the outside parties around it, and a labelled arrow for every business exchange between them.
 
 ## Meaning {#meaning}

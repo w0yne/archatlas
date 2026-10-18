@@ -23,6 +23,8 @@ reviewed: false
 
 # 业务场景矩阵（Business Scenario Matrix）
 
+**B2 的具名变体。** [进入用户故事地图 → A4](/zh/types/b2-user-story-map#variant-a4)。此兼容页保留独立画法、检查项、原锚点和历史下载。
+
 > 纵向是角色，横向是业务活动，每个单元格写明方案支持的场景及其提供时间。
 
 ## 含义 {#meaning}

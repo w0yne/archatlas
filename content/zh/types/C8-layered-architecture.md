@@ -23,6 +23,8 @@ reviewed: false
 
 # 分层架构图（Layered Architecture Diagram）
 
+**C4 的具名变体。** [进入组件图（C4 模型第 3 层） → C8](/zh/types/c4-component-diagram#variant-c8)。此兼容页保留独立画法、检查项、原锚点和历史下载。
+
 > 一个应用代码的各层（或各环），以及规定哪一层可以依赖哪一层的规则。
 
 ## 含义 {#meaning}

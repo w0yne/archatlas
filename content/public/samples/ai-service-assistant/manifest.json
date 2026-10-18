@@ -1,0 +1,150 @@
+{
+  "version": 1,
+  "scenario": "scenario.json",
+  "languages": [
+    "en",
+    "zh"
+  ],
+  "authorship": "hand-authored SVG; fixed coordinates, no automatic layout",
+  "vendorNeutralG1": {
+    "status": "P2b",
+    "reason": "Vendor-neutral recipe is retained now; AWS variant is the single G1 headline illustration, not a duplicate generic drawing."
+  },
+  "views": [
+    {
+      "id": "C2",
+      "code": "C2",
+      "headlines": [
+        "C2"
+      ],
+      "source": "views/C2",
+      "languages": [
+        "en",
+        "zh"
+      ],
+      "publication": "ai-service-assistant/C2",
+      "rules": [
+        "I-bounds",
+        "I-operator",
+        "I-authority"
+      ]
+    },
+    {
+      "id": "C3",
+      "code": "C3",
+      "headlines": [
+        "C3"
+      ],
+      "source": "views/C3",
+      "languages": [
+        "en",
+        "zh"
+      ],
+      "publication": "ai-service-assistant/C3",
+      "rules": [
+        "I-tenant",
+        "I-approval",
+        "I-delegation",
+        "I-eval",
+        "I-ingest"
+      ]
+    },
+    {
+      "id": "E1",
+      "code": "E1",
+      "headlines": [
+        "E1"
+      ],
+      "source": "views/E1",
+      "languages": [
+        "en",
+        "zh"
+      ],
+      "publication": "ai-service-assistant/E1",
+      "rules": [
+        "I-approval",
+        "I-authority",
+        "I-idempotency",
+        "I-bounds",
+        "I-tokens"
+      ]
+    },
+    {
+      "id": "F1",
+      "code": "F1",
+      "headlines": [
+        "F1"
+      ],
+      "source": "views/F1",
+      "languages": [
+        "en",
+        "zh"
+      ],
+      "publication": "ai-service-assistant/F1",
+      "rules": [
+        "I-delegation",
+        "I-tokens",
+        "I-approval",
+        "I-authority"
+      ]
+    },
+    {
+      "id": "G1-AWS",
+      "code": "G2",
+      "headlines": [
+        "G1",
+        "G2"
+      ],
+      "source": "views/G1-AWS",
+      "languages": [
+        "en",
+        "zh"
+      ],
+      "publication": "ai-service-assistant/G1-AWS",
+      "rules": [
+        "I-operator",
+        "I-ingest",
+        "I-eval",
+        "I-delegation"
+      ]
+    },
+    {
+      "id": "D2",
+      "code": "D2",
+      "headlines": [
+        "D2"
+      ],
+      "source": "views/D2",
+      "languages": [
+        "en",
+        "zh"
+      ],
+      "publication": "ai-service-assistant/D2",
+      "rules": [
+        "I-tenant",
+        "I-ingest",
+        "I-authority"
+      ]
+    },
+    {
+      "id": "F2",
+      "code": "F2",
+      "headlines": [
+        "F2"
+      ],
+      "source": "views/F2",
+      "languages": [
+        "en",
+        "zh"
+      ],
+      "publication": "ai-service-assistant/F2",
+      "rules": [
+        "I-approval",
+        "I-authority",
+        "I-tokens",
+        "I-tenant",
+        "I-idempotency"
+      ]
+    }
+  ]
+}

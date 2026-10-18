@@ -1,0 +1,166 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "D2",
+    "title": "D2 · 知识回答 — 逻辑 DFD，第 1 层",
+    "lang": "zh",
+    "state": "to-be",
+    "audience": "architects and reviewers",
+    "description": "Fictional teaching design; scenario.json version 1"
+  },
+  "layout": {
+    "template": "nested"
+  },
+  "nodes": [
+    {
+      "id": "X-doc",
+      "kind": "entity",
+      "label": "文档源系统",
+      "style": "external",
+      "sub": ""
+    },
+    {
+      "id": "R-employee",
+      "kind": "entity",
+      "label": "员工 / 审批人",
+      "style": "external",
+      "sub": ""
+    },
+    {
+      "id": "X-model",
+      "kind": "entity",
+      "label": "托管模型服务",
+      "style": "external",
+      "sub": ""
+    },
+    {
+      "id": "P-ingest",
+      "kind": "process",
+      "label": "1. 准备知识",
+      "style": "peer",
+      "sub": ""
+    },
+    {
+      "id": "P-retrieve",
+      "kind": "process",
+      "label": "2. 授权检索",
+      "style": "peer",
+      "sub": ""
+    },
+    {
+      "id": "P-compose",
+      "kind": "process",
+      "label": "3. 生成回答",
+      "style": "peer",
+      "sub": ""
+    },
+    {
+      "id": "P-cite",
+      "kind": "process",
+      "label": "4. 授权引用",
+      "style": "peer",
+      "sub": ""
+    },
+    {
+      "id": "DS-doc",
+      "kind": "store",
+      "label": "文档版本",
+      "style": "peer",
+      "sub": ""
+    },
+    {
+      "id": "DS-index",
+      "kind": "store",
+      "label": "检索索引",
+      "style": "peer",
+      "sub": ""
+    },
+    {
+      "id": "DS-app",
+      "kind": "store",
+      "label": "应用记录",
+      "style": "peer",
+      "sub": ""
+    }
+  ],
+  "edges": [
+    {
+      "id": "DATA-1",
+      "from": "X-doc",
+      "to": "P-ingest",
+      "label": "原文 + ACL",
+      "kind": "data"
+    },
+    {
+      "id": "DATA-2",
+      "from": "P-ingest",
+      "to": "DS-doc",
+      "label": "文档版本",
+      "kind": "data"
+    },
+    {
+      "id": "DATA-3",
+      "from": "P-ingest",
+      "to": "DS-index",
+      "label": "带权限分块",
+      "kind": "data"
+    },
+    {
+      "id": "DATA-4",
+      "from": "DS-index",
+      "to": "P-retrieve",
+      "label": "候选分块",
+      "kind": "data"
+    },
+    {
+      "id": "DATA-5",
+      "from": "R-employee",
+      "to": "P-retrieve",
+      "label": "问题 + 身份",
+      "kind": "data"
+    },
+    {
+      "id": "DATA-6",
+      "from": "P-retrieve",
+      "to": "P-compose",
+      "label": "许可上下文",
+      "kind": "data"
+    },
+    {
+      "id": "DATA-7",
+      "from": "P-compose",
+      "to": "X-model",
+      "label": "含依据的提示",
+      "kind": "data"
+    },
+    {
+      "id": "DATA-8",
+      "from": "X-model",
+      "to": "P-compose",
+      "label": "草稿 + 引用",
+      "kind": "data"
+    },
+    {
+      "id": "DATA-9",
+      "from": "P-compose",
+      "to": "P-cite",
+      "label": "回答",
+      "kind": "data"
+    },
+    {
+      "id": "DATA-10",
+      "from": "P-cite",
+      "to": "DS-app",
+      "label": "审计记录",
+      "kind": "data"
+    },
+    {
+      "id": "DATA-11",
+      "from": "P-cite",
+      "to": "R-employee",
+      "label": "已授权引用链接",
+      "kind": "data"
+    }
+  ],
+  "groups": []
+}

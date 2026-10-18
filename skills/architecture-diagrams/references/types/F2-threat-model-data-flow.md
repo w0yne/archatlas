@@ -2,6 +2,7 @@
 <!-- Generated from content/en/types/F2-threat-model-data-flow.md by tools/build_skill_refs.py. Do not edit. -->
 > What data crosses which changes of authority or trust assumptions, and where could security properties fail?
 Scope: One feature or subsystem, with its assets, entry points and trust boundaries; linked to a separate threat register Neighbours: C3, C6, D2, F1, F3, G3.
+Named variant of D2; apply this reference's own recipe and checks.
 
 ## Meaning
 - **Question:** what data crosses which changes of authority or trust assumptions, and where could security properties fail? A boundary can separate organisations, privilege levels, tenants, processes, or browser and server authority on the same network. A private subnet does not prove that everything inside it is trusted.
@@ -88,4 +89,4 @@ Scope: One feature or subsystem, with its assets, entry points and trust boundar
 Model template: `assets/templates/F2.json` · Layout template: `nested` · trust boundaries become `boundary` groups (nestable), external entities are `external` nodes, processes `component` nodes and stores `store` nodes, named data flows are `data` edges with a one-way `dir`; element and flow IDs go in `tags` for linking to the threat register.
 
 ## Sample
-Figure: `samples/F2-threat-model-data-flow.svg` (published with the site)
+Figure: `samples/ai-service-assistant/F2/en/diagram.svg` (published with the site)

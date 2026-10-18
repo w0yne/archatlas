@@ -134,6 +134,15 @@ def validate(cat: dict, tree: dict) -> None:
             errors.append(f"{c}.research: must be one of {sorted(RESEARCH)}")
         if t["status"] not in STATUS:
             errors.append(f"{c}.status: must be one of {sorted(STATUS)}")
+        if t.get("catalogRole") not in {"core", "variant", "reference"}:
+            errors.append(f"{c}: invalid catalogRole")
+        target = t.get("target", {})
+        owner = next((row for row in types if row.get("code") == target.get("code")), {})
+        if not owner or (t.get("catalogRole") == "variant" and
+                         (owner.get("catalogRole") != "core" or target.get("anchor") != f"variant-{c.lower()}")):
+            errors.append(f"{c}: invalid catalogue target")
+        if t.get("catalogRole") != "variant" and target.get("code") != c:
+            errors.append(f"{c}: only variants may target another code")
         for ch in t.get("changes", []):
             if ch.get("kind") not in CHANGE_KINDS or not ch.get("note"):
                 errors.append(f"{c}.changes: each needs kind in {sorted(CHANGE_KINDS)} and a note")
@@ -220,6 +229,17 @@ def sorted_types(cat: dict) -> list[dict]:
     return sorted(cat["types"], key=lambda t: code_key(t["code"]))
 
 
+def reader_tree(cat: dict, tree: dict) -> dict:
+    """Method references remain addressable but are not default recommendations."""
+    refs = {t["code"] for t in cat["types"] if t.get("catalogRole") == "reference"}
+    root = {}
+    for branch, leaves in tree["root"].items():
+        selected = [dict(leaf, types=[c for c in leaf["types"] if c not in refs]) for leaf in leaves]
+        if any(leaf["types"] for leaf in selected):
+            root[branch] = [leaf for leaf in selected if leaf["types"]]
+    return dict(tree, root=root)
+
+
 def matrix(cat: dict) -> dict[str, dict[str, list[str]]]:
     """audience -> asks -> codes (both facets present on the type)."""
     out: dict[str, dict[str, list[str]]] = {}
@@ -227,14 +247,14 @@ def matrix(cat: dict) -> dict[str, dict[str, list[str]]]:
         out[aud] = {}
         for ask in cat["facets"]["asks"]:
             out[aud][ask] = [t["code"] for t in sorted_types(cat)
-                             if aud in t["audiences"] and ask in t["asks"]]
+                             if aud in t["audiences"] and ask in t["asks"] and t.get("catalogRole") == "core"]
     for row in cat.get('matrix_overrides', []):
         out[row['audience']][row['ask']] = row['types']
     return out
 
 
 def by_phase(cat: dict) -> dict[str, list[str]]:
-    return {p: [t["code"] for t in sorted_types(cat) if p in t["phases"]]
+    return {p: [t["code"] for t in sorted_types(cat) if p in t["phases"] and t.get("catalogRole") == "core"]
             for p in cat["facets"]["phases"]}
 
 
@@ -249,7 +269,7 @@ def alias_index(cat: dict) -> list[dict]:
 
 def choose_data(cat: dict, tree: dict) -> dict:
     keep = ("code", "slug", "family", "names", "question", "asks", "audiences",
-            "levels", "phases", "scope", "research")
+            "levels", "phases", "scope", "research", "catalogRole", "target")
     return {
         "generated_from": ["content/data/types.yaml", "content/data/selection-tree.yaml"],
         "families": cat["families"],
@@ -259,7 +279,7 @@ def choose_data(cat: dict, tree: dict) -> dict:
         "common_requests": cat.get('common_requests', []),
         "matrix_overrides": cat.get('matrix_overrides', []),
         "phase_picks": cat.get('phase_picks', {}),
-        "tree": tree["root"],
+        "tree": reader_tree(cat, tree)["root"],
         "matrix": matrix(cat),
         "phases": by_phase(cat),
         "aliases": alias_index(cat),
@@ -294,7 +314,7 @@ def render_audiences(cat: dict, lang: str, link) -> list[str]:
 def render_tree(cat: dict, tree: dict, lang: str, link) -> list[str]:
     asks = cat["facets"]["asks"]
     lines = []
-    for branch, leaves in tree["root"].items():
+    for branch, leaves in reader_tree(cat, tree)["root"].items():
         lines.append(f"- **{asks[branch][lang]}**")
         for leaf in leaves:
             line = f"  - {leaf['when'][lang]} → {_codes(leaf['types'], link, lang)}"
@@ -347,6 +367,11 @@ def render_selection_md(cat: dict, tree: dict) -> str:
         "     content/data/selection-tree.yaml. Do not edit by hand. -->",
         "# Choosing a diagram type",
         "",
+        "Start small: C2 → C3 → one key E1 → G1. Add F1 identity/delegation and F2 threat modelling",
+        "when needed; their own recipes and mandatory safety checks remain binding.",
+        "25 core entries; 10 named variants; 5 method references. All 40 codes remain valid.",
+        "A named variant uses its own reference, not the parent's notation.",
+        "",
         "Use this file only when the type is not yet chosen; a type the user already named needs only",
         "its reference, `references/types/<code>-<slug>.md` (for example",
         "`references/types/C3-container-diagram.md`). Paths are relative to the skill folder.",
@@ -388,7 +413,9 @@ def render_selection_md(cat: dict, tree: dict) -> str:
         formal = t["formal"]["kind"][0].upper()
         pending = " (research pending)" if t["research"] == "pending" else ""
         ref = f"`references/types/{ref_file(t)}`" if (REF_DIR / ref_file(t)).exists() else "none yet"
-        out.append(f"| {t['code']} | {t['names']['en']}{pending} | {ref} | {formal} | "
+        role = t.get("catalogRole", "core")
+        target = f" → {t['target']['code']}" if role == "variant" else ""
+        out.append(f"| {t['code']} ({role}{target}) | {t['names']['en']}{pending} | {ref} | {formal} | "
                    f"{t['question']['en']} | {aliases} |")
     return "\n".join(out) + "\n"
 
@@ -401,12 +428,17 @@ def render_choose_blocks(cat: dict, tree: dict, lang: str = "en") -> dict[str, s
     prefix = "" if lang == "en" else f"/{lang}"
 
     def link(c: str) -> str:
-        return f"[{c} {by_code[c]['names'][lang]}]({prefix}/types/{page(by_code[c])})"
+        t = by_code[c]
+        target = by_code[t["target"]["code"]]
+        anchor = "#" + t["target"]["anchor"] if t["catalogRole"] == "variant" else ""
+        return f"[{c} {t['names'][lang]}]({prefix}/types/{page(target)}{anchor})"
 
     head = "| Code | Type | Answers |" if lang == "en" else "| 代码 | 类型 | 回答的问题 |"
     catalogue = [head, "|---|---|---|"]
     catalogue += [f"| [{t['code']}]({prefix}/types/{page(t)}) | {t['names'][lang]} | {t['question'][lang]} |"
-                  for t in sorted_types(cat)]
+                  for t in sorted_types(cat) if t["catalogRole"] == "core"]
+    catalogue += ["", "### " + ("Named variants and method references" if lang == "en" else "具名变体与方法参考"), ""]
+    catalogue += [f"- {link(t['code'])} · {t['catalogRole']}" for t in sorted_types(cat) if t["catalogRole"] != "core"]
     aliases = [f"- {r['text']} → {link(r['code'])}" for r in alias_index(cat) if r["lang"] == lang]
     blocks = {
         "common": render_common(cat, lang, link),

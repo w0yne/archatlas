@@ -1,0 +1,166 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "G2",
+    "title": "G1 / G2 · 企业服务助手的 AWS 部署",
+    "lang": "zh",
+    "state": "to-be",
+    "audience": "architects and reviewers",
+    "description": "Fictional teaching design; scenario.json version 1"
+  },
+  "layout": {
+    "template": "nested"
+  },
+  "nodes": [
+    {
+      "id": "AWS-edge",
+      "kind": "component",
+      "label": "CloudFront + S3",
+      "style": "external",
+      "sub": "C-web 静态资源；全球边缘"
+    },
+    {
+      "id": "X-idp",
+      "kind": "external",
+      "label": "企业 IdP / AS",
+      "style": "external",
+      "sub": "外部身份；委托能力为前提"
+    },
+    {
+      "id": "AWS-alb",
+      "kind": "component",
+      "label": "应用负载均衡器",
+      "parent": "VPC",
+      "style": "peer",
+      "sub": "公有子网 · AZ-A + AZ-B"
+    },
+    {
+      "id": "AWS-tasks",
+      "kind": "component",
+      "label": "ECS Fargate 服务",
+      "parent": "VPC",
+      "style": "primary",
+      "sub": "C-api · C-agent · C-tools / 独立 ECS 服务 · 每服务至少 2 个任务 · 私有子网跨 AZ-A + AZ-B · 已认证 HTTPS；逐服务 IAM 角色"
+    },
+    {
+      "id": "AWS-batch",
+      "kind": "component",
+      "label": "ECS Fargate 任务",
+      "parent": "VPC",
+      "style": "peer",
+      "sub": "C-ingest · C-eval / 独立任务身份 · 调度至任一 AZ；不代表并发重复任务"
+    },
+    {
+      "id": "AWS-aurora",
+      "kind": "store",
+      "label": "Aurora PostgreSQL",
+      "parent": "VPC",
+      "style": "peer",
+      "sub": "DS-app 写节点与读节点分属两个 AZ · 服务管理的存储跨 3 个 AZ"
+    },
+    {
+      "id": "AWS-search",
+      "kind": "store",
+      "label": "OpenSearch Service",
+      "parent": "VPC",
+      "style": "peer",
+      "sub": "DS-index · 双 AZ 副本 · 区域感知；非 Standby 模式"
+    },
+    {
+      "id": "AWS-s3",
+      "kind": "store",
+      "label": "Amazon S3",
+      "parent": "REGION",
+      "style": "peer",
+      "sub": "DS-doc · DS-eval；区域桶"
+    },
+    {
+      "id": "AWS-sqs",
+      "kind": "queue",
+      "label": "SQS + DLQ",
+      "parent": "REGION",
+      "style": "peer",
+      "sub": "Q-ingest；区域队列 / DLQ"
+    },
+    {
+      "id": "X-model",
+      "kind": "external",
+      "label": "托管模型服务",
+      "parent": "REGION",
+      "style": "peer",
+      "sub": "Bedrock 区域模型端点"
+    },
+    {
+      "id": "AWS-ops",
+      "kind": "component",
+      "label": "CloudWatch · KMS · Secrets",
+      "parent": "REGION",
+      "style": "peer",
+      "sub": "区域服务；受限 IAM 访问"
+    }
+  ],
+  "edges": [
+    {
+      "id": "DEP-1",
+      "from": "AWS-edge",
+      "to": "AWS-alb",
+      "label": "HTTPS API 源站",
+      "kind": "call"
+    },
+    {
+      "id": "DEP-2",
+      "from": "AWS-alb",
+      "to": "AWS-tasks",
+      "label": "HTTPS 目标组",
+      "kind": "call"
+    },
+    {
+      "id": "DEP-3",
+      "from": "AWS-tasks",
+      "to": "AWS-aurora",
+      "label": "SQL / TLS",
+      "kind": "call"
+    },
+    {
+      "id": "DEP-4",
+      "from": "AWS-tasks",
+      "to": "AWS-search",
+      "label": "HTTPS 检索",
+      "kind": "call"
+    },
+    {
+      "id": "DEP-5",
+      "from": "AWS-batch",
+      "to": "AWS-sqs",
+      "label": "领取 / 确认任务",
+      "kind": "call"
+    },
+    {
+      "id": "DEP-6",
+      "from": "AWS-tasks",
+      "to": "X-model",
+      "label": "HTTPS 模型推理",
+      "kind": "call"
+    },
+    {
+      "id": "DEP-7",
+      "from": "AWS-batch",
+      "to": "AWS-s3",
+      "label": "S3 版本对象",
+      "kind": "call"
+    }
+  ],
+  "groups": [
+    {
+      "id": "REGION",
+      "title": "AWS 区域 · 实施前核对服务可用性",
+      "kind": "boundary"
+    },
+    {
+      "id": "VPC",
+      "title": "客户 VPC · 应用部署于两个 AZ",
+      "kind": "boundary",
+      "parent": "REGION"
+    }
+  ]
+}

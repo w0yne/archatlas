@@ -20,6 +20,8 @@ status: draft
 
 # Business Scenario Matrix (业务场景矩阵)
 
+**Named variant of B2.** [Open User story map → A4](/types/b2-user-story-map#variant-a4). This compatibility page retains its recipe, checks, anchors and historical downloads.
+
 > Roles down the side, business activities across the top, and in each cell the scenarios the solution supports and when.
 
 ## Meaning {#meaning}

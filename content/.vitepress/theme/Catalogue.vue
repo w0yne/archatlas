@@ -31,7 +31,7 @@ const href = computed(() => withBase(locale.value === 'zh' ? '/zh/types/' : '/ty
    </label>
    <button type="submit">{{ t.apply }}</button><a :href="href">{{ t.reset }}</a>
   </form>
-  <p class="catalogue-count" aria-live="polite">{{ types.length }} / {{ theme.catalogue.types.length }} · {{ types.filter(type => type.available[locale]).length }} {{ t.ready }}</p>
+  <p class="catalogue-count" aria-live="polite">{{ types.length }} / {{ theme.catalogue.types.filter(type => !type.catalogRole || type.catalogRole === 'core').length }} · {{ types.filter(type => type.available[locale]).length }} {{ t.ready }}</p>
   <nav class="family-jumps" :aria-label="t.family"><a v-for="[key, label] in families" :key="key" :href="'#family-' + key">{{ key }} · {{ label[locale] }}</a></nav>
   <p v-if="!types.length">{{ t.empty }}</p>
   <section v-for="[key, label] in families" :key="key" class="catalogue-family">

@@ -1,5 +1,19 @@
 # Changelog
 
+## Unreleased — catalogue and AI sample candidate
+
+- Consolidate discovery to 25 core entries, 10 named variants and 5 method references,
+  preserving all 40 stable codes, bilingual legacy pages, anchors and historical samples.
+- Keep identity and threat variants prominent; rename G1 Deployment & cloud architecture
+  with a vendor-neutral recipe and a named AWS headline illustration.
+- Add frozen fictional Enterprise Service Assistant facts and seven hand-authored sample
+  views per language; validate manifest, shared labels/topology and byte-preserving copying.
+- Package the same scenario and examples with the skill. Preserve historical eval revisions.
+- Follow-up: remaining core examples, E4, separate vendor-neutral G1, affected evaluation
+  scenarios, independent review and release-level publication checks. See
+  [decision](docs/decisions/2026-10-consolidation.md).
+
+
 All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versions follow
 [Semantic Versioning](https://semver.org/).
