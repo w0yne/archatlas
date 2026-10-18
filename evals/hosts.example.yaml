@@ -5,8 +5,8 @@
 #   model     model id passed on the command line
 #   env       literal, non-secret variables (region, provider switches)
 #   pass_env  NAMES of parent variables to forward, e.g. an API key. Values are
-#             never written to results. RCC_*, CYBERWARE_*, PI_*, CLAUDE*, CODEX_*
-#             are refused.
+#             never written to results. Only exact provider/transport names in
+#             adapters/base.py are accepted; session/control variables are not.
 #   copy      {dest-in-host-config-dir: source-file}: minimal auth/model files
 #             copied into the sandbox (mode 0600) and deleted with it
 #   price     {input, output, cache_read, cache_write} USD per million tokens, used

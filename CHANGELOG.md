@@ -1,5 +1,21 @@
 # Changelog
 
+## Unreleased — compatibility and environment isolation repair
+
+- Restore every historical catalogue fragment, including named variants, method
+  references and the former view-framework family; all links remain readable without JS.
+- Enforce the complete baseline: 104 public HTML pages and all 2354 original IDs,
+  including catalogue and other non-type pages, in each site build.
+- Remove private environment identifier names from current public documentation,
+  adapter code and tests. Replace product-specific prefix filtering with an exact
+  provider-variable allowlist, protected sandbox roots and checked state paths.
+- Extend the existing external private-name audit with explicit identifier-prefix
+  entries, and inspect metadata for every commit rather than only the first diff.
+  Keep audit lists outside the repository; findings redact matched terms.
+- This is a forward-only repair. Previously published commits retain the former
+  identifiers; no history has been rewritten. Intentional public contributor/repository
+  references may match an external audit list and must be reported, not silently waived.
+
 ## Unreleased — integrated scenario and complete view set
 
 - Integrate all 25 core views and four named variants, with 58 hand-authored EN/ZH SVGs;
