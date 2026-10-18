@@ -1,0 +1,151 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "D1",
+    "title": "D1 · 企业服务助手 — 逻辑数据模型（按租户隔离）",
+    "lang": "zh",
+    "state": "to-be",
+    "audience": "architects and reviewers",
+    "description": "Fictional teaching design; scenario.json version 1"
+  },
+  "layout": {
+    "template": "er"
+  },
+  "nodes": [
+    {
+      "id": "DE-tenant",
+      "kind": "entity",
+      "label": "租户",
+      "style": "peer",
+      "sub": "租户 ID（PK） · 名称 · 状态"
+    },
+    {
+      "id": "DE-member",
+      "kind": "entity",
+      "label": "成员关系",
+      "style": "peer",
+      "sub": "租户 ID + 员工 ID（PK） · 角色 · 状态"
+    },
+    {
+      "id": "DE-chat",
+      "kind": "entity",
+      "label": "对话",
+      "style": "peer",
+      "sub": "对话 ID（PK） · 租户 ID、员工 ID · 开始时间"
+    },
+    {
+      "id": "DE-approval",
+      "kind": "entity",
+      "label": "审批",
+      "style": "peer",
+      "sub": "审批 ID（PK） · 租户、主体、工具 · 参数 hash、有效期"
+    },
+    {
+      "id": "DE-docver",
+      "kind": "entity",
+      "label": "文档版本",
+      "style": "shared",
+      "sub": "版本 ID（PK） · 租户 ID、来源引用 · ACL 快照、状态"
+    },
+    {
+      "id": "DE-feedback",
+      "kind": "entity",
+      "label": "反馈",
+      "style": "peer",
+      "sub": "反馈 ID（PK） · 对话 ID、评分 · 备注"
+    },
+    {
+      "id": "DE-exec",
+      "kind": "entity",
+      "label": "执行",
+      "style": "peer",
+      "sub": "幂等键（PK） · 审批 ID · 结果"
+    },
+    {
+      "id": "DE-chunk",
+      "kind": "entity",
+      "label": "分块",
+      "style": "shared",
+      "sub": "分块 ID（PK） · 版本 ID、租户 ID · 向量、ACL"
+    },
+    {
+      "id": "DE-evalrec",
+      "kind": "entity",
+      "label": "评测记录",
+      "style": "highlight",
+      "sub": "记录 ID（PK） · 去标识输入 · 数据集版本"
+    },
+    {
+      "id": "DE-audit",
+      "kind": "entity",
+      "label": "审计事件",
+      "style": "peer",
+      "sub": "事件 ID（PK） · 租户、操作者、动作 · 时间"
+    }
+  ],
+  "edges": [
+    {
+      "id": "REL-1",
+      "from": "DE-tenant",
+      "to": "DE-member",
+      "label": "包含",
+      "kind": "assoc"
+    },
+    {
+      "id": "REL-2",
+      "from": "DE-member",
+      "to": "DE-chat",
+      "label": "发起",
+      "kind": "assoc"
+    },
+    {
+      "id": "REL-3",
+      "from": "DE-chat",
+      "to": "DE-approval",
+      "label": "请求",
+      "kind": "assoc"
+    },
+    {
+      "id": "REL-4",
+      "from": "DE-tenant",
+      "to": "DE-docver",
+      "label": "拥有",
+      "kind": "assoc"
+    },
+    {
+      "id": "REL-5",
+      "from": "DE-docver",
+      "to": "DE-chunk",
+      "label": "被切分为",
+      "kind": "assoc"
+    },
+    {
+      "id": "REL-6",
+      "from": "DE-chat",
+      "to": "DE-feedback",
+      "label": "收到",
+      "kind": "assoc"
+    },
+    {
+      "id": "REL-7",
+      "from": "DE-feedback",
+      "to": "DE-evalrec",
+      "label": "被导出为",
+      "kind": "assoc"
+    },
+    {
+      "id": "REL-8",
+      "from": "DE-approval",
+      "to": "DE-exec",
+      "label": "授权",
+      "kind": "assoc"
+    },
+    {
+      "id": "REL-9",
+      "from": "DE-exec",
+      "to": "DE-audit",
+      "label": "被记录为",
+      "kind": "assoc"
+    }
+  ]
+}

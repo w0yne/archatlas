@@ -1,0 +1,165 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "C6",
+    "title": "C6 · 企业服务助手 — 集成与接口",
+    "lang": "zh",
+    "state": "to-be",
+    "audience": "architects and reviewers",
+    "description": "Fictional teaching design; scenario.json version 1"
+  },
+  "layout": {
+    "template": "nested"
+  },
+  "nodes": [
+    {
+      "id": "X-idp",
+      "kind": "external",
+      "label": "企业 IdP / AS",
+      "style": "external",
+      "sub": "X-idp · OIDC / OAuth · 身份与受限委托"
+    },
+    {
+      "id": "C-web",
+      "kind": "container",
+      "label": "Web 门户",
+      "style": "peer",
+      "sub": "C-web · TypeScript SPA · 对话与审批界面"
+    },
+    {
+      "id": "C-api",
+      "kind": "container",
+      "label": "应用 API/BFF",
+      "style": "peer",
+      "sub": "C-api · Python / HTTPS · 会话、租户策略与审批"
+    },
+    {
+      "id": "C-agent",
+      "kind": "container",
+      "label": "Agent 服务",
+      "style": "peer",
+      "sub": "C-agent · Python / HTTPS · 受限规划、检索与工具"
+    },
+    {
+      "id": "X-model",
+      "kind": "external",
+      "label": "托管模型服务",
+      "style": "external",
+      "sub": "X-model · Amazon Bedrock · 生成文本与向量"
+    },
+    {
+      "id": "C-tools",
+      "kind": "container",
+      "label": "MCP 工具网关",
+      "style": "peer",
+      "sub": "C-tools · MCP HTTPS · 验证委托；执行权限检查"
+    },
+    {
+      "id": "X-desk",
+      "kind": "external",
+      "label": "服务工单系统",
+      "style": "external",
+      "sub": "X-desk · HTTPS · 服务目录、工单读取与创建"
+    },
+    {
+      "id": "X-doc",
+      "kind": "external",
+      "label": "文档源系统",
+      "style": "external",
+      "sub": "X-doc · HTTPS 连接器 · 原始文档与访问策略"
+    },
+    {
+      "id": "C-ingest",
+      "kind": "container",
+      "label": "摄取工作进程",
+      "style": "peer",
+      "sub": "C-ingest · Python / batch · 版本、分块、嵌入与索引"
+    },
+    {
+      "id": "Q-ingest",
+      "kind": "queue",
+      "label": "摄取队列 + DLQ",
+      "style": "peer",
+      "sub": "Q-ingest · SQS · 版本任务；有限重试与隔离"
+    }
+  ],
+  "edges": [
+    {
+      "id": "I-01",
+      "from": "C-web",
+      "to": "C-api",
+      "label": "I-01 对话 + 审批",
+      "kind": "call"
+    },
+    {
+      "id": "I-02",
+      "from": "C-api",
+      "to": "X-idp",
+      "label": "I-02 OIDC 登录",
+      "kind": "call"
+    },
+    {
+      "id": "I-03",
+      "from": "C-api",
+      "to": "C-agent",
+      "label": "I-03 委托",
+      "kind": "call"
+    },
+    {
+      "id": "I-04",
+      "from": "C-agent",
+      "to": "X-idp",
+      "label": "I-04 令牌交换",
+      "kind": "call"
+    },
+    {
+      "id": "I-05",
+      "from": "C-agent",
+      "to": "C-tools",
+      "label": "I-05 工具调用",
+      "kind": "call"
+    },
+    {
+      "id": "I-06",
+      "from": "C-tools",
+      "to": "X-desk",
+      "label": "I-06 工单",
+      "kind": "call"
+    },
+    {
+      "id": "I-07",
+      "from": "C-tools",
+      "to": "C-api",
+      "label": "I-07 审批查询",
+      "kind": "call"
+    },
+    {
+      "id": "I-08",
+      "from": "C-agent",
+      "to": "X-model",
+      "label": "I-08 生成",
+      "kind": "call"
+    },
+    {
+      "id": "I-09",
+      "from": "C-ingest",
+      "to": "X-doc",
+      "label": "I-09 拉取文档",
+      "kind": "call"
+    },
+    {
+      "id": "I-10",
+      "from": "C-ingest",
+      "to": "Q-ingest",
+      "label": "I-10 入队任务",
+      "kind": "async"
+    },
+    {
+      "id": "I-11",
+      "from": "Q-ingest",
+      "to": "C-ingest",
+      "label": "I-11 投递任务",
+      "kind": "async"
+    }
+  ]
+}

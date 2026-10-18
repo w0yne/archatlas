@@ -1,0 +1,151 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "D3",
+    "title": "D3 · Knowledge and feedback data — lineage and ownership",
+    "lang": "en",
+    "state": "to-be",
+    "audience": "architects and reviewers",
+    "description": "Fictional teaching design; scenario.json version 1"
+  },
+  "layout": {
+    "template": "nested"
+  },
+  "nodes": [
+    {
+      "id": "X-doc",
+      "kind": "external",
+      "label": "Document Repository",
+      "parent": "G-know",
+      "style": "external",
+      "sub": "X-doc · HTTPS connector · Source documents + ACLs"
+    },
+    {
+      "id": "P-ingest",
+      "kind": "job",
+      "label": "1. Prepare knowledge",
+      "parent": "G-know",
+      "style": "peer",
+      "sub": "Owner: Ingestion Worker · Version, chunk, embed"
+    },
+    {
+      "id": "DS-doc",
+      "kind": "dataset",
+      "label": "Document versions",
+      "parent": "G-know",
+      "style": "peer",
+      "sub": "DS-doc · S3 · Steward: Knowledge steward"
+    },
+    {
+      "id": "DS-index",
+      "kind": "dataset",
+      "label": "Retrieval index",
+      "parent": "G-know",
+      "style": "peer",
+      "sub": "DS-index · OpenSearch · Steward: Knowledge steward"
+    },
+    {
+      "id": "C-agent",
+      "kind": "container",
+      "label": "Agent Service",
+      "parent": "G-know",
+      "style": "peer",
+      "sub": "C-agent · Python · Answers with citations"
+    },
+    {
+      "id": "DS-app",
+      "kind": "dataset",
+      "label": "Application records",
+      "parent": "G-eval",
+      "style": "peer",
+      "sub": "DS-app · PostgreSQL · Owner: unknown"
+    },
+    {
+      "id": "P-export",
+      "kind": "job",
+      "label": "Approve feedback export",
+      "parent": "G-eval",
+      "style": "peer",
+      "sub": "Owner: Application API/BFF · Deidentify or synthesise"
+    },
+    {
+      "id": "DS-eval",
+      "kind": "dataset",
+      "label": "Evaluation datasets",
+      "parent": "G-eval",
+      "style": "peer",
+      "sub": "DS-eval · S3 · Steward: Knowledge steward"
+    },
+    {
+      "id": "C-eval",
+      "kind": "container",
+      "label": "Evaluation Job",
+      "parent": "G-eval",
+      "style": "peer",
+      "sub": "C-eval · Python / batch · Offline quality gates"
+    }
+  ],
+  "edges": [
+    {
+      "id": "LIN-1",
+      "from": "X-doc",
+      "to": "P-ingest",
+      "label": "source + ACL",
+      "kind": "data"
+    },
+    {
+      "id": "LIN-2",
+      "from": "P-ingest",
+      "to": "DS-doc",
+      "label": "versions + ACLs",
+      "kind": "data"
+    },
+    {
+      "id": "LIN-3",
+      "from": "P-ingest",
+      "to": "DS-index",
+      "label": "chunks + vectors",
+      "kind": "data"
+    },
+    {
+      "id": "LIN-4",
+      "from": "DS-index",
+      "to": "C-agent",
+      "label": "passages",
+      "kind": "data"
+    },
+    {
+      "id": "LIN-5",
+      "from": "DS-app",
+      "to": "P-export",
+      "label": "feedback",
+      "kind": "data"
+    },
+    {
+      "id": "LIN-6",
+      "from": "P-export",
+      "to": "DS-eval",
+      "label": "approved export",
+      "kind": "data"
+    },
+    {
+      "id": "LIN-7",
+      "from": "DS-eval",
+      "to": "C-eval",
+      "label": "datasets",
+      "kind": "data"
+    }
+  ],
+  "groups": [
+    {
+      "id": "G-know",
+      "title": "Knowledge · steward-governed",
+      "kind": "boundary"
+    },
+    {
+      "id": "G-eval",
+      "title": "Feedback and evaluation · steward-approved export",
+      "kind": "boundary"
+    }
+  ]
+}

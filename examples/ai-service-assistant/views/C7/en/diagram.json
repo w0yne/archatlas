@@ -1,0 +1,81 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "C7",
+    "title": "C7 · Enterprise Service Assistant — context map (system landscape, to-be)",
+    "lang": "en",
+    "state": "to-be",
+    "audience": "architects and reviewers",
+    "description": "Fictional teaching design; scenario.json version 1"
+  },
+  "layout": {
+    "template": "nested"
+  },
+  "nodes": [
+    {
+      "id": "X-idp",
+      "kind": "external",
+      "label": "Enterprise IdP / AS",
+      "style": "external",
+      "sub": "X-idp · OIDC / OAuth · Identity, delegation"
+    },
+    {
+      "id": "X-doc",
+      "kind": "external",
+      "label": "Document Repository",
+      "style": "external",
+      "sub": "X-doc · HTTPS connector · Documents, access policy"
+    },
+    {
+      "id": "X-desk",
+      "kind": "external",
+      "label": "Service Desk",
+      "style": "external",
+      "sub": "X-desk · HTTPS · Catalogue, tickets"
+    },
+    {
+      "id": "X-model",
+      "kind": "external",
+      "label": "Managed Model Service",
+      "style": "external",
+      "sub": "X-model · Amazon Bedrock · Text, embeddings"
+    },
+    {
+      "id": "S-assistant",
+      "kind": "system",
+      "label": "Enterprise Service Assistant",
+      "style": "primary",
+      "sub": "S-assistant · new application · Cited answers and approved service actions"
+    }
+  ],
+  "edges": [
+    {
+      "id": "CTX-1",
+      "from": "X-idp",
+      "to": "S-assistant",
+      "label": "OHS/PL → CF",
+      "kind": "call"
+    },
+    {
+      "id": "CTX-2",
+      "from": "X-doc",
+      "to": "S-assistant",
+      "label": "OHS → ACL",
+      "kind": "call"
+    },
+    {
+      "id": "CTX-3",
+      "from": "X-desk",
+      "to": "S-assistant",
+      "label": "OHS → ACL",
+      "kind": "call"
+    },
+    {
+      "id": "CTX-4",
+      "from": "X-model",
+      "to": "S-assistant",
+      "label": "OHS/PL → CF",
+      "kind": "call"
+    }
+  ]
+}

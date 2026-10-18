@@ -1,0 +1,21 @@
+{
+  "scenarioVersion": 1,
+  "entities": {
+    "X-doc": "X-doc",
+    "P-ingest": "P-ingest",
+    "DS-doc": "DS-doc",
+    "DS-index": "DS-index",
+    "C-agent": "C-agent",
+    "DS-app": "DS-app",
+    "P-export": "P-export",
+    "DS-eval": "DS-eval",
+    "C-eval": "C-eval"
+  },
+  "invariants": [
+    "I-tenant",
+    "I-ingest",
+    "I-eval",
+    "I-operator"
+  ],
+  "projection": "focused view; omissions described in caption; not a deployed system"
+}

@@ -1,0 +1,23 @@
+{
+  "scenarioVersion": 1,
+  "entities": {
+    "DE-tenant": "DE-tenant",
+    "DE-member": "DE-member",
+    "DE-chat": "DE-chat",
+    "DE-approval": "DE-approval",
+    "DE-docver": "DE-docver",
+    "DE-feedback": "DE-feedback",
+    "DE-exec": "DE-exec",
+    "DE-chunk": "DE-chunk",
+    "DE-evalrec": "DE-evalrec",
+    "DE-audit": "DE-audit"
+  },
+  "invariants": [
+    "I-tenant",
+    "I-approval",
+    "I-idempotency",
+    "I-ingest",
+    "I-eval"
+  ],
+  "projection": "focused view; omissions described in caption; not a deployed system"
+}
