@@ -1,0 +1,52 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "B2",
+    "title": "B2 · 员工用户故事地图 — 先只读切片，再开放审批工单",
+    "lang": "zh",
+    "state": "to-be",
+    "audience": "architects and business reviewers",
+    "description": "Fictional teaching design; scenario.json version 1"
+  },
+  "layout": {
+    "template": "grid_table"
+  },
+  "nodes": [],
+  "edges": [],
+  "tables": [
+    {
+      "id": "map",
+      "title": "骨干活动（上）与按发布切片的故事",
+      "columns": [
+        "切片",
+        "提出问题",
+        "核对来源",
+        "请求工单",
+        "审批与跟进"
+      ],
+      "rows": [
+        [
+          "切片 1 · 只读。验证：带来源回答是否可信？证据：来源被打开、访问错误少",
+          "在本租户内提问",
+          "打开许可来源",
+          "查询服务目录（catalogue.lookup）",
+          "读取工单状态（ticket.read）"
+        ],
+        [
+          "切片 2 · 审批后创建。结果：审批后才创建，且只创建一次",
+          "在对话中请求工单",
+          "",
+          "核对确定草稿",
+          "批准；工单只创建一次（ticket.create）"
+        ],
+        [
+          "以后 · 来自旅程图（A6）的候选，未承诺",
+          "结合上下文追问",
+          "显示文档版本与日期",
+          "修改草稿并重新审批",
+          "超时后显示对账状态"
+        ]
+      ]
+    }
+  ]
+}

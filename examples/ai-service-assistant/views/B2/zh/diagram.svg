@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 760" lang="zh" data-archatlas="0.1">
+<title>B2 · 员工用户故事地图 — 先只读切片，再开放审批工单</title>
+<desc>虚构目标设计 · 骨干按叙事顺序；行表示发布切片（越靠上越先）</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,4 L0,8 Z" fill="#4B5563"/></marker></defs>
+<rect data-role="canvas" width="1400" height="760" fill="#ffffff"/>
+<text x="28" y="40" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="28" font-weight="700" fill="#1F2937">B2 · 员工用户故事地图 — 先只读切片，再开放审批工单</text>
+<text x="28" y="72" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">虚构目标设计 · 骨干按叙事顺序；行表示发布切片（越靠上越先）</text>
+<rect x="25" y="100" width="1350" height="50" data-role="cell" data-id="user" fill="#F7F7F7" stroke="#666A73" stroke-width="1"/>
+<text x="35" y="129.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="user">用户：员工 / 审批人 · 目标：在对话中解决服务需求 · 范围：仅三种工具</text>
+<rect x="25" y="170" width="250" height="60" data-role="cell" data-id="act-0" fill="#EDEDED" stroke="#666A73" stroke-width="1"/>
+<text x="35" y="204.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937" data-owner="act-0">骨干活动</text>
+<rect x="275" y="170" width="275" height="60" data-role="cell" data-id="act-1" fill="#FFF1C9" stroke="#936A16" stroke-width="1"/>
+<text x="285" y="204.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937" data-owner="act-1">提出问题</text>
+<rect x="550" y="170" width="275" height="60" data-role="cell" data-id="act-2" fill="#FFF1C9" stroke="#936A16" stroke-width="1"/>
+<text x="560" y="204.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937" data-owner="act-2">核对来源</text>
+<rect x="825" y="170" width="275" height="60" data-role="cell" data-id="act-3" fill="#FFF1C9" stroke="#936A16" stroke-width="1"/>
+<text x="835" y="204.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937" data-owner="act-3">请求工单</text>
+<rect x="1100" y="170" width="275" height="60" data-role="cell" data-id="act-4" fill="#FFF1C9" stroke="#936A16" stroke-width="1"/>
+<text x="1110" y="204.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937" data-owner="act-4">审批与跟进</text>
+<rect x="25" y="250" width="250" height="120" data-role="cell" data-id="slice-0" fill="#F7F7F7" stroke="#666A73" stroke-width="1"/>
+<text font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="slice-0" data-source="切片 1 · 只读。验证：带来源回答是否可信？证据：来源被打开、访问错误少"><tspan x="35" y="305">切片 1 · 只读。验证：带来源回答是否</tspan><tspan x="35" y="323">可信？证据：来源被打开、访问错误少</tspan></text>
+<rect x="275" y="250" width="275" height="120" data-role="cell" data-id="s-0-0" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1"/>
+<text x="285" y="314.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="s-0-0">在本租户内提问</text>
+<rect x="550" y="250" width="275" height="120" data-role="cell" data-id="s-0-1" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1"/>
+<text x="560" y="314.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="s-0-1">打开许可来源</text>
+<rect x="825" y="250" width="275" height="120" data-role="cell" data-id="s-0-2" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1"/>
+<text x="835" y="314.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="s-0-2">查询服务目录（catalogue.lookup）</text>
+<rect x="1100" y="250" width="275" height="120" data-role="cell" data-id="s-0-3" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1"/>
+<text x="1110" y="314.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="s-0-3">读取工单状态（ticket.read）</text>
+<rect x="25" y="386" width="250" height="120" data-role="cell" data-id="slice-1" fill="#F7F7F7" stroke="#666A73" stroke-width="1"/>
+<text font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="slice-1" data-source="切片 2 · 审批后创建。结果：审批后才创建，且只创建一次"><tspan x="35" y="441">切片 2 · 审批后创建。结果：审批后才</tspan><tspan x="35" y="459">创建，且只创建一次</tspan></text>
+<rect x="275" y="386" width="275" height="120" data-role="cell" data-id="s-1-0" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1"/>
+<text x="285" y="450.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="s-1-0">在对话中请求工单</text>
+<rect x="550" y="386" width="275" height="120" data-role="cell" data-id="s-1-1" fill="#ffffff" stroke="#666A73" stroke-width="1"/>
+<rect x="825" y="386" width="275" height="120" data-role="cell" data-id="s-1-2" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1"/>
+<text x="835" y="450.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="s-1-2">核对确定草稿</text>
+<rect x="1100" y="386" width="275" height="120" data-role="cell" data-id="s-1-3" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1"/>
+<text font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="s-1-3" data-source="批准；工单只创建一次（ticket.create）"><tspan x="1110" y="441">批准；工单只创建一次</tspan><tspan x="1110" y="460">（ticket.create）</tspan></text>
+<rect x="25" y="522" width="250" height="120" data-role="cell" data-id="slice-2" fill="#F7F7F7" stroke="#666A73" stroke-width="1"/>
+<text font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="slice-2" data-source="以后 · 来自旅程图（A6）的候选，未承诺"><tspan x="35" y="577">以后 · 来自旅程图（A6）的候选，未承</tspan><tspan x="35" y="595">诺</tspan></text>
+<rect x="275" y="522" width="275" height="120" data-role="cell" data-id="s-2-0" fill="#ffffff" stroke="#666A73" stroke-width="1" stroke-dasharray="5 4"/>
+<text x="285" y="586.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="s-2-0">结合上下文追问</text>
+<rect x="550" y="522" width="275" height="120" data-role="cell" data-id="s-2-1" fill="#ffffff" stroke="#666A73" stroke-width="1" stroke-dasharray="5 4"/>
+<text x="560" y="586.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="s-2-1">显示文档版本与日期</text>
+<rect x="825" y="522" width="275" height="120" data-role="cell" data-id="s-2-2" fill="#ffffff" stroke="#666A73" stroke-width="1" stroke-dasharray="5 4"/>
+<text x="835" y="586.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="s-2-2">修改草稿并重新审批</text>
+<rect x="1100" y="522" width="275" height="120" data-role="cell" data-id="s-2-3" fill="#ffffff" stroke="#666A73" stroke-width="1" stroke-dasharray="5 4"/>
+<text x="1110" y="586.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="s-2-3">超时后显示对账状态</text>
+<text x="25" y="668" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">每个切片贯穿整条骨干；空白格表示切片 2 不需改动该活动。</text>
+<rect x="28" y="708" width="42" height="24" data-role="legend-swatch" data-id="__legend-swatch-1" fill="#FFF1C9" stroke="#936A16" stroke-width="1"/>
+<text x="82" y="726" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-1">骨干活动（叙事顺序）</text>
+<rect x="473" y="708" width="42" height="24" data-role="legend-swatch" data-id="__legend-swatch-2" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1"/>
+<text x="527" y="726" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-2">计划切片中的故事</text>
+<rect x="918" y="708" width="42" height="24" data-role="legend-swatch" data-id="__legend-swatch-3" fill="#ffffff" stroke="#666A73" stroke-width="1" stroke-dasharray="5 4"/>
+<text x="972" y="726" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-3">候选故事（未承诺）</text>
+</svg>

@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 940" lang="zh" data-archatlas="0.1">
+<title>A1 · 企业服务助手 — 业务能力（目标状态）</title>
+<desc>虚构目标设计 · 三个层级、两级能力；定义见共享场景事实 · 未叠加热力：尚未做任何评估</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,4 L0,8 Z" fill="#4B5563"/></marker></defs>
+<rect data-role="canvas" width="1400" height="940" fill="#ffffff"/>
+<text x="28" y="40" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="28" font-weight="700" fill="#1F2937">A1 · 企业服务助手 — 业务能力（目标状态）</text>
+<text x="28" y="72" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">虚构目标设计 · 三个层级、两级能力；定义见共享场景事实 · 未叠加热力：尚未做任何评估</text>
+<rect x="25" y="100" width="1350" height="220" data-role="group" data-id="TIER-strategic" data-kind="layer" fill="#FFFBEB" stroke="#936A16" stroke-width="1.6" rx="10"/>
+<rect x="26" y="101" width="1348" height="52" data-role="header-band" data-parent="TIER-strategic" fill="#FFF1C9" stroke="none"/>
+<text x="39" y="133" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="700" fill="#1F2937" data-owner="TIER-strategic" data-role="group-title">战略</text>
+<rect x="49" y="168" width="506" height="136" data-role="group" data-id="CAP-performance" data-kind="frame" data-parent="TIER-strategic" fill="#F7F7F7" stroke="#666A73" stroke-width="1.6" rx="10"/>
+<rect x="50" y="169" width="504" height="40" data-role="header-band" data-parent="CAP-performance" fill="#EDEDED" stroke="none"/>
+<text x="63" y="201" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="700" fill="#1F2937" data-owner="CAP-performance" data-role="group-title">助手绩效管理</text>
+<rect x="65" y="224" width="230" height="64" data-role="node" data-id="CAP-quality" data-kind="component" data-parent="CAP-performance" data-style="peer" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="180" y="261.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="700" fill="#1F2937" text-anchor="middle" data-owner="CAP-quality" data-role="name">回答质量评估</text>
+<rect x="309" y="224" width="230" height="64" data-role="node" data-id="CAP-cost" data-kind="component" data-parent="CAP-performance" data-style="peer" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="424" y="261.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="700" fill="#1F2937" text-anchor="middle" data-owner="CAP-cost" data-role="name">使用成本管理</text>
+<rect x="25" y="336" width="1350" height="220" data-role="group" data-id="TIER-core" data-kind="layer" fill="#F3F8FF" stroke="#3D6FB2" stroke-width="1.6" rx="10"/>
+<rect x="26" y="337" width="1348" height="52" data-role="header-band" data-parent="TIER-core" fill="#D8E8FF" stroke="none"/>
+<text x="39" y="369" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="700" fill="#1F2937" data-owner="TIER-core" data-role="group-title">核心</text>
+<rect x="49" y="404" width="506" height="136" data-role="group" data-id="CAP-answering" data-kind="frame" data-parent="TIER-core" fill="#F7F7F7" stroke="#666A73" stroke-width="1.6" rx="10"/>
+<rect x="50" y="405" width="504" height="40" data-role="header-band" data-parent="CAP-answering" fill="#EDEDED" stroke="none"/>
+<text x="63" y="437" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="700" fill="#1F2937" data-owner="CAP-answering" data-role="group-title">知识问答</text>
+<rect x="65" y="460" width="230" height="64" data-role="node" data-id="CAP-question" data-kind="component" data-parent="CAP-answering" data-style="peer" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="180" y="497.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="700" fill="#1F2937" text-anchor="middle" data-owner="CAP-question" data-role="name">问题解答</text>
+<rect x="309" y="460" width="230" height="64" data-role="node" data-id="CAP-citation" data-kind="component" data-parent="CAP-answering" data-style="peer" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="424" y="497.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="700" fill="#1F2937" text-anchor="middle" data-owner="CAP-citation" data-role="name">来源引用</text>
+<rect x="579" y="404" width="750" height="136" data-role="group" data-id="CAP-requests" data-kind="frame" data-parent="TIER-core" fill="#F7F7F7" stroke="#666A73" stroke-width="1.6" rx="10"/>
+<rect x="580" y="405" width="748" height="40" data-role="header-band" data-parent="CAP-requests" fill="#EDEDED" stroke="none"/>
+<text x="593" y="437" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="700" fill="#1F2937" data-owner="CAP-requests" data-role="group-title">服务请求管理</text>
+<rect x="595" y="460" width="230" height="64" data-role="node" data-id="CAP-drafting" data-kind="component" data-parent="CAP-requests" data-style="peer" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="710" y="497.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="700" fill="#1F2937" text-anchor="middle" data-owner="CAP-drafting" data-role="name">请求起草</text>
+<rect x="839" y="460" width="230" height="64" data-role="node" data-id="CAP-approval" data-kind="component" data-parent="CAP-requests" data-style="peer" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="954" y="497.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="700" fill="#1F2937" text-anchor="middle" data-owner="CAP-approval" data-role="name">请求审批</text>
+<rect x="1083" y="460" width="230" height="64" data-role="node" data-id="CAP-fulfilment" data-kind="component" data-parent="CAP-requests" data-style="peer" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="1198" y="497.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="700" fill="#1F2937" text-anchor="middle" data-owner="CAP-fulfilment" data-role="name">工单履行</text>
+<rect x="25" y="572" width="1350" height="220" data-role="group" data-id="TIER-supporting" data-kind="layer" fill="#F0F9F0" stroke="#397645" stroke-width="1.6" rx="10"/>
+<rect x="26" y="573" width="1348" height="52" data-role="header-band" data-parent="TIER-supporting" fill="#DCF2DC" stroke="none"/>
+<text x="39" y="605" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="700" fill="#1F2937" data-owner="TIER-supporting" data-role="group-title">支撑</text>
+<rect x="49" y="640" width="506" height="136" data-role="group" data-id="CAP-knowledge" data-kind="frame" data-parent="TIER-supporting" fill="#F7F7F7" stroke="#666A73" stroke-width="1.6" rx="10"/>
+<rect x="50" y="641" width="504" height="40" data-role="header-band" data-parent="CAP-knowledge" fill="#EDEDED" stroke="none"/>
+<text x="63" y="673" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="700" fill="#1F2937" data-owner="CAP-knowledge" data-role="group-title">知识管理</text>
+<rect x="65" y="696" width="230" height="64" data-role="node" data-id="CAP-curation" data-kind="component" data-parent="CAP-knowledge" data-style="peer" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="180" y="733.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="700" fill="#1F2937" text-anchor="middle" data-owner="CAP-curation" data-role="name">知识维护</text>
+<rect x="309" y="696" width="230" height="64" data-role="node" data-id="CAP-access" data-kind="component" data-parent="CAP-knowledge" data-style="peer" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="424" y="733.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="700" fill="#1F2937" text-anchor="middle" data-owner="CAP-access" data-role="name">访问策略管理</text>
+<rect x="579" y="640" width="506" height="136" data-role="group" data-id="CAP-identity" data-kind="frame" data-parent="TIER-supporting" fill="#F7F7F7" stroke="#666A73" stroke-width="1.6" rx="10"/>
+<rect x="580" y="641" width="504" height="40" data-role="header-band" data-parent="CAP-identity" fill="#EDEDED" stroke="none"/>
+<text x="593" y="673" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="700" fill="#1F2937" data-owner="CAP-identity" data-role="group-title">身份与访问</text>
+<rect x="595" y="696" width="230" height="64" data-role="node" data-id="CAP-verify" data-kind="component" data-parent="CAP-identity" data-style="peer" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="710" y="733.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="700" fill="#1F2937" text-anchor="middle" data-owner="CAP-verify" data-role="name">身份验证</text>
+<rect x="839" y="696" width="230" height="64" data-role="node" data-id="CAP-delegation" data-kind="component" data-parent="CAP-identity" data-style="peer" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="954" y="733.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="700" fill="#1F2937" text-anchor="middle" data-owner="CAP-delegation" data-role="name">委托授权</text>
+<rect x="28" y="820" width="42" height="24" data-role="legend-zone" data-id="__legend-swatch-1" fill="#FFFBEB" stroke="#936A16" stroke-width="1.6" rx="10"/>
+<rect x="29" y="821" width="40" height="8" data-role="header-band" data-parent="__legend-swatch-1" fill="#FFF1C9" stroke="none"/>
+<text x="82" y="838" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-1">战略层</text>
+<rect x="473" y="820" width="42" height="24" data-role="legend-zone" data-id="__legend-swatch-2" fill="#F7F7F7" stroke="#666A73" stroke-width="1.6" rx="10"/>
+<rect x="474" y="821" width="40" height="8" data-role="header-band" data-parent="__legend-swatch-2" fill="#EDEDED" stroke="none"/>
+<text x="527" y="838" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-2">一级能力（包含二级能力）</text>
+<rect x="918" y="820" width="42" height="24" data-role="legend-swatch" data-id="__legend-swatch-3" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="972" y="838" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-3">二级能力</text>
+<rect x="28" y="862" width="42" height="24" data-role="legend-zone" data-id="__legend-swatch-4" fill="#F3F8FF" stroke="#3D6FB2" stroke-width="1.6" rx="10"/>
+<rect x="29" y="863" width="40" height="8" data-role="header-band" data-parent="__legend-swatch-4" fill="#D8E8FF" stroke="none"/>
+<text x="82" y="880" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-4">核心层</text>
+<rect x="473" y="862" width="42" height="24" data-role="legend-zone" data-id="__legend-swatch-5" fill="#F0F9F0" stroke="#397645" stroke-width="1.6" rx="10"/>
+<rect x="474" y="863" width="40" height="8" data-role="header-band" data-parent="__legend-swatch-5" fill="#DCF2DC" stroke="none"/>
+<text x="527" y="880" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-5">支撑层</text>
+</svg>

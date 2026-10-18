@@ -1,0 +1,80 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "A6",
+    "title": "A6 · Employee journey — trust breaks at stale sources, lost access and timeouts",
+    "lang": "en",
+    "state": "to-be",
+    "audience": "architects and business reviewers",
+    "description": "Fictional teaching design; scenario.json version 1"
+  },
+  "layout": {
+    "template": "grid_table"
+  },
+  "nodes": [],
+  "edges": [],
+  "tables": [
+    {
+      "id": "journey",
+      "title": "One persona, one scenario",
+      "columns": [
+        "Row",
+        "Ask a question",
+        "Check the answer",
+        "Open the source",
+        "Approve the ticket",
+        "Follow up"
+      ],
+      "rows": [
+        [
+          "Actions",
+          "Types the question in chat",
+          "Reads the answer and its sources",
+          "Opens a cited document",
+          "Reviews the exact draft, approves",
+          "Checks the ticket status"
+        ],
+        [
+          "Thoughts",
+          "“Does it know our policy?”",
+          "“Is this still current?”",
+          "“Why can't I open this?”",
+          "“That is what I asked for.”",
+          "“Did it go through?”"
+        ],
+        [
+          "Emotion",
+          "neutral",
+          "unsure",
+          "frustrated",
+          "relieved",
+          "anxious"
+        ],
+        [
+          "Pain points",
+          "",
+          "1 · No version or date shown",
+          "2 · Access removed, no reason given",
+          "",
+          "3 · Timeout: created or not?"
+        ],
+        [
+          "Touchpoints",
+          "Web Portal chat",
+          "Web Portal answer + citations",
+          "Citation link via the BFF",
+          "Approval card in Web Portal",
+          "Web Portal; Service Desk"
+        ],
+        [
+          "Opportunities (owner)",
+          "",
+          "1 · Show version and date (Knowledge steward)",
+          "2 · Explain access changes (Knowledge steward)",
+          "",
+          "3 · Show status reconciled by key (Platform operator)"
+        ]
+      ]
+    }
+  ]
+}
