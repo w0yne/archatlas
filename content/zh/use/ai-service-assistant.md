@@ -3,7 +3,7 @@ title: 企业服务助手：七幅视图
 sidebar: false
 aside: false
 translationOf: en/use/ai-service-assistant.md
-sourceRev: 4e718f136c12c2c4c1d5f2226ea103f63e35b600
+sourceRev: f87df5422241ad019ffdc339ce4e09087abe2c53
 reviewed: false
 ---
 
