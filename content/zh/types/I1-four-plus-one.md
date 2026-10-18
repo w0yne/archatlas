@@ -16,7 +16,7 @@ scope: system
 formal: {kind: method, ref: 'Kruchten，Architectural Blueprints—The 4+1 View Model of Software Architecture（1995），IEEE Software 12(6)，第 42–50 页；https://www.cs.ubc.ca/~gregor/teaching/papers/4+1view-architecture.pdf'}
 neighbours: [C5, E1, G1, I2]
 status: draft
-sourceRev: 88db750
+sourceRev: 4e718f136c12c2c4c1d5f2226ea103f63e35b600
 translationOf: en/types/I1-four-plus-one.md
 reviewed: false
 ---

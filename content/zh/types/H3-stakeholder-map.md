@@ -16,7 +16,7 @@ scope: 在明确时间点，对一项举措的干系人参与进行规划。
 formal: {kind: method, ref: '权力-利益矩阵绘制实践；没有统一的图形标准。Nielsen Norman Group，Stakeholder Analysis for UX Projects：https://www.nngroup.com/articles/stakeholder-analysis/'}
 neighbours: [A3, H1]
 status: draft
-sourceRev: 88db750
+sourceRev: 4e718f136c12c2c4c1d5f2226ea103f63e35b600
 translationOf: en/types/H3-stakeholder-map.md
 reviewed: false
 ---

@@ -16,7 +16,7 @@ scope: system
 formal: {kind: convention, ref: 'Scope modeling — https://www.iiba.org/knowledgehub/business-analysis-body-of-knowledge-babok-guide/10-techniques/10-41-scope-modelling/'}
 neighbours: [A3, B1, C2]
 status: draft
-sourceRev: 88db750
+sourceRev: 4e718f136c12c2c4c1d5f2226ea103f63e35b600
 translationOf: en/types/B4-scope-diagram.md
 reviewed: false
 ---

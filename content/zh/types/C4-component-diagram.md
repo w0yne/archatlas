@@ -17,7 +17,7 @@ formal: {kind: method, ref: 'C4 model (Simon Brown), Level 3 Component diagram; 
 neighbours: [C3, C5, C8, E1]
 status: draft
 translationOf: en/types/C4-component-diagram.md
-sourceRev: 5137fae
+sourceRev: 4e718f136c12c2c4c1d5f2226ea103f63e35b600
 reviewed: false
 ---
 

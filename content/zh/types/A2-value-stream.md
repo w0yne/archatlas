@@ -17,7 +17,7 @@ formal: {kind: standard, ref: 'ArchiMate 3.2 Value Stream element and Value Stre
 neighbours: [A1, A5, A6, A9]
 status: draft
 translationOf: en/types/A2-value-stream.md
-sourceRev: 88db750
+sourceRev: 4e718f136c12c2c4c1d5f2226ea103f63e35b600
 reviewed: false
 ---
 
