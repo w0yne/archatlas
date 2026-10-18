@@ -4,14 +4,14 @@
     "C-web": "C-web",
     "C-api": "C-api",
     "C-tools": "C-tools",
-    "C-agent": "C-agent",
     "DS-app": "DS-app",
+    "C-agent": "C-agent",
     "DS-index": "DS-index",
-    "C-ingest": "C-ingest",
-    "Q-ingest": "Q-ingest",
     "DS-doc": "DS-doc",
-    "C-eval": "C-eval",
+    "Q-ingest": "Q-ingest",
+    "C-ingest": "C-ingest",
     "DS-eval": "DS-eval",
+    "C-eval": "C-eval",
     "X-model": "X-model"
   },
   "invariants": [
@@ -21,5 +21,8 @@
     "I-eval",
     "I-ingest"
   ],
-  "projection": "focused view; omissions described in caption; not a deployed system"
+  "projection": "focused view; omissions described in caption; not a deployed system",
+  "missingFacts": [
+    "Reconcile API → Q-ingest producer edge with FL-ingest (currently worker publication)"
+  ]
 }

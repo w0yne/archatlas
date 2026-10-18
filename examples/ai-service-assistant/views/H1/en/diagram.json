@@ -1,0 +1,60 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "H1",
+    "title": "H1 · Service operations — RACI discovery matrix",
+    "lang": "en",
+    "state": "to-be",
+    "audience": "architects and reviewers",
+    "description": "Fictional teaching design; scenario.json version 1"
+  },
+  "layout": {
+    "template": "grid_table"
+  },
+  "nodes": [],
+  "edges": [],
+  "groups": [],
+  "tables": [
+    {
+      "id": "raci",
+      "columns": [
+        "Activity",
+        "Employee / approver",
+        "Knowledge steward",
+        "Platform operator"
+      ],
+      "rows": [
+        [
+          "Approve own permitted draft",
+          "R",
+          "?",
+          "?"
+        ],
+        [
+          "Maintain tenant knowledge / ACL",
+          "?",
+          "R",
+          "?"
+        ],
+        [
+          "Approve deidentified eval export",
+          "?",
+          "R",
+          "?"
+        ],
+        [
+          "Operate service health",
+          "?",
+          "?",
+          "R"
+        ],
+        [
+          "Own release / recovery decision",
+          "?",
+          "?",
+          "?"
+        ]
+      ]
+    }
+  ]
+}

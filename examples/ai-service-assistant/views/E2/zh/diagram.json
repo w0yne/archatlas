@@ -1,0 +1,144 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "E2",
+    "title": "E2 · 经审批的工单请求 — 活动图",
+    "lang": "zh",
+    "state": "to-be",
+    "audience": "architects and reviewers",
+    "description": "Fictional teaching design; scenario.json version 1"
+  },
+  "layout": {
+    "template": "nested"
+  },
+  "nodes": [
+    {
+      "id": "E2-start",
+      "kind": "initial",
+      "label": "开始"
+    },
+    {
+      "id": "P-plan",
+      "kind": "task",
+      "label": "1. 起草请求",
+      "style": "peer",
+      "sub": "C-agent"
+    },
+    {
+      "id": "P-approve",
+      "kind": "task",
+      "label": "2. 绑定审批",
+      "style": "peer",
+      "sub": "C-api"
+    },
+    {
+      "id": "P-execute",
+      "kind": "task",
+      "label": "3. 工具再授权",
+      "style": "peer",
+      "sub": "C-tools"
+    },
+    {
+      "id": "E2-valid",
+      "kind": "gateway",
+      "label": "有效？"
+    },
+    {
+      "id": "E2-persist",
+      "kind": "task",
+      "label": "持久化执行意图",
+      "style": "peer",
+      "sub": "tenant · hash · key"
+    },
+    {
+      "id": "E2-write",
+      "kind": "task",
+      "label": "幂等执行",
+      "style": "peer",
+      "sub": ""
+    },
+    {
+      "id": "E2-deny",
+      "kind": "task",
+      "label": "拒绝工具请求",
+      "style": "peer",
+      "sub": "不写入工单服务"
+    },
+    {
+      "id": "E2-done",
+      "kind": "final",
+      "label": "结束"
+    },
+    {
+      "id": "E2-refused",
+      "kind": "final",
+      "label": "结束"
+    }
+  ],
+  "edges": [
+    {
+      "id": "ACT-1",
+      "from": "E2-start",
+      "to": "P-plan",
+      "label": "",
+      "kind": "call"
+    },
+    {
+      "id": "ACT-2",
+      "from": "P-plan",
+      "to": "P-approve",
+      "label": "员工审批准确草稿",
+      "kind": "call"
+    },
+    {
+      "id": "ACT-3",
+      "from": "P-approve",
+      "to": "P-execute",
+      "label": "已绑定审批记录",
+      "kind": "call"
+    },
+    {
+      "id": "ACT-4",
+      "from": "P-execute",
+      "to": "E2-valid",
+      "label": "证明 + 当前策略",
+      "kind": "call"
+    },
+    {
+      "id": "ACT-5",
+      "from": "E2-valid",
+      "to": "E2-persist",
+      "label": "[有效]",
+      "kind": "call"
+    },
+    {
+      "id": "ACT-6",
+      "from": "E2-valid",
+      "to": "E2-deny",
+      "label": "[否则]",
+      "kind": "call"
+    },
+    {
+      "id": "ACT-7",
+      "from": "E2-persist",
+      "to": "E2-write",
+      "label": "同一幂等键",
+      "kind": "call"
+    },
+    {
+      "id": "ACT-8",
+      "from": "E2-write",
+      "to": "E2-done",
+      "label": "结果已知",
+      "kind": "call"
+    },
+    {
+      "id": "ACT-9",
+      "from": "E2-deny",
+      "to": "E2-refused",
+      "label": "已拒绝",
+      "kind": "call"
+    }
+  ],
+  "groups": []
+}

@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1230" lang="zh" data-archatlas="0.1">
+<title>E3 · 工具请求的条件 — 状态机</title>
+<desc>虚构目标设计 · DS-app 中的单个请求；概念条件，不声称已有状态枚举</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,4 L0,8 Z" fill="#4B5563"/></marker></defs>
+<rect data-role="canvas" width="1400" height="1230" fill="#ffffff"/>
+<text x="28" y="40" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="28" font-weight="700" fill="#1F2937">E3 · 工具请求的条件 — 状态机</text>
+<text x="28" y="72" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">虚构目标设计 · DS-app 中的单个请求；概念条件，不声称已有状态枚举</text>
+<circle cx="110" cy="225" r="15" data-role="node" data-id="E3-start" data-kind="initial" fill="#1F2937" stroke="#1F2937" stroke-width="1.8"/>
+<rect x="210" y="175" width="280" height="100" data-role="node" data-id="E3-unapproved" data-kind="state" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="224" y="204" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="E3-unapproved" data-role="name">未获审批</text>
+<rect x="620" y="175" width="280" height="100" data-role="node" data-id="E3-approved" data-kind="state" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="634" y="204" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="E3-approved" data-role="name">已审批</text>
+<rect x="1040" y="175" width="280" height="100" data-role="node" data-id="E3-executing" data-kind="state" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="1054" y="204" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="E3-executing" data-role="name">执行中</text>
+<rect x="1040" y="530" width="280" height="100" data-role="node" data-id="E3-unknown" data-kind="state" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="1054" y="559" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="E3-unknown" data-role="name">结果未知</text>
+<rect x="620" y="835" width="280" height="100" data-role="node" data-id="E3-resolved" data-kind="state" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="634" y="864" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="E3-resolved" data-role="name">结果已记录</text>
+<rect x="210" y="530" width="280" height="100" data-role="node" data-id="E3-refused" data-kind="state" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="224" y="559" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="E3-refused" data-role="name">已拒绝</text>
+<g data-role="node" data-id="E3-final" data-kind="final" fill="#1F2937" stroke="#1F2937" stroke-width="1.8"><circle cx="350" cy="880" r="15" fill="#ffffff" stroke="#1F2937" stroke-width="1.8"/><circle cx="350" cy="880" r="9" fill="#1F2937"/></g>
+<polyline points="125,225 210,225" data-role="edge" data-id="STATE-1" data-from="E3-start" data-to="E3-unapproved" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<polyline points="490,225 620,225" data-role="edge" data-id="STATE-2" data-from="E3-unapproved" data-to="E3-approved" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="480" y="125" width="117.75" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-STATE-2" data-parent="STATE-2"/>
+<text x="485" y="145" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="STATE-2" data-role="edge-label">approve / 绑定</text>
+<polyline points="900,225 1040,225" data-role="edge" data-id="STATE-3" data-from="E3-approved" data-to="E3-executing" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="890" y="125" width="130.984375" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-STATE-3" data-parent="STATE-3"/>
+<text x="895" y="145" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="STATE-3" data-role="edge-label">execute [仍有效]</text>
+<polyline points="700,275 700,390 350,390 350,530" data-role="edge" data-id="STATE-4" data-from="E3-approved" data-to="E3-refused" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="405" y="350" width="161.25" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-STATE-4" data-parent="STATE-4"/>
+<text x="410" y="370" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="STATE-4" data-role="edge-label">execute [过期 / 无权]</text>
+<polyline points="300,275 300,530" data-role="edge" data-id="STATE-5" data-from="E3-unapproved" data-to="E3-refused" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="23" y="395" width="130.984375" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-STATE-5" data-parent="STATE-5"/>
+<text x="28" y="415" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="STATE-5" data-role="edge-label">execute [无审批]</text>
+<polyline points="1180,275 1180,530" data-role="edge" data-id="STATE-6" data-from="E3-executing" data-to="E3-unknown" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="985" y="395" width="147.515625" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-STATE-6" data-parent="STATE-6"/>
+<text x="990" y="415" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="STATE-6" data-role="edge-label">timeout / 按键对账</text>
+<polyline points="1040,245 960,245 960,855 900,855" data-role="edge" data-id="STATE-7" data-from="E3-executing" data-to="E3-resolved" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="965" y="695" width="99.046875" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-STATE-7" data-parent="STATE-7"/>
+<text x="970" y="715" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="STATE-7" data-role="edge-label">result / 记录</text>
+<polyline points="1180,630 1180,915 900,915" data-role="edge" data-id="STATE-8" data-from="E3-unknown" data-to="E3-resolved" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="1195" y="760" width="124.46875" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-STATE-8" data-parent="STATE-8"/>
+<text x="1200" y="780" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="STATE-8" data-role="edge-label">lookup [已查明]</text>
+<polyline points="620,880 365,880" data-role="edge" data-id="STATE-9" data-from="E3-resolved" data-to="E3-final" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="430" y="840" width="94.453125" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-STATE-9" data-parent="STATE-9"/>
+<text x="435" y="860" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="STATE-9" data-role="edge-label">close / 关闭</text>
+<polyline points="350,630 350,865" data-role="edge" data-id="STATE-10" data-from="E3-refused" data-to="E3-final" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="365" y="720" width="94.453125" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-STATE-10" data-parent="STATE-10"/>
+<text x="370" y="740" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="STATE-10" data-role="edge-label">close / 关闭</text>
+<text x="28" y="1000" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937">禁止未获审批直接进入执行；结果未知不授权盲目重写。</text>
+<text x="28" y="1030" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937">缺口：持久状态枚举、对账期限及关闭策略；未编造超时时长。</text>
+<circle cx="43" cy="1146" r="10" data-role="legend-swatch" data-id="__legend-swatch-90" data-kind="initial" fill="#1F2937" stroke="#1F2937" stroke-width="1.8"/>
+<text x="82" y="1152" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-90">起点</text>
+<g data-role="legend-swatch" data-id="__legend-swatch-91" data-kind="final" fill="#1F2937" stroke="#1F2937" stroke-width="1.8"><circle cx="488" cy="1146" r="10" fill="#ffffff" stroke="#1F2937" stroke-width="1.8"/><circle cx="488" cy="1146" r="6" fill="#1F2937"/></g>
+<text x="527" y="1152" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-91">终点</text>
+<rect x="28" y="1090" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-1" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="82" y="1107" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-1">范围内元素</text>
+<polyline points="473,1100 515,1100" data-role="edge" data-kind="legend" data-id="legend-line-2" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="527" y="1107" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-2">事件 [条件] / 效果</text>
+</svg>

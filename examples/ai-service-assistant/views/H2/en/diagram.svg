@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1520 1360" lang="en" data-archatlas="0.1">
+<title>H2 · Redacted service evidence — observability</title>
+<desc>Fictional target · Signal-use view; instrumentation and alert configuration remain unverified</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,4 L0,8 Z" fill="#4B5563"/></marker></defs>
+<rect data-role="canvas" width="1520" height="1360" fill="#ffffff"/>
+<text x="28" y="40" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="28" font-weight="700" fill="#1F2937">H2 · Redacted service evidence — observability</text>
+<text x="28" y="72" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">Fictional target · Signal-use view; instrumentation and alert configuration remain unverified</text>
+<rect x="25" y="120" width="590" height="1075" data-role="group" data-id="OBS-source" data-kind="boundary" fill="#F3F8FF" stroke="#3D6FB2" stroke-width="1.6" rx="10"/>
+<text x="43" y="152" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="700" fill="#1F2937" data-owner="OBS-source" data-role="group-title">Existing runtime and queue sources</text>
+<rect x="60" y="200" width="505" height="100" data-role="node" data-id="C-api" data-kind="container" data-parent="OBS-source" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="74" y="229" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-api" data-role="name">Application API/BFF</text>
+<text x="74" y="254" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-api" data-role="sub">Authorization / request outcomes</text>
+<rect x="60" y="357" width="505" height="100" data-role="node" data-id="C-agent" data-kind="container" data-parent="OBS-source" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="74" y="386" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-agent" data-role="name">Agent Service</text>
+<text x="74" y="411" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-agent" data-role="sub">Latency / model tokens</text>
+<rect x="60" y="514" width="505" height="100" data-role="node" data-id="C-tools" data-kind="container" data-parent="OBS-source" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="74" y="543" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-tools" data-role="name">MCP Tool Gateway</text>
+<text x="74" y="568" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-tools" data-role="sub">Policy denials / tool outcomes</text>
+<rect x="60" y="671" width="505" height="100" data-role="node" data-id="C-ingest" data-kind="container" data-parent="OBS-source" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="74" y="700" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-ingest" data-role="name">Ingestion Worker</text>
+<text x="74" y="725" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-ingest" data-role="sub">Version jobs / retry failures</text>
+<rect x="60" y="828" width="505" height="100" data-role="node" data-id="Q-ingest" data-kind="queue" data-parent="OBS-source" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="74" y="857" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="Q-ingest" data-role="name">Ingestion queue + DLQ</text>
+<text x="74" y="882" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="Q-ingest" data-role="sub">Backlog / DLQ evidence</text>
+<rect x="60" y="985" width="505" height="100" data-role="node" data-id="C-eval" data-kind="container" data-parent="OBS-source" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="74" y="1014" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-eval" data-role="name">Evaluation Job</text>
+<text x="74" y="1039" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-eval" data-role="sub">Offline quality / token cost</text>
+<rect x="930" y="530" width="550" height="145" data-role="node" data-id="AWS-ops" data-kind="component" fill="#1767B5" stroke="#03172E" stroke-width="2.4" rx="8"/>
+<text x="944" y="559" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#ffffff" data-owner="AWS-ops" data-role="name">CloudWatch · KMS · Secrets</text>
+<text x="944" y="584" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#ffffff" data-owner="AWS-ops" data-role="sub">CloudWatch telemetry projection</text>
+<text x="944" y="607" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#ffffff" data-owner="AWS-ops" data-role="sub">No tokens or document text in logs</text>
+<rect x="930" y="1030" width="550" height="110" data-role="node" data-id="R-operator" data-kind="person" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="8"/>
+<text x="944" y="1059" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="R-operator" data-role="name">Platform operator</text>
+<text x="944" y="1084" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="R-operator" data-role="sub">Service health, not content access</text>
+<polyline points="565,250 850,250 850,550 930,550" data-role="edge" data-id="OBS-1" data-from="C-api" data-to="AWS-ops" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="575" y="212" width="128.90625" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-OBS-1" data-parent="OBS-1"/>
+<text x="580" y="232" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="OBS-1" data-role="edge-label">Redacted signal</text>
+<polyline points="565,407 800,407 800,571 930,571" data-role="edge" data-id="OBS-2" data-from="C-agent" data-to="AWS-ops" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="575" y="369" width="128.90625" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-OBS-2" data-parent="OBS-2"/>
+<text x="580" y="389" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="OBS-2" data-role="edge-label">Redacted signal</text>
+<polyline points="565,564 750,564 750,592 930,592" data-role="edge" data-id="OBS-3" data-from="C-tools" data-to="AWS-ops" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="575" y="526" width="128.90625" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-OBS-3" data-parent="OBS-3"/>
+<text x="580" y="546" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="OBS-3" data-role="edge-label">Redacted signal</text>
+<polyline points="565,721 750,721 750,613 930,613" data-role="edge" data-id="OBS-4" data-from="C-ingest" data-to="AWS-ops" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="575" y="683" width="128.90625" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-OBS-4" data-parent="OBS-4"/>
+<text x="580" y="703" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="OBS-4" data-role="edge-label">Redacted signal</text>
+<polyline points="565,878 800,878 800,634 930,634" data-role="edge" data-id="OBS-5" data-from="Q-ingest" data-to="AWS-ops" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="575" y="840" width="128.90625" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-OBS-5" data-parent="OBS-5"/>
+<text x="580" y="860" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="OBS-5" data-role="edge-label">Redacted signal</text>
+<polyline points="565,1035 850,1035 850,655 930,655" data-role="edge" data-id="OBS-6" data-from="C-eval" data-to="AWS-ops" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="575" y="997" width="128.90625" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-OBS-6" data-parent="OBS-6"/>
+<text x="580" y="1017" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="OBS-6" data-role="edge-label">Redacted signal</text>
+<polyline points="1205,675 1205,1030" data-role="edge" data-id="OBS-7" data-from="AWS-ops" data-to="R-operator" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="935" y="835" width="215.328125" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-OBS-7" data-parent="OBS-7"/>
+<text x="940" y="855" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="OBS-7" data-role="edge-label">Read health / cost evidence</text>
+<text x="28" y="1240" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937">Missing: SLI/SLO targets, sampling/retention, delivery guarantees, alert routing and response runbooks.</text>
+<rect x="28" y="1290" width="42" height="22" data-role="legend-zone" data-id="__legend-swatch-1" fill="#F3F8FF" stroke="#3D6FB2" stroke-width="1.6" rx="10"/>
+<text x="82" y="1307" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-1">System / hosting boundary</text>
+<rect x="473" y="1290" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-2" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="527" y="1307" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-2">In-scope element</text>
+<rect x="918" y="1290" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-3" fill="#1767B5" stroke="#03172E" stroke-width="2.4" rx="8"/>
+<text x="972" y="1307" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-3">Subject</text>
+<rect x="28" y="1335" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-4" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="8"/>
+<text x="82" y="1352" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-4">External party</text>
+<polyline points="473,1345 515,1345" data-role="edge" data-kind="legend" data-id="legend-line-5" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="527" y="1352" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-5">Signal producer → receiver</text>
+</svg>

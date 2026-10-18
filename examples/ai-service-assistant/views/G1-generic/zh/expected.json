@@ -1,0 +1,23 @@
+{
+  "scenarioVersion": 1,
+  "entities": {
+    "C-web": "C-web",
+    "C-api": "C-api",
+    "C-agent": "C-agent",
+    "C-tools": "C-tools",
+    "C-ingest": "C-ingest",
+    "C-eval": "C-eval",
+    "DS-app": "DS-app",
+    "DS-index": "DS-index",
+    "DS-doc": "DS-doc",
+    "DS-eval": "DS-eval",
+    "Q-ingest": "Q-ingest"
+  },
+  "invariants": [
+    "I-eval",
+    "I-ingest",
+    "I-operator"
+  ],
+  "projection": "focused view; omissions described in caption; not a deployed system",
+  "missingFacts": []
+}

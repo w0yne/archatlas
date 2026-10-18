@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1120" lang="en" data-archatlas="0.1">
+<title>H1 · Service operations — RACI discovery matrix</title>
+<desc>Fictional target · Three existing human roles; accountability is explicitly unresolved</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,4 L0,8 Z" fill="#4B5563"/></marker></defs>
+<rect data-role="canvas" width="1400" height="1120" fill="#ffffff"/>
+<text x="28" y="40" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="28" font-weight="700" fill="#1F2937">H1 · Service operations — RACI discovery matrix</text>
+<text x="28" y="72" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">Fictional target · Three existing human roles; accountability is explicitly unresolved</text>
+<rect x="28" y="130" width="410" height="108" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1" data-role="cell" data-id="raci-0-0"/>
+<text x="42" y="160" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="700" fill="#1F2937" data-owner="raci-0-0" data-role="name">Activity</text>
+<rect x="438" y="130" width="320" height="108" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1" data-role="cell" data-id="raci-0-1"/>
+<text x="452" y="160" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="700" fill="#1F2937" data-owner="raci-0-1" data-role="name">Employee / approver</text>
+<rect x="758" y="130" width="320" height="108" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1" data-role="cell" data-id="raci-0-2"/>
+<text x="772" y="160" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="700" fill="#1F2937" data-owner="raci-0-2" data-role="name">Knowledge steward</text>
+<rect x="1078" y="130" width="320" height="108" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1" data-role="cell" data-id="raci-0-3"/>
+<text x="1092" y="160" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="700" fill="#1F2937" data-owner="raci-0-3" data-role="name">Platform operator</text>
+<rect x="28" y="238" width="410" height="108" fill="#F3F8FF" stroke="#3D6FB2" stroke-width="1" data-role="cell" data-id="raci-1-0"/>
+<text x="42" y="268" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="700" fill="#1F2937" data-owner="raci-1-0" data-role="sub">Approve own permitted draft</text>
+<rect x="438" y="238" width="320" height="108" fill="#ffffff" stroke="#3D6FB2" stroke-width="1" data-role="cell" data-id="raci-1-1"/>
+<text x="452" y="268" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937" data-owner="raci-1-1" data-role="sub">R</text>
+<rect x="758" y="238" width="320" height="108" fill="#ffffff" stroke="#3D6FB2" stroke-width="1" data-role="cell" data-id="raci-1-2"/>
+<text x="772" y="268" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937" data-owner="raci-1-2" data-role="sub">?</text>
+<rect x="1078" y="238" width="320" height="108" fill="#ffffff" stroke="#3D6FB2" stroke-width="1" data-role="cell" data-id="raci-1-3"/>
+<text x="1092" y="268" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937" data-owner="raci-1-3" data-role="sub">?</text>
+<rect x="28" y="346" width="410" height="108" fill="#F3F8FF" stroke="#3D6FB2" stroke-width="1" data-role="cell" data-id="raci-2-0"/>
+<text x="42" y="376" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="700" fill="#1F2937" data-owner="raci-2-0" data-role="sub">Maintain tenant knowledge / ACL</text>
+<rect x="438" y="346" width="320" height="108" fill="#ffffff" stroke="#3D6FB2" stroke-width="1" data-role="cell" data-id="raci-2-1"/>
+<text x="452" y="376" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937" data-owner="raci-2-1" data-role="sub">?</text>
+<rect x="758" y="346" width="320" height="108" fill="#ffffff" stroke="#3D6FB2" stroke-width="1" data-role="cell" data-id="raci-2-2"/>
+<text x="772" y="376" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937" data-owner="raci-2-2" data-role="sub">R</text>
+<rect x="1078" y="346" width="320" height="108" fill="#ffffff" stroke="#3D6FB2" stroke-width="1" data-role="cell" data-id="raci-2-3"/>
+<text x="1092" y="376" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937" data-owner="raci-2-3" data-role="sub">?</text>
+<rect x="28" y="454" width="410" height="108" fill="#F3F8FF" stroke="#3D6FB2" stroke-width="1" data-role="cell" data-id="raci-3-0"/>
+<text x="42" y="484" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="700" fill="#1F2937" data-owner="raci-3-0" data-role="sub">Approve deidentified eval export</text>
+<rect x="438" y="454" width="320" height="108" fill="#ffffff" stroke="#3D6FB2" stroke-width="1" data-role="cell" data-id="raci-3-1"/>
+<text x="452" y="484" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937" data-owner="raci-3-1" data-role="sub">?</text>
+<rect x="758" y="454" width="320" height="108" fill="#ffffff" stroke="#3D6FB2" stroke-width="1" data-role="cell" data-id="raci-3-2"/>
+<text x="772" y="484" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937" data-owner="raci-3-2" data-role="sub">R</text>
+<rect x="1078" y="454" width="320" height="108" fill="#ffffff" stroke="#3D6FB2" stroke-width="1" data-role="cell" data-id="raci-3-3"/>
+<text x="1092" y="484" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937" data-owner="raci-3-3" data-role="sub">?</text>
+<rect x="28" y="562" width="410" height="108" fill="#F3F8FF" stroke="#3D6FB2" stroke-width="1" data-role="cell" data-id="raci-4-0"/>
+<text x="42" y="592" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="700" fill="#1F2937" data-owner="raci-4-0" data-role="sub">Operate service health</text>
+<rect x="438" y="562" width="320" height="108" fill="#ffffff" stroke="#3D6FB2" stroke-width="1" data-role="cell" data-id="raci-4-1"/>
+<text x="452" y="592" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937" data-owner="raci-4-1" data-role="sub">?</text>
+<rect x="758" y="562" width="320" height="108" fill="#ffffff" stroke="#3D6FB2" stroke-width="1" data-role="cell" data-id="raci-4-2"/>
+<text x="772" y="592" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937" data-owner="raci-4-2" data-role="sub">?</text>
+<rect x="1078" y="562" width="320" height="108" fill="#ffffff" stroke="#3D6FB2" stroke-width="1" data-role="cell" data-id="raci-4-3"/>
+<text x="1092" y="592" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937" data-owner="raci-4-3" data-role="sub">R</text>
+<rect x="28" y="670" width="410" height="108" fill="#F3F8FF" stroke="#3D6FB2" stroke-width="1" data-role="cell" data-id="raci-5-0"/>
+<text x="42" y="700" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="700" fill="#1F2937" data-owner="raci-5-0" data-role="sub">Own release / recovery decision</text>
+<rect x="438" y="670" width="320" height="108" fill="#ffffff" stroke="#3D6FB2" stroke-width="1" data-role="cell" data-id="raci-5-1"/>
+<text x="452" y="700" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937" data-owner="raci-5-1" data-role="sub">?</text>
+<rect x="758" y="670" width="320" height="108" fill="#ffffff" stroke="#3D6FB2" stroke-width="1" data-role="cell" data-id="raci-5-2"/>
+<text x="772" y="700" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937" data-owner="raci-5-2" data-role="sub">?</text>
+<rect x="1078" y="670" width="320" height="108" fill="#ffffff" stroke="#3D6FB2" stroke-width="1" data-role="cell" data-id="raci-5-3"/>
+<text x="1092" y="700" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937" data-owner="raci-5-3" data-role="sub">?</text>
+<text x="28" y="845" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937">R = execution role stated in frozen facts. A = accountable; C = consulted; I = informed.</text>
+<text x="28" y="885" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937">? = unassigned / unconfirmed, not “no involvement”. A, C and I assignments are missing for every row.</text>
+<text x="28" y="925" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937">No row is claimed governance-complete. A does not grant data-plane access or replace tool approval.</text>
+<text x="28" y="965" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937">R sources: R-employee, R-steward, R-operator; I-bounds, I-eval, I-operator. Confirm with accountable owners.</text>
+</svg>

@@ -1,0 +1,120 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "G3",
+    "title": "G3 · Ticket write — required logical connectivity",
+    "lang": "en",
+    "state": "to-be",
+    "audience": "architects and reviewers",
+    "description": "Fictional teaching design; scenario.json version 1"
+  },
+  "layout": {
+    "template": "nested"
+  },
+  "nodes": [
+    {
+      "id": "C-web",
+      "kind": "container",
+      "label": "Web Portal",
+      "style": "external",
+      "sub": "Browser client"
+    },
+    {
+      "id": "AWS-alb",
+      "kind": "component",
+      "label": "Application Load Balancer",
+      "parent": "NET-app",
+      "style": "peer",
+      "sub": "AWS-alb"
+    },
+    {
+      "id": "C-api",
+      "kind": "container",
+      "label": "Application API/BFF",
+      "parent": "NET-app",
+      "style": "peer",
+      "sub": "C-api"
+    },
+    {
+      "id": "C-agent",
+      "kind": "container",
+      "label": "Agent Service",
+      "parent": "NET-app",
+      "style": "peer",
+      "sub": "C-agent"
+    },
+    {
+      "id": "C-tools",
+      "kind": "container",
+      "label": "MCP Tool Gateway",
+      "parent": "NET-app",
+      "style": "peer",
+      "sub": "C-tools"
+    },
+    {
+      "id": "X-idp",
+      "kind": "external",
+      "label": "Enterprise IdP / AS",
+      "style": "external",
+      "sub": "AS endpoint / token exchange"
+    },
+    {
+      "id": "X-desk",
+      "kind": "external",
+      "label": "Service Desk",
+      "style": "external",
+      "sub": "Scoped connector endpoint"
+    }
+  ],
+  "edges": [
+    {
+      "id": "NET-1",
+      "from": "C-web",
+      "to": "AWS-alb",
+      "label": "1 · HTTPS",
+      "kind": "call"
+    },
+    {
+      "id": "NET-2",
+      "from": "AWS-alb",
+      "to": "C-api",
+      "label": "2 · BFF target",
+      "kind": "call"
+    },
+    {
+      "id": "NET-3",
+      "from": "C-api",
+      "to": "C-agent",
+      "label": "3 · Internal HTTPS",
+      "kind": "call"
+    },
+    {
+      "id": "NET-4",
+      "from": "C-agent",
+      "to": "C-tools",
+      "label": "4 · MCP / HTTPS",
+      "kind": "call"
+    },
+    {
+      "id": "NET-5",
+      "from": "C-tools",
+      "to": "X-desk",
+      "label": "5 · Connector HTTPS",
+      "kind": "call"
+    },
+    {
+      "id": "NET-6",
+      "from": "C-agent",
+      "to": "X-idp",
+      "label": "Token exchange / HTTPS",
+      "kind": "call"
+    }
+  ],
+  "groups": [
+    {
+      "id": "NET-app",
+      "title": "Regional application endpoints · AZ-A + AZ-B",
+      "kind": "boundary"
+    }
+  ]
+}

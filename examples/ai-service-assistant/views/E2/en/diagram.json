@@ -1,0 +1,144 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "E2",
+    "title": "E2 · Approved ticket request — activity",
+    "lang": "en",
+    "state": "to-be",
+    "audience": "architects and reviewers",
+    "description": "Fictional teaching design; scenario.json version 1"
+  },
+  "layout": {
+    "template": "nested"
+  },
+  "nodes": [
+    {
+      "id": "E2-start",
+      "kind": "initial",
+      "label": "Start"
+    },
+    {
+      "id": "P-plan",
+      "kind": "task",
+      "label": "1. Draft request",
+      "style": "peer",
+      "sub": "C-agent"
+    },
+    {
+      "id": "P-approve",
+      "kind": "task",
+      "label": "2. Bind approval",
+      "style": "peer",
+      "sub": "C-api"
+    },
+    {
+      "id": "P-execute",
+      "kind": "task",
+      "label": "3. Reauthorize tool",
+      "style": "peer",
+      "sub": "C-tools"
+    },
+    {
+      "id": "E2-valid",
+      "kind": "gateway",
+      "label": "Valid?"
+    },
+    {
+      "id": "E2-persist",
+      "kind": "task",
+      "label": "Persist execution intent",
+      "style": "peer",
+      "sub": "tenant · hash · key"
+    },
+    {
+      "id": "E2-write",
+      "kind": "task",
+      "label": "Execute idempotently",
+      "style": "peer",
+      "sub": ""
+    },
+    {
+      "id": "E2-deny",
+      "kind": "task",
+      "label": "Reject tool request",
+      "style": "peer",
+      "sub": "No Service Desk write"
+    },
+    {
+      "id": "E2-done",
+      "kind": "final",
+      "label": "End"
+    },
+    {
+      "id": "E2-refused",
+      "kind": "final",
+      "label": "End"
+    }
+  ],
+  "edges": [
+    {
+      "id": "ACT-1",
+      "from": "E2-start",
+      "to": "P-plan",
+      "label": "",
+      "kind": "call"
+    },
+    {
+      "id": "ACT-2",
+      "from": "P-plan",
+      "to": "P-approve",
+      "label": "Human approves exact draft",
+      "kind": "call"
+    },
+    {
+      "id": "ACT-3",
+      "from": "P-approve",
+      "to": "P-execute",
+      "label": "Bound approval record",
+      "kind": "call"
+    },
+    {
+      "id": "ACT-4",
+      "from": "P-execute",
+      "to": "E2-valid",
+      "label": "Proof + current policy",
+      "kind": "call"
+    },
+    {
+      "id": "ACT-5",
+      "from": "E2-valid",
+      "to": "E2-persist",
+      "label": "[valid]",
+      "kind": "call"
+    },
+    {
+      "id": "ACT-6",
+      "from": "E2-valid",
+      "to": "E2-deny",
+      "label": "[else]",
+      "kind": "call"
+    },
+    {
+      "id": "ACT-7",
+      "from": "E2-persist",
+      "to": "E2-write",
+      "label": "Same idempotency key",
+      "kind": "call"
+    },
+    {
+      "id": "ACT-8",
+      "from": "E2-write",
+      "to": "E2-done",
+      "label": "Known result",
+      "kind": "call"
+    },
+    {
+      "id": "ACT-9",
+      "from": "E2-deny",
+      "to": "E2-refused",
+      "label": "Refused",
+      "kind": "call"
+    }
+  ],
+  "groups": []
+}

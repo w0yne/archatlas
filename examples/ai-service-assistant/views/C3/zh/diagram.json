@@ -37,20 +37,20 @@
       "sub": "C-tools · Python / MCP HTTPS · 验证委托；执行工具权限检查"
     },
     {
-      "id": "C-agent",
-      "kind": "container",
-      "label": "Agent 服务",
-      "parent": "B-system",
-      "style": "peer",
-      "sub": "C-agent · Python / HTTPS · 受限规划、检索、模型与工具"
-    },
-    {
       "id": "DS-app",
       "kind": "store",
       "label": "应用记录",
       "parent": "B-system",
       "style": "peer",
       "sub": "DS-app · PostgreSQL · 成员、对话、审批与审计"
+    },
+    {
+      "id": "C-agent",
+      "kind": "container",
+      "label": "Agent 服务",
+      "parent": "B-system",
+      "style": "peer",
+      "sub": "C-agent · Python / HTTPS · 受限规划、检索、模型与工具"
     },
     {
       "id": "DS-index",
@@ -61,12 +61,12 @@
       "sub": "DS-index · OpenSearch · 派生分块、向量、租户与 ACL"
     },
     {
-      "id": "C-ingest",
-      "kind": "container",
-      "label": "摄取工作进程",
+      "id": "DS-doc",
+      "kind": "store",
+      "label": "文档版本",
       "parent": "B-system",
       "style": "peer",
-      "sub": "C-ingest · Python / batch · 版本、分块、嵌入与索引"
+      "sub": "DS-doc · S3 · 版本化原文与 ACL 快照"
     },
     {
       "id": "Q-ingest",
@@ -77,20 +77,12 @@
       "sub": "Q-ingest · SQS · 版本任务；重试 / DLQ"
     },
     {
-      "id": "DS-doc",
-      "kind": "store",
-      "label": "文档版本",
-      "parent": "B-system",
-      "style": "peer",
-      "sub": "DS-doc · S3 · 版本化原文与 ACL 快照"
-    },
-    {
-      "id": "C-eval",
+      "id": "C-ingest",
       "kind": "container",
-      "label": "评测任务",
+      "label": "摄取工作进程",
       "parent": "B-system",
       "style": "peer",
-      "sub": "C-eval · Python / batch · 离线质量与成本门禁"
+      "sub": "C-ingest · Python / batch · 版本、分块、嵌入与索引"
     },
     {
       "id": "DS-eval",
@@ -99,6 +91,14 @@
       "parent": "B-system",
       "style": "peer",
       "sub": "DS-eval · S3 · 经批准的去标识数据与评测记录"
+    },
+    {
+      "id": "C-eval",
+      "kind": "container",
+      "label": "评测任务",
+      "parent": "B-system",
+      "style": "peer",
+      "sub": "C-eval · Python / batch · 离线质量与成本门禁"
     },
     {
       "id": "X-model",
@@ -113,14 +113,14 @@
       "id": "CON-1",
       "from": "C-web",
       "to": "C-api",
-      "label": "对话 / 审批 · HTTPS",
+      "label": "对话 · HTTPS",
       "kind": "call"
     },
     {
       "id": "CON-2",
       "from": "C-tools",
       "to": "C-api",
-      "label": "读取审批 · HTTPS",
+      "label": "审批 · HTTPS",
       "kind": "call"
     },
     {
@@ -134,35 +134,42 @@
       "id": "CON-4",
       "from": "C-api",
       "to": "DS-app",
-      "label": "会话 / 审批 · SQL",
-      "kind": "call"
-    },
-    {
-      "id": "CON-5",
-      "from": "C-agent",
-      "to": "DS-index",
-      "label": "tenant + ACL 检索",
+      "label": "记录 · SQL",
       "kind": "call"
     },
     {
       "id": "CON-6",
       "from": "C-agent",
       "to": "C-tools",
-      "label": "受限 MCP · HTTPS",
+      "label": "MCP · HTTPS",
+      "kind": "call"
+    },
+    {
+      "id": "CON-5",
+      "from": "C-agent",
+      "to": "DS-index",
+      "label": "tenant/ACL 检索",
+      "kind": "call"
+    },
+    {
+      "id": "CON-17",
+      "from": "C-api",
+      "to": "Q-ingest",
+      "label": "入队 · SQS",
       "kind": "call"
     },
     {
       "id": "CON-10",
       "from": "C-ingest",
       "to": "Q-ingest",
-      "label": "收取任务 · SQS",
+      "label": "领取任务 · SQS",
       "kind": "call"
     },
     {
       "id": "CON-11",
       "from": "C-ingest",
       "to": "DS-index",
-      "label": "发布分块 · HTTPS",
+      "label": "发布 · HTTPS",
       "kind": "call"
     },
     {
@@ -177,6 +184,13 @@
       "from": "C-eval",
       "to": "DS-eval",
       "label": "读写 · S3",
+      "kind": "call"
+    },
+    {
+      "id": "CON-18",
+      "from": "C-ingest",
+      "to": "X-model",
+      "label": "嵌入 · HTTPS",
       "kind": "call"
     },
     {

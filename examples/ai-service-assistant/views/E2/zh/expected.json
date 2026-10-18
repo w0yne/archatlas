@@ -1,0 +1,105 @@
+{
+  "scenarioVersion": 1,
+  "entities": {
+    "P-plan": "P-plan",
+    "P-approve": "P-approve",
+    "P-execute": "P-execute"
+  },
+  "invariants": [
+    "I-approval",
+    "I-authority",
+    "I-tokens",
+    "I-idempotency",
+    "I-bounds"
+  ],
+  "projection": "focused view; omissions described in caption; not a deployed system",
+  "viewElements": {
+    "E2-start": {
+      "kind": "initial",
+      "labels": {
+        "en": "Start",
+        "zh": "开始"
+      },
+      "contextEntity": "DS-app",
+      "sourceRefs": [
+        "I-approval"
+      ],
+      "status": "notation / conceptual projection"
+    },
+    "E2-valid": {
+      "kind": "gateway",
+      "labels": {
+        "en": "Valid?",
+        "zh": "有效？"
+      },
+      "contextEntity": "C-tools",
+      "sourceRefs": [
+        "I-approval"
+      ],
+      "status": "notation / conceptual projection"
+    },
+    "E2-persist": {
+      "kind": "task",
+      "labels": {
+        "en": "Persist execution intent",
+        "zh": "持久化执行意图"
+      },
+      "contextEntity": "C-tools",
+      "sourceRefs": [
+        "I-idempotency"
+      ],
+      "status": "conceptual projection, not a new component or database enum"
+    },
+    "E2-write": {
+      "kind": "task",
+      "labels": {
+        "en": "Execute idempotently",
+        "zh": "幂等执行"
+      },
+      "contextEntity": "X-desk",
+      "sourceRefs": [
+        "I-idempotency",
+        "I-bounds"
+      ],
+      "status": "conceptual projection, not a new component or database enum"
+    },
+    "E2-deny": {
+      "kind": "task",
+      "labels": {
+        "en": "Reject tool request",
+        "zh": "拒绝工具请求"
+      },
+      "contextEntity": "C-tools",
+      "sourceRefs": [
+        "I-approval",
+        "I-tokens"
+      ],
+      "status": "conceptual projection, not a new component or database enum"
+    },
+    "E2-done": {
+      "kind": "final",
+      "labels": {
+        "en": "End",
+        "zh": "结束"
+      },
+      "contextEntity": "DS-app",
+      "sourceRefs": [
+        "I-approval"
+      ],
+      "status": "notation / conceptual projection"
+    },
+    "E2-refused": {
+      "kind": "final",
+      "labels": {
+        "en": "End",
+        "zh": "结束"
+      },
+      "contextEntity": "DS-app",
+      "sourceRefs": [
+        "I-approval"
+      ],
+      "status": "notation / conceptual projection"
+    }
+  },
+  "missingFacts": []
+}

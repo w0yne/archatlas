@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1320" lang="zh" data-archatlas="0.1">
+<title>G4 · Prompt/模型配置 — 晋级门禁</title>
+<desc>虚构目标设计 · 离线评测已规定；发布机制尚未冻结</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,4 L0,8 Z" fill="#4B5563"/></marker></defs>
+<rect data-role="canvas" width="1600" height="1320" fill="#ffffff"/>
+<text x="28" y="40" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="28" font-weight="700" fill="#1F2937">G4 · Prompt/模型配置 — 晋级门禁</text>
+<text x="28" y="72" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">虚构目标设计 · 离线评测已规定；发布机制尚未冻结</text>
+<rect x="40" y="170" width="365" height="120" data-role="node" data-id="DS-eval" data-kind="store" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="54" y="199" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DS-eval" data-role="name">评测数据集</text>
+<text x="54" y="224" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DS-eval" data-role="sub">版本化 prompt / 模型 / 数据集</text>
+<rect x="560" y="170" width="365" height="120" data-role="node" data-id="C-eval" data-kind="container" fill="#1767B5" stroke="#03172E" stroke-width="2.4" rx="8"/>
+<text x="574" y="199" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#ffffff" data-owner="C-eval" data-role="name">评测任务</text>
+<text x="574" y="224" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#ffffff" data-owner="C-eval" data-role="sub">评测专用身份</text>
+<text x="574" y="247" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#ffffff" data-owner="C-eval" data-role="sub">不可写生产工具</text>
+<rect x="1110" y="170" width="410" height="120" data-role="node" data-id="G4-gate" data-kind="task" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="1124" y="199" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="G4-gate" data-role="name">质量 / 安全门禁</text>
+<text x="1124" y="224" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="G4-gate" data-role="sub">延迟 + token 成本</text>
+<text x="1124" y="247" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="G4-gate" data-role="sub">阈值未定义</text>
+<rect x="1110" y="510" width="410" height="100" data-role="node" data-id="G4-hold" data-kind="task" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="1124" y="539" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="G4-hold" data-role="name">暂停候选晋级</text>
+<rect x="560" y="760" width="365" height="110" data-role="node" data-id="G4-release" data-kind="task" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="574" y="789" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="G4-release" data-role="name">发布交接</text>
+<text x="574" y="814" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="G4-release" data-role="sub">审批人 / 部署执行方未定</text>
+<rect x="40" y="760" width="365" height="110" data-role="node" data-id="C-agent" data-kind="container" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="54" y="789" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-agent" data-role="name">Agent 服务</text>
+<text x="54" y="814" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-agent" data-role="sub">生产目标</text>
+<rect x="40" y="1030" width="410" height="110" data-role="node" data-id="AWS-ops" data-kind="component" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="54" y="1059" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="AWS-ops" data-role="name">CloudWatch · KMS · Secrets</text>
+<text x="54" y="1084" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="AWS-ops" data-role="sub">CloudWatch 健康 / token 成本</text>
+<rect x="560" y="1030" width="365" height="110" data-role="node" data-id="G4-recover" data-kind="task" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="574" y="1059" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="G4-recover" data-role="name">恢复决策</text>
+<text x="574" y="1084" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="G4-recover" data-role="sub">策略 / 责任方未定</text>
+<polyline points="405,230 560,230" data-role="edge" data-id="DEL-1" data-from="DS-eval" data-to="C-eval" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="410" y="185" width="74.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DEL-1" data-parent="DEL-1"/>
+<text x="415" y="205" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DEL-1" data-role="edge-label">候选版本</text>
+<polyline points="925,230 1110,230" data-role="edge" data-id="DEL-2" data-from="C-eval" data-to="G4-gate" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="925" y="185" width="74.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DEL-2" data-parent="DEL-2"/>
+<text x="930" y="205" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DEL-2" data-role="edge-label">评测结果</text>
+<polyline points="1315,290 1315,510" data-role="edge" data-id="DEL-3" data-from="G4-gate" data-to="G4-hold" data-kind="dependency" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" stroke-dasharray="6 4"/>
+<rect x="1330" y="390" width="130.796875" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DEL-3" data-parent="DEL-3"/>
+<text x="1335" y="410" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DEL-3" data-role="edge-label">[失败 / 阈值未定]</text>
+<polyline points="1200,290 1200,410 1000,410 1000,815 925,815" data-role="edge" data-id="DEL-4" data-from="G4-gate" data-to="G4-release" data-kind="dependency" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" stroke-dasharray="6 4"/>
+<rect x="1005" y="660" width="136.6875" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DEL-4" data-parent="DEL-4"/>
+<text x="1010" y="680" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DEL-4" data-role="edge-label">[门禁全通过] 依赖</text>
+<polyline points="560,815 405,815" data-role="edge" data-id="DEL-5" data-from="G4-release" data-to="C-agent" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="405" y="708" width="106.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DEL-5" data-parent="DEL-5"/>
+<text x="410" y="728" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DEL-5" data-role="edge-label">晋级同一版本</text>
+<polyline points="220,870 220,1030" data-role="edge" data-id="DEL-6" data-from="C-agent" data-to="AWS-ops" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="240" y="930" width="74.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DEL-6" data-parent="DEL-6"/>
+<text x="245" y="950" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DEL-6" data-role="edge-label">健康信号</text>
+<polyline points="450,1085 560,1085" data-role="edge" data-id="DEL-7" data-from="AWS-ops" data-to="G4-recover" data-kind="dependency" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" stroke-dasharray="6 4"/>
+<rect x="440" y="980" width="42.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DEL-7" data-parent="DEL-7"/>
+<text x="445" y="1000" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DEL-7" data-role="edge-label">异常</text>
+<text x="28" y="1190" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937">制品身份：prompt/模型/数据集版本；摘要、注册表、CI 触发器及恢复动作尚未定义。</text>
+<rect x="28" y="1245" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-1" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="82" y="1262" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-1">范围内元素</text>
+<rect x="473" y="1245" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-2" fill="#1767B5" stroke="#03172E" stroke-width="2.4" rx="8"/>
+<text x="527" y="1262" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-2">本图主体</text>
+<polyline points="918,1255 960,1255" data-role="edge" data-kind="legend" data-id="legend-line-3" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="972" y="1262" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-3">制品 / 证据数据</text>
+<polyline points="28,1300 70,1300" data-role="edge" data-kind="legend" data-id="legend-line-4" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" stroke-dasharray="6 4"/>
+<text x="82" y="1307" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-4">门禁 / 交接依赖</text>
+</svg>

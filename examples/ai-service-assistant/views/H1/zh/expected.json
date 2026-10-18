@@ -1,0 +1,24 @@
+{
+  "scenarioVersion": 1,
+  "entities": {},
+  "invariants": [
+    "I-bounds",
+    "I-eval",
+    "I-operator"
+  ],
+  "projection": "focused view; omissions described in caption; not a deployed system",
+  "tableSourceRefs": [
+    "scenario.json:entities",
+    "scenario.json:invariants"
+  ],
+  "roleEntities": [
+    "R-employee",
+    "R-steward",
+    "R-operator"
+  ],
+  "missingFacts": [
+    "Formal accountable A for each activity",
+    "Consulted C and informed I assignments",
+    "Release/recovery decision owner"
+  ]
+}

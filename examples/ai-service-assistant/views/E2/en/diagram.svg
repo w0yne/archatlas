@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1390" lang="en" data-archatlas="0.1">
+<title>E2 · Approved ticket request — activity</title>
+<desc>Fictional target · UML activity; deterministic checks decide execution</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,4 L0,8 Z" fill="#4B5563"/></marker></defs>
+<rect data-role="canvas" width="1400" height="1390" fill="#ffffff"/>
+<text x="28" y="40" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="28" font-weight="700" fill="#1F2937">E2 · Approved ticket request — activity</text>
+<text x="28" y="72" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">Fictional target · UML activity; deterministic checks decide execution</text>
+<circle cx="630" cy="125" r="15" data-role="node" data-id="E2-start" data-kind="initial" fill="#1F2937" stroke="#1F2937" stroke-width="1.8"/>
+<rect x="470" y="180" width="320" height="95" data-role="node" data-id="P-plan" data-kind="task" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="484" y="209" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="P-plan" data-role="name">1. Draft request</text>
+<text x="484" y="234" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="P-plan" data-role="sub">C-agent</text>
+<rect x="470" y="335" width="320" height="95" data-role="node" data-id="P-approve" data-kind="task" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="484" y="364" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="P-approve" data-role="name">2. Bind approval</text>
+<text x="484" y="389" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="P-approve" data-role="sub">C-api</text>
+<rect x="470" y="490" width="320" height="95" data-role="node" data-id="P-execute" data-kind="task" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="484" y="519" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="P-execute" data-role="name">3. Reauthorize tool</text>
+<text x="484" y="544" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="P-execute" data-role="sub">C-tools</text>
+<polygon points="630,660 715,715 630,770 545,715" data-role="node" data-id="E2-valid" data-kind="gateway" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8"/>
+<text x="587" y="721" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="700" fill="#1F2937" data-owner="E2-valid" data-role="name">Valid?</text>
+<rect x="470" y="830" width="320" height="95" data-role="node" data-id="E2-persist" data-kind="task" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="484" y="859" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="E2-persist" data-role="name">Persist execution intent</text>
+<text x="484" y="884" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="E2-persist" data-role="sub">tenant · hash · key</text>
+<rect x="470" y="990" width="320" height="95" data-role="node" data-id="E2-write" data-kind="task" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="484" y="1019" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="E2-write" data-role="name">Execute idempotently</text>
+<rect x="1000" y="670" width="310" height="95" data-role="node" data-id="E2-deny" data-kind="task" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="1014" y="699" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="E2-deny" data-role="name">Reject tool request</text>
+<text x="1014" y="724" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="E2-deny" data-role="sub">No Service Desk write</text>
+<g data-role="node" data-id="E2-done" data-kind="final" fill="#1F2937" stroke="#1F2937" stroke-width="1.8"><circle cx="630" cy="1175" r="15" fill="#ffffff" stroke="#1F2937" stroke-width="1.8"/><circle cx="630" cy="1175" r="9" fill="#1F2937"/></g>
+<g data-role="node" data-id="E2-refused" data-kind="final" fill="#1F2937" stroke="#1F2937" stroke-width="1.8"><circle cx="1155" cy="915" r="15" fill="#ffffff" stroke="#1F2937" stroke-width="1.8"/><circle cx="1155" cy="915" r="9" fill="#1F2937"/></g>
+<polyline points="630,140 630,180" data-role="edge" data-id="ACT-1" data-from="E2-start" data-to="P-plan" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<polyline points="630,275 630,335" data-role="edge" data-id="ACT-2" data-from="P-plan" data-to="P-approve" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="650" y="290" width="223.1875" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-ACT-2" data-parent="ACT-2"/>
+<text x="655" y="310" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="ACT-2" data-role="edge-label">Human approves exact draft</text>
+<polyline points="630,430 630,490" data-role="edge" data-id="ACT-3" data-from="P-approve" data-to="P-execute" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="650" y="445" width="182.421875" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-ACT-3" data-parent="ACT-3"/>
+<text x="655" y="465" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="ACT-3" data-role="edge-label">Bound approval record</text>
+<polyline points="630,585 630,660" data-role="edge" data-id="ACT-4" data-from="P-execute" data-to="E2-valid" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="650" y="605" width="171.296875" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-ACT-4" data-parent="ACT-4"/>
+<text x="655" y="625" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="ACT-4" data-role="edge-label">Proof + current policy</text>
+<polyline points="630,770 630,830" data-role="edge" data-id="ACT-5" data-from="E2-valid" data-to="E2-persist" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="650" y="786" width="55.71875" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-ACT-5" data-parent="ACT-5"/>
+<text x="655" y="806" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="ACT-5" data-role="edge-label">[valid]</text>
+<polyline points="715,715 1000,715" data-role="edge" data-id="ACT-6" data-from="E2-valid" data-to="E2-deny" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="805" y="678" width="50.375" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-ACT-6" data-parent="ACT-6"/>
+<text x="810" y="698" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="ACT-6" data-role="edge-label">[else]</text>
+<polyline points="630,925 630,990" data-role="edge" data-id="ACT-7" data-from="E2-persist" data-to="E2-write" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="650" y="943" width="183.5" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-ACT-7" data-parent="ACT-7"/>
+<text x="655" y="963" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="ACT-7" data-role="edge-label">Same idempotency key</text>
+<polyline points="630,1085 630,1160" data-role="edge" data-id="ACT-8" data-from="E2-write" data-to="E2-done" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="650" y="1115" width="108.578125" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-ACT-8" data-parent="ACT-8"/>
+<text x="655" y="1135" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="ACT-8" data-role="edge-label">Known result</text>
+<polyline points="1155,765 1155,900" data-role="edge" data-id="ACT-9" data-from="E2-deny" data-to="E2-refused" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="1170" y="815" width="70.90625" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-ACT-9" data-parent="ACT-9"/>
+<text x="1175" y="835" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="ACT-9" data-role="edge-label">Refused</text>
+<text x="28" y="1215" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937">Uncertain timeout: reconcile by key (I-idempotency); never blindly repeat a write.</text>
+<circle cx="43" cy="1316" r="10" data-role="legend-swatch" data-id="__legend-swatch-90" data-kind="initial" fill="#1F2937" stroke="#1F2937" stroke-width="1.8"/>
+<text x="82" y="1322" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-90">Initial node</text>
+<polygon points="494,1305 515,1316 494,1327 473,1316" data-role="legend-swatch" data-id="__legend-swatch-91" data-kind="gateway" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8"/>
+<text x="527" y="1322" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-91">Decision [guard]</text>
+<g data-role="legend-swatch" data-id="__legend-swatch-92" data-kind="final" fill="#1F2937" stroke="#1F2937" stroke-width="1.8"><circle cx="933" cy="1316" r="10" fill="#ffffff" stroke="#1F2937" stroke-width="1.8"/><circle cx="933" cy="1316" r="6" fill="#1F2937"/></g>
+<text x="972" y="1322" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-92">Final node</text>
+<rect x="28" y="1260" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-1" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="82" y="1277" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-1">In-scope element</text>
+<polyline points="473,1270 515,1270" data-role="edge" data-kind="legend" data-id="legend-line-2" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="527" y="1277" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-2">Control flow [guard]</text>
+</svg>

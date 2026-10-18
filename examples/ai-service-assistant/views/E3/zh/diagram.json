@@ -1,0 +1,141 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "E3",
+    "title": "E3 · 工具请求的条件 — 状态机",
+    "lang": "zh",
+    "state": "to-be",
+    "audience": "architects and reviewers",
+    "description": "Fictional teaching design; scenario.json version 1"
+  },
+  "layout": {
+    "template": "nested"
+  },
+  "nodes": [
+    {
+      "id": "E3-start",
+      "kind": "initial",
+      "label": "开始"
+    },
+    {
+      "id": "E3-unapproved",
+      "kind": "state",
+      "label": "未获审批",
+      "style": "peer",
+      "sub": ""
+    },
+    {
+      "id": "E3-approved",
+      "kind": "state",
+      "label": "已审批",
+      "style": "peer",
+      "sub": ""
+    },
+    {
+      "id": "E3-executing",
+      "kind": "state",
+      "label": "执行中",
+      "style": "peer",
+      "sub": ""
+    },
+    {
+      "id": "E3-unknown",
+      "kind": "state",
+      "label": "结果未知",
+      "style": "peer",
+      "sub": ""
+    },
+    {
+      "id": "E3-resolved",
+      "kind": "state",
+      "label": "结果已记录",
+      "style": "peer",
+      "sub": ""
+    },
+    {
+      "id": "E3-refused",
+      "kind": "state",
+      "label": "已拒绝",
+      "style": "peer",
+      "sub": ""
+    },
+    {
+      "id": "E3-final",
+      "kind": "final",
+      "label": "结束"
+    }
+  ],
+  "edges": [
+    {
+      "id": "STATE-1",
+      "from": "E3-start",
+      "to": "E3-unapproved",
+      "label": "",
+      "kind": "call"
+    },
+    {
+      "id": "STATE-2",
+      "from": "E3-unapproved",
+      "to": "E3-approved",
+      "label": "approve / 绑定",
+      "kind": "call"
+    },
+    {
+      "id": "STATE-3",
+      "from": "E3-approved",
+      "to": "E3-executing",
+      "label": "execute [仍有效]",
+      "kind": "call"
+    },
+    {
+      "id": "STATE-4",
+      "from": "E3-approved",
+      "to": "E3-refused",
+      "label": "execute [过期 / 无权]",
+      "kind": "call"
+    },
+    {
+      "id": "STATE-5",
+      "from": "E3-unapproved",
+      "to": "E3-refused",
+      "label": "execute [无审批]",
+      "kind": "call"
+    },
+    {
+      "id": "STATE-6",
+      "from": "E3-executing",
+      "to": "E3-unknown",
+      "label": "timeout / 按键对账",
+      "kind": "call"
+    },
+    {
+      "id": "STATE-7",
+      "from": "E3-executing",
+      "to": "E3-resolved",
+      "label": "result / 记录",
+      "kind": "call"
+    },
+    {
+      "id": "STATE-8",
+      "from": "E3-unknown",
+      "to": "E3-resolved",
+      "label": "lookup [已查明]",
+      "kind": "call"
+    },
+    {
+      "id": "STATE-9",
+      "from": "E3-resolved",
+      "to": "E3-final",
+      "label": "close / 关闭",
+      "kind": "call"
+    },
+    {
+      "id": "STATE-10",
+      "from": "E3-refused",
+      "to": "E3-final",
+      "label": "close / 关闭",
+      "kind": "call"
+    }
+  ],
+  "groups": []
+}

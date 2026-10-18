@@ -1,0 +1,120 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "G3",
+    "title": "G3 · 工单写入 — 所需逻辑网络连接",
+    "lang": "zh",
+    "state": "to-be",
+    "audience": "architects and reviewers",
+    "description": "Fictional teaching design; scenario.json version 1"
+  },
+  "layout": {
+    "template": "nested"
+  },
+  "nodes": [
+    {
+      "id": "C-web",
+      "kind": "container",
+      "label": "Web 门户",
+      "style": "external",
+      "sub": "浏览器客户端"
+    },
+    {
+      "id": "AWS-alb",
+      "kind": "component",
+      "label": "应用负载均衡器",
+      "parent": "NET-app",
+      "style": "peer",
+      "sub": "AWS-alb"
+    },
+    {
+      "id": "C-api",
+      "kind": "container",
+      "label": "应用 API/BFF",
+      "parent": "NET-app",
+      "style": "peer",
+      "sub": "C-api"
+    },
+    {
+      "id": "C-agent",
+      "kind": "container",
+      "label": "Agent 服务",
+      "parent": "NET-app",
+      "style": "peer",
+      "sub": "C-agent"
+    },
+    {
+      "id": "C-tools",
+      "kind": "container",
+      "label": "MCP 工具网关",
+      "parent": "NET-app",
+      "style": "peer",
+      "sub": "C-tools"
+    },
+    {
+      "id": "X-idp",
+      "kind": "external",
+      "label": "企业 IdP / AS",
+      "style": "external",
+      "sub": "AS 端点 / token exchange"
+    },
+    {
+      "id": "X-desk",
+      "kind": "external",
+      "label": "服务工单系统",
+      "style": "external",
+      "sub": "受限连接器端点"
+    }
+  ],
+  "edges": [
+    {
+      "id": "NET-1",
+      "from": "C-web",
+      "to": "AWS-alb",
+      "label": "1 · HTTPS",
+      "kind": "call"
+    },
+    {
+      "id": "NET-2",
+      "from": "AWS-alb",
+      "to": "C-api",
+      "label": "2 · BFF 目标",
+      "kind": "call"
+    },
+    {
+      "id": "NET-3",
+      "from": "C-api",
+      "to": "C-agent",
+      "label": "3 · 内部 HTTPS",
+      "kind": "call"
+    },
+    {
+      "id": "NET-4",
+      "from": "C-agent",
+      "to": "C-tools",
+      "label": "4 · MCP / HTTPS",
+      "kind": "call"
+    },
+    {
+      "id": "NET-5",
+      "from": "C-tools",
+      "to": "X-desk",
+      "label": "5 · 连接器 HTTPS",
+      "kind": "call"
+    },
+    {
+      "id": "NET-6",
+      "from": "C-agent",
+      "to": "X-idp",
+      "label": "token exchange / HTTPS",
+      "kind": "call"
+    }
+  ],
+  "groups": [
+    {
+      "id": "NET-app",
+      "title": "区域应用端点 · AZ-A + AZ-B",
+      "kind": "boundary"
+    }
+  ]
+}
