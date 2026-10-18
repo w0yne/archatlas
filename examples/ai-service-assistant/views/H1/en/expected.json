@@ -1,5 +1,5 @@
 {
-  "scenarioVersion": 1,
+  "scenarioVersion": 2,
   "entities": {},
   "invariants": [
     "I-bounds",
@@ -16,9 +16,19 @@
     "R-steward",
     "R-operator"
   ],
-  "missingFacts": [
-    "Formal accountable A for each activity",
-    "Consulted C and informed I assignments",
-    "Release/recovery decision owner"
+  "missingFacts": [],
+  "assumptions": [
+    "AS-ingest",
+    "AS-request",
+    "AS-policy",
+    "AS-raci",
+    "AS-network",
+    "AS-release",
+    "AS-observe",
+    "AS-domains",
+    "AS-data",
+    "AS-roadmap",
+    "AS-components",
+    "AS-interfaces"
   ]
 }

@@ -58,3 +58,10 @@
 **Codex 沙箱**
 - 默认使用 `workspace-write`。
 - 如果 bubblewrap 在当前机器上无法创建命名空间，就在 hosts 文件中设置 `sandbox: danger-full-access`。这时只靠临时目录隔离，所以完整评测要放在一次性的机器或容器里做。
+
+## 收敛后的 AI 场景契约
+
+S11/S12 使用未照抄样例的选型问题，覆盖审批/ACL 变化及明确不支持委托的身份前提；S6 保留安全评审基线。
+运行 `python -m pytest -q evals/tests/test_ai_contracts.py` 复测选型路由与跨图契约。
+这些确定性测试不调用智能体、不评分绘图，也不构成质量或性能对比；实时 S11/S12 使用现有 runner。
+历史报告分数仍绑定其记录的 skill/场景修订。

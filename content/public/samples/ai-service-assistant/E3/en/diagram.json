@@ -1,0 +1,141 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "E3",
+    "title": "E3 · Tool request conditions — state machine",
+    "lang": "en",
+    "state": "to-be",
+    "audience": "architects and reviewers",
+    "description": "Fictional teaching design; scenario.json version 2; illustrative assumptions, not a deployed system"
+  },
+  "layout": {
+    "template": "nested"
+  },
+  "nodes": [
+    {
+      "id": "E3-start",
+      "kind": "initial",
+      "label": "Start"
+    },
+    {
+      "id": "E3-unapproved",
+      "kind": "state",
+      "label": "Unapproved",
+      "style": "peer",
+      "sub": ""
+    },
+    {
+      "id": "E3-approved",
+      "kind": "state",
+      "label": "Approved",
+      "style": "peer",
+      "sub": ""
+    },
+    {
+      "id": "E3-executing",
+      "kind": "state",
+      "label": "Executing",
+      "style": "peer",
+      "sub": ""
+    },
+    {
+      "id": "E3-unknown",
+      "kind": "state",
+      "label": "Outcome unknown",
+      "style": "peer",
+      "sub": ""
+    },
+    {
+      "id": "E3-resolved",
+      "kind": "state",
+      "label": "Outcome recorded",
+      "style": "peer",
+      "sub": ""
+    },
+    {
+      "id": "E3-refused",
+      "kind": "state",
+      "label": "Refused",
+      "style": "peer",
+      "sub": ""
+    },
+    {
+      "id": "E3-final",
+      "kind": "final",
+      "label": "End"
+    }
+  ],
+  "edges": [
+    {
+      "id": "STATE-1",
+      "from": "E3-start",
+      "to": "E3-unapproved",
+      "label": "",
+      "kind": "call"
+    },
+    {
+      "id": "STATE-2",
+      "from": "E3-unapproved",
+      "to": "E3-approved",
+      "label": "approve / bind",
+      "kind": "call"
+    },
+    {
+      "id": "STATE-3",
+      "from": "E3-approved",
+      "to": "E3-executing",
+      "label": "execute [fresh]",
+      "kind": "call"
+    },
+    {
+      "id": "STATE-4",
+      "from": "E3-approved",
+      "to": "E3-refused",
+      "label": "execute [stale / denied]",
+      "kind": "call"
+    },
+    {
+      "id": "STATE-5",
+      "from": "E3-unapproved",
+      "to": "E3-refused",
+      "label": "execute [no approval]",
+      "kind": "call"
+    },
+    {
+      "id": "STATE-6",
+      "from": "E3-executing",
+      "to": "E3-unknown",
+      "label": "timeout / reconcile",
+      "kind": "call"
+    },
+    {
+      "id": "STATE-7",
+      "from": "E3-executing",
+      "to": "E3-resolved",
+      "label": "result / record",
+      "kind": "call"
+    },
+    {
+      "id": "STATE-8",
+      "from": "E3-unknown",
+      "to": "E3-resolved",
+      "label": "lookup [known]",
+      "kind": "call"
+    },
+    {
+      "id": "STATE-9",
+      "from": "E3-resolved",
+      "to": "E3-final",
+      "label": "close",
+      "kind": "call"
+    },
+    {
+      "id": "STATE-10",
+      "from": "E3-refused",
+      "to": "E3-final",
+      "label": "close",
+      "kind": "call"
+    }
+  ],
+  "groups": []
+}

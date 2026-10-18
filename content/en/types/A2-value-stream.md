@@ -171,5 +171,9 @@ Editorial grouping preserves the distinct notation; use this recipe and its chec
 
 ## Sample {#sample}
 <!-- skill: path only -->
-![A2 sample: value stream of an online shop from shopper to goods received](/samples/A2-value-stream.svg)
-*Value stream of an online shop: the shopper triggers five verb-noun stages (choose product, place order, pay for order, pack order, deliver order) that end in the value received, goods received. No times are shown; that is the Lean value-stream map (A9).*
+![A2 · Enterprise Service Assistant](/samples/ai-service-assistant/A2/en/diagram.svg)
+*Which stages does a stakeholder pass through, from trigger to delivered value, and which capabilities enable each stage?*
+
+[SVG](/samples/ai-service-assistant/A2/en/diagram.svg) · [Model JSON](/samples/ai-service-assistant/A2/en/diagram.json) · [Shared facts](/samples/ai-service-assistant/scenario.json)
+
+[Historical shop regression sample](/samples/A2-value-stream.svg) · [All 29 views](/use/ai-service-assistant) · [Illustrative assumptions](/use/ai-service-assistant-assumptions).

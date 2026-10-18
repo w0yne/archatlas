@@ -140,5 +140,9 @@ reviewed: false
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-![F3 示例：商城后台的角色权限矩阵（拟议）](/samples/F3-access-control-model.zh.svg)
-*商城后台的角色权限矩阵（RBAC，拟议）：六个角色为行，五个“资源：操作”组合为列。单元格写明允许、拒绝或适用的条件（本人订单、已分配的工单、限额以内、待打包订单）。默认拒绝；执行情况尚未验证。*
+![F3 · 企业服务助手](/samples/ai-service-assistant/F3/zh/diagram.svg)
+*显式授权取并集，再与当前租户/资源约束相交；策略拒绝优先。知识管理员读取须满足 ACL，运维权限不自动授予租户内容访问。*
+
+[SVG](/samples/ai-service-assistant/F3/zh/diagram.svg) · [模型 JSON](/samples/ai-service-assistant/F3/zh/diagram.json) · [共享事实](/samples/ai-service-assistant/scenario.json)
+
+[历史 shop 回归样例](/samples/F3-access-control-model.zh.svg) · [全部29幅视图](/zh/use/ai-service-assistant) · [示意假设](/zh/use/ai-service-assistant-assumptions).

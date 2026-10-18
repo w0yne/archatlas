@@ -1,5 +1,5 @@
 {
-  "scenarioVersion": 1,
+  "scenarioVersion": 2,
   "entities": {
     "C-web": "C-web",
     "AWS-alb": "AWS-alb",
@@ -15,9 +15,19 @@
     "I-approval"
   ],
   "projection": "focused view; omissions described in caption; not a deployed system",
-  "missingFacts": [
-    "Addressing / subnet and listener-port plan",
-    "DNS, routes, ingress and egress filters",
-    "Private endpoint versus egress mechanism and return paths"
+  "missingFacts": [],
+  "assumptions": [
+    "AS-ingest",
+    "AS-request",
+    "AS-policy",
+    "AS-raci",
+    "AS-network",
+    "AS-release",
+    "AS-observe",
+    "AS-domains",
+    "AS-data",
+    "AS-roadmap",
+    "AS-components",
+    "AS-interfaces"
   ]
 }

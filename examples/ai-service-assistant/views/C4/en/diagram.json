@@ -6,7 +6,7 @@
     "lang": "en",
     "state": "to-be",
     "audience": "architects and reviewers",
-    "description": "Fictional teaching design; scenario.json version 1"
+    "description": "Fictional teaching design; scenario.json version 2; illustrative assumptions, not a deployed system"
   },
   "layout": {
     "template": "nested"
@@ -22,26 +22,26 @@
     {
       "id": "P-retrieve",
       "kind": "component",
-      "label": "2. Authorize retrieval",
+      "label": "Authorized retriever",
       "parent": "B-agent",
       "style": "peer",
-      "sub": "P-retrieve · component · Tenant + ACL filters before search"
+      "sub": "authorized_retriever · Tenant + ACL filters before search"
     },
     {
       "id": "P-compose",
       "kind": "component",
-      "label": "3. Compose answer",
+      "label": "Answer composer",
       "parent": "B-agent",
       "style": "peer",
-      "sub": "P-compose · component · Prompt, model call, guardrails"
+      "sub": "answer_composer · Prompt, model call, guardrails"
     },
     {
       "id": "P-plan",
       "kind": "component",
-      "label": "1. Draft request",
+      "label": "Request planner",
       "parent": "B-agent",
       "style": "peer",
-      "sub": "P-plan · component · Structured proposal; never executes"
+      "sub": "request_planner · Requests only; gateway enforces"
     },
     {
       "id": "DS-index",

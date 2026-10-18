@@ -148,5 +148,9 @@ reviewed: false
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-![B2 示例：网店购物者的用户故事地图，含发布切片](/samples/B2-user-story-map.svg)
-*网店购物者的用户故事地图：从左到右四项活动（发现商品、比较商品、结账、跟踪配送），每一行是一个发布切片。第 1 切片是原型，覆盖一个完整的购物目标。图以表格形式绘制，没有任务卡片。*
+![B2 · 企业服务助手](/samples/ai-service-assistant/B2/zh/diagram.svg)
+*用户端到端要做哪些事？最小可用的第一个版本是什么？后续如何切片交付？*
+
+[SVG](/samples/ai-service-assistant/B2/zh/diagram.svg) · [模型 JSON](/samples/ai-service-assistant/B2/zh/diagram.json) · [共享事实](/samples/ai-service-assistant/scenario.json)
+
+[历史 shop 回归样例](/samples/B2-user-story-map.svg) · [全部29幅视图](/zh/use/ai-service-assistant) · [示意假设](/zh/use/ai-service-assistant-assumptions).

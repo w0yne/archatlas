@@ -6,7 +6,7 @@
     "lang": "zh",
     "state": "to-be",
     "audience": "architects and reviewers",
-    "description": "Fictional teaching design; scenario.json version 1"
+    "description": "Fictional teaching design; scenario.json version 2; illustrative assumptions, not a deployed system"
   },
   "layout": {
     "template": "nested"
@@ -31,7 +31,7 @@
       "kind": "task",
       "label": "质量 / 安全门禁",
       "style": "peer",
-      "sub": "延迟 + token 成本 · 阈值未定义"
+      "sub": "p95 ≤8秒 · 成本 ≤$0.02 · 质量 ≥0.85 · 严重安全问题 =0"
     },
     {
       "id": "G4-hold",
@@ -43,9 +43,9 @@
     {
       "id": "G4-release",
       "kind": "task",
-      "label": "发布交接",
+      "label": "按摘要批准发布",
       "style": "peer",
-      "sub": "审批人 / 部署执行方未定"
+      "sub": "知识管理员 A / 运维员 R"
     },
     {
       "id": "C-agent",
@@ -66,7 +66,7 @@
       "kind": "task",
       "label": "恢复决策",
       "style": "peer",
-      "sub": "策略 / 责任方未定"
+      "sub": "停止灰度 / 恢复兼容配置"
     }
   ],
   "edges": [
@@ -88,7 +88,7 @@
       "id": "DEL-3",
       "from": "G4-gate",
       "to": "G4-hold",
-      "label": "[失败 / 阈值未定]",
+      "label": "[门禁失败]",
       "kind": "dependency",
       "dashed": true
     },

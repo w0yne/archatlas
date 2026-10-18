@@ -199,8 +199,8 @@ Editorial grouping preserves the distinct notation; use this recipe and its chec
 ## Sample {#sample}
 <!-- skill: path only -->
 ![D2 · Enterprise Service Assistant](/samples/ai-service-assistant/D2/en/diagram.svg)
-*Level 1 decomposition of the knowledge-answer function, using Gane–Sarson symbols: rounded process, open-ended store and external rectangle. Arrow labels name data, not control steps. P-ingest belongs to C-ingest; retrieval/composition to C-agent; citation enforcement to C-api. The authorization filters derive from verified session context, never a user-selected tenant. Source ACLs accompany every version and chunk; current policy is enforced again when citations are opened. This focused function excludes ticket actions and the evaluation loop; it is not a claimed decomposition of the whole C2 system. Inputs are source+ACL and employee query+identity, plus model drafts; outputs are grounded prompts and authorized answers/citations. DS-app receives audit records.*
+*Tenant/ACL filtering is explicit before retrieval and current access is checked again when a citation is opened. This logical DFD covers knowledge answering; ticket writes and evaluation are separate views.*
 
 [SVG](/samples/ai-service-assistant/D2/en/diagram.svg) · [Model JSON](/samples/ai-service-assistant/D2/en/diagram.json) · [Shared facts](/samples/ai-service-assistant/scenario.json)
 
-[Historical shop sample (regression fixture)](/samples/D2-data-flow-diagram.svg) · [All seven views and assumptions](/use/ai-service-assistant).
+[Historical shop regression sample](/samples/D2-data-flow-diagram.svg) · [All 29 views](/use/ai-service-assistant) · [Illustrative assumptions](/use/ai-service-assistant-assumptions).

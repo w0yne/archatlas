@@ -1,5 +1,5 @@
 {
-  "scenarioVersion": 1,
+  "scenarioVersion": 2,
   "entities": {
     "X-doc": "X-doc",
     "P-ingest": "P-ingest",
@@ -17,5 +17,7 @@
     "I-eval",
     "I-operator"
   ],
-  "projection": "focused view; omissions described in caption; not a deployed system"
+  "projection": "focused view; omissions described in caption; not a deployed system",
+  "missingFacts": [],
+  "assumptions": []
 }

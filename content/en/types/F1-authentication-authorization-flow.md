@@ -151,8 +151,8 @@ Model template: `assets/templates/F1.json` · Layout template: `sequence` · par
 ## Sample {#sample}
 <!-- skill: path only -->
 ![F1 · Enterprise Service Assistant](/samples/ai-service-assistant/F1/en/diagram.svg)
-*Downstream delegation after BFF authorization-code sign-in with PKCE, state and nonce validation. The BFF holds ID/access tokens server-side and exposes only a secure session cookie. The AS explicitly issues an agent-scoped subject token; the Agent authenticates as agent-client to exchange it. The tool token is issued by enterprise-as for mcp-tool-gateway, with employee subject, agent actor, verified tenant, allowed scopes and short expiry. Signature, issuer, audience and expiry validation precede policy and approval enforcement. The AS delegation capability and Service Desk connector scopes are unverified teaching assumptions; if unsupported, redesign instead of forwarding a token with the wrong audience. Solid arrows are back-channel requests, dashed arrows replies; browser redirects belong to the prerequisite sign-in, not this figure.*
+*The exchange request is common to both allow and deny paths. Agent is the authenticated exchange client. Tool proof binds issuer, audience, subject, actor, tenant and scopes; verification never replaces current authorization. AS delegation support is an implementation prerequisite.*
 
 [SVG](/samples/ai-service-assistant/F1/en/diagram.svg) · [Model JSON](/samples/ai-service-assistant/F1/en/diagram.json) · [Shared facts](/samples/ai-service-assistant/scenario.json)
 
-[Historical shop sample (regression fixture)](/samples/F1-authentication-authorization-flow.svg) · [All seven views and assumptions](/use/ai-service-assistant).
+[Historical shop regression sample](/samples/F1-authentication-authorization-flow.svg) · [All 29 views](/use/ai-service-assistant) · [Illustrative assumptions](/use/ai-service-assistant-assumptions).

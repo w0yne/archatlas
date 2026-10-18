@@ -125,5 +125,9 @@ Model template: `assets/templates/H1.json` · Layout template: `grid_table` · o
 
 ## Sample {#sample}
 <!-- skill: path only -->
-![H1 sample: RACI matrix for a checkout release](/samples/H1-raci-matrix.svg)
-*RACI matrix for a checkout release: four activities by four roles (product owner, shop manager, support lead, engineer). Every row has one accountable (A) and at least one responsible (R); A/R means one role holds both.*
+![H1 · Enterprise Service Assistant](/samples/ai-service-assistant/H1/en/diagram.svg)
+*Illustrative governance: one A and at least one R per scoped activity. Steward is accountable for release/recovery approval; operator executes the scoped workflow. Accountability grants no data-plane permission.*
+
+[SVG](/samples/ai-service-assistant/H1/en/diagram.svg) · [Model JSON](/samples/ai-service-assistant/H1/en/diagram.json) · [Shared facts](/samples/ai-service-assistant/scenario.json)
+
+[Historical shop regression sample](/samples/H1-raci-matrix.svg) · [All 29 views](/use/ai-service-assistant) · [Illustrative assumptions](/use/ai-service-assistant-assumptions).

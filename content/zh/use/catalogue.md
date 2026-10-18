@@ -40,4 +40,4 @@ reviewed: true
 - [I1 · 4+1 视图模型](/zh/types/i1-four-plus-one)
 - [I2 · ArchiMate 分层视图](/zh/types/i2-archimate-layered-view)
 
-[企业服务助手：七幅视图](/zh/use/ai-service-assistant)
+[企业服务助手：29幅视图](/zh/use/ai-service-assistant)

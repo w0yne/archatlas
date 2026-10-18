@@ -113,3 +113,12 @@ run and mention a sandbox path. Any hit fails the run.
 bubblewrap cannot create namespaces, set `sandbox: danger-full-access` in the hosts file.
 The run is then contained only by its temporary directory, so use a disposable machine or
 container for full evaluations.
+
+## Consolidated AI-scenario contracts
+
+S11 and S12 are held-out selection prompts for approval/ACL changes and an explicitly
+unsupported delegation capability. S6 retains the security-review baseline. Run
+`python -m pytest -q evals/tests/test_ai_contracts.py` for their deterministic routing and
+cross-view contract regressions. These tests do not run an agent, grade a drawing, or
+produce a quality/performance comparison. Live S11/S12 runs use the existing runner.
+Historical report scores remain bound to their recorded skill/scenario revisions.

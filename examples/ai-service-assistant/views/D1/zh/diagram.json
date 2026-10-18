@@ -6,7 +6,7 @@
     "lang": "zh",
     "state": "to-be",
     "audience": "architects and reviewers",
-    "description": "Fictional teaching design; scenario.json version 1"
+    "description": "Fictional teaching design; scenario.json version 2; illustrative assumptions, not a deployed system"
   },
   "layout": {
     "template": "er"
@@ -38,7 +38,7 @@
       "kind": "entity",
       "label": "审批",
       "style": "peer",
-      "sub": "审批 ID（PK） · 租户、主体、工具 · 参数 hash、有效期"
+      "sub": "审批 ID（PK） · 租户、主体、工具 · hash、有效期、幂等键"
     },
     {
       "id": "DE-docver",
@@ -59,7 +59,7 @@
       "kind": "entity",
       "label": "执行",
       "style": "peer",
-      "sub": "幂等键（PK） · 审批 ID · 结果"
+      "sub": "租户/工具/键（PK） · 审批 ID · 结果"
     },
     {
       "id": "DE-chunk",

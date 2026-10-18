@@ -63,4 +63,4 @@ Version 0.1.0 is a pre-release in this repository: 40 diagram types in English a
 
 ## AI-era sample
 
-[Enterprise Service Assistant: seven views](/use/ai-service-assistant)
+[Enterprise Service Assistant: 29 views](/use/ai-service-assistant)

@@ -172,5 +172,9 @@ Model template: `assets/templates/A1.json` · Layout template: `layered` · tier
 
 ## Sample {#sample}
 <!-- skill: path only -->
-![A1 sample: capability map of an online shop in three tiers with a maturity lens](/samples/A1-capability-map.svg)
-*Business capabilities of an online shop in three tiers (Strategic, Core, Supporting). Each tier is a tinted zone holding Level 1 groups, and each group holds two Level 2 capability tiles; there are no arrows. One lens colours the tiles, maturity against the target as of 2026-10: green at the desired level, gray one level below (chip “gap 1”), purple desired but not yet existing (chip “new”). The ratings are illustrative.*
+![A1 · Enterprise Service Assistant](/samples/ai-service-assistant/A1/en/diagram.svg)
+*What can the organisation do, independent of who or what does it, and where should it invest?*
+
+[SVG](/samples/ai-service-assistant/A1/en/diagram.svg) · [Model JSON](/samples/ai-service-assistant/A1/en/diagram.json) · [Shared facts](/samples/ai-service-assistant/scenario.json)
+
+[Historical shop regression sample](/samples/A1-capability-map.svg) · [All 29 views](/use/ai-service-assistant) · [Illustrative assumptions](/use/ai-service-assistant-assumptions).

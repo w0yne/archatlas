@@ -194,5 +194,9 @@ Editorial grouping preserves the distinct notation; use this recipe and its chec
 
 ## Sample {#sample}
 <!-- skill: path only -->
-![C5 sample: logical view of an online shop with responsibility blocks](/samples/C5-logical-architecture.svg)
-*Logical view of the online shop: building blocks grouped by responsibility in tinted zones (Selling: catalogue, cart, checkout; Fulfilment: order management, stock, shipping; Payments: payment handling, invoicing; Customer support: chat assistant). Order management is the subject (the dark block); each dependency is labelled with what is exchanged, and the payment provider and carrier sit outside the boundary.*
+![C5 · Enterprise Service Assistant](/samples/ai-service-assistant/C5/en/diagram.svg)
+*Seen by responsibility and without technology choices, which modules and interfaces must the system have?*
+
+[SVG](/samples/ai-service-assistant/C5/en/diagram.svg) · [Model JSON](/samples/ai-service-assistant/C5/en/diagram.json) · [Shared facts](/samples/ai-service-assistant/scenario.json)
+
+[Historical shop regression sample](/samples/C5-logical-architecture.svg) · [All 29 views](/use/ai-service-assistant) · [Illustrative assumptions](/use/ai-service-assistant-assumptions).

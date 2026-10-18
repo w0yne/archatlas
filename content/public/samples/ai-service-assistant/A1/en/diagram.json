@@ -1,0 +1,149 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "A1",
+    "title": "A1 · Enterprise Service Assistant — business capabilities, target state",
+    "lang": "en",
+    "state": "to-be",
+    "audience": "architects and business reviewers",
+    "description": "Fictional teaching design; scenario.json version 2; illustrative assumptions, not a deployed system"
+  },
+  "layout": {
+    "template": "layered"
+  },
+  "nodes": [
+    {
+      "id": "CAP-quality",
+      "kind": "component",
+      "label": "Answer quality evaluation",
+      "style": "peer",
+      "parent": "CAP-performance"
+    },
+    {
+      "id": "CAP-cost",
+      "kind": "component",
+      "label": "Usage cost management",
+      "style": "peer",
+      "parent": "CAP-performance"
+    },
+    {
+      "id": "CAP-question",
+      "kind": "component",
+      "label": "Question answering",
+      "style": "peer",
+      "parent": "CAP-answering"
+    },
+    {
+      "id": "CAP-citation",
+      "kind": "component",
+      "label": "Source citation",
+      "style": "peer",
+      "parent": "CAP-answering"
+    },
+    {
+      "id": "CAP-drafting",
+      "kind": "component",
+      "label": "Request drafting",
+      "style": "peer",
+      "parent": "CAP-requests"
+    },
+    {
+      "id": "CAP-approval",
+      "kind": "component",
+      "label": "Request approval",
+      "style": "peer",
+      "parent": "CAP-requests"
+    },
+    {
+      "id": "CAP-fulfilment",
+      "kind": "component",
+      "label": "Ticket fulfilment",
+      "style": "peer",
+      "parent": "CAP-requests"
+    },
+    {
+      "id": "CAP-curation",
+      "kind": "component",
+      "label": "Knowledge curation",
+      "style": "peer",
+      "parent": "CAP-knowledge"
+    },
+    {
+      "id": "CAP-access",
+      "kind": "component",
+      "label": "Access policy management",
+      "style": "peer",
+      "parent": "CAP-knowledge"
+    },
+    {
+      "id": "CAP-verify",
+      "kind": "component",
+      "label": "Identity verification",
+      "style": "peer",
+      "parent": "CAP-identity"
+    },
+    {
+      "id": "CAP-delegation",
+      "kind": "component",
+      "label": "Delegated authorization",
+      "style": "peer",
+      "parent": "CAP-identity"
+    }
+  ],
+  "edges": [],
+  "groups": [
+    {
+      "id": "TIER-strategic",
+      "title": "Strategic",
+      "kind": "layer",
+      "tint": "biz"
+    },
+    {
+      "id": "CAP-performance",
+      "title": "Assistant performance management",
+      "kind": "frame",
+      "tint": "neutral",
+      "parent": "TIER-strategic"
+    },
+    {
+      "id": "TIER-core",
+      "title": "Core",
+      "kind": "layer",
+      "tint": "app"
+    },
+    {
+      "id": "CAP-answering",
+      "title": "Knowledge answering",
+      "kind": "frame",
+      "tint": "neutral",
+      "parent": "TIER-core"
+    },
+    {
+      "id": "CAP-requests",
+      "title": "Service request management",
+      "kind": "frame",
+      "tint": "neutral",
+      "parent": "TIER-core"
+    },
+    {
+      "id": "TIER-supporting",
+      "title": "Supporting",
+      "kind": "layer",
+      "tint": "tech"
+    },
+    {
+      "id": "CAP-knowledge",
+      "title": "Knowledge management",
+      "kind": "frame",
+      "tint": "neutral",
+      "parent": "TIER-supporting"
+    },
+    {
+      "id": "CAP-identity",
+      "title": "Identity and access",
+      "kind": "frame",
+      "tint": "neutral",
+      "parent": "TIER-supporting"
+    }
+  ]
+}

@@ -194,8 +194,8 @@ reviewed: false
 ## 示例图 {#sample}
 <!-- skill: path only -->
 ![C2 · 企业服务助手](/samples/ai-service-assistant/C2/zh/diagram.svg)
-*一个自有系统及其直接邻居。箭头表示发起方到依赖方；此层不含协议或内部存储。人员是角色而非真实个人，三个租户均为合成数据。*
+*我们的软件系统是什么？谁在用？依赖哪些外部系统？*
 
 [SVG](/samples/ai-service-assistant/C2/zh/diagram.svg) · [模型 JSON](/samples/ai-service-assistant/C2/zh/diagram.json) · [共享事实](/samples/ai-service-assistant/scenario.json)
 
-[历史 shop 样例（回归 fixture）](/samples/C2-system-context.zh.svg) · [七幅视图及假设](/zh/use/ai-service-assistant).
+[历史 shop 回归样例](/samples/C2-system-context.zh.svg) · [全部29幅视图](/zh/use/ai-service-assistant) · [示意假设](/zh/use/ai-service-assistant-assumptions).

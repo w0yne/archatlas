@@ -66,4 +66,4 @@ const { theme } = useData();
 
 ## AI 应用样例
 
-[企业服务助手：七幅视图](/zh/use/ai-service-assistant)
+[企业服务助手：29幅视图](/zh/use/ai-service-assistant)

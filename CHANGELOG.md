@@ -1,6 +1,17 @@
 # Changelog
 
-## Unreleased — catalogue and AI sample candidate
+## Unreleased — integrated scenario and complete view set
+
+- Integrate all 25 core views and four named variants, with 58 hand-authored EN/ZH SVGs;
+  preserve AWS as G1 headline and add its separate generic hosting counterpart.
+- Resolve teaching assumptions centrally in scenario/glossary version 2: ingestion,
+  lifecycle, permissions, accountability, network, release/recovery, telemetry, data and interfaces.
+- Validate semantic projections against shared definitions, publish all manifest entries,
+  include the shared glossary in packages and add targeted S6/S11/S12 contract regressions.
+- Historical scores/fixtures are unchanged. Production validation and independent review
+  remain separate; these are illustrative diagrams, not deployed or benchmarked services.
+
+## Catalogue consolidation foundation
 
 - Consolidate discovery to 25 core entries, 10 named variants and 5 method references,
   preserving all 40 stable codes, bilingual legacy pages, anchors and historical samples.
@@ -9,8 +20,8 @@
 - Add frozen fictional Enterprise Service Assistant facts and seven hand-authored sample
   views per language; validate manifest, shared labels/topology and byte-preserving copying.
 - Package the same scenario and examples with the skill. Preserve historical eval revisions.
-- Follow-up: remaining core examples, E4, separate vendor-neutral G1, affected evaluation
-  scenarios, independent review and release-level publication checks. See
+- The integrated candidate completes core/variant examples and contract synchronization.
+  Independent review and release-level publication checks remain. See
   [decision](docs/decisions/2026-10-consolidation.md).
 
 

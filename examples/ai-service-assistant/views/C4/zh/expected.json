@@ -1,5 +1,5 @@
 {
-  "scenarioVersion": 1,
+  "scenarioVersion": 2,
   "entities": {
     "C-api": "C-api",
     "P-retrieve": "P-retrieve",
@@ -16,5 +16,7 @@
     "I-delegation",
     "I-approval"
   ],
-  "projection": "focused view; omissions described in caption; not a deployed system"
+  "projection": "focused view; omissions described in caption; not a deployed system",
+  "missingFacts": [],
+  "assumptions": []
 }

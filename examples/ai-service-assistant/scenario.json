@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "id": "enterprise-service-assistant",
   "status": "fictional teaching design; not deployed or benchmarked",
   "name": {
@@ -272,7 +272,17 @@
         "en": "2. Authorize retrieval",
         "zh": "2. 授权检索"
       },
-      "owner": "C-agent"
+      "owner": "C-agent",
+      "viewLabels": {
+        "en": [
+          "Authorized retriever",
+          "2. Tenant/ACL filter"
+        ],
+        "zh": [
+          "授权检索器",
+          "2. tenant/ACL 预过滤"
+        ]
+      }
     },
     "P-compose": {
       "labels": {
@@ -285,7 +295,15 @@
         "en": "3. Compose answer",
         "zh": "3. 生成回答"
       },
-      "owner": "C-agent"
+      "owner": "C-agent",
+      "viewLabels": {
+        "en": [
+          "Answer composer"
+        ],
+        "zh": [
+          "回答生成器"
+        ]
+      }
     },
     "P-cite": {
       "labels": {
@@ -311,7 +329,15 @@
         "en": "1. Draft request",
         "zh": "1. 起草请求"
       },
-      "owner": "C-agent"
+      "owner": "C-agent",
+      "viewLabels": {
+        "en": [
+          "Request planner"
+        ],
+        "zh": [
+          "请求规划器"
+        ]
+      }
     },
     "P-approve": {
       "labels": {
@@ -459,6 +485,742 @@
         "en": "Telemetry, keys, scoped secrets",
         "zh": "遥测、密钥、受限凭据"
       }
+    },
+    "CAP-performance": {
+      "kind": "capability",
+      "level": 1,
+      "tier": "strategic",
+      "technology": "",
+      "labels": {
+        "en": "Assistant performance management",
+        "zh": "助手绩效管理"
+      },
+      "responsibility": {
+        "en": "Ability to keep the assistant useful, safe and affordable",
+        "zh": "保持助手有用、安全且成本可控的能力"
+      },
+      "status": "illustrative assumption"
+    },
+    "CAP-answering": {
+      "kind": "capability",
+      "level": 1,
+      "tier": "core",
+      "technology": "",
+      "labels": {
+        "en": "Knowledge answering",
+        "zh": "知识问答"
+      },
+      "responsibility": {
+        "en": "Ability to answer employees from permitted knowledge",
+        "zh": "基于许可知识回答员工的能力"
+      },
+      "status": "illustrative assumption"
+    },
+    "CAP-requests": {
+      "kind": "capability",
+      "level": 1,
+      "tier": "core",
+      "technology": "",
+      "labels": {
+        "en": "Service request management",
+        "zh": "服务请求管理"
+      },
+      "responsibility": {
+        "en": "Ability to turn needs into approved service tickets",
+        "zh": "把需求转为经审批服务工单的能力"
+      },
+      "status": "illustrative assumption"
+    },
+    "CAP-knowledge": {
+      "kind": "capability",
+      "level": 1,
+      "tier": "supporting",
+      "technology": "",
+      "labels": {
+        "en": "Knowledge management",
+        "zh": "知识管理"
+      },
+      "responsibility": {
+        "en": "Ability to maintain tenant knowledge and its access rules",
+        "zh": "维护本租户知识及其访问规则的能力"
+      },
+      "status": "illustrative assumption"
+    },
+    "CAP-identity": {
+      "kind": "capability",
+      "level": 1,
+      "tier": "supporting",
+      "technology": "",
+      "labels": {
+        "en": "Identity and access",
+        "zh": "身份与访问"
+      },
+      "responsibility": {
+        "en": "Ability to know who acts and with which authority",
+        "zh": "确定行为主体及其权限的能力"
+      },
+      "status": "illustrative assumption"
+    },
+    "CAP-quality": {
+      "kind": "capability",
+      "level": 2,
+      "parent": "CAP-performance",
+      "technology": "",
+      "labels": {
+        "en": "Answer quality evaluation",
+        "zh": "回答质量评估"
+      },
+      "responsibility": {
+        "en": "Ability to judge answer quality and safety before a change is promoted",
+        "zh": "在变更晋级前评估回答质量与安全的能力"
+      },
+      "status": "illustrative assumption"
+    },
+    "CAP-cost": {
+      "kind": "capability",
+      "level": 2,
+      "parent": "CAP-performance",
+      "technology": "",
+      "labels": {
+        "en": "Usage cost management",
+        "zh": "使用成本管理"
+      },
+      "responsibility": {
+        "en": "Ability to measure and gate model token cost",
+        "zh": "度量并门禁模型 token 成本的能力"
+      },
+      "status": "illustrative assumption"
+    },
+    "CAP-question": {
+      "kind": "capability",
+      "level": 2,
+      "parent": "CAP-answering",
+      "technology": "",
+      "labels": {
+        "en": "Question answering",
+        "zh": "问题解答"
+      },
+      "responsibility": {
+        "en": "Ability to answer from the tenant knowledge the employee may read",
+        "zh": "基于员工可读的本租户知识作答的能力"
+      },
+      "status": "illustrative assumption"
+    },
+    "CAP-citation": {
+      "kind": "capability",
+      "level": 2,
+      "parent": "CAP-answering",
+      "technology": "",
+      "labels": {
+        "en": "Source citation",
+        "zh": "来源引用"
+      },
+      "responsibility": {
+        "en": "Ability to show sources the employee may still open",
+        "zh": "展示员工当前仍可打开的来源的能力"
+      },
+      "status": "illustrative assumption"
+    },
+    "CAP-drafting": {
+      "kind": "capability",
+      "level": 2,
+      "parent": "CAP-requests",
+      "technology": "",
+      "labels": {
+        "en": "Request drafting",
+        "zh": "请求起草"
+      },
+      "responsibility": {
+        "en": "Ability to turn a service need into a structured draft",
+        "zh": "把服务需求转成结构化草稿的能力"
+      },
+      "status": "illustrative assumption"
+    },
+    "CAP-approval": {
+      "kind": "capability",
+      "level": 2,
+      "parent": "CAP-requests",
+      "technology": "",
+      "labels": {
+        "en": "Request approval",
+        "zh": "请求审批"
+      },
+      "responsibility": {
+        "en": "Ability to bind an employee's approval to one exact draft",
+        "zh": "把员工审批绑定到唯一确定草稿的能力"
+      },
+      "status": "illustrative assumption"
+    },
+    "CAP-fulfilment": {
+      "kind": "capability",
+      "level": 2,
+      "parent": "CAP-requests",
+      "technology": "",
+      "labels": {
+        "en": "Ticket fulfilment",
+        "zh": "工单履行"
+      },
+      "responsibility": {
+        "en": "Ability to create each approved ticket exactly once",
+        "zh": "每个已审批工单只创建一次的能力"
+      },
+      "status": "illustrative assumption"
+    },
+    "CAP-curation": {
+      "kind": "capability",
+      "level": 2,
+      "parent": "CAP-knowledge",
+      "technology": "",
+      "labels": {
+        "en": "Knowledge curation",
+        "zh": "知识维护"
+      },
+      "responsibility": {
+        "en": "Ability to keep tenant documents current and versioned",
+        "zh": "保持本租户文档最新且有版本的能力"
+      },
+      "status": "illustrative assumption"
+    },
+    "CAP-access": {
+      "kind": "capability",
+      "level": 2,
+      "parent": "CAP-knowledge",
+      "technology": "",
+      "labels": {
+        "en": "Access policy management",
+        "zh": "访问策略管理"
+      },
+      "responsibility": {
+        "en": "Ability to keep source ACLs in force at search and citation",
+        "zh": "在检索与引用时保持源 ACL 生效的能力"
+      },
+      "status": "illustrative assumption"
+    },
+    "CAP-verify": {
+      "kind": "capability",
+      "level": 2,
+      "parent": "CAP-identity",
+      "technology": "",
+      "labels": {
+        "en": "Identity verification",
+        "zh": "身份验证"
+      },
+      "responsibility": {
+        "en": "Ability to establish the employee and tenant of each session",
+        "zh": "确定每个会话的员工与租户的能力"
+      },
+      "status": "illustrative assumption"
+    },
+    "CAP-delegation": {
+      "kind": "capability",
+      "level": 2,
+      "parent": "CAP-identity",
+      "technology": "",
+      "labels": {
+        "en": "Delegated authorization",
+        "zh": "委托授权"
+      },
+      "responsibility": {
+        "en": "Ability to act for an employee only within granted scopes",
+        "zh": "仅在授予范围内代表员工行事的能力"
+      },
+      "status": "illustrative assumption"
+    },
+    "VS-ask": {
+      "kind": "value-stage",
+      "technology": "",
+      "labels": {
+        "en": "Ask question",
+        "zh": "提出问题"
+      },
+      "responsibility": {
+        "en": "Entrance: service need raised · Exit: question accepted for own tenant",
+        "zh": "进入：提出服务需求 · 退出：问题在本租户内受理"
+      },
+      "status": "illustrative assumption"
+    },
+    "VS-answer": {
+      "kind": "value-stage",
+      "technology": "",
+      "labels": {
+        "en": "Get cited answer",
+        "zh": "获得带来源回答"
+      },
+      "responsibility": {
+        "en": "Exit: cited answer received",
+        "zh": "退出：收到带来源的回答"
+      },
+      "status": "illustrative assumption"
+    },
+    "VS-draft": {
+      "kind": "value-stage",
+      "technology": "",
+      "labels": {
+        "en": "Draft request",
+        "zh": "起草请求"
+      },
+      "responsibility": {
+        "en": "Exit: exact draft shown",
+        "zh": "退出：展示确定的草稿"
+      },
+      "status": "illustrative assumption"
+    },
+    "VS-approve": {
+      "kind": "value-stage",
+      "technology": "",
+      "labels": {
+        "en": "Approve request",
+        "zh": "审批请求"
+      },
+      "responsibility": {
+        "en": "Exit: approval bound to the draft",
+        "zh": "退出：审批已绑定草稿"
+      },
+      "status": "illustrative assumption"
+    },
+    "VS-ticket": {
+      "kind": "value-stage",
+      "technology": "",
+      "labels": {
+        "en": "Receive ticket",
+        "zh": "获得工单"
+      },
+      "responsibility": {
+        "en": "Exit: ticket created once",
+        "zh": "退出：工单只创建一次"
+      },
+      "status": "illustrative assumption"
+    },
+    "EV-need": {
+      "kind": "event",
+      "technology": "",
+      "labels": {
+        "en": "Ticket needed",
+        "zh": "需要工单"
+      },
+      "responsibility": {
+        "en": "Start: the employee needs a service ticket",
+        "zh": "开始：员工需要服务工单"
+      },
+      "owner": "R-employee",
+      "status": "illustrative assumption"
+    },
+    "P-ask": {
+      "kind": "process",
+      "technology": "",
+      "labels": {
+        "en": "Ask for a ticket",
+        "zh": "请求工单"
+      },
+      "responsibility": {
+        "en": "Ask for a ticket",
+        "zh": "请求工单"
+      },
+      "owner": "R-employee",
+      "status": "illustrative assumption"
+    },
+    "P-review": {
+      "kind": "process",
+      "technology": "",
+      "labels": {
+        "en": "Review draft",
+        "zh": "查看草稿"
+      },
+      "responsibility": {
+        "en": "Review draft",
+        "zh": "查看草稿"
+      },
+      "owner": "R-employee",
+      "status": "illustrative assumption"
+    },
+    "G-approve": {
+      "kind": "gateway",
+      "technology": "",
+      "labels": {
+        "en": "Approve draft?",
+        "zh": "批准草稿？"
+      },
+      "responsibility": {
+        "en": "Employee decides on the exact draft",
+        "zh": "员工对确定草稿作出决定"
+      },
+      "owner": "R-employee",
+      "status": "illustrative assumption"
+    },
+    "P-confirm": {
+      "kind": "process",
+      "technology": "",
+      "labels": {
+        "en": "Approve draft",
+        "zh": "批准草稿"
+      },
+      "responsibility": {
+        "en": "Approve draft",
+        "zh": "批准草稿"
+      },
+      "owner": "R-employee",
+      "status": "illustrative assumption"
+    },
+    "EV-approved": {
+      "kind": "event",
+      "technology": "",
+      "labels": {
+        "en": "Draft approved",
+        "zh": "草稿已批准"
+      },
+      "responsibility": {
+        "en": "End: the employee approved the draft",
+        "zh": "结束：员工已批准草稿"
+      },
+      "owner": "R-employee",
+      "status": "illustrative assumption"
+    },
+    "EV-declined": {
+      "kind": "event",
+      "technology": "",
+      "labels": {
+        "en": "Request declined",
+        "zh": "请求被拒绝"
+      },
+      "responsibility": {
+        "en": "End: the employee declined; the draft expires unused",
+        "zh": "结束：员工拒绝；草稿过期作废"
+      },
+      "owner": "R-employee",
+      "status": "illustrative assumption"
+    },
+    "EV-received": {
+      "kind": "event",
+      "technology": "",
+      "labels": {
+        "en": "Request received",
+        "zh": "收到请求"
+      },
+      "responsibility": {
+        "en": "Start: the assistant receives a ticket request",
+        "zh": "开始：助手收到工单请求"
+      },
+      "owner": "S-assistant",
+      "status": "illustrative assumption"
+    },
+    "EV-created": {
+      "kind": "event",
+      "technology": "",
+      "labels": {
+        "en": "Ticket created",
+        "zh": "工单已创建"
+      },
+      "responsibility": {
+        "en": "End: Service Desk created the ticket once for the idempotency key",
+        "zh": "结束：工单系统按幂等键只创建一次工单"
+      },
+      "owner": "X-desk",
+      "status": "illustrative assumption"
+    },
+    "EV-requested": {
+      "kind": "event",
+      "technology": "",
+      "labels": {
+        "en": "Ticket requested",
+        "zh": "请求创建工单"
+      },
+      "responsibility": {
+        "en": "Start: the employee asks for a ticket in chat",
+        "zh": "开始：员工在对话中请求工单"
+      },
+      "owner": "C-web",
+      "status": "illustrative assumption"
+    },
+    "P-show": {
+      "kind": "process",
+      "technology": "",
+      "labels": {
+        "en": "Show exact draft",
+        "zh": "展示确定草稿"
+      },
+      "responsibility": {
+        "en": "Show exact draft",
+        "zh": "展示确定草稿"
+      },
+      "owner": "C-web",
+      "status": "illustrative assumption"
+    },
+    "P-exchange": {
+      "kind": "process",
+      "technology": "",
+      "labels": {
+        "en": "Exchange for tool token",
+        "zh": "换取工具 token"
+      },
+      "responsibility": {
+        "en": "Exchange for tool token",
+        "zh": "换取工具 token"
+      },
+      "owner": "C-agent",
+      "status": "illustrative assumption"
+    },
+    "G-checks": {
+      "kind": "gateway",
+      "technology": "",
+      "labels": {
+        "en": "Checks pass?",
+        "zh": "校验通过？"
+      },
+      "responsibility": {
+        "en": "Token, approval binding, tenant and current policy all valid",
+        "zh": "token、审批绑定、租户与当前权限均有效"
+      },
+      "owner": "C-tools",
+      "status": "illustrative assumption"
+    },
+    "P-create": {
+      "kind": "process",
+      "technology": "",
+      "labels": {
+        "en": "Create ticket once",
+        "zh": "按键创建工单"
+      },
+      "responsibility": {
+        "en": "Create ticket once",
+        "zh": "按键创建工单"
+      },
+      "owner": "X-desk",
+      "status": "illustrative assumption"
+    },
+    "EV-rejected": {
+      "kind": "event",
+      "technology": "",
+      "labels": {
+        "en": "Rejected, no desk call",
+        "zh": "拒绝，不调用工单"
+      },
+      "responsibility": {
+        "en": "End: refused before any Service Desk call",
+        "zh": "结束：在调用工单系统前拒绝"
+      },
+      "owner": "C-tools",
+      "status": "illustrative assumption"
+    },
+    "ST-baseline": {
+      "kind": "roadmap-state",
+      "technology": "",
+      "labels": {
+        "en": "Baseline: search + manual tickets",
+        "zh": "基线：搜索 + 人工提单"
+      },
+      "responsibility": {
+        "en": "Employees search the Document Repository and file tickets by hand",
+        "zh": "员工在文档源系统中搜索并手工提交工单"
+      },
+      "status": "illustrative assumption"
+    },
+    "ST-answers": {
+      "kind": "roadmap-state",
+      "technology": "",
+      "labels": {
+        "en": "T1: Cited answers",
+        "zh": "T1：带来源回答"
+      },
+      "responsibility": {
+        "en": "Tenant-safe answers and read-only tools (catalogue.lookup, ticket.read)",
+        "zh": "租户安全的回答与只读工具（catalogue.lookup、ticket.read）"
+      },
+      "status": "illustrative assumption"
+    },
+    "ST-tickets": {
+      "kind": "roadmap-state",
+      "technology": "",
+      "labels": {
+        "en": "T2: Approved tickets",
+        "zh": "T2：经审批的工单"
+      },
+      "responsibility": {
+        "en": "ticket.create after bound approval, reauthorization and idempotent execution",
+        "zh": "绑定审批、再授权与幂等执行后开放 ticket.create"
+      },
+      "status": "illustrative assumption"
+    },
+    "ST-target": {
+      "kind": "roadmap-state",
+      "technology": "",
+      "labels": {
+        "en": "Target: gated changes",
+        "zh": "目标：门禁变更"
+      },
+      "responsibility": {
+        "en": "Prompt/model/dataset changes promoted only through quality, safety, latency and cost gates",
+        "zh": "prompt/model/dataset 变更须通过质量、安全、延迟与成本门禁才晋级"
+      },
+      "status": "illustrative assumption"
+    },
+    "WP-retrieval": {
+      "kind": "work-package",
+      "technology": "",
+      "labels": {
+        "en": "Tenant-safe retrieval",
+        "zh": "租户安全检索"
+      },
+      "responsibility": {
+        "en": "Versioned ingestion with ACLs, pre-retrieval tenant/ACL filter, citation re-check",
+        "zh": "带 ACL 的版本化摄取、检索前 tenant/ACL 过滤、引用复核"
+      },
+      "status": "illustrative assumption"
+    },
+    "WP-approval": {
+      "kind": "work-package",
+      "technology": "",
+      "labels": {
+        "en": "Approval binding",
+        "zh": "审批绑定"
+      },
+      "responsibility": {
+        "en": "Approval record, fresh authorization, idempotency key",
+        "zh": "审批记录、执行前再授权、幂等键"
+      },
+      "status": "illustrative assumption"
+    },
+    "WP-eval": {
+      "kind": "work-package",
+      "technology": "",
+      "labels": {
+        "en": "Evaluation gates",
+        "zh": "评测门禁"
+      },
+      "responsibility": {
+        "en": "Steward-approved export, offline evaluation identity, promotion gates",
+        "zh": "管理员批准的导出、离线评测身份、晋级门禁"
+      },
+      "status": "illustrative assumption"
+    },
+    "DE-tenant": {
+      "labels": {
+        "en": "Tenant",
+        "zh": "租户"
+      },
+      "kind": "data-entity",
+      "technology": "",
+      "responsibility": {
+        "en": "Isolation boundary for every record",
+        "zh": "所有记录的隔离边界"
+      },
+      "status": "illustrative assumption"
+    },
+    "DE-member": {
+      "labels": {
+        "en": "Membership",
+        "zh": "成员关系"
+      },
+      "kind": "data-entity",
+      "technology": "",
+      "responsibility": {
+        "en": "An employee's role in one tenant",
+        "zh": "员工在某租户中的角色"
+      },
+      "status": "illustrative assumption"
+    },
+    "DE-chat": {
+      "labels": {
+        "en": "Chat",
+        "zh": "对话"
+      },
+      "kind": "data-entity",
+      "technology": "",
+      "responsibility": {
+        "en": "A conversation of one member",
+        "zh": "某成员的一次对话"
+      },
+      "status": "illustrative assumption"
+    },
+    "DE-approval": {
+      "labels": {
+        "en": "Approval",
+        "zh": "审批"
+      },
+      "kind": "data-entity",
+      "technology": "",
+      "responsibility": {
+        "en": "Stored record bound to one canonical draft",
+        "zh": "绑定某份规范草稿的持久记录"
+      },
+      "status": "illustrative assumption"
+    },
+    "DE-exec": {
+      "labels": {
+        "en": "Execution",
+        "zh": "执行"
+      },
+      "kind": "data-entity",
+      "technology": "",
+      "responsibility": {
+        "en": "Execution intent and outcome, keyed for idempotency",
+        "zh": "执行意图与结果，以幂等键标识"
+      },
+      "status": "illustrative assumption"
+    },
+    "DE-audit": {
+      "labels": {
+        "en": "Audit event",
+        "zh": "审计事件"
+      },
+      "kind": "data-entity",
+      "technology": "",
+      "responsibility": {
+        "en": "Who did what, when, in which tenant",
+        "zh": "谁在何时于哪个租户做了什么"
+      },
+      "status": "illustrative assumption"
+    },
+    "DE-docver": {
+      "labels": {
+        "en": "Document version",
+        "zh": "文档版本"
+      },
+      "kind": "data-entity",
+      "technology": "",
+      "responsibility": {
+        "en": "Immutable source version with its ACL snapshot",
+        "zh": "不可变的原文版本及其 ACL 快照"
+      },
+      "status": "illustrative assumption"
+    },
+    "DE-chunk": {
+      "labels": {
+        "en": "Chunk",
+        "zh": "分块"
+      },
+      "kind": "data-entity",
+      "technology": "",
+      "responsibility": {
+        "en": "Derived passage with vector and tenant ACL",
+        "zh": "带向量与租户 ACL 的派生片段"
+      },
+      "status": "illustrative assumption"
+    },
+    "DE-feedback": {
+      "labels": {
+        "en": "Feedback",
+        "zh": "反馈"
+      },
+      "kind": "data-entity",
+      "technology": "",
+      "responsibility": {
+        "en": "A member's rating of an answer",
+        "zh": "成员对回答的评价"
+      },
+      "status": "illustrative assumption"
+    },
+    "DE-evalrec": {
+      "labels": {
+        "en": "Evaluation record",
+        "zh": "评测记录"
+      },
+      "kind": "data-entity",
+      "technology": "",
+      "responsibility": {
+        "en": "Deidentified or synthetic export used for offline gates",
+        "zh": "用于离线门禁的去标识或合成导出"
+      },
+      "status": "illustrative assumption"
     }
   },
   "invariants": {
@@ -520,11 +1282,13 @@
   "flows": {
     "FL-ingest": {
       "path": [
+        "R-steward",
+        "C-api",
+        "Q-ingest",
+        "C-ingest",
         "X-doc",
         "C-ingest",
         "DS-doc",
-        "Q-ingest",
-        "C-ingest",
         "DS-index"
       ],
       "rules": [
@@ -619,5 +1383,641 @@
       "active-active regions",
       "model training platform"
     ]
+  },
+  "assumptionStatus": {
+    "en": "All additions below are illustrative teaching choices, not observations or deployment guarantees. Validate the selected AWS region, service support and external contracts before implementation.",
+    "zh": "以下补充均为教学示意选择，不是实测事实或部署保证；实施前须核对 AWS 区域、服务支持与外部接口契约。"
+  },
+  "assumptions": {
+    "AS-ingest": {
+      "status": "illustrative assumption",
+      "summary": {
+        "en": "Application API is the ingestion-job producer; workers consume and publish indexed versions.",
+        "zh": "Application API 是摄取任务生产者；工作进程消费任务并发布索引版本。"
+      },
+      "details": {
+        "producer": "C-api",
+        "queue": "Q-ingest",
+        "consumer": "C-ingest",
+        "trigger": "steward requests import or source-version rescan through C-api",
+        "job": [
+          "tenant",
+          "sourceRef",
+          "sourceVersion",
+          "ACL version",
+          "idempotencyKey"
+        ],
+        "workerPublication": "DS-doc and DS-index only, not new Q-ingest jobs",
+        "retry": "SQS visibility 300s; maxReceiveCount 3; failed jobs to DLQ, replay only after cause fixed",
+        "revocation": "deny at retrieval and citation immediately using current policy; asynchronously tombstone derived index within 60s"
+      }
+    },
+    "AS-request": {
+      "status": "illustrative assumption",
+      "summary": {
+        "en": "One persisted request lifecycle; bind short-lived approval and reconcile uncertain writes before closure.",
+        "zh": "单一持久请求生命周期；绑定短期审批，不确定写入须先对账再关闭。"
+      },
+      "details": {
+        "store": "DS-app",
+        "states": [
+          "unapproved",
+          "approved",
+          "executing",
+          "outcome_unknown",
+          "outcome_recorded",
+          "refused",
+          "closed"
+        ],
+        "approvalTTLSeconds": 300,
+        "toolTokenTTLSeconds": 120,
+        "idempotencyScope": [
+          "tenant",
+          "tool",
+          "key"
+        ],
+        "keyReuse": "same key and canonical hash returns prior outcome; a changed hash is rejected",
+        "reconciliation": "read-only lookup by key every 30s, at most four automatic attempts; then hold outcome_unknown for operator-coordinated investigation without tenant-content access",
+        "closure": "only outcome_recorded or refused may close; never close unknown as success or issue a fresh blind write",
+        "recordRetentionDays": 30
+      }
+    },
+    "AS-policy": {
+      "status": "illustrative assumption",
+      "summary": {
+        "en": "Explicit role grants are unioned, then intersected with current tenant/resource constraints; policy denial wins.",
+        "zh": "显式角色授权取并集，再与当前租户/资源约束相交；策略拒绝优先。"
+      },
+      "details": {
+        "roleAssignment": "server-verified current membership, never client-selected tenant/roles",
+        "default": "deny absent grant or on evaluation error",
+        "employee": [
+          "read own-tenant knowledge only if current ACL allows",
+          "create ticket only for own permitted draft with exact bound approval and execution-time reauthorization"
+        ],
+        "steward": [
+          "maintain own-tenant knowledge and ACL",
+          "read own-tenant content only with current ACL",
+          "approve tenant-authorized deidentified or synthetic feedback export"
+        ],
+        "operator": [
+          "redacted service health and cost",
+          "network/release operations using scoped automation identities",
+          "no implicit tenant-content or production tool-write grant"
+        ],
+        "roleCombination": "operator+employee may use separately granted employee rights; operator role contributes no content grant",
+        "serviceRule": "AS proof and scopes are necessary, never sufficient; current policy, tenant, subject, actor and bound approval still apply",
+        "roleMatrix": {
+          "R-employee": [
+            "K",
+            "D",
+            "W",
+            "D",
+            "D"
+          ],
+          "R-steward": [
+            "K",
+            "M",
+            "D",
+            "E",
+            "D"
+          ],
+          "R-operator": [
+            "D",
+            "D",
+            "D",
+            "D",
+            "T"
+          ]
+        }
+      }
+    },
+    "AS-raci": {
+      "status": "illustrative assumption",
+      "summary": {
+        "en": "Use the existing three human roles, with one accountable role per scoped activity.",
+        "zh": "沿用三个既有人员角色，每项明确范围的活动设一个最终负责角色。"
+      },
+      "details": {
+        "columns": [
+          "R-employee",
+          "R-steward",
+          "R-operator"
+        ],
+        "rows": [
+          [
+            "approve-request",
+            "A/R",
+            "C",
+            "I"
+          ],
+          [
+            "maintain-knowledge",
+            "C",
+            "A/R",
+            "I"
+          ],
+          [
+            "approve-export",
+            "C",
+            "A/R",
+            "C"
+          ],
+          [
+            "operate-health",
+            "I",
+            "C",
+            "A/R"
+          ],
+          [
+            "release-recover",
+            "I",
+            "A",
+            "R"
+          ]
+        ],
+        "A": "accountable for outcome and explicit human approval where required; never a data-plane permission grant",
+        "C": "consult before a consequential change; not an approval bypass",
+        "I": "receive redacted outcome updates",
+        "scope": "employee approval is per initiating employee; stewardship is per tenant; release approval covers the evaluated configuration, not arbitrary production data access"
+      }
+    },
+    "AS-network": {
+      "status": "illustrative assumption",
+      "summary": {
+        "en": "Single-region, two-AZ network with TLS, explicit return routing and narrowly scoped endpoint/egress rules.",
+        "zh": "单区域双 AZ 网络；TLS、显式返回路由与受限端点/出站规则。"
+      },
+      "details": {
+        "addresses": "RFC5737 documentation-only fixture; replace with an approved RFC1918 deployment plan before provisioning",
+        "vpc": "192.0.2.0/24",
+        "publicSubnets": [
+          "192.0.2.0/27",
+          "192.0.2.32/27"
+        ],
+        "appSubnets": [
+          "192.0.2.64/27",
+          "192.0.2.96/27"
+        ],
+        "dataSubnets": [
+          "192.0.2.128/27",
+          "192.0.2.160/27"
+        ],
+        "ingress": "browser HTTPS/443 through CloudFront to public ALB; origin accepts CloudFront origin-facing prefix list plus an origin secret header held only by platform automation; ALB targets C-api on TLS/443",
+        "eastWest": "C-api→C-agent, C-agent→C-tools and C-tools→C-api on TLS/443 with workload mTLS; SG allowlists by service identity/security group",
+        "data": "Aurora TCP/5432 only from API-approved application security groups; OpenSearch TLS/443 only Agent/Ingestion groups",
+        "privateEndpoints": "S3 gateway endpoint; interface endpoints for SQS, Bedrock runtime, CloudWatch Logs, KMS and Secrets Manager; endpoint policies restrict roles/resources",
+        "externalEgress": "one NAT gateway per AZ; application route uses same-AZ NAT, public route IGW; return path through same NAT with stateful SG and matching ephemeral NACL returns",
+        "externalFilters": "HTTPS/443 to configured AS, Service Desk and source-repository address allowlists; placeholder endpoints use reserved .example names; NAT itself is not an authorizer or domain firewall",
+        "dns": "VPC resolver + private DNS for interface endpoints; public/enterprise resolution for approved external .example fixtures replaced during deployment",
+        "noInbound": "tasks/stores have no public addresses; no unsolicited inbound path; no peering/transit inferred"
+      }
+    },
+    "AS-release": {
+      "status": "illustrative assumption",
+      "summary": {
+        "en": "Promote a tested versioned configuration bundle through human approval and scoped release automation.",
+        "zh": "经人工批准和受限发布自动化，晋级已测试的版本化配置包。"
+      },
+      "details": {
+        "trigger": "pull request changing prompt/model configuration; repository workflow builds an immutable bundle in DS-eval",
+        "platform": "illustrative GitHub Actions workflow with short-lived AWS workload federation, restricted repository/environment trust",
+        "artifactIdentity": [
+          "S3 versionId",
+          "SHA-256 digest",
+          "prompt version",
+          "model id/version",
+          "dataset version"
+        ],
+        "evaluation": "C-eval evaluates synthetic/deidentified holdout data using evaluation-only IAM identity; never writes production tools",
+        "gates": {
+          "answerQualityMin": 0.85,
+          "citationPrecisionMin": 0.95,
+          "criticalSafetyViolations": 0,
+          "p95LatencyMaxSeconds": 8,
+          "meanAnswerTokenCostMaxUSD": 0.02
+        },
+        "approval": "R-steward approves the exact evaluated digest; R-operator executes the release workflow",
+        "promotion": "same digest to staging smoke, then production 5% traffic for 10min, then 100% if health gates pass; no rebuild between stages",
+        "enforcement": "workflow deployment IAM role can update the configuration pointer only; C-eval cannot assume it",
+        "recovery": "stop canary and restore previous compatible pointer on health regression; no automatic database rollback; incompatible changes require forward-fix plan and renewed approval",
+        "healthGate": "5xx below 2% and p95 <=8s during canary; minimum 100 requests or hold for manual review",
+        "scores": "thresholds are illustrative, not measured outcomes or promised performance"
+      }
+    },
+    "AS-observe": {
+      "status": "illustrative assumption",
+      "summary": {
+        "en": "Measure scoped health and cost, redact before export, and route actionable alerts to operators.",
+        "zh": "度量明确范围的健康与成本，在导出前脱敏，将可操作告警发送给运维。"
+      },
+      "details": {
+        "SLI": "successful authorized answer requests / eligible requests; exclude policy-denied requests from service-failure numerator, but count them separately for security monitoring",
+        "SLO": "99.5% successful authorized answers over rolling 30 days; illustrative internal target, not an SLA",
+        "latency": "p95 end-to-end authorized answer latency <=8s, measured daily",
+        "cost": "mean answer token cost <=USD0.02; warn when daily aggregate token cost exceeds USD20",
+        "capture": "100% aggregate metrics, 100% security/audit events; traces sampled at 10%; trace/context IDs join runtime hops without carrying raw content",
+        "redaction": "remove raw tokens, prompts and document text before emission; pseudonymize tenant/user identifiers",
+        "retentionDays": {
+          "logs": 30,
+          "metrics": 90,
+          "traces": 7,
+          "audit": 365
+        },
+        "alerts": [
+          "5xx ratio >2% for 5min with >=100 requests",
+          "DLQ depth >0 for 5min",
+          "daily token cost >USD20",
+          "no telemetry heartbeat for 5min"
+        ],
+        "route": "CloudWatch alarms → SNS email → R-operator; acknowledge within 15min; dashboard check if email absent; email delivery is not a guaranteed incident response",
+        "runbooks": [
+          "drain/reconcile ingest DLQ after fixing cause",
+          "reconcile ambiguous tool outcome by existing key; no blind write",
+          "stop rollout and restore compatible config pointer on regression"
+        ],
+        "delivery": "bounded exporter retry; alarm on telemetry loss, never equate absent data with health; no lossless guarantee"
+      }
+    },
+    "AS-domains": {
+      "status": "illustrative assumption",
+      "summary": {
+        "en": "Treat each named external system as one opaque bounded context with an explicit upstream contract.",
+        "zh": "将各具名外部系统视为单一不透明限界上下文，并明确上游契约。"
+      },
+      "details": {
+        "S-assistant": {
+          "team": "Assistant team",
+          "model": "conversation, approval, delegated service request"
+        },
+        "X-idp": {
+          "team": "Identity team",
+          "model": "principal, membership, scope",
+          "pattern": "OHS/PL upstream; assistant conformist for token semantics"
+        },
+        "X-doc": {
+          "team": "Knowledge team",
+          "model": "source document, version, source ACL",
+          "pattern": "OHS upstream; assistant anti-corruption adapter"
+        },
+        "X-desk": {
+          "team": "Service operations team",
+          "model": "catalogue, ticket, idempotency record",
+          "pattern": "OHS upstream; assistant anti-corruption adapter"
+        },
+        "X-model": {
+          "team": "Model platform team",
+          "model": "model request and generated output",
+          "pattern": "OHS/PL upstream; assistant conformist for protocol only, never for authorization"
+        },
+        "terminology": "DDD ACL means anti-corruption layer; document ACL means access-control list. These are distinct."
+      }
+    },
+    "AS-data": {
+      "status": "illustrative assumption",
+      "summary": {
+        "en": "Confirm the logical entities, tenant-scoped identifiers, data stewardship and classification.",
+        "zh": "确认逻辑实体、租户范围标识、数据管理责任及分类。"
+      },
+      "details": {
+        "keys": "tenant_id + local_id for tenant-owned records; composite foreign keys preserve tenant scope; idempotency tuple tenant/tool/key is unique",
+        "approval": [
+          "tenant",
+          "subject",
+          "tool",
+          "canonicalParameterHash",
+          "expiresAt",
+          "idempotencyKey"
+        ],
+        "execution": [
+          "tenant",
+          "tool",
+          "idempotencyKey",
+          "approvalId",
+          "parameterHash",
+          "status",
+          "recordedOutcome"
+        ],
+        "storeOwners": {
+          "DS-app": "R-steward accountable; C-api technical custodian; R-operator operates infrastructure without implicit content rights",
+          "DS-doc": "R-steward",
+          "DS-index": "R-steward",
+          "DS-eval": "R-steward"
+        },
+        "classification": {
+          "DS-app": "tenant-confidential",
+          "DS-doc": "tenant-confidential",
+          "DS-index": "tenant-confidential derived; same source ACL restrictions",
+          "DS-eval": "internal deidentified/synthetic; evaluation identity only"
+        },
+        "logicalModel": "D1 attributes are illustrative, not a complete migration schema; Chat denotes a conversation aggregate and does not eliminate message/citation records",
+        "evaluationIsolation": "tenant-scoped deidentified prefixes and synthetic datasets; no cross-tenant content sharing"
+      }
+    },
+    "AS-roadmap": {
+      "status": "illustrative assumption",
+      "summary": {
+        "en": "Use a read-only slice, approved writes and finally gated change promotion as the illustrative rollout order.",
+        "zh": "示意实施顺序为只读切片、经审批写入，最后实施变更晋级门禁。"
+      },
+      "details": {
+        "plateaus": [
+          "ST-baseline",
+          "ST-answers",
+          "ST-tickets",
+          "ST-target"
+        ],
+        "workPackages": [
+          "WP-retrieval",
+          "WP-approval",
+          "WP-eval"
+        ],
+        "journeyOwners": "R-steward owns source freshness/access explanation; R-operator owns delivery reliability and status reconciliation UI work without being granted tenant content access",
+        "notCommitment": "journey emotions, opportunities, durations and roadmap ordering are teaching assumptions, not customer research or committed dates"
+      }
+    },
+    "AS-components": {
+      "status": "illustrative assumption",
+      "summary": {
+        "en": "Give the Agent logical components stable, unnumbered module names without adding deployed services.",
+        "zh": "为 Agent 逻辑组件定义稳定、无序号的模块名，不增加部署服务。"
+      },
+      "details": {
+        "P-plan": "request_planner",
+        "P-retrieve": "authorized_retriever",
+        "P-compose": "answer_composer",
+        "modelGateway": "logical component within answer_composer; ingestion uses its own scoped model invocation identity",
+        "codeStatus": "illustrative module boundaries, not claims about an existing implementation"
+      }
+    },
+    "AS-interfaces": {
+      "status": "illustrative assumption",
+      "summary": {
+        "en": "Assign authenticated internal and external contracts with bounded retries and explicit illustrative capacity targets.",
+        "zh": "为内部及外部接口指定认证契约、有界重试和明确的示意容量目标。"
+      },
+      "details": {
+        "I-07": "workload mTLS identity for C-tools; approval.lookup limited to matching tenant/subject/tool/hash; fresh policy lookup",
+        "I-08": "AWS SigV4 task role restricted to selected Bedrock model and region",
+        "I-09": "mTLS source connector identity plus tenant-aware source ACL export; external contract assumed",
+        "I-10": "C-api SigV4 role with sqs:SendMessage on Q-ingest only",
+        "I-11": "C-ingest SigV4 role with ReceiveMessage/DeleteMessage/ChangeMessageVisibility on Q-ingest; long-poll, no broker push",
+        "owners": "R-operator is internal transport custodian; R-steward accountable for tenant data/approval policy; named external-context teams own their endpoints",
+        "capacity": "illustrative 10 interactive requests/s per tenant, burst 20 for 60s; ingest 1 version/s/tenant; tool writes 1/s/tenant",
+        "timeouts": "internal control calls 5s, model generation 30s, external connector 10s; read retries at most 2 with jitter; never retry an ambiguous write with a new key",
+        "serviceTarget": "internal dependency availability target 99.9% monthly, no contractual SLA or vendor guarantee; failures surface to caller and are measured separately"
+      }
+    }
+  },
+  "entityReview": {
+    "added": 53,
+    "deduplication": "No exact-ID or same-abstraction duplicates. Capabilities, stages, processes, roadmap states, work packages and data entities remain distinct from containers/stores.",
+    "ownerCorrections": {
+      "EV-created": "X-desk creates the ticket; system-level views may show its returned outcome"
+    }
+  },
+  "viewElements": {
+    "E3": {
+      "E3-start": {
+        "kind": "initial",
+        "labels": {
+          "en": "Start",
+          "zh": "开始"
+        },
+        "contextEntity": "DS-app",
+        "sourceRefs": [
+          "I-approval"
+        ],
+        "status": "illustrative assumption / notation projection"
+      },
+      "E3-unapproved": {
+        "kind": "state",
+        "labels": {
+          "en": "Unapproved",
+          "zh": "未获审批"
+        },
+        "contextEntity": "DS-app",
+        "sourceRefs": [
+          "I-approval",
+          "I-idempotency"
+        ],
+        "status": "illustrative assumption / notation projection"
+      },
+      "E3-approved": {
+        "kind": "state",
+        "labels": {
+          "en": "Approved",
+          "zh": "已审批"
+        },
+        "contextEntity": "DS-app",
+        "sourceRefs": [
+          "I-approval",
+          "I-idempotency"
+        ],
+        "status": "illustrative assumption / notation projection"
+      },
+      "E3-executing": {
+        "kind": "state",
+        "labels": {
+          "en": "Executing",
+          "zh": "执行中"
+        },
+        "contextEntity": "DS-app",
+        "sourceRefs": [
+          "I-approval",
+          "I-idempotency"
+        ],
+        "status": "illustrative assumption / notation projection"
+      },
+      "E3-unknown": {
+        "kind": "state",
+        "labels": {
+          "en": "Outcome unknown",
+          "zh": "结果未知"
+        },
+        "contextEntity": "DS-app",
+        "sourceRefs": [
+          "I-approval",
+          "I-idempotency"
+        ],
+        "status": "illustrative assumption / notation projection"
+      },
+      "E3-resolved": {
+        "kind": "state",
+        "labels": {
+          "en": "Outcome recorded",
+          "zh": "结果已记录"
+        },
+        "contextEntity": "DS-app",
+        "sourceRefs": [
+          "I-approval",
+          "I-idempotency"
+        ],
+        "status": "illustrative assumption / notation projection"
+      },
+      "E3-refused": {
+        "kind": "state",
+        "labels": {
+          "en": "Refused",
+          "zh": "已拒绝"
+        },
+        "contextEntity": "DS-app",
+        "sourceRefs": [
+          "I-approval",
+          "I-idempotency"
+        ],
+        "status": "illustrative assumption / notation projection"
+      },
+      "E3-final": {
+        "kind": "final",
+        "labels": {
+          "en": "End",
+          "zh": "结束"
+        },
+        "contextEntity": "DS-app",
+        "sourceRefs": [
+          "I-approval"
+        ],
+        "status": "illustrative assumption / notation projection"
+      }
+    },
+    "G4": {
+      "G4-gate": {
+        "kind": "task",
+        "labels": {
+          "en": "Quality / safety gate",
+          "zh": "质量 / 安全门禁"
+        },
+        "contextEntity": "C-eval",
+        "sourceRefs": [
+          "I-eval"
+        ],
+        "status": "illustrative assumption / notation projection"
+      },
+      "G4-hold": {
+        "kind": "task",
+        "labels": {
+          "en": "Hold candidate",
+          "zh": "暂停候选晋级"
+        },
+        "contextEntity": "DS-eval",
+        "sourceRefs": [
+          "I-eval"
+        ],
+        "status": "illustrative assumption / notation projection"
+      },
+      "G4-release": {
+        "kind": "task",
+        "labels": {
+          "en": "Approve digest release",
+          "zh": "按摘要批准发布"
+        },
+        "contextEntity": "C-agent",
+        "sourceRefs": [
+          "I-eval"
+        ],
+        "status": "illustrative assumption / notation projection"
+      },
+      "G4-recover": {
+        "kind": "task",
+        "labels": {
+          "en": "Recovery decision",
+          "zh": "恢复决策"
+        },
+        "contextEntity": "R-operator",
+        "sourceRefs": [
+          "I-operator"
+        ],
+        "status": "illustrative assumption / notation projection"
+      }
+    },
+    "E2": {
+      "E2-start": {
+        "kind": "initial",
+        "labels": {
+          "en": "Start",
+          "zh": "开始"
+        },
+        "contextEntity": "DS-app",
+        "sourceRefs": [
+          "I-approval"
+        ],
+        "status": "illustrative assumption / notation projection"
+      },
+      "E2-valid": {
+        "kind": "gateway",
+        "labels": {
+          "en": "Valid?",
+          "zh": "有效？"
+        },
+        "contextEntity": "C-tools",
+        "sourceRefs": [
+          "I-approval"
+        ],
+        "status": "illustrative assumption / notation projection"
+      },
+      "E2-persist": {
+        "kind": "task",
+        "labels": {
+          "en": "Persist execution intent",
+          "zh": "持久化执行意图"
+        },
+        "contextEntity": "C-tools",
+        "sourceRefs": [
+          "I-idempotency"
+        ],
+        "status": "illustrative assumption / notation projection"
+      },
+      "E2-write": {
+        "kind": "task",
+        "labels": {
+          "en": "Execute idempotently",
+          "zh": "幂等执行"
+        },
+        "contextEntity": "X-desk",
+        "sourceRefs": [
+          "I-idempotency",
+          "I-bounds"
+        ],
+        "status": "illustrative assumption / notation projection"
+      },
+      "E2-deny": {
+        "kind": "task",
+        "labels": {
+          "en": "Reject tool request",
+          "zh": "拒绝工具请求"
+        },
+        "contextEntity": "C-tools",
+        "sourceRefs": [
+          "I-approval",
+          "I-tokens"
+        ],
+        "status": "illustrative assumption / notation projection"
+      },
+      "E2-done": {
+        "kind": "final",
+        "labels": {
+          "en": "End",
+          "zh": "结束"
+        },
+        "contextEntity": "DS-app",
+        "sourceRefs": [
+          "I-approval"
+        ],
+        "status": "illustrative assumption / notation projection"
+      },
+      "E2-refused": {
+        "kind": "final",
+        "labels": {
+          "en": "End",
+          "zh": "结束"
+        },
+        "contextEntity": "DS-app",
+        "sourceRefs": [
+          "I-approval"
+        ],
+        "status": "illustrative assumption / notation projection"
+      }
+    }
   }
 }

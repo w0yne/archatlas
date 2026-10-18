@@ -1,125 +1,16 @@
 {
-  "_note": "Entities that D1 needs and scenario.json does not yet contain. Merge into scenario.json entities (kind data-entity) before listing D1 in manifest.json.",
-  "entities": {
-    "DE-tenant": {
-      "labels": {
-        "en": "Tenant",
-        "zh": "租户"
-      },
-      "kind": "data-entity",
-      "technology": "",
-      "responsibility": {
-        "en": "Isolation boundary for every record",
-        "zh": "所有记录的隔离边界"
-      }
-    },
-    "DE-member": {
-      "labels": {
-        "en": "Membership",
-        "zh": "成员关系"
-      },
-      "kind": "data-entity",
-      "technology": "",
-      "responsibility": {
-        "en": "An employee's role in one tenant",
-        "zh": "员工在某租户中的角色"
-      }
-    },
-    "DE-chat": {
-      "labels": {
-        "en": "Chat",
-        "zh": "对话"
-      },
-      "kind": "data-entity",
-      "technology": "",
-      "responsibility": {
-        "en": "A conversation of one member",
-        "zh": "某成员的一次对话"
-      }
-    },
-    "DE-approval": {
-      "labels": {
-        "en": "Approval",
-        "zh": "审批"
-      },
-      "kind": "data-entity",
-      "technology": "",
-      "responsibility": {
-        "en": "Stored record bound to one canonical draft",
-        "zh": "绑定某份规范草稿的持久记录"
-      }
-    },
-    "DE-exec": {
-      "labels": {
-        "en": "Execution",
-        "zh": "执行"
-      },
-      "kind": "data-entity",
-      "technology": "",
-      "responsibility": {
-        "en": "Execution intent and outcome, keyed for idempotency",
-        "zh": "执行意图与结果，以幂等键标识"
-      }
-    },
-    "DE-audit": {
-      "labels": {
-        "en": "Audit event",
-        "zh": "审计事件"
-      },
-      "kind": "data-entity",
-      "technology": "",
-      "responsibility": {
-        "en": "Who did what, when, in which tenant",
-        "zh": "谁在何时于哪个租户做了什么"
-      }
-    },
-    "DE-docver": {
-      "labels": {
-        "en": "Document version",
-        "zh": "文档版本"
-      },
-      "kind": "data-entity",
-      "technology": "",
-      "responsibility": {
-        "en": "Immutable source version with its ACL snapshot",
-        "zh": "不可变的原文版本及其 ACL 快照"
-      }
-    },
-    "DE-chunk": {
-      "labels": {
-        "en": "Chunk",
-        "zh": "分块"
-      },
-      "kind": "data-entity",
-      "technology": "",
-      "responsibility": {
-        "en": "Derived passage with vector and tenant ACL",
-        "zh": "带向量与租户 ACL 的派生片段"
-      }
-    },
-    "DE-feedback": {
-      "labels": {
-        "en": "Feedback",
-        "zh": "反馈"
-      },
-      "kind": "data-entity",
-      "technology": "",
-      "responsibility": {
-        "en": "A member's rating of an answer",
-        "zh": "成员对回答的评价"
-      }
-    },
-    "DE-evalrec": {
-      "labels": {
-        "en": "Evaluation record",
-        "zh": "评测记录"
-      },
-      "kind": "data-entity",
-      "technology": "",
-      "responsibility": {
-        "en": "Deidentified or synthetic export used for offline gates",
-        "zh": "用于离线门禁的去标识或合成导出"
-      }
-    }
-  }
+  "status": "integrated into scenario version 2",
+  "source": "../../scenario.json",
+  "entityIds": [
+    "DE-tenant",
+    "DE-member",
+    "DE-chat",
+    "DE-approval",
+    "DE-exec",
+    "DE-audit",
+    "DE-docver",
+    "DE-chunk",
+    "DE-feedback",
+    "DE-evalrec"
+  ]
 }

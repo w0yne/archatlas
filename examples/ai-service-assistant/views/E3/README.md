@@ -1,28 +1,15 @@
-# E3 — Conceptual tool-request state machine
+# E3 — State machine diagram
 
-工具请求概念状态机
+One request in DS-app: unapproved, approved, executing, unknown, recorded, refused and closed. Unknown outcomes remain held after bounded reconciliation; they do not authorize a fresh write.
 
-The subject is one tool request recorded in DS-app. Conditions and transitions are a conceptual projection of I-approval and I-idempotency, not invented persisted enum values. The initial transition has no trigger/guard. Every non-terminal condition has an outgoing transition, including unknown results that await a key-based lookup. Refused and recorded outcomes close separately. A recorded outcome may be a known failure; it is not a claim that every request created a ticket. There is no Unapproved→Executing shortcut.
+DS-app 中的单个请求：未审批、已审批、执行中、未知、已记录、拒绝及关闭。有界对账后仍未知则保持挂起，不授权重新写入。
 
-Missing facts: actual persisted status enum, reconciliation deadline and closure policy. These must be agreed before treating the diagram as an implementation specification.
+These are original hand-authored EN/ZH SVGs for scenario version 2. Facts and teaching
+choices live in [scenario.json](../../scenario.json), the [shared glossary](../../glossary.json)
+and [assumptions](../../ASSUMPTIONS.md). They are illustrative, not deployed or measured.
 
-## Files and integration contract
-
-`en/diagram.svg` and `zh/diagram.svg` are hand-authored source artwork. The adjacent
-`diagram.json` uses the existing model schema. `expected.json` pins scenario version 1,
-shared entities and applicable invariant IDs. No runtime component, identity or permission
-is added by the view-local action/state/gateway/symbol IDs.
-
-For behaviour views, `viewElements` records bilingual labels, a `contextEntity` and
-`sourceRefs` for each local semantic/notation element. A context entity is traceability,
-not an assignment of RACI accountability. Existing runtime/entity nodes stay in `entities`
-and retain their canonical bilingual labels. A future manifest validator must validate
-this disjoint union against model node IDs and keep strict entity-label checks; do not
-silently accept arbitrary renamed components. Tables use `roleEntities`/`tableSourceRefs`
-instead of pretending that cells are runtime nodes. This is sidecar validation metadata,
-not an extension of the diagram model schema.
-
-Register the new view/language entries and regenerate published copies only in the
-integration change. The C3 published copy is intentionally not updated here. The sample
-builder's byte-equality check will require that synchronization. All existing scenario,
-glossary, registry, manifest, renderer and site sources are unchanged.
+`diagram.json` uses the unchanged diagram model schema. `expected.json` maps shared
+entities and semantic/notation projections to central facts. `viewElements` are actions,
+states or symbols, never new runtime components or implicit permission grants. The sample
+builder checks and copies the artwork byte-for-byte. Published copies and all 29 view pairs
+are registered by the manifest. Historical shop fixtures remain unchanged.

@@ -149,5 +149,9 @@ reviewed: false
 
 ## 示例图 {#sample}
 <!-- skill: path only -->
-![E4 示例：顾客、客服、仓库和财务之间的退货泳道图](/samples/E4-swimlane-cross-functional.zh.svg)
-*跨四条泳道（顾客、客服、仓库、财务）的退货流程：顾客的申请交给客服，客服批准后产生退货面单；顾客把包裹寄到仓库，仓库验货后把结果交给财务退款，并通知顾客。编号标明步骤顺序，每次交接都标注传递的内容。*
+![E4 · 企业服务助手](/samples/ai-service-assistant/E4/zh/diagram.svg)
+*一个流程中，每一步由哪个角色或系统完成？在哪里交接？*
+
+[SVG](/samples/ai-service-assistant/E4/zh/diagram.svg) · [模型 JSON](/samples/ai-service-assistant/E4/zh/diagram.json) · [共享事实](/samples/ai-service-assistant/scenario.json)
+
+[历史 shop 回归样例](/samples/E4-swimlane-cross-functional.zh.svg) · [全部29幅视图](/zh/use/ai-service-assistant) · [示意假设](/zh/use/ai-service-assistant-assumptions).

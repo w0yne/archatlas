@@ -1,89 +1,108 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 740" lang="en" data-archatlas="0.1">
-<title>A2 · Resolve a service need — cited answer or approved ticket</title>
-<desc>Fictional target · Triggering stakeholder: Employee / approver · Value: a cited answer, or one approved ticket</desc>
-<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,4 L0,8 Z" fill="#4B5563"/></marker></defs>
-<rect data-role="canvas" width="1400" height="740" fill="#ffffff"/>
-<text x="28" y="40" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="28" font-weight="700" fill="#1F2937">A2 · Resolve a service need — cited answer or approved ticket</text>
-<text x="28" y="72" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">Fictional target · Triggering stakeholder: Employee / approver · Value: a cited answer, or one approved ticket</text>
-<rect x="25" y="130" width="170" height="96" data-role="node" data-id="R-employee" data-kind="person" data-style="external" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="8"/>
-<text font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="700" fill="#1F2937" data-owner="R-employee" data-role="name" data-source="Employee / approver"><tspan x="39" y="157">Employee /</tspan><tspan x="39" y="177">approver</tspan></text>
-<text x="39" y="197" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="R-employee" data-role="sub">Triggering stakeholder</text>
-<polyline points="195,178 247,178" data-role="edge" data-id="VS-1" data-from="R-employee" data-to="VS-ask" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<polyline points="443,178 479,178" data-role="edge" data-id="VS-2" data-from="VS-ask" data-to="VS-answer" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<polyline points="675,178 711,178" data-role="edge" data-id="VS-3" data-from="VS-answer" data-to="VS-draft" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<polyline points="907,178 943,178" data-role="edge" data-id="VS-4" data-from="VS-draft" data-to="VS-approve" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<polyline points="1139,178 1175,178" data-role="edge" data-id="VS-5" data-from="VS-approve" data-to="VS-ticket" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<polygon points="225,130 421,130 443,178.0 421,226 225,226 247,178.0" data-role="node" data-id="VS-ask" data-kind="task" data-style="peer" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8"/>
-<text x="334" y="183.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="700" fill="#1F2937" text-anchor="middle" data-owner="VS-ask" data-role="name">Ask question</text>
-<rect x="247" y="248" width="136.469" height="30" data-role="chip" data-id="chip-VS-ask-CAP-verify" fill="#EBDDF9" stroke="#7951A5" stroke-width="1.2" rx="10"/>
-<text x="256" y="268" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="chip-VS-ask-CAP-verify" data-role="chip-text">Identity verification</text>
-<polygon points="457,130 653,130 675,178.0 653,226 457,226 479,178.0" data-role="node" data-id="VS-answer" data-kind="task" data-style="peer" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8"/>
-<text x="566" y="183.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="700" fill="#1F2937" text-anchor="middle" data-owner="VS-answer" data-role="name">Get cited answer</text>
-<rect x="479" y="248" width="140.938" height="30" data-role="chip" data-id="chip-VS-answer-CAP-question" fill="#EBDDF9" stroke="#7951A5" stroke-width="1.2" rx="10"/>
-<text x="488" y="268" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="chip-VS-answer-CAP-question" data-role="chip-text">Question answering</text>
-<rect x="479" y="284" width="108.594" height="30" data-role="chip" data-id="chip-VS-answer-CAP-citation" fill="#EBDDF9" stroke="#7951A5" stroke-width="1.2" rx="10"/>
-<text x="488" y="304" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="chip-VS-answer-CAP-citation" data-role="chip-text">Source citation</text>
-<rect x="479" y="320" width="183.078" height="30" data-role="chip" data-id="chip-VS-answer-CAP-access" fill="#EBDDF9" stroke="#7951A5" stroke-width="1.2" rx="10"/>
-<text x="488" y="340" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="chip-VS-answer-CAP-access" data-role="chip-text">Access policy management</text>
-<polygon points="689,130 885,130 907,178.0 885,226 689,226 711,178.0" data-role="node" data-id="VS-draft" data-kind="task" data-style="peer" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8"/>
-<text x="798" y="183.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="700" fill="#1F2937" text-anchor="middle" data-owner="VS-draft" data-role="name">Draft request</text>
-<rect x="711" y="248" width="120.031" height="30" data-role="chip" data-id="chip-VS-draft-CAP-drafting" fill="#EBDDF9" stroke="#7951A5" stroke-width="1.2" rx="10"/>
-<text x="720" y="268" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="chip-VS-draft-CAP-drafting" data-role="chip-text">Request drafting</text>
-<polygon points="921,130 1117,130 1139,178.0 1117,226 921,226 943,178.0" data-role="node" data-id="VS-approve" data-kind="task" data-style="peer" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8"/>
-<text x="1030" y="183.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="700" fill="#1F2937" text-anchor="middle" data-owner="VS-approve" data-role="name">Approve request</text>
-<rect x="943" y="248" width="124.344" height="30" data-role="chip" data-id="chip-VS-approve-CAP-approval" fill="#EBDDF9" stroke="#7951A5" stroke-width="1.2" rx="10"/>
-<text x="952" y="268" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="chip-VS-approve-CAP-approval" data-role="chip-text">Request approval</text>
-<rect x="943" y="284" width="166.172" height="30" data-role="chip" data-id="chip-VS-approve-CAP-delegation" fill="#EBDDF9" stroke="#7951A5" stroke-width="1.2" rx="10"/>
-<text x="952" y="304" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="chip-VS-approve-CAP-delegation" data-role="chip-text">Delegated authorization</text>
-<polygon points="1153,130 1349,130 1371,178.0 1349,226 1153,226 1175,178.0" data-role="node" data-id="VS-ticket" data-kind="task" data-style="peer" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8"/>
-<text x="1262" y="183.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="700" fill="#1F2937" text-anchor="middle" data-owner="VS-ticket" data-role="name">Receive ticket</text>
-<rect x="1175" y="248" width="116.406" height="30" data-role="chip" data-id="chip-VS-ticket-CAP-fulfilment" fill="#EBDDF9" stroke="#7951A5" stroke-width="1.2" rx="10"/>
-<text x="1184" y="268" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="chip-VS-ticket-CAP-fulfilment" data-role="chip-text">Ticket fulfilment</text>
-<rect x="1175" y="284" width="166.172" height="30" data-role="chip" data-id="chip-VS-ticket-CAP-delegation" fill="#EBDDF9" stroke="#7951A5" stroke-width="1.2" rx="10"/>
-<text x="1184" y="304" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="chip-VS-ticket-CAP-delegation" data-role="chip-text">Delegated authorization</text>
-<rect x="25" y="375" width="190" height="70" data-role="cell" data-id="cell-0-0" fill="#F7F7F7" stroke="#666A73" stroke-width="1"/>
-<text x="35" y="414.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937" data-owner="cell-0-0">Entrance</text>
-<rect x="225" y="375" width="218" height="70" data-role="cell" data-id="cell-0-1" fill="#ffffff" stroke="#666A73" stroke-width="1"/>
-<text x="235" y="414.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="cell-0-1">Service need raised</text>
-<rect x="457" y="375" width="218" height="70" data-role="cell" data-id="cell-0-2" fill="#ffffff" stroke="#666A73" stroke-width="1"/>
-<text font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="cell-0-2" data-source="Question accepted for own tenant"><tspan x="467" y="405">Question accepted for own</tspan><tspan x="467" y="424">tenant</tspan></text>
-<rect x="689" y="375" width="218" height="70" data-role="cell" data-id="cell-0-3" fill="#ffffff" stroke="#666A73" stroke-width="1"/>
-<text x="699" y="414.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="cell-0-3">Cited answer received</text>
-<rect x="921" y="375" width="218" height="70" data-role="cell" data-id="cell-0-4" fill="#ffffff" stroke="#666A73" stroke-width="1"/>
-<text x="931" y="414.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="cell-0-4">Exact draft shown</text>
-<rect x="1153" y="375" width="218" height="70" data-role="cell" data-id="cell-0-5" fill="#ffffff" stroke="#666A73" stroke-width="1"/>
-<text x="1163" y="414.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="cell-0-5">Approval bound to the draft</text>
-<rect x="25" y="445" width="190" height="70" data-role="cell" data-id="cell-1-0" fill="#F7F7F7" stroke="#666A73" stroke-width="1"/>
-<text x="35" y="484.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937" data-owner="cell-1-0">Exit</text>
-<rect x="225" y="445" width="218" height="70" data-role="cell" data-id="cell-1-1" fill="#ffffff" stroke="#666A73" stroke-width="1"/>
-<text font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="cell-1-1" data-source="Question accepted for own tenant"><tspan x="235" y="475">Question accepted for own</tspan><tspan x="235" y="494">tenant</tspan></text>
-<rect x="457" y="445" width="218" height="70" data-role="cell" data-id="cell-1-2" fill="#ffffff" stroke="#666A73" stroke-width="1"/>
-<text x="467" y="484.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="cell-1-2">Cited answer received</text>
-<rect x="689" y="445" width="218" height="70" data-role="cell" data-id="cell-1-3" fill="#ffffff" stroke="#666A73" stroke-width="1"/>
-<text x="699" y="484.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="cell-1-3">Exact draft shown</text>
-<rect x="921" y="445" width="218" height="70" data-role="cell" data-id="cell-1-4" fill="#ffffff" stroke="#666A73" stroke-width="1"/>
-<text x="931" y="484.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="cell-1-4">Approval bound to the draft</text>
-<rect x="1153" y="445" width="218" height="70" data-role="cell" data-id="cell-1-5" fill="#ffffff" stroke="#666A73" stroke-width="1"/>
-<text x="1163" y="484.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="cell-1-5">Ticket created once</text>
-<rect x="25" y="515" width="190" height="70" data-role="cell" data-id="cell-2-0" fill="#F7F7F7" stroke="#666A73" stroke-width="1"/>
-<text x="35" y="554.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937" data-owner="cell-2-0">Value item</text>
-<rect x="225" y="515" width="218" height="70" data-role="cell" data-id="cell-2-1" fill="#ffffff" stroke="#666A73" stroke-width="1"/>
-<text x="235" y="554.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="cell-2-1">Need stated once, in chat</text>
-<rect x="457" y="515" width="218" height="70" data-role="cell" data-id="cell-2-2" fill="#ffffff" stroke="#666A73" stroke-width="1"/>
-<text font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="cell-2-2" data-source="Answer from permitted sources"><tspan x="467" y="545">Answer from permitted</tspan><tspan x="467" y="564">sources</tspan></text>
-<rect x="689" y="515" width="218" height="70" data-role="cell" data-id="cell-2-3" fill="#ffffff" stroke="#666A73" stroke-width="1"/>
-<text x="699" y="554.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="cell-2-3">No retyping into a form</text>
-<rect x="921" y="515" width="218" height="70" data-role="cell" data-id="cell-2-4" fill="#ffffff" stroke="#666A73" stroke-width="1"/>
-<text font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="cell-2-4" data-source="Employee controls the action"><tspan x="931" y="545">Employee controls the</tspan><tspan x="931" y="564">action</tspan></text>
-<rect x="1153" y="515" width="218" height="70" data-role="cell" data-id="cell-2-5" fill="#ffffff" stroke="#666A73" stroke-width="1"/>
-<text x="1163" y="554.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="cell-2-5">A ticket number to track</text>
-<text x="25" y="615" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937">Each exit is the next entrance. The employee may stop after any stage, e.g. after the cited answer.</text>
-<rect x="28" y="650" width="42" height="24" data-role="legend-swatch" data-id="__legend-swatch-1" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="8"/>
-<text x="82" y="668" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-1">Triggering stakeholder</text>
-<polyline points="473,661 515,661" data-role="edge" data-kind="legend" data-id="legend-line-2" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="527" y="668" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-2">Value hand-over to the next stage</text>
-<polygon points="918,650 952,650 960,662 952,674 918,674 926,662" data-role="legend-swatch" data-id="__legend-swatch-3" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8"/>
-<text x="972" y="668" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-3">Value stream stage (left to right)</text>
-<rect x="28" y="692" width="42" height="24" data-role="legend-swatch" data-id="__legend-swatch-4" fill="#EBDDF9" stroke="#7951A5" stroke-width="1.2" rx="10"/>
-<text x="82" y="710" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-4">Enabling capability (A1 name)</text>
+  <title>A2 · Resolve a service need — cited answer or approved ticket</title>
+  <desc>Fictional teaching design, scenario version 2; additional parameters are illustrative assumptions. Fictional target · Triggering stakeholder: Employee / approver · Value: a cited answer, or one approved ticket</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#4B5563" />
+    </marker>
+  </defs>
+  <rect data-role="canvas" width="1400" height="740" fill="#ffffff" />
+  <text x="28" y="40" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="28" font-weight="700" fill="#1F2937">A2 · Resolve a service need — cited answer or approved ticket</text>
+  <text x="28" y="72" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">Fictional target · Triggering stakeholder: Employee / approver · Value: a cited answer, or one approved ticket</text>
+  <rect x="25" y="130" width="170" height="96" data-role="node" data-id="R-employee" data-kind="person" data-style="external" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="8" />
+  <text font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="700" fill="#1F2937" data-owner="R-employee" data-role="name" data-source="Employee / approver">
+    <tspan x="39" y="157">Employee /</tspan>
+    <tspan x="39" y="177">approver</tspan>
+  </text>
+  <text x="39" y="197" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="R-employee" data-role="sub">Triggering stakeholder</text>
+  <polyline points="195,178 247,178" data-role="edge" data-id="VS-1" data-from="R-employee" data-to="VS-ask" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <polyline points="443,178 479,178" data-role="edge" data-id="VS-2" data-from="VS-ask" data-to="VS-answer" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <polyline points="675,178 711,178" data-role="edge" data-id="VS-3" data-from="VS-answer" data-to="VS-draft" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <polyline points="907,178 943,178" data-role="edge" data-id="VS-4" data-from="VS-draft" data-to="VS-approve" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <polyline points="1139,178 1175,178" data-role="edge" data-id="VS-5" data-from="VS-approve" data-to="VS-ticket" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <polygon points="225,130 421,130 443,178.0 421,226 225,226 247,178.0" data-role="node" data-id="VS-ask" data-kind="task" data-style="peer" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" />
+  <text x="334" y="183.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="700" fill="#1F2937" text-anchor="middle" data-owner="VS-ask" data-role="name">Ask question</text>
+  <rect x="247" y="248" width="136.469" height="30" data-role="chip" data-id="chip-VS-ask-CAP-verify" fill="#EBDDF9" stroke="#7951A5" stroke-width="1.2" rx="10" />
+  <text x="256" y="268" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="chip-VS-ask-CAP-verify" data-role="chip-text">Identity verification</text>
+  <polygon points="457,130 653,130 675,178.0 653,226 457,226 479,178.0" data-role="node" data-id="VS-answer" data-kind="task" data-style="peer" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" />
+  <text x="566" y="183.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="700" fill="#1F2937" text-anchor="middle" data-owner="VS-answer" data-role="name">Get cited answer</text>
+  <rect x="479" y="248" width="140.938" height="30" data-role="chip" data-id="chip-VS-answer-CAP-question" fill="#EBDDF9" stroke="#7951A5" stroke-width="1.2" rx="10" />
+  <text x="488" y="268" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="chip-VS-answer-CAP-question" data-role="chip-text">Question answering</text>
+  <rect x="479" y="284" width="108.594" height="30" data-role="chip" data-id="chip-VS-answer-CAP-citation" fill="#EBDDF9" stroke="#7951A5" stroke-width="1.2" rx="10" />
+  <text x="488" y="304" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="chip-VS-answer-CAP-citation" data-role="chip-text">Source citation</text>
+  <rect x="479" y="320" width="183.078" height="30" data-role="chip" data-id="chip-VS-answer-CAP-access" fill="#EBDDF9" stroke="#7951A5" stroke-width="1.2" rx="10" />
+  <text x="488" y="340" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="chip-VS-answer-CAP-access" data-role="chip-text">Access policy management</text>
+  <polygon points="689,130 885,130 907,178.0 885,226 689,226 711,178.0" data-role="node" data-id="VS-draft" data-kind="task" data-style="peer" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" />
+  <text x="798" y="183.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="700" fill="#1F2937" text-anchor="middle" data-owner="VS-draft" data-role="name">Draft request</text>
+  <rect x="711" y="248" width="120.031" height="30" data-role="chip" data-id="chip-VS-draft-CAP-drafting" fill="#EBDDF9" stroke="#7951A5" stroke-width="1.2" rx="10" />
+  <text x="720" y="268" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="chip-VS-draft-CAP-drafting" data-role="chip-text">Request drafting</text>
+  <polygon points="921,130 1117,130 1139,178.0 1117,226 921,226 943,178.0" data-role="node" data-id="VS-approve" data-kind="task" data-style="peer" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" />
+  <text x="1030" y="183.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="700" fill="#1F2937" text-anchor="middle" data-owner="VS-approve" data-role="name">Approve request</text>
+  <rect x="943" y="248" width="124.344" height="30" data-role="chip" data-id="chip-VS-approve-CAP-approval" fill="#EBDDF9" stroke="#7951A5" stroke-width="1.2" rx="10" />
+  <text x="952" y="268" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="chip-VS-approve-CAP-approval" data-role="chip-text">Request approval</text>
+  <rect x="943" y="284" width="166.172" height="30" data-role="chip" data-id="chip-VS-approve-CAP-delegation" fill="#EBDDF9" stroke="#7951A5" stroke-width="1.2" rx="10" />
+  <text x="952" y="304" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="chip-VS-approve-CAP-delegation" data-role="chip-text">Delegated authorization</text>
+  <polygon points="1153,130 1349,130 1371,178.0 1349,226 1153,226 1175,178.0" data-role="node" data-id="VS-ticket" data-kind="task" data-style="peer" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" />
+  <text x="1262" y="183.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="700" fill="#1F2937" text-anchor="middle" data-owner="VS-ticket" data-role="name">Receive ticket</text>
+  <rect x="1175" y="248" width="116.406" height="30" data-role="chip" data-id="chip-VS-ticket-CAP-fulfilment" fill="#EBDDF9" stroke="#7951A5" stroke-width="1.2" rx="10" />
+  <text x="1184" y="268" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="chip-VS-ticket-CAP-fulfilment" data-role="chip-text">Ticket fulfilment</text>
+  <rect x="1175" y="284" width="166.172" height="30" data-role="chip" data-id="chip-VS-ticket-CAP-delegation" fill="#EBDDF9" stroke="#7951A5" stroke-width="1.2" rx="10" />
+  <text x="1184" y="304" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="chip-VS-ticket-CAP-delegation" data-role="chip-text">Delegated authorization</text>
+  <rect x="25" y="375" width="190" height="70" data-role="cell" data-id="cell-0-0" fill="#F7F7F7" stroke="#666A73" stroke-width="1" />
+  <text x="35" y="414.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937" data-owner="cell-0-0">Entrance</text>
+  <rect x="225" y="375" width="218" height="70" data-role="cell" data-id="cell-0-1" fill="#ffffff" stroke="#666A73" stroke-width="1" />
+  <text x="235" y="414.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="cell-0-1">Service need raised</text>
+  <rect x="457" y="375" width="218" height="70" data-role="cell" data-id="cell-0-2" fill="#ffffff" stroke="#666A73" stroke-width="1" />
+  <text font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="cell-0-2" data-source="Question accepted for own tenant">
+    <tspan x="467" y="405">Question accepted for own</tspan>
+    <tspan x="467" y="424">tenant</tspan>
+  </text>
+  <rect x="689" y="375" width="218" height="70" data-role="cell" data-id="cell-0-3" fill="#ffffff" stroke="#666A73" stroke-width="1" />
+  <text x="699" y="414.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="cell-0-3">Cited answer received</text>
+  <rect x="921" y="375" width="218" height="70" data-role="cell" data-id="cell-0-4" fill="#ffffff" stroke="#666A73" stroke-width="1" />
+  <text x="931" y="414.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="cell-0-4">Exact draft shown</text>
+  <rect x="1153" y="375" width="218" height="70" data-role="cell" data-id="cell-0-5" fill="#ffffff" stroke="#666A73" stroke-width="1" />
+  <text x="1163" y="414.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="cell-0-5">Approval bound to the draft</text>
+  <rect x="25" y="445" width="190" height="70" data-role="cell" data-id="cell-1-0" fill="#F7F7F7" stroke="#666A73" stroke-width="1" />
+  <text x="35" y="484.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937" data-owner="cell-1-0">Exit</text>
+  <rect x="225" y="445" width="218" height="70" data-role="cell" data-id="cell-1-1" fill="#ffffff" stroke="#666A73" stroke-width="1" />
+  <text font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="cell-1-1" data-source="Question accepted for own tenant">
+    <tspan x="235" y="475">Question accepted for own</tspan>
+    <tspan x="235" y="494">tenant</tspan>
+  </text>
+  <rect x="457" y="445" width="218" height="70" data-role="cell" data-id="cell-1-2" fill="#ffffff" stroke="#666A73" stroke-width="1" />
+  <text x="467" y="484.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="cell-1-2">Cited answer received</text>
+  <rect x="689" y="445" width="218" height="70" data-role="cell" data-id="cell-1-3" fill="#ffffff" stroke="#666A73" stroke-width="1" />
+  <text x="699" y="484.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="cell-1-3">Exact draft shown</text>
+  <rect x="921" y="445" width="218" height="70" data-role="cell" data-id="cell-1-4" fill="#ffffff" stroke="#666A73" stroke-width="1" />
+  <text x="931" y="484.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="cell-1-4">Approval bound to the draft</text>
+  <rect x="1153" y="445" width="218" height="70" data-role="cell" data-id="cell-1-5" fill="#ffffff" stroke="#666A73" stroke-width="1" />
+  <text x="1163" y="484.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="cell-1-5">Ticket created once</text>
+  <rect x="25" y="515" width="190" height="70" data-role="cell" data-id="cell-2-0" fill="#F7F7F7" stroke="#666A73" stroke-width="1" />
+  <text x="35" y="554.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937" data-owner="cell-2-0">Value item</text>
+  <rect x="225" y="515" width="218" height="70" data-role="cell" data-id="cell-2-1" fill="#ffffff" stroke="#666A73" stroke-width="1" />
+  <text x="235" y="554.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="cell-2-1">Need stated once, in chat</text>
+  <rect x="457" y="515" width="218" height="70" data-role="cell" data-id="cell-2-2" fill="#ffffff" stroke="#666A73" stroke-width="1" />
+  <text font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="cell-2-2" data-source="Answer from permitted sources">
+    <tspan x="467" y="545">Answer from permitted</tspan>
+    <tspan x="467" y="564">sources</tspan>
+  </text>
+  <rect x="689" y="515" width="218" height="70" data-role="cell" data-id="cell-2-3" fill="#ffffff" stroke="#666A73" stroke-width="1" />
+  <text x="699" y="554.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="cell-2-3">No retyping into a form</text>
+  <rect x="921" y="515" width="218" height="70" data-role="cell" data-id="cell-2-4" fill="#ffffff" stroke="#666A73" stroke-width="1" />
+  <text font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="cell-2-4" data-source="Employee controls the action">
+    <tspan x="931" y="545">Employee controls the</tspan>
+    <tspan x="931" y="564">action</tspan>
+  </text>
+  <rect x="1153" y="515" width="218" height="70" data-role="cell" data-id="cell-2-5" fill="#ffffff" stroke="#666A73" stroke-width="1" />
+  <text x="1163" y="554.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="cell-2-5">A ticket number to track</text>
+  <text x="25" y="615" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937">Each exit is the next entrance. The employee may stop after any stage, e.g. after the cited answer.</text>
+  <rect x="28" y="650" width="42" height="24" data-role="legend-swatch" data-id="__legend-swatch-1" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="8" />
+  <text x="82" y="668" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-1">Triggering stakeholder</text>
+  <polyline points="473,661 515,661" data-role="edge" data-kind="legend" data-id="legend-line-2" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <text x="527" y="668" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-2">Value hand-over to the next stage</text>
+  <polygon points="918,650 952,650 960,662 952,674 918,674 926,662" data-role="legend-swatch" data-id="__legend-swatch-3" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" />
+  <text x="972" y="668" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-3">Value stream stage (left to right)</text>
+  <rect x="28" y="692" width="42" height="24" data-role="legend-swatch" data-id="__legend-swatch-4" fill="#EBDDF9" stroke="#7951A5" stroke-width="1.2" rx="10" />
+  <text x="82" y="710" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-4">Enabling capability (A1 name)</text>
 </svg>

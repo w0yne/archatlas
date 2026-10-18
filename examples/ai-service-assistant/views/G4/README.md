@@ -1,28 +1,15 @@
-# G4 — Evaluation-gated configuration promotion
+# G4 — CI/CD and deployment pipeline
 
-经评测门禁的配置晋级
+Versioned prompt/model bundle, immutable digest, offline gates, steward approval and operator release. Promote the same bundle through staging and a 5% canary; recover by compatible configuration pointer, not automatic database rollback.
 
-Scope is versioned prompt/model configuration, not an invented application-image CI pipeline. DS-eval supplies versioned inputs, C-eval runs under its isolated identity, and quality/safety/latency/token-cost gates control promotion. Solid arrows carry artifacts or evidence; dashed arrows show gate/hand-off dependencies. A failed or unspecified gate holds the candidate. The tested version is the intended promotion identity; digest/registry details are not fabricated. C-agent is the existing target. Redacted health evidence informs a recovery decision whose owner/action remains unknown. The context entity attached to a local action is traceability, not assigned accountability.
+版本化 prompt/模型包、不可变摘要、离线门禁、管理员审批及运维发布。同一制品经预发布及 5% 灰度晋级；恢复兼容配置指针，不自动回滚数据库。
 
-Missing facts: CI/change trigger, gate thresholds, immutable artifact/digest contract, approver, deployer and actual promotion mechanism, post-release recovery policy and responsible owner. No rollback or automatic deployment guarantee is asserted.
+These are original hand-authored EN/ZH SVGs for scenario version 2. Facts and teaching
+choices live in [scenario.json](../../scenario.json), the [shared glossary](../../glossary.json)
+and [assumptions](../../ASSUMPTIONS.md). They are illustrative, not deployed or measured.
 
-## Files and integration contract
-
-`en/diagram.svg` and `zh/diagram.svg` are hand-authored source artwork. The adjacent
-`diagram.json` uses the existing model schema. `expected.json` pins scenario version 1,
-shared entities and applicable invariant IDs. No runtime component, identity or permission
-is added by the view-local action/state/gateway/symbol IDs.
-
-For behaviour views, `viewElements` records bilingual labels, a `contextEntity` and
-`sourceRefs` for each local semantic/notation element. A context entity is traceability,
-not an assignment of RACI accountability. Existing runtime/entity nodes stay in `entities`
-and retain their canonical bilingual labels. A future manifest validator must validate
-this disjoint union against model node IDs and keep strict entity-label checks; do not
-silently accept arbitrary renamed components. Tables use `roleEntities`/`tableSourceRefs`
-instead of pretending that cells are runtime nodes. This is sidecar validation metadata,
-not an extension of the diagram model schema.
-
-Register the new view/language entries and regenerate published copies only in the
-integration change. The C3 published copy is intentionally not updated here. The sample
-builder's byte-equality check will require that synchronization. All existing scenario,
-glossary, registry, manifest, renderer and site sources are unchanged.
+`diagram.json` uses the unchanged diagram model schema. `expected.json` maps shared
+entities and semantic/notation projections to central facts. `viewElements` are actions,
+states or symbols, never new runtime components or implicit permission grants. The sample
+builder checks and copies the artwork byte-for-byte. Published copies and all 29 view pairs
+are registered by the manifest. Historical shop fixtures remain unchanged.

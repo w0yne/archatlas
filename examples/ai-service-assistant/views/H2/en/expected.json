@@ -1,5 +1,5 @@
 {
-  "scenarioVersion": 1,
+  "scenarioVersion": 2,
   "entities": {
     "C-api": "C-api",
     "C-agent": "C-agent",
@@ -16,9 +16,19 @@
     "I-ingest"
   ],
   "projection": "focused view; omissions described in caption; not a deployed system",
-  "missingFacts": [
-    "SLI/SLO definitions and targets",
-    "Sampling, retention and telemetry delivery policy",
-    "Alert thresholds, notification route and response runbooks"
+  "missingFacts": [],
+  "assumptions": [
+    "AS-ingest",
+    "AS-request",
+    "AS-policy",
+    "AS-raci",
+    "AS-network",
+    "AS-release",
+    "AS-observe",
+    "AS-domains",
+    "AS-data",
+    "AS-roadmap",
+    "AS-components",
+    "AS-interfaces"
   ]
 }

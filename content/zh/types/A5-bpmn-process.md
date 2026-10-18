@@ -146,5 +146,9 @@ BPMN 流程图回答的是：“一个订单、请求或案件如何从触发走
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-![A5 示例：处理退货的 BPMN 协作图，顾客为黑盒池](/samples/A5-bpmn-process.zh.svg)
-*以 BPMN 协作图表示处理退货：网店池内有客服、仓库和财务三条泳道，顾客是黑盒池。实线箭头是网店池内的顺序流；虚线箭头是与顾客之间的消息流（退货申请、退货面单、包裹）。判断“符合条件？”要么导向“发送退货面单”，要么导向结束事件“退货被拒”；退回的商品经收货、验货后退款，终点是“已退款”。开始事件是细圆圈，结束事件是粗圆圈；流程没有单一主体，因此不突出任何元素。*
+![A5 · 企业服务助手](/samples/ai-service-assistant/A5/zh/diagram.svg)
+*一件业务如何从开始走到结束？每一步谁做、在哪分支、参与方之间传递什么？*
+
+[SVG](/samples/ai-service-assistant/A5/zh/diagram.svg) · [模型 JSON](/samples/ai-service-assistant/A5/zh/diagram.json) · [共享事实](/samples/ai-service-assistant/scenario.json)
+
+[历史 shop 回归样例](/samples/A5-bpmn-process.zh.svg) · [全部29幅视图](/zh/use/ai-service-assistant) · [示意假设](/zh/use/ai-service-assistant-assumptions).

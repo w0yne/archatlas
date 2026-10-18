@@ -191,8 +191,8 @@ Editorial grouping preserves the distinct notation; use this recipe and its chec
 ## Sample {#sample}
 <!-- skill: path only -->
 ![C2 · Enterprise Service Assistant](/samples/ai-service-assistant/C2/en/diagram.svg)
-*One owned system and its direct neighbours. Arrows mean initiator to dependency; no protocols or internal stores appear at this level. People are roles, not real individuals. All three tenants are synthetic.*
+*What is the software system, who uses it, and which other systems does it depend on?*
 
 [SVG](/samples/ai-service-assistant/C2/en/diagram.svg) · [Model JSON](/samples/ai-service-assistant/C2/en/diagram.json) · [Shared facts](/samples/ai-service-assistant/scenario.json)
 
-[Historical shop sample (regression fixture)](/samples/C2-system-context.svg) · [All seven views and assumptions](/use/ai-service-assistant).
+[Historical shop regression sample](/samples/C2-system-context.svg) · [All 29 views](/use/ai-service-assistant) · [Illustrative assumptions](/use/ai-service-assistant-assumptions).

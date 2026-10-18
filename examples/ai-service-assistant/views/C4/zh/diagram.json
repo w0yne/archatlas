@@ -6,7 +6,7 @@
     "lang": "zh",
     "state": "to-be",
     "audience": "architects and reviewers",
-    "description": "Fictional teaching design; scenario.json version 1"
+    "description": "Fictional teaching design; scenario.json version 2; illustrative assumptions, not a deployed system"
   },
   "layout": {
     "template": "nested"
@@ -22,26 +22,26 @@
     {
       "id": "P-retrieve",
       "kind": "component",
-      "label": "2. 授权检索",
+      "label": "授权检索器",
       "parent": "B-agent",
       "style": "peer",
-      "sub": "P-retrieve · 组件 · 检索前执行租户与 ACL 过滤"
+      "sub": "authorized_retriever · 检索前执行租户与 ACL 过滤"
     },
     {
       "id": "P-compose",
       "kind": "component",
-      "label": "3. 生成回答",
+      "label": "回答生成器",
       "parent": "B-agent",
       "style": "peer",
-      "sub": "P-compose · 组件 · 提示词、模型调用、guardrails"
+      "sub": "answer_composer · 提示词、模型调用、guardrails"
     },
     {
       "id": "P-plan",
       "kind": "component",
-      "label": "1. 起草请求",
+      "label": "请求规划器",
       "parent": "B-agent",
       "style": "peer",
-      "sub": "P-plan · 组件 · 生成结构化草稿；不直接执行"
+      "sub": "request_planner · 生成结构化草稿；不直接执行"
     },
     {
       "id": "DS-index",

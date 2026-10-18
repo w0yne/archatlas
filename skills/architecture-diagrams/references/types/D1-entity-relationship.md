@@ -84,4 +84,4 @@ Scope: One subject area or bounded context, about 5-15 entities, drawn at one st
 Model template: `assets/templates/D1.json` · Layout template: `er` · entities become `nodes` of kind `entity` (attribute strings in `attributes`, key markers such as `PK`/`FK` first), a bounded context or subject area becomes a `boundary` group, relationships become edges with `dir` `--` whose `cardinality{from,to}` carries min/max and whose `label` is the verb; the level goes in the title.
 
 ## Sample
-Figure: `samples/D1-entity-relationship.svg` (published with the site)
+Figure: `samples/ai-service-assistant/D1/en/diagram.svg` (published with the site)

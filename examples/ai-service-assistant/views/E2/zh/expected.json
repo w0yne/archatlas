@@ -1,5 +1,5 @@
 {
-  "scenarioVersion": 1,
+  "scenarioVersion": 2,
   "entities": {
     "P-plan": "P-plan",
     "P-approve": "P-approve",
@@ -24,7 +24,7 @@
       "sourceRefs": [
         "I-approval"
       ],
-      "status": "notation / conceptual projection"
+      "status": "illustrative assumption / notation projection"
     },
     "E2-valid": {
       "kind": "gateway",
@@ -36,7 +36,7 @@
       "sourceRefs": [
         "I-approval"
       ],
-      "status": "notation / conceptual projection"
+      "status": "illustrative assumption / notation projection"
     },
     "E2-persist": {
       "kind": "task",
@@ -48,7 +48,7 @@
       "sourceRefs": [
         "I-idempotency"
       ],
-      "status": "conceptual projection, not a new component or database enum"
+      "status": "illustrative assumption / notation projection"
     },
     "E2-write": {
       "kind": "task",
@@ -61,7 +61,7 @@
         "I-idempotency",
         "I-bounds"
       ],
-      "status": "conceptual projection, not a new component or database enum"
+      "status": "illustrative assumption / notation projection"
     },
     "E2-deny": {
       "kind": "task",
@@ -74,7 +74,7 @@
         "I-approval",
         "I-tokens"
       ],
-      "status": "conceptual projection, not a new component or database enum"
+      "status": "illustrative assumption / notation projection"
     },
     "E2-done": {
       "kind": "final",
@@ -86,7 +86,7 @@
       "sourceRefs": [
         "I-approval"
       ],
-      "status": "notation / conceptual projection"
+      "status": "illustrative assumption / notation projection"
     },
     "E2-refused": {
       "kind": "final",
@@ -98,8 +98,9 @@
       "sourceRefs": [
         "I-approval"
       ],
-      "status": "notation / conceptual projection"
+      "status": "illustrative assumption / notation projection"
     }
   },
-  "missingFacts": []
+  "missingFacts": [],
+  "assumptions": []
 }

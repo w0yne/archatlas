@@ -1,0 +1,151 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "D1",
+    "title": "D1 · Enterprise Service Assistant — logical data model (tenant-scoped)",
+    "lang": "en",
+    "state": "to-be",
+    "audience": "architects and reviewers",
+    "description": "Fictional teaching design; scenario.json version 2; illustrative assumptions, not a deployed system"
+  },
+  "layout": {
+    "template": "er"
+  },
+  "nodes": [
+    {
+      "id": "DE-tenant",
+      "kind": "entity",
+      "label": "Tenant",
+      "style": "peer",
+      "sub": "tenant id (PK) · name · status"
+    },
+    {
+      "id": "DE-member",
+      "kind": "entity",
+      "label": "Membership",
+      "style": "peer",
+      "sub": "tenant id + employee id (PK) · role · status"
+    },
+    {
+      "id": "DE-chat",
+      "kind": "entity",
+      "label": "Chat",
+      "style": "peer",
+      "sub": "chat id (PK) · tenant id, employee id · started at"
+    },
+    {
+      "id": "DE-approval",
+      "kind": "entity",
+      "label": "Approval",
+      "style": "peer",
+      "sub": "approval id (PK) · tenant, subject, tool · hash, expiry, key"
+    },
+    {
+      "id": "DE-docver",
+      "kind": "entity",
+      "label": "Document version",
+      "style": "shared",
+      "sub": "version id (PK) · tenant id, source ref · ACL snapshot, status"
+    },
+    {
+      "id": "DE-feedback",
+      "kind": "entity",
+      "label": "Feedback",
+      "style": "peer",
+      "sub": "feedback id (PK) · chat id, rating · note"
+    },
+    {
+      "id": "DE-exec",
+      "kind": "entity",
+      "label": "Execution",
+      "style": "peer",
+      "sub": "tenant/tool/key (PK) · approval id · outcome"
+    },
+    {
+      "id": "DE-chunk",
+      "kind": "entity",
+      "label": "Chunk",
+      "style": "shared",
+      "sub": "chunk id (PK) · version id, tenant id · vector, ACL"
+    },
+    {
+      "id": "DE-evalrec",
+      "kind": "entity",
+      "label": "Evaluation record",
+      "style": "highlight",
+      "sub": "record id (PK) · deidentified input · dataset version"
+    },
+    {
+      "id": "DE-audit",
+      "kind": "entity",
+      "label": "Audit event",
+      "style": "peer",
+      "sub": "event id (PK) · tenant, actor, action · time"
+    }
+  ],
+  "edges": [
+    {
+      "id": "REL-1",
+      "from": "DE-tenant",
+      "to": "DE-member",
+      "label": "includes",
+      "kind": "assoc"
+    },
+    {
+      "id": "REL-2",
+      "from": "DE-member",
+      "to": "DE-chat",
+      "label": "starts",
+      "kind": "assoc"
+    },
+    {
+      "id": "REL-3",
+      "from": "DE-chat",
+      "to": "DE-approval",
+      "label": "requests",
+      "kind": "assoc"
+    },
+    {
+      "id": "REL-4",
+      "from": "DE-tenant",
+      "to": "DE-docver",
+      "label": "owns",
+      "kind": "assoc"
+    },
+    {
+      "id": "REL-5",
+      "from": "DE-docver",
+      "to": "DE-chunk",
+      "label": "is split into",
+      "kind": "assoc"
+    },
+    {
+      "id": "REL-6",
+      "from": "DE-chat",
+      "to": "DE-feedback",
+      "label": "receives",
+      "kind": "assoc"
+    },
+    {
+      "id": "REL-7",
+      "from": "DE-feedback",
+      "to": "DE-evalrec",
+      "label": "is exported as",
+      "kind": "assoc"
+    },
+    {
+      "id": "REL-8",
+      "from": "DE-approval",
+      "to": "DE-exec",
+      "label": "authorises",
+      "kind": "assoc"
+    },
+    {
+      "id": "REL-9",
+      "from": "DE-exec",
+      "to": "DE-audit",
+      "label": "is recorded as",
+      "kind": "assoc"
+    }
+  ]
+}

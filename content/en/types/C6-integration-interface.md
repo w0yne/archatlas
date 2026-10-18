@@ -188,5 +188,9 @@ Model template: `assets/templates/C6.json` · Layout template: `grid_table` · t
 
 ## Sample {#sample}
 <!-- skill: path only -->
-![C6 sample: interface table with three interfaces of an online shop](/samples/C6-integration-interface.svg)
-*Interface table of the online shop with three interfaces: I1 order API to payment provider (synchronous REST, charge request, at checkout), I2 order API to email service (asynchronous message, receipt, when an order is paid) and I3 order API to carrier (nightly file, shipment list). The table alone; the companion interface map is a separate figure.*
+![C6 · Enterprise Service Assistant](/samples/ai-service-assistant/C6/en/diagram.svg)
+*Interface authentication, producer/consumer direction, bounded retries, ownership and capacity are illustrative contracts in AS-interfaces. Queue delivery is polled by the worker, not broker-initiated push.*
+
+[SVG](/samples/ai-service-assistant/C6/en/diagram.svg) · [Model JSON](/samples/ai-service-assistant/C6/en/diagram.json) · [Shared facts](/samples/ai-service-assistant/scenario.json)
+
+[Historical shop regression sample](/samples/C6-integration-interface.svg) · [All 29 views](/use/ai-service-assistant) · [Illustrative assumptions](/use/ai-service-assistant-assumptions).

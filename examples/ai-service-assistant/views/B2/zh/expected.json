@@ -1,10 +1,12 @@
 {
-  "scenarioVersion": 1,
+  "scenarioVersion": 2,
   "entities": {},
   "invariants": [
     "I-bounds",
     "I-approval",
     "I-tenant"
   ],
-  "projection": "focused view; omissions described in caption; not a deployed system"
+  "projection": "focused view; omissions described in caption; not a deployed system",
+  "missingFacts": [],
+  "assumptions": []
 }

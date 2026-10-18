@@ -89,4 +89,4 @@ Scope: One entity, job, connection or component over its whole life, one diagram
 Model template: `assets/templates/E3.json` · Layout template: `statechart` · states are `state` nodes (`initial` and `final` for the pseudostates), composite states are `frame` groups, each transition is an edge of kind `call` with `label` = `event [guard] / effect`; `evidence.status` marks verified versus inferred transitions.
 
 ## Sample
-Figure: `samples/E3-state-machine.svg` (published with the site)
+Figure: `samples/ai-service-assistant/E3/en/diagram.svg` (published with the site)

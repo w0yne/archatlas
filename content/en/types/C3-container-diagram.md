@@ -150,8 +150,8 @@ Model template: `assets/templates/C3.json` · Layout template: `statechart` · o
 ## Sample {#sample}
 <!-- skill: path only -->
 ![C3 · Enterprise Service Assistant](/samples/ai-service-assistant/C3/en/diagram.svg)
-*Focused internal container view: six runtime units and five stores/queues, plus the external model dependency. The three other external interfaces (IdP, source repository and Service Desk) remain explicit in C2/F1; ingestion reaches the source, and Tools reaches Service Desk. The Agent includes a logical model gateway, not a seventh service. Only key dependencies are drawn: C-api also approves feedback export to DS-eval, C-ingest produces version jobs and consumes Q-ingest, and C-eval writes gated configuration proposals to DS-eval. Retrieval and citation access enforce current tenant/ACL policy. MCP means Model Context Protocol.*
+*Six runtime units, five stores/queues and the model dependency. API is the sole job producer; workers poll, fetch authorized source versions and create embeddings. All original node and edge identities are retained, with two added dependencies.*
 
 [SVG](/samples/ai-service-assistant/C3/en/diagram.svg) · [Model JSON](/samples/ai-service-assistant/C3/en/diagram.json) · [Shared facts](/samples/ai-service-assistant/scenario.json)
 
-[Historical shop sample (regression fixture)](/samples/C3-container-diagram.svg) · [All seven views and assumptions](/use/ai-service-assistant).
+[Historical shop regression sample](/samples/C3-container-diagram.svg) · [All 29 views](/use/ai-service-assistant) · [Illustrative assumptions](/use/ai-service-assistant-assumptions).

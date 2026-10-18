@@ -148,5 +148,9 @@ reviewed: false
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-![D1 示例：网店的逻辑数据模型，带最小和最大基数](/samples/D1-entity-relationship.zh.svg)
-*网店的逻辑数据模型：两行共八个实体（上排顾客、订单、订单行、商品；下排地址、支付、退货、品类），每个实体带标识、外键和几个有代表性的属性（主键、外键），并有一个标明所属领域的标签。订单是本图主体和中心实体（深色卡片）。每条关系都有动词，两端写明最小..最大基数：一个顾客下 0..* 个订单，一个订单含 1..* 个订单行，一个商品售出为 0..* 个订单行（* 表示多）。基数以文字绘制，而非鸦脚符号。*
+![D1 · 企业服务助手](/samples/ai-service-assistant/D1/zh/diagram.svg)
+*逻辑实体子集，非完整 DDL。租户记录 PK/FK 含租户范围；审批除主体、工具、hash、有效期外还绑定幂等元组。消息/引用仍属于对话聚合。*
+
+[SVG](/samples/ai-service-assistant/D1/zh/diagram.svg) · [模型 JSON](/samples/ai-service-assistant/D1/zh/diagram.json) · [共享事实](/samples/ai-service-assistant/scenario.json)
+
+[历史 shop 回归样例](/samples/D1-entity-relationship.zh.svg) · [全部29幅视图](/zh/use/ai-service-assistant) · [示意假设](/zh/use/ai-service-assistant-assumptions).

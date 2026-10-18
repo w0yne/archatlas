@@ -1,0 +1,103 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "C1",
+    "title": "C1 · Enterprise Service Assistant — application landscape",
+    "lang": "en",
+    "state": "to-be",
+    "audience": "architects and reviewers",
+    "description": "Fictional teaching design; scenario.json version 2; illustrative assumptions, not a deployed system"
+  },
+  "layout": {
+    "template": "nested"
+  },
+  "nodes": [
+    {
+      "id": "S-assistant",
+      "kind": "system",
+      "label": "Enterprise Service Assistant",
+      "parent": "G-new",
+      "style": "primary",
+      "sub": "S-assistant · new application · Cited answers and approved service actions"
+    },
+    {
+      "id": "X-idp",
+      "kind": "external",
+      "label": "Enterprise IdP / AS",
+      "parent": "G-ent",
+      "style": "external",
+      "sub": "X-idp · OIDC / OAuth · Identity and constrained delegation"
+    },
+    {
+      "id": "X-doc",
+      "kind": "external",
+      "label": "Document Repository",
+      "parent": "G-ent",
+      "style": "external",
+      "sub": "X-doc · HTTPS connector · Source documents and access policy"
+    },
+    {
+      "id": "X-desk",
+      "kind": "external",
+      "label": "Service Desk",
+      "parent": "G-ent",
+      "style": "external",
+      "sub": "X-desk · HTTPS · Catalogue, ticket read and create"
+    },
+    {
+      "id": "X-model",
+      "kind": "external",
+      "label": "Managed Model Service",
+      "parent": "G-cloud",
+      "style": "external",
+      "sub": "X-model · Amazon Bedrock · Generate text and embeddings"
+    }
+  ],
+  "edges": [
+    {
+      "id": "APP-1",
+      "from": "S-assistant",
+      "to": "X-idp",
+      "label": "identity, delegation",
+      "kind": "call"
+    },
+    {
+      "id": "APP-2",
+      "from": "S-assistant",
+      "to": "X-doc",
+      "label": "documents, ACLs",
+      "kind": "call"
+    },
+    {
+      "id": "APP-3",
+      "from": "S-assistant",
+      "to": "X-desk",
+      "label": "tickets",
+      "kind": "call"
+    },
+    {
+      "id": "APP-4",
+      "from": "S-assistant",
+      "to": "X-model",
+      "label": "text, embeddings",
+      "kind": "call"
+    }
+  ],
+  "groups": [
+    {
+      "id": "G-new",
+      "title": "New · Enterprise Service Assistant",
+      "kind": "boundary"
+    },
+    {
+      "id": "G-ent",
+      "title": "Existing · enterprise-operated systems",
+      "kind": "boundary"
+    },
+    {
+      "id": "G-cloud",
+      "title": "Managed · cloud service",
+      "kind": "boundary"
+    }
+  ]
+}

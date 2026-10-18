@@ -1,5 +1,5 @@
 {
-  "scenarioVersion": 1,
+  "scenarioVersion": 2,
   "entities": {},
   "invariants": [
     "I-approval",
@@ -18,7 +18,7 @@
       "sourceRefs": [
         "I-approval"
       ],
-      "status": "notation / conceptual projection"
+      "status": "illustrative assumption / notation projection"
     },
     "E3-unapproved": {
       "kind": "state",
@@ -31,7 +31,7 @@
         "I-approval",
         "I-idempotency"
       ],
-      "status": "conceptual projection, not a new component or database enum"
+      "status": "illustrative assumption / notation projection"
     },
     "E3-approved": {
       "kind": "state",
@@ -44,7 +44,7 @@
         "I-approval",
         "I-idempotency"
       ],
-      "status": "conceptual projection, not a new component or database enum"
+      "status": "illustrative assumption / notation projection"
     },
     "E3-executing": {
       "kind": "state",
@@ -57,7 +57,7 @@
         "I-approval",
         "I-idempotency"
       ],
-      "status": "conceptual projection, not a new component or database enum"
+      "status": "illustrative assumption / notation projection"
     },
     "E3-unknown": {
       "kind": "state",
@@ -70,7 +70,7 @@
         "I-approval",
         "I-idempotency"
       ],
-      "status": "conceptual projection, not a new component or database enum"
+      "status": "illustrative assumption / notation projection"
     },
     "E3-resolved": {
       "kind": "state",
@@ -83,7 +83,7 @@
         "I-approval",
         "I-idempotency"
       ],
-      "status": "conceptual projection, not a new component or database enum"
+      "status": "illustrative assumption / notation projection"
     },
     "E3-refused": {
       "kind": "state",
@@ -96,7 +96,7 @@
         "I-approval",
         "I-idempotency"
       ],
-      "status": "conceptual projection, not a new component or database enum"
+      "status": "illustrative assumption / notation projection"
     },
     "E3-final": {
       "kind": "final",
@@ -108,11 +108,22 @@
       "sourceRefs": [
         "I-approval"
       ],
-      "status": "notation / conceptual projection"
+      "status": "illustrative assumption / notation projection"
     }
   },
-  "missingFacts": [
-    "Persisted request-state enum and closure policy",
-    "Reconciliation deadline"
+  "missingFacts": [],
+  "assumptions": [
+    "AS-ingest",
+    "AS-request",
+    "AS-policy",
+    "AS-raci",
+    "AS-network",
+    "AS-release",
+    "AS-observe",
+    "AS-domains",
+    "AS-data",
+    "AS-roadmap",
+    "AS-components",
+    "AS-interfaces"
   ]
 }

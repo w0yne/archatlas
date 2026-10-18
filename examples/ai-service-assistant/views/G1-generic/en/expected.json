@@ -1,5 +1,5 @@
 {
-  "scenarioVersion": 1,
+  "scenarioVersion": 2,
   "entities": {
     "C-web": "C-web",
     "C-api": "C-api",
@@ -19,5 +19,19 @@
     "I-operator"
   ],
   "projection": "focused view; omissions described in caption; not a deployed system",
-  "missingFacts": []
+  "missingFacts": [],
+  "assumptions": [
+    "AS-ingest",
+    "AS-request",
+    "AS-policy",
+    "AS-raci",
+    "AS-network",
+    "AS-release",
+    "AS-observe",
+    "AS-domains",
+    "AS-data",
+    "AS-roadmap",
+    "AS-components",
+    "AS-interfaces"
+  ]
 }

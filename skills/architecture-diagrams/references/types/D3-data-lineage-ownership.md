@@ -88,4 +88,4 @@ Scope: One anchor (a dataset, report or answer) with a bounded upstream or downs
 Model template: `assets/templates/D3.json` · Layout template: `layered` · datasets are `store` nodes and jobs are `component` nodes (owner and steward in `sub`, classification in `tags`), owning domains are `lane` or `layer` groups, "feeds" relations are `data` edges `->` from producer to consumer, and the evidence source and date go in `meta.description`.
 
 ## Sample
-Figure: `samples/D3-data-lineage-ownership.svg` (published with the site)
+Figure: `samples/ai-service-assistant/D3/en/diagram.svg` (published with the site)

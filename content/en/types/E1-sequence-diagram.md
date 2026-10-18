@@ -195,8 +195,8 @@ Editorial grouping preserves the distinct notation; use this recipe and its chec
 ## Sample {#sample}
 <!-- skill: path only -->
 ![E1 · Enterprise Service Assistant](/samples/ai-service-assistant/E1/en/diagram.svg)
-*The employee approves only their own currently permitted action. The BFF stores tenant, subject, tool, canonical-parameter hash, expiry and idempotency key. Tools fetches that binding and rechecks current policy immediately before the write; rejected, expired or changed drafts do not reach Service Desk. The request intent is persisted before calling the idempotent connector. On ambiguous timeouts, reconcile by key. F1 supplies the delegated-token prerequisites. The UI presents the final result via the BFF; that return hop is omitted here.*
+*For one scenario, in what order do the participants exchange which messages?*
 
 [SVG](/samples/ai-service-assistant/E1/en/diagram.svg) · [Model JSON](/samples/ai-service-assistant/E1/en/diagram.json) · [Shared facts](/samples/ai-service-assistant/scenario.json)
 
-[Historical shop sample (regression fixture)](/samples/E1-sequence-diagram.svg) · [All seven views and assumptions](/use/ai-service-assistant).
+[Historical shop regression sample](/samples/E1-sequence-diagram.svg) · [All 29 views](/use/ai-service-assistant) · [Illustrative assumptions](/use/ai-service-assistant-assumptions).

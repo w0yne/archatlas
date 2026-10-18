@@ -153,8 +153,8 @@ reviewed: false
 ## 示例图 {#sample}
 <!-- skill: path only -->
 ![C3 · 企业服务助手](/samples/ai-service-assistant/C3/zh/diagram.svg)
-*聚焦内部容器：六个运行单元、五个存储/队列及外部模型依赖。身份、文档源、工单这三种外部接口见 C2/F1；摄取进程连接文档源，工具网关连接工单。Agent 内含逻辑模型网关，不是第七个服务。本图只画关键依赖：C-api 另负责批准反馈导出至 DS-eval，C-ingest 生产版本任务并消费 Q-ingest，C-eval 将经门禁的配置建议写入 DS-eval。检索与引用访问均检查当前 tenant/ACL。MCP 为 Model Context Protocol。*
+*六个运行单元、五个存储/队列及模型依赖。API 是任务唯一生产者；工作进程轮询、读取授权源版本并创建嵌入。保留原节点与边标识，并补上两条依赖。*
 
 [SVG](/samples/ai-service-assistant/C3/zh/diagram.svg) · [模型 JSON](/samples/ai-service-assistant/C3/zh/diagram.json) · [共享事实](/samples/ai-service-assistant/scenario.json)
 
-[历史 shop 样例（回归 fixture）](/samples/C3-container-diagram.zh.svg) · [七幅视图及假设](/zh/use/ai-service-assistant).
+[历史 shop 回归样例](/samples/C3-container-diagram.zh.svg) · [全部29幅视图](/zh/use/ai-service-assistant) · [示意假设](/zh/use/ai-service-assistant-assumptions).

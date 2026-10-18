@@ -179,8 +179,8 @@ reviewed: false
 ## 示例 {#sample}
 <!-- skill: path only -->
 ![D2 · 企业服务助手](/samples/ai-service-assistant/D2/zh/diagram.svg)
-*知识回答功能的第 1 层分解，采用 Gane–Sarson 符号：圆角处理框、开口存储、矩形外部实体。箭头标数据而非控制步骤。P-ingest 属于 C-ingest；检索和生成属于 C-agent；引用授权属于 C-api。过滤权限来自已验证会话，不接受用户自选 tenant。源 ACL 随版本与分块传播，打开引用时再次检查当前策略。本图范围不含工单操作与评测闭环，不声称分解整个 C2 系统。输入是原文+ACL、员工问题+身份及模型草稿；输出是含依据的提示与已授权回答/引用，DS-app 接收审计记录。*
+*检索前明确执行 tenant/ACL 过滤，打开引用时再次核对当前权限。此逻辑 DFD 聚焦知识回答，工单写入与评测另图表达。*
 
 [SVG](/samples/ai-service-assistant/D2/zh/diagram.svg) · [模型 JSON](/samples/ai-service-assistant/D2/zh/diagram.json) · [共享事实](/samples/ai-service-assistant/scenario.json)
 
-[历史 shop 样例（回归 fixture）](/samples/D2-data-flow-diagram.svg) · [七幅视图及假设](/zh/use/ai-service-assistant).
+[历史 shop 回归样例](/samples/D2-data-flow-diagram.svg) · [全部29幅视图](/zh/use/ai-service-assistant) · [示意假设](/zh/use/ai-service-assistant-assumptions).

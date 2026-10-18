@@ -1,140 +1,144 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1520" lang="zh" data-archatlas="0.1">
-<title>C6 · 企业服务助手 — 集成与接口</title>
-<desc>虚构目标设计 · 逻辑变体；下方为接口登记表，ID 与连线一致</desc>
-<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,4 L0,8 Z" fill="#4B5563"/></marker></defs>
-<rect data-role="canvas" width="1400" height="1520" fill="#ffffff"/>
-<text x="28" y="40" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="28" font-weight="700" fill="#1F2937">C6 · 企业服务助手 — 集成与接口</text>
-<text x="28" y="72" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">虚构目标设计 · 逻辑变体；下方为接口登记表，ID 与连线一致</text>
-<text x="40" y="112" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="400" fill="#1F2937">范围：助手的运行时接口。箭头：发起方 → 提供方；异步路径经队列。</text>
-<rect x="520" y="225" width="400" height="108" data-role="node" data-id="X-idp" data-kind="external" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="0"/>
-<text x="534" y="254" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="X-idp" data-role="name">企业 IdP / AS</text>
-<text x="534" y="279" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-idp" data-role="sub">X-idp · OIDC / OAuth</text>
-<text x="534" y="302" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-idp" data-role="sub">身份与受限委托</text>
-<rect x="30" y="420" width="210" height="108" data-role="node" data-id="C-web" data-kind="container" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="44" y="449" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-web" data-role="name">Web 门户</text>
-<text x="44" y="474" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-web" data-role="sub">C-web · TypeScript SPA</text>
-<text x="44" y="497" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-web" data-role="sub">对话与审批界面</text>
-<rect x="420" y="420" width="220" height="108" data-role="node" data-id="C-api" data-kind="container" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="434" y="449" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-api" data-role="name">应用 API/BFF</text>
-<text x="434" y="474" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-api" data-role="sub">C-api · Python / HTTPS</text>
-<text x="434" y="497" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-api" data-role="sub">会话、租户策略与审批</text>
-<rect x="800" y="420" width="220" height="108" data-role="node" data-id="C-agent" data-kind="container" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="814" y="449" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-agent" data-role="name">Agent 服务</text>
-<text x="814" y="474" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-agent" data-role="sub">C-agent · Python / HTTPS</text>
-<text x="814" y="497" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-agent" data-role="sub">受限规划、检索与工具</text>
-<rect x="1140" y="420" width="250" height="108" data-role="node" data-id="X-model" data-kind="external" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="0"/>
-<text x="1154" y="449" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="X-model" data-role="name">托管模型服务</text>
-<text x="1154" y="474" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-model" data-role="sub">X-model · Amazon Bedrock</text>
-<text x="1154" y="497" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-model" data-role="sub">生成文本与向量</text>
-<rect x="800" y="640" width="220" height="108" data-role="node" data-id="C-tools" data-kind="container" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="814" y="669" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-tools" data-role="name">MCP 工具网关</text>
-<text x="814" y="694" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-tools" data-role="sub">C-tools · MCP HTTPS</text>
-<text x="814" y="717" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-tools" data-role="sub">验证委托；执行权限检查</text>
-<rect x="1140" y="640" width="250" height="108" data-role="node" data-id="X-desk" data-kind="external" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="0"/>
-<text x="1154" y="669" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="X-desk" data-role="name">服务工单系统</text>
-<text x="1154" y="694" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-desk" data-role="sub">X-desk · HTTPS</text>
-<text x="1154" y="717" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-desk" data-role="sub">服务目录、工单读取与创建</text>
-<rect x="30" y="860" width="240" height="108" data-role="node" data-id="X-doc" data-kind="external" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="0"/>
-<text x="44" y="889" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="X-doc" data-role="name">文档源系统</text>
-<text x="44" y="914" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-doc" data-role="sub">X-doc · HTTPS 连接器</text>
-<text x="44" y="937" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-doc" data-role="sub">原始文档与访问策略</text>
-<rect x="420" y="860" width="240" height="108" data-role="node" data-id="C-ingest" data-kind="container" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="434" y="889" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-ingest" data-role="name">摄取工作进程</text>
-<text x="434" y="914" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-ingest" data-role="sub">C-ingest · Python / batch</text>
-<text x="434" y="937" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-ingest" data-role="sub">版本、分块、嵌入与索引</text>
-<rect x="820" y="860" width="240" height="108" data-role="node" data-id="Q-ingest" data-kind="queue" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="834" y="889" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="Q-ingest" data-role="name">摄取队列 + DLQ</text>
-<text x="834" y="914" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="Q-ingest" data-role="sub">Q-ingest · SQS</text>
-<text x="834" y="937" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="Q-ingest" data-role="sub">版本任务；有限重试与隔离</text>
-<text x="40" y="1030" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="700" fill="#1F2937">接口登记表（本设计未规定 SLA、流量与双方负责人）</text>
-<text x="40" y="1068" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937">ID</text>
-<text x="110" y="1068" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937">发起方 → 提供方</text>
-<text x="470" y="1068" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937">集成风格 · 交互模式</text>
-<text x="800" y="1068" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937">认证</text>
-<text x="40" y="1098" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937">I-01</text>
-<text x="110" y="1098" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">Web 门户 → 应用 API/BFF</text>
-<text x="470" y="1098" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">API · 请求-应答</text>
-<text x="800" y="1098" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">Secure、HttpOnly、SameSite 会话 cookie</text>
-<text x="40" y="1124" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937">I-02</text>
-<text x="110" y="1124" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">应用 API/BFF → 企业 IdP / AS</text>
-<text x="470" y="1124" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">API · OIDC 授权码</text>
-<text x="800" y="1124" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">机密客户端；PKCE verifier 保留在服务端</text>
-<text x="40" y="1150" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937">I-03</text>
-<text x="110" y="1150" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">应用 API/BFF → Agent 服务</text>
-<text x="470" y="1150" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">API · 请求-应答</text>
-<text x="800" y="1150" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">agent 范围的主体 token（aud=agent-service）</text>
-<text x="40" y="1176" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937">I-04</text>
-<text x="110" y="1176" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">Agent 服务 → 企业 IdP / AS</text>
-<text x="470" y="1176" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">API · 令牌交换（RFC 8693）</text>
-<text x="800" y="1176" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">agent-client 认证 + 有效主体 token</text>
-<text x="40" y="1202" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937">I-05</text>
-<text x="110" y="1202" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">Agent 服务 → MCP 工具网关</text>
-<text x="470" y="1202" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">API · 基于 MCP 的工具调用</text>
-<text x="800" y="1202" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">工具 token：iss、aud、sub、act、tenant、scopes、短有效期</text>
-<text x="40" y="1228" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937">I-06</text>
-<text x="110" y="1228" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">MCP 工具网关 → 服务工单系统</text>
-<text x="470" y="1228" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">API · 请求-应答；创建按幂等键去重</text>
-<text x="800" y="1228" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">独立受限连接器凭据，绝不转发 token</text>
-<text x="40" y="1254" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937">I-07</text>
-<text x="110" y="1254" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">MCP 工具网关 → 应用 API/BFF</text>
-<text x="470" y="1254" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">API · 审批查询</text>
-<text x="800" y="1254" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">?</text>
-<text x="40" y="1280" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937">I-08</text>
-<text x="110" y="1280" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">Agent 服务 → 托管模型服务</text>
-<text x="470" y="1280" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">API · 请求-应答</text>
-<text x="800" y="1280" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">?</text>
-<text x="40" y="1306" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937">I-09</text>
-<text x="110" y="1306" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">摄取工作进程 → 文档源系统</text>
-<text x="470" y="1306" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">API · 经连接器拉取</text>
-<text x="800" y="1306" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">?</text>
-<text x="40" y="1332" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937">I-10</text>
-<text x="110" y="1332" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">摄取工作进程 → 摄取队列</text>
-<text x="470" y="1332" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">消息 · 命令（入队）</text>
-<text x="800" y="1332" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">?</text>
-<text x="40" y="1358" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937">I-11</text>
-<text x="110" y="1358" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">摄取队列 → 摄取工作进程</text>
-<text x="470" y="1358" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">消息 · 投递；有限重试、DLQ</text>
-<text x="800" y="1358" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">?</text>
-<text x="40" y="1392" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">? = 本设计未规定。</text>
-<polyline points="240,474 420,474" data-role="edge" data-id="I-01" data-from="C-web" data-to="C-api" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="247" y="444" width="124.516" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-I-01" data-parent="I-01"/>
-<text x="252" y="464" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="I-01" data-role="edge-label">I-01 对话 + 审批</text>
-<polyline points="530,420 530,333" data-role="edge" data-id="I-02" data-from="C-api" data-to="X-idp" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="540" y="366" width="118.922" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-I-02" data-parent="I-02"/>
-<text x="545" y="386" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="I-02" data-role="edge-label">I-02 OIDC 登录</text>
-<polyline points="640,474 800,474" data-role="edge" data-id="I-03" data-from="C-api" data-to="C-agent" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="650" y="444" width="75.047" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-I-03" data-parent="I-03"/>
-<text x="655" y="464" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="I-03" data-role="edge-label">I-03 委托</text>
-<polyline points="910,420 910,333" data-role="edge" data-id="I-04" data-from="C-agent" data-to="X-idp" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="920" y="366" width="107.047" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-I-04" data-parent="I-04"/>
-<text x="925" y="386" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="I-04" data-role="edge-label">I-04 令牌交换</text>
-<polyline points="910,528 910,640" data-role="edge" data-id="I-05" data-from="C-agent" data-to="C-tools" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="920" y="571" width="107.047" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-I-05" data-parent="I-05"/>
-<text x="925" y="591" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="I-05" data-role="edge-label">I-05 工具调用</text>
-<polyline points="1020,694 1140,694" data-role="edge" data-id="I-06" data-from="C-tools" data-to="X-desk" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="1030" y="664" width="75.047" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-I-06" data-parent="I-06"/>
-<text x="1035" y="684" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="I-06" data-role="edge-label">I-06 工单</text>
-<polyline points="800,694 530,694 530,528" data-role="edge" data-id="I-07" data-from="C-tools" data-to="C-api" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="555" y="664" width="107.047" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-I-07" data-parent="I-07"/>
-<text x="560" y="684" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="I-07" data-role="edge-label">I-07 审批查询</text>
-<polyline points="1020,474 1140,474" data-role="edge" data-id="I-08" data-from="C-agent" data-to="X-model" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="1025" y="444" width="75.047" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-I-08" data-parent="I-08"/>
-<text x="1030" y="464" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="I-08" data-role="edge-label">I-08 生成</text>
-<polyline points="420,914 270,914" data-role="edge" data-id="I-09" data-from="C-ingest" data-to="X-doc" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="277" y="884" width="107.047" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-I-09" data-parent="I-09"/>
-<text x="282" y="904" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="I-09" data-role="edge-label">I-09 拉取文档</text>
-<polyline points="660,892.4 820,892.4" data-role="edge" data-id="I-10" data-from="C-ingest" data-to="Q-ingest" data-kind="async" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" stroke-dasharray="6 4"/>
-<rect x="670" y="862" width="107.047" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-I-10" data-parent="I-10"/>
-<text x="675" y="882" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="I-10" data-role="edge-label">I-10 入队任务</text>
-<polyline points="820,935.6 660,935.6" data-role="edge" data-id="I-11" data-from="Q-ingest" data-to="C-ingest" data-kind="async" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" stroke-dasharray="6 4"/>
-<rect x="670" y="938" width="107.047" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-I-11" data-parent="I-11"/>
-<text x="675" y="958" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="I-11" data-role="edge-label">I-11 投递任务</text>
-<rect x="28" y="1440" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-1" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="0"/>
-<text x="82" y="1457" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-1">外部角色 / 系统</text>
-<rect x="473" y="1440" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-2" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="527" y="1457" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-2">自有服务</text>
-<polyline points="918,1450 960,1450" data-role="edge" data-kind="legend" data-id="legend-line-3" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="972" y="1457" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-3">同步调用：发起方 → 提供方</text>
-<polyline points="28,1495 70,1495" data-role="edge" data-kind="legend" data-id="legend-line-4" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" stroke-dasharray="6 4"/>
-<text x="82" y="1502" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-4">经队列的异步消息</text>
+  <title>C6 · 企业服务助手 — 集成与接口</title>
+  <desc>虚构教学设计，场景版本2；补充参数为示意假设。虚构目标设计 · 逻辑变体；下方为接口登记表，ID 与连线一致</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#4B5563" />
+    </marker>
+  </defs>
+  <rect data-role="canvas" width="1400" height="1520" fill="#ffffff" />
+  <text x="28" y="40" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="28" font-weight="700" fill="#1F2937">C6 · 企业服务助手 — 集成与接口</text>
+  <text x="28" y="72" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">虚构目标设计 · 逻辑变体；下方为接口登记表，ID 与连线一致</text>
+  <text x="40" y="112" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="400" fill="#1F2937">范围：助手的运行时接口。箭头：发起方 → 提供方；异步路径经队列。</text>
+  <rect x="520" y="225" width="400" height="108" data-role="node" data-id="X-idp" data-kind="external" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="0" />
+  <text x="534" y="254" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="X-idp" data-role="name">企业 IdP / AS</text>
+  <text x="534" y="279" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-idp" data-role="sub">X-idp · OIDC / OAuth</text>
+  <text x="534" y="302" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-idp" data-role="sub">身份与受限委托</text>
+  <rect x="30" y="420" width="210" height="108" data-role="node" data-id="C-web" data-kind="container" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="44" y="449" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-web" data-role="name">Web 门户</text>
+  <text x="44" y="474" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-web" data-role="sub">C-web · TypeScript SPA</text>
+  <text x="44" y="497" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-web" data-role="sub">对话与审批界面</text>
+  <rect x="420" y="420" width="220" height="108" data-role="node" data-id="C-api" data-kind="container" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="434" y="449" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-api" data-role="name">应用 API/BFF</text>
+  <text x="434" y="474" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-api" data-role="sub">C-api · Python / HTTPS</text>
+  <text x="434" y="497" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-api" data-role="sub">会话、租户策略与审批</text>
+  <rect x="800" y="420" width="220" height="108" data-role="node" data-id="C-agent" data-kind="container" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="814" y="449" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-agent" data-role="name">Agent 服务</text>
+  <text x="814" y="474" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-agent" data-role="sub">C-agent · Python / HTTPS</text>
+  <text x="814" y="497" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-agent" data-role="sub">受限规划、检索与工具</text>
+  <rect x="1140" y="420" width="250" height="108" data-role="node" data-id="X-model" data-kind="external" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="0" />
+  <text x="1154" y="449" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="X-model" data-role="name">托管模型服务</text>
+  <text x="1154" y="474" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-model" data-role="sub">X-model · Amazon Bedrock</text>
+  <text x="1154" y="497" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-model" data-role="sub">生成文本与向量</text>
+  <rect x="800" y="640" width="220" height="108" data-role="node" data-id="C-tools" data-kind="container" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="814" y="669" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-tools" data-role="name">MCP 工具网关</text>
+  <text x="814" y="694" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-tools" data-role="sub">C-tools · MCP HTTPS</text>
+  <text x="814" y="717" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-tools" data-role="sub">验证委托；执行权限检查</text>
+  <rect x="1140" y="640" width="250" height="108" data-role="node" data-id="X-desk" data-kind="external" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="0" />
+  <text x="1154" y="669" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="X-desk" data-role="name">服务工单系统</text>
+  <text x="1154" y="694" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-desk" data-role="sub">X-desk · HTTPS</text>
+  <text x="1154" y="717" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-desk" data-role="sub">服务目录、工单读取与创建</text>
+  <rect x="30" y="860" width="240" height="108" data-role="node" data-id="X-doc" data-kind="external" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="0" />
+  <text x="44" y="889" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="X-doc" data-role="name">文档源系统</text>
+  <text x="44" y="914" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-doc" data-role="sub">X-doc · HTTPS 连接器</text>
+  <text x="44" y="937" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-doc" data-role="sub">原始文档与访问策略</text>
+  <rect x="420" y="860" width="240" height="108" data-role="node" data-id="C-ingest" data-kind="container" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="434" y="889" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-ingest" data-role="name">摄取工作进程</text>
+  <text x="434" y="914" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-ingest" data-role="sub">C-ingest · Python / batch</text>
+  <text x="434" y="937" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-ingest" data-role="sub">版本、分块、嵌入与索引</text>
+  <rect x="820" y="860" width="240" height="108" data-role="node" data-id="Q-ingest" data-kind="queue" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="834" y="889" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="Q-ingest" data-role="name">摄取队列 + DLQ</text>
+  <text x="834" y="914" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="Q-ingest" data-role="sub">Q-ingest · SQS</text>
+  <text x="834" y="937" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="Q-ingest" data-role="sub">版本任务；有限重试与隔离</text>
+  <text x="40" y="1030" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="700" fill="#1F2937">接口契约（AS-interfaces 示意容量/超时/归属；不代表厂商 SLA）</text>
+  <text x="40" y="1068" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937">ID</text>
+  <text x="110" y="1068" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937">发起方 → 提供方</text>
+  <text x="470" y="1068" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937">集成风格 · 交互模式</text>
+  <text x="800" y="1068" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937">认证</text>
+  <text x="40" y="1098" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937">I-01</text>
+  <text x="110" y="1098" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">Web 门户 → 应用 API/BFF</text>
+  <text x="470" y="1098" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">API · 请求-应答</text>
+  <text x="800" y="1098" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">Secure、HttpOnly、SameSite 会话 cookie</text>
+  <text x="40" y="1124" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937">I-02</text>
+  <text x="110" y="1124" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">应用 API/BFF → 企业 IdP / AS</text>
+  <text x="470" y="1124" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">API · OIDC 授权码</text>
+  <text x="800" y="1124" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">机密客户端；PKCE verifier 保留在服务端</text>
+  <text x="40" y="1150" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937">I-03</text>
+  <text x="110" y="1150" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">应用 API/BFF → Agent 服务</text>
+  <text x="470" y="1150" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">API · 请求-应答</text>
+  <text x="800" y="1150" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">agent 范围的主体 token（aud=agent-service）</text>
+  <text x="40" y="1176" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937">I-04</text>
+  <text x="110" y="1176" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">Agent 服务 → 企业 IdP / AS</text>
+  <text x="470" y="1176" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">API · 令牌交换（RFC 8693）</text>
+  <text x="800" y="1176" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">agent-client 认证 + 有效主体 token</text>
+  <text x="40" y="1202" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937">I-05</text>
+  <text x="110" y="1202" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">Agent 服务 → MCP 工具网关</text>
+  <text x="470" y="1202" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">API · 基于 MCP 的工具调用</text>
+  <text x="800" y="1202" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">工具 token：iss、aud、sub、act、tenant、scopes、短有效期</text>
+  <text x="40" y="1228" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937">I-06</text>
+  <text x="110" y="1228" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">MCP 工具网关 → 服务工单系统</text>
+  <text x="470" y="1228" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">API · 请求-应答；创建按幂等键去重</text>
+  <text x="800" y="1228" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">独立受限连接器凭据，绝不转发 token</text>
+  <text x="40" y="1254" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937">I-07</text>
+  <text x="110" y="1254" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">MCP 工具网关 → 应用 API/BFF</text>
+  <text x="470" y="1254" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">API · 审批查询</text>
+  <text x="800" y="1254" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">mTLS + 受限 approval.lookup</text>
+  <text x="40" y="1280" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937">I-08</text>
+  <text x="110" y="1280" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">Agent 服务 → 托管模型服务</text>
+  <text x="470" y="1280" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">API · 请求-应答</text>
+  <text x="800" y="1280" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">SigV4：指定模型 / 区域</text>
+  <text x="40" y="1306" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937">I-09</text>
+  <text x="110" y="1306" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">摄取工作进程 → 文档源系统</text>
+  <text x="470" y="1306" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">API · 经连接器拉取</text>
+  <text x="800" y="1306" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">mTLS 连接器 + 租户/源 ACL</text>
+  <text x="40" y="1332" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937">I-10</text>
+  <text x="110" y="1332" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">应用 API/BFF → 摄取队列</text>
+  <text x="470" y="1332" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">消息 · 命令（入队）</text>
+  <text x="800" y="1332" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">SigV4 生产者：仅 SendMessage</text>
+  <text x="40" y="1358" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937">I-11</text>
+  <text x="110" y="1358" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">摄取工作进程 → 摄取队列</text>
+  <text x="470" y="1358" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">API · 长轮询；重试 + DLQ</text>
+  <text x="800" y="1358" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">SigV4 工作进程：接收/删除/可见性</text>
+  <text x="40" y="1392" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">示意：内部控制5秒、连接器10秒、模型30秒；读取最多重试2次，写入按键对账。</text>
+  <polyline points="240,474 420,474" data-role="edge" data-id="I-01" data-from="C-web" data-to="C-api" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="247.0" y="444.0" width="124.515625" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-I-01" data-parent="I-01" />
+  <text x="252" y="464" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="I-01" data-role="edge-label">I-01 对话 + 审批</text>
+  <polyline points="530,420 530,333" data-role="edge" data-id="I-02" data-from="C-api" data-to="X-idp" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="540.0" y="366.0" width="118.921875" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-I-02" data-parent="I-02" />
+  <text x="545" y="386" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="I-02" data-role="edge-label">I-02 OIDC 登录</text>
+  <polyline points="640,474 800,474" data-role="edge" data-id="I-03" data-from="C-api" data-to="C-agent" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="650.0" y="444.0" width="75.046875" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-I-03" data-parent="I-03" />
+  <text x="655" y="464" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="I-03" data-role="edge-label">I-03 委托</text>
+  <polyline points="910,420 910,333" data-role="edge" data-id="I-04" data-from="C-agent" data-to="X-idp" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="920.0" y="366.0" width="107.046875" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-I-04" data-parent="I-04" />
+  <text x="925" y="386" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="I-04" data-role="edge-label">I-04 令牌交换</text>
+  <polyline points="910,528 910,640" data-role="edge" data-id="I-05" data-from="C-agent" data-to="C-tools" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="920.0" y="571.0" width="107.046875" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-I-05" data-parent="I-05" />
+  <text x="925" y="591" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="I-05" data-role="edge-label">I-05 工具调用</text>
+  <polyline points="1020,694 1140,694" data-role="edge" data-id="I-06" data-from="C-tools" data-to="X-desk" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="1030.0" y="664.0" width="75.046875" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-I-06" data-parent="I-06" />
+  <text x="1035" y="684" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="I-06" data-role="edge-label">I-06 工单</text>
+  <polyline points="800,694 530,694 530,528" data-role="edge" data-id="I-07" data-from="C-tools" data-to="C-api" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="555.0" y="664.0" width="107.046875" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-I-07" data-parent="I-07" />
+  <text x="560" y="684" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="I-07" data-role="edge-label">I-07 审批查询</text>
+  <polyline points="1020,474 1140,474" data-role="edge" data-id="I-08" data-from="C-agent" data-to="X-model" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="1025.0" y="444.0" width="75.046875" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-I-08" data-parent="I-08" />
+  <text x="1030" y="464" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="I-08" data-role="edge-label">I-08 生成</text>
+  <polyline points="420,914 270,914" data-role="edge" data-id="I-09" data-from="C-ingest" data-to="X-doc" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="277.0" y="884.0" width="107.046875" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-I-09" data-parent="I-09" />
+  <text x="282" y="904" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="I-09" data-role="edge-label">I-09 拉取文档</text>
+  <polyline points="640,510 750,510 750,892.4 820,892.4" data-role="edge" data-id="I-10" data-from="C-api" data-to="Q-ingest" data-kind="async" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" stroke-dasharray="6 4" />
+  <rect x="755.0" y="800.0" width="75.046875" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-I-10" data-parent="I-10" />
+  <text x="760" y="820" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="I-10" data-role="edge-label">I-10 入队</text>
+  <polyline points="660,935.6 820,935.6" data-role="edge" data-id="I-11" data-from="C-ingest" data-to="Q-ingest" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="670.0" y="938.0" width="107.046875" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-I-11" data-parent="I-11" />
+  <text x="675" y="958" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="I-11" data-role="edge-label">I-11 轮询任务</text>
+  <rect x="28" y="1440" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-1" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="0" />
+  <text x="82" y="1457" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-1">外部角色 / 系统</text>
+  <rect x="473" y="1440" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-2" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="527" y="1457" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-2">自有服务</text>
+  <polyline points="918,1450 960,1450" data-role="edge" data-kind="legend" data-id="legend-line-3" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <text x="972" y="1457" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-3">同步调用：发起方 → 提供方</text>
+  <polyline points="28,1495 70,1495" data-role="edge" data-kind="legend" data-id="legend-line-4" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" stroke-dasharray="6 4" />
+  <text x="82" y="1502" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-4">经队列的异步消息</text>
 </svg>

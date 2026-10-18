@@ -1,5 +1,5 @@
 {
-  "scenarioVersion": 1,
+  "scenarioVersion": 2,
   "entities": {
     "R-employee": "R-employee",
     "VS-ask": "VS-ask",
@@ -13,5 +13,7 @@
     "I-approval",
     "I-idempotency"
   ],
-  "projection": "focused view; omissions described in caption; not a deployed system"
+  "projection": "focused view; omissions described in caption; not a deployed system",
+  "missingFacts": [],
+  "assumptions": []
 }

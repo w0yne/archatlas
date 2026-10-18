@@ -185,5 +185,11 @@ Editorial grouping preserves the distinct notation; use this recipe and its chec
 
 ## Sample {#sample}
 <!-- skill: path only -->
-![E2 sample: activity flow for a new order with both exits of the decision](/samples/E2-activity-flowchart.svg)
-*Activity flow for a new order across shop and warehouse lanes: receive order, then the decision “In stock?” with two exits. [in stock] leads to pick and pack and ends in Packed; [else] leads to offer backorder and ends in Backordered.*
+![E2 · Enterprise Service Assistant](/samples/ai-service-assistant/E2/en/diagram.svg)
+*UML activity: one start, guarded valid/else decision and named outcomes. Approval, current permission and idempotent execution remain distinct. Ambiguous timeouts use key-based reconciliation under AS-request.*
+
+[SVG](/samples/ai-service-assistant/E2/en/diagram.svg) · [Model JSON](/samples/ai-service-assistant/E2/en/diagram.json) · [Shared facts](/samples/ai-service-assistant/scenario.json)
+
+[Historical shop regression sample](/samples/E2-activity-flowchart.svg) · [All 29 views](/use/ai-service-assistant) · [Illustrative assumptions](/use/ai-service-assistant-assumptions).
+
+[See the separate E4 swimlane variant](/use/ai-service-assistant#view-e4).

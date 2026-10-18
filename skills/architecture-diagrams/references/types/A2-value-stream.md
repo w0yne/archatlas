@@ -83,4 +83,4 @@ Named variants (read their own recipes): A9 — `references/types/A9-lean-value-
 Model template: `assets/templates/A2.json` · Layout template: `tree` · stages are `task` nodes chained by edges in one left-to-right row; capabilities cross-mapped to a stage are listed in its `tags`.
 
 ## Sample
-Figure: `samples/A2-value-stream.svg` (published with the site)
+Figure: `samples/ai-service-assistant/A2/en/diagram.svg` (published with the site)

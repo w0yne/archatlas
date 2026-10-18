@@ -1,0 +1,80 @@
+{
+  "scenarioVersion": 2,
+  "entities": {
+    "DS-eval": "DS-eval",
+    "C-eval": "C-eval",
+    "C-agent": "C-agent",
+    "AWS-ops": "AWS-ops"
+  },
+  "invariants": [
+    "I-eval",
+    "I-operator",
+    "I-authority"
+  ],
+  "projection": "focused view; omissions described in caption; not a deployed system",
+  "viewElements": {
+    "G4-gate": {
+      "kind": "task",
+      "labels": {
+        "en": "Quality / safety gate",
+        "zh": "质量 / 安全门禁"
+      },
+      "contextEntity": "C-eval",
+      "sourceRefs": [
+        "I-eval"
+      ],
+      "status": "illustrative assumption / notation projection"
+    },
+    "G4-hold": {
+      "kind": "task",
+      "labels": {
+        "en": "Hold candidate",
+        "zh": "暂停候选晋级"
+      },
+      "contextEntity": "DS-eval",
+      "sourceRefs": [
+        "I-eval"
+      ],
+      "status": "illustrative assumption / notation projection"
+    },
+    "G4-release": {
+      "kind": "task",
+      "labels": {
+        "en": "Approve digest release",
+        "zh": "按摘要批准发布"
+      },
+      "contextEntity": "C-agent",
+      "sourceRefs": [
+        "I-eval"
+      ],
+      "status": "illustrative assumption / notation projection"
+    },
+    "G4-recover": {
+      "kind": "task",
+      "labels": {
+        "en": "Recovery decision",
+        "zh": "恢复决策"
+      },
+      "contextEntity": "R-operator",
+      "sourceRefs": [
+        "I-operator"
+      ],
+      "status": "illustrative assumption / notation projection"
+    }
+  },
+  "missingFacts": [],
+  "assumptions": [
+    "AS-ingest",
+    "AS-request",
+    "AS-policy",
+    "AS-raci",
+    "AS-network",
+    "AS-release",
+    "AS-observe",
+    "AS-domains",
+    "AS-data",
+    "AS-roadmap",
+    "AS-components",
+    "AS-interfaces"
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "scenarioVersion": 1,
+  "scenarioVersion": 2,
   "entities": {
     "C-web": "C-web",
     "C-api": "C-api",
@@ -22,7 +22,19 @@
     "I-ingest"
   ],
   "projection": "focused view; omissions described in caption; not a deployed system",
-  "missingFacts": [
-    "Reconcile API → Q-ingest producer edge with FL-ingest (currently worker publication)"
+  "missingFacts": [],
+  "assumptions": [
+    "AS-ingest",
+    "AS-request",
+    "AS-policy",
+    "AS-raci",
+    "AS-network",
+    "AS-release",
+    "AS-observe",
+    "AS-domains",
+    "AS-data",
+    "AS-roadmap",
+    "AS-components",
+    "AS-interfaces"
   ]
 }

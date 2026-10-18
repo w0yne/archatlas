@@ -143,8 +143,8 @@ reviewed: false
 ## 示例 {#sample}
 <!-- skill: path only -->
 ![F1 · 企业服务助手](/samples/ai-service-assistant/F1/zh/diagram.svg)
-*本图是下游委托；前置登录由 BFF 使用授权码 + PKCE 完成，并核对 state 与 nonce。ID/access token 保留在服务端，浏览器仅持安全会话 cookie。AS 明确签发 agent 范围的主体 token，Agent 以 agent-client 身份认证并交换。工具 token 由 enterprise-as 签发给 mcp-tool-gateway，包含员工主体、agent actor、已验证 tenant、许可 scopes 与短有效期。先核验签名、issuer、audience 和有效期，再执行当前策略与审批检查。AS 委托能力与工单连接器 scopes 都是未验证的教学假设；不支持时须重设身份方案，不能转发 audience 不符的 token。实线是后通道请求，虚线是应答；浏览器重定向属于前置登录而非本图。*
+*交换请求为允许/拒绝分支共有的前提；Agent 是认证后的交换客户端。工具证明绑定 issuer、audience、subject、actor、tenant、scopes；核验不能代替当前授权，AS 委托支持是实施前提。*
 
 [SVG](/samples/ai-service-assistant/F1/zh/diagram.svg) · [模型 JSON](/samples/ai-service-assistant/F1/zh/diagram.json) · [共享事实](/samples/ai-service-assistant/scenario.json)
 
-[历史 shop 样例（回归 fixture）](/samples/F1-authentication-authorization-flow.zh.svg) · [七幅视图及假设](/zh/use/ai-service-assistant).
+[历史 shop 回归样例](/samples/F1-authentication-authorization-flow.zh.svg) · [全部29幅视图](/zh/use/ai-service-assistant) · [示意假设](/zh/use/ai-service-assistant-assumptions).

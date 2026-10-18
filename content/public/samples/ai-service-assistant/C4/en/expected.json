@@ -1,0 +1,22 @@
+{
+  "scenarioVersion": 2,
+  "entities": {
+    "C-api": "C-api",
+    "P-retrieve": "P-retrieve",
+    "P-compose": "P-compose",
+    "P-plan": "P-plan",
+    "DS-index": "DS-index",
+    "X-model": "X-model",
+    "C-tools": "C-tools",
+    "X-idp": "X-idp"
+  },
+  "invariants": [
+    "I-tenant",
+    "I-authority",
+    "I-delegation",
+    "I-approval"
+  ],
+  "projection": "focused view; omissions described in caption; not a deployed system",
+  "missingFacts": [],
+  "assumptions": []
+}

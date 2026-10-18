@@ -156,5 +156,9 @@ Model template: `assets/templates/D1.json` · Layout template: `er` · entities 
 
 ## Sample {#sample}
 <!-- skill: path only -->
-![D1 sample: logical data model of an online shop with minimum and maximum cardinality](/samples/D1-entity-relationship.svg)
-*Logical data model of the online shop: eight entities in two rows (customer, order, order line, product above; address, payment, return, category below), each with its identifier, foreign keys and a few defining attributes (PK, FK) and a chip for its domain. The order is the subject and the central entity (the dark card). Every relationship has a verb and a minimum..maximum cardinality at both ends: a customer places 0..* orders, an order contains 1..* order lines, a product is sold as 0..* order lines (* means many). Cardinalities are drawn as text, not crow’s feet.*
+![D1 · Enterprise Service Assistant](/samples/ai-service-assistant/D1/en/diagram.svg)
+*A logical entity subset, not complete DDL. Tenant-owned PK/FKs include tenant scope; approval binds the idempotency tuple as well as subject, tool, hash and expiry. Messages/citations remain part of the conversation aggregate.*
+
+[SVG](/samples/ai-service-assistant/D1/en/diagram.svg) · [Model JSON](/samples/ai-service-assistant/D1/en/diagram.json) · [Shared facts](/samples/ai-service-assistant/scenario.json)
+
+[Historical shop regression sample](/samples/D1-entity-relationship.svg) · [All 29 views](/use/ai-service-assistant) · [Illustrative assumptions](/use/ai-service-assistant-assumptions).

@@ -136,5 +136,9 @@ reviewed: false
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-![H2 示例：网店结账的可观测性](/samples/H2-observability-view.svg)
-*结账的可观测性：商城前台和订单 API 把遥测数据发给采集器，采集器存入指标库和链路库，二者供结账看板使用。一条拟议的订单失败告警通知值班团队；告警标注为拟议，不是已测得的行为。*
+![H2 · 企业服务助手](/samples/ai-service-assistant/H2/zh/diagram.svg)
+*导出前脱敏。示意 SLO、成本目标、有界传输、采样/保留及 CloudWatch→SNS→运维响应见 AS-observe，均非实测保证。*
+
+[SVG](/samples/ai-service-assistant/H2/zh/diagram.svg) · [模型 JSON](/samples/ai-service-assistant/H2/zh/diagram.json) · [共享事实](/samples/ai-service-assistant/scenario.json)
+
+[历史 shop 回归样例](/samples/H2-observability-view.svg) · [全部29幅视图](/zh/use/ai-service-assistant) · [示意假设](/zh/use/ai-service-assistant-assumptions).

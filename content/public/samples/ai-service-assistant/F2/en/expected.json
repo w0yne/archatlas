@@ -1,5 +1,5 @@
 {
-  "scenarioVersion": 1,
+  "scenarioVersion": 2,
   "entities": {
     "P-plan": "P-plan",
     "P-approve": "P-approve",
@@ -16,5 +16,7 @@
     "I-tenant",
     "I-idempotency"
   ],
-  "projection": "focused view; omissions described in caption; not a deployed system"
+  "projection": "focused view; omissions described in caption; not a deployed system",
+  "missingFacts": [],
+  "assumptions": []
 }

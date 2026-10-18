@@ -1,113 +1,117 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1000" lang="en" data-archatlas="0.1">
-<title>D1 · Enterprise Service Assistant — logical data model (tenant-scoped)</title>
-<desc>Fictional target · Logical level; ten entities in three groups of records</desc>
-<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,4 L0,8 Z" fill="#4B5563"/></marker></defs>
-<rect data-role="canvas" width="1400" height="1000" fill="#ffffff"/>
-<text x="28" y="40" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="28" font-weight="700" fill="#1F2937">D1 · Enterprise Service Assistant — logical data model (tenant-scoped)</text>
-<text x="28" y="72" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">Fictional target · Logical level; ten entities in three groups of records</text>
-<text x="40" y="112" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="400" fill="#1F2937">Notation: UML multiplicities (min..max) at both ends; PK = primary key. Every entity is tenant-scoped.</text>
-<rect x="40" y="220" width="250" height="114" data-role="node" data-id="DE-tenant" data-kind="entity" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="54" y="249" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DE-tenant" data-role="name">Tenant</text>
-<text x="54" y="274" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-tenant" data-role="sub">tenant id (PK)</text>
-<text x="54" y="297" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-tenant" data-role="sub">name</text>
-<text x="54" y="320" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-tenant" data-role="sub">status</text>
-<rect x="420" y="220" width="250" height="114" data-role="node" data-id="DE-member" data-kind="entity" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="434" y="249" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DE-member" data-role="name">Membership</text>
-<text x="434" y="274" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-member" data-role="sub">tenant id + employee id (PK)</text>
-<text x="434" y="297" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-member" data-role="sub">role</text>
-<text x="434" y="320" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-member" data-role="sub">status</text>
-<rect x="800" y="220" width="250" height="114" data-role="node" data-id="DE-chat" data-kind="entity" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="814" y="249" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DE-chat" data-role="name">Chat</text>
-<text x="814" y="274" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-chat" data-role="sub">chat id (PK)</text>
-<text x="814" y="297" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-chat" data-role="sub">tenant id, employee id</text>
-<text x="814" y="320" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-chat" data-role="sub">started at</text>
-<rect x="1130" y="220" width="240" height="114" data-role="node" data-id="DE-approval" data-kind="entity" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="1144" y="249" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DE-approval" data-role="name">Approval</text>
-<text x="1144" y="274" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-approval" data-role="sub">approval id (PK)</text>
-<text x="1144" y="297" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-approval" data-role="sub">tenant, subject, tool</text>
-<text x="1144" y="320" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-approval" data-role="sub">params hash, expiry</text>
-<rect x="40" y="430" width="250" height="114" data-role="node" data-id="DE-docver" data-kind="entity" fill="#E3F4E8" stroke="#2F7D4F" stroke-width="1.8" rx="8"/>
-<text x="54" y="459" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DE-docver" data-role="name">Document version</text>
-<text x="54" y="484" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-docver" data-role="sub">version id (PK)</text>
-<text x="54" y="507" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-docver" data-role="sub">tenant id, source ref</text>
-<text x="54" y="530" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-docver" data-role="sub">ACL snapshot, status</text>
-<rect x="800" y="430" width="250" height="114" data-role="node" data-id="DE-feedback" data-kind="entity" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="814" y="459" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DE-feedback" data-role="name">Feedback</text>
-<text x="814" y="484" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-feedback" data-role="sub">feedback id (PK)</text>
-<text x="814" y="507" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-feedback" data-role="sub">chat id, rating</text>
-<text x="814" y="530" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-feedback" data-role="sub">note</text>
-<rect x="1130" y="430" width="240" height="114" data-role="node" data-id="DE-exec" data-kind="entity" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="1144" y="459" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DE-exec" data-role="name">Execution</text>
-<text x="1144" y="484" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-exec" data-role="sub">idempotency key (PK)</text>
-<text x="1144" y="507" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-exec" data-role="sub">approval id</text>
-<text x="1144" y="530" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-exec" data-role="sub">outcome</text>
-<rect x="40" y="640" width="250" height="114" data-role="node" data-id="DE-chunk" data-kind="entity" fill="#E3F4E8" stroke="#2F7D4F" stroke-width="1.8" rx="8"/>
-<text x="54" y="669" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DE-chunk" data-role="name">Chunk</text>
-<text x="54" y="694" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-chunk" data-role="sub">chunk id (PK)</text>
-<text x="54" y="717" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-chunk" data-role="sub">version id, tenant id</text>
-<text x="54" y="740" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-chunk" data-role="sub">vector, ACL</text>
-<rect x="800" y="640" width="250" height="114" data-role="node" data-id="DE-evalrec" data-kind="entity" fill="#FFF1D6" stroke="#A8741A" stroke-width="1.8" rx="8"/>
-<text x="814" y="669" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DE-evalrec" data-role="name">Evaluation record</text>
-<text x="814" y="694" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-evalrec" data-role="sub">record id (PK)</text>
-<text x="814" y="717" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-evalrec" data-role="sub">deidentified input</text>
-<text x="814" y="740" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-evalrec" data-role="sub">dataset version</text>
-<rect x="1130" y="640" width="240" height="114" data-role="node" data-id="DE-audit" data-kind="entity" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="1144" y="669" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DE-audit" data-role="name">Audit event</text>
-<text x="1144" y="694" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-audit" data-role="sub">event id (PK)</text>
-<text x="1144" y="717" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-audit" data-role="sub">tenant, actor, action</text>
-<text x="1144" y="740" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-audit" data-role="sub">time</text>
-<text x="296" y="269" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-1" data-role="cardinality">1</text>
-<text x="414" y="269" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" text-anchor="end" data-owner="REL-1" data-role="cardinality">0..*</text>
-<text x="676" y="269" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-2" data-role="cardinality">1</text>
-<text x="794" y="269" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" text-anchor="end" data-owner="REL-2" data-role="cardinality">0..*</text>
-<text x="1056" y="269" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-3" data-role="cardinality">1</text>
-<text x="1124" y="269" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" text-anchor="end" data-owner="REL-3" data-role="cardinality">0..*</text>
-<text x="173" y="352" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-4" data-role="cardinality">1</text>
-<text x="173" y="424" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-4" data-role="cardinality">0..*</text>
-<text x="173" y="562" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-5" data-role="cardinality">1</text>
-<text x="173" y="634" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-5" data-role="cardinality">0..*</text>
-<text x="933" y="352" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-6" data-role="cardinality">1</text>
-<text x="933" y="424" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-6" data-role="cardinality">0..*</text>
-<text x="933" y="562" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-7" data-role="cardinality">0..1</text>
-<text x="933" y="634" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-7" data-role="cardinality">0..1</text>
-<text x="1258" y="352" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-8" data-role="cardinality">1</text>
-<text x="1258" y="424" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-8" data-role="cardinality">0..1</text>
-<text x="1258" y="562" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-9" data-role="cardinality">1</text>
-<text x="1258" y="634" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-9" data-role="cardinality">1..*</text>
-<text x="40" y="810" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937">Evidence: derived from the stored records named in this design (memberships, chats, approvals, audit, document versions, feedback); attribute lists are illustrative.</text>
-<polyline points="290,277 420,277" data-role="edge" data-id="REL-1" data-from="DE-tenant" data-to="DE-member" data-kind="assoc" fill="none" stroke="#4B5563" stroke-width="1.8"/>
-<rect x="318.875" y="283" width="72.25" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-REL-1" data-parent="REL-1"/>
-<text x="323.875" y="303" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="REL-1" data-role="edge-label">includes</text>
-<polyline points="670,277 800,277" data-role="edge" data-id="REL-2" data-from="DE-member" data-to="DE-chat" data-kind="assoc" fill="none" stroke="#4B5563" stroke-width="1.8"/>
-<rect x="708.773" y="283" width="52.453" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-REL-2" data-parent="REL-2"/>
-<text x="713.773" y="303" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="REL-2" data-role="edge-label">starts</text>
-<polyline points="1050,277 1130,277" data-role="edge" data-id="REL-3" data-from="DE-chat" data-to="DE-approval" data-kind="assoc" fill="none" stroke="#4B5563" stroke-width="1.8"/>
-<rect x="1052.41" y="283" width="75.188" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-REL-3" data-parent="REL-3"/>
-<text x="1057.41" y="303" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="REL-3" data-role="edge-label">requests</text>
-<polyline points="165,334 165,430" data-role="edge" data-id="REL-4" data-from="DE-tenant" data-to="DE-docver" data-kind="assoc" fill="none" stroke="#4B5563" stroke-width="1.8"/>
-<rect x="170" y="368" width="49.5" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-REL-4" data-parent="REL-4"/>
-<text x="175" y="388" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="REL-4" data-role="edge-label">owns</text>
-<polyline points="165,544 165,640" data-role="edge" data-id="REL-5" data-from="DE-docver" data-to="DE-chunk" data-kind="assoc" fill="none" stroke="#4B5563" stroke-width="1.8"/>
-<rect x="170" y="578" width="91.109" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-REL-5" data-parent="REL-5"/>
-<text x="175" y="598" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="REL-5" data-role="edge-label">is split into</text>
-<polyline points="925,334 925,430" data-role="edge" data-id="REL-6" data-from="DE-chat" data-to="DE-feedback" data-kind="assoc" fill="none" stroke="#4B5563" stroke-width="1.8"/>
-<rect x="930" y="368" width="70.984" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-REL-6" data-parent="REL-6"/>
-<text x="935" y="388" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="REL-6" data-role="edge-label">receives</text>
-<polyline points="925,544 925,640" data-role="edge" data-id="REL-7" data-from="DE-feedback" data-to="DE-evalrec" data-kind="assoc" fill="none" stroke="#4B5563" stroke-width="1.8"/>
-<rect x="930" y="578" width="114.703" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-REL-7" data-parent="REL-7"/>
-<text x="935" y="598" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="REL-7" data-role="edge-label">is exported as</text>
-<polyline points="1250,334 1250,430" data-role="edge" data-id="REL-8" data-from="DE-approval" data-to="DE-exec" data-kind="assoc" fill="none" stroke="#4B5563" stroke-width="1.8"/>
-<rect x="1255" y="368" width="89.297" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-REL-8" data-parent="REL-8"/>
-<text x="1260" y="388" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="REL-8" data-role="edge-label">authorises</text>
-<polyline points="1250,544 1250,640" data-role="edge" data-id="REL-9" data-from="DE-exec" data-to="DE-audit" data-kind="assoc" fill="none" stroke="#4B5563" stroke-width="1.8"/>
-<rect x="1255" y="578" width="114.438" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-REL-9" data-parent="REL-9"/>
-<text x="1260" y="598" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="REL-9" data-role="edge-label">is recorded as</text>
-<rect x="28" y="880" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-1" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="82" y="897" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-1">Application records (DS-app)</text>
-<rect x="473" y="880" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-2" fill="#E3F4E8" stroke="#2F7D4F" stroke-width="1.8" rx="8"/>
-<text x="527" y="897" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-2">Knowledge data (DS-doc, DS-index)</text>
-<rect x="918" y="880" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-3" fill="#FFF1D6" stroke="#A8741A" stroke-width="1.8" rx="8"/>
-<text x="972" y="897" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-3">Evaluation data (DS-eval)</text>
-<polyline points="28,935 70,935" data-role="edge" data-kind="legend" data-id="legend-line-4" fill="none" stroke="#4B5563" stroke-width="1.8"/>
-<text x="82" y="942" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-4">Relationship (verb reads from the first entity)</text>
+  <title>D1 · Enterprise Service Assistant — logical data model (tenant-scoped)</title>
+  <desc>Fictional teaching design, scenario version 2; additional parameters are illustrative assumptions. Fictional target · Logical level; ten entities in three groups of records</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#4B5563" />
+    </marker>
+  </defs>
+  <rect data-role="canvas" width="1400" height="1000" fill="#ffffff" />
+  <text x="28" y="40" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="28" font-weight="700" fill="#1F2937">D1 · Enterprise Service Assistant — logical data model (tenant-scoped)</text>
+  <text x="28" y="72" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">Fictional target · Logical level; ten entities in three groups of records</text>
+  <text x="40" y="112" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="400" fill="#1F2937">Illustrative attributes: every tenant-owned PK/FK includes tenant; key = tenant/tool/idempotency key, not full DDL.</text>
+  <rect x="40" y="220" width="250" height="114" data-role="node" data-id="DE-tenant" data-kind="entity" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="54" y="249" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DE-tenant" data-role="name">Tenant</text>
+  <text x="54" y="274" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-tenant" data-role="sub">tenant id (PK)</text>
+  <text x="54" y="297" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-tenant" data-role="sub">name</text>
+  <text x="54" y="320" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-tenant" data-role="sub">status</text>
+  <rect x="420" y="220" width="250" height="114" data-role="node" data-id="DE-member" data-kind="entity" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="434" y="249" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DE-member" data-role="name">Membership</text>
+  <text x="434" y="274" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-member" data-role="sub">tenant id + employee id (PK)</text>
+  <text x="434" y="297" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-member" data-role="sub">role</text>
+  <text x="434" y="320" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-member" data-role="sub">status</text>
+  <rect x="800" y="220" width="250" height="114" data-role="node" data-id="DE-chat" data-kind="entity" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="814" y="249" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DE-chat" data-role="name">Chat</text>
+  <text x="814" y="274" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-chat" data-role="sub">chat id (PK)</text>
+  <text x="814" y="297" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-chat" data-role="sub">tenant id, employee id</text>
+  <text x="814" y="320" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-chat" data-role="sub">started at</text>
+  <rect x="1130" y="220" width="240" height="114" data-role="node" data-id="DE-approval" data-kind="entity" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="1144" y="249" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DE-approval" data-role="name">Approval</text>
+  <text x="1144" y="274" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-approval" data-role="sub">approval id (PK)</text>
+  <text x="1144" y="297" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-approval" data-role="sub">tenant, subject, tool</text>
+  <text x="1144" y="320" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-approval" data-role="sub">hash, expiry, key</text>
+  <rect x="40" y="430" width="250" height="114" data-role="node" data-id="DE-docver" data-kind="entity" fill="#E3F4E8" stroke="#2F7D4F" stroke-width="1.8" rx="8" />
+  <text x="54" y="459" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DE-docver" data-role="name">Document version</text>
+  <text x="54" y="484" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-docver" data-role="sub">version id (PK)</text>
+  <text x="54" y="507" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-docver" data-role="sub">tenant id, source ref</text>
+  <text x="54" y="530" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-docver" data-role="sub">ACL snapshot, status</text>
+  <rect x="800" y="430" width="250" height="114" data-role="node" data-id="DE-feedback" data-kind="entity" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="814" y="459" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DE-feedback" data-role="name">Feedback</text>
+  <text x="814" y="484" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-feedback" data-role="sub">feedback id (PK)</text>
+  <text x="814" y="507" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-feedback" data-role="sub">chat id, rating</text>
+  <text x="814" y="530" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-feedback" data-role="sub">note</text>
+  <rect x="1130" y="430" width="240" height="114" data-role="node" data-id="DE-exec" data-kind="entity" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="1144" y="459" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DE-exec" data-role="name">Execution</text>
+  <text x="1144" y="484" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-exec" data-role="sub">tenant/tool/key (PK)</text>
+  <text x="1144" y="507" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-exec" data-role="sub">approval id</text>
+  <text x="1144" y="530" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-exec" data-role="sub">outcome</text>
+  <rect x="40" y="640" width="250" height="114" data-role="node" data-id="DE-chunk" data-kind="entity" fill="#E3F4E8" stroke="#2F7D4F" stroke-width="1.8" rx="8" />
+  <text x="54" y="669" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DE-chunk" data-role="name">Chunk</text>
+  <text x="54" y="694" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-chunk" data-role="sub">chunk id (PK)</text>
+  <text x="54" y="717" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-chunk" data-role="sub">version id, tenant id</text>
+  <text x="54" y="740" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-chunk" data-role="sub">vector, ACL</text>
+  <rect x="800" y="640" width="250" height="114" data-role="node" data-id="DE-evalrec" data-kind="entity" fill="#FFF1D6" stroke="#A8741A" stroke-width="1.8" rx="8" />
+  <text x="814" y="669" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DE-evalrec" data-role="name">Evaluation record</text>
+  <text x="814" y="694" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-evalrec" data-role="sub">record id (PK)</text>
+  <text x="814" y="717" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-evalrec" data-role="sub">deidentified input</text>
+  <text x="814" y="740" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-evalrec" data-role="sub">dataset version</text>
+  <rect x="1130" y="640" width="240" height="114" data-role="node" data-id="DE-audit" data-kind="entity" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="1144" y="669" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DE-audit" data-role="name">Audit event</text>
+  <text x="1144" y="694" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-audit" data-role="sub">event id (PK)</text>
+  <text x="1144" y="717" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-audit" data-role="sub">tenant, actor, action</text>
+  <text x="1144" y="740" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-audit" data-role="sub">time</text>
+  <text x="296" y="269" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-1" data-role="cardinality">1</text>
+  <text x="414" y="269" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" text-anchor="end" data-owner="REL-1" data-role="cardinality">0..*</text>
+  <text x="676" y="269" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-2" data-role="cardinality">1</text>
+  <text x="794" y="269" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" text-anchor="end" data-owner="REL-2" data-role="cardinality">0..*</text>
+  <text x="1056" y="269" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-3" data-role="cardinality">1</text>
+  <text x="1124" y="269" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" text-anchor="end" data-owner="REL-3" data-role="cardinality">0..*</text>
+  <text x="173" y="352" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-4" data-role="cardinality">1</text>
+  <text x="173" y="424" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-4" data-role="cardinality">0..*</text>
+  <text x="173" y="562" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-5" data-role="cardinality">1</text>
+  <text x="173" y="634" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-5" data-role="cardinality">0..*</text>
+  <text x="933" y="352" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-6" data-role="cardinality">1</text>
+  <text x="933" y="424" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-6" data-role="cardinality">0..*</text>
+  <text x="933" y="562" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-7" data-role="cardinality">0..1</text>
+  <text x="933" y="634" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-7" data-role="cardinality">0..1</text>
+  <text x="1258" y="352" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-8" data-role="cardinality">1</text>
+  <text x="1258" y="424" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-8" data-role="cardinality">0..1</text>
+  <text x="1258" y="562" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-9" data-role="cardinality">1</text>
+  <text x="1258" y="634" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-9" data-role="cardinality">1..*</text>
+  <text x="40" y="810" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937">Evidence: derived from the stored records named in this design (memberships, chats, approvals, audit, document versions, feedback); attribute lists are illustrative.</text>
+  <polyline points="290,277 420,277" data-role="edge" data-id="REL-1" data-from="DE-tenant" data-to="DE-member" data-kind="assoc" fill="none" stroke="#4B5563" stroke-width="1.8" />
+  <rect x="318.875" y="283.0" width="72.25" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-REL-1" data-parent="REL-1" />
+  <text x="323.875" y="303" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="REL-1" data-role="edge-label">includes</text>
+  <polyline points="670,277 800,277" data-role="edge" data-id="REL-2" data-from="DE-member" data-to="DE-chat" data-kind="assoc" fill="none" stroke="#4B5563" stroke-width="1.8" />
+  <rect x="708.773" y="283.0" width="52.453125" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-REL-2" data-parent="REL-2" />
+  <text x="713.773" y="303" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="REL-2" data-role="edge-label">starts</text>
+  <polyline points="1050,277 1130,277" data-role="edge" data-id="REL-3" data-from="DE-chat" data-to="DE-approval" data-kind="assoc" fill="none" stroke="#4B5563" stroke-width="1.8" />
+  <rect x="1052.41" y="283.0" width="75.1875" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-REL-3" data-parent="REL-3" />
+  <text x="1057.41" y="303" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="REL-3" data-role="edge-label">requests</text>
+  <polyline points="165,334 165,430" data-role="edge" data-id="REL-4" data-from="DE-tenant" data-to="DE-docver" data-kind="assoc" fill="none" stroke="#4B5563" stroke-width="1.8" />
+  <rect x="170.0" y="368.0" width="49.5" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-REL-4" data-parent="REL-4" />
+  <text x="175" y="388" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="REL-4" data-role="edge-label">owns</text>
+  <polyline points="165,544 165,640" data-role="edge" data-id="REL-5" data-from="DE-docver" data-to="DE-chunk" data-kind="assoc" fill="none" stroke="#4B5563" stroke-width="1.8" />
+  <rect x="170.0" y="578.0" width="91.109375" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-REL-5" data-parent="REL-5" />
+  <text x="175" y="598" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="REL-5" data-role="edge-label">is split into</text>
+  <polyline points="925,334 925,430" data-role="edge" data-id="REL-6" data-from="DE-chat" data-to="DE-feedback" data-kind="assoc" fill="none" stroke="#4B5563" stroke-width="1.8" />
+  <rect x="930.0" y="368.0" width="70.984375" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-REL-6" data-parent="REL-6" />
+  <text x="935" y="388" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="REL-6" data-role="edge-label">receives</text>
+  <polyline points="925,544 925,640" data-role="edge" data-id="REL-7" data-from="DE-feedback" data-to="DE-evalrec" data-kind="assoc" fill="none" stroke="#4B5563" stroke-width="1.8" />
+  <rect x="930.0" y="578.0" width="114.703125" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-REL-7" data-parent="REL-7" />
+  <text x="935" y="598" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="REL-7" data-role="edge-label">is exported as</text>
+  <polyline points="1250,334 1250,430" data-role="edge" data-id="REL-8" data-from="DE-approval" data-to="DE-exec" data-kind="assoc" fill="none" stroke="#4B5563" stroke-width="1.8" />
+  <rect x="1255.0" y="368.0" width="89.296875" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-REL-8" data-parent="REL-8" />
+  <text x="1260" y="388" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="REL-8" data-role="edge-label">authorises</text>
+  <polyline points="1250,544 1250,640" data-role="edge" data-id="REL-9" data-from="DE-exec" data-to="DE-audit" data-kind="assoc" fill="none" stroke="#4B5563" stroke-width="1.8" />
+  <rect x="1255.0" y="578.0" width="114.4375" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-REL-9" data-parent="REL-9" />
+  <text x="1260" y="598" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="REL-9" data-role="edge-label">is recorded as</text>
+  <rect x="28" y="880" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-1" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="82" y="897" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-1">Application records (DS-app)</text>
+  <rect x="473" y="880" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-2" fill="#E3F4E8" stroke="#2F7D4F" stroke-width="1.8" rx="8" />
+  <text x="527" y="897" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-2">Knowledge data (DS-doc, DS-index)</text>
+  <rect x="918" y="880" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-3" fill="#FFF1D6" stroke="#A8741A" stroke-width="1.8" rx="8" />
+  <text x="972" y="897" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-3">Evaluation data (DS-eval)</text>
+  <polyline points="28,935 70,935" data-role="edge" data-kind="legend" data-id="legend-line-4" fill="none" stroke="#4B5563" stroke-width="1.8" />
+  <text x="82" y="942" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-4">Relationship (verb reads from the first entity)</text>
 </svg>

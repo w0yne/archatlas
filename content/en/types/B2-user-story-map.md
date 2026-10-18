@@ -146,5 +146,9 @@ Editorial grouping preserves the distinct notation; use this recipe and its chec
 
 ## Sample {#sample}
 <!-- skill: path only -->
-![B2 sample: user story map for an online shopper with release slices](/samples/B2-user-story-map.svg)
-*User story map of an online shopper: four activities from left to right (discover items, compare items, check out, track delivery) and one row per release slice. Slice 1 is the prototype, holding one complete shopping goal. It is drawn as a table, without task cards.*
+![B2 · Enterprise Service Assistant](/samples/ai-service-assistant/B2/en/diagram.svg)
+*What does the user do end to end, what is the smallest useful first release, and how are later releases sliced?*
+
+[SVG](/samples/ai-service-assistant/B2/en/diagram.svg) · [Model JSON](/samples/ai-service-assistant/B2/en/diagram.json) · [Shared facts](/samples/ai-service-assistant/scenario.json)
+
+[Historical shop regression sample](/samples/B2-user-story-map.svg) · [All 29 views](/use/ai-service-assistant) · [Illustrative assumptions](/use/ai-service-assistant-assumptions).

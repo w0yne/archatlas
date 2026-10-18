@@ -1,5 +1,5 @@
 {
-  "scenarioVersion": 1,
+  "scenarioVersion": 2,
   "entities": {
     "DS-eval": "DS-eval",
     "C-eval": "C-eval",
@@ -23,7 +23,7 @@
       "sourceRefs": [
         "I-eval"
       ],
-      "status": "conceptual projection, not a new component or database enum"
+      "status": "illustrative assumption / notation projection"
     },
     "G4-hold": {
       "kind": "task",
@@ -35,19 +35,19 @@
       "sourceRefs": [
         "I-eval"
       ],
-      "status": "conceptual projection, not a new component or database enum"
+      "status": "illustrative assumption / notation projection"
     },
     "G4-release": {
       "kind": "task",
       "labels": {
-        "en": "Release hand-off",
-        "zh": "发布交接"
+        "en": "Approve digest release",
+        "zh": "按摘要批准发布"
       },
       "contextEntity": "C-agent",
       "sourceRefs": [
         "I-eval"
       ],
-      "status": "conceptual projection, not a new component or database enum"
+      "status": "illustrative assumption / notation projection"
     },
     "G4-recover": {
       "kind": "task",
@@ -59,12 +59,22 @@
       "sourceRefs": [
         "I-operator"
       ],
-      "status": "conceptual projection, not a new component or database enum"
+      "status": "illustrative assumption / notation projection"
     }
   },
-  "missingFacts": [
-    "Gate thresholds and immutable artifact/digest contract",
-    "CI trigger, approver and deployment mechanism",
-    "Post-release recovery owner and policy"
+  "missingFacts": [],
+  "assumptions": [
+    "AS-ingest",
+    "AS-request",
+    "AS-policy",
+    "AS-raci",
+    "AS-network",
+    "AS-release",
+    "AS-observe",
+    "AS-domains",
+    "AS-data",
+    "AS-roadmap",
+    "AS-components",
+    "AS-interfaces"
   ]
 }

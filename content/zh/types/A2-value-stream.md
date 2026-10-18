@@ -163,5 +163,9 @@ reviewed: false
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-![A2 示例：网店从购物者到收到商品的价值流](/samples/A2-value-stream.svg)
-*网店的价值流：购物者触发五个“动词+名词”阶段（选择商品、下单、付款、打包、送货），最终交付的价值是“收到商品”。图上没有时间；带时间的是精益价值流图（A9）。*
+![A2 · 企业服务助手](/samples/ai-service-assistant/A2/zh/diagram.svg)
+*从触发到交付价值，干系人经过哪些价值阶段？每个阶段由哪些能力支撑？*
+
+[SVG](/samples/ai-service-assistant/A2/zh/diagram.svg) · [模型 JSON](/samples/ai-service-assistant/A2/zh/diagram.json) · [共享事实](/samples/ai-service-assistant/scenario.json)
+
+[历史 shop 回归样例](/samples/A2-value-stream.svg) · [全部29幅视图](/zh/use/ai-service-assistant) · [示意假设](/zh/use/ai-service-assistant-assumptions).

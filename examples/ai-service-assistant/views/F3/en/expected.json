@@ -1,5 +1,5 @@
 {
-  "scenarioVersion": 1,
+  "scenarioVersion": 2,
   "entities": {},
   "invariants": [
     "I-tenant",
@@ -19,8 +19,19 @@
     "R-steward",
     "R-operator"
   ],
-  "missingFacts": [
-    "Complete role-combining policy",
-    "Steward content-read grant"
+  "missingFacts": [],
+  "assumptions": [
+    "AS-ingest",
+    "AS-request",
+    "AS-policy",
+    "AS-raci",
+    "AS-network",
+    "AS-release",
+    "AS-observe",
+    "AS-domains",
+    "AS-data",
+    "AS-roadmap",
+    "AS-components",
+    "AS-interfaces"
   ]
 }

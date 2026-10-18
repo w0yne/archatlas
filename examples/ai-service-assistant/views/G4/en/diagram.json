@@ -6,7 +6,7 @@
     "lang": "en",
     "state": "to-be",
     "audience": "architects and reviewers",
-    "description": "Fictional teaching design; scenario.json version 1"
+    "description": "Fictional teaching design; scenario.json version 2; illustrative assumptions, not a deployed system"
   },
   "layout": {
     "template": "nested"
@@ -31,7 +31,7 @@
       "kind": "task",
       "label": "Quality / safety gate",
       "style": "peer",
-      "sub": "Latency + token cost · Thresholds not specified"
+      "sub": "p95 ≤8s · cost ≤$0.02 · quality ≥0.85 · safety =0"
     },
     {
       "id": "G4-hold",
@@ -43,9 +43,9 @@
     {
       "id": "G4-release",
       "kind": "task",
-      "label": "Release hand-off",
+      "label": "Approve digest release",
       "style": "peer",
-      "sub": "Approver / deployer unknown"
+      "sub": "Steward A / operator R"
     },
     {
       "id": "C-agent",
@@ -66,7 +66,7 @@
       "kind": "task",
       "label": "Recovery decision",
       "style": "peer",
-      "sub": "Policy / owner not specified"
+      "sub": "Stop canary / restore pointer"
     }
   ],
   "edges": [
@@ -88,7 +88,7 @@
       "id": "DEL-3",
       "from": "G4-gate",
       "to": "G4-hold",
-      "label": "[fail / threshold unknown]",
+      "label": "[failed gate]",
       "kind": "dependency",
       "dashed": true
     },

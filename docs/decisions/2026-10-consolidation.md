@@ -81,13 +81,37 @@ Geometry checks do not prove semantic correctness or a completed security assess
 The F2 threat register records hypotheses, proposed controls, owners and validation still
 required. Local sample checks are not a new full multi-host evaluation certification.
 
+## Integrated illustrative assumptions
+
+The shared scenario version 2 adopts 53 distinct semantic/data entities in addition to the
+original entities. Capability, value-stage, action, roadmap-state and data-entity IDs
+remain distinct from runtime containers/stores. All 25 core views and four named variants
+now have EN/ZH authored examples (58 SVGs). G1-AWS is still the first G1 illustration;
+G1-generic is a separate hosting projection and E4 does not replace E2.
+
+The canonical scenario/glossary now specifies API-produced ingestion, bounded request
+states and closure, explicit role-combining/read rules, RACI, network routing/DNS/filtering,
+versioned release/recovery, observations and alerts, logical data ownership, interface
+contracts, bounded contexts and roadmap order. Every such choice is explicitly an
+**illustrative teaching assumption**, not an implementation or measurement. The original
+security invariants are unchanged; governance does not grant tenant-content rights.
+
+`expected.viewElements` covers actions/states/notation with source references and a
+central bilingual definition. It cannot introduce runtime containers or override shared
+entity labels. Existing schema and layout-engine contracts are unchanged. Packaging and
+published copies share one manifest and glossary.
+
+Only S6/S11/S12-related deterministic catalogue/security/data-contract regressions are
+newly exercised; no new live-agent quality scores or full multi-host comparison is
+claimed. Historical reports and shop fixtures remain revision-bound and unchanged.
+
 ## Remaining scope
 
-- Complete remaining core examples, E4 and a separate vendor-neutral G1 from shared facts.
-- Update affected evaluation inputs with held-out variants; preserve old revision scores.
-- Complete independent review and release-level checks before public-site publication.
-- Consolidate review feedback once: fix required corrections, record optional improvements,
-  and avoid unbounded cosmetic redraws.
+- Independent review and eventual release promotion; no main or Pages publication in
+  this integration candidate.
+- Validate the selected AWS region/model, external AS/connector contracts, privacy policy,
+  target values and role assignments against a real implementation before production use.
+- Record optional review improvements; avoid indefinite cosmetic redraws.
 
 ## Public sources and limits
 

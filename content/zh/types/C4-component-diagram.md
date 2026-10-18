@@ -178,5 +178,9 @@ reviewed: false
 
 ## 示例图 {#sample}
 <!-- skill: path only -->
-![C4 示例：订单 API 的组件图](/samples/C4-component-diagram.svg)
-*订单 API 的组件：边界内有控制器、服务和仓储。控制器调用服务，服务通过仓储保存订单，仓储读写商城数据库，服务向外部的支付服务商扣款。*
+![C4 · 企业服务助手](/samples/ai-service-assistant/C4/zh/diagram.svg)
+*P-plan、P-retrieve、P-compose 投影为 C-agent 内无序号的逻辑模块，不新增运行服务。模块名与职责是示意假设，不是源码观测。*
+
+[SVG](/samples/ai-service-assistant/C4/zh/diagram.svg) · [模型 JSON](/samples/ai-service-assistant/C4/zh/diagram.json) · [共享事实](/samples/ai-service-assistant/scenario.json)
+
+[历史 shop 回归样例](/samples/C4-component-diagram.svg) · [全部29幅视图](/zh/use/ai-service-assistant) · [示意假设](/zh/use/ai-service-assistant-assumptions).

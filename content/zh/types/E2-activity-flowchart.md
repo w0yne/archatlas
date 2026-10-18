@@ -177,5 +177,11 @@ reviewed: false
 
 ## 示例图 {#sample}
 <!-- skill: path only -->
-![E2 示例：新订单的活动流程，判断的两个出口都已画出](/samples/E2-activity-flowchart.svg)
-*新订单在商城与仓库两条泳道之间的活动流程：接收订单后做“有库存吗？”的判断，有两个出口。[有库存] 进入拣货打包，以“已打包”结束；[否则] 进入提供缺货预订，以“已缺货预订”结束。*
+![E2 · 企业服务助手](/samples/ai-service-assistant/E2/zh/diagram.svg)
+*UML 活动：单一起点、有效/否则判断与具名结果。审批、当前权限及幂等执行分别表达；超时不明按 AS-request 进行按键对账。*
+
+[SVG](/samples/ai-service-assistant/E2/zh/diagram.svg) · [模型 JSON](/samples/ai-service-assistant/E2/zh/diagram.json) · [共享事实](/samples/ai-service-assistant/scenario.json)
+
+[历史 shop 回归样例](/samples/E2-activity-flowchart.svg) · [全部29幅视图](/zh/use/ai-service-assistant) · [示意假设](/zh/use/ai-service-assistant-assumptions).
+
+[另看 E4 泳道变体](/zh/use/ai-service-assistant#view-e4).

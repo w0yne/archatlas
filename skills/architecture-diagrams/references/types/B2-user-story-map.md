@@ -76,4 +76,4 @@ Model template: `assets/templates/B2.json` · Layout template: `grid_table` · o
 Approximate: it is a table; task cards and slice bands are not drawn, and it expresses narrative and scope, not execution-state columns.
 
 ## Sample
-Figure: `samples/B2-user-story-map.svg` (published with the site)
+Figure: `samples/ai-service-assistant/B2/en/diagram.svg` (published with the site)

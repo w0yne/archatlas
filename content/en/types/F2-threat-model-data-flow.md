@@ -152,11 +152,11 @@ Model template: `assets/templates/F2.json` · Layout template: `nested` · trust
 ## Sample {#sample}
 <!-- skill: path only -->
 ![F2 · Enterprise Service Assistant](/samples/ai-service-assistant/F2/en/diagram.svg)
-*Focused ticket-write threat DFD; DF IDs are references, not message order. TB-1 marks untrusted content, TB-2 verified tenant/approval authority, TB-3 enforced tool authority; Service Desk is external. DF-6 abstracts proof delivery through the Agent; it does not imply a direct AS-to-gateway HTTP call (see F1). DF-4 is the logical current-approval record, obtained through the BFF API. Proposed controls and threat hypotheses are recorded below; none are claimed as implemented or validated. Tenant isolation is also required on retrieval and citation paths (D2).*
+*DF identifiers trace data flows to threat hypotheses; they are not message order. DF-6 abstracts proof delivery through Agent (F1), and DF-4 reads current approval through the BFF. Proposed controls still require implementation validation.*
 
 [SVG](/samples/ai-service-assistant/F2/en/diagram.svg) · [Model JSON](/samples/ai-service-assistant/F2/en/diagram.json) · [Shared facts](/samples/ai-service-assistant/scenario.json)
 
-[Historical shop sample (regression fixture)](/samples/F2-threat-model-data-flow.svg) · [All seven views and assumptions](/use/ai-service-assistant).
+[Historical shop regression sample](/samples/F2-threat-model-data-flow.svg) · [All 29 views](/use/ai-service-assistant) · [Illustrative assumptions](/use/ai-service-assistant-assumptions).
 
 | Threat / flow | Hypothesis and impact | Proposed response | Owner / validation still required |
 |---|---|---|---|

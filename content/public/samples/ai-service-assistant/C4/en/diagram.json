@@ -1,0 +1,126 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "C4",
+    "title": "C4 · Component diagram for Agent Service in Enterprise Service Assistant",
+    "lang": "en",
+    "state": "to-be",
+    "audience": "architects and reviewers",
+    "description": "Fictional teaching design; scenario.json version 2; illustrative assumptions, not a deployed system"
+  },
+  "layout": {
+    "template": "nested"
+  },
+  "nodes": [
+    {
+      "id": "C-api",
+      "kind": "container",
+      "label": "Application API/BFF",
+      "style": "peer",
+      "sub": "C-api · Python / HTTPS · Sessions, tenant policy, approvals"
+    },
+    {
+      "id": "P-retrieve",
+      "kind": "component",
+      "label": "Authorized retriever",
+      "parent": "B-agent",
+      "style": "peer",
+      "sub": "authorized_retriever · Tenant + ACL filters before search"
+    },
+    {
+      "id": "P-compose",
+      "kind": "component",
+      "label": "Answer composer",
+      "parent": "B-agent",
+      "style": "peer",
+      "sub": "answer_composer · Prompt, model call, guardrails"
+    },
+    {
+      "id": "P-plan",
+      "kind": "component",
+      "label": "Request planner",
+      "parent": "B-agent",
+      "style": "peer",
+      "sub": "request_planner · Requests only; gateway enforces"
+    },
+    {
+      "id": "DS-index",
+      "kind": "store",
+      "label": "Retrieval index",
+      "style": "peer",
+      "sub": "DS-index · OpenSearch · Derived chunks, ACL"
+    },
+    {
+      "id": "X-model",
+      "kind": "external",
+      "label": "Managed Model Service",
+      "style": "external",
+      "sub": "Bedrock · text · Generate text"
+    },
+    {
+      "id": "C-tools",
+      "kind": "container",
+      "label": "MCP Tool Gateway",
+      "style": "peer",
+      "sub": "C-tools · MCP HTTPS · Verify delegation, policy"
+    },
+    {
+      "id": "X-idp",
+      "kind": "external",
+      "label": "Enterprise IdP / AS",
+      "style": "external",
+      "sub": "X-idp · OIDC / OAuth · Constrained delegation"
+    }
+  ],
+  "edges": [
+    {
+      "id": "CMP-1",
+      "from": "C-api",
+      "to": "B-agent",
+      "label": "Delegate · HTTPS",
+      "kind": "call"
+    },
+    {
+      "id": "CMP-2",
+      "from": "P-retrieve",
+      "to": "DS-index",
+      "label": "Filtered search",
+      "kind": "call"
+    },
+    {
+      "id": "CMP-3",
+      "from": "P-retrieve",
+      "to": "P-compose",
+      "label": "Passages",
+      "kind": "call"
+    },
+    {
+      "id": "CMP-4",
+      "from": "P-compose",
+      "to": "X-model",
+      "label": "Generate · HTTPS",
+      "kind": "call"
+    },
+    {
+      "id": "CMP-5",
+      "from": "P-plan",
+      "to": "C-tools",
+      "label": "MCP tool call",
+      "kind": "call"
+    },
+    {
+      "id": "CMP-6",
+      "from": "P-plan",
+      "to": "X-idp",
+      "label": "Token exchange",
+      "kind": "call"
+    }
+  ],
+  "groups": [
+    {
+      "id": "B-agent",
+      "title": "Agent Service · components",
+      "kind": "boundary"
+    }
+  ]
+}

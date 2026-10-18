@@ -137,5 +137,9 @@ reviewed: false
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-![A8 示例：从当前单一商城到能回答订单问题的客服机器人的路线图](/samples/A8-target-roadmap.svg)
-*从当前单一商城到能回答订单问题的客服机器人的路线图：三个状态（现状、机器人回答常见问题、机器人处理订单问题）由两个规划中的工作包（上线客服机器人、把订单接入机器人）相连。紫色表示规划中的工作。*
+![A8 · 企业服务助手](/samples/ai-service-assistant/A8/zh/diagram.svg)
+*只读回答、审批写入及评测门禁是示意过渡稳定态，不是已承诺日期。每个工作包仅引入下一稳定态所需能力。*
+
+[SVG](/samples/ai-service-assistant/A8/zh/diagram.svg) · [模型 JSON](/samples/ai-service-assistant/A8/zh/diagram.json) · [共享事实](/samples/ai-service-assistant/scenario.json)
+
+[历史 shop 回归样例](/samples/A8-target-roadmap.svg) · [全部29幅视图](/zh/use/ai-service-assistant) · [示意假设](/zh/use/ai-service-assistant-assumptions).

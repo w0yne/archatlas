@@ -6,7 +6,7 @@
     "lang": "zh",
     "state": "to-be",
     "audience": "architects and reviewers",
-    "description": "Fictional teaching design; scenario.json version 1"
+    "description": "Fictional teaching design; scenario.json version 2; illustrative assumptions, not a deployed system"
   },
   "layout": {
     "template": "nested"
@@ -43,7 +43,7 @@
     {
       "id": "P-retrieve",
       "kind": "process",
-      "label": "2. 授权检索",
+      "label": "2. tenant/ACL 预过滤",
       "style": "peer",
       "sub": ""
     },

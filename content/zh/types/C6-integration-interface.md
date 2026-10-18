@@ -174,5 +174,9 @@ reviewed: false
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-![C6 示例：网店的接口表，含三个接口](/samples/C6-integration-interface.svg)
-*网店的接口表，含三个接口：I1 订单 API 到支付服务商（同步 REST，扣款请求，结账时）、I2 订单 API 到邮件服务（异步消息，回执，订单付款后）、I3 订单 API 到承运商（夜间文件，发货清单）。这里只有表，配套的接口关系图是另一张图。*
+![C6 · 企业服务助手](/samples/ai-service-assistant/C6/zh/diagram.svg)
+*接口认证、生产/消费方向、有界重试、归属和容量见 AS-interfaces 示意契约。队列由工作进程轮询，不是代理主动推送。*
+
+[SVG](/samples/ai-service-assistant/C6/zh/diagram.svg) · [模型 JSON](/samples/ai-service-assistant/C6/zh/diagram.json) · [共享事实](/samples/ai-service-assistant/scenario.json)
+
+[历史 shop 回归样例](/samples/C6-integration-interface.svg) · [全部29幅视图](/zh/use/ai-service-assistant) · [示意假设](/zh/use/ai-service-assistant-assumptions).

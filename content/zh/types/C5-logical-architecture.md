@@ -187,5 +187,9 @@ reviewed: false
 
 ## 示例图 {#sample}
 <!-- skill: path only -->
-![C5 示例：网店的逻辑视图，按职责分组](/samples/C5-logical-architecture.zh.svg)
-*网店的逻辑视图：构建块按职责分在着色分区中（销售：商品目录、购物车、结账；履约：订单管理、库存、发运；支付：支付处理、开票；客户支持：聊天助手）。订单管理是本图主体（深色构建块）；每条依赖都标注交换内容，支付服务商和承运商在边界之外。*
+![C5 · 企业服务助手](/samples/ai-service-assistant/C5/zh/diagram.svg)
+*只从职责看、不涉及技术选型，系统要有哪些模块和接口？*
+
+[SVG](/samples/ai-service-assistant/C5/zh/diagram.svg) · [模型 JSON](/samples/ai-service-assistant/C5/zh/diagram.json) · [共享事实](/samples/ai-service-assistant/scenario.json)
+
+[历史 shop 回归样例](/samples/C5-logical-architecture.zh.svg) · [全部29幅视图](/zh/use/ai-service-assistant) · [示意假设](/zh/use/ai-service-assistant-assumptions).

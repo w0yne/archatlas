@@ -68,7 +68,7 @@ implementation variant. The selection guide groups 25 core entries, 10 named var
 Read the named variant's own reference; grouping never substitutes the parent notation.
 
 For the shared Enterprise Service Assistant worked example, read
-`references/ai-service-assistant.md`. The seven bilingual views use frozen facts;
+`references/ai-service-assistant.md`. The 29 bilingual views use frozen facts;
 `atlas init` templates remain small historical starters, not the new showcase.
 
 

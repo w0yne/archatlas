@@ -1,56 +1,80 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 760" lang="en" data-archatlas="0.1">
-<title>B2 · Employee story map — read-only slice first, then approved tickets</title>
-<desc>Fictional target · Backbone in narrative order; rows are release slices (top = first)</desc>
-<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,4 L0,8 Z" fill="#4B5563"/></marker></defs>
-<rect data-role="canvas" width="1400" height="760" fill="#ffffff"/>
-<text x="28" y="40" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="28" font-weight="700" fill="#1F2937">B2 · Employee story map — read-only slice first, then approved tickets</text>
-<text x="28" y="72" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">Fictional target · Backbone in narrative order; rows are release slices (top = first)</text>
-<rect x="25" y="100" width="1350" height="50" data-role="cell" data-id="user" fill="#F7F7F7" stroke="#666A73" stroke-width="1"/>
-<text x="35" y="129.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="user">User: Employee / approver · Goal: resolve a service need in the chat · Scope: the three tools only</text>
-<rect x="25" y="170" width="250" height="60" data-role="cell" data-id="act-0" fill="#EDEDED" stroke="#666A73" stroke-width="1"/>
-<text x="35" y="204.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937" data-owner="act-0">Backbone</text>
-<rect x="275" y="170" width="275" height="60" data-role="cell" data-id="act-1" fill="#FFF1C9" stroke="#936A16" stroke-width="1"/>
-<text x="285" y="204.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937" data-owner="act-1">Ask a question</text>
-<rect x="550" y="170" width="275" height="60" data-role="cell" data-id="act-2" fill="#FFF1C9" stroke="#936A16" stroke-width="1"/>
-<text x="560" y="204.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937" data-owner="act-2">Check the source</text>
-<rect x="825" y="170" width="275" height="60" data-role="cell" data-id="act-3" fill="#FFF1C9" stroke="#936A16" stroke-width="1"/>
-<text x="835" y="204.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937" data-owner="act-3">Request a ticket</text>
-<rect x="1100" y="170" width="275" height="60" data-role="cell" data-id="act-4" fill="#FFF1C9" stroke="#936A16" stroke-width="1"/>
-<text x="1110" y="204.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937" data-owner="act-4">Approve and follow up</text>
-<rect x="25" y="250" width="250" height="120" data-role="cell" data-id="slice-0" fill="#F7F7F7" stroke="#666A73" stroke-width="1"/>
-<text font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="slice-0" data-source="Slice 1 · Read-only. Learn: are cited answers trusted? Evidence: sources opened, few access errors"><tspan x="35" y="296">Slice 1 · Read-only. Learn: are cited</tspan><tspan x="35" y="314">answers trusted? Evidence: sources</tspan><tspan x="35" y="332">opened, few access errors</tspan></text>
-<rect x="275" y="250" width="275" height="120" data-role="cell" data-id="s-0-0" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1"/>
-<text x="285" y="314.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="s-0-0">Ask in own tenant</text>
-<rect x="550" y="250" width="275" height="120" data-role="cell" data-id="s-0-1" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1"/>
-<text x="560" y="314.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="s-0-1">Open a permitted source</text>
-<rect x="825" y="250" width="275" height="120" data-role="cell" data-id="s-0-2" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1"/>
-<text font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="s-0-2" data-source="Look up a catalogue item (catalogue.lookup)"><tspan x="835" y="305">Look up a catalogue item</tspan><tspan x="835" y="324">(catalogue.lookup)</tspan></text>
-<rect x="1100" y="250" width="275" height="120" data-role="cell" data-id="s-0-3" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1"/>
-<text x="1110" y="314.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="s-0-3">Read ticket status (ticket.read)</text>
-<rect x="25" y="386" width="250" height="120" data-role="cell" data-id="slice-1" fill="#F7F7F7" stroke="#666A73" stroke-width="1"/>
-<text font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="slice-1" data-source="Slice 2 · Approved creation. Outcome: tickets created once, only after approval"><tspan x="35" y="432">Slice 2 · Approved creation.</tspan><tspan x="35" y="450">Outcome: tickets created once, only</tspan><tspan x="35" y="468">after approval</tspan></text>
-<rect x="275" y="386" width="275" height="120" data-role="cell" data-id="s-1-0" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1"/>
-<text x="285" y="450.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="s-1-0">Ask for a ticket in chat</text>
-<rect x="550" y="386" width="275" height="120" data-role="cell" data-id="s-1-1" fill="#ffffff" stroke="#666A73" stroke-width="1"/>
-<rect x="825" y="386" width="275" height="120" data-role="cell" data-id="s-1-2" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1"/>
-<text x="835" y="450.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="s-1-2">Review the exact draft</text>
-<rect x="1100" y="386" width="275" height="120" data-role="cell" data-id="s-1-3" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1"/>
-<text font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="s-1-3" data-source="Approve; ticket created once (ticket.create)"><tspan x="1110" y="441">Approve; ticket created once</tspan><tspan x="1110" y="460">(ticket.create)</tspan></text>
-<rect x="25" y="522" width="250" height="120" data-role="cell" data-id="slice-2" fill="#F7F7F7" stroke="#666A73" stroke-width="1"/>
-<text font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="slice-2" data-source="Later · Candidates from the journey map (A6), not committed"><tspan x="35" y="577">Later · Candidates from the journey</tspan><tspan x="35" y="595">map (A6), not committed</tspan></text>
-<rect x="275" y="522" width="275" height="120" data-role="cell" data-id="s-2-0" fill="#ffffff" stroke="#666A73" stroke-width="1" stroke-dasharray="5 4"/>
-<text x="285" y="586.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="s-2-0">Follow-up questions in context</text>
-<rect x="550" y="522" width="275" height="120" data-role="cell" data-id="s-2-1" fill="#ffffff" stroke="#666A73" stroke-width="1" stroke-dasharray="5 4"/>
-<text x="560" y="586.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="s-2-1">Show document version and date</text>
-<rect x="825" y="522" width="275" height="120" data-role="cell" data-id="s-2-2" fill="#ffffff" stroke="#666A73" stroke-width="1" stroke-dasharray="5 4"/>
-<text x="835" y="586.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="s-2-2">Change the draft and re-approve</text>
-<rect x="1100" y="522" width="275" height="120" data-role="cell" data-id="s-2-3" fill="#ffffff" stroke="#666A73" stroke-width="1" stroke-dasharray="5 4"/>
-<text font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="s-2-3" data-source="Show status reconciled after a timeout"><tspan x="1110" y="577">Show status reconciled after a</tspan><tspan x="1110" y="596">timeout</tspan></text>
-<text x="25" y="668" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">Slices cross the whole backbone; the empty cell means slice 2 needs no change to that activity.</text>
-<rect x="28" y="708" width="42" height="24" data-role="legend-swatch" data-id="__legend-swatch-1" fill="#FFF1C9" stroke="#936A16" stroke-width="1"/>
-<text x="82" y="726" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-1">Backbone activity (narrative order)</text>
-<rect x="473" y="708" width="42" height="24" data-role="legend-swatch" data-id="__legend-swatch-2" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1"/>
-<text x="527" y="726" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-2">Story in a planned slice</text>
-<rect x="918" y="708" width="42" height="24" data-role="legend-swatch" data-id="__legend-swatch-3" fill="#ffffff" stroke="#666A73" stroke-width="1" stroke-dasharray="5 4"/>
-<text x="972" y="726" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-3">Candidate story (not committed)</text>
+  <title>B2 · Employee story map — read-only slice first, then approved tickets</title>
+  <desc>Fictional teaching design, scenario version 2; additional parameters are illustrative assumptions. Fictional target · Backbone in narrative order; rows are release slices (top = first)</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#4B5563" />
+    </marker>
+  </defs>
+  <rect data-role="canvas" width="1400" height="760" fill="#ffffff" />
+  <text x="28" y="40" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="28" font-weight="700" fill="#1F2937">B2 · Employee story map — read-only slice first, then approved tickets</text>
+  <text x="28" y="72" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">Fictional target · Backbone in narrative order; rows are release slices (top = first)</text>
+  <rect x="25" y="100" width="1350" height="50" data-role="cell" data-id="user" fill="#F7F7F7" stroke="#666A73" stroke-width="1" />
+  <text x="35" y="129.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="user">User: Employee / approver · Goal: resolve a service need in the chat · Scope: the three tools only</text>
+  <rect x="25" y="170" width="250" height="60" data-role="cell" data-id="act-0" fill="#EDEDED" stroke="#666A73" stroke-width="1" />
+  <text x="35" y="204.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937" data-owner="act-0">Backbone</text>
+  <rect x="275" y="170" width="275" height="60" data-role="cell" data-id="act-1" fill="#FFF1C9" stroke="#936A16" stroke-width="1" />
+  <text x="285" y="204.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937" data-owner="act-1">Ask a question</text>
+  <rect x="550" y="170" width="275" height="60" data-role="cell" data-id="act-2" fill="#FFF1C9" stroke="#936A16" stroke-width="1" />
+  <text x="560" y="204.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937" data-owner="act-2">Check the source</text>
+  <rect x="825" y="170" width="275" height="60" data-role="cell" data-id="act-3" fill="#FFF1C9" stroke="#936A16" stroke-width="1" />
+  <text x="835" y="204.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937" data-owner="act-3">Request a ticket</text>
+  <rect x="1100" y="170" width="275" height="60" data-role="cell" data-id="act-4" fill="#FFF1C9" stroke="#936A16" stroke-width="1" />
+  <text x="1110" y="204.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937" data-owner="act-4">Approve and follow up</text>
+  <rect x="25" y="250" width="250" height="120" data-role="cell" data-id="slice-0" fill="#F7F7F7" stroke="#666A73" stroke-width="1" />
+  <text font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="slice-0" data-source="Slice 1 · Read-only. Learn: are cited answers trusted? Evidence: sources opened, few access errors">
+    <tspan x="35" y="296">Slice 1 · Read-only. Learn: are cited</tspan>
+    <tspan x="35" y="314">answers trusted? Evidence: sources</tspan>
+    <tspan x="35" y="332">opened, few access errors</tspan>
+  </text>
+  <rect x="275" y="250" width="275" height="120" data-role="cell" data-id="s-0-0" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1" />
+  <text x="285" y="314.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="s-0-0">Ask in own tenant</text>
+  <rect x="550" y="250" width="275" height="120" data-role="cell" data-id="s-0-1" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1" />
+  <text x="560" y="314.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="s-0-1">Open a permitted source</text>
+  <rect x="825" y="250" width="275" height="120" data-role="cell" data-id="s-0-2" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1" />
+  <text font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="s-0-2" data-source="Look up a catalogue item (catalogue.lookup)">
+    <tspan x="835" y="305">Look up a catalogue item</tspan>
+    <tspan x="835" y="324">(catalogue.lookup)</tspan>
+  </text>
+  <rect x="1100" y="250" width="275" height="120" data-role="cell" data-id="s-0-3" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1" />
+  <text x="1110" y="314.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="s-0-3">Read ticket status (ticket.read)</text>
+  <rect x="25" y="386" width="250" height="120" data-role="cell" data-id="slice-1" fill="#F7F7F7" stroke="#666A73" stroke-width="1" />
+  <text font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="slice-1" data-source="Slice 2 · Approved creation. Outcome: tickets created once, only after approval">
+    <tspan x="35" y="432">Slice 2 · Approved creation.</tspan>
+    <tspan x="35" y="450">Outcome: tickets created once, only</tspan>
+    <tspan x="35" y="468">after approval</tspan>
+  </text>
+  <rect x="275" y="386" width="275" height="120" data-role="cell" data-id="s-1-0" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1" />
+  <text x="285" y="450.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="s-1-0">Ask for a ticket in chat</text>
+  <rect x="550" y="386" width="275" height="120" data-role="cell" data-id="s-1-1" fill="#ffffff" stroke="#666A73" stroke-width="1" />
+  <rect x="825" y="386" width="275" height="120" data-role="cell" data-id="s-1-2" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1" />
+  <text x="835" y="450.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="s-1-2">Review the exact draft</text>
+  <rect x="1100" y="386" width="275" height="120" data-role="cell" data-id="s-1-3" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1" />
+  <text font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="s-1-3" data-source="Approve; ticket created once (ticket.create)">
+    <tspan x="1110" y="441">Approve; ticket created once</tspan>
+    <tspan x="1110" y="460">(ticket.create)</tspan>
+  </text>
+  <rect x="25" y="522" width="250" height="120" data-role="cell" data-id="slice-2" fill="#F7F7F7" stroke="#666A73" stroke-width="1" />
+  <text font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="slice-2" data-source="Later · Candidates from the journey map (A6), not committed">
+    <tspan x="35" y="577">Later · Candidates from the journey</tspan>
+    <tspan x="35" y="595">map (A6), not committed</tspan>
+  </text>
+  <rect x="275" y="522" width="275" height="120" data-role="cell" data-id="s-2-0" fill="#ffffff" stroke="#666A73" stroke-width="1" stroke-dasharray="5 4" />
+  <text x="285" y="586.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="s-2-0">Follow-up questions in context</text>
+  <rect x="550" y="522" width="275" height="120" data-role="cell" data-id="s-2-1" fill="#ffffff" stroke="#666A73" stroke-width="1" stroke-dasharray="5 4" />
+  <text x="560" y="586.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="s-2-1">Show document version and date</text>
+  <rect x="825" y="522" width="275" height="120" data-role="cell" data-id="s-2-2" fill="#ffffff" stroke="#666A73" stroke-width="1" stroke-dasharray="5 4" />
+  <text x="835" y="586.5" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="s-2-2">Change the draft and re-approve</text>
+  <rect x="1100" y="522" width="275" height="120" data-role="cell" data-id="s-2-3" fill="#ffffff" stroke="#666A73" stroke-width="1" stroke-dasharray="5 4" />
+  <text font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="s-2-3" data-source="Show status reconciled after a timeout">
+    <tspan x="1110" y="577">Show status reconciled after a</tspan>
+    <tspan x="1110" y="596">timeout</tspan>
+  </text>
+  <text x="25" y="668" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937">Slices cross the whole backbone; the empty cell means slice 2 needs no change to that activity.</text>
+  <rect x="28" y="708" width="42" height="24" data-role="legend-swatch" data-id="__legend-swatch-1" fill="#FFF1C9" stroke="#936A16" stroke-width="1" />
+  <text x="82" y="726" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-1">Backbone activity (narrative order)</text>
+  <rect x="473" y="708" width="42" height="24" data-role="legend-swatch" data-id="__legend-swatch-2" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1" />
+  <text x="527" y="726" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-2">Story in a planned slice</text>
+  <rect x="918" y="708" width="42" height="24" data-role="legend-swatch" data-id="__legend-swatch-3" fill="#ffffff" stroke="#666A73" stroke-width="1" stroke-dasharray="5 4" />
+  <text x="972" y="726" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-3">Candidate story (not committed)</text>
 </svg>

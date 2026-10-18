@@ -1,0 +1,21 @@
+{
+  "scenarioVersion": 2,
+  "entities": {
+    "ST-baseline": "ST-baseline",
+    "ST-answers": "ST-answers",
+    "ST-tickets": "ST-tickets",
+    "ST-target": "ST-target",
+    "WP-retrieval": "WP-retrieval",
+    "WP-approval": "WP-approval",
+    "WP-eval": "WP-eval"
+  },
+  "invariants": [
+    "I-ingest",
+    "I-approval",
+    "I-eval",
+    "I-bounds"
+  ],
+  "projection": "focused view; omissions described in caption; not a deployed system",
+  "missingFacts": [],
+  "assumptions": []
+}

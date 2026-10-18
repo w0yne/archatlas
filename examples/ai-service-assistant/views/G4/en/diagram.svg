@@ -1,63 +1,67 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1320" lang="en" data-archatlas="0.1">
-<title>G4 · Prompt/model configuration — promotion gates</title>
-<desc>Fictional target · Offline evaluation is known; release machinery is not frozen</desc>
-<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,4 L0,8 Z" fill="#4B5563"/></marker></defs>
-<rect data-role="canvas" width="1600" height="1320" fill="#ffffff"/>
-<text x="28" y="40" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="28" font-weight="700" fill="#1F2937">G4 · Prompt/model configuration — promotion gates</text>
-<text x="28" y="72" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">Fictional target · Offline evaluation is known; release machinery is not frozen</text>
-<rect x="40" y="170" width="365" height="120" data-role="node" data-id="DS-eval" data-kind="store" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="54" y="199" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DS-eval" data-role="name">Evaluation datasets</text>
-<text x="54" y="224" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DS-eval" data-role="sub">Versioned prompt / model / dataset</text>
-<rect x="560" y="170" width="365" height="120" data-role="node" data-id="C-eval" data-kind="container" fill="#1767B5" stroke="#03172E" stroke-width="2.4" rx="8"/>
-<text x="574" y="199" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#ffffff" data-owner="C-eval" data-role="name">Evaluation Job</text>
-<text x="574" y="224" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#ffffff" data-owner="C-eval" data-role="sub">Evaluation-only identity</text>
-<text x="574" y="247" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#ffffff" data-owner="C-eval" data-role="sub">No production tool writes</text>
-<rect x="1110" y="170" width="410" height="120" data-role="node" data-id="G4-gate" data-kind="task" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="1124" y="199" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="G4-gate" data-role="name">Quality / safety gate</text>
-<text x="1124" y="224" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="G4-gate" data-role="sub">Latency + token cost</text>
-<text x="1124" y="247" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="G4-gate" data-role="sub">Thresholds not specified</text>
-<rect x="1110" y="510" width="410" height="100" data-role="node" data-id="G4-hold" data-kind="task" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="1124" y="539" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="G4-hold" data-role="name">Hold candidate</text>
-<rect x="560" y="760" width="365" height="110" data-role="node" data-id="G4-release" data-kind="task" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="574" y="789" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="G4-release" data-role="name">Release hand-off</text>
-<text x="574" y="814" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="G4-release" data-role="sub">Approver / deployer unknown</text>
-<rect x="40" y="760" width="365" height="110" data-role="node" data-id="C-agent" data-kind="container" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="54" y="789" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-agent" data-role="name">Agent Service</text>
-<text x="54" y="814" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-agent" data-role="sub">Production target</text>
-<rect x="40" y="1030" width="410" height="110" data-role="node" data-id="AWS-ops" data-kind="component" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="54" y="1059" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="AWS-ops" data-role="name">CloudWatch · KMS · Secrets</text>
-<text x="54" y="1084" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="AWS-ops" data-role="sub">CloudWatch health / token cost</text>
-<rect x="560" y="1030" width="365" height="110" data-role="node" data-id="G4-recover" data-kind="task" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="574" y="1059" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="G4-recover" data-role="name">Recovery decision</text>
-<text x="574" y="1084" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="G4-recover" data-role="sub">Policy / owner not specified</text>
-<polyline points="405,230 560,230" data-role="edge" data-id="DEL-1" data-from="DS-eval" data-to="C-eval" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="410" y="185" width="153.5" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DEL-1" data-parent="DEL-1"/>
-<text x="415" y="205" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DEL-1" data-role="edge-label">Candidate versions</text>
-<polyline points="925,230 1110,230" data-role="edge" data-id="DEL-2" data-from="C-eval" data-to="G4-gate" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="925" y="185" width="135.390625" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DEL-2" data-parent="DEL-2"/>
-<text x="930" y="205" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DEL-2" data-role="edge-label">Evaluation result</text>
-<polyline points="1315,290 1315,510" data-role="edge" data-id="DEL-3" data-from="G4-gate" data-to="G4-hold" data-kind="dependency" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" stroke-dasharray="6 4"/>
-<rect x="1330" y="390" width="203.9375" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DEL-3" data-parent="DEL-3"/>
-<text x="1335" y="410" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DEL-3" data-role="edge-label">[fail / threshold unknown]</text>
-<polyline points="1200,290 1200,410 1000,410 1000,815 925,815" data-role="edge" data-id="DEL-4" data-from="G4-gate" data-to="G4-release" data-kind="dependency" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" stroke-dasharray="6 4"/>
-<rect x="1005" y="660" width="217.875" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DEL-4" data-parent="DEL-4"/>
-<text x="1010" y="680" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DEL-4" data-role="edge-label">[all gates pass] dependency</text>
-<polyline points="560,815 405,815" data-role="edge" data-id="DEL-5" data-from="G4-release" data-to="C-agent" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="405" y="708" width="179.171875" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DEL-5" data-parent="DEL-5"/>
-<text x="410" y="728" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DEL-5" data-role="edge-label">Promote same version</text>
-<polyline points="220,870 220,1030" data-role="edge" data-id="DEL-6" data-from="C-agent" data-to="AWS-ops" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="240" y="930" width="116.078125" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DEL-6" data-parent="DEL-6"/>
-<text x="245" y="950" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DEL-6" data-role="edge-label">Health signals</text>
-<polyline points="450,1085 560,1085" data-role="edge" data-id="DEL-7" data-from="AWS-ops" data-to="G4-recover" data-kind="dependency" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" stroke-dasharray="6 4"/>
-<rect x="440" y="980" width="87.4375" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DEL-7" data-parent="DEL-7"/>
-<text x="445" y="1000" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DEL-7" data-role="edge-label">Unhealthy</text>
-<text x="28" y="1190" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937">Artifact identity: prompt/model/dataset versions; digest, registry, CI trigger and recovery action remain unspecified.</text>
-<rect x="28" y="1245" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-1" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="82" y="1262" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-1">In-scope element</text>
-<rect x="473" y="1245" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-2" fill="#1767B5" stroke="#03172E" stroke-width="2.4" rx="8"/>
-<text x="527" y="1262" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-2">Subject</text>
-<polyline points="918,1255 960,1255" data-role="edge" data-kind="legend" data-id="legend-line-3" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="972" y="1262" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-3">Artifact / evidence data</text>
-<polyline points="28,1300 70,1300" data-role="edge" data-kind="legend" data-id="legend-line-4" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" stroke-dasharray="6 4"/>
-<text x="82" y="1307" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-4">Gate / hand-off dependency</text>
+  <title>G4 · Prompt/model configuration — promotion gates</title>
+  <desc>Fictional teaching design, scenario version 2; additional parameters are illustrative assumptions. Illustrative: bundle evaluation → steward approval → operator release workflow; evaluation cannot write production tools.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#4B5563" />
+    </marker>
+  </defs>
+  <rect data-role="canvas" width="1600" height="1320" fill="#ffffff" />
+  <text x="28" y="40" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="28" font-weight="700" fill="#1F2937">G4 · Prompt/model configuration — promotion gates</text>
+  <text x="28" y="72" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">Illustrative: bundle evaluation → steward approval → operator release workflow; evaluation cannot write production tools.</text>
+  <rect x="40" y="170" width="365" height="120" data-role="node" data-id="DS-eval" data-kind="store" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="54" y="199" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DS-eval" data-role="name">Evaluation datasets</text>
+  <text x="54" y="224" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DS-eval" data-role="sub">Versioned prompt / model / dataset</text>
+  <rect x="560" y="170" width="365" height="120" data-role="node" data-id="C-eval" data-kind="container" fill="#1767B5" stroke="#03172E" stroke-width="2.4" rx="8" />
+  <text x="574" y="199" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#ffffff" data-owner="C-eval" data-role="name">Evaluation Job</text>
+  <text x="574" y="224" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#ffffff" data-owner="C-eval" data-role="sub">Evaluation-only identity</text>
+  <text x="574" y="247" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#ffffff" data-owner="C-eval" data-role="sub">No production tool writes</text>
+  <rect x="1110" y="170" width="410" height="120" data-role="node" data-id="G4-gate" data-kind="task" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="1124" y="199" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="G4-gate" data-role="name">Quality / safety gate</text>
+  <text x="1124" y="224" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="G4-gate" data-role="sub">p95 ≤8s · cost ≤$0.02</text>
+  <text x="1124" y="247" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="G4-gate" data-role="sub">quality ≥0.85 · safety =0</text>
+  <rect x="1110" y="510" width="410" height="100" data-role="node" data-id="G4-hold" data-kind="task" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="1124" y="539" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="G4-hold" data-role="name">Hold candidate</text>
+  <rect x="560" y="760" width="365" height="110" data-role="node" data-id="G4-release" data-kind="task" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="574" y="789" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="G4-release" data-role="name">Approve digest release</text>
+  <text x="574" y="814" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="G4-release" data-role="sub">Steward A / operator R</text>
+  <rect x="40" y="760" width="365" height="110" data-role="node" data-id="C-agent" data-kind="container" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="54" y="789" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-agent" data-role="name">Agent Service</text>
+  <text x="54" y="814" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-agent" data-role="sub">Production target</text>
+  <rect x="40" y="1030" width="410" height="110" data-role="node" data-id="AWS-ops" data-kind="component" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="54" y="1059" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="AWS-ops" data-role="name">CloudWatch · KMS · Secrets</text>
+  <text x="54" y="1084" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="AWS-ops" data-role="sub">CloudWatch health / token cost</text>
+  <rect x="560" y="1030" width="365" height="110" data-role="node" data-id="G4-recover" data-kind="task" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="574" y="1059" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="G4-recover" data-role="name">Recovery decision</text>
+  <text x="574" y="1084" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="G4-recover" data-role="sub">Stop canary / restore pointer</text>
+  <polyline points="405,230 560,230" data-role="edge" data-id="DEL-1" data-from="DS-eval" data-to="C-eval" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="410.0" y="185.0" width="153.5" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DEL-1" data-parent="DEL-1" />
+  <text x="415" y="205" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DEL-1" data-role="edge-label">Candidate versions</text>
+  <polyline points="925,230 1110,230" data-role="edge" data-id="DEL-2" data-from="C-eval" data-to="G4-gate" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="925.0" y="185.0" width="135.390625" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DEL-2" data-parent="DEL-2" />
+  <text x="930" y="205" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DEL-2" data-role="edge-label">Evaluation result</text>
+  <polyline points="1315,290 1315,510" data-role="edge" data-id="DEL-3" data-from="G4-gate" data-to="G4-hold" data-kind="dependency" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" stroke-dasharray="6 4" />
+  <rect x="1330.0" y="390.0" width="99.90625" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DEL-3" data-parent="DEL-3" />
+  <text x="1335" y="410" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DEL-3" data-role="edge-label">[failed gate]</text>
+  <polyline points="1200,290 1200,410 1000,410 1000,815 925,815" data-role="edge" data-id="DEL-4" data-from="G4-gate" data-to="G4-release" data-kind="dependency" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" stroke-dasharray="6 4" />
+  <rect x="1005.0" y="660.0" width="217.875" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DEL-4" data-parent="DEL-4" />
+  <text x="1010" y="680" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DEL-4" data-role="edge-label">[all gates pass] dependency</text>
+  <polyline points="560,815 405,815" data-role="edge" data-id="DEL-5" data-from="G4-release" data-to="C-agent" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="405.0" y="708.0" width="179.171875" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DEL-5" data-parent="DEL-5" />
+  <text x="410" y="728" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DEL-5" data-role="edge-label">Promote same version</text>
+  <polyline points="220,870 220,1030" data-role="edge" data-id="DEL-6" data-from="C-agent" data-to="AWS-ops" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="240.0" y="930.0" width="116.078125" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DEL-6" data-parent="DEL-6" />
+  <text x="245" y="950" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DEL-6" data-role="edge-label">Health signals</text>
+  <polyline points="450,1085 560,1085" data-role="edge" data-id="DEL-7" data-from="AWS-ops" data-to="G4-recover" data-kind="dependency" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" stroke-dasharray="6 4" />
+  <rect x="440.0" y="980.0" width="87.4375" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DEL-7" data-parent="DEL-7" />
+  <text x="445" y="1000" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DEL-7" data-role="edge-label">Unhealthy</text>
+  <text x="28" y="1190" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937">S3 versionId + SHA-256; same digest through staging and 5%/10min canary; restore compatible pointer, not database state.</text>
+  <rect x="28" y="1245" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-1" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="82" y="1262" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-1">In-scope element</text>
+  <rect x="473" y="1245" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-2" fill="#1767B5" stroke="#03172E" stroke-width="2.4" rx="8" />
+  <text x="527" y="1262" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-2">Subject</text>
+  <polyline points="918,1255 960,1255" data-role="edge" data-kind="legend" data-id="legend-line-3" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <text x="972" y="1262" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-3">Artifact / evidence data</text>
+  <polyline points="28,1300 70,1300" data-role="edge" data-kind="legend" data-id="legend-line-4" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" stroke-dasharray="6 4" />
+  <text x="82" y="1307" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-4">Gate / hand-off dependency</text>
 </svg>

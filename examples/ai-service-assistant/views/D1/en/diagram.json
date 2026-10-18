@@ -6,7 +6,7 @@
     "lang": "en",
     "state": "to-be",
     "audience": "architects and reviewers",
-    "description": "Fictional teaching design; scenario.json version 1"
+    "description": "Fictional teaching design; scenario.json version 2; illustrative assumptions, not a deployed system"
   },
   "layout": {
     "template": "er"
@@ -38,7 +38,7 @@
       "kind": "entity",
       "label": "Approval",
       "style": "peer",
-      "sub": "approval id (PK) · tenant, subject, tool · params hash, expiry"
+      "sub": "approval id (PK) · tenant, subject, tool · hash, expiry, key"
     },
     {
       "id": "DE-docver",
@@ -59,7 +59,7 @@
       "kind": "entity",
       "label": "Execution",
       "style": "peer",
-      "sub": "idempotency key (PK) · approval id · outcome"
+      "sub": "tenant/tool/key (PK) · approval id · outcome"
     },
     {
       "id": "DE-chunk",

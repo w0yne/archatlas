@@ -82,4 +82,4 @@ Scope: One application or domain: its resource classes, a small set of actions, 
 Model template: `assets/templates/F3.json` · Layout template: `grid_table` · roles (or subjects) become rows, resource-action pairs become grouped columns, and each cell holds allow, deny, conditional or not-applicable from a fixed legend; for ABAC and ReBAC the same `tables` carry attribute rules or relation definitions (a relation graph needs a second model, because `grid_table` takes tables only).
 
 ## Sample
-Figure: `samples/F3-access-control-model.svg` (published with the site)
+Figure: `samples/ai-service-assistant/F3/en/diagram.svg` (published with the site)

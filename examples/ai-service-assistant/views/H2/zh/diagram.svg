@@ -1,67 +1,71 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1520 1360" lang="zh" data-archatlas="0.1">
-<title>H2 · 脱敏服务证据 — 可观测性</title>
-<desc>虚构目标设计 · 信号用途视图；采集配置与告警配置尚未验证</desc>
-<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,4 L0,8 Z" fill="#4B5563"/></marker></defs>
-<rect data-role="canvas" width="1520" height="1360" fill="#ffffff"/>
-<text x="28" y="40" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="28" font-weight="700" fill="#1F2937">H2 · 脱敏服务证据 — 可观测性</text>
-<text x="28" y="72" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">虚构目标设计 · 信号用途视图；采集配置与告警配置尚未验证</text>
-<rect x="25" y="120" width="590" height="1075" data-role="group" data-id="OBS-source" data-kind="boundary" fill="#F3F8FF" stroke="#3D6FB2" stroke-width="1.6" rx="10"/>
-<text x="43" y="152" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="700" fill="#1F2937" data-owner="OBS-source" data-role="group-title">已有运行单元与队列来源</text>
-<rect x="60" y="200" width="505" height="100" data-role="node" data-id="C-api" data-kind="container" data-parent="OBS-source" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="74" y="229" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-api" data-role="name">应用 API/BFF</text>
-<text x="74" y="254" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-api" data-role="sub">授权 / 请求结果</text>
-<rect x="60" y="357" width="505" height="100" data-role="node" data-id="C-agent" data-kind="container" data-parent="OBS-source" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="74" y="386" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-agent" data-role="name">Agent 服务</text>
-<text x="74" y="411" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-agent" data-role="sub">延迟 / 模型 token</text>
-<rect x="60" y="514" width="505" height="100" data-role="node" data-id="C-tools" data-kind="container" data-parent="OBS-source" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="74" y="543" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-tools" data-role="name">MCP 工具网关</text>
-<text x="74" y="568" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-tools" data-role="sub">授权拒绝 / 工具结果</text>
-<rect x="60" y="671" width="505" height="100" data-role="node" data-id="C-ingest" data-kind="container" data-parent="OBS-source" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="74" y="700" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-ingest" data-role="name">摄取工作进程</text>
-<text x="74" y="725" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-ingest" data-role="sub">版本任务 / 重试失败</text>
-<rect x="60" y="828" width="505" height="100" data-role="node" data-id="Q-ingest" data-kind="queue" data-parent="OBS-source" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="74" y="857" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="Q-ingest" data-role="name">摄取队列 + DLQ</text>
-<text x="74" y="882" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="Q-ingest" data-role="sub">积压 / DLQ 证据</text>
-<rect x="60" y="985" width="505" height="100" data-role="node" data-id="C-eval" data-kind="container" data-parent="OBS-source" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="74" y="1014" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-eval" data-role="name">评测任务</text>
-<text x="74" y="1039" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-eval" data-role="sub">离线质量 / token 成本</text>
-<rect x="930" y="530" width="550" height="145" data-role="node" data-id="AWS-ops" data-kind="component" fill="#1767B5" stroke="#03172E" stroke-width="2.4" rx="8"/>
-<text x="944" y="559" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#ffffff" data-owner="AWS-ops" data-role="name">CloudWatch · KMS · Secrets</text>
-<text x="944" y="584" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#ffffff" data-owner="AWS-ops" data-role="sub">仅投影 CloudWatch 遥测职责</text>
-<text x="944" y="607" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#ffffff" data-owner="AWS-ops" data-role="sub">日志不含 token 或文档正文</text>
-<rect x="930" y="1030" width="550" height="110" data-role="node" data-id="R-operator" data-kind="person" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="8"/>
-<text x="944" y="1059" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="R-operator" data-role="name">平台运维员</text>
-<text x="944" y="1084" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="R-operator" data-role="sub">服务健康；非内容访问权限</text>
-<polyline points="565,250 850,250 850,550 930,550" data-role="edge" data-id="OBS-1" data-from="C-api" data-to="AWS-ops" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="575" y="212" width="74.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-OBS-1" data-parent="OBS-1"/>
-<text x="580" y="232" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="OBS-1" data-role="edge-label">脱敏信号</text>
-<polyline points="565,407 800,407 800,571 930,571" data-role="edge" data-id="OBS-2" data-from="C-agent" data-to="AWS-ops" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="575" y="369" width="74.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-OBS-2" data-parent="OBS-2"/>
-<text x="580" y="389" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="OBS-2" data-role="edge-label">脱敏信号</text>
-<polyline points="565,564 750,564 750,592 930,592" data-role="edge" data-id="OBS-3" data-from="C-tools" data-to="AWS-ops" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="575" y="526" width="74.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-OBS-3" data-parent="OBS-3"/>
-<text x="580" y="546" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="OBS-3" data-role="edge-label">脱敏信号</text>
-<polyline points="565,721 750,721 750,613 930,613" data-role="edge" data-id="OBS-4" data-from="C-ingest" data-to="AWS-ops" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="575" y="683" width="74.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-OBS-4" data-parent="OBS-4"/>
-<text x="580" y="703" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="OBS-4" data-role="edge-label">脱敏信号</text>
-<polyline points="565,878 800,878 800,634 930,634" data-role="edge" data-id="OBS-5" data-from="Q-ingest" data-to="AWS-ops" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="575" y="840" width="74.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-OBS-5" data-parent="OBS-5"/>
-<text x="580" y="860" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="OBS-5" data-role="edge-label">脱敏信号</text>
-<polyline points="565,1035 850,1035 850,655 930,655" data-role="edge" data-id="OBS-6" data-from="C-eval" data-to="AWS-ops" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="575" y="997" width="74.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-OBS-6" data-parent="OBS-6"/>
-<text x="580" y="1017" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="OBS-6" data-role="edge-label">脱敏信号</text>
-<polyline points="1205,675 1205,1030" data-role="edge" data-id="OBS-7" data-from="AWS-ops" data-to="R-operator" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="935" y="835" width="152.265625" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-OBS-7" data-parent="OBS-7"/>
-<text x="940" y="855" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="OBS-7" data-role="edge-label">读取健康 / 成本证据</text>
-<text x="28" y="1240" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937">缺口：SLI/SLO 目标、采样/保留、传输保证、告警路由与响应手册。</text>
-<rect x="28" y="1290" width="42" height="22" data-role="legend-zone" data-id="__legend-swatch-1" fill="#F3F8FF" stroke="#3D6FB2" stroke-width="1.6" rx="10"/>
-<text x="82" y="1307" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-1">系统 / 部署边界</text>
-<rect x="473" y="1290" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-2" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="527" y="1307" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-2">范围内元素</text>
-<rect x="918" y="1290" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-3" fill="#1767B5" stroke="#03172E" stroke-width="2.4" rx="8"/>
-<text x="972" y="1307" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-3">本图主体</text>
-<rect x="28" y="1335" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-4" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="8"/>
-<text x="82" y="1352" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-4">外部角色 / 系统</text>
-<polyline points="473,1345 515,1345" data-role="edge" data-kind="legend" data-id="legend-line-5" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="527" y="1352" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-5">信号产生方 → 接收方</text>
+  <title>H2 · 脱敏服务证据 — 可观测性</title>
+  <desc>虚构教学设计，场景版本2；补充参数为示意假设。示意：源端脱敏的健康与成本证据；目标、采样、保留及告警见 AS-observe。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#4B5563" />
+    </marker>
+  </defs>
+  <rect data-role="canvas" width="1520" height="1360" fill="#ffffff" />
+  <text x="28" y="40" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="28" font-weight="700" fill="#1F2937">H2 · 脱敏服务证据 — 可观测性</text>
+  <text x="28" y="72" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">示意：源端脱敏的健康与成本证据；目标、采样、保留及告警见 AS-observe。</text>
+  <rect x="25" y="120" width="590" height="1075" data-role="group" data-id="OBS-source" data-kind="boundary" fill="#F3F8FF" stroke="#3D6FB2" stroke-width="1.6" rx="10" />
+  <text x="43" y="152" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="700" fill="#1F2937" data-owner="OBS-source" data-role="group-title">已有运行单元与队列来源</text>
+  <rect x="60" y="200" width="505" height="100" data-role="node" data-id="C-api" data-kind="container" data-parent="OBS-source" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="74" y="229" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-api" data-role="name">应用 API/BFF</text>
+  <text x="74" y="254" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-api" data-role="sub">授权 / 请求结果</text>
+  <rect x="60" y="357" width="505" height="100" data-role="node" data-id="C-agent" data-kind="container" data-parent="OBS-source" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="74" y="386" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-agent" data-role="name">Agent 服务</text>
+  <text x="74" y="411" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-agent" data-role="sub">延迟 / 模型 token</text>
+  <rect x="60" y="514" width="505" height="100" data-role="node" data-id="C-tools" data-kind="container" data-parent="OBS-source" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="74" y="543" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-tools" data-role="name">MCP 工具网关</text>
+  <text x="74" y="568" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-tools" data-role="sub">授权拒绝 / 工具结果</text>
+  <rect x="60" y="671" width="505" height="100" data-role="node" data-id="C-ingest" data-kind="container" data-parent="OBS-source" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="74" y="700" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-ingest" data-role="name">摄取工作进程</text>
+  <text x="74" y="725" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-ingest" data-role="sub">版本任务 / 重试失败</text>
+  <rect x="60" y="828" width="505" height="100" data-role="node" data-id="Q-ingest" data-kind="queue" data-parent="OBS-source" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="74" y="857" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="Q-ingest" data-role="name">摄取队列 + DLQ</text>
+  <text x="74" y="882" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="Q-ingest" data-role="sub">积压 / DLQ 证据</text>
+  <rect x="60" y="985" width="505" height="100" data-role="node" data-id="C-eval" data-kind="container" data-parent="OBS-source" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="74" y="1014" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-eval" data-role="name">评测任务</text>
+  <text x="74" y="1039" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-eval" data-role="sub">离线质量 / token 成本</text>
+  <rect x="930" y="530" width="550" height="145" data-role="node" data-id="AWS-ops" data-kind="component" fill="#1767B5" stroke="#03172E" stroke-width="2.4" rx="8" />
+  <text x="944" y="559" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#ffffff" data-owner="AWS-ops" data-role="name">CloudWatch · KMS · Secrets</text>
+  <text x="944" y="584" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#ffffff" data-owner="AWS-ops" data-role="sub">仅投影 CloudWatch 遥测职责</text>
+  <text x="944" y="607" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#ffffff" data-owner="AWS-ops" data-role="sub">日志不含 token 或文档正文</text>
+  <rect x="930" y="1030" width="550" height="110" data-role="node" data-id="R-operator" data-kind="person" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="8" />
+  <text x="944" y="1059" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="R-operator" data-role="name">平台运维员</text>
+  <text x="944" y="1084" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="R-operator" data-role="sub">服务健康；非内容访问权限</text>
+  <polyline points="565,250 850,250 850,550 930,550" data-role="edge" data-id="OBS-1" data-from="C-api" data-to="AWS-ops" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="575.0" y="212.0" width="74.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-OBS-1" data-parent="OBS-1" />
+  <text x="580" y="232" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="OBS-1" data-role="edge-label">脱敏信号</text>
+  <polyline points="565,407 800,407 800,571 930,571" data-role="edge" data-id="OBS-2" data-from="C-agent" data-to="AWS-ops" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="575.0" y="369.0" width="74.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-OBS-2" data-parent="OBS-2" />
+  <text x="580" y="389" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="OBS-2" data-role="edge-label">脱敏信号</text>
+  <polyline points="565,564 750,564 750,592 930,592" data-role="edge" data-id="OBS-3" data-from="C-tools" data-to="AWS-ops" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="575.0" y="526.0" width="74.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-OBS-3" data-parent="OBS-3" />
+  <text x="580" y="546" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="OBS-3" data-role="edge-label">脱敏信号</text>
+  <polyline points="565,721 750,721 750,613 930,613" data-role="edge" data-id="OBS-4" data-from="C-ingest" data-to="AWS-ops" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="575.0" y="683.0" width="74.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-OBS-4" data-parent="OBS-4" />
+  <text x="580" y="703" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="OBS-4" data-role="edge-label">脱敏信号</text>
+  <polyline points="565,878 800,878 800,634 930,634" data-role="edge" data-id="OBS-5" data-from="Q-ingest" data-to="AWS-ops" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="575.0" y="840.0" width="74.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-OBS-5" data-parent="OBS-5" />
+  <text x="580" y="860" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="OBS-5" data-role="edge-label">脱敏信号</text>
+  <polyline points="565,1035 850,1035 850,655 930,655" data-role="edge" data-id="OBS-6" data-from="C-eval" data-to="AWS-ops" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="575.0" y="997.0" width="74.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-OBS-6" data-parent="OBS-6" />
+  <text x="580" y="1017" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="OBS-6" data-role="edge-label">脱敏信号</text>
+  <polyline points="1205,675 1205,1030" data-role="edge" data-id="OBS-7" data-from="AWS-ops" data-to="R-operator" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="935.0" y="835.0" width="154.140625" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-OBS-7" data-parent="OBS-7" />
+  <text x="940" y="855" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="OBS-7" data-role="edge-label">SNS 邮件 / 健康面板</text>
+  <text x="28" y="1240" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937">示意目标：30天成功率 99.5%；5分钟 5xx&gt;2% 或 DLQ&gt;0 告警，15分钟响应；日志30天、trace采样10%。</text>
+  <rect x="28" y="1290" width="42" height="22" data-role="legend-zone" data-id="__legend-swatch-1" fill="#F3F8FF" stroke="#3D6FB2" stroke-width="1.6" rx="10" />
+  <text x="82" y="1307" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-1">系统 / 部署边界</text>
+  <rect x="473" y="1290" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-2" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="527" y="1307" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-2">范围内元素</text>
+  <rect x="918" y="1290" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-3" fill="#1767B5" stroke="#03172E" stroke-width="2.4" rx="8" />
+  <text x="972" y="1307" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-3">本图主体</text>
+  <rect x="28" y="1335" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-4" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="8" />
+  <text x="82" y="1352" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-4">外部角色 / 系统</text>
+  <polyline points="473,1345 515,1345" data-role="edge" data-kind="legend" data-id="legend-line-5" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <text x="527" y="1352" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-5">信号产生方 → 接收方</text>
 </svg>

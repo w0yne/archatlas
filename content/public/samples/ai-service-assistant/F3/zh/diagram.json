@@ -1,0 +1,56 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "F3",
+    "title": "F3 · 角色与范围约束 — 部分 ABAC 表",
+    "lang": "zh",
+    "state": "to-be",
+    "audience": "architects and reviewers",
+    "description": "Fictional teaching design; scenario.json version 2; illustrative assumptions, not a deployed system"
+  },
+  "layout": {
+    "template": "grid_table"
+  },
+  "nodes": [],
+  "edges": [],
+  "groups": [],
+  "tables": [
+    {
+      "id": "constraints",
+      "columns": [
+        "主体角色",
+        "读取引用 知识",
+        "维护 知识 / ACL",
+        "创建 工单",
+        "批准 评测导出",
+        "读取脱敏 遥测"
+      ],
+      "rows": [
+        [
+          "员工 / 审批人",
+          "K",
+          "D",
+          "W",
+          "D",
+          "D"
+        ],
+        [
+          "知识管理员",
+          "K",
+          "M",
+          "D",
+          "E",
+          "D"
+        ],
+        [
+          "平台运维员",
+          "D",
+          "D",
+          "D",
+          "D",
+          "T"
+        ]
+      ]
+    }
+  ]
+}

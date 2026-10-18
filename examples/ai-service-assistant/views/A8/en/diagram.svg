@@ -1,71 +1,84 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 760" lang="en" data-archatlas="0.1">
-<title>A8 · Enterprise Service Assistant — transition roadmap, read-only first</title>
-<desc>Fictional target · Indicative sequence, no dates committed · Each state is operable on its own</desc>
-<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,4 L0,8 Z" fill="#4B5563"/></marker></defs>
-<rect data-role="canvas" width="1400" height="760" fill="#ffffff"/>
-<text x="28" y="40" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="28" font-weight="700" fill="#1F2937">A8 · Enterprise Service Assistant — transition roadmap, read-only first</text>
-<text x="28" y="72" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">Fictional target · Indicative sequence, no dates committed · Each state is operable on its own</text>
-<rect x="25" y="110" width="290" height="300" data-role="node" data-id="ST-baseline" data-kind="state" data-style="peer" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="700" fill="#1F2937" data-owner="ST-baseline" data-role="name" data-source="Baseline: search + manual tickets"><tspan x="39" y="138">Baseline: search + manual</tspan><tspan x="39" y="159">tickets</tspan></text>
-<text x="39" y="180" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="ST-baseline" data-role="sub">Value: today's way of working</text>
-<rect x="39" y="190" width="150.609" height="30" data-role="chip" data-id="chip-ST-baseline-X-doc" data-parent="ST-baseline" fill="#EDEDED" stroke="#666A73" stroke-width="1.2" rx="10"/>
-<text x="48" y="210" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="chip-ST-baseline-X-doc" data-role="chip-text">Document Repository</text>
-<rect x="39" y="226" width="94.734" height="30" data-role="chip" data-id="chip-ST-baseline-X-desk" data-parent="ST-baseline" fill="#EDEDED" stroke="#666A73" stroke-width="1.2" rx="10"/>
-<text x="48" y="246" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="chip-ST-baseline-X-desk" data-role="chip-text">Service Desk</text>
-<rect x="378" y="110" width="290" height="300" data-role="node" data-id="ST-answers" data-kind="state" data-style="peer" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="392" y="138" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="700" fill="#1F2937" data-owner="ST-answers" data-role="name">T1: Cited answers</text>
-<text x="392" y="159" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="ST-answers" data-role="sub">Value: answers employees can trust</text>
-<rect x="392" y="190" width="84.969" height="30" data-role="chip" data-id="chip-ST-answers-C-web" data-parent="ST-answers" fill="#EBDDF9" stroke="#7951A5" stroke-width="1.2" rx="10"/>
-<text x="401" y="210" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="chip-ST-answers-C-web" data-role="chip-text">Web Portal</text>
-<rect x="392" y="226" width="137.25" height="30" data-role="chip" data-id="chip-ST-answers-C-api" data-parent="ST-answers" fill="#EBDDF9" stroke="#7951A5" stroke-width="1.2" rx="10"/>
-<text x="401" y="246" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="chip-ST-answers-C-api" data-role="chip-text">Application API/BFF</text>
-<rect x="392" y="262" width="101.109" height="30" data-role="chip" data-id="chip-ST-answers-C-agent" data-parent="ST-answers" fill="#EBDDF9" stroke="#7951A5" stroke-width="1.2" rx="10"/>
-<text x="401" y="282" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="chip-ST-answers-C-agent" data-role="chip-text">Agent Service</text>
-<rect x="392" y="298" width="124.016" height="30" data-role="chip" data-id="chip-ST-answers-C-ingest" data-parent="ST-answers" fill="#EBDDF9" stroke="#7951A5" stroke-width="1.2" rx="10"/>
-<text x="401" y="318" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="chip-ST-answers-C-ingest" data-role="chip-text">Ingestion Worker</text>
-<rect x="392" y="334" width="130.688" height="30" data-role="chip" data-id="chip-ST-answers-C-tools" data-parent="ST-answers" fill="#EBDDF9" stroke="#7951A5" stroke-width="1.2" rx="10"/>
-<text x="401" y="354" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="chip-ST-answers-C-tools" data-role="chip-text">MCP Tool Gateway</text>
-<rect x="392" y="370" width="198.312" height="30" data-role="chip" data-id="chip-ST-answers-tools-read" data-parent="ST-answers" fill="#EBDDF9" stroke="#7951A5" stroke-width="1.2" rx="10"/>
-<text x="401" y="390" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="chip-ST-answers-tools-read" data-role="chip-text">catalogue.lookup · ticket.read</text>
-<rect x="731" y="110" width="290" height="300" data-role="node" data-id="ST-tickets" data-kind="state" data-style="peer" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="745" y="138" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="700" fill="#1F2937" data-owner="ST-tickets" data-role="name">T2: Approved tickets</text>
-<text x="745" y="159" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="ST-tickets" data-role="sub">Value: tickets without retyping</text>
-<rect x="745" y="190" width="137.25" height="30" data-role="chip" data-id="chip-ST-tickets-C-api" data-parent="ST-tickets" fill="#FFF1C9" stroke="#936A16" stroke-width="1.2" rx="10"/>
-<text x="754" y="210" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="chip-ST-tickets-C-api" data-role="chip-text">Application API/BFF</text>
-<rect x="745" y="226" width="130.688" height="30" data-role="chip" data-id="chip-ST-tickets-C-tools" data-parent="ST-tickets" fill="#FFF1C9" stroke="#936A16" stroke-width="1.2" rx="10"/>
-<text x="754" y="246" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="chip-ST-tickets-C-tools" data-role="chip-text">MCP Tool Gateway</text>
-<rect x="745" y="262" width="92.703" height="30" data-role="chip" data-id="chip-ST-tickets-tools-create" data-parent="ST-tickets" fill="#EBDDF9" stroke="#7951A5" stroke-width="1.2" rx="10"/>
-<text x="754" y="282" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="chip-ST-tickets-tools-create" data-role="chip-text">ticket.create</text>
-<rect x="1084" y="110" width="290" height="300" data-role="node" data-id="ST-target" data-kind="state" data-style="peer" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="1098" y="138" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="700" fill="#1F2937" data-owner="ST-target" data-role="name">Target: gated changes</text>
-<text font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="ST-target" data-role="sub" data-source="Value: changes gated on quality and cost"><tspan x="1098" y="159">Value: changes gated on quality and</tspan><tspan x="1098" y="178">cost</tspan></text>
-<rect x="1098" y="190" width="104.547" height="30" data-role="chip" data-id="chip-ST-target-C-eval" data-parent="ST-target" fill="#EBDDF9" stroke="#7951A5" stroke-width="1.2" rx="10"/>
-<text x="1107" y="210" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="chip-ST-target-C-eval" data-role="chip-text">Evaluation Job</text>
-<rect x="1098" y="226" width="136.906" height="30" data-role="chip" data-id="chip-ST-target-DS-eval" data-parent="ST-target" fill="#EBDDF9" stroke="#7951A5" stroke-width="1.2" rx="10"/>
-<text x="1107" y="246" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="chip-ST-target-DS-eval" data-role="chip-text">Evaluation datasets</text>
-<rect x="246.5" y="470" width="200" height="84" data-role="node" data-id="WP-retrieval" data-kind="task" data-style="planned" fill="#EBDDF9" stroke="#7951A5" stroke-width="1.8" rx="14"/>
-<text x="346.5" y="517" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="700" fill="#1F2937" text-anchor="middle" data-owner="WP-retrieval" data-role="name">Tenant-safe retrieval</text>
-<polyline points="255,410 255,470" data-role="edge" data-id="DEP-1" data-from="ST-baseline" data-to="WP-retrieval" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<polyline points="406.5,470 406.5,410" data-role="edge" data-id="DEP-2" data-from="WP-retrieval" data-to="ST-answers" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="599.5" y="470" width="200" height="84" data-role="node" data-id="WP-approval" data-kind="task" data-style="planned" fill="#EBDDF9" stroke="#7951A5" stroke-width="1.8" rx="14"/>
-<text x="699.5" y="517" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="700" fill="#1F2937" text-anchor="middle" data-owner="WP-approval" data-role="name">Approval binding</text>
-<polyline points="608,410 608,470" data-role="edge" data-id="DEP-3" data-from="ST-answers" data-to="WP-approval" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<polyline points="759.5,470 759.5,410" data-role="edge" data-id="DEP-4" data-from="WP-approval" data-to="ST-tickets" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="952.5" y="470" width="200" height="84" data-role="node" data-id="WP-eval" data-kind="task" data-style="planned" fill="#EBDDF9" stroke="#7951A5" stroke-width="1.8" rx="14"/>
-<text x="1052.5" y="517" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="700" fill="#1F2937" text-anchor="middle" data-owner="WP-eval" data-role="name">Evaluation gates</text>
-<polyline points="961,410 961,470" data-role="edge" data-id="DEP-5" data-from="ST-tickets" data-to="WP-eval" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<polyline points="1112.5,470 1112.5,410" data-role="edge" data-id="DEP-6" data-from="WP-eval" data-to="ST-target" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-source="Work packages: tenant-safe retrieval (versioned ACL ingestion, pre-retrieval filter, citation re-check) · approval binding (record, fresh authorization, idempotency key) · evaluation gates (approved export, offline identity)."><tspan x="25" y="600">Work packages: tenant-safe retrieval (versioned ACL ingestion, pre-retrieval filter, citation re-check) · approval binding (record, fresh authorization, idempotency key) · evaluation gates (approved export,</tspan><tspan x="25" y="618">offline identity).</tspan></text>
-<rect x="28" y="660" width="42" height="24" data-role="legend-swatch" data-id="__legend-swatch-1" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="82" y="678" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-1">Architecture state (stable, operable)</text>
-<rect x="473" y="660" width="42" height="24" data-role="legend-swatch" data-id="__legend-swatch-2" fill="#EDEDED" stroke="#666A73" stroke-width="1.2" rx="10"/>
-<text x="527" y="678" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-2">Retained</text>
-<rect x="918" y="660" width="42" height="24" data-role="legend-swatch" data-id="__legend-swatch-3" fill="#EBDDF9" stroke="#7951A5" stroke-width="1.2" rx="10"/>
-<text x="972" y="678" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-3">New in this state</text>
-<rect x="28" y="702" width="42" height="24" data-role="legend-swatch" data-id="__legend-swatch-4" fill="#FFF1C9" stroke="#936A16" stroke-width="1.2" rx="10"/>
-<text x="82" y="720" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-4">Changed in this state</text>
-<rect x="473" y="702" width="42" height="24" data-role="legend-swatch" data-id="__legend-swatch-5" fill="#EBDDF9" stroke="#7951A5" stroke-width="1.8" rx="14"/>
-<text x="527" y="720" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-5">Work package (closes the gap)</text>
-<polyline points="918,713 960,713" data-role="edge" data-kind="legend" data-id="legend-line-6" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="972" y="720" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-6">Leads to (dependency order)</text>
+  <title>A8 · Enterprise Service Assistant — transition roadmap, read-only first</title>
+  <desc>Fictional teaching design, scenario version 2; additional parameters are illustrative assumptions. Fictional target · Indicative sequence, no dates committed · Each state is operable on its own</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#4B5563" />
+    </marker>
+  </defs>
+  <rect data-role="canvas" width="1400" height="760" fill="#ffffff" />
+  <text x="28" y="40" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="28" font-weight="700" fill="#1F2937">A8 · Enterprise Service Assistant — transition roadmap, read-only first</text>
+  <text x="28" y="72" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">Fictional target · Indicative sequence, no dates committed · Each state is operable on its own</text>
+  <rect x="25" y="110" width="290" height="300" data-role="node" data-id="ST-baseline" data-kind="state" data-style="peer" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="700" fill="#1F2937" data-owner="ST-baseline" data-role="name" data-source="Baseline: search + manual tickets">
+    <tspan x="39" y="138">Baseline: search + manual</tspan>
+    <tspan x="39" y="159">tickets</tspan>
+  </text>
+  <text x="39" y="180" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="ST-baseline" data-role="sub">Value: today's way of working</text>
+  <rect x="39" y="190" width="150.609" height="30" data-role="chip" data-id="chip-ST-baseline-X-doc" data-parent="ST-baseline" fill="#EDEDED" stroke="#666A73" stroke-width="1.2" rx="10" />
+  <text x="48" y="210" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="chip-ST-baseline-X-doc" data-role="chip-text">Document Repository</text>
+  <rect x="39" y="226" width="94.734" height="30" data-role="chip" data-id="chip-ST-baseline-X-desk" data-parent="ST-baseline" fill="#EDEDED" stroke="#666A73" stroke-width="1.2" rx="10" />
+  <text x="48" y="246" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="chip-ST-baseline-X-desk" data-role="chip-text">Service Desk</text>
+  <rect x="378" y="110" width="290" height="300" data-role="node" data-id="ST-answers" data-kind="state" data-style="peer" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="392" y="138" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="700" fill="#1F2937" data-owner="ST-answers" data-role="name">T1: Cited answers</text>
+  <text x="392" y="159" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="ST-answers" data-role="sub">Value: answers employees can trust</text>
+  <rect x="392" y="190" width="84.969" height="30" data-role="chip" data-id="chip-ST-answers-C-web" data-parent="ST-answers" fill="#EBDDF9" stroke="#7951A5" stroke-width="1.2" rx="10" />
+  <text x="401" y="210" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="chip-ST-answers-C-web" data-role="chip-text">Web Portal</text>
+  <rect x="392" y="226" width="137.25" height="30" data-role="chip" data-id="chip-ST-answers-C-api" data-parent="ST-answers" fill="#EBDDF9" stroke="#7951A5" stroke-width="1.2" rx="10" />
+  <text x="401" y="246" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="chip-ST-answers-C-api" data-role="chip-text">Application API/BFF</text>
+  <rect x="392" y="262" width="101.109" height="30" data-role="chip" data-id="chip-ST-answers-C-agent" data-parent="ST-answers" fill="#EBDDF9" stroke="#7951A5" stroke-width="1.2" rx="10" />
+  <text x="401" y="282" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="chip-ST-answers-C-agent" data-role="chip-text">Agent Service</text>
+  <rect x="392" y="298" width="124.016" height="30" data-role="chip" data-id="chip-ST-answers-C-ingest" data-parent="ST-answers" fill="#EBDDF9" stroke="#7951A5" stroke-width="1.2" rx="10" />
+  <text x="401" y="318" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="chip-ST-answers-C-ingest" data-role="chip-text">Ingestion Worker</text>
+  <rect x="392" y="334" width="130.688" height="30" data-role="chip" data-id="chip-ST-answers-C-tools" data-parent="ST-answers" fill="#EBDDF9" stroke="#7951A5" stroke-width="1.2" rx="10" />
+  <text x="401" y="354" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="chip-ST-answers-C-tools" data-role="chip-text">MCP Tool Gateway</text>
+  <rect x="392" y="370" width="198.312" height="30" data-role="chip" data-id="chip-ST-answers-tools-read" data-parent="ST-answers" fill="#EBDDF9" stroke="#7951A5" stroke-width="1.2" rx="10" />
+  <text x="401" y="390" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="chip-ST-answers-tools-read" data-role="chip-text">catalogue.lookup · ticket.read</text>
+  <rect x="731" y="110" width="290" height="300" data-role="node" data-id="ST-tickets" data-kind="state" data-style="peer" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="745" y="138" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="700" fill="#1F2937" data-owner="ST-tickets" data-role="name">T2: Approved tickets</text>
+  <text x="745" y="159" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="ST-tickets" data-role="sub">Value: tickets without retyping</text>
+  <rect x="745" y="190" width="137.25" height="30" data-role="chip" data-id="chip-ST-tickets-C-api" data-parent="ST-tickets" fill="#FFF1C9" stroke="#936A16" stroke-width="1.2" rx="10" />
+  <text x="754" y="210" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="chip-ST-tickets-C-api" data-role="chip-text">Application API/BFF</text>
+  <rect x="745" y="226" width="130.688" height="30" data-role="chip" data-id="chip-ST-tickets-C-tools" data-parent="ST-tickets" fill="#FFF1C9" stroke="#936A16" stroke-width="1.2" rx="10" />
+  <text x="754" y="246" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="chip-ST-tickets-C-tools" data-role="chip-text">MCP Tool Gateway</text>
+  <rect x="745" y="262" width="92.703" height="30" data-role="chip" data-id="chip-ST-tickets-tools-create" data-parent="ST-tickets" fill="#EBDDF9" stroke="#7951A5" stroke-width="1.2" rx="10" />
+  <text x="754" y="282" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="chip-ST-tickets-tools-create" data-role="chip-text">ticket.create</text>
+  <rect x="1084" y="110" width="290" height="300" data-role="node" data-id="ST-target" data-kind="state" data-style="peer" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="1098" y="138" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="700" fill="#1F2937" data-owner="ST-target" data-role="name">Target: gated changes</text>
+  <text font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="ST-target" data-role="sub" data-source="Value: changes gated on quality and cost">
+    <tspan x="1098" y="159">Value: changes gated on quality and</tspan>
+    <tspan x="1098" y="178">cost</tspan>
+  </text>
+  <rect x="1098" y="190" width="104.547" height="30" data-role="chip" data-id="chip-ST-target-C-eval" data-parent="ST-target" fill="#EBDDF9" stroke="#7951A5" stroke-width="1.2" rx="10" />
+  <text x="1107" y="210" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="chip-ST-target-C-eval" data-role="chip-text">Evaluation Job</text>
+  <rect x="1098" y="226" width="136.906" height="30" data-role="chip" data-id="chip-ST-target-DS-eval" data-parent="ST-target" fill="#EBDDF9" stroke="#7951A5" stroke-width="1.2" rx="10" />
+  <text x="1107" y="246" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="13" font-weight="400" fill="#1F2937" data-owner="chip-ST-target-DS-eval" data-role="chip-text">Evaluation datasets</text>
+  <rect x="246.5" y="470" width="200" height="84" data-role="node" data-id="WP-retrieval" data-kind="task" data-style="planned" fill="#EBDDF9" stroke="#7951A5" stroke-width="1.8" rx="14" />
+  <text x="346.5" y="517" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="700" fill="#1F2937" text-anchor="middle" data-owner="WP-retrieval" data-role="name">Tenant-safe retrieval</text>
+  <polyline points="255,410 255,470" data-role="edge" data-id="DEP-1" data-from="ST-baseline" data-to="WP-retrieval" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <polyline points="406.5,470 406.5,410" data-role="edge" data-id="DEP-2" data-from="WP-retrieval" data-to="ST-answers" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="599.5" y="470" width="200" height="84" data-role="node" data-id="WP-approval" data-kind="task" data-style="planned" fill="#EBDDF9" stroke="#7951A5" stroke-width="1.8" rx="14" />
+  <text x="699.5" y="517" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="700" fill="#1F2937" text-anchor="middle" data-owner="WP-approval" data-role="name">Approval binding</text>
+  <polyline points="608,410 608,470" data-role="edge" data-id="DEP-3" data-from="ST-answers" data-to="WP-approval" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <polyline points="759.5,470 759.5,410" data-role="edge" data-id="DEP-4" data-from="WP-approval" data-to="ST-tickets" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="952.5" y="470" width="200" height="84" data-role="node" data-id="WP-eval" data-kind="task" data-style="planned" fill="#EBDDF9" stroke="#7951A5" stroke-width="1.8" rx="14" />
+  <text x="1052.5" y="517" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="700" fill="#1F2937" text-anchor="middle" data-owner="WP-eval" data-role="name">Evaluation gates</text>
+  <polyline points="961,410 961,470" data-role="edge" data-id="DEP-5" data-from="ST-tickets" data-to="WP-eval" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <polyline points="1112.5,470 1112.5,410" data-role="edge" data-id="DEP-6" data-from="WP-eval" data-to="ST-target" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <text font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-source="Work packages: tenant-safe retrieval (versioned ACL ingestion, pre-retrieval filter, citation re-check) · approval binding (record, fresh authorization, idempotency key) · evaluation gates (approved export, offline identity).">
+    <tspan x="25" y="600">Work packages: tenant-safe retrieval (versioned ACL ingestion, pre-retrieval filter, citation re-check) · approval binding (record, fresh authorization, idempotency key) · evaluation gates (approved export,</tspan>
+    <tspan x="25" y="618">offline identity).</tspan>
+  </text>
+  <rect x="28" y="660" width="42" height="24" data-role="legend-swatch" data-id="__legend-swatch-1" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="82" y="678" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-1">Architecture state (stable, operable)</text>
+  <rect x="473" y="660" width="42" height="24" data-role="legend-swatch" data-id="__legend-swatch-2" fill="#EDEDED" stroke="#666A73" stroke-width="1.2" rx="10" />
+  <text x="527" y="678" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-2">Retained</text>
+  <rect x="918" y="660" width="42" height="24" data-role="legend-swatch" data-id="__legend-swatch-3" fill="#EBDDF9" stroke="#7951A5" stroke-width="1.2" rx="10" />
+  <text x="972" y="678" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-3">New in this state</text>
+  <rect x="28" y="702" width="42" height="24" data-role="legend-swatch" data-id="__legend-swatch-4" fill="#FFF1C9" stroke="#936A16" stroke-width="1.2" rx="10" />
+  <text x="82" y="720" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-4">Changed in this state</text>
+  <rect x="473" y="702" width="42" height="24" data-role="legend-swatch" data-id="__legend-swatch-5" fill="#EBDDF9" stroke="#7951A5" stroke-width="1.8" rx="14" />
+  <text x="527" y="720" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-5">Work package (closes the gap)</text>
+  <polyline points="918,713 960,713" data-role="edge" data-kind="legend" data-id="legend-line-6" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <text x="972" y="720" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-6">Leads to (dependency order)</text>
 </svg>

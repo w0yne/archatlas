@@ -143,11 +143,11 @@ reviewed: false
 ## 示例 {#sample}
 <!-- skill: path only -->
 ![F2 · 企业服务助手](/samples/ai-service-assistant/F2/zh/diagram.svg)
-*聚焦工单写入的威胁 DFD；DF 编号是引用标识，不是消息时序。TB-1 是不可信内容，TB-2 是已验证租户/审批权限，TB-3 是工具执行权限，工单系统在外部。DF-6 抽象经 Agent 传递的证明，不代表 AS 直接 HTTP 调用网关（见 F1）。DF-4 是经 BFF API 取得的逻辑当前审批记录。下表记录拟议控制与威胁假设，均未声称实现或验证。检索与引用路径也须租户隔离（D2）。*
+*DF 标识将数据流对应到威胁假设，不是消息顺序。DF-6 抽象经 Agent 传递证明（F1），DF-4 经 BFF 读取当前审批；拟议控制仍需实施验证。*
 
 [SVG](/samples/ai-service-assistant/F2/zh/diagram.svg) · [模型 JSON](/samples/ai-service-assistant/F2/zh/diagram.json) · [共享事实](/samples/ai-service-assistant/scenario.json)
 
-[历史 shop 样例（回归 fixture）](/samples/F2-threat-model-data-flow.zh.svg) · [七幅视图及假设](/zh/use/ai-service-assistant).
+[历史 shop 回归样例](/samples/F2-threat-model-data-flow.zh.svg) · [全部29幅视图](/zh/use/ai-service-assistant) · [示意假设](/zh/use/ai-service-assistant-assumptions).
 
 | 威胁 / 数据流 | 假设及影响 | 拟议应对 | 责任方 / 尚需验证 |
 |---|---|---|---|

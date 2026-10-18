@@ -6,7 +6,7 @@
     "lang": "zh",
     "state": "to-be",
     "audience": "architects and reviewers",
-    "description": "Fictional teaching design; scenario.json version 1"
+    "description": "Fictional teaching design; scenario.json version 2; illustrative assumptions, not a deployed system"
   },
   "layout": {
     "template": "grid_table"
@@ -25,34 +25,34 @@
       ],
       "rows": [
         [
-          "审批本人许可草稿",
-          "R",
-          "?",
-          "?"
+          "审批准确请求",
+          "A/R",
+          "C",
+          "I"
         ],
         [
           "维护租户知识 / ACL",
-          "?",
-          "R",
-          "?"
+          "C",
+          "A/R",
+          "I"
         ],
         [
           "批准去标识评测导出",
-          "?",
-          "R",
-          "?"
+          "C",
+          "A/R",
+          "C"
         ],
         [
           "运维服务健康",
-          "?",
-          "?",
-          "R"
+          "I",
+          "C",
+          "A/R"
         ],
         [
           "负责发布 / 恢复决策",
-          "?",
-          "?",
-          "?"
+          "I",
+          "A",
+          "R"
         ]
       ]
     }

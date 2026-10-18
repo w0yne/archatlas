@@ -6,7 +6,7 @@
     "lang": "zh",
     "state": "to-be",
     "audience": "architects and reviewers",
-    "description": "Fictional teaching design; scenario.json version 1"
+    "description": "Fictional teaching design; scenario.json version 2; illustrative assumptions, not a deployed system"
   },
   "layout": {
     "template": "nested"
@@ -58,7 +58,7 @@
       "label": "应用记录",
       "parent": "G-eval",
       "style": "peer",
-      "sub": "DS-app · PostgreSQL · 归属：未指定"
+      "sub": "DS-app · PostgreSQL · 数据负责人：知识管理员"
     },
     {
       "id": "P-export",

@@ -1,88 +1,95 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1350" lang="zh" data-archatlas="0.1">
-<title>E4 · 创建经审批的工单 — 每步由谁执行、传递什么</title>
-<desc>虚构目标设计 · 系统泳道，主路径加拒绝出口 · token 细节见 F1，消息顺序见 E1</desc>
-<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,4 L0,8 Z" fill="#4B5563"/></marker><marker id="msg-end" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M1,1 L11,6 L1,11 Z" fill="#ffffff" stroke="#4B5563" stroke-width="1.4"/></marker></defs>
-<rect data-role="canvas" width="1400" height="1350" fill="#ffffff"/>
-<text x="28" y="40" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="28" font-weight="700" fill="#1F2937">E4 · 创建经审批的工单 — 每步由谁执行、传递什么</text>
-<text x="28" y="72" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">虚构目标设计 · 系统泳道，主路径加拒绝出口 · token 细节见 F1，消息顺序见 E1</text>
-<rect x="25" y="100" width="1040" height="1060" data-role="group" data-id="POOL-assistant" data-kind="pool" fill="#F7F7F7" stroke="#666A73" stroke-width="1.6" rx="10"/>
-<rect x="26" y="101" width="1038" height="40" data-role="header-band" data-parent="POOL-assistant" fill="#EDEDED" stroke="none"/>
-<text x="39" y="133" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="700" fill="#1F2937" data-owner="POOL-assistant" data-role="group-title">企业服务助手</text>
-<rect x="27" y="143" width="259" height="1015" data-role="group" data-id="LANE-C-web" data-kind="lane" data-parent="POOL-assistant" fill="#F3F8FF" stroke="#3D6FB2" stroke-width="1.6" rx="10"/>
-<rect x="28" y="144" width="257" height="46" data-role="header-band" data-parent="LANE-C-web" fill="#D8E8FF" stroke="none"/>
-<text x="41" y="176" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="700" fill="#1F2937" data-owner="LANE-C-web" data-role="group-title">Web 门户</text>
-<rect x="286" y="143" width="259" height="1015" data-role="group" data-id="LANE-C-api" data-kind="lane" data-parent="POOL-assistant" fill="#F3F8FF" stroke="#3D6FB2" stroke-width="1.6" rx="10"/>
-<rect x="287" y="144" width="257" height="46" data-role="header-band" data-parent="LANE-C-api" fill="#D8E8FF" stroke="none"/>
-<text x="300" y="176" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="700" fill="#1F2937" data-owner="LANE-C-api" data-role="group-title">应用 API/BFF</text>
-<rect x="545" y="143" width="259" height="1015" data-role="group" data-id="LANE-C-agent" data-kind="lane" data-parent="POOL-assistant" fill="#F3F8FF" stroke="#3D6FB2" stroke-width="1.6" rx="10"/>
-<rect x="546" y="144" width="257" height="46" data-role="header-band" data-parent="LANE-C-agent" fill="#D8E8FF" stroke="none"/>
-<text x="559" y="176" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="700" fill="#1F2937" data-owner="LANE-C-agent" data-role="group-title">Agent 服务</text>
-<rect x="804" y="143" width="259" height="1015" data-role="group" data-id="LANE-C-tools" data-kind="lane" data-parent="POOL-assistant" fill="#F3F8FF" stroke="#3D6FB2" stroke-width="1.6" rx="10"/>
-<rect x="805" y="144" width="257" height="46" data-role="header-band" data-parent="LANE-C-tools" fill="#D8E8FF" stroke="none"/>
-<text x="818" y="176" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="700" fill="#1F2937" data-owner="LANE-C-tools" data-role="group-title">MCP 工具网关</text>
-<rect x="1095" y="100" width="280" height="1060" data-role="group" data-id="POOL-desk" data-kind="pool" fill="#F7F7F7" stroke="#666A73" stroke-width="1.6" rx="10"/>
-<rect x="1096" y="101" width="278" height="40" data-role="header-band" data-parent="POOL-desk" fill="#EDEDED" stroke="none"/>
-<text x="1109" y="133" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="700" fill="#1F2937" data-owner="POOL-desk" data-role="group-title">服务工单系统</text>
-<rect x="61.5" y="210" width="190" height="56" data-role="node" data-id="EV-requested" data-kind="event" data-parent="LANE-C-web" data-style="external" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="28"/>
-<text x="156.5" y="243" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="700" fill="#1F2937" text-anchor="middle" data-owner="EV-requested" data-role="name">请求创建工单</text>
-<rect x="569.5" y="310" width="210" height="66" data-role="node" data-id="P-plan" data-kind="process" data-parent="LANE-C-agent" data-style="peer" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="674.5" y="348" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="700" fill="#1F2937" text-anchor="middle" data-owner="P-plan" data-role="name">1. 起草请求</text>
-<rect x="51.5" y="410" width="210" height="66" data-role="node" data-id="P-show" data-kind="process" data-parent="LANE-C-web" data-style="peer" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="156.5" y="448" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="700" fill="#1F2937" text-anchor="middle" data-owner="P-show" data-role="name">展示确定草稿</text>
-<rect x="310.5" y="510" width="210" height="66" data-role="node" data-id="P-approve" data-kind="process" data-parent="LANE-C-api" data-style="peer" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="415.5" y="548" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="700" fill="#1F2937" text-anchor="middle" data-owner="P-approve" data-role="name">2. 绑定审批</text>
-<rect x="569.5" y="610" width="210" height="66" data-role="node" data-id="P-exchange" data-kind="process" data-parent="LANE-C-agent" data-style="peer" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="674.5" y="648" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="700" fill="#1F2937" text-anchor="middle" data-owner="P-exchange" data-role="name">换取工具 token</text>
-<rect x="828.5" y="710" width="210" height="66" data-role="node" data-id="P-execute" data-kind="process" data-parent="LANE-C-tools" data-style="peer" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="933.5" y="748" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="700" fill="#1F2937" text-anchor="middle" data-owner="P-execute" data-role="name">3. 工具再授权</text>
-<polygon points="933.5,810 1028.5,855.0 933.5,900 838.5,855.0" data-role="node" data-id="G-checks" data-kind="gateway" data-parent="LANE-C-tools" data-style="peer" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8"/>
-<text x="933.5" y="859.9" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937" text-anchor="middle" data-owner="G-checks" data-role="name">校验通过？</text>
-<rect x="1130" y="950" width="210" height="66" data-role="node" data-id="P-create" data-kind="process" data-parent="POOL-desk" data-style="peer" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="1235" y="988" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="700" fill="#1F2937" text-anchor="middle" data-owner="P-create" data-role="name">按键创建工单</text>
-<rect x="838.5" y="950" width="190" height="56" data-role="node" data-id="EV-rejected" data-kind="event" data-parent="LANE-C-tools" data-style="external" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="28"/>
-<text x="933.5" y="983" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="700" fill="#1F2937" text-anchor="middle" data-owner="EV-rejected" data-role="name">拒绝，不调用工单</text>
-<rect x="1140" y="1070" width="190" height="56" data-role="node" data-id="EV-created" data-kind="event" data-parent="POOL-desk" data-style="external" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="28"/>
-<text x="1235" y="1103" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="700" fill="#1F2937" text-anchor="middle" data-owner="EV-created" data-role="name">工单已创建</text>
-<polyline points="251.5,238 674.5,238 674.5,310" data-role="edge" data-id="HO-1" data-from="EV-requested" data-to="P-plan" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="261.5" y="212" width="135.266" height="27.6" fill="#ffffff" data-role="label-bg" data-id="label-HO-1" data-parent="HO-1"/>
-<text x="266.5" y="230" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="HO-1" data-role="edge-label">请求的操作，经 BFF</text>
-<polyline points="569.5,343 156.5,343 156.5,410" data-role="edge" data-id="HO-2" data-from="P-plan" data-to="P-show" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="161.5" y="317" width="197.734" height="27.6" fill="#ffffff" data-role="label-bg" data-id="label-HO-2" data-parent="HO-2"/>
-<text x="166.5" y="335" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="HO-2" data-role="edge-label">草稿 + hash + 有效期，经 BFF</text>
-<polyline points="261.5,443 415.5,443 415.5,510" data-role="edge" data-id="HO-3" data-from="P-show" data-to="P-approve" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="420.5" y="470" width="108" height="27.6" fill="#ffffff" data-role="label-bg" data-id="label-HO-3" data-parent="HO-3"/>
-<text x="425.5" y="488" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="HO-3" data-role="edge-label">对此草稿的审批</text>
-<polyline points="520.5,543 674.5,543 674.5,610" data-role="edge" data-id="HO-4" data-from="P-approve" data-to="P-exchange" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="522.5" y="515" width="162.234" height="27.6" fill="#ffffff" data-role="label-bg" data-id="label-HO-4" data-parent="HO-4"/>
-<text x="527.5" y="533" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="HO-4" data-role="edge-label">审批 ID + tenant + hash</text>
-<polyline points="779.5,643 933.5,643 933.5,710" data-role="edge" data-id="HO-5" data-from="P-exchange" data-to="P-execute" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="781.5" y="615" width="141.078" height="27.6" fill="#ffffff" data-role="label-bg" data-id="label-HO-5" data-parent="HO-5"/>
-<text x="786.5" y="633" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="HO-5" data-role="edge-label">工具 token + 审批 ID</text>
-<polyline points="933.5,776 933.5,810" data-role="edge" data-id="HO-6" data-from="P-execute" data-to="G-checks" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<polyline points="933.5,900 933.5,950" data-role="edge" data-id="HO-7" data-from="G-checks" data-to="EV-rejected" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="938.5" y="914" width="24" height="27.6" fill="#ffffff" data-role="label-bg" data-id="label-HO-7" data-parent="HO-7"/>
-<text x="943.5" y="932" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="HO-7" data-role="edge-label">否</text>
-<polyline points="1235,1016 1235,1070" data-role="edge" data-id="HO-8" data-from="P-create" data-to="EV-created" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="1240" y="1034" width="56.609" height="27.6" fill="#ffffff" data-role="label-bg" data-id="label-HO-8" data-parent="HO-8"/>
-<text x="1245" y="1052" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="HO-8" data-role="edge-label">工单 ID</text>
-<polyline points="1028.5,855 1235,855 1235,950" data-role="edge" data-id="HO-9" data-from="G-checks" data-to="P-create" data-kind="message" fill="none" stroke="#4B5563" stroke-width="1.8" stroke-dasharray="6 4" marker-end="url(#msg-end)"/>
-<rect x="1036.5" y="827" width="123.297" height="27.6" fill="#ffffff" data-role="label-bg" data-id="label-HO-9" data-parent="HO-9"/>
-<text x="1041.5" y="845" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="HO-9" data-role="edge-label">是：创建 + 幂等键</text>
-<text x="25" y="1190" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937">token 交换对象为企业 IdP / AS（见 F1）。工单系统使用独立受限连接器凭据，绝不转发 token。</text>
-<rect x="28" y="1215" width="42" height="24" data-role="legend-zone" data-id="__legend-swatch-1" fill="#F7F7F7" stroke="#666A73" stroke-width="1.6" rx="10"/>
-<rect x="29" y="1216" width="40" height="8" data-role="header-band" data-parent="__legend-swatch-1" fill="#EDEDED" stroke="none"/>
-<text x="82" y="1233" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-1">池：一个独立系统</text>
-<rect x="473" y="1215" width="42" height="24" data-role="legend-zone" data-id="__legend-swatch-2" fill="#F3F8FF" stroke="#3D6FB2" stroke-width="1.6" rx="10"/>
-<rect x="474" y="1216" width="40" height="8" data-role="header-band" data-parent="__legend-swatch-2" fill="#D8E8FF" stroke="none"/>
-<text x="527" y="1233" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-2">泳道：一个运行单元</text>
-<rect x="918" y="1215" width="42" height="24" data-role="legend-swatch" data-id="__legend-swatch-3" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="28"/>
-<text x="972" y="1233" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-3">开始 / 结束</text>
-<rect x="28" y="1257" width="42" height="24" data-role="legend-swatch" data-id="__legend-swatch-4" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="82" y="1275" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-4">步骤（位于执行者泳道）</text>
-<polygon points="494,1257 515,1269 494,1281 473,1269" data-role="legend-swatch" data-id="__legend-swatch-5" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8"/>
-<text x="527" y="1275" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-5">判断（出口有标注）</text>
-<polyline points="918,1268 960,1268" data-role="edge" data-kind="legend" data-id="legend-line-6" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="972" y="1275" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-6">流转；跨泳道即移交，标注传递内容</text>
-<polyline points="28,1310 70,1310" data-role="edge" data-kind="legend" data-id="legend-line-7" fill="none" stroke="#4B5563" stroke-width="1.8" stroke-dasharray="6 4" marker-end="url(#msg-end)"/>
-<text x="82" y="1317" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-7">跨系统消息（虚线）</text>
+  <title>E4 · 创建经审批的工单 — 每步由谁执行、传递什么</title>
+  <desc>虚构教学设计，场景版本2；补充参数为示意假设。虚构目标设计 · 系统泳道，主路径加拒绝出口 · token 细节见 F1，消息顺序见 E1</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#4B5563" />
+    </marker>
+    <marker id="msg-end" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M1,1 L11,6 L1,11 Z" fill="#ffffff" stroke="#4B5563" stroke-width="1.4" />
+    </marker>
+  </defs>
+  <rect data-role="canvas" width="1400" height="1350" fill="#ffffff" />
+  <text x="28" y="40" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="28" font-weight="700" fill="#1F2937">E4 · 创建经审批的工单 — 每步由谁执行、传递什么</text>
+  <text x="28" y="72" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">虚构目标设计 · 系统泳道，主路径加拒绝出口 · token 细节见 F1，消息顺序见 E1</text>
+  <rect x="25" y="100" width="1040" height="1060" data-role="group" data-id="POOL-assistant" data-kind="pool" fill="#F7F7F7" stroke="#666A73" stroke-width="1.6" rx="10" />
+  <rect x="26" y="101" width="1038" height="40" data-role="header-band" data-parent="POOL-assistant" fill="#EDEDED" stroke="none" />
+  <text x="39" y="133" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="700" fill="#1F2937" data-owner="POOL-assistant" data-role="group-title">企业服务助手</text>
+  <rect x="27" y="143" width="259" height="1015" data-role="group" data-id="LANE-C-web" data-kind="lane" data-parent="POOL-assistant" fill="#F3F8FF" stroke="#3D6FB2" stroke-width="1.6" rx="10" />
+  <rect x="28" y="144" width="257" height="46" data-role="header-band" data-parent="LANE-C-web" fill="#D8E8FF" stroke="none" />
+  <text x="41" y="176" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="700" fill="#1F2937" data-owner="LANE-C-web" data-role="group-title">Web 门户</text>
+  <rect x="286" y="143" width="259" height="1015" data-role="group" data-id="LANE-C-api" data-kind="lane" data-parent="POOL-assistant" fill="#F3F8FF" stroke="#3D6FB2" stroke-width="1.6" rx="10" />
+  <rect x="287" y="144" width="257" height="46" data-role="header-band" data-parent="LANE-C-api" fill="#D8E8FF" stroke="none" />
+  <text x="300" y="176" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="700" fill="#1F2937" data-owner="LANE-C-api" data-role="group-title">应用 API/BFF</text>
+  <rect x="545" y="143" width="259" height="1015" data-role="group" data-id="LANE-C-agent" data-kind="lane" data-parent="POOL-assistant" fill="#F3F8FF" stroke="#3D6FB2" stroke-width="1.6" rx="10" />
+  <rect x="546" y="144" width="257" height="46" data-role="header-band" data-parent="LANE-C-agent" fill="#D8E8FF" stroke="none" />
+  <text x="559" y="176" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="700" fill="#1F2937" data-owner="LANE-C-agent" data-role="group-title">Agent 服务</text>
+  <rect x="804" y="143" width="259" height="1015" data-role="group" data-id="LANE-C-tools" data-kind="lane" data-parent="POOL-assistant" fill="#F3F8FF" stroke="#3D6FB2" stroke-width="1.6" rx="10" />
+  <rect x="805" y="144" width="257" height="46" data-role="header-band" data-parent="LANE-C-tools" fill="#D8E8FF" stroke="none" />
+  <text x="818" y="176" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="700" fill="#1F2937" data-owner="LANE-C-tools" data-role="group-title">MCP 工具网关</text>
+  <rect x="1095" y="100" width="280" height="1060" data-role="group" data-id="POOL-desk" data-kind="pool" fill="#F7F7F7" stroke="#666A73" stroke-width="1.6" rx="10" />
+  <rect x="1096" y="101" width="278" height="40" data-role="header-band" data-parent="POOL-desk" fill="#EDEDED" stroke="none" />
+  <text x="1109" y="133" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="700" fill="#1F2937" data-owner="POOL-desk" data-role="group-title">服务工单系统</text>
+  <rect x="61.5" y="210" width="190" height="56" data-role="node" data-id="EV-requested" data-kind="event" data-parent="LANE-C-web" data-style="external" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="28" />
+  <text x="156.5" y="243" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="700" fill="#1F2937" text-anchor="middle" data-owner="EV-requested" data-role="name">请求创建工单</text>
+  <rect x="569.5" y="310" width="210" height="66" data-role="node" data-id="P-plan" data-kind="process" data-parent="LANE-C-agent" data-style="peer" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="674.5" y="348" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="700" fill="#1F2937" text-anchor="middle" data-owner="P-plan" data-role="name">1. 起草请求</text>
+  <rect x="51.5" y="410" width="210" height="66" data-role="node" data-id="P-show" data-kind="process" data-parent="LANE-C-web" data-style="peer" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="156.5" y="448" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="700" fill="#1F2937" text-anchor="middle" data-owner="P-show" data-role="name">展示确定草稿</text>
+  <rect x="310.5" y="510" width="210" height="66" data-role="node" data-id="P-approve" data-kind="process" data-parent="LANE-C-api" data-style="peer" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="415.5" y="548" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="700" fill="#1F2937" text-anchor="middle" data-owner="P-approve" data-role="name">2. 绑定审批</text>
+  <rect x="569.5" y="610" width="210" height="66" data-role="node" data-id="P-exchange" data-kind="process" data-parent="LANE-C-agent" data-style="peer" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="674.5" y="648" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="700" fill="#1F2937" text-anchor="middle" data-owner="P-exchange" data-role="name">换取工具 token</text>
+  <rect x="828.5" y="710" width="210" height="66" data-role="node" data-id="P-execute" data-kind="process" data-parent="LANE-C-tools" data-style="peer" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="933.5" y="748" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="700" fill="#1F2937" text-anchor="middle" data-owner="P-execute" data-role="name">3. 工具再授权</text>
+  <polygon points="933.5,810 1028.5,855.0 933.5,900 838.5,855.0" data-role="node" data-id="G-checks" data-kind="gateway" data-parent="LANE-C-tools" data-style="peer" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" />
+  <text x="933.5" y="859.9" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="700" fill="#1F2937" text-anchor="middle" data-owner="G-checks" data-role="name">校验通过？</text>
+  <rect x="1130" y="950" width="210" height="66" data-role="node" data-id="P-create" data-kind="process" data-parent="POOL-desk" data-style="peer" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="1235" y="988" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="700" fill="#1F2937" text-anchor="middle" data-owner="P-create" data-role="name">按键创建工单</text>
+  <rect x="838.5" y="950" width="190" height="56" data-role="node" data-id="EV-rejected" data-kind="event" data-parent="LANE-C-tools" data-style="external" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="28" />
+  <text x="933.5" y="983" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="700" fill="#1F2937" text-anchor="middle" data-owner="EV-rejected" data-role="name">拒绝，不调用工单</text>
+  <rect x="1140" y="1070" width="190" height="56" data-role="node" data-id="EV-created" data-kind="event" data-parent="POOL-desk" data-style="external" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="28" />
+  <text x="1235" y="1103" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="700" fill="#1F2937" text-anchor="middle" data-owner="EV-created" data-role="name">工单已创建</text>
+  <polyline points="251.5,238 674.5,238 674.5,310" data-role="edge" data-id="HO-1" data-from="EV-requested" data-to="P-plan" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="261.5" y="212.0" width="135.265625" height="27.599999999999998" fill="#ffffff" data-role="label-bg" data-id="label-HO-1" data-parent="HO-1" />
+  <text x="266.5" y="230" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="HO-1" data-role="edge-label">请求的操作，经 BFF</text>
+  <polyline points="569.5,343 156.5,343 156.5,410" data-role="edge" data-id="HO-2" data-from="P-plan" data-to="P-show" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="161.5" y="317.0" width="197.734375" height="27.599999999999998" fill="#ffffff" data-role="label-bg" data-id="label-HO-2" data-parent="HO-2" />
+  <text x="166.5" y="335" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="HO-2" data-role="edge-label">草稿 + hash + 有效期，经 BFF</text>
+  <polyline points="261.5,443 415.5,443 415.5,510" data-role="edge" data-id="HO-3" data-from="P-show" data-to="P-approve" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="420.5" y="470.0" width="108.0" height="27.599999999999998" fill="#ffffff" data-role="label-bg" data-id="label-HO-3" data-parent="HO-3" />
+  <text x="425.5" y="488" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="HO-3" data-role="edge-label">对此草稿的审批</text>
+  <polyline points="520.5,543 674.5,543 674.5,610" data-role="edge" data-id="HO-4" data-from="P-approve" data-to="P-exchange" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="522.5" y="515.0" width="162.234375" height="27.599999999999998" fill="#ffffff" data-role="label-bg" data-id="label-HO-4" data-parent="HO-4" />
+  <text x="527.5" y="533" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="HO-4" data-role="edge-label">审批 ID + tenant + hash</text>
+  <polyline points="779.5,643 933.5,643 933.5,710" data-role="edge" data-id="HO-5" data-from="P-exchange" data-to="P-execute" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="781.5" y="615.0" width="141.078125" height="27.599999999999998" fill="#ffffff" data-role="label-bg" data-id="label-HO-5" data-parent="HO-5" />
+  <text x="786.5" y="633" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="HO-5" data-role="edge-label">工具 token + 审批 ID</text>
+  <polyline points="933.5,776 933.5,810" data-role="edge" data-id="HO-6" data-from="P-execute" data-to="G-checks" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <polyline points="933.5,900 933.5,950" data-role="edge" data-id="HO-7" data-from="G-checks" data-to="EV-rejected" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="938.5" y="914.0" width="24.0" height="27.599999999999998" fill="#ffffff" data-role="label-bg" data-id="label-HO-7" data-parent="HO-7" />
+  <text x="943.5" y="932" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="HO-7" data-role="edge-label">否</text>
+  <polyline points="1235,1016 1235,1070" data-role="edge" data-id="HO-8" data-from="P-create" data-to="EV-created" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="1240.0" y="1034.0" width="56.609375" height="27.599999999999998" fill="#ffffff" data-role="label-bg" data-id="label-HO-8" data-parent="HO-8" />
+  <text x="1245" y="1052" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="HO-8" data-role="edge-label">工单 ID</text>
+  <polyline points="1028.5,855 1235,855 1235,950" data-role="edge" data-id="HO-9" data-from="G-checks" data-to="P-create" data-kind="message" fill="none" stroke="#4B5563" stroke-width="1.8" stroke-dasharray="6 4" marker-end="url(#msg-end)" />
+  <rect x="1036.5" y="827.0" width="123.296875" height="27.599999999999998" fill="#ffffff" data-role="label-bg" data-id="label-HO-9" data-parent="HO-9" />
+  <text x="1041.5" y="845" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="HO-9" data-role="edge-label">是：创建 + 幂等键</text>
+  <text x="25" y="1190" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937">token 交换对象为企业 IdP / AS（见 F1）。工单系统使用独立受限连接器凭据，绝不转发 token。</text>
+  <rect x="28" y="1215" width="42" height="24" data-role="legend-zone" data-id="__legend-swatch-1" fill="#F7F7F7" stroke="#666A73" stroke-width="1.6" rx="10" />
+  <rect x="29" y="1216" width="40" height="8" data-role="header-band" data-parent="__legend-swatch-1" fill="#EDEDED" stroke="none" />
+  <text x="82" y="1233" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-1">池：一个独立系统</text>
+  <rect x="473" y="1215" width="42" height="24" data-role="legend-zone" data-id="__legend-swatch-2" fill="#F3F8FF" stroke="#3D6FB2" stroke-width="1.6" rx="10" />
+  <rect x="474" y="1216" width="40" height="8" data-role="header-band" data-parent="__legend-swatch-2" fill="#D8E8FF" stroke="none" />
+  <text x="527" y="1233" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-2">泳道：一个运行单元</text>
+  <rect x="918" y="1215" width="42" height="24" data-role="legend-swatch" data-id="__legend-swatch-3" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="28" />
+  <text x="972" y="1233" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-3">开始 / 结束</text>
+  <rect x="28" y="1257" width="42" height="24" data-role="legend-swatch" data-id="__legend-swatch-4" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="82" y="1275" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-4">步骤（位于执行者泳道）</text>
+  <polygon points="494,1257 515,1269 494,1281 473,1269" data-role="legend-swatch" data-id="__legend-swatch-5" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" />
+  <text x="527" y="1275" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-5">判断（出口有标注）</text>
+  <polyline points="918,1268 960,1268" data-role="edge" data-kind="legend" data-id="legend-line-6" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <text x="972" y="1275" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-6">流转；跨泳道即移交，标注传递内容</text>
+  <polyline points="28,1310 70,1310" data-role="edge" data-kind="legend" data-id="legend-line-7" fill="none" stroke="#4B5563" stroke-width="1.8" stroke-dasharray="6 4" marker-end="url(#msg-end)" />
+  <text x="82" y="1317" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-7">跨系统消息（虚线）</text>
 </svg>

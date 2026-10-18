@@ -81,4 +81,4 @@ A roadmap answers "where are we, where are we going, what are the stable steps i
 Model template: `assets/templates/A8.json` · Layout template: `tree` · states are `state` nodes in one left-to-right chain (baseline → target), work packages are `task` nodes between adjacent states linked by `dependency` edges; node `style` (`planned`, `shared`, `external`) marks the block state.
 
 ## Sample
-Figure: `samples/A8-target-roadmap.svg` (published with the site)
+Figure: `samples/ai-service-assistant/A8/en/diagram.svg` (published with the site)

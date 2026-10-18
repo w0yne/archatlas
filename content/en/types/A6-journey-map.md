@@ -136,5 +136,9 @@ Model template: `assets/templates/A6.json` · Layout template: `grid_table` · p
 
 ## Sample {#sample}
 <!-- skill: path only -->
-![A6 sample: journey map of a first-time shopper with action, thought, emotion, pain point, touchpoint and opportunity rows](/samples/A6-journey-map.svg)
-*Journey of one persona, a first-time shopper, through four phases (discover, compare, order, receive), marked as a hypothesis and the current state. Rows: action, thought, emotion (one word per phase; no emotion curve is drawn), pain point, touchpoint and opportunity with an owner.*
+![A6 · Enterprise Service Assistant](/samples/ai-service-assistant/A6/en/diagram.svg)
+*The persona, emotions and improvement opportunities are illustrative, not user research. Existing steward/operator roles own the suggested improvements without receiving new content permissions.*
+
+[SVG](/samples/ai-service-assistant/A6/en/diagram.svg) · [Model JSON](/samples/ai-service-assistant/A6/en/diagram.json) · [Shared facts](/samples/ai-service-assistant/scenario.json)
+
+[Historical shop regression sample](/samples/A6-journey-map.svg) · [All 29 views](/use/ai-service-assistant) · [Illustrative assumptions](/use/ai-service-assistant-assumptions).

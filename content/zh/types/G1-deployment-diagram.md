@@ -170,8 +170,10 @@ reviewed: false
 ## 示例 {#sample}
 <!-- skill: path only -->
 ![G1-AWS · 企业服务助手](/samples/ai-service-assistant/G1-AWS/zh/diagram.svg)
-*AWS 实现变体 G2，同时作为 G1 首图，仅维护这一幅拓扑。G1 核心画法仍供应商中立；独立通用样例排入 P2b。ALB 与每个 ECS 应用服务跨两个 AZ；C-ingest、C-eval 使用独立任务身份，调度至任一 AZ。Aurora 有跨 AZ 读节点，其托管存储跨三个 AZ。OpenSearch 使用双 AZ 区域感知与副本，不是 Multi-AZ with Standby。CloudFront 为全球服务；S3、SQS、Bedrock、KMS、CloudWatch、Secrets Manager 是客户子网外的区域托管服务。实施前核对模型可用性、配额与端点路由。取舍：托管 ECS 减少集群控制面维护；搜索索引增加运维成本；单区域降低复杂度，但不承诺区域灾备。图形均为原创通用形状，无厂商素材。*
+*AWS 实现变体保持为 G1 首图。应用服务跨双 AZ；Aurora 托管存储跨三 AZ；OpenSearch 是双 AZ 区域感知而非 Standby。区域托管服务位于客户子网外，CloudFront 为全球服务。*
 
 [SVG](/samples/ai-service-assistant/G1-AWS/zh/diagram.svg) · [模型 JSON](/samples/ai-service-assistant/G1-AWS/zh/diagram.json) · [共享事实](/samples/ai-service-assistant/scenario.json)
 
-[历史 shop 样例（回归 fixture）](/samples/G1-deployment-diagram.zh.svg) · [七幅视图及假设](/zh/use/ai-service-assistant).
+[历史 shop 回归样例](/samples/G1-deployment-diagram.zh.svg) · [全部29幅视图](/zh/use/ai-service-assistant) · [示意假设](/zh/use/ai-service-assistant-assumptions).
+
+[另看供应商中立的 G1 承载分配图](/zh/use/ai-service-assistant#view-g1-generic).

@@ -6,7 +6,7 @@
     "lang": "en",
     "state": "to-be",
     "audience": "architects and reviewers",
-    "description": "Fictional teaching design; scenario.json version 1"
+    "description": "Fictional teaching design; scenario.json version 2; illustrative assumptions, not a deployed system"
   },
   "layout": {
     "template": "nested"
@@ -71,7 +71,7 @@
       "id": "NET-1",
       "from": "C-web",
       "to": "AWS-alb",
-      "label": "1 · HTTPS",
+      "label": "1 · CDN /443",
       "kind": "call"
     },
     {

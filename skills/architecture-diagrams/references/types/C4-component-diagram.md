@@ -87,4 +87,4 @@ It answers: *inside this one container, what are the major components, what is e
 Model template: `assets/templates/C4.json` · Layout template: `nested` · one `boundary` group for the container holding `component` nodes; other `container`, `store`, `queue` and `external` nodes outside it; edges between leaves carry labels.
 
 ## Sample
-Figure: `samples/C4-component-diagram.svg` (published with the site)
+Figure: `samples/ai-service-assistant/C4/en/diagram.svg` (published with the site)

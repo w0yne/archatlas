@@ -6,7 +6,7 @@
     "lang": "en",
     "state": "to-be",
     "audience": "architects and reviewers",
-    "description": "Fictional teaching design; scenario.json version 1"
+    "description": "Fictional teaching design; scenario.json version 2; illustrative assumptions, not a deployed system"
   },
   "layout": {
     "template": "grid_table"
@@ -25,34 +25,34 @@
       ],
       "rows": [
         [
-          "Approve own permitted draft",
-          "R",
-          "?",
-          "?"
+          "Approve exact request",
+          "A/R",
+          "C",
+          "I"
         ],
         [
           "Maintain tenant knowledge / ACL",
-          "?",
-          "R",
-          "?"
+          "C",
+          "A/R",
+          "I"
         ],
         [
           "Approve deidentified eval export",
-          "?",
-          "R",
-          "?"
+          "C",
+          "A/R",
+          "C"
         ],
         [
           "Operate service health",
-          "?",
-          "?",
-          "R"
+          "I",
+          "C",
+          "A/R"
         ],
         [
           "Own release / recovery decision",
-          "?",
-          "?",
-          "?"
+          "I",
+          "A",
+          "R"
         ]
       ]
     }

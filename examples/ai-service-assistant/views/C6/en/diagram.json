@@ -6,7 +6,7 @@
     "lang": "en",
     "state": "to-be",
     "audience": "architects and reviewers",
-    "description": "Fictional teaching design; scenario.json version 1"
+    "description": "Fictional teaching design; scenario.json version 2; illustrative assumptions, not a deployed system"
   },
   "layout": {
     "template": "nested"
@@ -149,17 +149,17 @@
     },
     {
       "id": "I-10",
-      "from": "C-ingest",
+      "from": "C-api",
       "to": "Q-ingest",
-      "label": "I-10 Enqueue job",
+      "label": "I-10 Enqueue",
       "kind": "async"
     },
     {
       "id": "I-11",
-      "from": "Q-ingest",
-      "to": "C-ingest",
-      "label": "I-11 Deliver job",
-      "kind": "async"
+      "from": "C-ingest",
+      "to": "Q-ingest",
+      "label": "I-11 Poll jobs",
+      "kind": "call"
     }
   ]
 }

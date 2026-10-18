@@ -1,101 +1,105 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1200" lang="en" data-archatlas="0.1">
-<title>C5 · Enterprise Service Assistant — logical architecture</title>
-<desc>Fictional target · Technology-neutral responsibility blocks; ingestion queue, stores and evaluation: C3 / D3</desc>
-<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,4 L0,8 Z" fill="#4B5563"/></marker></defs>
-<rect data-role="canvas" width="1400" height="1200" fill="#ffffff"/>
-<text x="28" y="40" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="28" font-weight="700" fill="#1F2937">C5 · Enterprise Service Assistant — logical architecture</text>
-<text x="28" y="72" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">Fictional target · Technology-neutral responsibility blocks; ingestion queue, stores and evaluation: C3 / D3</text>
-<text x="40" y="112" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="400" fill="#1F2937">Scope: one system. Arrow: block → block it depends on; the label names the operation.</text>
-<rect x="335" y="165" width="745" height="899" data-role="group" data-id="B-sys" data-kind="boundary" fill="#F3F8FF" stroke="#3D6FB2" stroke-width="1.6" rx="10"/>
-<text x="353" y="197" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="700" fill="#1F2937" data-owner="B-sys" data-role="group-title">Enterprise Service Assistant · logical blocks</text>
-<rect x="360" y="210" width="695" height="373" data-role="group" data-id="F-int" data-kind="boundary" data-parent="B-sys" fill="#FFF9EC" stroke="#A8741A" stroke-width="1.6" rx="10"/>
-<text x="378" y="242" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="700" fill="#1F2937" data-owner="F-int" data-role="group-title">Interaction and records</text>
-<rect x="360" y="620" width="695" height="189" data-role="group" data-id="F-asst" data-kind="boundary" data-parent="B-sys" fill="#FFF9EC" stroke="#A8741A" stroke-width="1.6" rx="10"/>
-<text x="378" y="652" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="700" fill="#1F2937" data-owner="F-asst" data-role="group-title">Assistance</text>
-<rect x="360" y="850" width="695" height="189" data-role="group" data-id="F-know" data-kind="boundary" data-parent="B-sys" fill="#FFF9EC" stroke="#A8741A" stroke-width="1.6" rx="10"/>
-<text x="378" y="882" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="700" fill="#1F2937" data-owner="F-know" data-role="group-title">Knowledge</text>
-<rect x="750" y="275" width="300" height="108" data-role="node" data-id="C-web" data-kind="component" data-parent="F-int" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="764" y="304" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-web" data-role="name">Web Portal</text>
-<text x="764" y="329" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-web" data-role="sub">C-web</text>
-<text x="764" y="352" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-web" data-role="sub">Chat and approval UI</text>
-<rect x="750" y="450" width="300" height="108" data-role="node" data-id="C-api" data-kind="component" data-parent="F-int" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="764" y="479" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-api" data-role="name">Application API/BFF</text>
-<text x="764" y="504" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-api" data-role="sub">C-api</text>
-<text x="764" y="527" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-api" data-role="sub">Sessions, tenant policy, approvals</text>
-<rect x="380" y="450" width="270" height="108" data-role="node" data-id="DS-app" data-kind="store" data-parent="F-int" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="394" y="479" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DS-app" data-role="name">Application records</text>
-<text x="394" y="504" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DS-app" data-role="sub">DS-app</text>
-<text x="394" y="527" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DS-app" data-role="sub">Memberships, chats, approvals</text>
-<rect x="750" y="676" width="300" height="108" data-role="node" data-id="C-agent" data-kind="component" data-parent="F-asst" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="764" y="705" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-agent" data-role="name">Agent Service</text>
-<text x="764" y="730" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-agent" data-role="sub">C-agent</text>
-<text x="764" y="753" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-agent" data-role="sub">Bounded plan, retrieve, model, tools</text>
-<rect x="380" y="676" width="270" height="108" data-role="node" data-id="C-tools" data-kind="component" data-parent="F-asst" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="394" y="705" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-tools" data-role="name">MCP Tool Gateway</text>
-<text x="394" y="730" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-tools" data-role="sub">C-tools</text>
-<text x="394" y="753" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-tools" data-role="sub">Verify delegation; tool policy</text>
-<rect x="750" y="906" width="300" height="108" data-role="node" data-id="DS-index" data-kind="store" data-parent="F-know" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="764" y="935" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DS-index" data-role="name">Retrieval index</text>
-<text x="764" y="960" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DS-index" data-role="sub">DS-index</text>
-<text x="764" y="983" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DS-index" data-role="sub">Derived chunks, vectors, tenant ACL</text>
-<rect x="380" y="906" width="270" height="108" data-role="node" data-id="C-ingest" data-kind="component" data-parent="F-know" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="394" y="935" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-ingest" data-role="name">Ingestion Worker</text>
-<text x="394" y="960" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-ingest" data-role="sub">C-ingest</text>
-<text x="394" y="983" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-ingest" data-role="sub">Version, chunk, embed, index</text>
-<rect x="1140" y="450" width="250" height="108" data-role="node" data-id="X-idp" data-kind="external" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="0"/>
-<text x="1154" y="479" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="X-idp" data-role="name">Enterprise IdP / AS</text>
-<text x="1154" y="504" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-idp" data-role="sub">X-idp</text>
-<text x="1154" y="527" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-idp" data-role="sub">Identity, delegation</text>
-<rect x="1140" y="676" width="250" height="108" data-role="node" data-id="X-model" data-kind="external" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="0"/>
-<text x="1154" y="705" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="X-model" data-role="name">Managed Model Service</text>
-<text x="1154" y="730" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-model" data-role="sub">X-model</text>
-<text x="1154" y="753" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-model" data-role="sub">Generate text, embeddings</text>
-<rect x="30" y="676" width="240" height="108" data-role="node" data-id="X-desk" data-kind="external" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="0"/>
-<text x="44" y="705" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="X-desk" data-role="name">Service Desk</text>
-<text x="44" y="730" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-desk" data-role="sub">X-desk</text>
-<text x="44" y="753" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-desk" data-role="sub">Tickets and catalogue</text>
-<rect x="30" y="906" width="240" height="108" data-role="node" data-id="X-doc" data-kind="external" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="0"/>
-<text x="44" y="935" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="X-doc" data-role="name">Document Repository</text>
-<text x="44" y="960" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-doc" data-role="sub">X-doc</text>
-<text x="44" y="983" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-doc" data-role="sub">Source documents, access</text>
-<polyline points="900,383 900,450" data-role="edge" data-id="LOG-1" data-from="C-web" data-to="C-api" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="905" y="410" width="112.25" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-LOG-1" data-parent="LOG-1"/>
-<text x="910" y="430" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="LOG-1" data-role="edge-label">chat, approve</text>
-<polyline points="750,504 650,504" data-role="edge" data-id="LOG-2" data-from="C-api" data-to="DS-app" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="660" y="474" width="66.5" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-LOG-2" data-parent="LOG-2"/>
-<text x="665" y="494" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="LOG-2" data-role="edge-label">records</text>
-<polyline points="1050,504 1140,504" data-role="edge" data-id="LOG-3" data-from="C-api" data-to="X-idp" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="1065" y="474" width="60.688" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-LOG-3" data-parent="LOG-3"/>
-<text x="1070" y="494" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="LOG-3" data-role="edge-label">sign-in</text>
-<polyline points="900,558 900,676" data-role="edge" data-id="LOG-4" data-from="C-api" data-to="C-agent" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="905" y="616" width="75.656" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-LOG-4" data-parent="LOG-4"/>
-<text x="910" y="636" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="LOG-4" data-role="edge-label">delegate</text>
-<polyline points="750,730 650,730" data-role="edge" data-id="LOG-5" data-from="C-agent" data-to="C-tools" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="660" y="700" width="68.344" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-LOG-5" data-parent="LOG-5"/>
-<text x="665" y="720" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="LOG-5" data-role="edge-label">tool call</text>
-<polyline points="1050,730 1140,730" data-role="edge" data-id="LOG-6" data-from="C-agent" data-to="X-model" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="1057" y="700" width="77.875" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-LOG-6" data-parent="LOG-6"/>
-<text x="1062" y="720" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="LOG-6" data-role="edge-label">generate</text>
-<polyline points="380,730 270,730" data-role="edge" data-id="LOG-7" data-from="C-tools" data-to="X-desk" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="275" y="700" width="58.609" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-LOG-7" data-parent="LOG-7"/>
-<text x="280" y="720" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="LOG-7" data-role="edge-label">tickets</text>
-<polyline points="900,784 900,906" data-role="edge" data-id="LOG-8" data-from="C-agent" data-to="DS-index" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="905" y="846" width="59.531" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-LOG-8" data-parent="LOG-8"/>
-<text x="910" y="866" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="LOG-8" data-role="edge-label">search</text>
-<polyline points="650,960 750,960" data-role="edge" data-id="LOG-9" data-from="C-ingest" data-to="DS-index" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="660" y="930" width="63.562" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-LOG-9" data-parent="LOG-9"/>
-<text x="665" y="950" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="LOG-9" data-role="edge-label">chunks</text>
-<polyline points="380,960 270,960" data-role="edge" data-id="LOG-10" data-from="C-ingest" data-to="X-doc" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="275" y="930" width="83.172" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-LOG-10" data-parent="LOG-10"/>
-<text x="280" y="950" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="LOG-10" data-role="edge-label">read docs</text>
-<rect x="28" y="1110" width="42" height="22" data-role="legend-zone" data-id="__legend-swatch-1" fill="#F3F8FF" stroke="#3D6FB2" stroke-width="1.6" rx="10"/>
-<text x="82" y="1127" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-1">System boundary</text>
-<rect x="473" y="1110" width="42" height="22" data-role="legend-zone" data-id="__legend-swatch-2" fill="#FFF9EC" stroke="#A8741A" stroke-width="1.6" rx="10"/>
-<text x="527" y="1127" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-2">Responsibility cluster</text>
-<rect x="918" y="1110" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-3" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="972" y="1127" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-3">Logical block</text>
-<rect x="28" y="1155" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-4" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="0"/>
-<text x="82" y="1172" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-4">External capability</text>
-<polyline points="473,1165 515,1165" data-role="edge" data-kind="legend" data-id="legend-line-5" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="527" y="1172" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-5">Initiator → dependency</text>
+  <title>C5 · Enterprise Service Assistant — logical architecture</title>
+  <desc>Fictional teaching design, scenario version 2; additional parameters are illustrative assumptions. Fictional target · Technology-neutral responsibility blocks; ingestion queue, stores and evaluation: C3 / D3</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#4B5563" />
+    </marker>
+  </defs>
+  <rect data-role="canvas" width="1400" height="1200" fill="#ffffff" />
+  <text x="28" y="40" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="28" font-weight="700" fill="#1F2937">C5 · Enterprise Service Assistant — logical architecture</text>
+  <text x="28" y="72" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">Fictional target · Technology-neutral responsibility blocks; ingestion queue, stores and evaluation: C3 / D3</text>
+  <text x="40" y="112" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="400" fill="#1F2937">Scope: one system. Arrow: block → block it depends on; the label names the operation.</text>
+  <rect x="335" y="165" width="745" height="899" data-role="group" data-id="B-sys" data-kind="boundary" fill="#F3F8FF" stroke="#3D6FB2" stroke-width="1.6" rx="10" />
+  <text x="353" y="197" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="700" fill="#1F2937" data-owner="B-sys" data-role="group-title">Enterprise Service Assistant · logical blocks</text>
+  <rect x="360" y="210" width="695" height="373" data-role="group" data-id="F-int" data-kind="boundary" data-parent="B-sys" fill="#FFF9EC" stroke="#A8741A" stroke-width="1.6" rx="10" />
+  <text x="378" y="242" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="700" fill="#1F2937" data-owner="F-int" data-role="group-title">Interaction and records</text>
+  <rect x="360" y="620" width="695" height="189" data-role="group" data-id="F-asst" data-kind="boundary" data-parent="B-sys" fill="#FFF9EC" stroke="#A8741A" stroke-width="1.6" rx="10" />
+  <text x="378" y="652" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="700" fill="#1F2937" data-owner="F-asst" data-role="group-title">Assistance</text>
+  <rect x="360" y="850" width="695" height="189" data-role="group" data-id="F-know" data-kind="boundary" data-parent="B-sys" fill="#FFF9EC" stroke="#A8741A" stroke-width="1.6" rx="10" />
+  <text x="378" y="882" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="700" fill="#1F2937" data-owner="F-know" data-role="group-title">Knowledge</text>
+  <rect x="750" y="275" width="300" height="108" data-role="node" data-id="C-web" data-kind="component" data-parent="F-int" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="764" y="304" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-web" data-role="name">Web Portal</text>
+  <text x="764" y="329" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-web" data-role="sub">C-web</text>
+  <text x="764" y="352" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-web" data-role="sub">Chat and approval UI</text>
+  <rect x="750" y="450" width="300" height="108" data-role="node" data-id="C-api" data-kind="component" data-parent="F-int" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="764" y="479" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-api" data-role="name">Application API/BFF</text>
+  <text x="764" y="504" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-api" data-role="sub">C-api</text>
+  <text x="764" y="527" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-api" data-role="sub">Sessions, tenant policy, approvals</text>
+  <rect x="380" y="450" width="270" height="108" data-role="node" data-id="DS-app" data-kind="store" data-parent="F-int" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="394" y="479" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DS-app" data-role="name">Application records</text>
+  <text x="394" y="504" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DS-app" data-role="sub">DS-app</text>
+  <text x="394" y="527" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DS-app" data-role="sub">Memberships, chats, approvals</text>
+  <rect x="750" y="676" width="300" height="108" data-role="node" data-id="C-agent" data-kind="component" data-parent="F-asst" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="764" y="705" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-agent" data-role="name">Agent Service</text>
+  <text x="764" y="730" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-agent" data-role="sub">C-agent</text>
+  <text x="764" y="753" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-agent" data-role="sub">Bounded plan, retrieve, model, tools</text>
+  <rect x="380" y="676" width="270" height="108" data-role="node" data-id="C-tools" data-kind="component" data-parent="F-asst" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="394" y="705" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-tools" data-role="name">MCP Tool Gateway</text>
+  <text x="394" y="730" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-tools" data-role="sub">C-tools</text>
+  <text x="394" y="753" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-tools" data-role="sub">Verify delegation; tool policy</text>
+  <rect x="750" y="906" width="300" height="108" data-role="node" data-id="DS-index" data-kind="store" data-parent="F-know" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="764" y="935" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DS-index" data-role="name">Retrieval index</text>
+  <text x="764" y="960" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DS-index" data-role="sub">DS-index</text>
+  <text x="764" y="983" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DS-index" data-role="sub">Derived chunks, vectors, tenant ACL</text>
+  <rect x="380" y="906" width="270" height="108" data-role="node" data-id="C-ingest" data-kind="component" data-parent="F-know" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="394" y="935" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-ingest" data-role="name">Ingestion Worker</text>
+  <text x="394" y="960" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-ingest" data-role="sub">C-ingest</text>
+  <text x="394" y="983" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-ingest" data-role="sub">Version, chunk, embed, index</text>
+  <rect x="1140" y="450" width="250" height="108" data-role="node" data-id="X-idp" data-kind="external" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="0" />
+  <text x="1154" y="479" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="X-idp" data-role="name">Enterprise IdP / AS</text>
+  <text x="1154" y="504" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-idp" data-role="sub">X-idp</text>
+  <text x="1154" y="527" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-idp" data-role="sub">Identity, delegation</text>
+  <rect x="1140" y="676" width="250" height="108" data-role="node" data-id="X-model" data-kind="external" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="0" />
+  <text x="1154" y="705" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="X-model" data-role="name">Managed Model Service</text>
+  <text x="1154" y="730" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-model" data-role="sub">X-model</text>
+  <text x="1154" y="753" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-model" data-role="sub">Generate text, embeddings</text>
+  <rect x="30" y="676" width="240" height="108" data-role="node" data-id="X-desk" data-kind="external" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="0" />
+  <text x="44" y="705" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="X-desk" data-role="name">Service Desk</text>
+  <text x="44" y="730" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-desk" data-role="sub">X-desk</text>
+  <text x="44" y="753" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-desk" data-role="sub">Tickets and catalogue</text>
+  <rect x="30" y="906" width="240" height="108" data-role="node" data-id="X-doc" data-kind="external" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="0" />
+  <text x="44" y="935" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="X-doc" data-role="name">Document Repository</text>
+  <text x="44" y="960" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-doc" data-role="sub">X-doc</text>
+  <text x="44" y="983" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-doc" data-role="sub">Source documents, access</text>
+  <polyline points="900,383 900,450" data-role="edge" data-id="LOG-1" data-from="C-web" data-to="C-api" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="905.0" y="410.0" width="112.25" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-LOG-1" data-parent="LOG-1" />
+  <text x="910" y="430" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="LOG-1" data-role="edge-label">chat, approve</text>
+  <polyline points="750,504 650,504" data-role="edge" data-id="LOG-2" data-from="C-api" data-to="DS-app" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="660.0" y="474.0" width="66.5" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-LOG-2" data-parent="LOG-2" />
+  <text x="665" y="494" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="LOG-2" data-role="edge-label">records</text>
+  <polyline points="1050,504 1140,504" data-role="edge" data-id="LOG-3" data-from="C-api" data-to="X-idp" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="1065.0" y="474.0" width="60.6875" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-LOG-3" data-parent="LOG-3" />
+  <text x="1070" y="494" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="LOG-3" data-role="edge-label">sign-in</text>
+  <polyline points="900,558 900,676" data-role="edge" data-id="LOG-4" data-from="C-api" data-to="C-agent" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="905.0" y="616.0" width="75.65625" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-LOG-4" data-parent="LOG-4" />
+  <text x="910" y="636" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="LOG-4" data-role="edge-label">delegate</text>
+  <polyline points="750,730 650,730" data-role="edge" data-id="LOG-5" data-from="C-agent" data-to="C-tools" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="660.0" y="700.0" width="68.34375" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-LOG-5" data-parent="LOG-5" />
+  <text x="665" y="720" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="LOG-5" data-role="edge-label">tool call</text>
+  <polyline points="1050,730 1140,730" data-role="edge" data-id="LOG-6" data-from="C-agent" data-to="X-model" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="1057.0" y="700.0" width="77.875" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-LOG-6" data-parent="LOG-6" />
+  <text x="1062" y="720" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="LOG-6" data-role="edge-label">generate</text>
+  <polyline points="380,730 270,730" data-role="edge" data-id="LOG-7" data-from="C-tools" data-to="X-desk" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="275.0" y="700.0" width="58.609375" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-LOG-7" data-parent="LOG-7" />
+  <text x="280" y="720" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="LOG-7" data-role="edge-label">tickets</text>
+  <polyline points="900,784 900,906" data-role="edge" data-id="LOG-8" data-from="C-agent" data-to="DS-index" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="905.0" y="846.0" width="59.53125" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-LOG-8" data-parent="LOG-8" />
+  <text x="910" y="866" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="LOG-8" data-role="edge-label">search</text>
+  <polyline points="650,960 750,960" data-role="edge" data-id="LOG-9" data-from="C-ingest" data-to="DS-index" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="660.0" y="930.0" width="63.5625" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-LOG-9" data-parent="LOG-9" />
+  <text x="665" y="950" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="LOG-9" data-role="edge-label">chunks</text>
+  <polyline points="380,960 270,960" data-role="edge" data-id="LOG-10" data-from="C-ingest" data-to="X-doc" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="275.0" y="930.0" width="83.171875" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-LOG-10" data-parent="LOG-10" />
+  <text x="280" y="950" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="LOG-10" data-role="edge-label">read docs</text>
+  <rect x="28" y="1110" width="42" height="22" data-role="legend-zone" data-id="__legend-swatch-1" fill="#F3F8FF" stroke="#3D6FB2" stroke-width="1.6" rx="10" />
+  <text x="82" y="1127" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-1">System boundary</text>
+  <rect x="473" y="1110" width="42" height="22" data-role="legend-zone" data-id="__legend-swatch-2" fill="#FFF9EC" stroke="#A8741A" stroke-width="1.6" rx="10" />
+  <text x="527" y="1127" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-2">Responsibility cluster</text>
+  <rect x="918" y="1110" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-3" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="972" y="1127" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-3">Logical block</text>
+  <rect x="28" y="1155" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-4" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="0" />
+  <text x="82" y="1172" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-4">External capability</text>
+  <polyline points="473,1165 515,1165" data-role="edge" data-kind="legend" data-id="legend-line-5" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <text x="527" y="1172" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-5">Initiator → dependency</text>
 </svg>

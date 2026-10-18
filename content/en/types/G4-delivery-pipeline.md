@@ -155,5 +155,9 @@ Model template: `assets/templates/G4.json` · Layout template: `tree` · the tri
 
 ## Sample {#sample}
 <!-- skill: path only -->
-![G4 sample: delivery pipeline with an approval gate and a failure outcome](/samples/G4-delivery-pipeline.svg)
-*Delivery pipeline: a merge to main triggers Build, which produces an image in the registry and is followed by Test. An approval gate then lets the pipeline deploy to staging and promote the digest to production. A failed test or a refused approval stops the pipeline and notifies the author.*
+![G4 · Enterprise Service Assistant](/samples/ai-service-assistant/G4/en/diagram.svg)
+*Versioned prompt/model bundle, immutable digest, offline gates, steward approval and operator release. Promote the same bundle through staging and a 5% canary; recover by compatible configuration pointer, not automatic database rollback.*
+
+[SVG](/samples/ai-service-assistant/G4/en/diagram.svg) · [Model JSON](/samples/ai-service-assistant/G4/en/diagram.json) · [Shared facts](/samples/ai-service-assistant/scenario.json)
+
+[Historical shop regression sample](/samples/G4-delivery-pipeline.svg) · [All 29 views](/use/ai-service-assistant) · [Illustrative assumptions](/use/ai-service-assistant-assumptions).

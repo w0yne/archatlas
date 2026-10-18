@@ -1,0 +1,25 @@
+{
+  "scenarioVersion": 2,
+  "entities": {
+    "EV-need": "EV-need",
+    "P-ask": "P-ask",
+    "P-review": "P-review",
+    "G-approve": "G-approve",
+    "P-confirm": "P-confirm",
+    "EV-approved": "EV-approved",
+    "EV-declined": "EV-declined",
+    "EV-received": "EV-received",
+    "P-plan": "P-plan",
+    "P-approve": "P-approve",
+    "P-execute": "P-execute",
+    "EV-created": "EV-created"
+  },
+  "invariants": [
+    "I-approval",
+    "I-idempotency",
+    "I-bounds"
+  ],
+  "projection": "focused view; omissions described in caption; not a deployed system",
+  "missingFacts": [],
+  "assumptions": []
+}

@@ -37,4 +37,4 @@ The current reference pages and SVG samples (hand-authored AI views plus histori
 - [I1 · 4+1 view model](/types/i1-four-plus-one)
 - [I2 · ArchiMate layered view](/types/i2-archimate-layered-view)
 
-[Enterprise Service Assistant: seven views](/use/ai-service-assistant)
+[Enterprise Service Assistant: 29 views](/use/ai-service-assistant)

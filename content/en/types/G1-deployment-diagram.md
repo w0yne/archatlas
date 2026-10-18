@@ -181,8 +181,10 @@ Editorial grouping preserves the distinct notation; use this recipe and its chec
 ## Sample {#sample}
 <!-- skill: path only -->
 ![G1-AWS · Enterprise Service Assistant](/samples/ai-service-assistant/G1-AWS/en/diagram.svg)
-*AWS implementation variant G2, used once as the G1 headline sample. The core G1 recipe stays vendor-neutral; a separate neutral sample is scheduled for P2b. ALB and each ECS application service span two AZs; C-ingest and C-eval are separate job identities scheduled in either AZ. Aurora has a cross-AZ reader, while its managed storage spans three AZs. OpenSearch uses two-AZ zone awareness and replicas, not Multi-AZ with Standby. CloudFront is global; S3, SQS, Bedrock, KMS, CloudWatch and Secrets Manager are regional services outside customer subnets. Check model availability, quotas and endpoint routing before implementation. Trade-offs: managed ECS avoids a cluster control plane; the search index adds operational cost; a single region avoids multi-region complexity but supplies no regional disaster-recovery guarantee. Generic original shapes, no vendor artwork.*
+*The AWS implementation variant is the first G1 illustration. Application services span two AZs; Aurora managed storage spans three; OpenSearch uses two-AZ zone awareness, not Standby. Regional managed services are outside customer subnets, CloudFront is global.*
 
 [SVG](/samples/ai-service-assistant/G1-AWS/en/diagram.svg) · [Model JSON](/samples/ai-service-assistant/G1-AWS/en/diagram.json) · [Shared facts](/samples/ai-service-assistant/scenario.json)
 
-[Historical shop sample (regression fixture)](/samples/G1-deployment-diagram.svg) · [All seven views and assumptions](/use/ai-service-assistant).
+[Historical shop regression sample](/samples/G1-deployment-diagram.svg) · [All 29 views](/use/ai-service-assistant) · [Illustrative assumptions](/use/ai-service-assistant-assumptions).
+
+[See the separate vendor-neutral G1 allocation](/use/ai-service-assistant#view-g1-generic).

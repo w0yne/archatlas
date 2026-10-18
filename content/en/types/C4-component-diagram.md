@@ -175,5 +175,9 @@ Editorial grouping preserves the distinct notation; use this recipe and its chec
 
 ## Sample {#sample}
 <!-- skill: path only -->
-![C4 sample: components of the order API](/samples/C4-component-diagram.svg)
-*Components of the order API: controller, service and repository inside the boundary. The controller calls the service, the service stores orders through the repository, which reads and writes the shop database, and the service charges cards at the external payment provider.*
+![C4 · Enterprise Service Assistant](/samples/ai-service-assistant/C4/en/diagram.svg)
+*P-plan, P-retrieve and P-compose are projected as unnumbered logical modules inside C-agent; no new runtime service is added. Module names and responsibilities are illustrative, not source-code observations.*
+
+[SVG](/samples/ai-service-assistant/C4/en/diagram.svg) · [Model JSON](/samples/ai-service-assistant/C4/en/diagram.json) · [Shared facts](/samples/ai-service-assistant/scenario.json)
+
+[Historical shop regression sample](/samples/C4-component-diagram.svg) · [All 29 views](/use/ai-service-assistant) · [Illustrative assumptions](/use/ai-service-assistant-assumptions).

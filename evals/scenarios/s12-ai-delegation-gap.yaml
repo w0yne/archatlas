@@ -1,0 +1,17 @@
+id: S12
+title: AI identity assumption and deployment viewpoint distinction
+focus: explicit unsupported-delegation input and generic/cloud view routing
+expected_types: [F1, F2, G1, G2, G3]
+modes: [autonomous]
+lang: zh
+prompt: >-
+  我们设计一个虚构的设备维护助手。企业 IdP 已明确不支持所需 token exchange；工具写入必须员工审批。
+  先说明需要澄清或改变的身份假设，再选两三种视图审查身份与部署。区分通用部署、AWS 实现与网络连通，
+  不要画图，不要虚构 IdP 能力，也不要用 RACI 当作权限授权。
+expect:
+  - Does not present unsupported token exchange as a working integration.
+  - Keeps F1 verification and refusal distinct from F2 trust-boundary threat reasoning.
+  - G1 is vendor-neutral deployment with an explicitly labelled G2 AWS implementation variant.
+  - G3 handles routes, filtering and reachability rather than duplicating deployment placement.
+  - RACI accountability grants no data-plane authority.
+deliverables: []

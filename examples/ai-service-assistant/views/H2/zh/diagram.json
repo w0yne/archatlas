@@ -6,7 +6,7 @@
     "lang": "zh",
     "state": "to-be",
     "audience": "architects and reviewers",
-    "description": "Fictional teaching design; scenario.json version 1"
+    "description": "Fictional teaching design; scenario.json version 2; illustrative assumptions, not a deployed system"
   },
   "layout": {
     "template": "nested"
@@ -122,7 +122,7 @@
       "id": "OBS-7",
       "from": "AWS-ops",
       "to": "R-operator",
-      "label": "读取健康 / 成本证据",
+      "label": "SNS 邮件 / 健康面板",
       "kind": "data"
     }
   ],

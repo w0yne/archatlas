@@ -89,4 +89,4 @@ A logical architecture diagram answers: *which blocks must exist, what does each
 Model template: `assets/templates/C5.json` · Layout template: `statechart` · groups of kind `frame` hold the responsibility blocks inside one `boundary` and are ranked by dependency; externals sit outside it, the subject block has style `primary`, and `edges` of kind `call` carry operation labels.
 
 ## Sample
-Figure: `samples/C5-logical-architecture.svg` (published with the site)
+Figure: `samples/ai-service-assistant/C5/en/diagram.svg` (published with the site)

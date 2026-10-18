@@ -1,0 +1,19 @@
+id: S11
+title: AI assistant approval and tenant-boundary review
+focus: affected catalogue and security contracts; held-out wording
+expected_types: [C2, C3, E1, F1, F2, G1]
+modes: [autonomous]
+lang: en
+prompt: >-
+  A fictional workplace facilities helper answers from tenant documents and can create
+  maintenance tickets. An employee approved one draft, but the model changed its parameters
+  before execution. A cited document was also revoked after the answer was generated.
+  Choose a small architecture review set and explain the distinct question each view answers.
+  Keep authentication and threat modelling explicit. Do not draw yet or assume the system is secure.
+expect:
+  - Recommends 2-4 core views with security companions distinguished by their question.
+  - Retains F1 as the identity/delegation variant of E1 and F2 as the threat variant of D2.
+  - Approval binds tenant, subject, tool, canonical parameter hash, expiry and idempotency key.
+  - Reauthorization occurs before execution and current ACL is checked again on citation access.
+  - Model output and guardrails do not grant authority.
+deliverables: []

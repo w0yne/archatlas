@@ -78,4 +78,4 @@ Asana's main instructions recommend one R, while its FAQ permits multiple R assi
 Model template: `assets/templates/H1.json` · Layout template: `grid_table` · one `tables[]` entry with activity rows × participant columns and R/A/C/I in the cells (one A per row by default; a shared A needs a resolution note); the legend goes in the table `title`.
 
 ## Sample
-Figure: `samples/H1-raci-matrix.svg` (published with the site)
+Figure: `samples/ai-service-assistant/H1/en/diagram.svg` (published with the site)

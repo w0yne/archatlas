@@ -90,4 +90,4 @@ Named variants (read their own recipes): E4 — `references/types/E4-swimlane-cr
 Model template: `assets/templates/E2.json` · Layout template: `lanes` · actions are `task` nodes, decisions and merges are `gateway` nodes, forks and joins are `band` nodes, `initial` and `final` mark start and end; partitions are `lane` groups; control flows are edges of kind `call` with the guard as `label`, and object flows use kind `data`.
 
 ## Sample
-Figure: `samples/E2-activity-flowchart.svg` (published with the site)
+Figure: `samples/ai-service-assistant/E2/en/diagram.svg` (published with the site)

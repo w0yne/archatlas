@@ -1,5 +1,5 @@
 {
-  "scenarioVersion": 1,
+  "scenarioVersion": 2,
   "entities": {
     "CAP-quality": "CAP-quality",
     "CAP-cost": "CAP-cost",
@@ -19,5 +19,7 @@
     "I-tenant",
     "I-eval"
   ],
-  "projection": "focused view; omissions described in caption; not a deployed system"
+  "projection": "focused view; omissions described in caption; not a deployed system",
+  "missingFacts": [],
+  "assumptions": []
 }

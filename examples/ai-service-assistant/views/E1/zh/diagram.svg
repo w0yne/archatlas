@@ -1,79 +1,83 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1260" lang="zh" data-archatlas="0.1">
-<title>E1 · 创建服务工单 — 审批与拒绝</title>
-<desc>虚构目标设计 · 登录已完成；委托令牌细节见 F1</desc>
-<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,4 L0,8 Z" fill="#4B5563"/></marker></defs>
-<rect data-role="canvas" width="1400" height="1260" fill="#ffffff"/>
-<text x="28" y="40" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="28" font-weight="700" fill="#1F2937">E1 · 创建服务工单 — 审批与拒绝</text>
-<text x="28" y="72" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">虚构目标设计 · 登录已完成；委托令牌细节见 F1</text>
-<rect x="20" y="105" width="250" height="100" data-role="node" data-id="C-web" data-kind="lifeline" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="34" y="134" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-web" data-role="name">Web 门户</text>
-<text x="34" y="159" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-web" data-role="sub">C-web</text>
-<polyline points="145,205 145,1110" fill="none" stroke="#666A73" stroke-width="1.2" stroke-dasharray="5 5" data-role="edge" data-kind="lifeline" data-id="life-C-web" data-from="C-web" data-to="C-web"/>
-<rect x="295" y="105" width="250" height="100" data-role="node" data-id="C-api" data-kind="lifeline" fill="#1767B5" stroke="#03172E" stroke-width="2.4" rx="8"/>
-<text x="309" y="134" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#ffffff" data-owner="C-api" data-role="name">应用 API/BFF</text>
-<text x="309" y="159" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#ffffff" data-owner="C-api" data-role="sub">C-api</text>
-<polyline points="420,205 420,1110" fill="none" stroke="#666A73" stroke-width="1.2" stroke-dasharray="5 5" data-role="edge" data-kind="lifeline" data-id="life-C-api" data-from="C-api" data-to="C-api"/>
-<rect x="570" y="105" width="250" height="100" data-role="node" data-id="C-agent" data-kind="lifeline" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="584" y="134" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-agent" data-role="name">Agent 服务</text>
-<text x="584" y="159" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-agent" data-role="sub">C-agent</text>
-<polyline points="695,205 695,1110" fill="none" stroke="#666A73" stroke-width="1.2" stroke-dasharray="5 5" data-role="edge" data-kind="lifeline" data-id="life-C-agent" data-from="C-agent" data-to="C-agent"/>
-<rect x="845" y="105" width="250" height="100" data-role="node" data-id="C-tools" data-kind="lifeline" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="859" y="134" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-tools" data-role="name">MCP 工具网关</text>
-<text x="859" y="159" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-tools" data-role="sub">C-tools</text>
-<polyline points="970,205 970,1110" fill="none" stroke="#666A73" stroke-width="1.2" stroke-dasharray="5 5" data-role="edge" data-kind="lifeline" data-id="life-C-tools" data-from="C-tools" data-to="C-tools"/>
-<rect x="1120" y="105" width="250" height="100" data-role="node" data-id="X-desk" data-kind="lifeline" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="8"/>
-<text x="1134" y="134" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="X-desk" data-role="name">服务工单系统</text>
-<text x="1134" y="159" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-desk" data-role="sub">X-desk</text>
-<polyline points="1245,205 1245,1110" fill="none" stroke="#666A73" stroke-width="1.2" stroke-dasharray="5 5" data-role="edge" data-kind="lifeline" data-id="life-X-desk" data-from="X-desk" data-to="X-desk"/>
-<rect x="30" y="800" width="1320" height="300" fill="#ffffff" fill-opacity="0" stroke="#666A73" stroke-width="1.4" data-kind="frame" data-id="approval-outcome"/>
-<text x="40" y="823" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937">alt</text>
-<text x="90" y="823" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937">[审批有效且当前权限允许]</text>
-<line x1="30" y1="980" x2="1350" y2="980" stroke="#666A73" stroke-dasharray="5 5"/>
-<text x="45" y="1010" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937">[否则：过期 / 参数改变 / 无权限]</text>
-<polyline points="145,245 420,245" data-role="edge" data-id="SEQ-1" data-from="C-web" data-to="C-api" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="152" y="213" width="106.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-SEQ-1" data-parent="SEQ-1"/>
-<text x="157" y="233" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="SEQ-1" data-role="edge-label">提交所需操作</text>
-<polyline points="420,310 695,310" data-role="edge" data-id="SEQ-2" data-from="C-api" data-to="C-agent" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="427" y="278" width="138.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-SEQ-2" data-parent="SEQ-2"/>
-<text x="432" y="298" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="SEQ-2" data-role="edge-label">起草许可工具请求</text>
-<polyline points="695,375 420,375" data-role="edge" data-id="SEQ-3" data-from="C-agent" data-to="C-api" data-kind="reply" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" stroke-dasharray="6 4"/>
-<rect x="427" y="343" width="180.03125" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-SEQ-3" data-parent="SEQ-3"/>
-<text x="432" y="363" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="SEQ-3" data-role="edge-label">结构化草稿 + 参数 hash</text>
-<polyline points="420,440 145,440" data-role="edge" data-id="SEQ-4" data-from="C-api" data-to="C-web" data-kind="reply" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" stroke-dasharray="6 4"/>
-<rect x="152" y="408" width="171.46875" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-SEQ-4" data-parent="SEQ-4"/>
-<text x="157" y="428" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="SEQ-4" data-role="edge-label">展示准确草稿 + 有效期</text>
-<polyline points="145,505 420,505" data-role="edge" data-id="SEQ-5" data-from="C-web" data-to="C-api" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="152" y="473" width="90.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-SEQ-5" data-parent="SEQ-5"/>
-<text x="157" y="493" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="SEQ-5" data-role="edge-label">批准此草稿</text>
-<polyline points="420,570 695,570" data-role="edge" data-id="SEQ-6" data-from="C-api" data-to="C-agent" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="427" y="538" width="183.953125" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-SEQ-6" data-parent="SEQ-6"/>
-<text x="432" y="558" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="SEQ-6" data-role="edge-label">审批 ID + tenant + hash</text>
-<polyline points="695,635 970,635" data-role="edge" data-id="SEQ-7" data-from="C-agent" data-to="C-tools" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="702" y="603" width="209.296875" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-SEQ-7" data-parent="SEQ-7"/>
-<text x="707" y="623" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="SEQ-7" data-role="edge-label">草稿 + 审批 ID + 工具 token</text>
-<polyline points="970,700 420,700" data-role="edge" data-id="SEQ-8" data-from="C-tools" data-to="C-api" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="427" y="668" width="155.46875" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-SEQ-8" data-parent="SEQ-8"/>
-<text x="432" y="688" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="SEQ-8" data-role="edge-label">核验绑定 + 当前权限</text>
-<polyline points="420,765 970,765" data-role="edge" data-id="SEQ-9" data-from="C-api" data-to="C-tools" data-kind="reply" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" stroke-dasharray="6 4"/>
-<rect x="427" y="733" width="152.265625" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-SEQ-9" data-parent="SEQ-9"/>
-<text x="432" y="753" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="SEQ-9" data-role="edge-label">当前审批 / 权限结果</text>
-<polyline points="970,865 1245,865" data-role="edge" data-id="SEQ-10" data-from="C-tools" data-to="X-desk" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="977" y="833" width="139.46875" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-SEQ-10" data-parent="SEQ-10"/>
-<text x="982" y="853" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="SEQ-10" data-role="edge-label">创建工单 + 幂等键</text>
-<polyline points="1245,930 970,930" data-role="edge" data-id="SEQ-11" data-from="X-desk" data-to="C-tools" data-kind="reply" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" stroke-dasharray="6 4"/>
-<rect x="977" y="898" width="175.265625" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-SEQ-11" data-parent="SEQ-11"/>
-<text x="982" y="918" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="SEQ-11" data-role="edge-label">工单 ID（同键同工单）</text>
-<polyline points="970,1050 695,1050" data-role="edge" data-id="SEQ-12" data-from="C-tools" data-to="C-agent" data-kind="reply" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" stroke-dasharray="6 4"/>
-<rect x="702" y="1018" width="170.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-SEQ-12" data-parent="SEQ-12"/>
-<text x="707" y="1038" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="SEQ-12" data-role="edge-label">拒绝；不调用工单服务</text>
-<rect x="28" y="1165" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-1" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="82" y="1182" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-1">范围内元素</text>
-<rect x="473" y="1165" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-2" fill="#1767B5" stroke="#03172E" stroke-width="2.4" rx="8"/>
-<text x="527" y="1182" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-2">本图主体</text>
-<rect x="918" y="1165" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-3" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="8"/>
-<text x="972" y="1182" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-3">外部角色 / 系统</text>
-<polyline points="28,1220 70,1220" data-role="edge" data-kind="legend" data-id="legend-line-4" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="82" y="1227" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-4">发起方 → 依赖方</text>
-<polyline points="473,1220 515,1220" data-role="edge" data-kind="legend" data-id="legend-line-5" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" stroke-dasharray="6 4"/>
-<text x="527" y="1227" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-5">应答</text>
+  <title>E1 · 创建服务工单 — 审批与拒绝</title>
+  <desc>虚构教学设计，场景版本2；补充参数为示意假设。虚构目标设计 · 登录已完成；委托令牌细节见 F1</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#4B5563" />
+    </marker>
+  </defs>
+  <rect data-role="canvas" width="1400" height="1260" fill="#ffffff" />
+  <text x="28" y="40" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="28" font-weight="700" fill="#1F2937">E1 · 创建服务工单 — 审批与拒绝</text>
+  <text x="28" y="72" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">虚构目标设计 · 登录已完成；委托令牌细节见 F1</text>
+  <rect x="20" y="105" width="250" height="100" data-role="node" data-id="C-web" data-kind="lifeline" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="34" y="134" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-web" data-role="name">Web 门户</text>
+  <text x="34" y="159" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-web" data-role="sub">C-web</text>
+  <polyline points="145,205 145,1110" fill="none" stroke="#666A73" stroke-width="1.2" stroke-dasharray="5 5" data-role="edge" data-kind="lifeline" data-id="life-C-web" data-from="C-web" data-to="C-web" />
+  <rect x="295" y="105" width="250" height="100" data-role="node" data-id="C-api" data-kind="lifeline" fill="#1767B5" stroke="#03172E" stroke-width="2.4" rx="8" />
+  <text x="309" y="134" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#ffffff" data-owner="C-api" data-role="name">应用 API/BFF</text>
+  <text x="309" y="159" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#ffffff" data-owner="C-api" data-role="sub">C-api</text>
+  <polyline points="420,205 420,1110" fill="none" stroke="#666A73" stroke-width="1.2" stroke-dasharray="5 5" data-role="edge" data-kind="lifeline" data-id="life-C-api" data-from="C-api" data-to="C-api" />
+  <rect x="570" y="105" width="250" height="100" data-role="node" data-id="C-agent" data-kind="lifeline" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="584" y="134" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-agent" data-role="name">Agent 服务</text>
+  <text x="584" y="159" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-agent" data-role="sub">C-agent</text>
+  <polyline points="695,205 695,1110" fill="none" stroke="#666A73" stroke-width="1.2" stroke-dasharray="5 5" data-role="edge" data-kind="lifeline" data-id="life-C-agent" data-from="C-agent" data-to="C-agent" />
+  <rect x="845" y="105" width="250" height="100" data-role="node" data-id="C-tools" data-kind="lifeline" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="859" y="134" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-tools" data-role="name">MCP 工具网关</text>
+  <text x="859" y="159" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-tools" data-role="sub">C-tools</text>
+  <polyline points="970,205 970,1110" fill="none" stroke="#666A73" stroke-width="1.2" stroke-dasharray="5 5" data-role="edge" data-kind="lifeline" data-id="life-C-tools" data-from="C-tools" data-to="C-tools" />
+  <rect x="1120" y="105" width="250" height="100" data-role="node" data-id="X-desk" data-kind="lifeline" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="8" />
+  <text x="1134" y="134" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="X-desk" data-role="name">服务工单系统</text>
+  <text x="1134" y="159" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-desk" data-role="sub">X-desk</text>
+  <polyline points="1245,205 1245,1110" fill="none" stroke="#666A73" stroke-width="1.2" stroke-dasharray="5 5" data-role="edge" data-kind="lifeline" data-id="life-X-desk" data-from="X-desk" data-to="X-desk" />
+  <rect x="30" y="800" width="1320" height="300" fill="#ffffff" fill-opacity="0" stroke="#666A73" stroke-width="1.4" data-kind="frame" data-id="approval-outcome" />
+  <text x="40" y="823" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937">alt</text>
+  <text x="90" y="823" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937">[审批有效且当前权限允许]</text>
+  <line x1="30" y1="980" x2="1350" y2="980" stroke="#666A73" stroke-dasharray="5 5" />
+  <text x="45" y="1010" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937">[否则：过期 / 参数改变 / 无权限]</text>
+  <polyline points="145,245 420,245" data-role="edge" data-id="SEQ-1" data-from="C-web" data-to="C-api" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="152.0" y="213.0" width="106.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-SEQ-1" data-parent="SEQ-1" />
+  <text x="157" y="233" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="SEQ-1" data-role="edge-label">提交所需操作</text>
+  <polyline points="420,310 695,310" data-role="edge" data-id="SEQ-2" data-from="C-api" data-to="C-agent" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="427.0" y="278.0" width="138.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-SEQ-2" data-parent="SEQ-2" />
+  <text x="432" y="298" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="SEQ-2" data-role="edge-label">起草许可工具请求</text>
+  <polyline points="695,375 420,375" data-role="edge" data-id="SEQ-3" data-from="C-agent" data-to="C-api" data-kind="reply" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" stroke-dasharray="6 4" />
+  <rect x="427.0" y="343.0" width="180.03125" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-SEQ-3" data-parent="SEQ-3" />
+  <text x="432" y="363" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="SEQ-3" data-role="edge-label">结构化草稿 + 参数 hash</text>
+  <polyline points="420,440 145,440" data-role="edge" data-id="SEQ-4" data-from="C-api" data-to="C-web" data-kind="reply" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" stroke-dasharray="6 4" />
+  <rect x="152.0" y="408.0" width="171.46875" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-SEQ-4" data-parent="SEQ-4" />
+  <text x="157" y="428" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="SEQ-4" data-role="edge-label">展示准确草稿 + 有效期</text>
+  <polyline points="145,505 420,505" data-role="edge" data-id="SEQ-5" data-from="C-web" data-to="C-api" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="152.0" y="473.0" width="90.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-SEQ-5" data-parent="SEQ-5" />
+  <text x="157" y="493" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="SEQ-5" data-role="edge-label">批准此草稿</text>
+  <polyline points="420,570 695,570" data-role="edge" data-id="SEQ-6" data-from="C-api" data-to="C-agent" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="427.0" y="538.0" width="183.953125" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-SEQ-6" data-parent="SEQ-6" />
+  <text x="432" y="558" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="SEQ-6" data-role="edge-label">审批 ID + tenant + hash</text>
+  <polyline points="695,635 970,635" data-role="edge" data-id="SEQ-7" data-from="C-agent" data-to="C-tools" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="702.0" y="603.0" width="209.296875" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-SEQ-7" data-parent="SEQ-7" />
+  <text x="707" y="623" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="SEQ-7" data-role="edge-label">草稿 + 审批 ID + 工具 token</text>
+  <polyline points="970,700 420,700" data-role="edge" data-id="SEQ-8" data-from="C-tools" data-to="C-api" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="427.0" y="668.0" width="155.46875" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-SEQ-8" data-parent="SEQ-8" />
+  <text x="432" y="688" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="SEQ-8" data-role="edge-label">核验绑定 + 当前权限</text>
+  <polyline points="420,765 970,765" data-role="edge" data-id="SEQ-9" data-from="C-api" data-to="C-tools" data-kind="reply" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" stroke-dasharray="6 4" />
+  <rect x="427.0" y="733.0" width="152.265625" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-SEQ-9" data-parent="SEQ-9" />
+  <text x="432" y="753" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="SEQ-9" data-role="edge-label">当前审批 / 权限结果</text>
+  <polyline points="970,865 1245,865" data-role="edge" data-id="SEQ-10" data-from="C-tools" data-to="X-desk" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="977.0" y="833.0" width="139.46875" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-SEQ-10" data-parent="SEQ-10" />
+  <text x="982" y="853" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="SEQ-10" data-role="edge-label">创建工单 + 幂等键</text>
+  <polyline points="1245,930 970,930" data-role="edge" data-id="SEQ-11" data-from="X-desk" data-to="C-tools" data-kind="reply" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" stroke-dasharray="6 4" />
+  <rect x="977.0" y="898.0" width="175.265625" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-SEQ-11" data-parent="SEQ-11" />
+  <text x="982" y="918" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="SEQ-11" data-role="edge-label">工单 ID（同键同工单）</text>
+  <polyline points="970,1050 695,1050" data-role="edge" data-id="SEQ-12" data-from="C-tools" data-to="C-agent" data-kind="reply" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" stroke-dasharray="6 4" />
+  <rect x="702.0" y="1018.0" width="170.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-SEQ-12" data-parent="SEQ-12" />
+  <text x="707" y="1038" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="SEQ-12" data-role="edge-label">拒绝；不调用工单服务</text>
+  <rect x="28" y="1165" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-1" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="82" y="1182" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-1">范围内元素</text>
+  <rect x="473" y="1165" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-2" fill="#1767B5" stroke="#03172E" stroke-width="2.4" rx="8" />
+  <text x="527" y="1182" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-2">本图主体</text>
+  <rect x="918" y="1165" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-3" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="8" />
+  <text x="972" y="1182" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-3">外部角色 / 系统</text>
+  <polyline points="28,1220 70,1220" data-role="edge" data-kind="legend" data-id="legend-line-4" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <text x="82" y="1227" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-4">发起方 → 依赖方</text>
+  <polyline points="473,1220 515,1220" data-role="edge" data-kind="legend" data-id="legend-line-5" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" stroke-dasharray="6 4" />
+  <text x="527" y="1227" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-5">应答</text>
 </svg>

@@ -86,4 +86,4 @@ Named variant of E2; apply this reference's own recipe and checks.
 Model template: `assets/templates/E4.json` · Layout template: `lanes` · lanes become `lane` groups (independent systems wrap their lanes in a `pool` group), steps and decisions are nodes with `parent` = their lane, flow arrows are edges (`call`), and cross-system hand-offs use kind `message` with a `label` naming what passes.
 
 ## Sample
-Figure: `samples/E4-swimlane-cross-functional.svg` (published with the site)
+Figure: `samples/ai-service-assistant/E4/en/diagram.svg` (published with the site)

@@ -2,11 +2,11 @@
   "archatlas": "0.1",
   "meta": {
     "type": "C7",
-    "title": "C7 · Enterprise Service Assistant — context map (system landscape, to-be)",
+    "title": "C7 · Enterprise Service Assistant — context map (bounded contexts, illustrative)",
     "lang": "en",
     "state": "to-be",
     "audience": "architects and reviewers",
-    "description": "Fictional teaching design; scenario.json version 1"
+    "description": "Fictional teaching design; scenario.json version 2; illustrative assumptions, not a deployed system"
   },
   "layout": {
     "template": "nested"

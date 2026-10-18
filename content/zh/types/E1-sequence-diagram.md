@@ -185,8 +185,8 @@ reviewed: false
 ## 示例图 {#sample}
 <!-- skill: path only -->
 ![E1 · 企业服务助手](/samples/ai-service-assistant/E1/zh/diagram.svg)
-*员工只审批本人当前有权执行的操作。BFF 存储 tenant、主体、工具、规范参数 hash、有效期和幂等键。工具网关取得该绑定，并在写入前再次核对当前策略；拒绝、过期或参数改变的草稿不会进入工单系统。调用幂等连接器前先持久化执行意图，超时结果不明时按键对账。委托 token 的前提见 F1；最终结果经 BFF 返回界面，此处省略该返回跳。*
+*在一个场景中，各参与者按什么顺序交换哪些消息？*
 
 [SVG](/samples/ai-service-assistant/E1/zh/diagram.svg) · [模型 JSON](/samples/ai-service-assistant/E1/zh/diagram.json) · [共享事实](/samples/ai-service-assistant/scenario.json)
 
-[历史 shop 样例（回归 fixture）](/samples/E1-sequence-diagram.zh.svg) · [七幅视图及假设](/zh/use/ai-service-assistant).
+[历史 shop 回归样例](/samples/E1-sequence-diagram.zh.svg) · [全部29幅视图](/zh/use/ai-service-assistant) · [示意假设](/zh/use/ai-service-assistant-assumptions).

@@ -1,0 +1,34 @@
+{
+  "scenarioVersion": 2,
+  "entities": {},
+  "invariants": [
+    "I-bounds",
+    "I-eval",
+    "I-operator"
+  ],
+  "projection": "focused view; omissions described in caption; not a deployed system",
+  "tableSourceRefs": [
+    "scenario.json:entities",
+    "scenario.json:invariants"
+  ],
+  "roleEntities": [
+    "R-employee",
+    "R-steward",
+    "R-operator"
+  ],
+  "missingFacts": [],
+  "assumptions": [
+    "AS-ingest",
+    "AS-request",
+    "AS-policy",
+    "AS-raci",
+    "AS-network",
+    "AS-release",
+    "AS-observe",
+    "AS-domains",
+    "AS-data",
+    "AS-roadmap",
+    "AS-components",
+    "AS-interfaces"
+  ]
+}

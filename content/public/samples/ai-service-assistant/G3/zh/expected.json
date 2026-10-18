@@ -1,0 +1,33 @@
+{
+  "scenarioVersion": 2,
+  "entities": {
+    "C-web": "C-web",
+    "AWS-alb": "AWS-alb",
+    "C-api": "C-api",
+    "C-agent": "C-agent",
+    "C-tools": "C-tools",
+    "X-idp": "X-idp",
+    "X-desk": "X-desk"
+  },
+  "invariants": [
+    "I-delegation",
+    "I-tokens",
+    "I-approval"
+  ],
+  "projection": "focused view; omissions described in caption; not a deployed system",
+  "missingFacts": [],
+  "assumptions": [
+    "AS-ingest",
+    "AS-request",
+    "AS-policy",
+    "AS-raci",
+    "AS-network",
+    "AS-release",
+    "AS-observe",
+    "AS-domains",
+    "AS-data",
+    "AS-roadmap",
+    "AS-components",
+    "AS-interfaces"
+  ]
+}

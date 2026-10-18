@@ -1,0 +1,56 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "F3",
+    "title": "F3 · Role and scope constraints — partial ABAC table",
+    "lang": "en",
+    "state": "to-be",
+    "audience": "architects and reviewers",
+    "description": "Fictional teaching design; scenario.json version 2; illustrative assumptions, not a deployed system"
+  },
+  "layout": {
+    "template": "grid_table"
+  },
+  "nodes": [],
+  "edges": [],
+  "groups": [],
+  "tables": [
+    {
+      "id": "constraints",
+      "columns": [
+        "Subject role",
+        "Read cited knowledge",
+        "Maintain knowledge / ACL",
+        "Create ticket",
+        "Approve eval export",
+        "Read redacted telemetry"
+      ],
+      "rows": [
+        [
+          "Employee / approver",
+          "K",
+          "D",
+          "W",
+          "D",
+          "D"
+        ],
+        [
+          "Knowledge steward",
+          "K",
+          "M",
+          "D",
+          "E",
+          "D"
+        ],
+        [
+          "Platform operator",
+          "D",
+          "D",
+          "D",
+          "D",
+          "T"
+        ]
+      ]
+    }
+  ]
+}

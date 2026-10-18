@@ -83,4 +83,4 @@ A journey map answers "what does this person go through to reach this goal, and 
 Model template: `assets/templates/A6.json` · Layout template: `grid_table` · phases are columns and component rows (actions, thoughts, emotion, pain points, touchpoints, opportunities) are table rows; the emotion row holds one word per phase (the renderer draws no emotion line yet); the first column header must not be empty (use `Row`).
 
 ## Sample
-Figure: `samples/A6-journey-map.svg` (published with the site)
+Figure: `samples/ai-service-assistant/A6/en/diagram.svg` (published with the site)

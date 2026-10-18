@@ -6,7 +6,7 @@
     "lang": "en",
     "state": "to-be",
     "audience": "architects and reviewers",
-    "description": "Fictional teaching design; scenario.json version 1"
+    "description": "Fictional teaching design; scenario.json version 2; illustrative assumptions, not a deployed system"
   },
   "layout": {
     "template": "grid_table"
@@ -36,7 +36,7 @@
         ],
         [
           "Knowledge steward",
-          "?",
+          "K",
           "M",
           "D",
           "E",

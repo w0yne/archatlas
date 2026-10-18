@@ -1,113 +1,117 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1000" lang="zh" data-archatlas="0.1">
-<title>D1 · 企业服务助手 — 逻辑数据模型（按租户隔离）</title>
-<desc>虚构目标设计 · 逻辑层；十个实体，分属三类记录</desc>
-<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,4 L0,8 Z" fill="#4B5563"/></marker></defs>
-<rect data-role="canvas" width="1400" height="1000" fill="#ffffff"/>
-<text x="28" y="40" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="28" font-weight="700" fill="#1F2937">D1 · 企业服务助手 — 逻辑数据模型（按租户隔离）</text>
-<text x="28" y="72" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">虚构目标设计 · 逻辑层；十个实体，分属三类记录</text>
-<text x="40" y="112" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="400" fill="#1F2937">记法：线两端为 UML 多重性（最小..最大）；PK = 主键。所有实体均按租户隔离。</text>
-<rect x="40" y="220" width="250" height="114" data-role="node" data-id="DE-tenant" data-kind="entity" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="54" y="249" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DE-tenant" data-role="name">租户</text>
-<text x="54" y="274" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-tenant" data-role="sub">租户 ID（PK）</text>
-<text x="54" y="297" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-tenant" data-role="sub">名称</text>
-<text x="54" y="320" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-tenant" data-role="sub">状态</text>
-<rect x="420" y="220" width="250" height="114" data-role="node" data-id="DE-member" data-kind="entity" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="434" y="249" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DE-member" data-role="name">成员关系</text>
-<text x="434" y="274" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-member" data-role="sub">租户 ID + 员工 ID（PK）</text>
-<text x="434" y="297" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-member" data-role="sub">角色</text>
-<text x="434" y="320" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-member" data-role="sub">状态</text>
-<rect x="800" y="220" width="250" height="114" data-role="node" data-id="DE-chat" data-kind="entity" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="814" y="249" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DE-chat" data-role="name">对话</text>
-<text x="814" y="274" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-chat" data-role="sub">对话 ID（PK）</text>
-<text x="814" y="297" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-chat" data-role="sub">租户 ID、员工 ID</text>
-<text x="814" y="320" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-chat" data-role="sub">开始时间</text>
-<rect x="1130" y="220" width="240" height="114" data-role="node" data-id="DE-approval" data-kind="entity" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="1144" y="249" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DE-approval" data-role="name">审批</text>
-<text x="1144" y="274" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-approval" data-role="sub">审批 ID（PK）</text>
-<text x="1144" y="297" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-approval" data-role="sub">租户、主体、工具</text>
-<text x="1144" y="320" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-approval" data-role="sub">参数 hash、有效期</text>
-<rect x="40" y="430" width="250" height="114" data-role="node" data-id="DE-docver" data-kind="entity" fill="#E3F4E8" stroke="#2F7D4F" stroke-width="1.8" rx="8"/>
-<text x="54" y="459" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DE-docver" data-role="name">文档版本</text>
-<text x="54" y="484" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-docver" data-role="sub">版本 ID（PK）</text>
-<text x="54" y="507" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-docver" data-role="sub">租户 ID、来源引用</text>
-<text x="54" y="530" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-docver" data-role="sub">ACL 快照、状态</text>
-<rect x="800" y="430" width="250" height="114" data-role="node" data-id="DE-feedback" data-kind="entity" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="814" y="459" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DE-feedback" data-role="name">反馈</text>
-<text x="814" y="484" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-feedback" data-role="sub">反馈 ID（PK）</text>
-<text x="814" y="507" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-feedback" data-role="sub">对话 ID、评分</text>
-<text x="814" y="530" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-feedback" data-role="sub">备注</text>
-<rect x="1130" y="430" width="240" height="114" data-role="node" data-id="DE-exec" data-kind="entity" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="1144" y="459" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DE-exec" data-role="name">执行</text>
-<text x="1144" y="484" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-exec" data-role="sub">幂等键（PK）</text>
-<text x="1144" y="507" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-exec" data-role="sub">审批 ID</text>
-<text x="1144" y="530" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-exec" data-role="sub">结果</text>
-<rect x="40" y="640" width="250" height="114" data-role="node" data-id="DE-chunk" data-kind="entity" fill="#E3F4E8" stroke="#2F7D4F" stroke-width="1.8" rx="8"/>
-<text x="54" y="669" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DE-chunk" data-role="name">分块</text>
-<text x="54" y="694" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-chunk" data-role="sub">分块 ID（PK）</text>
-<text x="54" y="717" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-chunk" data-role="sub">版本 ID、租户 ID</text>
-<text x="54" y="740" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-chunk" data-role="sub">向量、ACL</text>
-<rect x="800" y="640" width="250" height="114" data-role="node" data-id="DE-evalrec" data-kind="entity" fill="#FFF1D6" stroke="#A8741A" stroke-width="1.8" rx="8"/>
-<text x="814" y="669" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DE-evalrec" data-role="name">评测记录</text>
-<text x="814" y="694" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-evalrec" data-role="sub">记录 ID（PK）</text>
-<text x="814" y="717" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-evalrec" data-role="sub">去标识输入</text>
-<text x="814" y="740" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-evalrec" data-role="sub">数据集版本</text>
-<rect x="1130" y="640" width="240" height="114" data-role="node" data-id="DE-audit" data-kind="entity" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="1144" y="669" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DE-audit" data-role="name">审计事件</text>
-<text x="1144" y="694" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-audit" data-role="sub">事件 ID（PK）</text>
-<text x="1144" y="717" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-audit" data-role="sub">租户、操作者、动作</text>
-<text x="1144" y="740" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-audit" data-role="sub">时间</text>
-<text x="296" y="269" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-1" data-role="cardinality">1</text>
-<text x="414" y="269" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" text-anchor="end" data-owner="REL-1" data-role="cardinality">0..*</text>
-<text x="676" y="269" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-2" data-role="cardinality">1</text>
-<text x="794" y="269" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" text-anchor="end" data-owner="REL-2" data-role="cardinality">0..*</text>
-<text x="1056" y="269" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-3" data-role="cardinality">1</text>
-<text x="1124" y="269" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" text-anchor="end" data-owner="REL-3" data-role="cardinality">0..*</text>
-<text x="173" y="352" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-4" data-role="cardinality">1</text>
-<text x="173" y="424" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-4" data-role="cardinality">0..*</text>
-<text x="173" y="562" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-5" data-role="cardinality">1</text>
-<text x="173" y="634" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-5" data-role="cardinality">0..*</text>
-<text x="933" y="352" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-6" data-role="cardinality">1</text>
-<text x="933" y="424" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-6" data-role="cardinality">0..*</text>
-<text x="933" y="562" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-7" data-role="cardinality">0..1</text>
-<text x="933" y="634" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-7" data-role="cardinality">0..1</text>
-<text x="1258" y="352" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-8" data-role="cardinality">1</text>
-<text x="1258" y="424" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-8" data-role="cardinality">0..1</text>
-<text x="1258" y="562" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-9" data-role="cardinality">1</text>
-<text x="1258" y="634" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-9" data-role="cardinality">1..*</text>
-<text x="40" y="810" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937">依据：由本设计中列出的持久记录（成员、对话、审批、审计、文档版本、反馈）推导；属性列表仅作示意。</text>
-<polyline points="290,277 420,277" data-role="edge" data-id="REL-1" data-from="DE-tenant" data-to="DE-member" data-kind="assoc" fill="none" stroke="#4B5563" stroke-width="1.8"/>
-<rect x="334" y="283" width="42" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-REL-1" data-parent="REL-1"/>
-<text x="339" y="303" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="REL-1" data-role="edge-label">包含</text>
-<polyline points="670,277 800,277" data-role="edge" data-id="REL-2" data-from="DE-member" data-to="DE-chat" data-kind="assoc" fill="none" stroke="#4B5563" stroke-width="1.8"/>
-<rect x="714" y="283" width="42" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-REL-2" data-parent="REL-2"/>
-<text x="719" y="303" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="REL-2" data-role="edge-label">发起</text>
-<polyline points="1050,277 1130,277" data-role="edge" data-id="REL-3" data-from="DE-chat" data-to="DE-approval" data-kind="assoc" fill="none" stroke="#4B5563" stroke-width="1.8"/>
-<rect x="1069" y="283" width="42" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-REL-3" data-parent="REL-3"/>
-<text x="1074" y="303" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="REL-3" data-role="edge-label">请求</text>
-<polyline points="165,334 165,430" data-role="edge" data-id="REL-4" data-from="DE-tenant" data-to="DE-docver" data-kind="assoc" fill="none" stroke="#4B5563" stroke-width="1.8"/>
-<rect x="170" y="368" width="42" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-REL-4" data-parent="REL-4"/>
-<text x="175" y="388" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="REL-4" data-role="edge-label">拥有</text>
-<polyline points="165,544 165,640" data-role="edge" data-id="REL-5" data-from="DE-docver" data-to="DE-chunk" data-kind="assoc" fill="none" stroke="#4B5563" stroke-width="1.8"/>
-<rect x="170" y="578" width="74" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-REL-5" data-parent="REL-5"/>
-<text x="175" y="598" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="REL-5" data-role="edge-label">被切分为</text>
-<polyline points="925,334 925,430" data-role="edge" data-id="REL-6" data-from="DE-chat" data-to="DE-feedback" data-kind="assoc" fill="none" stroke="#4B5563" stroke-width="1.8"/>
-<rect x="930" y="368" width="42" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-REL-6" data-parent="REL-6"/>
-<text x="935" y="388" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="REL-6" data-role="edge-label">收到</text>
-<polyline points="925,544 925,640" data-role="edge" data-id="REL-7" data-from="DE-feedback" data-to="DE-evalrec" data-kind="assoc" fill="none" stroke="#4B5563" stroke-width="1.8"/>
-<rect x="930" y="578" width="74" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-REL-7" data-parent="REL-7"/>
-<text x="935" y="598" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="REL-7" data-role="edge-label">被导出为</text>
-<polyline points="1250,334 1250,430" data-role="edge" data-id="REL-8" data-from="DE-approval" data-to="DE-exec" data-kind="assoc" fill="none" stroke="#4B5563" stroke-width="1.8"/>
-<rect x="1255" y="368" width="42" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-REL-8" data-parent="REL-8"/>
-<text x="1260" y="388" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="REL-8" data-role="edge-label">授权</text>
-<polyline points="1250,544 1250,640" data-role="edge" data-id="REL-9" data-from="DE-exec" data-to="DE-audit" data-kind="assoc" fill="none" stroke="#4B5563" stroke-width="1.8"/>
-<rect x="1255" y="578" width="74" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-REL-9" data-parent="REL-9"/>
-<text x="1260" y="598" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="REL-9" data-role="edge-label">被记录为</text>
-<rect x="28" y="880" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-1" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="82" y="897" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-1">应用记录（DS-app）</text>
-<rect x="473" y="880" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-2" fill="#E3F4E8" stroke="#2F7D4F" stroke-width="1.8" rx="8"/>
-<text x="527" y="897" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-2">知识数据（DS-doc、DS-index）</text>
-<rect x="918" y="880" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-3" fill="#FFF1D6" stroke="#A8741A" stroke-width="1.8" rx="8"/>
-<text x="972" y="897" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-3">评测数据（DS-eval）</text>
-<polyline points="28,935 70,935" data-role="edge" data-kind="legend" data-id="legend-line-4" fill="none" stroke="#4B5563" stroke-width="1.8"/>
-<text x="82" y="942" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-4">关系（动词自第一个实体读起）</text>
+  <title>D1 · 企业服务助手 — 逻辑数据模型（按租户隔离）</title>
+  <desc>虚构教学设计，场景版本2；补充参数为示意假设。虚构目标设计 · 逻辑层；十个实体，分属三类记录</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#4B5563" />
+    </marker>
+  </defs>
+  <rect data-role="canvas" width="1400" height="1000" fill="#ffffff" />
+  <text x="28" y="40" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="28" font-weight="700" fill="#1F2937">D1 · 企业服务助手 — 逻辑数据模型（按租户隔离）</text>
+  <text x="28" y="72" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">虚构目标设计 · 逻辑层；十个实体，分属三类记录</text>
+  <text x="40" y="112" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="400" fill="#1F2937">示意逻辑属性：租户记录的每个 PK/FK 都含 tenant；key 指租户/工具/幂等键，非完整 DDL。</text>
+  <rect x="40" y="220" width="250" height="114" data-role="node" data-id="DE-tenant" data-kind="entity" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="54" y="249" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DE-tenant" data-role="name">租户</text>
+  <text x="54" y="274" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-tenant" data-role="sub">租户 ID（PK）</text>
+  <text x="54" y="297" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-tenant" data-role="sub">名称</text>
+  <text x="54" y="320" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-tenant" data-role="sub">状态</text>
+  <rect x="420" y="220" width="250" height="114" data-role="node" data-id="DE-member" data-kind="entity" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="434" y="249" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DE-member" data-role="name">成员关系</text>
+  <text x="434" y="274" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-member" data-role="sub">租户 ID + 员工 ID（PK）</text>
+  <text x="434" y="297" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-member" data-role="sub">角色</text>
+  <text x="434" y="320" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-member" data-role="sub">状态</text>
+  <rect x="800" y="220" width="250" height="114" data-role="node" data-id="DE-chat" data-kind="entity" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="814" y="249" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DE-chat" data-role="name">对话</text>
+  <text x="814" y="274" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-chat" data-role="sub">对话 ID（PK）</text>
+  <text x="814" y="297" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-chat" data-role="sub">租户 ID、员工 ID</text>
+  <text x="814" y="320" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-chat" data-role="sub">开始时间</text>
+  <rect x="1130" y="220" width="240" height="114" data-role="node" data-id="DE-approval" data-kind="entity" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="1144" y="249" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DE-approval" data-role="name">审批</text>
+  <text x="1144" y="274" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-approval" data-role="sub">审批 ID（PK）</text>
+  <text x="1144" y="297" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-approval" data-role="sub">租户、主体、工具</text>
+  <text x="1144" y="320" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-approval" data-role="sub">hash、有效期、幂等键</text>
+  <rect x="40" y="430" width="250" height="114" data-role="node" data-id="DE-docver" data-kind="entity" fill="#E3F4E8" stroke="#2F7D4F" stroke-width="1.8" rx="8" />
+  <text x="54" y="459" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DE-docver" data-role="name">文档版本</text>
+  <text x="54" y="484" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-docver" data-role="sub">版本 ID（PK）</text>
+  <text x="54" y="507" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-docver" data-role="sub">租户 ID、来源引用</text>
+  <text x="54" y="530" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-docver" data-role="sub">ACL 快照、状态</text>
+  <rect x="800" y="430" width="250" height="114" data-role="node" data-id="DE-feedback" data-kind="entity" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="814" y="459" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DE-feedback" data-role="name">反馈</text>
+  <text x="814" y="484" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-feedback" data-role="sub">反馈 ID（PK）</text>
+  <text x="814" y="507" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-feedback" data-role="sub">对话 ID、评分</text>
+  <text x="814" y="530" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-feedback" data-role="sub">备注</text>
+  <rect x="1130" y="430" width="240" height="114" data-role="node" data-id="DE-exec" data-kind="entity" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="1144" y="459" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DE-exec" data-role="name">执行</text>
+  <text x="1144" y="484" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-exec" data-role="sub">租户/工具/键（PK）</text>
+  <text x="1144" y="507" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-exec" data-role="sub">审批 ID</text>
+  <text x="1144" y="530" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-exec" data-role="sub">结果</text>
+  <rect x="40" y="640" width="250" height="114" data-role="node" data-id="DE-chunk" data-kind="entity" fill="#E3F4E8" stroke="#2F7D4F" stroke-width="1.8" rx="8" />
+  <text x="54" y="669" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DE-chunk" data-role="name">分块</text>
+  <text x="54" y="694" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-chunk" data-role="sub">分块 ID（PK）</text>
+  <text x="54" y="717" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-chunk" data-role="sub">版本 ID、租户 ID</text>
+  <text x="54" y="740" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-chunk" data-role="sub">向量、ACL</text>
+  <rect x="800" y="640" width="250" height="114" data-role="node" data-id="DE-evalrec" data-kind="entity" fill="#FFF1D6" stroke="#A8741A" stroke-width="1.8" rx="8" />
+  <text x="814" y="669" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DE-evalrec" data-role="name">评测记录</text>
+  <text x="814" y="694" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-evalrec" data-role="sub">记录 ID（PK）</text>
+  <text x="814" y="717" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-evalrec" data-role="sub">去标识输入</text>
+  <text x="814" y="740" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-evalrec" data-role="sub">数据集版本</text>
+  <rect x="1130" y="640" width="240" height="114" data-role="node" data-id="DE-audit" data-kind="entity" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="1144" y="669" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DE-audit" data-role="name">审计事件</text>
+  <text x="1144" y="694" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-audit" data-role="sub">事件 ID（PK）</text>
+  <text x="1144" y="717" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-audit" data-role="sub">租户、操作者、动作</text>
+  <text x="1144" y="740" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DE-audit" data-role="sub">时间</text>
+  <text x="296" y="269" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-1" data-role="cardinality">1</text>
+  <text x="414" y="269" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" text-anchor="end" data-owner="REL-1" data-role="cardinality">0..*</text>
+  <text x="676" y="269" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-2" data-role="cardinality">1</text>
+  <text x="794" y="269" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" text-anchor="end" data-owner="REL-2" data-role="cardinality">0..*</text>
+  <text x="1056" y="269" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-3" data-role="cardinality">1</text>
+  <text x="1124" y="269" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" text-anchor="end" data-owner="REL-3" data-role="cardinality">0..*</text>
+  <text x="173" y="352" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-4" data-role="cardinality">1</text>
+  <text x="173" y="424" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-4" data-role="cardinality">0..*</text>
+  <text x="173" y="562" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-5" data-role="cardinality">1</text>
+  <text x="173" y="634" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-5" data-role="cardinality">0..*</text>
+  <text x="933" y="352" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-6" data-role="cardinality">1</text>
+  <text x="933" y="424" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-6" data-role="cardinality">0..*</text>
+  <text x="933" y="562" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-7" data-role="cardinality">0..1</text>
+  <text x="933" y="634" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-7" data-role="cardinality">0..1</text>
+  <text x="1258" y="352" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-8" data-role="cardinality">1</text>
+  <text x="1258" y="424" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-8" data-role="cardinality">0..1</text>
+  <text x="1258" y="562" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-9" data-role="cardinality">1</text>
+  <text x="1258" y="634" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-owner="REL-9" data-role="cardinality">1..*</text>
+  <text x="40" y="810" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937">依据：由本设计中列出的持久记录（成员、对话、审批、审计、文档版本、反馈）推导；属性列表仅作示意。</text>
+  <polyline points="290,277 420,277" data-role="edge" data-id="REL-1" data-from="DE-tenant" data-to="DE-member" data-kind="assoc" fill="none" stroke="#4B5563" stroke-width="1.8" />
+  <rect x="334.0" y="283.0" width="42.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-REL-1" data-parent="REL-1" />
+  <text x="339" y="303" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="REL-1" data-role="edge-label">包含</text>
+  <polyline points="670,277 800,277" data-role="edge" data-id="REL-2" data-from="DE-member" data-to="DE-chat" data-kind="assoc" fill="none" stroke="#4B5563" stroke-width="1.8" />
+  <rect x="714.0" y="283.0" width="42.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-REL-2" data-parent="REL-2" />
+  <text x="719" y="303" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="REL-2" data-role="edge-label">发起</text>
+  <polyline points="1050,277 1130,277" data-role="edge" data-id="REL-3" data-from="DE-chat" data-to="DE-approval" data-kind="assoc" fill="none" stroke="#4B5563" stroke-width="1.8" />
+  <rect x="1069.0" y="283.0" width="42.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-REL-3" data-parent="REL-3" />
+  <text x="1074" y="303" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="REL-3" data-role="edge-label">请求</text>
+  <polyline points="165,334 165,430" data-role="edge" data-id="REL-4" data-from="DE-tenant" data-to="DE-docver" data-kind="assoc" fill="none" stroke="#4B5563" stroke-width="1.8" />
+  <rect x="170.0" y="368.0" width="42.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-REL-4" data-parent="REL-4" />
+  <text x="175" y="388" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="REL-4" data-role="edge-label">拥有</text>
+  <polyline points="165,544 165,640" data-role="edge" data-id="REL-5" data-from="DE-docver" data-to="DE-chunk" data-kind="assoc" fill="none" stroke="#4B5563" stroke-width="1.8" />
+  <rect x="170.0" y="578.0" width="74.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-REL-5" data-parent="REL-5" />
+  <text x="175" y="598" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="REL-5" data-role="edge-label">被切分为</text>
+  <polyline points="925,334 925,430" data-role="edge" data-id="REL-6" data-from="DE-chat" data-to="DE-feedback" data-kind="assoc" fill="none" stroke="#4B5563" stroke-width="1.8" />
+  <rect x="930.0" y="368.0" width="42.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-REL-6" data-parent="REL-6" />
+  <text x="935" y="388" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="REL-6" data-role="edge-label">收到</text>
+  <polyline points="925,544 925,640" data-role="edge" data-id="REL-7" data-from="DE-feedback" data-to="DE-evalrec" data-kind="assoc" fill="none" stroke="#4B5563" stroke-width="1.8" />
+  <rect x="930.0" y="578.0" width="74.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-REL-7" data-parent="REL-7" />
+  <text x="935" y="598" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="REL-7" data-role="edge-label">被导出为</text>
+  <polyline points="1250,334 1250,430" data-role="edge" data-id="REL-8" data-from="DE-approval" data-to="DE-exec" data-kind="assoc" fill="none" stroke="#4B5563" stroke-width="1.8" />
+  <rect x="1255.0" y="368.0" width="42.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-REL-8" data-parent="REL-8" />
+  <text x="1260" y="388" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="REL-8" data-role="edge-label">授权</text>
+  <polyline points="1250,544 1250,640" data-role="edge" data-id="REL-9" data-from="DE-exec" data-to="DE-audit" data-kind="assoc" fill="none" stroke="#4B5563" stroke-width="1.8" />
+  <rect x="1255.0" y="578.0" width="74.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-REL-9" data-parent="REL-9" />
+  <text x="1260" y="598" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="REL-9" data-role="edge-label">被记录为</text>
+  <rect x="28" y="880" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-1" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="82" y="897" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-1">应用记录（DS-app）</text>
+  <rect x="473" y="880" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-2" fill="#E3F4E8" stroke="#2F7D4F" stroke-width="1.8" rx="8" />
+  <text x="527" y="897" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-2">知识数据（DS-doc、DS-index）</text>
+  <rect x="918" y="880" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-3" fill="#FFF1D6" stroke="#A8741A" stroke-width="1.8" rx="8" />
+  <text x="972" y="897" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-3">评测数据（DS-eval）</text>
+  <polyline points="28,935 70,935" data-role="edge" data-kind="legend" data-id="legend-line-4" fill="none" stroke="#4B5563" stroke-width="1.8" />
+  <text x="82" y="942" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-4">关系（动词自第一个实体读起）</text>
 </svg>

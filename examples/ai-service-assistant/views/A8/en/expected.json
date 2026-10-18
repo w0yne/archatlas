@@ -1,5 +1,5 @@
 {
-  "scenarioVersion": 1,
+  "scenarioVersion": 2,
   "entities": {
     "ST-baseline": "ST-baseline",
     "ST-answers": "ST-answers",
@@ -15,5 +15,7 @@
     "I-eval",
     "I-bounds"
   ],
-  "projection": "focused view; omissions described in caption; not a deployed system"
+  "projection": "focused view; omissions described in caption; not a deployed system",
+  "missingFacts": [],
+  "assumptions": []
 }

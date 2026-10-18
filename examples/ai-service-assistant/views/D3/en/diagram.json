@@ -6,7 +6,7 @@
     "lang": "en",
     "state": "to-be",
     "audience": "architects and reviewers",
-    "description": "Fictional teaching design; scenario.json version 1"
+    "description": "Fictional teaching design; scenario.json version 2; illustrative assumptions, not a deployed system"
   },
   "layout": {
     "template": "nested"
@@ -58,7 +58,7 @@
       "label": "Application records",
       "parent": "G-eval",
       "style": "peer",
-      "sub": "DS-app · PostgreSQL · Owner: unknown"
+      "sub": "DS-app · PostgreSQL · Owner: Knowledge steward"
     },
     {
       "id": "P-export",
