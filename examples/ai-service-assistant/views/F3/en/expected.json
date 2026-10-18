@@ -1,0 +1,26 @@
+{
+  "scenarioVersion": 1,
+  "entities": {},
+  "invariants": [
+    "I-tenant",
+    "I-approval",
+    "I-authority",
+    "I-tokens",
+    "I-eval",
+    "I-operator"
+  ],
+  "projection": "focused view; omissions described in caption; not a deployed system",
+  "tableSourceRefs": [
+    "scenario.json:entities",
+    "scenario.json:invariants"
+  ],
+  "roleEntities": [
+    "R-employee",
+    "R-steward",
+    "R-operator"
+  ],
+  "missingFacts": [
+    "Complete role-combining policy",
+    "Steward content-read grant"
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "H2",
+    "title": "H2 · Redacted service evidence — observability",
+    "lang": "en",
+    "state": "to-be",
+    "audience": "architects and reviewers",
+    "description": "Fictional teaching design; scenario.json version 1"
+  },
+  "layout": {
+    "template": "nested"
+  },
+  "nodes": [
+    {
+      "id": "C-api",
+      "kind": "container",
+      "label": "Application API/BFF",
+      "parent": "OBS-source",
+      "style": "peer",
+      "sub": "Authorization / request outcomes"
+    },
+    {
+      "id": "C-agent",
+      "kind": "container",
+      "label": "Agent Service",
+      "parent": "OBS-source",
+      "style": "peer",
+      "sub": "Latency / model tokens"
+    },
+    {
+      "id": "C-tools",
+      "kind": "container",
+      "label": "MCP Tool Gateway",
+      "parent": "OBS-source",
+      "style": "peer",
+      "sub": "Policy denials / tool outcomes"
+    },
+    {
+      "id": "C-ingest",
+      "kind": "container",
+      "label": "Ingestion Worker",
+      "parent": "OBS-source",
+      "style": "peer",
+      "sub": "Version jobs / retry failures"
+    },
+    {
+      "id": "Q-ingest",
+      "kind": "queue",
+      "label": "Ingestion queue + DLQ",
+      "parent": "OBS-source",
+      "style": "peer",
+      "sub": "Backlog / DLQ evidence"
+    },
+    {
+      "id": "C-eval",
+      "kind": "container",
+      "label": "Evaluation Job",
+      "parent": "OBS-source",
+      "style": "peer",
+      "sub": "Offline quality / token cost"
+    },
+    {
+      "id": "AWS-ops",
+      "kind": "component",
+      "label": "CloudWatch · KMS · Secrets",
+      "style": "primary",
+      "sub": "CloudWatch telemetry projection · No tokens or document text in logs"
+    },
+    {
+      "id": "R-operator",
+      "kind": "person",
+      "label": "Platform operator",
+      "style": "external",
+      "sub": "Service health, not content access"
+    }
+  ],
+  "edges": [
+    {
+      "id": "OBS-1",
+      "from": "C-api",
+      "to": "AWS-ops",
+      "label": "Redacted signal",
+      "kind": "data"
+    },
+    {
+      "id": "OBS-2",
+      "from": "C-agent",
+      "to": "AWS-ops",
+      "label": "Redacted signal",
+      "kind": "data"
+    },
+    {
+      "id": "OBS-3",
+      "from": "C-tools",
+      "to": "AWS-ops",
+      "label": "Redacted signal",
+      "kind": "data"
+    },
+    {
+      "id": "OBS-4",
+      "from": "C-ingest",
+      "to": "AWS-ops",
+      "label": "Redacted signal",
+      "kind": "data"
+    },
+    {
+      "id": "OBS-5",
+      "from": "Q-ingest",
+      "to": "AWS-ops",
+      "label": "Redacted signal",
+      "kind": "data"
+    },
+    {
+      "id": "OBS-6",
+      "from": "C-eval",
+      "to": "AWS-ops",
+      "label": "Redacted signal",
+      "kind": "data"
+    },
+    {
+      "id": "OBS-7",
+      "from": "AWS-ops",
+      "to": "R-operator",
+      "label": "Read health / cost evidence",
+      "kind": "data"
+    }
+  ],
+  "groups": [
+    {
+      "id": "OBS-source",
+      "title": "Existing runtime and queue sources",
+      "kind": "boundary"
+    }
+  ]
+}

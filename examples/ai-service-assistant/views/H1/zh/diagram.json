@@ -1,0 +1,60 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "H1",
+    "title": "H1 · 服务运营 — RACI 责任梳理矩阵",
+    "lang": "zh",
+    "state": "to-be",
+    "audience": "architects and reviewers",
+    "description": "Fictional teaching design; scenario.json version 1"
+  },
+  "layout": {
+    "template": "grid_table"
+  },
+  "nodes": [],
+  "edges": [],
+  "groups": [],
+  "tables": [
+    {
+      "id": "raci",
+      "columns": [
+        "活动",
+        "员工 / 审批人",
+        "知识管理员",
+        "平台运维员"
+      ],
+      "rows": [
+        [
+          "审批本人许可草稿",
+          "R",
+          "?",
+          "?"
+        ],
+        [
+          "维护租户知识 / ACL",
+          "?",
+          "R",
+          "?"
+        ],
+        [
+          "批准去标识评测导出",
+          "?",
+          "R",
+          "?"
+        ],
+        [
+          "运维服务健康",
+          "?",
+          "?",
+          "R"
+        ],
+        [
+          "负责发布 / 恢复决策",
+          "?",
+          "?",
+          "?"
+        ]
+      ]
+    }
+  ]
+}

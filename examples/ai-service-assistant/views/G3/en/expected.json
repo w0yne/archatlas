@@ -1,0 +1,23 @@
+{
+  "scenarioVersion": 1,
+  "entities": {
+    "C-web": "C-web",
+    "AWS-alb": "AWS-alb",
+    "C-api": "C-api",
+    "C-agent": "C-agent",
+    "C-tools": "C-tools",
+    "X-idp": "X-idp",
+    "X-desk": "X-desk"
+  },
+  "invariants": [
+    "I-delegation",
+    "I-tokens",
+    "I-approval"
+  ],
+  "projection": "focused view; omissions described in caption; not a deployed system",
+  "missingFacts": [
+    "Addressing / subnet and listener-port plan",
+    "DNS, routes, ingress and egress filters",
+    "Private endpoint versus egress mechanism and return paths"
+  ]
+}

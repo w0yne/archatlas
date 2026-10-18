@@ -37,20 +37,20 @@
       "sub": "C-tools · Python / MCP HTTPS · Verify delegation; enforce tool policy"
     },
     {
-      "id": "C-agent",
-      "kind": "container",
-      "label": "Agent Service",
-      "parent": "B-system",
-      "style": "peer",
-      "sub": "C-agent · Python / HTTPS · Bounded plan, retrieve, model, tools"
-    },
-    {
       "id": "DS-app",
       "kind": "store",
       "label": "Application records",
       "parent": "B-system",
       "style": "peer",
       "sub": "DS-app · PostgreSQL · Memberships, chats, approvals, audit"
+    },
+    {
+      "id": "C-agent",
+      "kind": "container",
+      "label": "Agent Service",
+      "parent": "B-system",
+      "style": "peer",
+      "sub": "C-agent · Python / HTTPS · Bounded plan, retrieve, model, tools"
     },
     {
       "id": "DS-index",
@@ -61,12 +61,12 @@
       "sub": "DS-index · OpenSearch · Derived chunks, vectors, tenant ACL"
     },
     {
-      "id": "C-ingest",
-      "kind": "container",
-      "label": "Ingestion Worker",
+      "id": "DS-doc",
+      "kind": "store",
+      "label": "Document versions",
       "parent": "B-system",
       "style": "peer",
-      "sub": "C-ingest · Python / batch · Version, chunk, embed and index"
+      "sub": "DS-doc · S3 · Versioned source and ACL snapshot"
     },
     {
       "id": "Q-ingest",
@@ -77,20 +77,12 @@
       "sub": "Q-ingest · SQS · Version jobs; retry / DLQ"
     },
     {
-      "id": "DS-doc",
-      "kind": "store",
-      "label": "Document versions",
-      "parent": "B-system",
-      "style": "peer",
-      "sub": "DS-doc · S3 · Versioned source and ACL snapshot"
-    },
-    {
-      "id": "C-eval",
+      "id": "C-ingest",
       "kind": "container",
-      "label": "Evaluation Job",
+      "label": "Ingestion Worker",
       "parent": "B-system",
       "style": "peer",
-      "sub": "C-eval · Python / batch · Offline quality and cost gates"
+      "sub": "C-ingest · Python / batch · Version, chunk, embed and index"
     },
     {
       "id": "DS-eval",
@@ -99,6 +91,14 @@
       "parent": "B-system",
       "style": "peer",
       "sub": "DS-eval · S3 · Approved deidentified data and runs"
+    },
+    {
+      "id": "C-eval",
+      "kind": "container",
+      "label": "Evaluation Job",
+      "parent": "B-system",
+      "style": "peer",
+      "sub": "C-eval · Python / batch · Offline quality and cost gates"
     },
     {
       "id": "X-model",
@@ -113,14 +113,14 @@
       "id": "CON-1",
       "from": "C-web",
       "to": "C-api",
-      "label": "Chat / approve · HTTPS",
+      "label": "Chat · HTTPS",
       "kind": "call"
     },
     {
       "id": "CON-2",
       "from": "C-tools",
       "to": "C-api",
-      "label": "Approval lookup · HTTPS",
+      "label": "Approval · HTTPS",
       "kind": "call"
     },
     {
@@ -134,21 +134,28 @@
       "id": "CON-4",
       "from": "C-api",
       "to": "DS-app",
-      "label": "Sessions / approvals · SQL",
-      "kind": "call"
-    },
-    {
-      "id": "CON-5",
-      "from": "C-agent",
-      "to": "DS-index",
-      "label": "Tenant + ACL search",
+      "label": "Records · SQL",
       "kind": "call"
     },
     {
       "id": "CON-6",
       "from": "C-agent",
       "to": "C-tools",
-      "label": "Scoped MCP · HTTPS",
+      "label": "MCP · HTTPS",
+      "kind": "call"
+    },
+    {
+      "id": "CON-5",
+      "from": "C-agent",
+      "to": "DS-index",
+      "label": "Tenant/ACL search",
+      "kind": "call"
+    },
+    {
+      "id": "CON-17",
+      "from": "C-api",
+      "to": "Q-ingest",
+      "label": "Enqueue · SQS",
       "kind": "call"
     },
     {
@@ -162,7 +169,7 @@
       "id": "CON-11",
       "from": "C-ingest",
       "to": "DS-index",
-      "label": "Publish chunks · HTTPS",
+      "label": "Publish · HTTPS",
       "kind": "call"
     },
     {
@@ -177,6 +184,13 @@
       "from": "C-eval",
       "to": "DS-eval",
       "label": "Read/write · S3",
+      "kind": "call"
+    },
+    {
+      "id": "CON-18",
+      "from": "C-ingest",
+      "to": "X-model",
+      "label": "Embed · HTTPS",
       "kind": "call"
     },
     {

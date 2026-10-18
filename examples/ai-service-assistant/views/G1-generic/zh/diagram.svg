@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1720 1360" lang="zh" data-archatlas="0.1">
+<title>G1 · 企业服务助手 — 软件承载分配</title>
+<desc>虚构目标设计 · 冻结部署的供应商中立投影；不另选平台</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,4 L0,8 Z" fill="#4B5563"/></marker></defs>
+<rect data-role="canvas" width="1720" height="1360" fill="#ffffff"/>
+<text x="28" y="40" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="28" font-weight="700" fill="#1F2937">G1 · 企业服务助手 — 软件承载分配</text>
+<text x="28" y="72" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">虚构目标设计 · 冻结部署的供应商中立投影；不另选平台</text>
+<rect x="25" y="120" width="400" height="210" data-role="group" data-id="HOST-client" data-kind="boundary" fill="#F3F8FF" stroke="#3D6FB2" stroke-width="1.6" rx="10"/>
+<text x="43" y="152" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="700" fill="#1F2937" data-owner="HOST-client" data-role="group-title">用户设备</text>
+<rect x="55" y="195" width="340" height="100" data-role="node" data-id="C-web" data-kind="container" data-parent="HOST-client" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="69" y="224" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-web" data-role="name">Web 门户</text>
+<text x="69" y="249" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-web" data-role="sub">浏览器运行 · 静态资源</text>
+<rect x="490" y="120" width="1190" height="260" data-role="group" data-id="HOST-app" data-kind="boundary" fill="#F3F8FF" stroke="#3D6FB2" stroke-width="1.6" rx="10"/>
+<text x="508" y="152" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="700" fill="#1F2937" data-owner="HOST-app" data-role="group-title">应用计算 · 两个故障域</text>
+<rect x="520" y="205" width="350" height="115" data-role="node" data-id="C-api" data-kind="container" data-parent="HOST-app" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="534" y="234" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-api" data-role="name">应用 API/BFF</text>
+<text x="534" y="259" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-api" data-role="sub">C-api</text>
+<text x="534" y="282" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-api" data-role="sub">至少 2 个实例跨 AZ-A + AZ-B</text>
+<rect x="910" y="205" width="350" height="115" data-role="node" data-id="C-agent" data-kind="container" data-parent="HOST-app" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="924" y="234" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-agent" data-role="name">Agent 服务</text>
+<text x="924" y="259" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-agent" data-role="sub">C-agent</text>
+<text x="924" y="282" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-agent" data-role="sub">至少 2 个实例跨 AZ-A + AZ-B</text>
+<rect x="1300" y="205" width="350" height="115" data-role="node" data-id="C-tools" data-kind="container" data-parent="HOST-app" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="1314" y="234" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-tools" data-role="name">MCP 工具网关</text>
+<text x="1314" y="259" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-tools" data-role="sub">C-tools</text>
+<text x="1314" y="282" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-tools" data-role="sub">至少 2 个实例跨 AZ-A + AZ-B</text>
+<rect x="25" y="475" width="775" height="255" data-role="group" data-id="HOST-jobs" data-kind="boundary" fill="#F3F8FF" stroke="#3D6FB2" stroke-width="1.6" rx="10"/>
+<text x="43" y="507" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="700" fill="#1F2937" data-owner="HOST-jobs" data-role="group-title">批处理计算 · AZ-A 或 AZ-B</text>
+<rect x="55" y="565" width="330" height="115" data-role="node" data-id="C-ingest" data-kind="container" data-parent="HOST-jobs" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="69" y="594" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-ingest" data-role="name">摄取工作进程</text>
+<text x="69" y="619" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-ingest" data-role="sub">C-ingest</text>
+<text x="69" y="642" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-ingest" data-role="sub">独立身份；按需调度任务</text>
+<rect x="440" y="565" width="330" height="115" data-role="node" data-id="C-eval" data-kind="container" data-parent="HOST-jobs" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="454" y="594" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-eval" data-role="name">评测任务</text>
+<text x="454" y="619" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-eval" data-role="sub">C-eval</text>
+<text x="454" y="642" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-eval" data-role="sub">独立身份；按需调度任务</text>
+<rect x="855" y="475" width="825" height="665" data-role="group" data-id="HOST-data" data-kind="boundary" fill="#F3F8FF" stroke="#3D6FB2" stroke-width="1.6" rx="10"/>
+<text x="873" y="507" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="700" fill="#1F2937" data-owner="HOST-data" data-role="group-title">托管存储 · 故障域依服务分别说明</text>
+<rect x="885" y="565" width="365" height="115" data-role="node" data-id="DS-app" data-kind="store" data-parent="HOST-data" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="899" y="594" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DS-app" data-role="name">应用记录</text>
+<text x="899" y="619" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DS-app" data-role="sub">写节点与读节点分属两个可用区</text>
+<text x="899" y="642" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DS-app" data-role="sub">托管存储跨三个可用区</text>
+<rect x="1280" y="565" width="365" height="115" data-role="node" data-id="DS-index" data-kind="store" data-parent="HOST-data" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="1294" y="594" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DS-index" data-role="name">检索索引</text>
+<text x="1294" y="619" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DS-index" data-role="sub">副本分布于两个可用区</text>
+<rect x="885" y="780" width="365" height="115" data-role="node" data-id="DS-doc" data-kind="store" data-parent="HOST-data" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="899" y="809" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DS-doc" data-role="name">文档版本</text>
+<text x="899" y="834" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DS-doc" data-role="sub">区域级版本化对象存储</text>
+<rect x="1280" y="780" width="365" height="115" data-role="node" data-id="DS-eval" data-kind="store" data-parent="HOST-data" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="1294" y="809" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DS-eval" data-role="name">评测数据集</text>
+<text x="1294" y="834" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DS-eval" data-role="sub">区域级隔离数据集存储</text>
+<rect x="885" y="985" width="365" height="115" data-role="node" data-id="Q-ingest" data-kind="queue" data-parent="HOST-data" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="899" y="1014" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="Q-ingest" data-role="name">摄取队列 + DLQ</text>
+<text x="899" y="1039" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="Q-ingest" data-role="sub">区域任务与隔离队列</text>
+<polyline points="395,245 520,245" data-role="edge" data-id="HOST-1" data-from="C-web" data-to="C-api" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="430" y="205" width="58.421875" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-HOST-1" data-parent="HOST-1"/>
+<text x="435" y="225" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="HOST-1" data-role="edge-label">HTTPS</text>
+<polyline points="690,320 690,440 830,440 830,620 885,620" data-role="edge" data-id="HOST-2" data-from="C-api" data-to="DS-app" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="695" y="400" width="90.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-HOST-2" data-parent="HOST-2"/>
+<text x="700" y="420" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="HOST-2" data-role="edge-label">数据库连接</text>
+<polyline points="1085,320 1085,430 1460,430 1460,565" data-role="edge" data-id="HOST-3" data-from="C-agent" data-to="DS-index" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="1335" y="392" width="74.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-HOST-3" data-parent="HOST-3"/>
+<text x="1340" y="412" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="HOST-3" data-role="edge-label">授权检索</text>
+<text x="28" y="1200" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937">六个运行单元，存储另计。包含关系表示承载；箭头仅画选定通信。</text>
+<text x="28" y="1235" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937">外部身份、模型、工单见 C2/C3/F1；通用名称抽象同一部署，不新增故障切换承诺。</text>
+<rect x="28" y="1290" width="42" height="22" data-role="legend-zone" data-id="__legend-swatch-1" fill="#F3F8FF" stroke="#3D6FB2" stroke-width="1.6" rx="10"/>
+<text x="82" y="1307" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-1">系统 / 部署边界</text>
+<rect x="473" y="1290" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-2" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="527" y="1307" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-2">范围内元素</text>
+<polyline points="918,1300 960,1300" data-role="edge" data-kind="legend" data-id="legend-line-3" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="972" y="1307" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-3">选定通信</text>
+</svg>

@@ -1,0 +1,24 @@
+{
+  "scenarioVersion": 1,
+  "entities": {
+    "C-api": "C-api",
+    "C-agent": "C-agent",
+    "C-tools": "C-tools",
+    "C-ingest": "C-ingest",
+    "Q-ingest": "Q-ingest",
+    "C-eval": "C-eval",
+    "AWS-ops": "AWS-ops",
+    "R-operator": "R-operator"
+  },
+  "invariants": [
+    "I-operator",
+    "I-eval",
+    "I-ingest"
+  ],
+  "projection": "focused view; omissions described in caption; not a deployed system",
+  "missingFacts": [
+    "SLI/SLO definitions and targets",
+    "Sampling, retention and telemetry delivery policy",
+    "Alert thresholds, notification route and response runbooks"
+  ]
+}
