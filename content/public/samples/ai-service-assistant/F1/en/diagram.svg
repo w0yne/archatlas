@@ -33,19 +33,26 @@
 <line x1="35" y1="945" x2="1360" y2="945" stroke="#666A73" stroke-dasharray="5 5"/>
 <text x="50" y="975" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937">[else: AS denies exchange; no tool token]</text>
 <polyline points="175,295 525,295" data-role="edge" data-id="AUTH-1" data-from="C-agent" data-to="X-idp" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="187" y="283" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">Exchange subject token + client auth</text>
+<rect x="182" y="263" width="284.421875" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-AUTH-1" data-parent="AUTH-1"/>
+<text x="187" y="283" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="AUTH-1" data-role="edge-label">Exchange subject token + client auth</text>
 <polyline points="525,360 175,360" data-role="edge" data-id="AUTH-2" data-from="X-idp" data-to="C-agent" data-kind="reply" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" stroke-dasharray="6 4"/>
-<text x="187" y="348" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">Downscoped tool token</text>
+<rect x="182" y="328" width="187.8125" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-AUTH-2" data-parent="AUTH-2"/>
+<text x="187" y="348" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="AUTH-2" data-role="edge-label">Downscoped tool token</text>
 <polyline points="175,510 875,510" data-role="edge" data-id="AUTH-3" data-from="C-agent" data-to="C-tools" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="187" y="498" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">Tool token + bound approval</text>
+<rect x="182" y="478" width="224.6875" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-AUTH-3" data-parent="AUTH-3"/>
+<text x="187" y="498" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="AUTH-3" data-role="edge-label">Tool token + bound approval</text>
 <polyline points="875,680 1225,680" data-role="edge" data-id="AUTH-4" data-from="C-tools" data-to="X-desk" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="887" y="668" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">Permitted request + connector credential</text>
+<rect x="882" y="648" width="318.890625" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-AUTH-4" data-parent="AUTH-4"/>
+<text x="887" y="668" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="AUTH-4" data-role="edge-label">Permitted request + connector credential</text>
 <polyline points="1225,750 875,750" data-role="edge" data-id="AUTH-5" data-from="X-desk" data-to="C-tools" data-kind="reply" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" stroke-dasharray="6 4"/>
-<text x="887" y="738" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">Ticket result</text>
+<rect x="882" y="718" width="101.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-AUTH-5" data-parent="AUTH-5"/>
+<text x="887" y="738" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="AUTH-5" data-role="edge-label">Ticket result</text>
 <polyline points="875,885 175,885" data-role="edge" data-id="AUTH-6" data-from="C-tools" data-to="C-agent" data-kind="reply" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" stroke-dasharray="6 4"/>
-<text x="187" y="873" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">401 / 403; stop before connector</text>
+<rect x="182" y="853" width="254.265625" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-AUTH-6" data-parent="AUTH-6"/>
+<text x="187" y="873" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="AUTH-6" data-role="edge-label">401 / 403; stop before connector</text>
 <polyline points="525,1020 175,1020" data-role="edge" data-id="AUTH-7" data-from="X-idp" data-to="C-agent" data-kind="reply" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" stroke-dasharray="6 4"/>
-<text x="187" y="1008" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">invalid_grant / access_denied; stop</text>
+<rect x="182" y="988" width="270.328125" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-AUTH-7" data-parent="AUTH-7"/>
+<text x="187" y="1008" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="AUTH-7" data-role="edge-label">invalid_grant / access_denied; stop</text>
 <text x="28" y="1130" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937">Exchange client: agent-client · input aud=agent-service · subject=employee</text>
 <text x="28" y="1165" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937">Tool token: iss=enterprise-as · aud=mcp-tool-gateway · sub=employee · act=agent-client</text>
 <text x="28" y="1200" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937">Bound claims: verified tenant · permitted tool scopes · short expiry · signature checked by gateway</text>

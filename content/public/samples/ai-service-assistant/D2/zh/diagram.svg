@@ -26,27 +26,38 @@
 <g data-role="node" data-id="DS-app" data-kind="store" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8"><polyline points="315,950 30,950 30,1040 315,1040" fill="none" stroke="#3D6FB2" stroke-width="1.8"/></g>
 <text x="44" y="979" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DS-app" data-role="name">应用记录</text>
 <polyline points="310,190 450,190" data-role="edge" data-id="DATA-1" data-from="X-doc" data-to="P-ingest" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="315" y="175" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">原文 + ACL</text>
+<rect x="310" y="155" width="87.875" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DATA-1" data-parent="DATA-1"/>
+<text x="315" y="175" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DATA-1" data-role="edge-label">原文 + ACL</text>
 <polyline points="735,190 950,190" data-role="edge" data-id="DATA-2" data-from="P-ingest" data-to="DS-doc" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="755" y="175" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">文档版本</text>
+<rect x="750" y="155" width="74.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DATA-2" data-parent="DATA-2"/>
+<text x="755" y="175" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DATA-2" data-role="edge-label">文档版本</text>
 <polyline points="590,240 590,340" data-role="edge" data-id="DATA-3" data-from="P-ingest" data-to="DS-index" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="610" y="290" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">带权限分块</text>
+<rect x="605" y="270" width="90.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DATA-3" data-parent="DATA-3"/>
+<text x="610" y="290" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DATA-3" data-role="edge-label">带权限分块</text>
 <polyline points="540,430 540,530" data-role="edge" data-id="DATA-4" data-from="DS-index" data-to="P-retrieve" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="560" y="490" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">候选分块</text>
+<rect x="555" y="470" width="74.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DATA-4" data-parent="DATA-4"/>
+<text x="560" y="490" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DATA-4" data-role="edge-label">候选分块</text>
 <polyline points="310,570 450,570" data-role="edge" data-id="DATA-5" data-from="R-employee" data-to="P-retrieve" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="310" y="553" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">问题 + 身份</text>
+<rect x="305" y="533" width="91.46875" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DATA-5" data-parent="DATA-5"/>
+<text x="310" y="553" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DATA-5" data-role="edge-label">问题 + 身份</text>
 <polyline points="735,570 920,570 920,800" data-role="edge" data-id="DATA-6" data-from="P-retrieve" data-to="P-compose" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="760" y="745" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">许可上下文</text>
+<rect x="755" y="725" width="90.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DATA-6" data-parent="DATA-6"/>
+<text x="760" y="745" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DATA-6" data-role="edge-label">许可上下文</text>
 <polyline points="1080,800 1080,700 1180,700 1180,630" data-role="edge" data-id="DATA-7" data-from="P-compose" data-to="X-model" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="1120" y="730" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">含依据的提示</text>
+<rect x="1115" y="710" width="106.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DATA-7" data-parent="DATA-7"/>
+<text x="1120" y="730" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DATA-7" data-role="edge-label">含依据的提示</text>
 <polyline points="1260,630 1260,845 1135,845" data-role="edge" data-id="DATA-8" data-from="X-model" data-to="P-compose" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="1135" y="820" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">草稿 + 引用</text>
+<rect x="1130" y="800" width="91.46875" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DATA-8" data-parent="DATA-8"/>
+<text x="1135" y="820" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DATA-8" data-role="edge-label">草稿 + 引用</text>
 <polyline points="850,845 735,845" data-role="edge" data-id="DATA-9" data-from="P-compose" data-to="P-cite" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="750" y="828" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">回答</text>
+<rect x="745" y="808" width="42.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DATA-9" data-parent="DATA-9"/>
+<text x="750" y="828" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DATA-9" data-role="edge-label">回答</text>
 <polyline points="490,890 490,925 170,925 170,950" data-role="edge" data-id="DATA-10" data-from="P-cite" data-to="DS-app" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="240" y="910" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">审计记录</text>
+<rect x="235" y="890" width="74.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DATA-10" data-parent="DATA-10"/>
+<text x="240" y="910" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DATA-10" data-role="edge-label">审计记录</text>
 <polyline points="490,800 490,690 170,690 170,630" data-role="edge" data-id="DATA-11" data-from="P-cite" data-to="R-employee" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="210" y="680" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">已授权引用链接</text>
+<rect x="205" y="660" width="122.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DATA-11" data-parent="DATA-11"/>
+<text x="210" y="680" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DATA-11" data-role="edge-label">已授权引用链接</text>
 <rect x="28" y="1100" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-1" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="0"/>
 <text x="82" y="1117" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-1">外部角色 / 系统</text>
 <rect x="473" y="1100" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-2" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="22"/>

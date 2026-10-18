@@ -15,43 +15,50 @@
 <text x="44" y="194" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="R-employee" data-role="sub">人员</text>
 <text x="44" y="217" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="R-employee" data-role="sub">提问；审批本人权限内的请求</text>
 <polyline points="330,191 405,191 405,405 510,405" data-role="edge" data-id="CTX-1" data-from="R-employee" data-to="S-assistant" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="348" y="173" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">提问与审批</text>
+<rect x="343" y="153" width="90.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-CTX-1" data-parent="CTX-1"/>
+<text x="348" y="173" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="CTX-1" data-role="edge-label">提问与审批</text>
 <rect x="30" y="410" width="300" height="102" data-role="node" data-id="R-steward" data-kind="person" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="8"/>
 <text x="44" y="439" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="R-steward" data-role="name">知识管理员</text>
 <text x="44" y="464" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="R-steward" data-role="sub">人员</text>
 <text x="44" y="487" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="R-steward" data-role="sub">维护本租户知识与访问规则</text>
 <polyline points="330,461 405,461 405,453 510,453" data-role="edge" data-id="CTX-2" data-from="R-steward" data-to="S-assistant" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="348" y="443" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">维护知识</text>
+<rect x="343" y="423" width="74.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-CTX-2" data-parent="CTX-2"/>
+<text x="348" y="443" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="CTX-2" data-role="edge-label">维护知识</text>
 <rect x="30" y="740" width="300" height="102" data-role="node" data-id="R-operator" data-kind="person" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="8"/>
 <text x="44" y="769" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="R-operator" data-role="name">平台运维员</text>
 <text x="44" y="794" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="R-operator" data-role="sub">人员</text>
 <text x="44" y="817" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="R-operator" data-role="sub">运维；无默认数据权限</text>
 <polyline points="330,791 405,791 405,501 510,501" data-role="edge" data-id="CTX-3" data-from="R-operator" data-to="S-assistant" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="348" y="773" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">运维服务</text>
+<rect x="343" y="753" width="74.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-CTX-3" data-parent="CTX-3"/>
+<text x="348" y="773" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="CTX-3" data-role="edge-label">运维服务</text>
 <rect x="1050" y="140" width="320" height="102" data-role="node" data-id="X-idp" data-kind="external" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="0"/>
 <text x="1064" y="169" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="X-idp" data-role="name">企业身份服务</text>
 <text x="1064" y="194" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-idp" data-role="sub">外部系统</text>
 <text x="1064" y="217" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-idp" data-role="sub">身份与受限委托</text>
 <polyline points="875,395 925,395 925,191 1050,191" data-role="edge" data-id="CTX-4" data-from="S-assistant" data-to="X-idp" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="880" y="169" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">验证身份</text>
+<rect x="1055" y="102" width="74.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-CTX-4" data-parent="CTX-4"/>
+<text x="1060" y="122" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="CTX-4" data-role="edge-label">验证身份</text>
 <rect x="1050" y="350" width="320" height="102" data-role="node" data-id="X-doc" data-kind="external" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="0"/>
 <text x="1064" y="379" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="X-doc" data-role="name">文档源系统</text>
 <text x="1064" y="404" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-doc" data-role="sub">外部系统</text>
 <text x="1064" y="427" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-doc" data-role="sub">原始文档与访问策略</text>
 <polyline points="875,433 945,433 945,401 1050,401" data-role="edge" data-id="CTX-5" data-from="S-assistant" data-to="X-doc" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="880" y="379" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">导入知识</text>
+<rect x="1055" y="312" width="74.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-CTX-5" data-parent="CTX-5"/>
+<text x="1060" y="332" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="CTX-5" data-role="edge-label">导入知识</text>
 <rect x="1050" y="570" width="320" height="102" data-role="node" data-id="X-desk" data-kind="external" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="0"/>
 <text x="1064" y="599" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="X-desk" data-role="name">服务工单系统</text>
 <text x="1064" y="624" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-desk" data-role="sub">外部系统</text>
 <text x="1064" y="647" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-desk" data-role="sub">服务目录、工单读取与创建</text>
 <polyline points="875,471 965,471 965,621 1050,621" data-role="edge" data-id="CTX-6" data-from="S-assistant" data-to="X-desk" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="880" y="599" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">请求工单操作</text>
+<rect x="1055" y="532" width="106.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-CTX-6" data-parent="CTX-6"/>
+<text x="1060" y="552" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="CTX-6" data-role="edge-label">请求工单操作</text>
 <rect x="1050" y="780" width="320" height="102" data-role="node" data-id="X-model" data-kind="external" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="0"/>
 <text x="1064" y="809" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="X-model" data-role="name">托管模型服务</text>
 <text x="1064" y="834" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-model" data-role="sub">外部系统</text>
 <text x="1064" y="857" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-model" data-role="sub">生成文本与向量</text>
 <polyline points="875,509 985,509 985,831 1050,831" data-role="edge" data-id="CTX-7" data-from="S-assistant" data-to="X-model" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="880" y="809" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">请求生成草稿</text>
+<rect x="1055" y="742" width="106.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-CTX-7" data-parent="CTX-7"/>
+<text x="1060" y="762" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="CTX-7" data-role="edge-label">请求生成草稿</text>
 <rect x="28" y="970" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-1" fill="#1767B5" stroke="#03172E" stroke-width="2.4" rx="8"/>
 <text x="82" y="987" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-1">本图主体</text>
 <rect x="473" y="970" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-2" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="8"/>

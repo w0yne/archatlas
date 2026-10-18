@@ -6,7 +6,7 @@
 <text x="28" y="40" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="28" font-weight="700" fill="#1F2937">C3 · 企业服务助手 — 容器</text>
 <text x="28" y="72" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">虚构目标设计 · 六个运行单元；存储与外部服务另计</text>
 <rect x="25" y="230" width="1350" height="1130" data-role="group" data-id="B-system" data-kind="boundary" fill="#F3F8FF" stroke="#3D6FB2" stroke-width="1.6" rx="10"/>
-<text x="43" y="262" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="700" fill="#1F2937" data-owner="B-system" data-role="name">企业服务助手 · 自有应用与存储</text>
+<text x="43" y="262" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="700" fill="#1F2937" data-owner="B-system" data-role="group-title">企业服务助手 · 自有应用与存储</text>
 <rect x="60" y="310" width="300" height="108" data-role="node" data-id="C-web" data-kind="container" data-parent="B-system" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
 <text x="74" y="339" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-web" data-role="name">Web 门户</text>
 <text x="74" y="364" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-web" data-role="sub">C-web · TypeScript SPA</text>
@@ -56,29 +56,41 @@
 <text x="514" y="1459" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="X-model" data-role="name">托管模型服务</text>
 <text x="514" y="1484" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-model" data-role="sub">Bedrock · 文本 / 向量</text>
 <polyline points="360,355 500,355" data-role="edge" data-id="CON-1" data-from="C-web" data-to="C-api" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="365" y="295" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">对话 / 审批 · HTTPS</text>
+<rect x="360" y="275" width="149.28125" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-CON-1" data-parent="CON-1"/>
+<text x="365" y="295" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="CON-1" data-role="edge-label">对话 / 审批 · HTTPS</text>
 <polyline points="1040,355 800,355" data-role="edge" data-id="CON-2" data-from="C-tools" data-to="C-api" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="815" y="305" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">读取审批 · HTTPS</text>
+<rect x="810" y="285" width="135.015625" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-CON-2" data-parent="CON-2"/>
+<text x="815" y="305" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="CON-2" data-role="edge-label">读取审批 · HTTPS</text>
 <polyline points="650,418 650,590" data-role="edge" data-id="CON-3" data-from="C-api" data-to="C-agent" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="670" y="500" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">委托 · HTTPS</text>
+<rect x="495" y="525" width="103.015625" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-CON-3" data-parent="CON-3"/>
+<text x="500" y="545" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="CON-3" data-role="edge-label">委托 · HTTPS</text>
 <polyline points="500,390 435,390 435,630 360,630" data-role="edge" data-id="CON-4" data-from="C-api" data-to="DS-app" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="120" y="495" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">会话 / 审批 · SQL</text>
+<rect x="115" y="475" width="130.53125" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-CON-4" data-parent="CON-4"/>
+<text x="120" y="495" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="CON-4" data-role="edge-label">会话 / 审批 · SQL</text>
 <polyline points="800,630 1040,630" data-role="edge" data-id="CON-5" data-from="C-agent" data-to="DS-index" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="810" y="610" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">tenant + ACL 检索</text>
+<rect x="805" y="590" width="141.375" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-CON-5" data-parent="CON-5"/>
+<text x="810" y="610" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="CON-5" data-role="edge-label">tenant + ACL 检索</text>
 <polyline points="780,590 780,470 1000,470 1000,400 1040,400" data-role="edge" data-id="CON-6" data-from="C-agent" data-to="C-tools" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="800" y="460" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">受限 MCP · HTTPS</text>
+<rect x="795" y="440" width="141.484375" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-CON-6" data-parent="CON-6"/>
+<text x="800" y="460" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="CON-6" data-role="edge-label">受限 MCP · HTTPS</text>
 <polyline points="1040,950 800,950" data-role="edge" data-id="CON-10" data-from="C-ingest" data-to="Q-ingest" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="815" y="900" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">收取任务 · SQS</text>
+<rect x="995" y="845" width="116.65625" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-CON-10" data-parent="CON-10"/>
+<text x="1000" y="865" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="CON-10" data-role="edge-label">收取任务 · SQS</text>
 <polyline points="1200,900 1200,698" data-role="edge" data-id="CON-11" data-from="C-ingest" data-to="DS-index" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="1215" y="800" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">发布分块 · HTTPS</text>
+<rect x="1210" y="780" width="135.015625" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-CON-11" data-parent="CON-11"/>
+<text x="1215" y="800" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="CON-11" data-role="edge-label">发布分块 · HTTPS</text>
 <polyline points="1040,980 940,980 940,1100 360,1100" data-role="edge" data-id="CON-12" data-from="C-ingest" data-to="DS-doc" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="400" y="1080" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">版本原文 · S3 API</text>
+<rect x="395" y="1060" width="134.015625" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-CON-12" data-parent="CON-12"/>
+<text x="400" y="1080" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="CON-12" data-role="edge-label">版本原文 · S3 API</text>
 <polyline points="500,1245 360,1245" data-role="edge" data-id="CON-13" data-from="C-eval" data-to="DS-eval" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="360" y="1225" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">读写 · S3</text>
+<rect x="355" y="1205" width="72.53125" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-CON-13" data-parent="CON-13"/>
+<text x="360" y="1225" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="CON-13" data-role="edge-label">读写 · S3</text>
 <polyline points="650,1308 650,1430" data-role="edge" data-id="CON-14" data-from="C-eval" data-to="X-model" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="665" y="1395" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">评测 · HTTPS</text>
+<rect x="660" y="1375" width="103.015625" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-CON-14" data-parent="CON-14"/>
+<text x="665" y="1395" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="CON-14" data-role="edge-label">评测 · HTTPS</text>
 <polyline points="800,690 885,690 885,1490 850,1490" data-role="edge" data-id="CON-16" data-from="C-agent" data-to="X-model" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="885" y="1160" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">生成 · HTTPS</text>
+<rect x="905" y="1155" width="103.015625" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-CON-16" data-parent="CON-16"/>
+<text x="910" y="1175" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="CON-16" data-role="edge-label">生成 · HTTPS</text>
 <rect x="28" y="1550" width="42" height="22" data-role="legend-zone" data-id="__legend-swatch-1" fill="#F3F8FF" stroke="#3D6FB2" stroke-width="1.6" rx="10"/>
 <text x="82" y="1567" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-1">系统 / 部署边界</text>
 <rect x="473" y="1550" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-2" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>

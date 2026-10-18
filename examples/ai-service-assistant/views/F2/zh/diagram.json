@@ -129,6 +129,13 @@
       "to": "R-employee",
       "label": "DF-9 拒绝 / 结果",
       "kind": "data"
+    },
+    {
+      "id": "DF-10",
+      "from": "R-employee",
+      "to": "P-plan",
+      "label": "DF-10 请求操作",
+      "kind": "data"
     }
   ],
   "groups": [

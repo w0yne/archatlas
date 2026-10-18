@@ -129,6 +129,13 @@
       "to": "R-employee",
       "label": "DF-9 refusal / result",
       "kind": "data"
+    },
+    {
+      "id": "DF-10",
+      "from": "R-employee",
+      "to": "P-plan",
+      "label": "DF-10 requested action",
+      "kind": "data"
     }
   ],
   "groups": [

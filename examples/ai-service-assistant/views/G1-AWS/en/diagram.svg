@@ -5,19 +5,19 @@
 <rect data-role="canvas" width="1400" height="1530" fill="#ffffff"/>
 <text x="28" y="40" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="28" font-weight="700" fill="#1F2937">G1 / G2 · Enterprise Service Assistant on AWS</text>
 <text x="28" y="72" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">Fictional target · Single supported region; application services across AZ-A + AZ-B</text>
-<rect x="35" y="115" width="365" height="105" data-role="node" data-id="AWS-edge" data-kind="component" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="8"/>
-<text x="49" y="144" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="AWS-edge" data-role="name">CloudFront + S3</text>
-<text x="49" y="169" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="AWS-edge" data-role="sub">C-web static assets; global edge</text>
+<rect x="490" y="115" width="365" height="105" data-role="node" data-id="AWS-edge" data-kind="component" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="8"/>
+<text x="504" y="144" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="AWS-edge" data-role="name">CloudFront + S3</text>
+<text x="504" y="169" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="AWS-edge" data-role="sub">C-web static assets; global edge</text>
 <rect x="955" y="115" width="400" height="105" data-role="node" data-id="X-idp" data-kind="external" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="0"/>
 <text x="969" y="144" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="X-idp" data-role="name">Enterprise IdP / AS</text>
 <text x="969" y="169" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-idp" data-role="sub">External identity; delegation prerequisite</text>
 <rect x="25" y="260" width="1350" height="1080" data-role="group" data-id="REGION" data-kind="boundary" fill="#F3F8FF" stroke="#3D6FB2" stroke-width="1.6" rx="10"/>
-<text x="43" y="292" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="700" fill="#1F2937" data-owner="REGION" data-role="name">AWS region · service availability checked before implementation</text>
+<text x="43" y="292" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="700" fill="#1F2937" data-owner="REGION" data-role="group-title">AWS region · service availability checked before implementation</text>
 <rect x="50" y="330" width="800" height="930" data-role="group" data-id="VPC" data-kind="boundary" data-parent="REGION" fill="#F3F8FF" stroke="#3D6FB2" stroke-width="1.6" rx="10"/>
-<text x="68" y="362" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="700" fill="#1F2937" data-owner="VPC" data-role="name">Customer VPC · application placement in two AZs</text>
-<rect x="85" y="410" width="340" height="95" data-role="node" data-id="AWS-alb" data-kind="component" data-parent="VPC" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
-<text x="99" y="439" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="AWS-alb" data-role="name">Application Load Balancer</text>
-<text x="99" y="464" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="AWS-alb" data-role="sub">Public subnets · AZ-A + AZ-B</text>
+<text x="68" y="362" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="700" fill="#1F2937" data-owner="VPC" data-role="group-title">Customer VPC · application placement in two AZs</text>
+<rect x="480" y="410" width="340" height="95" data-role="node" data-id="AWS-alb" data-kind="component" data-parent="VPC" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
+<text x="494" y="439" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="AWS-alb" data-role="name">Application Load Balancer</text>
+<text x="494" y="464" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="AWS-alb" data-role="sub">Public subnets · AZ-A + AZ-B</text>
 <rect x="85" y="640" width="650" height="120" data-role="node" data-id="AWS-tasks" data-kind="component" data-parent="VPC" fill="#1767B5" stroke="#03172E" stroke-width="2.4" rx="8"/>
 <text x="99" y="669" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#ffffff" data-owner="AWS-tasks" data-role="name">ECS Fargate services</text>
 <text x="99" y="694" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#ffffff" data-owner="AWS-tasks" data-role="sub">C-api · C-agent · C-tools / separate ECS services</text>
@@ -47,20 +47,27 @@
 <rect x="945" y="900" width="400" height="105" data-role="node" data-id="AWS-ops" data-kind="component" data-parent="REGION" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8"/>
 <text x="959" y="929" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="AWS-ops" data-role="name">CloudWatch · KMS · Secrets</text>
 <text x="959" y="954" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="AWS-ops" data-role="sub">Regional services; scoped IAM access</text>
-<polyline points="210,220 210,410" data-role="edge" data-id="DEP-1" data-from="AWS-edge" data-to="AWS-alb" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="440" y="425" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">HTTPS API origin</text>
-<polyline points="260,505 260,640" data-role="edge" data-id="DEP-2" data-from="AWS-alb" data-to="AWS-tasks" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="280" y="580" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">HTTPS target group</text>
+<polyline points="650,220 650,410" data-role="edge" data-id="DEP-1" data-from="AWS-edge" data-to="AWS-alb" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="665" y="370" width="136.34375" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DEP-1" data-parent="DEP-1"/>
+<text x="670" y="390" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DEP-1" data-role="edge-label">HTTPS API origin</text>
+<polyline points="650,505 650,640" data-role="edge" data-id="DEP-2" data-from="AWS-alb" data-to="AWS-tasks" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="665" y="560" width="158.15625" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DEP-2" data-parent="DEP-2"/>
+<text x="670" y="580" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DEP-2" data-role="edge-label">HTTPS target group</text>
 <polyline points="260,760 260,900" data-role="edge" data-id="DEP-3" data-from="AWS-tasks" data-to="AWS-aurora" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="280" y="830" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">SQL / TLS</text>
+<rect x="275" y="810" width="80.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DEP-3" data-parent="DEP-3"/>
+<text x="280" y="830" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DEP-3" data-role="edge-label">SQL / TLS</text>
 <polyline points="650,760 650,900" data-role="edge" data-id="DEP-4" data-from="AWS-tasks" data-to="AWS-search" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="670" y="830" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">HTTPS search</text>
+<rect x="665" y="810" width="112.109375" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DEP-4" data-parent="DEP-4"/>
+<text x="670" y="830" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DEP-4" data-role="edge-label">HTTPS search</text>
 <polyline points="735,1180 945,1180" data-role="edge" data-id="DEP-5" data-from="AWS-batch" data-to="AWS-sqs" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="745" y="1160" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">Poll / acknowledge jobs</text>
+<rect x="970" y="1080" width="186.28125" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DEP-5" data-parent="DEP-5"/>
+<text x="975" y="1100" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DEP-5" data-role="edge-label">Poll / acknowledge jobs</text>
 <polyline points="735,690 945,690" data-role="edge" data-id="DEP-6" data-from="AWS-tasks" data-to="X-model" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="745" y="620" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">HTTPS model inference</text>
+<rect x="975" y="585" width="184.859375" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DEP-6" data-parent="DEP-6"/>
+<text x="980" y="605" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DEP-6" data-role="edge-label">HTTPS model inference</text>
 <polyline points="735,1210 895,1210 895,465 945,465" data-role="edge" data-id="DEP-7" data-from="AWS-batch" data-to="AWS-s3" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
-<text x="980" y="585" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">S3 versioned objects</text>
+<rect x="975" y="530" width="164.0625" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DEP-7" data-parent="DEP-7"/>
+<text x="980" y="550" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DEP-7" data-role="edge-label">S3 versioned objects</text>
 <text x="55" y="1310" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">Regional services at right are outside customer subnets.</text>
 <rect x="28" y="1370" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-1" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="8"/>
 <text x="82" y="1387" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-1">External party</text>

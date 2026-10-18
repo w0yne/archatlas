@@ -71,6 +71,21 @@ class SamplesTest(unittest.TestCase):
                 if frame["operator"] in ("alt", "par"):
                     self.assertGreaterEqual(len(frame.get("operands", [])), 2, where)
 
+    def test_ai_data_flows_have_no_miracle_or_black_hole_processes(self):
+        for view in MANIFEST["views"]:
+            if view["code"] not in {"D2", "F2"}:
+                continue
+            for lang in view["languages"]:
+                model = json.loads((SCENARIO / view["source"] / lang / "diagram.json").read_text())
+                kinds = {n["id"]: n["kind"] for n in model["nodes"]}
+                for node, kind in kinds.items():
+                    if kind == "process":
+                        self.assertTrue(any(e["to"] == node for e in model["edges"]), node)
+                        self.assertTrue(any(e["from"] == node for e in model["edges"]), node)
+                for edge in model["edges"]:
+                    self.assertIn("process", (kinds[edge["from"]], kinds[edge["to"]]), edge["id"])
+                    self.assertEqual(edge["kind"], "data")
+
 
 if __name__ == "__main__":
     unittest.main()

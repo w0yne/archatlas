@@ -94,7 +94,7 @@ Focused ticket-write threat DFD; DF IDs are references, not message order. TB-1 
 
 | Threat / flow | Hypothesis and impact | Proposed response | Owner / validation still required |
 |---|---|---|---|
-| T1 · DF-1 / TB-1 | Prompt injection requests an unauthorized tool | Model output has no authority; allowlist three tools | Agent owner / malicious-document test |
+| T1 · DF-1 / DF-10 / TB-1 | Prompt injection requests an unauthorized tool | Model output has no authority; allowlist three tools | Agent owner / malicious-document test |
 | T2 · DF-2–5 / TB-2 | Draft changed or replayed after approval | Bind tenant, subject, canonical hash, expiry and idempotency key; reauthorize | API owner / changed hash, expiry and tenant rejection tests |
 | T3 · DF-6 / TB-3 | Confused deputy uses wrong audience or actor | Verify AS signature, issuer, audience, actor, tenant and scopes; deny before connector | Identity owner / wrong-audience and cross-tenant tests |
 | T4 · DF-7–8 | Timeout duplicates a write | Persist intent, connector idempotency and lookup by key | Tools owner / ambiguous-timeout reconciliation test |
