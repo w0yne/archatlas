@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1090" lang="en" data-archatlas="0.1">
+  <title>D3 · Knowledge and feedback data — lineage and ownership</title>
+  <desc>Fictional teaching design, scenario version 2; additional parameters are illustrative assumptions. Fictional target · Ownership overview of the two data paths that feed answers and evaluation</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#4B5563" />
+    </marker>
+  </defs>
+  <rect data-role="canvas" width="1400" height="1090" fill="#ffffff" />
+  <text x="28" y="40" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="28" font-weight="700" fill="#1F2937">D3 · Knowledge and feedback data — lineage and ownership</text>
+  <text x="28" y="72" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">Fictional target · Ownership overview of the two data paths that feed answers and evaluation</text>
+  <text x="40" y="112" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="400" fill="#1F2937">Question: who stewards which data, and what is derived from what? Arrow: feeds (is derived from).</text>
+  <rect x="30" y="170" width="1340" height="390" data-role="group" data-id="G-know" data-kind="boundary" fill="#F3F8FF" stroke="#3D6FB2" stroke-width="1.6" rx="10" />
+  <text x="48" y="202" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="700" fill="#1F2937" data-owner="G-know" data-role="group-title">Knowledge · steward-governed</text>
+  <rect x="30" y="600" width="1340" height="250" data-role="group" data-id="G-eval" data-kind="boundary" fill="#F1F9F3" stroke="#2F7D4F" stroke-width="1.6" rx="10" />
+  <text x="48" y="632" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="700" fill="#1F2937" data-owner="G-eval" data-role="group-title">Feedback and evaluation · steward-approved export</text>
+  <rect x="55" y="320" width="240" height="108" data-role="node" data-id="X-doc" data-kind="external" data-parent="G-know" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="0" />
+  <text x="69" y="349" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="X-doc" data-role="name">Document Repository</text>
+  <text x="69" y="374" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-doc" data-role="sub">X-doc · HTTPS connector</text>
+  <text x="69" y="397" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-doc" data-role="sub">Source documents + ACLs</text>
+  <rect x="415" y="320" width="230" height="108" data-role="node" data-id="P-ingest" data-kind="job" data-parent="G-know" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="22" />
+  <text x="429" y="349" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="P-ingest" data-role="name">1. Prepare knowledge</text>
+  <text x="429" y="374" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="P-ingest" data-role="sub">Owner: Ingestion Worker</text>
+  <text x="429" y="397" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="P-ingest" data-role="sub">Version, chunk, embed</text>
+  <rect x="815" y="240" width="240" height="108" data-role="node" data-id="DS-doc" data-kind="dataset" data-parent="G-know" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="829" y="269" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DS-doc" data-role="name">Document versions</text>
+  <text x="829" y="294" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DS-doc" data-role="sub">DS-doc · S3</text>
+  <text x="829" y="317" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DS-doc" data-role="sub">Steward: Knowledge steward</text>
+  <rect x="815" y="400" width="240" height="108" data-role="node" data-id="DS-index" data-kind="dataset" data-parent="G-know" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="829" y="429" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DS-index" data-role="name">Retrieval index</text>
+  <text x="829" y="454" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DS-index" data-role="sub">DS-index · OpenSearch</text>
+  <text x="829" y="477" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DS-index" data-role="sub">Steward: Knowledge steward</text>
+  <rect x="1150" y="400" width="200" height="108" data-role="node" data-id="C-agent" data-kind="container" data-parent="G-know" fill="#FFFFFF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="1164" y="429" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-agent" data-role="name">Agent Service</text>
+  <text x="1164" y="454" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-agent" data-role="sub">C-agent · Python</text>
+  <text x="1164" y="477" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-agent" data-role="sub">Answers with citations</text>
+  <rect x="55" y="680" width="220" height="108" data-role="node" data-id="DS-app" data-kind="dataset" data-parent="G-eval" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="69" y="709" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DS-app" data-role="name">Application records</text>
+  <text x="69" y="734" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DS-app" data-role="sub">DS-app · PostgreSQL</text>
+  <text x="69" y="757" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DS-app" data-role="sub">Owner: Knowledge steward</text>
+  <rect x="395" y="680" width="270" height="108" data-role="node" data-id="P-export" data-kind="job" data-parent="G-eval" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="22" />
+  <text x="409" y="709" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="P-export" data-role="name">Approve feedback export</text>
+  <text x="409" y="734" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="P-export" data-role="sub">Owner: Application API/BFF</text>
+  <text x="409" y="757" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="P-export" data-role="sub">Deidentify or synthesise</text>
+  <rect x="815" y="680" width="240" height="108" data-role="node" data-id="DS-eval" data-kind="dataset" data-parent="G-eval" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="829" y="709" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DS-eval" data-role="name">Evaluation datasets</text>
+  <text x="829" y="734" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DS-eval" data-role="sub">DS-eval · S3</text>
+  <text x="829" y="757" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DS-eval" data-role="sub">Steward: Knowledge steward</text>
+  <rect x="1150" y="680" width="200" height="108" data-role="node" data-id="C-eval" data-kind="container" data-parent="G-eval" fill="#FFFFFF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="1164" y="709" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="C-eval" data-role="name">Evaluation Job</text>
+  <text x="1164" y="734" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-eval" data-role="sub">C-eval · Python / batch</text>
+  <text x="1164" y="757" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="C-eval" data-role="sub">Offline quality gates</text>
+  <text x="40" y="895" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937">Illustrative AS-data: knowledge/business records tenant-confidential; evaluation internal deidentified/synthetic; ownership grants no read rights.</text>
+  <polyline points="295,374 415,374" data-role="edge" data-id="LIN-1" data-from="X-doc" data-to="P-ingest" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="300.0" y="344.0" width="106.125" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-LIN-1" data-parent="LIN-1" />
+  <text x="305" y="364" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="LIN-1" data-role="edge-label">source + ACL</text>
+  <polyline points="645,347 670,347 670,294 815,294" data-role="edge" data-id="LIN-2" data-from="P-ingest" data-to="DS-doc" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="673.0" y="264.0" width="126.3125" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-LIN-2" data-parent="LIN-2" />
+  <text x="678" y="284" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="LIN-2" data-role="edge-label">versions + ACLs</text>
+  <polyline points="645,401 670,401 670,454 815,454" data-role="edge" data-id="LIN-3" data-from="P-ingest" data-to="DS-index" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="673.0" y="424.0" width="135.609375" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-LIN-3" data-parent="LIN-3" />
+  <text x="678" y="444" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="LIN-3" data-role="edge-label">chunks + vectors</text>
+  <polyline points="1055,454 1150,454" data-role="edge" data-id="LIN-4" data-from="DS-index" data-to="C-agent" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="1062.0" y="424.0" width="79.625" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-LIN-4" data-parent="LIN-4" />
+  <text x="1067" y="444" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="LIN-4" data-role="edge-label">passages</text>
+  <polyline points="275,734 395,734" data-role="edge" data-id="LIN-5" data-from="DS-app" data-to="P-export" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="285.0" y="704.0" width="78.453125" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-LIN-5" data-parent="LIN-5" />
+  <text x="290" y="724" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="LIN-5" data-role="edge-label">feedback</text>
+  <polyline points="665,734 815,734" data-role="edge" data-id="LIN-6" data-from="P-export" data-to="DS-eval" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="672.0" y="704.0" width="134.59375" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-LIN-6" data-parent="LIN-6" />
+  <text x="677" y="724" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="LIN-6" data-role="edge-label">approved export</text>
+  <polyline points="1055,734 1150,734" data-role="edge" data-id="LIN-7" data-from="DS-eval" data-to="C-eval" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="1062.0" y="704.0" width="73.6875" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-LIN-7" data-parent="LIN-7" />
+  <text x="1067" y="724" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="LIN-7" data-role="edge-label">datasets</text>
+  <rect x="28" y="950" width="42" height="22" data-role="legend-zone" data-id="__legend-swatch-1" fill="#F3F8FF" stroke="#3D6FB2" stroke-width="1.6" rx="10" />
+  <text x="82" y="967" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-1">Knowledge path (steward-governed)</text>
+  <rect x="473" y="950" width="42" height="22" data-role="legend-zone" data-id="__legend-swatch-2" fill="#F1F9F3" stroke="#2F7D4F" stroke-width="1.6" rx="10" />
+  <text x="527" y="967" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-2">Feedback and evaluation path</text>
+  <rect x="918" y="950" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-3" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="0" />
+  <text x="972" y="967" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-3">Source system</text>
+  <rect x="28" y="995" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-4" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="22" />
+  <text x="82" y="1012" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-4">Job</text>
+  <rect x="473" y="995" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-5" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="527" y="1012" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-5">Dataset</text>
+  <rect x="918" y="995" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-6" fill="#FFFFFF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="972" y="1012" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-6">Consumer</text>
+  <polyline points="28,1050 70,1050" data-role="edge" data-kind="legend" data-id="legend-line-7" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <text x="82" y="1057" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-7">Feeds (is derived from)</text>
+</svg>

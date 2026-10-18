@@ -20,6 +20,8 @@ status: draft
 
 # Threat-Model Data-Flow Diagram (威胁建模数据流图)
 
+**Named variant of D2.** [Open Data flow diagram (DFD) → F2](/types/d2-data-flow-diagram#variant-f2). This compatibility page retains its recipe, checks, anchors and historical downloads.
+
 > A data-flow diagram that marks where trust assumptions change, so that a team can ask what could go wrong at each flow, store and boundary.
 
 ## Meaning {#meaning}
@@ -149,5 +151,19 @@ Model template: `assets/templates/F2.json` · Layout template: `nested` · trust
 
 ## Sample {#sample}
 <!-- skill: path only -->
-![F2 sample: checkout data flow across four trust boundaries](/samples/F2-threat-model-data-flow.svg)
-*Checkout data flow across four trust boundaries (internet, public edge, internal network, payment provider): the shopper’s browser sends the order request to the API gateway, which passes a validated request to the order service; the order service records the order and sends a card token to the payment API. Flows are numbered and named by the data they carry.*
+![F2 · Enterprise Service Assistant](/samples/ai-service-assistant/F2/en/diagram.svg)
+*DF identifiers trace data flows to threat hypotheses; they are not message order. DF-6 abstracts proof delivery through Agent (F1), and DF-4 reads current approval through the BFF. Proposed controls still require implementation validation.*
+
+[SVG](/samples/ai-service-assistant/F2/en/diagram.svg) · [Model JSON](/samples/ai-service-assistant/F2/en/diagram.json) · [Shared facts](/samples/ai-service-assistant/scenario.json)
+
+[Historical shop regression sample](/samples/F2-threat-model-data-flow.svg) · [All 29 views](/use/ai-service-assistant) · [Illustrative assumptions](/use/ai-service-assistant-assumptions).
+
+| Threat / flow | Hypothesis and impact | Proposed response | Owner / validation still required |
+|---|---|---|---|
+| T1 · DF-1 / DF-10 / TB-1 | Prompt injection requests an unauthorized tool | Model output has no authority; allowlist three tools | Agent owner / malicious-document test |
+| T2 · DF-2–5 / TB-2 | Draft changed or replayed after approval | Bind tenant, subject, canonical hash, expiry and idempotency key; reauthorize | API owner / changed hash, expiry and tenant rejection tests |
+| T3 · DF-6 / TB-3 | Confused deputy uses wrong audience or actor | Verify AS signature, issuer, audience, actor, tenant and scopes; deny before connector | Identity owner / wrong-audience and cross-tenant tests |
+| T4 · DF-7–8 | Timeout duplicates a write | Persist intent, connector idempotency and lookup by key | Tools owner / ambiguous-timeout reconciliation test |
+| T5 · DF-4 / DS-app | Operator or model accesses approval records directly | Scoped service identities; BFF policy gate; audit and redact | Platform owner / IAM and log-content review |
+
+All entries are hypotheses with proposed responses; validation evidence **has not been collected**.

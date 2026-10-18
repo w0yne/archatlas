@@ -21,6 +21,8 @@ sourceRev: '2026-10-14'
 
 # ArchiMate layered view (ArchiMate 分层视图)
 
+**Method reference.** Available when explicitly requested; outside the default 25-entry catalogue. This page and its historical links remain supported.
+
 > Business, application and technology elements in bands, linked by ArchiMate relationships that show what serves and realises what.
 
 ## Meaning {#meaning}

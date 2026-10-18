@@ -145,7 +145,35 @@ Model template: `assets/templates/A2.json` · Layout template: `tree` · stages 
 9. Scaled Agile, "Operational Value Streams" and "Development Value Streams" — https://framework.scaledagile.com/operational-value-streams ; https://framework.scaledagile.com/development-value-streams — accessed 2026-10-14
 10. "The Value Management Platform and ArchiMate", CEUR-WS Vol-2574 (value stream realizes outcome) — https://ceur-ws.org/Vol-2574/paper2.pdf — accessed 2026-10-14
 
+### A9 · Lean value-stream map (VSM) {#variant-a9}
+
+Editorial grouping preserves the distinct notation; use this recipe and its checks.
+
+1. Scope: one family, door-to-door start and end, current or future, date; title carries the finding, e.g. "Order to doorstep: 20 min of work in 33 h".
+2. Top band: supplier left, customer right with demand rate; coordination or scheduling in the middle with its information arrows.
+3. Middle band: process boxes left to right with a data box beneath each (PT, %C&A, people); queue triangles with counts or wait times between them.
+4. Bottom band: timeline ladder (wait above, PT below) with totals at the right: lead time, ΣPT, activity ratio.
+5. Future state: a second map with kaizen bursts at the change points, same order and scale so the two compare side by side.
+6. Text: short work names in boxes; numbers only in data boxes and the timeline; one time unit per row.
+7. Colour: neutral boxes; one accent for waits or kaizen bursts; plain labelled boxes instead of Lean icons for non-Lean readers, always with a legend.
+
+**Self-check**
+- [ ] Every process box has a data box with PT; queues and waits are shown between boxes.
+- [ ] Totals add up: ΣPT ≤ lead time and activity ratio = ΣPT ÷ lead time.
+- [ ] The source of the numbers (observed, sampled, system data) and the period are stated near the figure.
+- [ ] Information flow is drawn, not only the work flow.
+- [ ] Strictly left to right, no long return lines; boxes are work steps, not departments.
+- [ ] No capabilities or stakeholder value stages (those belong in A2).
+- [ ] The figure states current or future; a future map has kaizen bursts tied to a plan.
+- [ ] Icons and units are explained in a legend.
+
+[Full method and historical sample](/types/a9-lean-value-stream-map#meaning).
+
 ## Sample {#sample}
 <!-- skill: path only -->
-![A2 sample: value stream of an online shop from shopper to goods received](/samples/A2-value-stream.svg)
-*Value stream of an online shop: the shopper triggers five verb-noun stages (choose product, place order, pay for order, pack order, deliver order) that end in the value received, goods received. No times are shown; that is the Lean value-stream map (A9).*
+![A2 · Enterprise Service Assistant](/samples/ai-service-assistant/A2/en/diagram.svg)
+*Which stages does a stakeholder pass through, from trigger to delivered value, and which capabilities enable each stage?*
+
+[SVG](/samples/ai-service-assistant/A2/en/diagram.svg) · [Model JSON](/samples/ai-service-assistant/A2/en/diagram.json) · [Shared facts](/samples/ai-service-assistant/scenario.json)
+
+[Historical shop regression sample](/samples/A2-value-stream.svg) · [All 29 views](/use/ai-service-assistant) · [Illustrative assumptions](/use/ai-service-assistant-assumptions).

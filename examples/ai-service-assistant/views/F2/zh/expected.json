@@ -1,0 +1,22 @@
+{
+  "scenarioVersion": 2,
+  "entities": {
+    "P-plan": "P-plan",
+    "P-approve": "P-approve",
+    "DS-app": "DS-app",
+    "R-employee": "R-employee",
+    "P-execute": "P-execute",
+    "X-desk": "X-desk",
+    "X-idp": "X-idp"
+  },
+  "invariants": [
+    "I-approval",
+    "I-authority",
+    "I-tokens",
+    "I-tenant",
+    "I-idempotency"
+  ],
+  "projection": "focused view; omissions described in caption; not a deployed system",
+  "missingFacts": [],
+  "assumptions": []
+}

@@ -1,0 +1,218 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "C3",
+    "title": "C3 · Enterprise Service Assistant — containers",
+    "lang": "en",
+    "state": "to-be",
+    "audience": "architects and reviewers",
+    "description": "Fictional teaching design; scenario.json version 2; illustrative assumptions, not a deployed system"
+  },
+  "layout": {
+    "template": "nested"
+  },
+  "nodes": [
+    {
+      "id": "C-web",
+      "kind": "container",
+      "label": "Web Portal",
+      "parent": "B-system",
+      "style": "peer",
+      "sub": "C-web · TypeScript SPA · Chat and approval UI"
+    },
+    {
+      "id": "C-api",
+      "kind": "container",
+      "label": "Application API/BFF",
+      "parent": "B-system",
+      "style": "primary",
+      "sub": "C-api · Python / HTTPS · Sessions, tenant policy, approvals"
+    },
+    {
+      "id": "C-tools",
+      "kind": "container",
+      "label": "MCP Tool Gateway",
+      "parent": "B-system",
+      "style": "peer",
+      "sub": "C-tools · Python / MCP HTTPS · Verify delegation; enforce tool policy"
+    },
+    {
+      "id": "DS-app",
+      "kind": "store",
+      "label": "Application records",
+      "parent": "B-system",
+      "style": "peer",
+      "sub": "DS-app · PostgreSQL · Memberships, chats, approvals, audit"
+    },
+    {
+      "id": "C-agent",
+      "kind": "container",
+      "label": "Agent Service",
+      "parent": "B-system",
+      "style": "peer",
+      "sub": "C-agent · Python / HTTPS · Bounded plan, retrieve, model, tools"
+    },
+    {
+      "id": "DS-index",
+      "kind": "store",
+      "label": "Retrieval index",
+      "parent": "B-system",
+      "style": "peer",
+      "sub": "DS-index · OpenSearch · Derived chunks, vectors, tenant ACL"
+    },
+    {
+      "id": "DS-doc",
+      "kind": "store",
+      "label": "Document versions",
+      "parent": "B-system",
+      "style": "peer",
+      "sub": "DS-doc · S3 · Versioned source and ACL snapshot"
+    },
+    {
+      "id": "Q-ingest",
+      "kind": "queue",
+      "label": "Ingestion queue + DLQ",
+      "parent": "B-system",
+      "style": "peer",
+      "sub": "Q-ingest · SQS · Version jobs; retry / DLQ"
+    },
+    {
+      "id": "C-ingest",
+      "kind": "container",
+      "label": "Ingestion Worker",
+      "parent": "B-system",
+      "style": "peer",
+      "sub": "C-ingest · Python / batch · Version, chunk, embed and index"
+    },
+    {
+      "id": "DS-eval",
+      "kind": "store",
+      "label": "Evaluation datasets",
+      "parent": "B-system",
+      "style": "peer",
+      "sub": "DS-eval · S3 · Approved deidentified data and runs"
+    },
+    {
+      "id": "C-eval",
+      "kind": "container",
+      "label": "Evaluation Job",
+      "parent": "B-system",
+      "style": "peer",
+      "sub": "C-eval · Python / batch · Offline quality and cost gates"
+    },
+    {
+      "id": "X-model",
+      "kind": "external",
+      "label": "Managed Model Service",
+      "style": "external",
+      "sub": "Bedrock · text / embeddings"
+    }
+  ],
+  "edges": [
+    {
+      "id": "CON-1",
+      "from": "C-web",
+      "to": "C-api",
+      "label": "Chat · HTTPS",
+      "kind": "call"
+    },
+    {
+      "id": "CON-2",
+      "from": "C-tools",
+      "to": "C-api",
+      "label": "Approval · HTTPS",
+      "kind": "call"
+    },
+    {
+      "id": "CON-3",
+      "from": "C-api",
+      "to": "C-agent",
+      "label": "Delegate · HTTPS",
+      "kind": "call"
+    },
+    {
+      "id": "CON-4",
+      "from": "C-api",
+      "to": "DS-app",
+      "label": "Records · SQL",
+      "kind": "call"
+    },
+    {
+      "id": "CON-6",
+      "from": "C-agent",
+      "to": "C-tools",
+      "label": "MCP · HTTPS",
+      "kind": "call"
+    },
+    {
+      "id": "CON-5",
+      "from": "C-agent",
+      "to": "DS-index",
+      "label": "Tenant/ACL search",
+      "kind": "call"
+    },
+    {
+      "id": "CON-17",
+      "from": "C-api",
+      "to": "Q-ingest",
+      "label": "Enqueue · SQS",
+      "kind": "call"
+    },
+    {
+      "id": "CON-10",
+      "from": "C-ingest",
+      "to": "Q-ingest",
+      "label": "Receive jobs · SQS",
+      "kind": "call"
+    },
+    {
+      "id": "CON-11",
+      "from": "C-ingest",
+      "to": "DS-index",
+      "label": "Publish · HTTPS",
+      "kind": "call"
+    },
+    {
+      "id": "CON-12",
+      "from": "C-ingest",
+      "to": "DS-doc",
+      "label": "Versioned source · S3 API",
+      "kind": "call"
+    },
+    {
+      "id": "CON-13",
+      "from": "C-eval",
+      "to": "DS-eval",
+      "label": "Read/write · S3",
+      "kind": "call"
+    },
+    {
+      "id": "CON-18",
+      "from": "C-ingest",
+      "to": "X-model",
+      "label": "Embed · HTTPS",
+      "kind": "call"
+    },
+    {
+      "id": "CON-14",
+      "from": "C-eval",
+      "to": "X-model",
+      "label": "Evaluate · HTTPS",
+      "kind": "call"
+    },
+    {
+      "id": "CON-16",
+      "from": "C-agent",
+      "to": "X-model",
+      "label": "Generate · HTTPS",
+      "kind": "call"
+    }
+  ],
+  "groups": [
+    {
+      "id": "B-system",
+      "title": "Enterprise Service Assistant · owned applications and stores",
+      "kind": "boundary"
+    }
+  ]
+}

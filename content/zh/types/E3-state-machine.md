@@ -17,7 +17,7 @@ formal: {kind: standard, ref: OMG UML 2.5.1 state machines (behavioral and proto
 neighbours: [A5, D1, E1, E2]
 status: draft
 translationOf: en/types/E3-state-machine.md
-sourceRev: 9065169
+sourceRev: 7002b1114ff60c6a028194c8376c71eee2b9d52d
 reviewed: false
 ---
 
@@ -158,5 +158,9 @@ reviewed: false
 
 ## 示例图 {#sample}
 <!-- skill: path only -->
-![E3 示例：订单的状态机，含初始与终止状态](/samples/E3-state-machine.zh.svg)
-*订单的状态：已下单、已支付、已发货、已送达、已退款和已取消，有一个初始状态和一个终止状态；每个状态带一个说明含义的标签，不突出单一状态。迁移写作 事件 [守卫] / 动作，例如 支付 [金额正确] / 预留库存 和 取消 [支付前]。已送达的订单在退货期过后关闭，或在 30 天内退款；已取消的订单关闭；所有路径都到达终止状态。*
+![E3 · 企业服务助手](/samples/ai-service-assistant/E3/zh/diagram.svg)
+*DS-app 中的单个请求：未审批、已审批、执行中、未知、已记录、拒绝及关闭。有界对账后仍未知则保持挂起，不授权重新写入。*
+
+[SVG](/samples/ai-service-assistant/E3/zh/diagram.svg) · [模型 JSON](/samples/ai-service-assistant/E3/zh/diagram.json) · [共享事实](/samples/ai-service-assistant/scenario.json)
+
+[历史 shop 回归样例](/samples/E3-state-machine.zh.svg) · [全部29幅视图](/zh/use/ai-service-assistant) · [示意假设](/zh/use/ai-service-assistant-assumptions).

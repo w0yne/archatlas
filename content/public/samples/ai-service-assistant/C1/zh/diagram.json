@@ -1,0 +1,103 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "C1",
+    "title": "C1 · 企业服务助手 — 应用景观",
+    "lang": "zh",
+    "state": "to-be",
+    "audience": "architects and reviewers",
+    "description": "Fictional teaching design; scenario.json version 2; illustrative assumptions, not a deployed system"
+  },
+  "layout": {
+    "template": "nested"
+  },
+  "nodes": [
+    {
+      "id": "S-assistant",
+      "kind": "system",
+      "label": "企业服务助手",
+      "parent": "G-new",
+      "style": "primary",
+      "sub": "S-assistant · 新应用 · 有据可查的回答与经审批的服务操作"
+    },
+    {
+      "id": "X-idp",
+      "kind": "external",
+      "label": "企业 IdP / AS",
+      "parent": "G-ent",
+      "style": "external",
+      "sub": "X-idp · OIDC / OAuth · 身份与受限委托"
+    },
+    {
+      "id": "X-doc",
+      "kind": "external",
+      "label": "文档源系统",
+      "parent": "G-ent",
+      "style": "external",
+      "sub": "X-doc · HTTPS 连接器 · 原始文档与访问策略"
+    },
+    {
+      "id": "X-desk",
+      "kind": "external",
+      "label": "服务工单系统",
+      "parent": "G-ent",
+      "style": "external",
+      "sub": "X-desk · HTTPS · 服务目录、工单读取与创建"
+    },
+    {
+      "id": "X-model",
+      "kind": "external",
+      "label": "托管模型服务",
+      "parent": "G-cloud",
+      "style": "external",
+      "sub": "X-model · Amazon Bedrock · 生成文本与向量"
+    }
+  ],
+  "edges": [
+    {
+      "id": "APP-1",
+      "from": "S-assistant",
+      "to": "X-idp",
+      "label": "身份、委托",
+      "kind": "call"
+    },
+    {
+      "id": "APP-2",
+      "from": "S-assistant",
+      "to": "X-doc",
+      "label": "文档、访问规则",
+      "kind": "call"
+    },
+    {
+      "id": "APP-3",
+      "from": "S-assistant",
+      "to": "X-desk",
+      "label": "工单",
+      "kind": "call"
+    },
+    {
+      "id": "APP-4",
+      "from": "S-assistant",
+      "to": "X-model",
+      "label": "文本、向量",
+      "kind": "call"
+    }
+  ],
+  "groups": [
+    {
+      "id": "G-new",
+      "title": "新建 · 企业服务助手",
+      "kind": "boundary"
+    },
+    {
+      "id": "G-ent",
+      "title": "现有 · 企业运营的系统",
+      "kind": "boundary"
+    },
+    {
+      "id": "G-cloud",
+      "title": "托管 · 云服务",
+      "kind": "boundary"
+    }
+  ]
+}

@@ -8,7 +8,7 @@ archatlas combines a diagram-type atlas with an English-language Agent Skill nam
 
 ## Status
 
-0.1.0 pre-release: the repository contains 40 diagram types in English and Chinese, the skill, working SVG renderer, packer and evaluation harness. The first three-host comparison is complete for skill revision 3847acb and did not meet the release gate. It does not certify the current revision: targeted retesting and release certification are pending. [Read the retained report](evals/reports/2026-10-14-first-full.md). No PyPI package or public release bundle is published.
+0.1.0 pre-release: the repository retains 40 stable diagram types in English and Chinese: 25 core entries, 10 named variants and 5 method references, with 29×2 hand-authored AI-application samples; it includes the skill, working SVG renderer, packer and evaluation harness. The first three-host comparison is complete for skill revision 3847acb and did not meet the release gate. It does not certify the current revision: targeted retesting and release certification are pending. [Read the retained report](evals/reports/2026-10-14-first-full.md). No PyPI package or public release bundle is published.
 
 ## What it does
 
@@ -57,7 +57,7 @@ The site-only package and lockfile live in content/.vitepress; the root package 
 
 For a script-free reading export after building, run npm run preview:static --prefix content/.vitepress. It writes flat, relocatable pages under the ignored dist/static-preview directory. Search and dialog controls are intentionally absent from that export; the regular site build retains them.
 
-The language menu returns to the selected locale homepage; each locale has its own navigation. The default base is /archatlas/. Set SITE_BASE for another repository/custom hosting path. English source pages in content/en are rewritten to root URLs; Chinese stays under /zh/. Catalogue/sidebar links use the 40-type registry in content/data/types.yaml. Reader recommendations come from content/data/selection-tree.yaml. Missing future type pages are not linked.
+The language menu returns to the selected locale homepage; each locale has its own navigation. The default base is /archatlas/. Set SITE_BASE for another repository/custom hosting path. English source pages in content/en are rewritten to root URLs; Chinese stays under /zh/. Catalogue/sidebar links use the 40-code registry in content/data/types.yaml, presenting 25 core entries with 10 named variants and 5 method references. The shared AI application has 29 samples per language (58 SVGs). Reader recommendations come from content/data/selection-tree.yaml. Missing future type pages are not linked.
 
 The site uses VitePress 1.6.4. Its dependency audit currently reports upstream development-server advisories; keep dev/preview local, do not expose them to untrusted networks, and review dependency upgrades before a public release. Pages deploys static files, not the Vite development server.
 

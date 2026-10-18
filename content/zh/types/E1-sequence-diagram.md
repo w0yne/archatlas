@@ -17,7 +17,7 @@ formal: {kind: standard, ref: 'OMG UML 2.5.1 (formal/2017-12-05), interaction di
 neighbours: [A5, C3, C4, C6, E2, E3, E4, F1, I1]
 status: draft
 translationOf: en/types/E1-sequence-diagram.md
-sourceRev: 9065169
+sourceRev: 7002b1114ff60c6a028194c8376c71eee2b9d52d
 reviewed: false
 ---
 
@@ -158,7 +158,35 @@ reviewed: false
 
 注：UML 2.5.1 的条款原文未亲自阅读；元素语义取自来源 9 和 10，未对照原文核实。
 
+### F1 · 认证与授权流程图 {#variant-f1}
+
+编辑归组保留独立语义；使用本变体的画法与检查项。
+
+1. 选定一种客户端类型和一个受保护操作；在标题中写明受众以及是现状还是提议（“网店：已登录用户的订单历史，现状”）。
+2. 根据证据，识别签发方、调用方、接收 API 和受保护资源。
+3. 先追踪凭证的签发与校验，再把权限执行作为单独一步。
+4. 布局：参与方从左到右排列（人、客户端、签发方、API、资源），交互从上到下；每张图一个场景。任何下游交换（API 到 API）放到单独的图或框中。
+5. 浏览器重定向与后端通道调用使用不同线型，并用一行图例说明。
+6. 添加一个 `alt` 框，包含允许和拒绝两种结果；拒绝分支在受保护操作之前结束。
+7. 标签：简短的动词加凭证用途；为箭头编号。颜色标示职责（签发、校验、执行），而非产品；最多 3 种颜色加中性色。
+
+**自检清单**
+- [ ] 客户端类型和场景已明确。
+- [ ] 人的身份与机器身份已区分。
+- [ ] 每份凭证都有签发方和预期接收方。
+- [ ] 标签中授权码、ID 令牌、访问令牌和会话没有混用。
+- [ ] 校验和执行都可见。
+- [ ] 拒绝分支没有继续进入受保护操作。
+- [ ] 浏览器交换和后端通道交换画法一致；箭头连接在生命线上。
+- [ ] 未经核实的外部配置已在图上或图注中说明。
+
+[完整方法与历史样例](/zh/types/f1-authentication-authorization-flow#meaning).
+
 ## 示例图 {#sample}
 <!-- skill: path only -->
-![E1 示例：下单的时序图，含循环和备选分支](/samples/E1-sequence-diagram.zh.svg)
-*下单的时序，涉及五条生命线（顾客、网页商城、订单接口、库存服务、支付服务商）：顾客提交订单，订单接口逐项向库存服务预留商品（循环），再向支付服务商扣款。备选分支框有两个以虚线分隔的操作数，各带守卫条件：[扣款成功] 时支付成功、订单已确认；[否则：扣款被拒] 时支付被拒、订单被拒绝。订单接口是本图主体，生命线用深色表示。同一订单只会走其中一个操作数。*
+![E1 · 企业服务助手](/samples/ai-service-assistant/E1/zh/diagram.svg)
+*在一个场景中，各参与者按什么顺序交换哪些消息？*
+
+[SVG](/samples/ai-service-assistant/E1/zh/diagram.svg) · [模型 JSON](/samples/ai-service-assistant/E1/zh/diagram.json) · [共享事实](/samples/ai-service-assistant/scenario.json)
+
+[历史 shop 回归样例](/samples/E1-sequence-diagram.zh.svg) · [全部29幅视图](/zh/use/ai-service-assistant) · [示意假设](/zh/use/ai-service-assistant-assumptions).

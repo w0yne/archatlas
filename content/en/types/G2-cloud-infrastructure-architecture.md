@@ -20,6 +20,8 @@ status: draft
 
 # Cloud Infrastructure Architecture (云基础设施架构图)
 
+**Named variant of G1.** [Open Deployment & cloud architecture → G2](/types/g1-deployment-diagram#variant-g2). This compatibility page retains its recipe, checks, anchors and historical downloads.
+
 > A one-workload picture of the cloud services that realise it, why they are arranged this way, and where the real ownership and failure boundaries lie.
 
 ## Meaning {#meaning}
@@ -145,5 +147,9 @@ Model template: `assets/templates/G2.json` · Layout template: `statechart` · p
 
 ## Sample {#sample}
 <!-- skill: path only -->
-![G2 sample: proposed cloud infrastructure of an online shop on a generic provider](/samples/G2-cloud-infrastructure-architecture.svg)
-*Proposed cloud infrastructure on a generic provider: a CDN at the edge, a load balancer in the network and security zone, an app service and a database in each of two availability zones (primary database in zone 1, replica in zone 2) and managed object storage, a message queue and monitoring. The figure has no single subject, so nothing is emphasised; nothing here is built yet.*
+![G1-AWS · Enterprise Service Assistant](/samples/ai-service-assistant/G1-AWS/en/diagram.svg)
+*The AWS implementation variant is the first G1 illustration. Application services span two AZs; Aurora managed storage spans three; OpenSearch uses two-AZ zone awareness, not Standby. Regional managed services are outside customer subnets, CloudFront is global.*
+
+[SVG](/samples/ai-service-assistant/G1-AWS/en/diagram.svg) · [Model JSON](/samples/ai-service-assistant/G1-AWS/en/diagram.json) · [Shared facts](/samples/ai-service-assistant/scenario.json)
+
+[Historical shop regression sample](/samples/G2-cloud-infrastructure-architecture.svg) · [All 29 views](/use/ai-service-assistant) · [Illustrative assumptions](/use/ai-service-assistant-assumptions).

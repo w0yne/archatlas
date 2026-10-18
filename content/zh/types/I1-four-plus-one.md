@@ -16,12 +16,14 @@ scope: system
 formal: {kind: method, ref: 'Kruchten，Architectural Blueprints—The 4+1 View Model of Software Architecture（1995），IEEE Software 12(6)，第 42–50 页；https://www.cs.ubc.ca/~gregor/teaching/papers/4+1view-architecture.pdf'}
 neighbours: [C5, E1, G1, I2]
 status: draft
-sourceRev: 88db750
+sourceRev: 4e718f136c12c2c4c1d5f2226ea103f63e35b600
 translationOf: en/types/I1-four-plus-one.md
 reviewed: false
 ---
 
 # 4+1 视图模型（4+1 view model）
+
+**方法参考。** 明确需要时仍可使用；不在默认25项核心目录中。此页与历史链接继续保留。
 
 > 同一软件架构的四个协调视图（逻辑、进程、开发、物理），由少数关键场景串联起来。
 

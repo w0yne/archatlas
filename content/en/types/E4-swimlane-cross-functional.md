@@ -20,6 +20,8 @@ status: draft
 
 # Swimlane / Cross-functional Flowchart (泳道流程图)
 
+**Named variant of E2.** [Open Activity diagram or flowchart → E4](/types/e2-activity-flowchart#variant-e4). This compatibility page retains its recipe, checks, anchors and historical downloads.
+
 > A flowchart split into parallel lanes, one per role or system, so every hand-off between them is visible.
 
 ## Meaning {#meaning}
@@ -153,5 +155,9 @@ Model template: `assets/templates/E4.json` · Layout template: `lanes` · lanes 
 
 ## Sample {#sample}
 <!-- skill: path only -->
-![E4 sample: swimlane of a return across customer, support, warehouse and finance](/samples/E4-swimlane-cross-functional.svg)
-*Swimlane of a return across four lanes (customer, support, warehouse, finance): the customer’s request is handed to support, whose approval produces a return label; the customer sends the parcel to the warehouse, which inspects it and passes the result to finance for the refund, and the customer is notified. Numbered badges give the order of the steps, and each hand-off is labelled with what passes.*
+![E4 · Enterprise Service Assistant](/samples/ai-service-assistant/E4/en/diagram.svg)
+*In one process, which role or system performs each step, and where are the hand-offs?*
+
+[SVG](/samples/ai-service-assistant/E4/en/diagram.svg) · [Model JSON](/samples/ai-service-assistant/E4/en/diagram.json) · [Shared facts](/samples/ai-service-assistant/scenario.json)
+
+[Historical shop regression sample](/samples/E4-swimlane-cross-functional.svg) · [All 29 views](/use/ai-service-assistant) · [Illustrative assumptions](/use/ai-service-assistant-assumptions).

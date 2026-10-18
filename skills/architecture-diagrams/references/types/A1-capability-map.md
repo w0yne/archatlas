@@ -88,4 +88,4 @@ Scope: One enterprise or business unit, 2–3 capability levels on one page, opt
 Model template: `assets/templates/A1.json` · Layout template: `layered` · tiers become `layer` groups (bands), Level 1 capabilities become `frame` groups inside them, Level 2 capabilities are equal-size `component` nodes in a grid; heat values map to node `style` tokens (`primary`, `peer`, `planned`, `shared`) plus an auto-generated legend.
 
 ## Sample
-Figure: `samples/A1-capability-map.svg` (published with the site)
+Figure: `samples/ai-service-assistant/A1/en/diagram.svg` (published with the site)

@@ -8,7 +8,7 @@ archatlas 将架构图类型指南与名为 architecture-diagrams 的英文 Agen
 
 ## 状态
 
-0.1.0 为预发布版本：仓库中已有40类图的中英文文档、skill、可运行的 SVG 渲染器、打包工具和评测框架。针对 skill 修订 3847acb 的首轮三宿主对比评测已完成，但未通过发布门槛。它不代表当前修订的结论：当前版本的针对性复测与发布认证仍待完成。[查阅保留的报告](evals/reports/2026-10-14-first-full.md)。尚未发布 PyPI 包或公开发布压缩包。
+0.1.0 为预发布版本：仓库中保留40个稳定图型代码，按25个核心入口、10个具名变体、5个方法参考组织，并提供29×2幅手工 AI 应用样例，以及中英文文档、skill、可运行的 SVG 渲染器、打包工具和评测框架。针对 skill 修订 3847acb 的首轮三宿主对比评测已完成，但未通过发布门槛。它不代表当前修订的结论：当前版本的针对性复测与发布认证仍待完成。[查阅保留的报告](evals/reports/2026-10-14-first-full.md)。尚未发布 PyPI 包或公开发布压缩包。
 
 ## 能做什么
 
@@ -57,7 +57,7 @@ archatlas 将架构图类型指南与名为 architecture-diagrams 的英文 Agen
 
 构建后可运行 npm run preview:static --prefix content/.vitepress，生成不含脚本的阅读版，输出在忽略目录 dist/static-preview。该导出使用扁平页面路径，不含搜索和弹窗；正常站点构建仍保留这些交互。
 
-语言菜单返回对应语言首页，各语言都有自己的导航。默认基路径为 /archatlas/。其他仓库名或托管路径可设置 SITE_BASE。content/en 的页面重写为根路径，中文保留 /zh/。目录和侧栏读取 content/data/types.yaml 中的40类图。读者推荐来自 content/data/selection-tree.yaml。未来没有正文的类型页也不会产生无效链接。
+语言菜单返回对应语言首页，各语言都有自己的导航。默认基路径为 /archatlas/。其他仓库名或托管路径可设置 SITE_BASE。content/en 的页面重写为根路径，中文保留 /zh/。目录和侧栏保留 content/data/types.yaml 中的40个代码，默认展示25个核心入口，另列10个具名变体及5个方法参考；共享 AI 场景有29×2幅样例（58个 SVG）。读者推荐来自 content/data/selection-tree.yaml。未来没有正文的类型页也不会产生无效链接。
 
 站点使用 VitePress 1.6.4。依赖审计目前报告上游开发服务器漏洞；开发/预览只在本机运行，不向不可信网络开放，公开发布前须复核升级。Pages 只部署静态文件，不运行 Vite 开发服务器。
 

@@ -1,0 +1,590 @@
+{
+  "version": 2,
+  "scenario": "scenario.json",
+  "glossary": "glossary.json",
+  "languages": [
+    "en",
+    "zh"
+  ],
+  "authorship": "hand-authored SVG; authored coordinates, no automatic layout",
+  "vendorNeutralG1": {
+    "status": "complete",
+    "view": "G1-generic",
+    "reason": "Separate vendor-neutral allocation; G1-AWS remains the first G1 headline."
+  },
+  "views": [
+    {
+      "id": "A1",
+      "code": "A1",
+      "catalogRole": "core",
+      "headlines": [
+        "A1"
+      ],
+      "source": "views/A1",
+      "languages": [
+        "en",
+        "zh"
+      ],
+      "publication": "ai-service-assistant/A1",
+      "rules": [
+        "I-bounds",
+        "I-approval",
+        "I-tenant",
+        "I-eval"
+      ]
+    },
+    {
+      "id": "A2",
+      "code": "A2",
+      "catalogRole": "core",
+      "headlines": [
+        "A2"
+      ],
+      "source": "views/A2",
+      "languages": [
+        "en",
+        "zh"
+      ],
+      "publication": "ai-service-assistant/A2",
+      "rules": [
+        "I-tenant",
+        "I-approval",
+        "I-idempotency"
+      ]
+    },
+    {
+      "id": "A5",
+      "code": "A5",
+      "catalogRole": "core",
+      "headlines": [
+        "A5"
+      ],
+      "source": "views/A5",
+      "languages": [
+        "en",
+        "zh"
+      ],
+      "publication": "ai-service-assistant/A5",
+      "rules": [
+        "I-approval",
+        "I-idempotency",
+        "I-bounds"
+      ]
+    },
+    {
+      "id": "A6",
+      "code": "A6",
+      "catalogRole": "core",
+      "headlines": [
+        "A6"
+      ],
+      "source": "views/A6",
+      "languages": [
+        "en",
+        "zh"
+      ],
+      "publication": "ai-service-assistant/A6",
+      "rules": [
+        "I-tenant",
+        "I-ingest",
+        "I-idempotency"
+      ]
+    },
+    {
+      "id": "A8",
+      "code": "A8",
+      "catalogRole": "core",
+      "headlines": [
+        "A8"
+      ],
+      "source": "views/A8",
+      "languages": [
+        "en",
+        "zh"
+      ],
+      "publication": "ai-service-assistant/A8",
+      "rules": [
+        "I-ingest",
+        "I-approval",
+        "I-eval",
+        "I-bounds"
+      ]
+    },
+    {
+      "id": "B2",
+      "code": "B2",
+      "catalogRole": "core",
+      "headlines": [
+        "B2"
+      ],
+      "source": "views/B2",
+      "languages": [
+        "en",
+        "zh"
+      ],
+      "publication": "ai-service-assistant/B2",
+      "rules": [
+        "I-bounds",
+        "I-approval",
+        "I-tenant"
+      ]
+    },
+    {
+      "id": "C1",
+      "code": "C1",
+      "catalogRole": "core",
+      "headlines": [
+        "C1"
+      ],
+      "source": "views/C1",
+      "languages": [
+        "en",
+        "zh"
+      ],
+      "publication": "ai-service-assistant/C1",
+      "rules": [
+        "I-delegation",
+        "I-bounds",
+        "I-ingest"
+      ]
+    },
+    {
+      "id": "C2",
+      "code": "C2",
+      "catalogRole": "core",
+      "headlines": [
+        "C2"
+      ],
+      "source": "views/C2",
+      "languages": [
+        "en",
+        "zh"
+      ],
+      "publication": "ai-service-assistant/C2",
+      "rules": [
+        "I-bounds",
+        "I-operator",
+        "I-authority"
+      ]
+    },
+    {
+      "id": "C3",
+      "code": "C3",
+      "catalogRole": "core",
+      "headlines": [
+        "C3"
+      ],
+      "source": "views/C3",
+      "languages": [
+        "en",
+        "zh"
+      ],
+      "publication": "ai-service-assistant/C3",
+      "rules": [
+        "I-tenant",
+        "I-approval",
+        "I-delegation",
+        "I-eval",
+        "I-ingest"
+      ]
+    },
+    {
+      "id": "C4",
+      "code": "C4",
+      "catalogRole": "core",
+      "headlines": [
+        "C4"
+      ],
+      "source": "views/C4",
+      "languages": [
+        "en",
+        "zh"
+      ],
+      "publication": "ai-service-assistant/C4",
+      "rules": [
+        "I-tenant",
+        "I-authority",
+        "I-delegation",
+        "I-approval"
+      ]
+    },
+    {
+      "id": "C5",
+      "code": "C5",
+      "catalogRole": "core",
+      "headlines": [
+        "C5"
+      ],
+      "source": "views/C5",
+      "languages": [
+        "en",
+        "zh"
+      ],
+      "publication": "ai-service-assistant/C5",
+      "rules": [
+        "I-tenant",
+        "I-authority",
+        "I-approval",
+        "I-ingest"
+      ]
+    },
+    {
+      "id": "C6",
+      "code": "C6",
+      "catalogRole": "core",
+      "headlines": [
+        "C6"
+      ],
+      "source": "views/C6",
+      "languages": [
+        "en",
+        "zh"
+      ],
+      "publication": "ai-service-assistant/C6",
+      "rules": [
+        "I-delegation",
+        "I-tokens",
+        "I-approval",
+        "I-idempotency",
+        "I-ingest"
+      ]
+    },
+    {
+      "id": "C7",
+      "code": "C7",
+      "catalogRole": "core",
+      "headlines": [
+        "C7"
+      ],
+      "source": "views/C7",
+      "languages": [
+        "en",
+        "zh"
+      ],
+      "publication": "ai-service-assistant/C7",
+      "rules": [
+        "I-delegation",
+        "I-ingest",
+        "I-authority"
+      ]
+    },
+    {
+      "id": "D1",
+      "code": "D1",
+      "catalogRole": "core",
+      "headlines": [
+        "D1"
+      ],
+      "source": "views/D1",
+      "languages": [
+        "en",
+        "zh"
+      ],
+      "publication": "ai-service-assistant/D1",
+      "rules": [
+        "I-tenant",
+        "I-approval",
+        "I-idempotency",
+        "I-ingest",
+        "I-eval"
+      ]
+    },
+    {
+      "id": "D2",
+      "code": "D2",
+      "catalogRole": "core",
+      "headlines": [
+        "D2"
+      ],
+      "source": "views/D2",
+      "languages": [
+        "en",
+        "zh"
+      ],
+      "publication": "ai-service-assistant/D2",
+      "rules": [
+        "I-tenant",
+        "I-ingest",
+        "I-authority"
+      ]
+    },
+    {
+      "id": "D3",
+      "code": "D3",
+      "catalogRole": "core",
+      "headlines": [
+        "D3"
+      ],
+      "source": "views/D3",
+      "languages": [
+        "en",
+        "zh"
+      ],
+      "publication": "ai-service-assistant/D3",
+      "rules": [
+        "I-tenant",
+        "I-ingest",
+        "I-eval",
+        "I-operator"
+      ]
+    },
+    {
+      "id": "E1",
+      "code": "E1",
+      "catalogRole": "core",
+      "headlines": [
+        "E1"
+      ],
+      "source": "views/E1",
+      "languages": [
+        "en",
+        "zh"
+      ],
+      "publication": "ai-service-assistant/E1",
+      "rules": [
+        "I-approval",
+        "I-authority",
+        "I-idempotency",
+        "I-bounds",
+        "I-tokens"
+      ]
+    },
+    {
+      "id": "E2",
+      "code": "E2",
+      "catalogRole": "core",
+      "headlines": [
+        "E2"
+      ],
+      "source": "views/E2",
+      "languages": [
+        "en",
+        "zh"
+      ],
+      "publication": "ai-service-assistant/E2",
+      "rules": [
+        "I-approval",
+        "I-authority",
+        "I-tokens",
+        "I-idempotency",
+        "I-bounds"
+      ]
+    },
+    {
+      "id": "E3",
+      "code": "E3",
+      "catalogRole": "core",
+      "headlines": [
+        "E3"
+      ],
+      "source": "views/E3",
+      "languages": [
+        "en",
+        "zh"
+      ],
+      "publication": "ai-service-assistant/E3",
+      "rules": [
+        "I-approval",
+        "I-idempotency",
+        "I-bounds"
+      ]
+    },
+    {
+      "id": "E4",
+      "code": "E4",
+      "catalogRole": "variant",
+      "headlines": [
+        "E4"
+      ],
+      "source": "views/E4",
+      "languages": [
+        "en",
+        "zh"
+      ],
+      "publication": "ai-service-assistant/E4",
+      "rules": [
+        "I-approval",
+        "I-delegation",
+        "I-tokens",
+        "I-idempotency"
+      ]
+    },
+    {
+      "id": "F1",
+      "code": "F1",
+      "catalogRole": "variant",
+      "headlines": [
+        "F1"
+      ],
+      "source": "views/F1",
+      "languages": [
+        "en",
+        "zh"
+      ],
+      "publication": "ai-service-assistant/F1",
+      "rules": [
+        "I-delegation",
+        "I-tokens",
+        "I-approval",
+        "I-authority"
+      ]
+    },
+    {
+      "id": "F2",
+      "code": "F2",
+      "catalogRole": "variant",
+      "headlines": [
+        "F2"
+      ],
+      "source": "views/F2",
+      "languages": [
+        "en",
+        "zh"
+      ],
+      "publication": "ai-service-assistant/F2",
+      "rules": [
+        "I-approval",
+        "I-authority",
+        "I-tokens",
+        "I-tenant",
+        "I-idempotency"
+      ]
+    },
+    {
+      "id": "F3",
+      "code": "F3",
+      "catalogRole": "core",
+      "headlines": [
+        "F3"
+      ],
+      "source": "views/F3",
+      "languages": [
+        "en",
+        "zh"
+      ],
+      "publication": "ai-service-assistant/F3",
+      "rules": [
+        "I-tenant",
+        "I-approval",
+        "I-authority",
+        "I-tokens",
+        "I-eval",
+        "I-operator"
+      ]
+    },
+    {
+      "id": "G1-AWS",
+      "code": "G2",
+      "catalogRole": "variant",
+      "headlines": [
+        "G1",
+        "G2"
+      ],
+      "source": "views/G1-AWS",
+      "languages": [
+        "en",
+        "zh"
+      ],
+      "publication": "ai-service-assistant/G1-AWS",
+      "rules": [
+        "I-operator",
+        "I-ingest",
+        "I-eval",
+        "I-delegation"
+      ]
+    },
+    {
+      "id": "G1-generic",
+      "code": "G1",
+      "catalogRole": "core",
+      "headlines": [],
+      "source": "views/G1-generic",
+      "languages": [
+        "en",
+        "zh"
+      ],
+      "publication": "ai-service-assistant/G1-generic",
+      "rules": [
+        "I-eval",
+        "I-ingest",
+        "I-operator"
+      ]
+    },
+    {
+      "id": "G3",
+      "code": "G3",
+      "catalogRole": "core",
+      "headlines": [
+        "G3"
+      ],
+      "source": "views/G3",
+      "languages": [
+        "en",
+        "zh"
+      ],
+      "publication": "ai-service-assistant/G3",
+      "rules": [
+        "I-delegation",
+        "I-tokens",
+        "I-approval"
+      ]
+    },
+    {
+      "id": "G4",
+      "code": "G4",
+      "catalogRole": "core",
+      "headlines": [
+        "G4"
+      ],
+      "source": "views/G4",
+      "languages": [
+        "en",
+        "zh"
+      ],
+      "publication": "ai-service-assistant/G4",
+      "rules": [
+        "I-eval",
+        "I-operator",
+        "I-authority"
+      ]
+    },
+    {
+      "id": "H1",
+      "code": "H1",
+      "catalogRole": "core",
+      "headlines": [
+        "H1"
+      ],
+      "source": "views/H1",
+      "languages": [
+        "en",
+        "zh"
+      ],
+      "publication": "ai-service-assistant/H1",
+      "rules": [
+        "I-bounds",
+        "I-eval",
+        "I-operator"
+      ]
+    },
+    {
+      "id": "H2",
+      "code": "H2",
+      "catalogRole": "core",
+      "headlines": [
+        "H2"
+      ],
+      "source": "views/H2",
+      "languages": [
+        "en",
+        "zh"
+      ],
+      "publication": "ai-service-assistant/H2",
+      "rules": [
+        "I-operator",
+        "I-eval",
+        "I-ingest"
+      ]
+    }
+  ]
+}

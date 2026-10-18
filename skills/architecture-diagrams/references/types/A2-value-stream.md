@@ -2,6 +2,7 @@
 <!-- Generated from content/en/types/A2-value-stream.md by tools/build_skill_refs.py. Do not edit. -->
 > How does value accrue, stage by stage, for a triggering stakeholder, and which capabilities enable each stage?
 Scope: One value stream: a triggering stakeholder, a value proposition and about 4–8 stages, optionally with capabilities cross-mapped under each stage Neighbours: A1, A5, A6, A9.
+Named variants (read their own recipes): A9 — `references/types/A9-lean-value-stream-map.md`.
 
 ## Meaning
 - **Question:** how does the enterprise deliver value to one stakeholder, stage by stage, and which capabilities enable each stage? Value is "always defined from the perspective of the stakeholder".
@@ -82,4 +83,4 @@ Scope: One value stream: a triggering stakeholder, a value proposition and about
 Model template: `assets/templates/A2.json` · Layout template: `tree` · stages are `task` nodes chained by edges in one left-to-right row; capabilities cross-mapped to a stage are listed in its `tags`.
 
 ## Sample
-Figure: `samples/A2-value-stream.svg` (published with the site)
+Figure: `samples/ai-service-assistant/A2/en/diagram.svg` (published with the site)

@@ -1,0 +1,480 @@
+{
+  "version": 2,
+  "source": "scenario.json",
+  "entries": {
+    "S-assistant": {
+      "en": "Enterprise Service Assistant",
+      "zh": "企业服务助手"
+    },
+    "R-employee": {
+      "en": "Employee / approver",
+      "zh": "员工 / 审批人"
+    },
+    "R-steward": {
+      "en": "Knowledge steward",
+      "zh": "知识管理员"
+    },
+    "R-operator": {
+      "en": "Platform operator",
+      "zh": "平台运维员"
+    },
+    "C-web": {
+      "en": "Web Portal",
+      "zh": "Web 门户"
+    },
+    "C-api": {
+      "en": "Application API/BFF",
+      "zh": "应用 API/BFF"
+    },
+    "C-agent": {
+      "en": "Agent Service",
+      "zh": "Agent 服务"
+    },
+    "C-ingest": {
+      "en": "Ingestion Worker",
+      "zh": "摄取工作进程"
+    },
+    "C-tools": {
+      "en": "MCP Tool Gateway",
+      "zh": "MCP 工具网关"
+    },
+    "C-eval": {
+      "en": "Evaluation Job",
+      "zh": "评测任务"
+    },
+    "DS-app": {
+      "en": "Application records",
+      "zh": "应用记录"
+    },
+    "DS-doc": {
+      "en": "Document versions",
+      "zh": "文档版本"
+    },
+    "DS-index": {
+      "en": "Retrieval index",
+      "zh": "检索索引"
+    },
+    "DS-eval": {
+      "en": "Evaluation datasets",
+      "zh": "评测数据集"
+    },
+    "Q-ingest": {
+      "en": "Ingestion queue + DLQ",
+      "zh": "摄取队列 + DLQ"
+    },
+    "X-idp": {
+      "en": "Enterprise IdP / AS",
+      "zh": "企业 IdP / AS",
+      "viewLabels": {
+        "en": [
+          "Enterprise Identity"
+        ],
+        "zh": [
+          "企业身份服务"
+        ]
+      }
+    },
+    "X-doc": {
+      "en": "Document Repository",
+      "zh": "文档源系统"
+    },
+    "X-desk": {
+      "en": "Service Desk",
+      "zh": "服务工单系统"
+    },
+    "X-model": {
+      "en": "Managed Model Service",
+      "zh": "托管模型服务"
+    },
+    "P-ingest": {
+      "en": "1. Prepare knowledge",
+      "zh": "1. 准备知识"
+    },
+    "P-retrieve": {
+      "en": "2. Authorize retrieval",
+      "zh": "2. 授权检索",
+      "viewLabels": {
+        "en": [
+          "Authorized retriever",
+          "2. Tenant/ACL filter"
+        ],
+        "zh": [
+          "授权检索器",
+          "2. tenant/ACL 预过滤"
+        ]
+      }
+    },
+    "P-compose": {
+      "en": "3. Compose answer",
+      "zh": "3. 生成回答",
+      "viewLabels": {
+        "en": [
+          "Answer composer"
+        ],
+        "zh": [
+          "回答生成器"
+        ]
+      }
+    },
+    "P-cite": {
+      "en": "4. Authorize citations",
+      "zh": "4. 授权引用"
+    },
+    "P-plan": {
+      "en": "1. Draft request",
+      "zh": "1. 起草请求",
+      "viewLabels": {
+        "en": [
+          "Request planner"
+        ],
+        "zh": [
+          "请求规划器"
+        ]
+      }
+    },
+    "P-approve": {
+      "en": "2. Bind approval",
+      "zh": "2. 绑定审批"
+    },
+    "P-execute": {
+      "en": "3. Reauthorize tool",
+      "zh": "3. 工具再授权"
+    },
+    "P-export": {
+      "en": "Approve feedback export",
+      "zh": "批准反馈导出"
+    },
+    "AWS-edge": {
+      "en": "CloudFront + S3",
+      "zh": "CloudFront + S3"
+    },
+    "AWS-alb": {
+      "en": "Application Load Balancer",
+      "zh": "应用负载均衡器"
+    },
+    "AWS-tasks": {
+      "en": "ECS Fargate services",
+      "zh": "ECS Fargate 服务"
+    },
+    "AWS-batch": {
+      "en": "ECS Fargate jobs",
+      "zh": "ECS Fargate 任务"
+    },
+    "AWS-aurora": {
+      "en": "Aurora PostgreSQL",
+      "zh": "Aurora PostgreSQL"
+    },
+    "AWS-search": {
+      "en": "OpenSearch Service",
+      "zh": "OpenSearch Service"
+    },
+    "AWS-s3": {
+      "en": "Amazon S3",
+      "zh": "Amazon S3"
+    },
+    "AWS-sqs": {
+      "en": "SQS + DLQ",
+      "zh": "SQS + DLQ"
+    },
+    "AWS-ops": {
+      "en": "CloudWatch · KMS · Secrets",
+      "zh": "CloudWatch · KMS · Secrets"
+    },
+    "CAP-performance": {
+      "en": "Assistant performance management",
+      "zh": "助手绩效管理"
+    },
+    "CAP-answering": {
+      "en": "Knowledge answering",
+      "zh": "知识问答"
+    },
+    "CAP-requests": {
+      "en": "Service request management",
+      "zh": "服务请求管理"
+    },
+    "CAP-knowledge": {
+      "en": "Knowledge management",
+      "zh": "知识管理"
+    },
+    "CAP-identity": {
+      "en": "Identity and access",
+      "zh": "身份与访问"
+    },
+    "CAP-quality": {
+      "en": "Answer quality evaluation",
+      "zh": "回答质量评估"
+    },
+    "CAP-cost": {
+      "en": "Usage cost management",
+      "zh": "使用成本管理"
+    },
+    "CAP-question": {
+      "en": "Question answering",
+      "zh": "问题解答"
+    },
+    "CAP-citation": {
+      "en": "Source citation",
+      "zh": "来源引用"
+    },
+    "CAP-drafting": {
+      "en": "Request drafting",
+      "zh": "请求起草"
+    },
+    "CAP-approval": {
+      "en": "Request approval",
+      "zh": "请求审批"
+    },
+    "CAP-fulfilment": {
+      "en": "Ticket fulfilment",
+      "zh": "工单履行"
+    },
+    "CAP-curation": {
+      "en": "Knowledge curation",
+      "zh": "知识维护"
+    },
+    "CAP-access": {
+      "en": "Access policy management",
+      "zh": "访问策略管理"
+    },
+    "CAP-verify": {
+      "en": "Identity verification",
+      "zh": "身份验证"
+    },
+    "CAP-delegation": {
+      "en": "Delegated authorization",
+      "zh": "委托授权"
+    },
+    "VS-ask": {
+      "en": "Ask question",
+      "zh": "提出问题"
+    },
+    "VS-answer": {
+      "en": "Get cited answer",
+      "zh": "获得带来源回答"
+    },
+    "VS-draft": {
+      "en": "Draft request",
+      "zh": "起草请求"
+    },
+    "VS-approve": {
+      "en": "Approve request",
+      "zh": "审批请求"
+    },
+    "VS-ticket": {
+      "en": "Receive ticket",
+      "zh": "获得工单"
+    },
+    "EV-need": {
+      "en": "Ticket needed",
+      "zh": "需要工单"
+    },
+    "P-ask": {
+      "en": "Ask for a ticket",
+      "zh": "请求工单"
+    },
+    "P-review": {
+      "en": "Review draft",
+      "zh": "查看草稿"
+    },
+    "G-approve": {
+      "en": "Approve draft?",
+      "zh": "批准草稿？"
+    },
+    "P-confirm": {
+      "en": "Approve draft",
+      "zh": "批准草稿"
+    },
+    "EV-approved": {
+      "en": "Draft approved",
+      "zh": "草稿已批准"
+    },
+    "EV-declined": {
+      "en": "Request declined",
+      "zh": "请求被拒绝"
+    },
+    "EV-received": {
+      "en": "Request received",
+      "zh": "收到请求"
+    },
+    "EV-created": {
+      "en": "Ticket created",
+      "zh": "工单已创建"
+    },
+    "EV-requested": {
+      "en": "Ticket requested",
+      "zh": "请求创建工单"
+    },
+    "P-show": {
+      "en": "Show exact draft",
+      "zh": "展示确定草稿"
+    },
+    "P-exchange": {
+      "en": "Exchange for tool token",
+      "zh": "换取工具 token"
+    },
+    "G-checks": {
+      "en": "Checks pass?",
+      "zh": "校验通过？"
+    },
+    "P-create": {
+      "en": "Create ticket once",
+      "zh": "按键创建工单"
+    },
+    "EV-rejected": {
+      "en": "Rejected, no desk call",
+      "zh": "拒绝，不调用工单"
+    },
+    "ST-baseline": {
+      "en": "Baseline: search + manual tickets",
+      "zh": "基线：搜索 + 人工提单"
+    },
+    "ST-answers": {
+      "en": "T1: Cited answers",
+      "zh": "T1：带来源回答"
+    },
+    "ST-tickets": {
+      "en": "T2: Approved tickets",
+      "zh": "T2：经审批的工单"
+    },
+    "ST-target": {
+      "en": "Target: gated changes",
+      "zh": "目标：门禁变更"
+    },
+    "WP-retrieval": {
+      "en": "Tenant-safe retrieval",
+      "zh": "租户安全检索"
+    },
+    "WP-approval": {
+      "en": "Approval binding",
+      "zh": "审批绑定"
+    },
+    "WP-eval": {
+      "en": "Evaluation gates",
+      "zh": "评测门禁"
+    },
+    "DE-tenant": {
+      "en": "Tenant",
+      "zh": "租户"
+    },
+    "DE-member": {
+      "en": "Membership",
+      "zh": "成员关系"
+    },
+    "DE-chat": {
+      "en": "Chat",
+      "zh": "对话"
+    },
+    "DE-approval": {
+      "en": "Approval",
+      "zh": "审批"
+    },
+    "DE-exec": {
+      "en": "Execution",
+      "zh": "执行"
+    },
+    "DE-audit": {
+      "en": "Audit event",
+      "zh": "审计事件"
+    },
+    "DE-docver": {
+      "en": "Document version",
+      "zh": "文档版本"
+    },
+    "DE-chunk": {
+      "en": "Chunk",
+      "zh": "分块"
+    },
+    "DE-feedback": {
+      "en": "Feedback",
+      "zh": "反馈"
+    },
+    "DE-evalrec": {
+      "en": "Evaluation record",
+      "zh": "评测记录"
+    }
+  },
+  "viewElements": {
+    "E3": {
+      "E3-start": {
+        "en": "Start",
+        "zh": "开始"
+      },
+      "E3-unapproved": {
+        "en": "Unapproved",
+        "zh": "未获审批"
+      },
+      "E3-approved": {
+        "en": "Approved",
+        "zh": "已审批"
+      },
+      "E3-executing": {
+        "en": "Executing",
+        "zh": "执行中"
+      },
+      "E3-unknown": {
+        "en": "Outcome unknown",
+        "zh": "结果未知"
+      },
+      "E3-resolved": {
+        "en": "Outcome recorded",
+        "zh": "结果已记录"
+      },
+      "E3-refused": {
+        "en": "Refused",
+        "zh": "已拒绝"
+      },
+      "E3-final": {
+        "en": "End",
+        "zh": "结束"
+      }
+    },
+    "G4": {
+      "G4-gate": {
+        "en": "Quality / safety gate",
+        "zh": "质量 / 安全门禁"
+      },
+      "G4-hold": {
+        "en": "Hold candidate",
+        "zh": "暂停候选晋级"
+      },
+      "G4-release": {
+        "en": "Approve digest release",
+        "zh": "按摘要批准发布"
+      },
+      "G4-recover": {
+        "en": "Recovery decision",
+        "zh": "恢复决策"
+      }
+    },
+    "E2": {
+      "E2-start": {
+        "en": "Start",
+        "zh": "开始"
+      },
+      "E2-valid": {
+        "en": "Valid?",
+        "zh": "有效？"
+      },
+      "E2-persist": {
+        "en": "Persist execution intent",
+        "zh": "持久化执行意图"
+      },
+      "E2-write": {
+        "en": "Execute idempotently",
+        "zh": "幂等执行"
+      },
+      "E2-deny": {
+        "en": "Reject tool request",
+        "zh": "拒绝工具请求"
+      },
+      "E2-done": {
+        "en": "End",
+        "zh": "结束"
+      },
+      "E2-refused": {
+        "en": "End",
+        "zh": "结束"
+      }
+    }
+  }
+}

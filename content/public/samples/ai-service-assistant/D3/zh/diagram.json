@@ -1,0 +1,151 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "D3",
+    "title": "D3 · 知识与反馈数据 — 血缘与归属",
+    "lang": "zh",
+    "state": "to-be",
+    "audience": "architects and reviewers",
+    "description": "Fictional teaching design; scenario.json version 2; illustrative assumptions, not a deployed system"
+  },
+  "layout": {
+    "template": "nested"
+  },
+  "nodes": [
+    {
+      "id": "X-doc",
+      "kind": "external",
+      "label": "文档源系统",
+      "parent": "G-know",
+      "style": "external",
+      "sub": "X-doc · HTTPS 连接器 · 原始文档与访问规则"
+    },
+    {
+      "id": "P-ingest",
+      "kind": "job",
+      "label": "1. 准备知识",
+      "parent": "G-know",
+      "style": "peer",
+      "sub": "归属：摄取工作进程 · 版本、分块、嵌入"
+    },
+    {
+      "id": "DS-doc",
+      "kind": "dataset",
+      "label": "文档版本",
+      "parent": "G-know",
+      "style": "peer",
+      "sub": "DS-doc · S3 · 管理员：知识管理员"
+    },
+    {
+      "id": "DS-index",
+      "kind": "dataset",
+      "label": "检索索引",
+      "parent": "G-know",
+      "style": "peer",
+      "sub": "DS-index · OpenSearch · 管理员：知识管理员"
+    },
+    {
+      "id": "C-agent",
+      "kind": "container",
+      "label": "Agent 服务",
+      "parent": "G-know",
+      "style": "peer",
+      "sub": "C-agent · Python · 带引用的回答"
+    },
+    {
+      "id": "DS-app",
+      "kind": "dataset",
+      "label": "应用记录",
+      "parent": "G-eval",
+      "style": "peer",
+      "sub": "DS-app · PostgreSQL · 数据负责人：知识管理员"
+    },
+    {
+      "id": "P-export",
+      "kind": "job",
+      "label": "批准反馈导出",
+      "parent": "G-eval",
+      "style": "peer",
+      "sub": "归属：应用 API/BFF · 去标识或合成"
+    },
+    {
+      "id": "DS-eval",
+      "kind": "dataset",
+      "label": "评测数据集",
+      "parent": "G-eval",
+      "style": "peer",
+      "sub": "DS-eval · S3 · 管理员：知识管理员"
+    },
+    {
+      "id": "C-eval",
+      "kind": "container",
+      "label": "评测任务",
+      "parent": "G-eval",
+      "style": "peer",
+      "sub": "C-eval · Python / batch · 离线质量门禁"
+    }
+  ],
+  "edges": [
+    {
+      "id": "LIN-1",
+      "from": "X-doc",
+      "to": "P-ingest",
+      "label": "原文 + ACL",
+      "kind": "data"
+    },
+    {
+      "id": "LIN-2",
+      "from": "P-ingest",
+      "to": "DS-doc",
+      "label": "版本 + ACL",
+      "kind": "data"
+    },
+    {
+      "id": "LIN-3",
+      "from": "P-ingest",
+      "to": "DS-index",
+      "label": "分块 + 向量",
+      "kind": "data"
+    },
+    {
+      "id": "LIN-4",
+      "from": "DS-index",
+      "to": "C-agent",
+      "label": "片段",
+      "kind": "data"
+    },
+    {
+      "id": "LIN-5",
+      "from": "DS-app",
+      "to": "P-export",
+      "label": "反馈",
+      "kind": "data"
+    },
+    {
+      "id": "LIN-6",
+      "from": "P-export",
+      "to": "DS-eval",
+      "label": "批准的导出",
+      "kind": "data"
+    },
+    {
+      "id": "LIN-7",
+      "from": "DS-eval",
+      "to": "C-eval",
+      "label": "数据集",
+      "kind": "data"
+    }
+  ],
+  "groups": [
+    {
+      "id": "G-know",
+      "title": "知识 · 管理员治理",
+      "kind": "boundary"
+    },
+    {
+      "id": "G-eval",
+      "title": "反馈与评测 · 管理员批准的导出",
+      "kind": "boundary"
+    }
+  ]
+}

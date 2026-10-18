@@ -2,6 +2,7 @@
 <!-- Generated from content/en/types/B4-scope-diagram.md by tools/build_skill_refs.py. Do not edit. -->
 > What does this initiative include or exclude, and which external dependencies still require work?
 Scope: system Neighbours: A3, B1, C2.
+Named variant of C2; apply this reference's own recipe and checks.
 
 ## Meaning
 A scope diagram answers **what an initiative includes or excludes and which dependencies affect that agreement**. Its concern is responsibility for change and delivery, not merely where software runs.

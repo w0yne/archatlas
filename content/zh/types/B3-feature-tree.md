@@ -16,12 +16,14 @@ scope: system
 formal: {kind: convention, ref: 'Functional hierarchy — https://sebokwiki.org/wiki/Logical_Architecture; variability mode uses FeatureIDE conventions'}
 neighbours: [B2, C5]
 status: draft
-sourceRev: 88db750
+sourceRev: 4e718f136c12c2c4c1d5f2226ea103f63e35b600
 translationOf: en/types/B3-feature-tree.md
 reviewed: false
 ---
 
 # 功能树与功能分解（Feature tree and functional decomposition）
+
+**方法参考。** 明确需要时仍可使用；不在默认25项核心目录中。此页与历史链接继续保留。
 
 > 把产品功能自上而下分解到可估算的叶子，并标出优先级；不表达流程，也不表达代码结构。
 

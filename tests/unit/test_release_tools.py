@@ -7,6 +7,7 @@ import tempfile
 import unittest
 from contextlib import redirect_stdout
 from pathlib import Path
+from unittest import mock
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "tools"))
@@ -49,6 +50,40 @@ class LintPrivateTest(unittest.TestCase):
         inside = repo / "names.txt"
         inside.write_text("Acmecorp\n")
         self.assertEqual(lint_private.main(["--root", str(repo), "--names-file", str(inside)]), 2)
+
+    def test_external_prefix_terms_detect_suffixes_without_disclosing_names(self):
+        repo = git_repo(self, {"a.md": "EXAMPLE_PRIVATE_SESSION=value\npublic-maintainer/repo\n"})
+        names = repo.parent / (repo.name + ".names")
+        names.write_text("prefix:EXAMPLE_PRIVATE_\npublic-maintainer\n")
+        self.addCleanup(names.unlink)
+        out = io.StringIO()
+        with redirect_stdout(out):
+            code = lint_private.main(["--root", str(repo), "--names-file", str(names)])
+        self.assertEqual(code, 1)
+        self.assertIn("names file line 1", out.getvalue())
+        self.assertIn("names file line 2", out.getvalue())
+        self.assertNotIn("EXAMPLE_PRIVATE_", out.getvalue())
+        self.assertNotIn("public-maintainer", out.getvalue())
+        findings = lint_private.scan_text("a.md", "NOTEXAMPLE_PRIVATE_SESSION", {
+            "rules": [], "allow": []}, lint_private.load_names(names))
+        self.assertEqual(findings, [])
+
+    def test_history_scans_metadata_after_a_previous_commit_diff(self):
+        repo = git_repo(self, {"a.md": "ordinary text\n"})
+        names = repo.parent / (repo.name + ".names")
+        names.write_text("PublicOwner\n")
+        self.addCleanup(names.unlink)
+        log = (
+            "commit aaaaaaaaaaaa\nPublicOwner <owner@example.com>\nfirst\n"
+            "diff --git a/a.md b/a.md\n+++ b/a.md\n+ordinary text\n"
+            "commit bbbbbbbbbbbb\nPublicOwner <owner@example.com>\nsecond\n"
+            "diff --git a/a.md b/a.md\n+++ b/a.md\n+more text\n"
+        )
+        with mock.patch.object(lint_private.subprocess, "run", return_value=mock.Mock(stdout=log.encode())):
+            findings = lint_private.scan_history(repo, lint_private.load_config(lint_private.CONFIG),
+                                                 lint_private.load_names(names))
+        self.assertEqual({f.path for f in findings if f.rule == "private-name"},
+                         {"aaaaaaaaaaaa:<message>", "bbbbbbbbbbbb:<message>"})
 
 
 class PackSkillTest(unittest.TestCase):

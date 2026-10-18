@@ -20,6 +20,8 @@ status: draft
 
 # Conceptual Architecture / Solution Overview (概念架构图 / 方案概览图)
 
+**Named variant of C5.** [Open Logical architecture diagram → A7](/types/c5-logical-architecture#variant-a7). This compatibility page retains its recipe, checks, anchors and historical downloads.
+
 > One page that shows what a solution is made of, in business words and without product names, so sponsors and reviewers agree on the shape before the detailed views.
 
 ## Meaning {#meaning}

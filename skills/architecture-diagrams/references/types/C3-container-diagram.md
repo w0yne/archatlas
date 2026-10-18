@@ -84,4 +84,4 @@ It answers: *which separately running applications and data stores make up this 
 Model template: `assets/templates/C3.json` · Layout template: `statechart` · one `boundary` group for the system containing `frame` groups (front ends, services) of `container` nodes ranked by the request path, a separate group for the shop's `store` and `queue` nodes, and `person` and `external` nodes outside; chips carry the technology, the subject service has style `primary`, and edges carry no step numbers on a structure view.
 
 ## Sample
-Figure: `samples/C3-container-diagram.svg` (published with the site)
+Figure: `samples/ai-service-assistant/C3/en/diagram.svg` (published with the site)

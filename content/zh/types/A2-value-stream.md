@@ -17,7 +17,7 @@ formal: {kind: standard, ref: 'ArchiMate 3.2 Value Stream element and Value Stre
 neighbours: [A1, A5, A6, A9]
 status: draft
 translationOf: en/types/A2-value-stream.md
-sourceRev: 88db750
+sourceRev: 7002b1114ff60c6a028194c8376c71eee2b9d52d
 reviewed: false
 ---
 
@@ -137,7 +137,35 @@ reviewed: false
 9. Scaled Agile, "Operational Value Streams" and "Development Value Streams" — https://framework.scaledagile.com/operational-value-streams ; https://framework.scaledagile.com/development-value-streams — 访问于 2026-10-14
 10. "The Value Management Platform and ArchiMate", CEUR-WS Vol-2574 (value stream realizes outcome) — https://ceur-ws.org/Vol-2574/paper2.pdf — 访问于 2026-10-14
 
+### A9 · 精益价值流图（VSM） {#variant-a9}
+
+编辑归组保留独立语义；使用本变体的画法与检查项。
+
+1. 范围：一个产品族、门到门的起点和终点、现状或未来状态、日期；标题要传达发现，例如“Order to doorstep: 20 min of work in 33 h”（从下单到送货上门：33 小时里只有 20 分钟在干活）。
+2. 顶部带：左边是供应商，右边是顾客并标注需求速率；中间是协调或排程，以及相应的信息流箭头。
+3. 中部带：处理框从左到右排列，每个下方有数据框（PT、%C&A、人员数）；处理框之间是标注数量或等待时间的排队三角形。
+4. 底部带：时间线阶梯（等待在上，PT 在下），右侧为合计：前置时间、ΣPT、活动比。
+5. 未来状态：第二张图，在变更点标注改善爆炸点，顺序和比例保持一致，便于两张图并排对比。
+6. 文字：处理框内用简短的工作名称；数字只出现在数据框和时间线中；每行只用一种时间单位。
+7. 颜色：处理框用中性色；等待或改善爆炸点用一种强调色；面向不熟悉精益的读者时，用带标签的普通方框代替精益图标，并始终附图例。
+
+**自检清单**
+- [ ] 每个处理框都有含 PT 的数据框；处理框之间展示了排队和等待。
+- [ ] 合计能对上：ΣPT ≤ 前置时间，且活动比 = ΣPT ÷ 前置时间。
+- [ ] 在图旁注明数字来源（观察、抽样、系统数据）和统计期间。
+- [ ] 画出了信息流，而不只是工作流。
+- [ ] 严格从左到右，没有过长的回流线；处理框是工作步骤，而不是部门。
+- [ ] 没有能力或干系人价值阶段（这些属于 A2）。
+- [ ] 图上注明现状或未来状态；未来状态图带有与计划挂钩的改善爆炸点。
+- [ ] 图标和单位在图例中有说明。
+
+[完整方法与历史样例](/zh/types/a9-lean-value-stream-map#meaning).
+
 ## 示例 {#sample}
 <!-- skill: path only -->
-![A2 示例：网店从购物者到收到商品的价值流](/samples/A2-value-stream.svg)
-*网店的价值流：购物者触发五个“动词+名词”阶段（选择商品、下单、付款、打包、送货），最终交付的价值是“收到商品”。图上没有时间；带时间的是精益价值流图（A9）。*
+![A2 · 企业服务助手](/samples/ai-service-assistant/A2/zh/diagram.svg)
+*从触发到交付价值，干系人经过哪些价值阶段？每个阶段由哪些能力支撑？*
+
+[SVG](/samples/ai-service-assistant/A2/zh/diagram.svg) · [模型 JSON](/samples/ai-service-assistant/A2/zh/diagram.json) · [共享事实](/samples/ai-service-assistant/scenario.json)
+
+[历史 shop 回归样例](/samples/A2-value-stream.svg) · [全部29幅视图](/zh/use/ai-service-assistant) · [示意假设](/zh/use/ai-service-assistant-assumptions).

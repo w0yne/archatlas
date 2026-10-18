@@ -1,0 +1,25 @@
+{
+  "scenarioVersion": 2,
+  "entities": {
+    "CAP-quality": "CAP-quality",
+    "CAP-cost": "CAP-cost",
+    "CAP-question": "CAP-question",
+    "CAP-citation": "CAP-citation",
+    "CAP-drafting": "CAP-drafting",
+    "CAP-approval": "CAP-approval",
+    "CAP-fulfilment": "CAP-fulfilment",
+    "CAP-curation": "CAP-curation",
+    "CAP-access": "CAP-access",
+    "CAP-verify": "CAP-verify",
+    "CAP-delegation": "CAP-delegation"
+  },
+  "invariants": [
+    "I-bounds",
+    "I-approval",
+    "I-tenant",
+    "I-eval"
+  ],
+  "projection": "focused view; omissions described in caption; not a deployed system",
+  "missingFacts": [],
+  "assumptions": []
+}

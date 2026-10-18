@@ -1,0 +1,21 @@
+{
+  "scenarioVersion": 2,
+  "entities": {
+    "S-assistant": "S-assistant",
+    "R-employee": "R-employee",
+    "R-steward": "R-steward",
+    "R-operator": "R-operator",
+    "X-idp": "X-idp",
+    "X-doc": "X-doc",
+    "X-desk": "X-desk",
+    "X-model": "X-model"
+  },
+  "invariants": [
+    "I-bounds",
+    "I-operator",
+    "I-authority"
+  ],
+  "projection": "focused view; omissions described in caption; not a deployed system",
+  "missingFacts": [],
+  "assumptions": []
+}

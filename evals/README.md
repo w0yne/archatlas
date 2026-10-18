@@ -92,8 +92,12 @@ The child process's environment is built from scratch. It receives only:
 - the literal `env` values from the hosts file;
 - the variables named in `pass_env`.
 
-Variables starting with `RCC_`, `CYBERWARE_`, `PI_`, `CLAUDE` or `CODEX_` are never
-forwarded from the parent.
+`pass_env` is a second opt-in over the exact provider/transport allowlist in
+`adapters/base.py`; an arbitrary name is rejected even when explicitly requested.
+Literal `env` values use the same allowlist plus documented provider switches.
+HOME, PATH and XDG roots cannot be overridden. Adapter state/browser paths must resolve
+inside the sandbox, including through symlinks; isolation toggles cannot be disabled.
+No variable is implicitly inherited, and no product-specific prefix filter is needed.
 
 **Per-host details:**
 
@@ -113,3 +117,22 @@ run and mention a sandbox path. Any hit fails the run.
 bubblewrap cannot create namespaces, set `sandbox: danger-full-access` in the hosts file.
 The run is then contained only by its temporary directory, so use a disposable machine or
 container for full evaluations.
+
+## Consolidated AI-scenario contracts
+
+S11 and S12 are held-out selection prompts for approval/ACL changes and an explicitly
+unsupported delegation capability. S6 retains the security-review baseline. Run
+`python -m pytest -q evals/tests/test_ai_contracts.py` for their deterministic routing and
+cross-view contract regressions. These tests do not run an agent, grade a drawing, or
+produce a quality/performance comparison. Live S11/S12 runs use the existing runner.
+Historical report scores remain bound to their recorded skill/scenario revisions.
+
+## External publication audit
+
+Run `python tools/lint_private.py --names-file /path/outside/checkout/names.txt --strict`
+for the current tree; add `--history --json` to audit all published additions and commit
+metadata separately. The external list contains one term per line. Use
+`prefix:EXAMPLE_PRIVATE_` to match a private identifier and its suffixes; ordinary terms
+match whole words. Results identify list line numbers and redact the matched text.
+Public contributor references and retained historical findings must be reported honestly;
+a forward-only source repair does not erase published history. Do not commit the list.

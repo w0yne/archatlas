@@ -2,6 +2,7 @@
 <!-- Generated from content/en/types/H3-stakeholder-map.md by tools/build_skill_refs.py. Do not edit. -->
 > Who can influence or is affected by the initiative, and how should each stakeholder be engaged?
 Scope: Stakeholder engagement for one initiative at a stated time. Neighbours: A3, H1.
+Method reference: honour explicit requests; outside the default core catalogue.
 
 ## Meaning
 A stakeholder map connects assessed power and interest to engagement choices. It makes concerns and influence visible, including parties who never use the system. It supports governance and communication, rather than depicting software architecture.

@@ -1,0 +1,81 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "C7",
+    "title": "C7 · 企业服务助手 — 上下文映射（限界上下文，示意）",
+    "lang": "zh",
+    "state": "to-be",
+    "audience": "architects and reviewers",
+    "description": "Fictional teaching design; scenario.json version 2; illustrative assumptions, not a deployed system"
+  },
+  "layout": {
+    "template": "nested"
+  },
+  "nodes": [
+    {
+      "id": "X-idp",
+      "kind": "external",
+      "label": "企业 IdP / AS",
+      "style": "external",
+      "sub": "X-idp · OIDC / OAuth · 身份与委托"
+    },
+    {
+      "id": "X-doc",
+      "kind": "external",
+      "label": "文档源系统",
+      "style": "external",
+      "sub": "X-doc · HTTPS 连接器 · 文档与访问策略"
+    },
+    {
+      "id": "X-desk",
+      "kind": "external",
+      "label": "服务工单系统",
+      "style": "external",
+      "sub": "X-desk · HTTPS · 服务目录与工单"
+    },
+    {
+      "id": "X-model",
+      "kind": "external",
+      "label": "托管模型服务",
+      "style": "external",
+      "sub": "X-model · Amazon Bedrock · 文本与向量"
+    },
+    {
+      "id": "S-assistant",
+      "kind": "system",
+      "label": "企业服务助手",
+      "style": "primary",
+      "sub": "S-assistant · 新应用 · 有据可查的回答与经审批的服务操作"
+    }
+  ],
+  "edges": [
+    {
+      "id": "CTX-1",
+      "from": "X-idp",
+      "to": "S-assistant",
+      "label": "OHS/PL → CF",
+      "kind": "call"
+    },
+    {
+      "id": "CTX-2",
+      "from": "X-doc",
+      "to": "S-assistant",
+      "label": "OHS → ACL",
+      "kind": "call"
+    },
+    {
+      "id": "CTX-3",
+      "from": "X-desk",
+      "to": "S-assistant",
+      "label": "OHS → ACL",
+      "kind": "call"
+    },
+    {
+      "id": "CTX-4",
+      "from": "X-model",
+      "to": "S-assistant",
+      "label": "OHS/PL → CF",
+      "kind": "call"
+    }
+  ]
+}

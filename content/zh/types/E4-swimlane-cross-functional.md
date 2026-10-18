@@ -17,11 +17,13 @@ formal: {kind: convention, ref: Informal cross-functional flowchart (Rummler-Bra
 neighbours: [A5, A6, A9, E1, E2, H1]
 status: draft
 translationOf: en/types/E4-swimlane-cross-functional.md
-sourceRev: 68c7e31
+sourceRev: 7002b1114ff60c6a028194c8376c71eee2b9d52d
 reviewed: false
 ---
 
 # 泳道流程图（Swimlane / Cross-functional Flowchart）
+
+**E2 的具名变体。** [进入活动图 / 流程图 → E4](/zh/types/e2-activity-flowchart#variant-e4)。此兼容页保留独立画法、检查项、原锚点和历史下载。
 
 > 把流程图划分为并行的泳道，每个角色或系统一条，使它们之间的每一次交接都清晰可见。
 
@@ -147,5 +149,9 @@ reviewed: false
 
 ## 示例图 {#sample}
 <!-- skill: path only -->
-![E4 示例：顾客、客服、仓库和财务之间的退货泳道图](/samples/E4-swimlane-cross-functional.zh.svg)
-*跨四条泳道（顾客、客服、仓库、财务）的退货流程：顾客的申请交给客服，客服批准后产生退货面单；顾客把包裹寄到仓库，仓库验货后把结果交给财务退款，并通知顾客。编号标明步骤顺序，每次交接都标注传递的内容。*
+![E4 · 企业服务助手](/samples/ai-service-assistant/E4/zh/diagram.svg)
+*一个流程中，每一步由哪个角色或系统完成？在哪里交接？*
+
+[SVG](/samples/ai-service-assistant/E4/zh/diagram.svg) · [模型 JSON](/samples/ai-service-assistant/E4/zh/diagram.json) · [共享事实](/samples/ai-service-assistant/scenario.json)
+
+[历史 shop 回归样例](/samples/E4-swimlane-cross-functional.zh.svg) · [全部29幅视图](/zh/use/ai-service-assistant) · [示意假设](/zh/use/ai-service-assistant-assumptions).

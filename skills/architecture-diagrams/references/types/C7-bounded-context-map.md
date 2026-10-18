@@ -92,4 +92,4 @@ A context map answers: *which models with their own language exist here, and who
 Model template: `assets/templates/C7.json` · Layout template: `nested` · each context is a `boundary` group holding one `component` node per key model (team in the node `sub`, role chips such as OHS/ACL in its `tags`); `edges` carry the pattern label with `dir` `->` for upstream→downstream or `--` for symmetric.
 
 ## Sample
-Figure: `samples/C7-bounded-context-map.svg` (published with the site)
+Figure: `samples/ai-service-assistant/C7/en/diagram.svg` (published with the site)

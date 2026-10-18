@@ -17,7 +17,7 @@ formal: {kind: convention, ref: 'No graphical standard. Fowler''s deployment-pip
 neighbours: [A9, G1, G2, H2]
 status: draft
 translationOf: en/types/G4-delivery-pipeline.md
-sourceRev: 88db750
+sourceRev: 7002b1114ff60c6a028194c8376c71eee2b9d52d
 reviewed: false
 ---
 
@@ -145,5 +145,9 @@ reviewed: false
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-![G4 示例：带审批关卡和失败出口的交付流水线](/samples/G4-delivery-pipeline.svg)
-*交付流水线：合并到主干触发构建，构建在镜像仓库产出镜像，随后测试。通过审批关卡后部署到预发布环境，再把同一摘要晋级到生产环境。测试失败或审批被拒都会停止流水线并通知作者。*
+![G4 · 企业服务助手](/samples/ai-service-assistant/G4/zh/diagram.svg)
+*版本化 prompt/模型包、不可变摘要、离线门禁、管理员审批及运维发布。同一制品经预发布及 5% 灰度晋级；恢复兼容配置指针，不自动回滚数据库。*
+
+[SVG](/samples/ai-service-assistant/G4/zh/diagram.svg) · [模型 JSON](/samples/ai-service-assistant/G4/zh/diagram.json) · [共享事实](/samples/ai-service-assistant/scenario.json)
+
+[历史 shop 回归样例](/samples/G4-delivery-pipeline.svg) · [全部29幅视图](/zh/use/ai-service-assistant) · [示意假设](/zh/use/ai-service-assistant-assumptions).

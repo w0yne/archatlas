@@ -118,7 +118,37 @@ Approximate: it is a table; task cards and slice bands are not drawn, and it exp
 4. Nielsen Norman Group — *Mapping User Stories in Agile* — https://www.nngroup.com/articles/user-story-mapping/ — accessed 2026-10-14.
 5. Nielsen Norman Group — *Journey Mapping 101* — https://www.nngroup.com/articles/journey-mapping-101/ — accessed 2026-10-14.
 
+### A4 · Business scenario matrix (role × activity) {#variant-a4}
+
+Editorial grouping preserves the distinct notation; use this recipe and its checks.
+
+1. Fix scope (solution or business area, as-is / to-be) and the release vocabulary.
+2. Pick one column source (value-stream stages, capabilities or backbone activities); 4–8 columns in narrative order.
+3. List 4–8 roles as rows, grouped external / internal, primary role on top.
+4. Write 0–3 scenarios per cell, verb + object at user-goal level; merge or reject summary and subfunction items.
+5. Assign each scenario a release; hatch deliberately unsupported cells, leave not-applicable cells blank.
+6. Layout: landscape grid, bold header row and header column, optional thin column bands by stage, no arrows.
+7. Colour: one sequential scale for releases (darkest = R1) or 3 distinct fills; neutral grey hatch for "not supported"; outline marker for significant scenarios; legend bottom-right.
+8. Text budget: ≤ 6 words per scenario, ≤ 3 per cell; optional footer with counts per release.
+
+**Self-check**
+
+- [ ] All rows are roles of one kind: no systems, no named people.
+- [ ] All columns are business activities at one level, in narrative order.
+- [ ] Every scenario is verb + object at user-goal level; no clicks, no epics.
+- [ ] Every scenario has a release marker; the legend explains every fill, hatch and blank.
+- [ ] Release 1 covers the primary role end to end.
+- [ ] No step sequences, UI or technical terms in cells.
+- [ ] The title states scope and as-is / to-be, and does not use the bare term "scenario map".
+- [ ] The grid fits about 8 × 8, or is split by business area.
+
+[Full method and historical sample](/types/a4-scenario-matrix#meaning).
+
 ## Sample {#sample}
 <!-- skill: path only -->
-![B2 sample: user story map for an online shopper with release slices](/samples/B2-user-story-map.svg)
-*User story map of an online shopper: four activities from left to right (discover items, compare items, check out, track delivery) and one row per release slice. Slice 1 is the prototype, holding one complete shopping goal. It is drawn as a table, without task cards.*
+![B2 · Enterprise Service Assistant](/samples/ai-service-assistant/B2/en/diagram.svg)
+*What does the user do end to end, what is the smallest useful first release, and how are later releases sliced?*
+
+[SVG](/samples/ai-service-assistant/B2/en/diagram.svg) · [Model JSON](/samples/ai-service-assistant/B2/en/diagram.json) · [Shared facts](/samples/ai-service-assistant/scenario.json)
+
+[Historical shop regression sample](/samples/B2-user-story-map.svg) · [All 29 views](/use/ai-service-assistant) · [Illustrative assumptions](/use/ai-service-assistant-assumptions).

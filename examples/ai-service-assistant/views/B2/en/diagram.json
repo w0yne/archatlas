@@ -1,0 +1,52 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "B2",
+    "title": "B2 · Employee story map — read-only slice first, then approved tickets",
+    "lang": "en",
+    "state": "to-be",
+    "audience": "architects and business reviewers",
+    "description": "Fictional teaching design; scenario.json version 2; illustrative assumptions, not a deployed system"
+  },
+  "layout": {
+    "template": "grid_table"
+  },
+  "nodes": [],
+  "edges": [],
+  "tables": [
+    {
+      "id": "map",
+      "title": "Activities (top) with stories by release slice",
+      "columns": [
+        "Slice",
+        "Ask a question",
+        "Check the source",
+        "Request a ticket",
+        "Approve and follow up"
+      ],
+      "rows": [
+        [
+          "Slice 1 · Read-only. Learn: are cited answers trusted? Evidence: sources opened, few access errors",
+          "Ask in own tenant",
+          "Open a permitted source",
+          "Look up a catalogue item (catalogue.lookup)",
+          "Read ticket status (ticket.read)"
+        ],
+        [
+          "Slice 2 · Approved creation. Outcome: tickets created once, only after approval",
+          "Ask for a ticket in chat",
+          "",
+          "Review the exact draft",
+          "Approve; ticket created once (ticket.create)"
+        ],
+        [
+          "Later · Candidates from the journey map (A6), not committed",
+          "Follow-up questions in context",
+          "Show document version and date",
+          "Change the draft and re-approve",
+          "Show status reconciled after a timeout"
+        ]
+      ]
+    }
+  ]
+}

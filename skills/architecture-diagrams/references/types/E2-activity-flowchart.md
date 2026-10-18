@@ -2,6 +2,7 @@
 <!-- Generated from content/en/types/E2-activity-flowchart.md by tools/build_skill_refs.py. Do not edit. -->
 > What steps does this one behaviour go through, where does it decide, where does it run in parallel, and where does it end?
 Scope: One behaviour (a use case, request handler, job or procedure), about 8–20 nodes, optionally with up to 4–5 partitions Neighbours: A5, D2, E1, E3, E4.
+Named variants (read their own recipes): E4 — `references/types/E4-swimlane-cross-functional.md`.
 
 ## Meaning
 - **Question:** what steps does this behaviour go through, where does it decide, where does it run in parallel, and where does it end?
@@ -89,4 +90,4 @@ Scope: One behaviour (a use case, request handler, job or procedure), about 8–
 Model template: `assets/templates/E2.json` · Layout template: `lanes` · actions are `task` nodes, decisions and merges are `gateway` nodes, forks and joins are `band` nodes, `initial` and `final` mark start and end; partitions are `lane` groups; control flows are edges of kind `call` with the guard as `label`, and object flows use kind `data`.
 
 ## Sample
-Figure: `samples/E2-activity-flowchart.svg` (published with the site)
+Figure: `samples/ai-service-assistant/E2/en/diagram.svg` (published with the site)

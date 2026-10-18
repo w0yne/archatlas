@@ -17,7 +17,7 @@ formal: {kind: convention, ref: 'none (no graphical standard); closest definitio
 neighbours: [A7, B3, C1, C3, C4, C6, C7, C8, G2, I1]
 status: draft
 translationOf: en/types/C5-logical-architecture.md
-sourceRev: 9065169
+sourceRev: 7002b1114ff60c6a028194c8376c71eee2b9d52d
 reviewed: false
 ---
 
@@ -160,7 +160,36 @@ reviewed: false
 15. Wikipedia, "Software design description" (IEEE 1016-2009 viewpoints) — https://en.wikipedia.org/wiki/Software_design_description — 访问于 2026-10-14（二手资料）
 16. Backstage, Descriptor format of catalog entities — https://backstage.io/docs/features/software-catalog/descriptor-format/ — 访问于 2026-10-14
 
+### A7 · 概念架构图（方案概览） {#variant-a7}
+
+编辑归组保留独立语义；使用本变体的画法与检查项。
+
+1. 确定框架：受众、目的、状态（现状或目标）以及方案边界；先写标题。
+2. 从需求和能力中列出候选构建块；合并或拆分为 5–9 个同类构建块，每个用 1–4 个词的名词命名。
+3. 选定一种分层方案，自上而下：用户 / 渠道 → 方案服务 → 共享平台 → 数据。外部系统位于右侧或底部、边界之外。只有存在一条主导流程时才采用从左到右的布局。
+4. 每个构建块恰好放在一个层中，位于边界内或边界外；非重点子系统折叠为一个方框。
+5. 最多添加约 10 条有向箭头，请求方 → 提供方；分组级连线止于分组边框；只为含义不明显的箭头加标签；可选地为一条主线流程编号。
+6. 文字：构建块名称、可选的一行角色说明、不超过 3 个标签；不写句子；字号层级为标题 > 层标签 > 构建块名称 > 标签。
+7. 颜色：默认中性色；方案自有（或新建）的构建块用一种强调色；共享组件用一种样式，且处处一致；外部系统用灰色；颜色与边框或图案搭配使用。
+8. 添加图例（颜色、边框、线条、编号）；与上层的 C2 以及下层的 C3 / C5 交叉核对名称。
+
+**自检清单**
+- [ ] 标题说明范围以及现状 / 目标态；没有内部版本标签。
+- [ ] 5–9 个同类构建块，用受众的语言命名。
+- [ ] 方框内没有功能清单、要点或句子；除非有要求，没有产品名称、协议或端口。
+- [ ] 边界明确；每个元素恰好属于一个分组，或标为外部。
+- [ ] 箭头有方向，终点落在其所指对象上，含义不明显处有标签。
+- [ ] 图例解释了每种颜色、形状、边框和线型；同级元素共用一种样式。
+- [ ] 图标只用在承载含义的地方。
+- [ ] 构建块名称与相邻的 C1 / C2 / C3 视图一致。
+
+[完整方法与历史样例](/zh/types/a7-conceptual-architecture#meaning).
+
 ## 示例图 {#sample}
 <!-- skill: path only -->
-![C5 示例：网店的逻辑视图，按职责分组](/samples/C5-logical-architecture.zh.svg)
-*网店的逻辑视图：构建块按职责分在着色分区中（销售：商品目录、购物车、结账；履约：订单管理、库存、发运；支付：支付处理、开票；客户支持：聊天助手）。订单管理是本图主体（深色构建块）；每条依赖都标注交换内容，支付服务商和承运商在边界之外。*
+![C5 · 企业服务助手](/samples/ai-service-assistant/C5/zh/diagram.svg)
+*只从职责看、不涉及技术选型，系统要有哪些模块和接口？*
+
+[SVG](/samples/ai-service-assistant/C5/zh/diagram.svg) · [模型 JSON](/samples/ai-service-assistant/C5/zh/diagram.json) · [共享事实](/samples/ai-service-assistant/scenario.json)
+
+[历史 shop 回归样例](/samples/C5-logical-architecture.zh.svg) · [全部29幅视图](/zh/use/ai-service-assistant) · [示意假设](/zh/use/ai-service-assistant-assumptions).

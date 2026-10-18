@@ -2,6 +2,7 @@
 <!-- Generated from content/en/types/E1-sequence-diagram.md by tools/build_skill_refs.py. Do not edit. -->
 > For one scenario, which participants exchange which messages in what order, and where does the flow branch, loop or wait?
 Scope: One scenario (one trigger to one outcome), about 4–8 lifelines at one abstraction level, up to about 25 messages Neighbours: A5, C3, C4, C6, E2, E3, E4, F1, I1.
+Named variants (read their own recipes): F1 — `references/types/F1-authentication-authorization-flow.md`.
 
 ## Meaning
 - **Question:** in this one scenario, which participants exchange which messages, in what order, and where does the flow branch, loop or wait?
@@ -94,4 +95,4 @@ Scope: One scenario (one trigger to one outcome), about 4–8 lifelines at one a
 Model template: `assets/templates/E1.json` · Layout template: `sequence` · lifelines are `lifeline` nodes ordered left to right; messages are `edges` with `step` numbers and kind `call`, `async` or `message` (a reply is the same edge reversed with `dashed: true`); `frames` mark `loop` / `alt` / `opt` / `par` regions by `operator` over a step range (`from_step`, `to_step`) with a `guard`; an `alt` or `par` frame lists `operands`, each with its own guard and step range, drawn as regions split by a dashed separator; `activations` are the execution bars.
 
 ## Sample
-Figure: `samples/E1-sequence-diagram.svg` (published with the site)
+Figure: `samples/ai-service-assistant/E1/en/diagram.svg` (published with the site)

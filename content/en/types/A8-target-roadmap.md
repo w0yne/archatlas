@@ -134,5 +134,9 @@ Model template: `assets/templates/A8.json` · Layout template: `tree` · states 
 
 ## Sample {#sample}
 <!-- skill: path only -->
-![A8 sample: roadmap from today's single shop to a chatbot that handles order questions](/samples/A8-target-roadmap.svg)
-*Roadmap from today's single shop to a chatbot that handles order questions: three states (today, chatbot answers FAQs, chatbot handles order questions) joined by two planned work packages (add the support chatbot, connect orders to the chatbot). Purple marks planned work.*
+![A8 · Enterprise Service Assistant](/samples/ai-service-assistant/A8/en/diagram.svg)
+*Read-only answers, approved writes and evaluation-gated changes are illustrative transition plateaus, not committed dates. Each work package introduces only the capabilities required for its next plateau.*
+
+[SVG](/samples/ai-service-assistant/A8/en/diagram.svg) · [Model JSON](/samples/ai-service-assistant/A8/en/diagram.json) · [Shared facts](/samples/ai-service-assistant/scenario.json)
+
+[Historical shop regression sample](/samples/A8-target-roadmap.svg) · [All 29 views](/use/ai-service-assistant) · [Illustrative assumptions](/use/ai-service-assistant-assumptions).

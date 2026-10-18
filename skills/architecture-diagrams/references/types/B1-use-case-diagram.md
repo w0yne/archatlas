@@ -2,6 +2,7 @@
 <!-- Generated from content/en/types/B1-use-case-diagram.md by tools/build_skill_refs.py. Do not edit. -->
 > Which valuable outcomes does the subject support, and which external roles participate?
 Scope: system Neighbours: A4, B2, B4.
+Method reference: honour explicit requests; outside the default core catalogue.
 
 ## Meaning
 A use case diagram answers **which valuable outcomes a subject supports, and which external roles participate**. Its concern is externally visible behaviour and responsibility boundaries, rather than implementation.

@@ -1,5 +1,46 @@
 # Changelog
 
+## Unreleased — compatibility and environment isolation repair
+
+- Restore every historical catalogue fragment, including named variants, method
+  references and the former view-framework family; all links remain readable without JS.
+- Enforce the complete baseline: 104 public HTML pages and all 2354 original IDs,
+  including catalogue and other non-type pages, in each site build.
+- Remove private environment identifier names from current public documentation,
+  adapter code and tests. Replace product-specific prefix filtering with an exact
+  provider-variable allowlist, protected sandbox roots and checked state paths.
+- Extend the existing external private-name audit with explicit identifier-prefix
+  entries, and inspect metadata for every commit rather than only the first diff.
+  Keep audit lists outside the repository; findings redact matched terms.
+- This is a forward-only repair. Previously published commits retain the former
+  identifiers; no history has been rewritten. Intentional public contributor/repository
+  references may match an external audit list and must be reported, not silently waived.
+
+## Unreleased — integrated scenario and complete view set
+
+- Integrate all 25 core views and four named variants, with 58 hand-authored EN/ZH SVGs;
+  preserve AWS as G1 headline and add its separate generic hosting counterpart.
+- Resolve teaching assumptions centrally in scenario/glossary version 2: ingestion,
+  lifecycle, permissions, accountability, network, release/recovery, telemetry, data and interfaces.
+- Validate semantic projections against shared definitions, publish all manifest entries,
+  include the shared glossary in packages and add targeted S6/S11/S12 contract regressions.
+- Historical scores/fixtures are unchanged. Production validation and independent review
+  remain separate; these are illustrative diagrams, not deployed or benchmarked services.
+
+## Catalogue consolidation foundation
+
+- Consolidate discovery to 25 core entries, 10 named variants and 5 method references,
+  preserving all 40 stable codes, bilingual legacy pages, anchors and historical samples.
+- Keep identity and threat variants prominent; rename G1 Deployment & cloud architecture
+  with a vendor-neutral recipe and a named AWS headline illustration.
+- Add frozen fictional Enterprise Service Assistant facts and seven hand-authored sample
+  views per language; validate manifest, shared labels/topology and byte-preserving copying.
+- Package the same scenario and examples with the skill. Preserve historical eval revisions.
+- The integrated candidate completes core/variant examples and contract synchronization.
+  Independent review and release-level publication checks remain. See
+  [decision](docs/decisions/2026-10-consolidation.md).
+
+
 All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versions follow
 [Semantic Versioning](https://semver.org/).

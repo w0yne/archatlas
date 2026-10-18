@@ -149,5 +149,9 @@ Model template: `assets/templates/C3.json` · Layout template: `statechart` · o
 
 ## Sample {#sample}
 <!-- skill: path only -->
-![C3 sample: containers of an online shop](/samples/C3-container-diagram.svg)
-*Containers of the online shop. Inside the system boundary, front ends (web storefront) and services (order service, catalogue service) are grouped in zones, and the shop’s data stores (shop database, search index, order event queue) sit in their own zone beside them. Chips give each container’s technology and the order service is the subject (the dark card). The customer and the payment provider are outside.*
+![C3 · Enterprise Service Assistant](/samples/ai-service-assistant/C3/en/diagram.svg)
+*Six runtime units, five stores/queues and the model dependency. API is the sole job producer; workers poll, fetch authorized source versions and create embeddings. All original node and edge identities are retained, with two added dependencies.*
+
+[SVG](/samples/ai-service-assistant/C3/en/diagram.svg) · [Model JSON](/samples/ai-service-assistant/C3/en/diagram.json) · [Shared facts](/samples/ai-service-assistant/scenario.json)
+
+[Historical shop regression sample](/samples/C3-container-diagram.svg) · [All 29 views](/use/ai-service-assistant) · [Illustrative assumptions](/use/ai-service-assistant-assumptions).

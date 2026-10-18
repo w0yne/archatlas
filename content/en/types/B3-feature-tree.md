@@ -21,6 +21,8 @@ sourceRev: '2026-10-14'
 
 # Feature tree and functional decomposition (功能树（功能分解）)
 
+**Method reference.** Available when explicitly requested; outside the default 25-entry catalogue. This page and its historical links remain supported.
+
 > The product's functions decomposed top-down to estimable leaves, with priorities; no flow and no code structure.
 
 ## Meaning {#meaning}

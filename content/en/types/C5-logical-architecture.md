@@ -167,7 +167,36 @@ Model template: `assets/templates/C5.json` · Layout template: `statechart` · g
 15. Wikipedia, "Software design description" (IEEE 1016-2009 viewpoints) — https://en.wikipedia.org/wiki/Software_design_description — accessed 2026-10-14 (secondary)
 16. Backstage, Descriptor format of catalog entities — https://backstage.io/docs/features/software-catalog/descriptor-format/ — accessed 2026-10-14
 
+### A7 · Conceptual architecture (solution overview) {#variant-a7}
+
+Editorial grouping preserves the distinct notation; use this recipe and its checks.
+
+1. Fix the frame: audience, purpose, state (current or target) and the solution boundary; write the title first.
+2. List candidate blocks from requirements and capabilities; merge or split to 5–9 of one kind, each a 1–4 word noun.
+3. Choose one layering scheme, top to bottom: users / channels → solution services → shared platform → data. External systems sit right or bottom, outside the boundary. Use left-to-right only for one dominant flow.
+4. Place each block in exactly one layer, inside or outside the boundary; collapse non-focus subsystems into one box.
+5. Add at most about 10 directed arrows, requester → provider; group-level links end at the group border; label only non-obvious arrows; optionally number one headline flow.
+6. Text: block name, an optional one-line role, ≤3 tags; no sentences; type scale title > layer label > block name > tag.
+7. Colour: neutral by default; one accent for the solution's own (or new) blocks; one style for shared components, identical everywhere; grey for externals; pair colour with border or pattern.
+8. Add the legend (colours, borders, lines, numbering); cross-check names against C2 above and C3 / C5 below.
+
+**Self-check**
+- [ ] The title states scope and as-is / to-be; no internal version labels.
+- [ ] 5–9 blocks of the same kind, named in the audience's language.
+- [ ] No feature lists, bullets or sentences in boxes; no product names, protocols or ports unless asked.
+- [ ] The boundary is explicit; every element is inside exactly one group or marked external.
+- [ ] Arrows are directed, end on what they mean and are labelled where not obvious.
+- [ ] The legend explains every colour, shape, border and line style; peers share one style.
+- [ ] Icons only where they carry meaning.
+- [ ] Block names match the neighbouring C1 / C2 / C3 views.
+
+[Full method and historical sample](/types/a7-conceptual-architecture#meaning).
+
 ## Sample {#sample}
 <!-- skill: path only -->
-![C5 sample: logical view of an online shop with responsibility blocks](/samples/C5-logical-architecture.svg)
-*Logical view of the online shop: building blocks grouped by responsibility in tinted zones (Selling: catalogue, cart, checkout; Fulfilment: order management, stock, shipping; Payments: payment handling, invoicing; Customer support: chat assistant). Order management is the subject (the dark block); each dependency is labelled with what is exchanged, and the payment provider and carrier sit outside the boundary.*
+![C5 · Enterprise Service Assistant](/samples/ai-service-assistant/C5/en/diagram.svg)
+*Seen by responsibility and without technology choices, which modules and interfaces must the system have?*
+
+[SVG](/samples/ai-service-assistant/C5/en/diagram.svg) · [Model JSON](/samples/ai-service-assistant/C5/en/diagram.json) · [Shared facts](/samples/ai-service-assistant/scenario.json)
+
+[Historical shop regression sample](/samples/C5-logical-architecture.svg) · [All 29 views](/use/ai-service-assistant) · [Illustrative assumptions](/use/ai-service-assistant-assumptions).

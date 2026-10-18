@@ -1,0 +1,126 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "C4",
+    "title": "C4 · 企业服务助手中 Agent 服务的组件图",
+    "lang": "zh",
+    "state": "to-be",
+    "audience": "architects and reviewers",
+    "description": "Fictional teaching design; scenario.json version 2; illustrative assumptions, not a deployed system"
+  },
+  "layout": {
+    "template": "nested"
+  },
+  "nodes": [
+    {
+      "id": "C-api",
+      "kind": "container",
+      "label": "应用 API/BFF",
+      "style": "peer",
+      "sub": "C-api · Python / HTTPS · 会话、租户策略与审批"
+    },
+    {
+      "id": "P-retrieve",
+      "kind": "component",
+      "label": "授权检索器",
+      "parent": "B-agent",
+      "style": "peer",
+      "sub": "authorized_retriever · 检索前执行租户与 ACL 过滤"
+    },
+    {
+      "id": "P-compose",
+      "kind": "component",
+      "label": "回答生成器",
+      "parent": "B-agent",
+      "style": "peer",
+      "sub": "answer_composer · 提示词、模型调用、guardrails"
+    },
+    {
+      "id": "P-plan",
+      "kind": "component",
+      "label": "请求规划器",
+      "parent": "B-agent",
+      "style": "peer",
+      "sub": "request_planner · 生成结构化草稿；不直接执行"
+    },
+    {
+      "id": "DS-index",
+      "kind": "store",
+      "label": "检索索引",
+      "style": "peer",
+      "sub": "DS-index · OpenSearch · 派生分块与 ACL"
+    },
+    {
+      "id": "X-model",
+      "kind": "external",
+      "label": "托管模型服务",
+      "style": "external",
+      "sub": "Bedrock · 文本 · 生成文本"
+    },
+    {
+      "id": "C-tools",
+      "kind": "container",
+      "label": "MCP 工具网关",
+      "style": "peer",
+      "sub": "C-tools · MCP HTTPS · 验证委托与权限"
+    },
+    {
+      "id": "X-idp",
+      "kind": "external",
+      "label": "企业 IdP / AS",
+      "style": "external",
+      "sub": "X-idp · OIDC / OAuth · 受限委托"
+    }
+  ],
+  "edges": [
+    {
+      "id": "CMP-1",
+      "from": "C-api",
+      "to": "B-agent",
+      "label": "委托 · HTTPS",
+      "kind": "call"
+    },
+    {
+      "id": "CMP-2",
+      "from": "P-retrieve",
+      "to": "DS-index",
+      "label": "过滤检索",
+      "kind": "call"
+    },
+    {
+      "id": "CMP-3",
+      "from": "P-retrieve",
+      "to": "P-compose",
+      "label": "检索片段",
+      "kind": "call"
+    },
+    {
+      "id": "CMP-4",
+      "from": "P-compose",
+      "to": "X-model",
+      "label": "生成 · HTTPS",
+      "kind": "call"
+    },
+    {
+      "id": "CMP-5",
+      "from": "P-plan",
+      "to": "C-tools",
+      "label": "MCP 工具调用",
+      "kind": "call"
+    },
+    {
+      "id": "CMP-6",
+      "from": "P-plan",
+      "to": "X-idp",
+      "label": "令牌交换",
+      "kind": "call"
+    }
+  ],
+  "groups": [
+    {
+      "id": "B-agent",
+      "title": "Agent 服务 · 组件",
+      "kind": "boundary"
+    }
+  ]
+}

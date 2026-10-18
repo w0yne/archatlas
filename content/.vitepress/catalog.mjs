@@ -46,7 +46,7 @@ export function typeRewrites(catalog) {
 }
 export function typeSidebar(catalog, lang) {
   const groups = new Map();
-  for (const type of catalog.types.filter(t => t.available[lang])) {
+  for (const type of catalog.types.filter(t => t.available[lang] && (!t.catalogRole || t.catalogRole === 'core'))) {
     if (!groups.has(type.family)) groups.set(type.family, []);
     groups.get(type.family).push({ text: type.code + ' · ' + type.names[lang], link: (lang === 'zh' ? '/zh' : '') + '/types/' + type.path });
   }

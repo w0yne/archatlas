@@ -144,5 +144,9 @@ Model template: `assets/templates/A5.json` · Layout template: `lanes` · groups
 
 ## Sample {#sample}
 <!-- skill: path only -->
-![A5 sample: BPMN collaboration for handling a return, with the customer as a black-box pool](/samples/A5-bpmn-process.svg)
-*Handling a return as a BPMN collaboration: the online shop pool with support, warehouse and finance lanes, and the customer as a black-box pool. Solid arrows are sequence flows inside the shop pool; dashed arrows are message flows to and from the customer (return request, return label, parcel). The decision “Eligible?” leads either to “Send return label” or to the end event “Return declined”; a returned item is received, inspected and refunded, ending in “Refund issued”. The start event is a thin circle and the end events are thick circles; no element is emphasised because the process has no single subject.*
+![A5 · Enterprise Service Assistant](/samples/ai-service-assistant/A5/en/diagram.svg)
+*How does a business case run from start to end, who does each step, where does it branch, and what passes between participants?*
+
+[SVG](/samples/ai-service-assistant/A5/en/diagram.svg) · [Model JSON](/samples/ai-service-assistant/A5/en/diagram.json) · [Shared facts](/samples/ai-service-assistant/scenario.json)
+
+[Historical shop regression sample](/samples/A5-bpmn-process.svg) · [All 29 views](/use/ai-service-assistant) · [Illustrative assumptions](/use/ai-service-assistant-assumptions).

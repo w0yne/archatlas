@@ -1,0 +1,136 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "H2",
+    "title": "H2 · 脱敏服务证据 — 可观测性",
+    "lang": "zh",
+    "state": "to-be",
+    "audience": "architects and reviewers",
+    "description": "Fictional teaching design; scenario.json version 2; illustrative assumptions, not a deployed system"
+  },
+  "layout": {
+    "template": "nested"
+  },
+  "nodes": [
+    {
+      "id": "C-api",
+      "kind": "container",
+      "label": "应用 API/BFF",
+      "parent": "OBS-source",
+      "style": "peer",
+      "sub": "授权 / 请求结果"
+    },
+    {
+      "id": "C-agent",
+      "kind": "container",
+      "label": "Agent 服务",
+      "parent": "OBS-source",
+      "style": "peer",
+      "sub": "延迟 / 模型 token"
+    },
+    {
+      "id": "C-tools",
+      "kind": "container",
+      "label": "MCP 工具网关",
+      "parent": "OBS-source",
+      "style": "peer",
+      "sub": "授权拒绝 / 工具结果"
+    },
+    {
+      "id": "C-ingest",
+      "kind": "container",
+      "label": "摄取工作进程",
+      "parent": "OBS-source",
+      "style": "peer",
+      "sub": "版本任务 / 重试失败"
+    },
+    {
+      "id": "Q-ingest",
+      "kind": "queue",
+      "label": "摄取队列 + DLQ",
+      "parent": "OBS-source",
+      "style": "peer",
+      "sub": "积压 / DLQ 证据"
+    },
+    {
+      "id": "C-eval",
+      "kind": "container",
+      "label": "评测任务",
+      "parent": "OBS-source",
+      "style": "peer",
+      "sub": "离线质量 / token 成本"
+    },
+    {
+      "id": "AWS-ops",
+      "kind": "component",
+      "label": "CloudWatch · KMS · Secrets",
+      "style": "primary",
+      "sub": "仅投影 CloudWatch 遥测职责 · 日志不含 token 或文档正文"
+    },
+    {
+      "id": "R-operator",
+      "kind": "person",
+      "label": "平台运维员",
+      "style": "external",
+      "sub": "服务健康；非内容访问权限"
+    }
+  ],
+  "edges": [
+    {
+      "id": "OBS-1",
+      "from": "C-api",
+      "to": "AWS-ops",
+      "label": "脱敏信号",
+      "kind": "data"
+    },
+    {
+      "id": "OBS-2",
+      "from": "C-agent",
+      "to": "AWS-ops",
+      "label": "脱敏信号",
+      "kind": "data"
+    },
+    {
+      "id": "OBS-3",
+      "from": "C-tools",
+      "to": "AWS-ops",
+      "label": "脱敏信号",
+      "kind": "data"
+    },
+    {
+      "id": "OBS-4",
+      "from": "C-ingest",
+      "to": "AWS-ops",
+      "label": "脱敏信号",
+      "kind": "data"
+    },
+    {
+      "id": "OBS-5",
+      "from": "Q-ingest",
+      "to": "AWS-ops",
+      "label": "脱敏信号",
+      "kind": "data"
+    },
+    {
+      "id": "OBS-6",
+      "from": "C-eval",
+      "to": "AWS-ops",
+      "label": "脱敏信号",
+      "kind": "data"
+    },
+    {
+      "id": "OBS-7",
+      "from": "AWS-ops",
+      "to": "R-operator",
+      "label": "SNS 邮件 / 健康面板",
+      "kind": "data"
+    }
+  ],
+  "groups": [
+    {
+      "id": "OBS-source",
+      "title": "已有运行单元与队列来源",
+      "kind": "boundary"
+    }
+  ]
+}

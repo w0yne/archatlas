@@ -1,0 +1,16 @@
+{
+  "status": "integrated into scenario version 2",
+  "source": "../../scenario.json",
+  "entityIds": [
+    "DE-tenant",
+    "DE-member",
+    "DE-chat",
+    "DE-approval",
+    "DE-exec",
+    "DE-audit",
+    "DE-docver",
+    "DE-chunk",
+    "DE-feedback",
+    "DE-evalrec"
+  ]
+}

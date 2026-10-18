@@ -21,6 +21,8 @@ sourceRev: '2026-10-14'
 
 # 4+1 view model (4+1 视图模型)
 
+**Method reference.** Available when explicitly requested; outside the default 25-entry catalogue. This page and its historical links remain supported.
+
 > Four coordinated views of one software architecture (logical, process, development, physical), tied together by a few significant scenarios.
 
 ## Meaning {#meaning}

@@ -3,6 +3,7 @@ import { join, resolve, dirname, relative } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import MiniSearch from 'minisearch';
 import { tokenize } from './search.mjs';
+import { checkAnchorCompatibility } from './anchor-compat.mjs';
 const root = fileURLToPath(new URL('./dist/', import.meta.url));
 const base = process.env.SITE_BASE || '/archatlas/';
 const pages = [];
@@ -15,6 +16,11 @@ function walk(dir) {
  }
 }
 walk(root);
+const compatibility = checkAnchorCompatibility(root,
+ JSON.parse(readFileSync(new URL('./fixtures/anchors-2eabce8.json', import.meta.url), 'utf8')));
+if (compatibility.missingPages.length || compatibility.missingCount)
+ throw new Error('Baseline page/anchor compatibility failed: ' + JSON.stringify(compatibility));
+console.log('Baseline compatibility: ' + compatibility.oldPages + ' pages / ' + compatibility.checkedIds + ' IDs retained.');
 let checked = 0;
 for (const page of pages) for (const [, raw] of readFileSync(page, 'utf8').matchAll(/(?:href|src)="([^"]+)"/g)) {
  if (/^(?:[a-z][a-z0-9+.-]*:|\/\/)/i.test(raw)) continue;

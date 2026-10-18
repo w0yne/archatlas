@@ -172,5 +172,9 @@ Model template: `assets/templates/E3.json` · Layout template: `statechart` · s
 
 ## Sample {#sample}
 <!-- skill: path only -->
-![E3 sample: state machine of an order with initial and final states](/samples/E3-state-machine.svg)
-*States of an order: Placed, Paid, Shipped, Delivered, Refunded and Cancelled, with one initial and one final state; each state carries a chip with its meaning, and no single state is emphasised. Transitions are labelled event [guard] / effect, for example pay [amount ok] / reserve stock and cancel [before payment]. A delivered order closes after the return window or is refunded within 30 days, and a cancelled order closes; every path reaches the final state.*
+![E3 · Enterprise Service Assistant](/samples/ai-service-assistant/E3/en/diagram.svg)
+*One request in DS-app: unapproved, approved, executing, unknown, recorded, refused and closed. Unknown outcomes remain held after bounded reconciliation; they do not authorize a fresh write.*
+
+[SVG](/samples/ai-service-assistant/E3/en/diagram.svg) · [Model JSON](/samples/ai-service-assistant/E3/en/diagram.json) · [Shared facts](/samples/ai-service-assistant/scenario.json)
+
+[Historical shop regression sample](/samples/E3-state-machine.svg) · [All 29 views](/use/ai-service-assistant) · [Illustrative assumptions](/use/ai-service-assistant-assumptions).

@@ -1,0 +1,220 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "A5",
+    "title": "A5 · 申请服务工单 — 先审批后执行（目标流程）",
+    "lang": "zh",
+    "state": "to-be",
+    "audience": "architects and business reviewers",
+    "description": "Fictional teaching design; scenario.json version 2; illustrative assumptions, not a deployed system"
+  },
+  "layout": {
+    "template": "lanes"
+  },
+  "nodes": [
+    {
+      "id": "EV-need",
+      "kind": "event",
+      "label": "需要工单",
+      "style": "peer",
+      "parent": "POOL-employee",
+      "event_type": "start"
+    },
+    {
+      "id": "P-ask",
+      "kind": "task",
+      "label": "请求工单",
+      "style": "peer",
+      "parent": "POOL-employee"
+    },
+    {
+      "id": "P-review",
+      "kind": "task",
+      "label": "查看草稿",
+      "style": "peer",
+      "parent": "POOL-employee"
+    },
+    {
+      "id": "G-approve",
+      "kind": "gateway",
+      "label": "批准草稿？",
+      "style": "peer",
+      "parent": "POOL-employee"
+    },
+    {
+      "id": "P-confirm",
+      "kind": "task",
+      "label": "批准草稿",
+      "style": "peer",
+      "parent": "POOL-employee"
+    },
+    {
+      "id": "EV-approved",
+      "kind": "event",
+      "label": "草稿已批准",
+      "style": "peer",
+      "parent": "POOL-employee",
+      "event_type": "end"
+    },
+    {
+      "id": "EV-declined",
+      "kind": "event",
+      "label": "请求被拒绝",
+      "style": "peer",
+      "parent": "POOL-employee",
+      "event_type": "end"
+    },
+    {
+      "id": "EV-received",
+      "kind": "event",
+      "label": "收到请求",
+      "style": "peer",
+      "parent": "POOL-assistant",
+      "event_type": "start"
+    },
+    {
+      "id": "P-plan",
+      "kind": "task",
+      "label": "1. 起草请求",
+      "style": "peer",
+      "parent": "POOL-assistant"
+    },
+    {
+      "id": "P-approve",
+      "kind": "task",
+      "label": "2. 绑定审批",
+      "style": "peer",
+      "parent": "POOL-assistant"
+    },
+    {
+      "id": "P-execute",
+      "kind": "task",
+      "label": "3. 工具再授权",
+      "style": "peer",
+      "parent": "POOL-assistant"
+    },
+    {
+      "id": "EV-created",
+      "kind": "event",
+      "label": "工单已创建",
+      "style": "peer",
+      "parent": "POOL-assistant",
+      "event_type": "end"
+    }
+  ],
+  "edges": [
+    {
+      "id": "SF-1",
+      "from": "EV-need",
+      "to": "P-ask",
+      "kind": "call"
+    },
+    {
+      "id": "SF-2",
+      "from": "P-ask",
+      "to": "P-review",
+      "kind": "call"
+    },
+    {
+      "id": "SF-3",
+      "from": "P-review",
+      "to": "G-approve",
+      "kind": "call"
+    },
+    {
+      "id": "SF-4",
+      "from": "G-approve",
+      "to": "P-confirm",
+      "kind": "call"
+    },
+    {
+      "id": "SF-5",
+      "from": "P-confirm",
+      "to": "EV-approved",
+      "kind": "call"
+    },
+    {
+      "id": "SF-6",
+      "from": "G-approve",
+      "to": "EV-declined",
+      "kind": "call",
+      "label": "否"
+    },
+    {
+      "id": "SF-7",
+      "from": "EV-received",
+      "to": "P-plan",
+      "kind": "call"
+    },
+    {
+      "id": "SF-8",
+      "from": "P-plan",
+      "to": "P-approve",
+      "kind": "call"
+    },
+    {
+      "id": "SF-9",
+      "from": "P-approve",
+      "to": "P-execute",
+      "kind": "call"
+    },
+    {
+      "id": "SF-10",
+      "from": "P-execute",
+      "to": "EV-created",
+      "kind": "call"
+    },
+    {
+      "id": "MF-1",
+      "from": "P-ask",
+      "to": "EV-received",
+      "kind": "message",
+      "label": "请求",
+      "dashed": true
+    },
+    {
+      "id": "MF-2",
+      "from": "P-plan",
+      "to": "P-review",
+      "kind": "message",
+      "label": "草稿 + 有效期",
+      "dashed": true
+    },
+    {
+      "id": "MF-3",
+      "from": "P-confirm",
+      "to": "P-approve",
+      "kind": "message",
+      "label": "对此草稿的审批",
+      "dashed": true
+    },
+    {
+      "id": "MF-4",
+      "from": "P-execute",
+      "to": "POOL-desk",
+      "kind": "message",
+      "label": "创建工单 + 幂等键",
+      "dashed": true
+    }
+  ],
+  "groups": [
+    {
+      "id": "POOL-employee",
+      "title": "员工 / 审批人",
+      "kind": "pool",
+      "tint": "biz"
+    },
+    {
+      "id": "POOL-assistant",
+      "title": "企业服务助手",
+      "kind": "pool",
+      "tint": "biz"
+    },
+    {
+      "id": "POOL-desk",
+      "title": "服务工单系统",
+      "kind": "pool",
+      "tint": "neutral"
+    }
+  ]
+}

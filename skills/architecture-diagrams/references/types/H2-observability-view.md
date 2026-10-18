@@ -78,4 +78,4 @@ Model template: `assets/templates/H2.json` · Layout template: `layered` · laye
 Use `nested` with `boundary` groups for deployment boundaries instead.
 
 ## Sample
-Figure: `samples/H2-observability-view.svg` (published with the site)
+Figure: `samples/ai-service-assistant/H2/en/diagram.svg` (published with the site)

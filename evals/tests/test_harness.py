@@ -48,7 +48,7 @@ class ScenarioTest(unittest.TestCase):
 
 class IsolationTest(unittest.TestCase):
     def test_child_env_is_built_from_scratch(self):
-        parent = {"RCC_CONTROL_DIR": "/x", "CYBERWARE_CONFIG": "/y", "PI_SESSION_FILE": "/z",
+        parent = {"ORCHESTRATOR_STATE": "/x", "PRIVATE_CONTROLLER": "/y", "PI_SESSION_FILE": "/z",
                   "CODEX_HOME": "/live", "AWS_PROFILE": "p", "HOME": "/home/real", "SECRET_TOKEN": "s"}
         with tempfile.TemporaryDirectory() as d, mock.patch.dict(os.environ, parent, clear=True):
             sb = Sandbox(Path(d)).create()
@@ -58,7 +58,36 @@ class IsolationTest(unittest.TestCase):
             for k, v in parent.items():
                 self.assertNotEqual(env.get(k), v, k)
             with self.assertRaises(ValueError):
-                isolated_env(sb, "/usr/bin/git", {}, ["RCC_CONTROL_DIR"])
+                isolated_env(sb, "/usr/bin/git", {}, ["ORCHESTRATOR_STATE"])
+
+    def test_only_approved_explicit_names_are_forwarded(self):
+        with tempfile.TemporaryDirectory() as d, mock.patch.dict(
+                os.environ, {"OPENAI_API_KEY": "test-only", "AWS_PROFILE": "fixture",
+                             "ARBITRARY_SESSION": "parent-state"}, clear=True):
+            sb = Sandbox(Path(d)).create()
+            env = isolated_env(sb, "/usr/bin/git", {}, ["OPENAI_API_KEY"])
+            self.assertEqual(env["OPENAI_API_KEY"], "test-only")
+            self.assertNotIn("AWS_PROFILE", env)
+            self.assertNotIn("ARBITRARY_SESSION", env)
+            for key in ["ARBITRARY_SESSION", "CODEX_HOME", "HOME", "PATH", "LD_PRELOAD"]:
+                with self.subTest(key=key), self.assertRaises(ValueError):
+                    isolated_env(sb, "/usr/bin/git", {}, [key])
+            for override in [{"HOME": "/outside"}, {"PATH": "/outside"},
+                             {"ARBITRARY_SESSION": "state"}, {"CODEX_HOME": "/outside"},
+                             {"PI_TELEMETRY": "1"}]:
+                with self.subTest(override=override), self.assertRaises(ValueError):
+                    isolated_env(sb, "/usr/bin/git", override, [])
+            outside = Path(d).parent / "outside-state"
+            link = sb.home / "linked-state"
+            link.symlink_to(outside, target_is_directory=True)
+            with self.assertRaises(ValueError):
+                isolated_env(sb, "/usr/bin/git", {"CODEX_HOME": str(link)}, [])
+            env = isolated_env(sb, "/usr/bin/git", {
+                "CODEX_HOME": str(sb.home / ".codex"),
+                "PLAYWRIGHT_BROWSERS_PATH": str(sb.root / "no-browsers"),
+                "CLAUDE_CODE_USE_BEDROCK": "1",
+            }, [])
+            self.assertEqual(env["CODEX_HOME"], str(sb.home / ".codex"))
 
     def test_host_state_stays_inside_the_sandbox(self):
         with tempfile.TemporaryDirectory() as d:

@@ -171,7 +171,36 @@ Model template: `assets/templates/D2.json` · Layout template: `nested` · exter
 12. OWASP pytm, "A Pythonic framework for threat modeling" — https://github.com/OWASP/pytm — accessed 2026-10-14
 13. Microsoft Threat Modeling Tool overview — https://learn.microsoft.com/en-us/azure/security/develop/threat-modeling-tool — accessed 2026-10-14
 
+### F2 · Threat-model data-flow diagram with trust boundaries {#variant-f2}
+
+Editorial grouping preserves the distinct notation; use this recipe and its checks.
+
+1. State assets, scope and the adversary assumptions in scope; put scope and status in the title ("Shop checkout: data flows and trust boundaries, proposed").
+2. Inventory entry and exit points, processes, stores and authority changes before drawing.
+3. Draw the smallest model that keeps those distinctions; name every payload on its arrow.
+4. Layout: external entities on the outer edges, processes in the middle, stores at the bottom; flow direction left to right. Boundaries are dashed containers with a short label of the trust change.
+5. Inspect every boundary crossing and each important internal flow; keep or justify each one.
+6. Assign stable IDs (EE-1, P-1, DS-1, DF-1 style, so they never collide with catalogue codes) and emit a threat/mitigation register as a separate table.
+7. Colour: neutral fills; one accent for boundaries; a second marker only for "proposed / unverified". Keep symbols from one DFD set, with a legend.
+8. Review with a system expert; label gaps instead of guessing.
+
+**Self-check**
+- [ ] Scope, assets and assumptions are stated.
+- [ ] Relevant entry and exit points and stores are shown.
+- [ ] Every data-flow arrow names the data and has one direction.
+- [ ] Each boundary states the authority or trust change it marks.
+- [ ] Important internal flows were not omitted mechanically.
+- [ ] Threat IDs resolve to owner, response and validation records.
+- [ ] Proposed controls and unknowns are visibly different from observed ones.
+- [ ] The figure is not presented as a completed assessment.
+
+[Full method and historical sample](/types/f2-threat-model-data-flow#meaning).
+
 ## Sample {#sample}
 <!-- skill: path only -->
-![D2 sample: level 1 data flow of an online shop](/samples/D2-data-flow-diagram.svg)
-*Level 1 data flow of the online shop: the customer’s order details enter process 1 (validate order), the valid order is stored in D1 Orders, and process 2 (request payment) reads the amount due and sends a payment request to the external payment provider. The store is reached only through processes. No trust boundaries are drawn.*
+![D2 · Enterprise Service Assistant](/samples/ai-service-assistant/D2/en/diagram.svg)
+*Tenant/ACL filtering is explicit before retrieval and current access is checked again when a citation is opened. This logical DFD covers knowledge answering; ticket writes and evaluation are separate views.*
+
+[SVG](/samples/ai-service-assistant/D2/en/diagram.svg) · [Model JSON](/samples/ai-service-assistant/D2/en/diagram.json) · [Shared facts](/samples/ai-service-assistant/scenario.json)
+
+[Historical shop regression sample](/samples/D2-data-flow-diagram.svg) · [All 29 views](/use/ai-service-assistant) · [Illustrative assumptions](/use/ai-service-assistant-assumptions).

@@ -1,0 +1,149 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "G1",
+    "title": "G1 · Enterprise Service Assistant — hosting allocation",
+    "lang": "en",
+    "state": "to-be",
+    "audience": "architects and reviewers",
+    "description": "Fictional teaching design; scenario.json version 2; illustrative assumptions, not a deployed system"
+  },
+  "layout": {
+    "template": "nested"
+  },
+  "nodes": [
+    {
+      "id": "C-web",
+      "kind": "container",
+      "label": "Web Portal",
+      "parent": "HOST-client",
+      "style": "peer",
+      "sub": "Browser runtime · static assets"
+    },
+    {
+      "id": "C-api",
+      "kind": "container",
+      "label": "Application API/BFF",
+      "parent": "HOST-app",
+      "style": "peer",
+      "sub": "C-api · ≥2 instances across AZ-A + AZ-B"
+    },
+    {
+      "id": "C-agent",
+      "kind": "container",
+      "label": "Agent Service",
+      "parent": "HOST-app",
+      "style": "peer",
+      "sub": "C-agent · ≥2 instances across AZ-A + AZ-B"
+    },
+    {
+      "id": "C-tools",
+      "kind": "container",
+      "label": "MCP Tool Gateway",
+      "parent": "HOST-app",
+      "style": "peer",
+      "sub": "C-tools · ≥2 instances across AZ-A + AZ-B"
+    },
+    {
+      "id": "C-ingest",
+      "kind": "container",
+      "label": "Ingestion Worker",
+      "parent": "HOST-jobs",
+      "style": "peer",
+      "sub": "C-ingest · Separate identity; scheduled jobs"
+    },
+    {
+      "id": "C-eval",
+      "kind": "container",
+      "label": "Evaluation Job",
+      "parent": "HOST-jobs",
+      "style": "peer",
+      "sub": "C-eval · Separate identity; scheduled jobs"
+    },
+    {
+      "id": "DS-app",
+      "kind": "store",
+      "label": "Application records",
+      "parent": "HOST-data",
+      "style": "peer",
+      "sub": "Writer + reader in different zones · Managed storage: three zones"
+    },
+    {
+      "id": "DS-index",
+      "kind": "store",
+      "label": "Retrieval index",
+      "parent": "HOST-data",
+      "style": "peer",
+      "sub": "Replicated across two zones"
+    },
+    {
+      "id": "DS-doc",
+      "kind": "store",
+      "label": "Document versions",
+      "parent": "HOST-data",
+      "style": "peer",
+      "sub": "Regional versioned object store"
+    },
+    {
+      "id": "DS-eval",
+      "kind": "store",
+      "label": "Evaluation datasets",
+      "parent": "HOST-data",
+      "style": "peer",
+      "sub": "Regional isolated dataset store"
+    },
+    {
+      "id": "Q-ingest",
+      "kind": "queue",
+      "label": "Ingestion queue + DLQ",
+      "parent": "HOST-data",
+      "style": "peer",
+      "sub": "Regional jobs + quarantine queue"
+    }
+  ],
+  "edges": [
+    {
+      "id": "HOST-1",
+      "from": "C-web",
+      "to": "C-api",
+      "label": "HTTPS",
+      "kind": "call"
+    },
+    {
+      "id": "HOST-2",
+      "from": "C-api",
+      "to": "DS-app",
+      "label": "Database link",
+      "kind": "call"
+    },
+    {
+      "id": "HOST-3",
+      "from": "C-agent",
+      "to": "DS-index",
+      "label": "Authorized retrieval",
+      "kind": "call"
+    }
+  ],
+  "groups": [
+    {
+      "id": "HOST-client",
+      "title": "User device",
+      "kind": "boundary"
+    },
+    {
+      "id": "HOST-app",
+      "title": "Application compute · two failure zones",
+      "kind": "boundary"
+    },
+    {
+      "id": "HOST-jobs",
+      "title": "Batch compute · either AZ-A or AZ-B",
+      "kind": "boundary"
+    },
+    {
+      "id": "HOST-data",
+      "title": "Managed stores · placement is service-specific",
+      "kind": "boundary"
+    }
+  ]
+}

@@ -90,4 +90,4 @@ A BPMN process diagram answers "how does one order, request or case flow from it
 Model template: `assets/templates/A5.json` · Layout template: `lanes` · groups of kind `pool` and `lane` become bands; `task`, `event` and `gateway` nodes are placed left to right per lane; `message` edges are routed only between pools.
 
 ## Sample
-Figure: `samples/A5-bpmn-process.svg` (published with the site)
+Figure: `samples/ai-service-assistant/A5/en/diagram.svg` (published with the site)

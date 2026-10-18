@@ -1,0 +1,196 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "E4",
+    "title": "E4 · 创建经审批的工单 — 每步由谁执行、传递什么",
+    "lang": "zh",
+    "state": "to-be",
+    "audience": "architects and business reviewers",
+    "description": "Fictional teaching design; scenario.json version 2; illustrative assumptions, not a deployed system"
+  },
+  "layout": {
+    "template": "lanes"
+  },
+  "nodes": [
+    {
+      "id": "EV-requested",
+      "kind": "event",
+      "label": "请求创建工单",
+      "style": "external",
+      "parent": "LANE-C-web",
+      "event_type": "start"
+    },
+    {
+      "id": "P-plan",
+      "kind": "process",
+      "label": "1. 起草请求",
+      "style": "peer",
+      "parent": "LANE-C-agent"
+    },
+    {
+      "id": "P-show",
+      "kind": "process",
+      "label": "展示确定草稿",
+      "style": "peer",
+      "parent": "LANE-C-web"
+    },
+    {
+      "id": "P-approve",
+      "kind": "process",
+      "label": "2. 绑定审批",
+      "style": "peer",
+      "parent": "LANE-C-api"
+    },
+    {
+      "id": "P-exchange",
+      "kind": "process",
+      "label": "换取工具 token",
+      "style": "peer",
+      "parent": "LANE-C-agent"
+    },
+    {
+      "id": "P-execute",
+      "kind": "process",
+      "label": "3. 工具再授权",
+      "style": "peer",
+      "parent": "LANE-C-tools"
+    },
+    {
+      "id": "G-checks",
+      "kind": "gateway",
+      "label": "校验通过？",
+      "style": "peer",
+      "parent": "LANE-C-tools"
+    },
+    {
+      "id": "P-create",
+      "kind": "process",
+      "label": "按键创建工单",
+      "style": "peer",
+      "parent": "POOL-desk"
+    },
+    {
+      "id": "EV-rejected",
+      "kind": "event",
+      "label": "拒绝，不调用工单",
+      "style": "external",
+      "parent": "LANE-C-tools",
+      "event_type": "end"
+    },
+    {
+      "id": "EV-created",
+      "kind": "event",
+      "label": "工单已创建",
+      "style": "external",
+      "parent": "POOL-desk",
+      "event_type": "end"
+    }
+  ],
+  "edges": [
+    {
+      "id": "HO-1",
+      "from": "EV-requested",
+      "to": "P-plan",
+      "kind": "call",
+      "label": "请求的操作，经 BFF"
+    },
+    {
+      "id": "HO-2",
+      "from": "P-plan",
+      "to": "P-show",
+      "kind": "call",
+      "label": "草稿 + hash + 有效期，经 BFF"
+    },
+    {
+      "id": "HO-3",
+      "from": "P-show",
+      "to": "P-approve",
+      "kind": "call",
+      "label": "对此草稿的审批"
+    },
+    {
+      "id": "HO-4",
+      "from": "P-approve",
+      "to": "P-exchange",
+      "kind": "call",
+      "label": "审批 ID + tenant + hash"
+    },
+    {
+      "id": "HO-5",
+      "from": "P-exchange",
+      "to": "P-execute",
+      "kind": "call",
+      "label": "工具 token + 审批 ID"
+    },
+    {
+      "id": "HO-6",
+      "from": "P-execute",
+      "to": "G-checks",
+      "kind": "call"
+    },
+    {
+      "id": "HO-7",
+      "from": "G-checks",
+      "to": "EV-rejected",
+      "kind": "call",
+      "label": "否"
+    },
+    {
+      "id": "HO-8",
+      "from": "P-create",
+      "to": "EV-created",
+      "kind": "call",
+      "label": "工单 ID"
+    },
+    {
+      "id": "HO-9",
+      "from": "G-checks",
+      "to": "P-create",
+      "kind": "message",
+      "label": "是：创建 + 幂等键",
+      "dashed": true
+    }
+  ],
+  "groups": [
+    {
+      "id": "POOL-assistant",
+      "title": "企业服务助手",
+      "kind": "pool",
+      "tint": "neutral"
+    },
+    {
+      "id": "LANE-C-web",
+      "title": "Web 门户",
+      "kind": "lane",
+      "tint": "app",
+      "parent": "POOL-assistant"
+    },
+    {
+      "id": "LANE-C-api",
+      "title": "应用 API/BFF",
+      "kind": "lane",
+      "tint": "app",
+      "parent": "POOL-assistant"
+    },
+    {
+      "id": "LANE-C-agent",
+      "title": "Agent 服务",
+      "kind": "lane",
+      "tint": "app",
+      "parent": "POOL-assistant"
+    },
+    {
+      "id": "LANE-C-tools",
+      "title": "MCP 工具网关",
+      "kind": "lane",
+      "tint": "app",
+      "parent": "POOL-assistant"
+    },
+    {
+      "id": "POOL-desk",
+      "title": "服务工单系统",
+      "kind": "pool",
+      "tint": "neutral"
+    }
+  ]
+}

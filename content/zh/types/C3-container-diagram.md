@@ -17,7 +17,7 @@ formal: {kind: method, ref: 'C4 model (Simon Brown), Level 2 Container diagram; 
 neighbours: [A7, C1, C2, C4, C5, C6, E1, F2, G1, G2]
 status: draft
 translationOf: en/types/C3-container-diagram.md
-sourceRev: 68c7e31
+sourceRev: 7002b1114ff60c6a028194c8376c71eee2b9d52d
 reviewed: false
 ---
 
@@ -152,5 +152,9 @@ reviewed: false
 
 ## 示例图 {#sample}
 <!-- skill: path only -->
-![C3 示例：网店的容器图](/samples/C3-container-diagram.zh.svg)
-*网店的容器图。系统边界内，前端（网页商城）和服务（订单服务、商品目录服务）分在各自的分区，商城的数据存储（商城数据库、搜索索引、订单事件队列）位于旁边的独立分区。标签给出各容器的技术类型，订单服务是本图主体（深色卡片）。顾客和支付服务商在边界之外。*
+![C3 · 企业服务助手](/samples/ai-service-assistant/C3/zh/diagram.svg)
+*六个运行单元、五个存储/队列及模型依赖。API 是任务唯一生产者；工作进程轮询、读取授权源版本并创建嵌入。保留原节点与边标识，并补上两条依赖。*
+
+[SVG](/samples/ai-service-assistant/C3/zh/diagram.svg) · [模型 JSON](/samples/ai-service-assistant/C3/zh/diagram.json) · [共享事实](/samples/ai-service-assistant/scenario.json)
+
+[历史 shop 回归样例](/samples/C3-container-diagram.zh.svg) · [全部29幅视图](/zh/use/ai-service-assistant) · [示意假设](/zh/use/ai-service-assistant-assumptions).

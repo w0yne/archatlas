@@ -1,0 +1,23 @@
+{
+  "scenarioVersion": 2,
+  "entities": {
+    "X-doc": "X-doc",
+    "R-employee": "R-employee",
+    "X-model": "X-model",
+    "P-ingest": "P-ingest",
+    "P-retrieve": "P-retrieve",
+    "P-compose": "P-compose",
+    "P-cite": "P-cite",
+    "DS-doc": "DS-doc",
+    "DS-index": "DS-index",
+    "DS-app": "DS-app"
+  },
+  "invariants": [
+    "I-tenant",
+    "I-ingest",
+    "I-authority"
+  ],
+  "projection": "focused view; omissions described in caption; not a deployed system",
+  "missingFacts": [],
+  "assumptions": []
+}

@@ -1,0 +1,127 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "G4",
+    "title": "G4 · Prompt/模型配置 — 晋级门禁",
+    "lang": "zh",
+    "state": "to-be",
+    "audience": "architects and reviewers",
+    "description": "Fictional teaching design; scenario.json version 2; illustrative assumptions, not a deployed system"
+  },
+  "layout": {
+    "template": "nested"
+  },
+  "nodes": [
+    {
+      "id": "DS-eval",
+      "kind": "store",
+      "label": "评测数据集",
+      "style": "peer",
+      "sub": "版本化 prompt / 模型 / 数据集"
+    },
+    {
+      "id": "C-eval",
+      "kind": "container",
+      "label": "评测任务",
+      "style": "primary",
+      "sub": "评测专用身份 · 不可写生产工具"
+    },
+    {
+      "id": "G4-gate",
+      "kind": "task",
+      "label": "质量 / 安全门禁",
+      "style": "peer",
+      "sub": "p95 ≤8秒 · 成本 ≤$0.02 · 质量 ≥0.85 · 严重安全问题 =0"
+    },
+    {
+      "id": "G4-hold",
+      "kind": "task",
+      "label": "暂停候选晋级",
+      "style": "peer",
+      "sub": ""
+    },
+    {
+      "id": "G4-release",
+      "kind": "task",
+      "label": "按摘要批准发布",
+      "style": "peer",
+      "sub": "知识管理员 A / 运维员 R"
+    },
+    {
+      "id": "C-agent",
+      "kind": "container",
+      "label": "Agent 服务",
+      "style": "peer",
+      "sub": "生产目标"
+    },
+    {
+      "id": "AWS-ops",
+      "kind": "component",
+      "label": "CloudWatch · KMS · Secrets",
+      "style": "peer",
+      "sub": "CloudWatch 健康 / token 成本"
+    },
+    {
+      "id": "G4-recover",
+      "kind": "task",
+      "label": "恢复决策",
+      "style": "peer",
+      "sub": "停止灰度 / 恢复兼容配置"
+    }
+  ],
+  "edges": [
+    {
+      "id": "DEL-1",
+      "from": "DS-eval",
+      "to": "C-eval",
+      "label": "候选版本",
+      "kind": "data"
+    },
+    {
+      "id": "DEL-2",
+      "from": "C-eval",
+      "to": "G4-gate",
+      "label": "评测结果",
+      "kind": "data"
+    },
+    {
+      "id": "DEL-3",
+      "from": "G4-gate",
+      "to": "G4-hold",
+      "label": "[门禁失败]",
+      "kind": "dependency",
+      "dashed": true
+    },
+    {
+      "id": "DEL-4",
+      "from": "G4-gate",
+      "to": "G4-release",
+      "label": "[门禁全通过] 依赖",
+      "kind": "dependency",
+      "dashed": true
+    },
+    {
+      "id": "DEL-5",
+      "from": "G4-release",
+      "to": "C-agent",
+      "label": "晋级同一版本",
+      "kind": "data"
+    },
+    {
+      "id": "DEL-6",
+      "from": "C-agent",
+      "to": "AWS-ops",
+      "label": "健康信号",
+      "kind": "data"
+    },
+    {
+      "id": "DEL-7",
+      "from": "AWS-ops",
+      "to": "G4-recover",
+      "label": "异常",
+      "kind": "dependency",
+      "dashed": true
+    }
+  ],
+  "groups": []
+}

@@ -17,7 +17,7 @@ formal: {kind: convention, ref: 'No graphical standard. Runtime lineage metadata
 neighbours: [D1, D2, H1]
 status: draft
 translationOf: en/types/D3-data-lineage-ownership.md
-sourceRev: 88db750
+sourceRev: 7002b1114ff60c6a028194c8376c71eee2b9d52d
 reviewed: false
 ---
 
@@ -147,5 +147,9 @@ reviewed: false
 
 ## 示例图 {#sample}
 <!-- skill: path only -->
-![D3 示例：每日销售数据的血缘与所有权](/samples/D3-data-lineage-ownership.svg)
-*每日销售数据的血缘与所有权：订单数据集（所有者订单域，管理员数据办公室）供给作业“汇总每日销售”，作业写入每日销售数据集（所有者报表域，管理员数据办公室），该数据集再供给使用方“销售看板”。所属领域以条带表示。*
+![D3 · 企业服务助手](/samples/ai-service-assistant/D3/zh/diagram.svg)
+*AS-data 明确数据管理责任、技术保管及租户保密/去标识分类。数据归属不等于读取授权，派生分块保留源 ACL 限制。*
+
+[SVG](/samples/ai-service-assistant/D3/zh/diagram.svg) · [模型 JSON](/samples/ai-service-assistant/D3/zh/diagram.json) · [共享事实](/samples/ai-service-assistant/scenario.json)
+
+[历史 shop 回归样例](/samples/D3-data-lineage-ownership.svg) · [全部29幅视图](/zh/use/ai-service-assistant) · [示意假设](/zh/use/ai-service-assistant-assumptions).

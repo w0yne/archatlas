@@ -84,4 +84,4 @@ Scope: One declared view (physical links, logical adjacency, or one traffic path
 Model template: `assets/templates/G3.json` · Layout template: `nested` · networks and segments become nested `boundary` groups, gateways and endpoints become `component` nodes, connectivity uses `assoc` edges (`dir` `--`) and a traffic path uses `call` or `data` edges with `step` numbers; CIDRs go in `sub` and the view type goes in the title.
 
 ## Sample
-Figure: `samples/G3-network-topology.svg` (published with the site)
+Figure: `samples/ai-service-assistant/G3/en/diagram.svg` (published with the site)

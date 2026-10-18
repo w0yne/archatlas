@@ -1,0 +1,149 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "G1",
+    "title": "G1 · 企业服务助手 — 软件承载分配",
+    "lang": "zh",
+    "state": "to-be",
+    "audience": "architects and reviewers",
+    "description": "Fictional teaching design; scenario.json version 2; illustrative assumptions, not a deployed system"
+  },
+  "layout": {
+    "template": "nested"
+  },
+  "nodes": [
+    {
+      "id": "C-web",
+      "kind": "container",
+      "label": "Web 门户",
+      "parent": "HOST-client",
+      "style": "peer",
+      "sub": "浏览器运行 · 静态资源"
+    },
+    {
+      "id": "C-api",
+      "kind": "container",
+      "label": "应用 API/BFF",
+      "parent": "HOST-app",
+      "style": "peer",
+      "sub": "C-api · 至少 2 个实例跨 AZ-A + AZ-B"
+    },
+    {
+      "id": "C-agent",
+      "kind": "container",
+      "label": "Agent 服务",
+      "parent": "HOST-app",
+      "style": "peer",
+      "sub": "C-agent · 至少 2 个实例跨 AZ-A + AZ-B"
+    },
+    {
+      "id": "C-tools",
+      "kind": "container",
+      "label": "MCP 工具网关",
+      "parent": "HOST-app",
+      "style": "peer",
+      "sub": "C-tools · 至少 2 个实例跨 AZ-A + AZ-B"
+    },
+    {
+      "id": "C-ingest",
+      "kind": "container",
+      "label": "摄取工作进程",
+      "parent": "HOST-jobs",
+      "style": "peer",
+      "sub": "C-ingest · 独立身份；按需调度任务"
+    },
+    {
+      "id": "C-eval",
+      "kind": "container",
+      "label": "评测任务",
+      "parent": "HOST-jobs",
+      "style": "peer",
+      "sub": "C-eval · 独立身份；按需调度任务"
+    },
+    {
+      "id": "DS-app",
+      "kind": "store",
+      "label": "应用记录",
+      "parent": "HOST-data",
+      "style": "peer",
+      "sub": "写节点与读节点分属两个可用区 · 托管存储跨三个可用区"
+    },
+    {
+      "id": "DS-index",
+      "kind": "store",
+      "label": "检索索引",
+      "parent": "HOST-data",
+      "style": "peer",
+      "sub": "副本分布于两个可用区"
+    },
+    {
+      "id": "DS-doc",
+      "kind": "store",
+      "label": "文档版本",
+      "parent": "HOST-data",
+      "style": "peer",
+      "sub": "区域级版本化对象存储"
+    },
+    {
+      "id": "DS-eval",
+      "kind": "store",
+      "label": "评测数据集",
+      "parent": "HOST-data",
+      "style": "peer",
+      "sub": "区域级隔离数据集存储"
+    },
+    {
+      "id": "Q-ingest",
+      "kind": "queue",
+      "label": "摄取队列 + DLQ",
+      "parent": "HOST-data",
+      "style": "peer",
+      "sub": "区域任务与隔离队列"
+    }
+  ],
+  "edges": [
+    {
+      "id": "HOST-1",
+      "from": "C-web",
+      "to": "C-api",
+      "label": "HTTPS",
+      "kind": "call"
+    },
+    {
+      "id": "HOST-2",
+      "from": "C-api",
+      "to": "DS-app",
+      "label": "数据库连接",
+      "kind": "call"
+    },
+    {
+      "id": "HOST-3",
+      "from": "C-agent",
+      "to": "DS-index",
+      "label": "授权检索",
+      "kind": "call"
+    }
+  ],
+  "groups": [
+    {
+      "id": "HOST-client",
+      "title": "用户设备",
+      "kind": "boundary"
+    },
+    {
+      "id": "HOST-app",
+      "title": "应用计算 · 两个故障域",
+      "kind": "boundary"
+    },
+    {
+      "id": "HOST-jobs",
+      "title": "批处理计算 · AZ-A 或 AZ-B",
+      "kind": "boundary"
+    },
+    {
+      "id": "HOST-data",
+      "title": "托管存储 · 故障域依服务分别说明",
+      "kind": "boundary"
+    }
+  ]
+}

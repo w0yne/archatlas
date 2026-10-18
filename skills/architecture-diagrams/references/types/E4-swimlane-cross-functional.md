@@ -2,6 +2,7 @@
 <!-- Generated from content/en/types/E4-swimlane-cross-functional.md by tools/build_skill_refs.py. Do not edit. -->
 > In this process, which role or system performs each step, and where does work or information pass from one to another?
 Scope: One process from trigger to outcome, at most about 6 lanes and 20 steps, happy path Neighbours: A5, A6, A9, E1, E2, H1.
+Named variant of E2; apply this reference's own recipe and checks.
 
 ## Meaning
 - **Question:** in this process, which role or system performs each step, and where does work or information pass from one to another?
@@ -85,4 +86,4 @@ Scope: One process from trigger to outcome, at most about 6 lanes and 20 steps, 
 Model template: `assets/templates/E4.json` · Layout template: `lanes` · lanes become `lane` groups (independent systems wrap their lanes in a `pool` group), steps and decisions are nodes with `parent` = their lane, flow arrows are edges (`call`), and cross-system hand-offs use kind `message` with a `label` naming what passes.
 
 ## Sample
-Figure: `samples/E4-swimlane-cross-functional.svg` (published with the site)
+Figure: `samples/ai-service-assistant/E4/en/diagram.svg` (published with the site)

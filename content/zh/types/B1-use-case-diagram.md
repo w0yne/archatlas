@@ -16,12 +16,14 @@ scope: system
 formal: {kind: standard, ref: 'OMG UML 2.5.1, Chapter 18 — https://www.omg.org/spec/UML/2.5.1/PDF'}
 neighbours: [A4, B2, B4]
 status: draft
-sourceRev: 2955b3d
+sourceRev: 4e718f136c12c2c4c1d5f2226ea103f63e35b600
 translationOf: en/types/B1-use-case-diagram.md
 reviewed: false
 ---
 
 # 用例图（Use case diagram）
+
+**方法参考。** 明确需要时仍可使用；不在默认25项核心目录中。此页与历史链接继续保留。
 
 > 系统边界外的参与者，连接到系统所支持的用户目标；不表达顺序、界面或内部结构。
 

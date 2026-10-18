@@ -21,6 +21,8 @@ sourceRev: '2026-10-14'
 
 # Use case diagram (用例图)
 
+**Method reference.** Available when explicitly requested; outside the default 25-entry catalogue. This page and its historical links remain supported.
+
 > Actors outside a system boundary, connected to the user goals the system supports; no order, screens or internals.
 
 ## Meaning {#meaning}

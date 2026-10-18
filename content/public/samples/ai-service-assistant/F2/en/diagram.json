@@ -1,0 +1,158 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "F2",
+    "title": "F2 / D2 · Ticket write — trust boundaries",
+    "lang": "en",
+    "state": "to-be",
+    "audience": "architects and reviewers",
+    "description": "Fictional teaching design; scenario.json version 2; illustrative assumptions, not a deployed system"
+  },
+  "layout": {
+    "template": "nested"
+  },
+  "nodes": [
+    {
+      "id": "P-plan",
+      "kind": "process",
+      "label": "1. Draft request",
+      "parent": "TB-content",
+      "style": "peer",
+      "sub": ""
+    },
+    {
+      "id": "P-approve",
+      "kind": "process",
+      "label": "2. Bind approval",
+      "parent": "TB-policy",
+      "style": "peer",
+      "sub": ""
+    },
+    {
+      "id": "DS-app",
+      "kind": "store",
+      "label": "Application records",
+      "parent": "TB-policy",
+      "style": "peer",
+      "sub": "DS-app"
+    },
+    {
+      "id": "R-employee",
+      "kind": "entity",
+      "label": "Employee / approver",
+      "style": "external",
+      "sub": ""
+    },
+    {
+      "id": "P-execute",
+      "kind": "process",
+      "label": "3. Reauthorize tool",
+      "parent": "TB-tool",
+      "style": "primary",
+      "sub": ""
+    },
+    {
+      "id": "X-desk",
+      "kind": "entity",
+      "label": "Service Desk",
+      "style": "external",
+      "sub": ""
+    },
+    {
+      "id": "X-idp",
+      "kind": "entity",
+      "label": "Enterprise IdP / AS",
+      "style": "external",
+      "sub": ""
+    }
+  ],
+  "edges": [
+    {
+      "id": "DF-1",
+      "from": "P-plan",
+      "to": "P-approve",
+      "label": "DF-1 draft",
+      "kind": "data"
+    },
+    {
+      "id": "DF-2",
+      "from": "R-employee",
+      "to": "P-approve",
+      "label": "DF-2 approval",
+      "kind": "data"
+    },
+    {
+      "id": "DF-3",
+      "from": "P-approve",
+      "to": "DS-app",
+      "label": "DF-3 binding",
+      "kind": "data"
+    },
+    {
+      "id": "DF-4",
+      "from": "DS-app",
+      "to": "P-execute",
+      "label": "DF-4 current record",
+      "kind": "data"
+    },
+    {
+      "id": "DF-5",
+      "from": "P-approve",
+      "to": "P-execute",
+      "label": "DF-5 draft + ID",
+      "kind": "data"
+    },
+    {
+      "id": "DF-6",
+      "from": "X-idp",
+      "to": "P-execute",
+      "label": "DF-6 tool proof",
+      "kind": "data"
+    },
+    {
+      "id": "DF-7",
+      "from": "P-execute",
+      "to": "X-desk",
+      "label": "DF-7 request",
+      "kind": "data"
+    },
+    {
+      "id": "DF-8",
+      "from": "X-desk",
+      "to": "P-execute",
+      "label": "DF-8 result",
+      "kind": "data"
+    },
+    {
+      "id": "DF-9",
+      "from": "P-execute",
+      "to": "R-employee",
+      "label": "DF-9 refusal / result",
+      "kind": "data"
+    },
+    {
+      "id": "DF-10",
+      "from": "R-employee",
+      "to": "P-plan",
+      "label": "DF-10 requested action",
+      "kind": "data"
+    }
+  ],
+  "groups": [
+    {
+      "id": "TB-content",
+      "title": "TB-1 · Untrusted content",
+      "kind": "boundary"
+    },
+    {
+      "id": "TB-policy",
+      "title": "TB-2 · Verified tenant and approval authority",
+      "kind": "boundary"
+    },
+    {
+      "id": "TB-tool",
+      "title": "TB-3 · Enforced tool authority",
+      "kind": "boundary"
+    }
+  ]
+}

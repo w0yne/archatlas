@@ -16,7 +16,7 @@ scope: 一项举措或一项服务内各项活动的职责分配。
 formal: {kind: convention, ref: '职责分配实践；没有统一版本的图形标准。Atlassian，Understanding and using RACI charts：https://www.atlassian.com/work-management/project-management/raci-chart'}
 neighbours: [A4, D3, E4, F3, H2, H3]
 status: draft
-sourceRev: 88db750
+sourceRev: 7002b1114ff60c6a028194c8376c71eee2b9d52d
 translationOf: en/types/H1-raci-matrix.md
 reviewed: false
 ---
@@ -127,5 +127,9 @@ Asana 正文建议只设一个 R，但其常见问题部分允许多个 R [4]。
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-![H1 示例：结账版本的 RACI 矩阵](/samples/H1-raci-matrix.svg)
-*结账版本的 RACI 矩阵：四项活动对四个角色（产品负责人、商城管理员、客服主管、工程师）。每行有一个最终责任人（A）和至少一个执行人（R）；A/R 表示同一角色兼任两者。*
+![H1 · 企业服务助手](/samples/ai-service-assistant/H1/zh/diagram.svg)
+*示意治理：每项活动设一个 A，至少一个 R。知识管理员对发布/恢复审批最终负责，运维执行受限工作流；问责职责不授予数据面权限。*
+
+[SVG](/samples/ai-service-assistant/H1/zh/diagram.svg) · [模型 JSON](/samples/ai-service-assistant/H1/zh/diagram.json) · [共享事实](/samples/ai-service-assistant/scenario.json)
+
+[历史 shop 回归样例](/samples/H1-raci-matrix.svg) · [全部29幅视图](/zh/use/ai-service-assistant) · [示意假设](/zh/use/ai-service-assistant-assumptions).

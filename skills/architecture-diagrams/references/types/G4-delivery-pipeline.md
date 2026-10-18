@@ -90,4 +90,4 @@ Scope: One release path from change source to target environments, with artifact
 Model template: `assets/templates/G4.json` · Layout template: `tree` · the trigger is an `event` node, stages and jobs are `task` nodes laid out left to right along `dependency` edges, artifacts and registries are `store` nodes reached by `data` edges, deploy or reconcile steps use `call` edges, controllers or approvers become `lane` groups; gate status is shown with node `style` (`planned` for not yet passed) or `tags`.
 
 ## Sample
-Figure: `samples/G4-delivery-pipeline.svg` (published with the site)
+Figure: `samples/ai-service-assistant/G4/en/diagram.svg` (published with the site)

@@ -17,7 +17,7 @@ formal: {kind: standard, ref: 'OMG UML 2.5.1 activity diagrams; ISO 5807:1985 fl
 neighbours: [A5, D2, E1, E3, E4]
 status: draft
 translationOf: en/types/E2-activity-flowchart.md
-sourceRev: 88db750
+sourceRev: 7002b1114ff60c6a028194c8376c71eee2b9d52d
 reviewed: false
 ---
 
@@ -150,7 +150,38 @@ reviewed: false
 
 注：UML 2.5.1 的条款原文未亲自阅读；元素语义取自来源 4、8、9 和 12，未对照原文核实。
 
+### E4 · 泳道流程图（跨职能流程图） {#variant-e4}
+
+编辑归组保留独立语义；使用本变体的画法与检查项。
+
+1. 确定流程边界（从触发到结果）和泳道粒度：角色、团队或系统，绝不混用。最好不超过 6 条泳道。两者都写进标题，例如“下单与发货，主成功路径”。
+2. 把步骤列成表格（步骤、执行者泳道、输入、输出、下一步）；对照代码或文档核实系统步骤；绘图前先给用户看。
+3. 方向：默认横向泳道、时间从左到右；只有竖长的文档才用纵向。
+4. 排列泳道以尽量减少交叉。如果两个独立系统之间有交互，把它们画成相邻的泳道组（池），并带有可见的边界。
+5. 按时间顺序逐列放置步骤；并行步骤对齐在同一列；每个判断放在做出判断者的泳道中。
+6. 交接：跨泳道边界画一条短箭头，标注传递的内容；跨系统消息使用不同的样式（虚线），并在图例中说明。
+7. 文字：步骤最多 5 个词，泳道标签最多 3 个词；如有示例卡片，放在主流程之外并标注“示例”。
+8. 颜色：泳道用中性色交替着色；最多一种强调色，用于跨边界交接或重点系统。
+
+**自检清单**
+- [ ] 每条泳道是同一层级上的一个参与者（全部是角色，或全部是系统）。
+- [ ] 每个步骤都位于其执行者的泳道中。
+- [ ] 每个跨泳道箭头都是真实的交接，并写明传递的内容。
+- [ ] 时间沿一个轴推进；没有向后折返或绕远路的线。
+- [ ] 判断的出口都有标签；开始和结束都明确标出。
+- [ ] 最多约 6 条泳道和 20 个步骤，否则拆分流程。
+- [ ] 如使用 BPMN 符号，则遵守 BPMN 规则（消息流只在池之间）；否则考虑 A5。
+- [ ] 只画主成功路径，或把错误处理明确分开。
+
+[完整方法与历史样例](/zh/types/e4-swimlane-cross-functional#meaning).
+
 ## 示例图 {#sample}
 <!-- skill: path only -->
-![E2 示例：新订单的活动流程，判断的两个出口都已画出](/samples/E2-activity-flowchart.svg)
-*新订单在商城与仓库两条泳道之间的活动流程：接收订单后做“有库存吗？”的判断，有两个出口。[有库存] 进入拣货打包，以“已打包”结束；[否则] 进入提供缺货预订，以“已缺货预订”结束。*
+![E2 · 企业服务助手](/samples/ai-service-assistant/E2/zh/diagram.svg)
+*UML 活动：单一起点、有效/否则判断与具名结果。审批、当前权限及幂等执行分别表达；超时不明按 AS-request 进行按键对账。*
+
+[SVG](/samples/ai-service-assistant/E2/zh/diagram.svg) · [模型 JSON](/samples/ai-service-assistant/E2/zh/diagram.json) · [共享事实](/samples/ai-service-assistant/scenario.json)
+
+[历史 shop 回归样例](/samples/E2-activity-flowchart.svg) · [全部29幅视图](/zh/use/ai-service-assistant) · [示意假设](/zh/use/ai-service-assistant-assumptions).
+
+[另看 E4 泳道变体](/zh/use/ai-service-assistant#view-e4).

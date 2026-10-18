@@ -2,6 +2,7 @@
 <!-- Generated from content/en/types/B3-feature-tree.md by tools/build_skill_refs.py. Do not edit. -->
 > What must the product do, and how is that functionality decomposed?
 Scope: system Neighbours: B2, C5.
+Method reference: honour explicit requests; outside the default core catalogue.
 
 ## Meaning
 A functional hierarchy answers **what the system must do and how that overall function decomposes**. Its concern is functional coverage, not execution order or source-code structure.

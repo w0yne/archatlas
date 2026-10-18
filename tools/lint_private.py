@@ -8,7 +8,8 @@ from a file outside the repository:
 
   --names-file PATH            or   ARCHATLAS_PRIVATE_NAMES_FILE=PATH
 
-one term per line, `#` comments allowed, matched as whole words; an all-lowercase
+One term per line, `#` comments allowed, matched as whole words. Use `prefix:NAME_`
+to catch a private identifier prefix and all its suffixes. An all-lowercase
 term matches any case, a term with capitals matches that exact spelling. Hits on such terms are reported by line number in the names file, never
 by the word itself, so CI logs stay clean.
 
@@ -57,9 +58,15 @@ def load_names(path: Path | None) -> list[tuple[int, re.Pattern]]:
     for no, raw in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
         term = raw.split("#", 1)[0].strip()
         if term:
+            prefix = term.startswith("prefix:")
+            if prefix:
+                term = term.removeprefix("prefix:").strip()
+                if not term or not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", term):
+                    raise ValueError(f"invalid identifier prefix on names file line {no}")
             # Whole-word for Latin terms; plain substring when the term contains CJK.
             body = re.escape(term)
-            pat = body if re.search(r"[^\x00-\x7f]", term) else rf"(?<![\w]){body}(?![\w])"
+            pat = (rf"(?<![\w]){body}\w*" if prefix else
+                   body if re.search(r"[^\x00-\x7f]", term) else rf"(?<![\w]){body}(?![\w])")
             names.append((no, re.compile(pat, 0 if term != term.lower() else re.I)))
     return names
 
@@ -134,6 +141,7 @@ def scan_history(root: Path, cfg: dict, names) -> list[Finding]:
     for line in log.splitlines():
         if line.startswith("commit "):
             commit = line.split()[1][:12]
+            path = ""  # Each commit's metadata is independent of the previous diff.
         elif line.startswith("+++ "):
             path = line[6:] if line.startswith("+++ b/") else line[4:]
         elif line.startswith("diff --git"):

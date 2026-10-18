@@ -17,11 +17,13 @@ formal: {kind: convention, ref: 'No single standard. Provider icon sets and prov
 neighbours: [C3, C5, G1, G3, G4]
 status: draft
 translationOf: en/types/G2-cloud-infrastructure-architecture.md
-sourceRev: 9065169
+sourceRev: 7002b1114ff60c6a028194c8376c71eee2b9d52d
 reviewed: false
 ---
 
 # 云基础设施架构图（Cloud Infrastructure Architecture）
+
+**G1 的具名变体。** [进入部署与云架构图 → G2](/zh/types/g1-deployment-diagram#variant-g2)。此兼容页保留独立画法、检查项、原锚点和历史下载。
 
 > 针对一个工作负载的图：展示实现它的云服务、为何如此编排，以及真实的归属边界和故障边界在哪里。
 
@@ -138,5 +140,9 @@ reviewed: false
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-![G2 示例：网店在通用云上的拟议基础设施](/samples/G2-cloud-infrastructure-architecture.zh.svg)
-*通用云上的拟议基础设施：边缘的 CDN，网络与安全分区中的负载均衡器，两个可用区各有一个应用服务和一个数据库（可用区 1 为主库，可用区 2 为副本），以及托管的对象存储、消息队列和监控。图中没有单一主体，因此不突出任何元素；这里的内容均尚未建成。*
+![G1-AWS · 企业服务助手](/samples/ai-service-assistant/G1-AWS/zh/diagram.svg)
+*AWS 实现变体保持为 G1 首图。应用服务跨双 AZ；Aurora 托管存储跨三 AZ；OpenSearch 是双 AZ 区域感知而非 Standby。区域托管服务位于客户子网外，CloudFront 为全球服务。*
+
+[SVG](/samples/ai-service-assistant/G1-AWS/zh/diagram.svg) · [模型 JSON](/samples/ai-service-assistant/G1-AWS/zh/diagram.json) · [共享事实](/samples/ai-service-assistant/scenario.json)
+
+[历史 shop 回归样例](/samples/G2-cloud-infrastructure-architecture.zh.svg) · [全部29幅视图](/zh/use/ai-service-assistant) · [示意假设](/zh/use/ai-service-assistant-assumptions).

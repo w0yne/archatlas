@@ -1,0 +1,100 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "A8",
+    "title": "A8 · Enterprise Service Assistant — transition roadmap, read-only first",
+    "lang": "en",
+    "state": "to-be",
+    "audience": "architects and business reviewers",
+    "description": "Fictional teaching design; scenario.json version 2; illustrative assumptions, not a deployed system"
+  },
+  "layout": {
+    "template": "tree"
+  },
+  "nodes": [
+    {
+      "id": "ST-baseline",
+      "kind": "state",
+      "label": "Baseline: search + manual tickets",
+      "style": "peer",
+      "sub": "Value: today's way of working"
+    },
+    {
+      "id": "ST-answers",
+      "kind": "state",
+      "label": "T1: Cited answers",
+      "style": "peer",
+      "sub": "Value: answers employees can trust"
+    },
+    {
+      "id": "ST-tickets",
+      "kind": "state",
+      "label": "T2: Approved tickets",
+      "style": "peer",
+      "sub": "Value: tickets without retyping"
+    },
+    {
+      "id": "ST-target",
+      "kind": "state",
+      "label": "Target: gated changes",
+      "style": "peer",
+      "sub": "Value: changes gated on quality and cost"
+    },
+    {
+      "id": "WP-retrieval",
+      "kind": "task",
+      "label": "Tenant-safe retrieval",
+      "style": "planned"
+    },
+    {
+      "id": "WP-approval",
+      "kind": "task",
+      "label": "Approval binding",
+      "style": "planned"
+    },
+    {
+      "id": "WP-eval",
+      "kind": "task",
+      "label": "Evaluation gates",
+      "style": "planned"
+    }
+  ],
+  "edges": [
+    {
+      "id": "DEP-1",
+      "from": "ST-baseline",
+      "to": "WP-retrieval",
+      "kind": "call"
+    },
+    {
+      "id": "DEP-2",
+      "from": "WP-retrieval",
+      "to": "ST-answers",
+      "kind": "call"
+    },
+    {
+      "id": "DEP-3",
+      "from": "ST-answers",
+      "to": "WP-approval",
+      "kind": "call"
+    },
+    {
+      "id": "DEP-4",
+      "from": "WP-approval",
+      "to": "ST-tickets",
+      "kind": "call"
+    },
+    {
+      "id": "DEP-5",
+      "from": "ST-tickets",
+      "to": "WP-eval",
+      "kind": "call"
+    },
+    {
+      "id": "DEP-6",
+      "from": "WP-eval",
+      "to": "ST-target",
+      "kind": "call"
+    }
+  ]
+}

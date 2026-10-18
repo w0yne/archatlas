@@ -12,7 +12,7 @@ export function navFor(lang) {
 export function sidebarFor(lang, typeGroups) {
  const zh = lang === 'zh', p = zh ? '/zh' : '';
  return [
-  {text:zh?'开始':'Start here',items:[...navFor(lang).filter(item=>!item.link.endsWith('/use/')&&!item.link.endsWith('/improve/')), ...(zh?[{text:'中英术语对照表',link:'/zh/glossary'}]:[])]},
+  {text:zh?'开始':'Start here',items:[{text:zh?'AI 应用样例':'AI application sample',link:p+'/use/ai-service-assistant'},...navFor(lang).filter(item=>!item.link.endsWith('/use/')&&!item.link.endsWith('/improve/')), ...(zh?[{text:'中英术语对照表',link:'/zh/glossary'}]:[])]},
   ...typeGroups,
   {text:zh?'使用 skill':'Use the skill',items:[
    {text:zh?'安装与首次运行':'Install and first run',link:p+'/use/'},

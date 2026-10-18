@@ -2,6 +2,7 @@
 <!-- Generated from content/en/types/F1-authentication-authorization-flow.md by tools/build_skill_refs.py. Do not edit. -->
 > Who proves which identity to whom, what authority is conveyed, and where is access actually permitted or refused?
 Scope: One scenario (browser sign-in, service acting for a user, or machine-only call) and one protected operation Neighbours: E1, F2, F3.
+Named variant of E1; apply this reference's own recipe and checks.
 
 ## Meaning
 - **Question:** who proves which identity to whom, what authority is conveyed, and where is access permitted or refused? The view explains a chain of trust, not just HTTP traffic. Sign-in does not grant access to every object.
@@ -86,4 +87,4 @@ Scope: One scenario (browser sign-in, service acting for a user, or machine-only
 Model template: `assets/templates/F1.json` · Layout template: `sequence` · participants are `lifeline` nodes (person, client, identity provider, API, resource); proofs and requests are numbered `message` edges with `step`; the allow/refuse alternative is an `alt` entry in `frames` with two `operands`, each with its own guard and step range; verification and enforcement are `activations` on the identity provider and the API.
 
 ## Sample
-Figure: `samples/F1-authentication-authorization-flow.svg` (published with the site)
+Figure: `samples/ai-service-assistant/F1/en/diagram.svg` (published with the site)

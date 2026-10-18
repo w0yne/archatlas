@@ -17,11 +17,13 @@ formal: {kind: method, ref: 'Rother & Shook, Learning to See (Lean Enterprise In
 neighbours: [A2, A5, E4, G4]
 status: draft
 translationOf: en/types/A9-lean-value-stream-map.md
-sourceRev: 88db750
+sourceRev: 4e718f136c12c2c4c1d5f2226ea103f63e35b600
 reviewed: false
 ---
 
 # 精益价值流图（Lean Value-Stream Map）
+
+**A2 的具名变体。** [进入价值流（业务架构） → A9](/zh/types/a2-value-stream#variant-a9)。此兼容页保留独立画法、检查项、原锚点和历史下载。
 
 > 一张门到门的图，描绘一个产品或服务的流动：展示处理框、排队、信息流，以及处理时间与等待时间对比的时间线；分别绘制现状图和未来状态图。
 

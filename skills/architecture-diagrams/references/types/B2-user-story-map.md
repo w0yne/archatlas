@@ -2,6 +2,7 @@
 <!-- Generated from content/en/types/B2-user-story-map.md by tools/build_skill_refs.py. Do not edit. -->
 > What does the user do to reach a goal, and which coherent increments can support or test that experience?
 Scope: system Neighbours: A4, A6, B1, B3.
+Named variants (read their own recipes): A4 — `references/types/A4-scenario-matrix.md`.
 
 ## Meaning
 A story map answers **what a user does to reach a goal, and which coherent increments can support or test that experience**. It preserves the narrative context that a flat backlog can lose.
@@ -75,4 +76,4 @@ Model template: `assets/templates/B2.json` · Layout template: `grid_table` · o
 Approximate: it is a table; task cards and slice bands are not drawn, and it expresses narrative and scope, not execution-state columns.
 
 ## Sample
-Figure: `samples/B2-user-story-map.svg` (published with the site)
+Figure: `samples/ai-service-assistant/B2/en/diagram.svg` (published with the site)

@@ -9,10 +9,10 @@ import { filterTypes } from '../catalogue-view.mjs';
 const root = fileURLToPath(new URL('../..', import.meta.url));
 const catalog = loadCatalog(root);
 const selection = JSON.parse(readFileSync(new URL('../../data/choose.json', import.meta.url),'utf8'));
-test('the canonical decision tree covers every catalogue code', () => {
+test('the reader tree covers core and variants; method references stay explicitly addressable', () => {
  const result = validateSelection(selection,catalog);
  const covered = new Set(Object.values(result.tree).flatMap(branches => branches.flatMap(branch => branch.types)));
- assert.deepEqual([...covered].sort(),catalog.types.map(type => type.code).sort());
+ assert.deepEqual([...covered].sort(),catalog.types.filter(type => type.catalogRole !== 'reference').map(type => type.code).sort());
  const bad = structuredClone(selection);bad.tree.value[0].types = ['Z99'];
  assert.throws(() => validateSelection(bad,catalog),/Invalid recommendation/);
 });

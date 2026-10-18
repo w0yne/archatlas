@@ -153,5 +153,9 @@ Model template: `assets/templates/C7.json` · Layout template: `nested` · each 
 
 ## Sample {#sample}
 <!-- skill: path only -->
-![C7 sample: context map with three bounded contexts](/samples/C7-bounded-context-map.svg)
-*Context map with three bounded contexts: Ordering (order model, open host service), Catalogue (product model) and Support (case model, anticorruption layer). Catalogue is the supplier of Ordering, and Ordering publishes a language to Support.*
+![C7 · Enterprise Service Assistant](/samples/ai-service-assistant/C7/en/diagram.svg)
+*Each named system is treated as an opaque bounded context with an illustrative team/model contract. DDD ACL means anti-corruption layer; document ACL means access-control list. CF covers protocol adoption, never authority from model output.*
+
+[SVG](/samples/ai-service-assistant/C7/en/diagram.svg) · [Model JSON](/samples/ai-service-assistant/C7/en/diagram.json) · [Shared facts](/samples/ai-service-assistant/scenario.json)
+
+[Historical shop regression sample](/samples/C7-bounded-context-map.svg) · [All 29 views](/use/ai-service-assistant) · [Illustrative assumptions](/use/ai-service-assistant-assumptions).

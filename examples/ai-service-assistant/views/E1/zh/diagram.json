@@ -1,0 +1,175 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "E1",
+    "title": "E1 · 创建服务工单 — 审批与拒绝",
+    "lang": "zh",
+    "state": "to-be",
+    "audience": "architects and reviewers",
+    "description": "Fictional teaching design; scenario.json version 2; illustrative assumptions, not a deployed system"
+  },
+  "layout": {
+    "template": "sequence"
+  },
+  "nodes": [
+    {
+      "id": "C-web",
+      "kind": "lifeline",
+      "label": "Web 门户",
+      "style": "peer",
+      "sub": "C-web"
+    },
+    {
+      "id": "C-api",
+      "kind": "lifeline",
+      "label": "应用 API/BFF",
+      "style": "primary",
+      "sub": "C-api"
+    },
+    {
+      "id": "C-agent",
+      "kind": "lifeline",
+      "label": "Agent 服务",
+      "style": "peer",
+      "sub": "C-agent"
+    },
+    {
+      "id": "C-tools",
+      "kind": "lifeline",
+      "label": "MCP 工具网关",
+      "style": "peer",
+      "sub": "C-tools"
+    },
+    {
+      "id": "X-desk",
+      "kind": "lifeline",
+      "label": "服务工单系统",
+      "style": "external",
+      "sub": "X-desk"
+    }
+  ],
+  "edges": [
+    {
+      "id": "SEQ-1",
+      "from": "C-web",
+      "to": "C-api",
+      "label": "提交所需操作",
+      "kind": "call",
+      "step": 1
+    },
+    {
+      "id": "SEQ-2",
+      "from": "C-api",
+      "to": "C-agent",
+      "label": "起草许可工具请求",
+      "kind": "call",
+      "step": 2
+    },
+    {
+      "id": "SEQ-3",
+      "from": "C-agent",
+      "to": "C-api",
+      "label": "结构化草稿 + 参数 hash",
+      "kind": "reply",
+      "dashed": true,
+      "step": 3
+    },
+    {
+      "id": "SEQ-4",
+      "from": "C-api",
+      "to": "C-web",
+      "label": "展示准确草稿 + 有效期",
+      "kind": "reply",
+      "dashed": true,
+      "step": 4
+    },
+    {
+      "id": "SEQ-5",
+      "from": "C-web",
+      "to": "C-api",
+      "label": "批准此草稿",
+      "kind": "call",
+      "step": 5
+    },
+    {
+      "id": "SEQ-6",
+      "from": "C-api",
+      "to": "C-agent",
+      "label": "审批 ID + tenant + hash",
+      "kind": "call",
+      "step": 6
+    },
+    {
+      "id": "SEQ-7",
+      "from": "C-agent",
+      "to": "C-tools",
+      "label": "草稿 + 审批 ID + 工具 token",
+      "kind": "call",
+      "step": 7
+    },
+    {
+      "id": "SEQ-8",
+      "from": "C-tools",
+      "to": "C-api",
+      "label": "核验绑定 + 当前权限",
+      "kind": "call",
+      "step": 8
+    },
+    {
+      "id": "SEQ-9",
+      "from": "C-api",
+      "to": "C-tools",
+      "label": "当前审批 / 权限结果",
+      "kind": "reply",
+      "dashed": true,
+      "step": 9
+    },
+    {
+      "id": "SEQ-10",
+      "from": "C-tools",
+      "to": "X-desk",
+      "label": "创建工单 + 幂等键",
+      "kind": "call",
+      "step": 10
+    },
+    {
+      "id": "SEQ-11",
+      "from": "X-desk",
+      "to": "C-tools",
+      "label": "工单 ID（同键同工单）",
+      "kind": "reply",
+      "dashed": true,
+      "step": 11
+    },
+    {
+      "id": "SEQ-12",
+      "from": "C-tools",
+      "to": "C-agent",
+      "label": "拒绝；不调用工单服务",
+      "kind": "reply",
+      "dashed": true,
+      "step": 12
+    }
+  ],
+  "groups": [],
+  "frames": [
+    {
+      "id": "approval-outcome",
+      "operator": "alt",
+      "from_step": 10,
+      "to_step": 12,
+      "operands": [
+        {
+          "guard": "valid approval and current permission",
+          "from_step": 10,
+          "to_step": 11
+        },
+        {
+          "guard": "else: expired, changed or denied",
+          "from_step": 12,
+          "to_step": 12
+        }
+      ]
+    }
+  ]
+}

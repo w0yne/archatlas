@@ -84,4 +84,4 @@ Scope: The interfaces between a set of systems (or one hub or partner in close-u
 Model template: `assets/templates/C6.json` · Layout template: `grid_table` · the `tables[]` interface table (style-first columns) is the primary output; `grid_table` takes tables only, so the companion map is a second model whose edge `step` or `label` carries the interface ID of the matching table row.
 
 ## Sample
-Figure: `samples/C6-integration-interface.svg` (published with the site)
+Figure: `samples/ai-service-assistant/C6/en/diagram.svg` (published with the site)

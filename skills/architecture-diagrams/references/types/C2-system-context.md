@@ -2,6 +2,7 @@
 <!-- Generated from content/en/types/C2-system-context.md by tools/build_skill_refs.py. Do not edit. -->
 > What is this system, who uses it, and which other systems does it depend on or exchange with?
 Scope: One software system as a black box, with the people and the external systems directly connected to it. Neighbours: A3, A7, B4, C1, C3, C6, D2.
+Named variants (read their own recipes): A3 — `references/types/A3-business-context.md`; B4 — `references/types/B4-scope-diagram.md`.
 
 ## Meaning
 It answers: *what is this system, who uses it, and which other systems does it depend on or exchange with?* The concern is scope and boundary: an agreement on where the system stops, readable by technical and non-technical people alike. It is Level 1 of the C4 model, created by Simon Brown, which is a notation-independent method, not a versioned standard; the same idea is the structured-analysis context diagram (the context-level DFD; "level 0" is used for it by some authors and for the next level down by others), the systems-engineering context of a system of interest and arc42 section 3 "Context and Scope". ISO/IEC/IEEE 42010 prescribes no notation; this is a view under a context viewpoint. It deliberately leaves out everything inside the box, technology choices, protocols and deployment, and every system not directly connected.
@@ -84,4 +85,4 @@ It answers: *what is this system, who uses it, and which other systems does it d
 Model template: `assets/templates/C2.json` · Layout template: `statechart` · the system is one `system` node with style `primary` inside a `boundary` group (with sibling systems of the same platform), `person` nodes on the left and `external` nodes on the right are ranked by their edges; short `sub` descriptions, chips for role, and `edges` with intent labels and no technology field.
 
 ## Sample
-Figure: `samples/C2-system-context.svg` (published with the site)
+Figure: `samples/ai-service-assistant/C2/en/diagram.svg` (published with the site)

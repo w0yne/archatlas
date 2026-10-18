@@ -1,0 +1,196 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "E4",
+    "title": "E4 · Create an approved ticket — who does each step, what passes",
+    "lang": "en",
+    "state": "to-be",
+    "audience": "architects and business reviewers",
+    "description": "Fictional teaching design; scenario.json version 2; illustrative assumptions, not a deployed system"
+  },
+  "layout": {
+    "template": "lanes"
+  },
+  "nodes": [
+    {
+      "id": "EV-requested",
+      "kind": "event",
+      "label": "Ticket requested",
+      "style": "external",
+      "parent": "LANE-C-web",
+      "event_type": "start"
+    },
+    {
+      "id": "P-plan",
+      "kind": "process",
+      "label": "1. Draft request",
+      "style": "peer",
+      "parent": "LANE-C-agent"
+    },
+    {
+      "id": "P-show",
+      "kind": "process",
+      "label": "Show exact draft",
+      "style": "peer",
+      "parent": "LANE-C-web"
+    },
+    {
+      "id": "P-approve",
+      "kind": "process",
+      "label": "2. Bind approval",
+      "style": "peer",
+      "parent": "LANE-C-api"
+    },
+    {
+      "id": "P-exchange",
+      "kind": "process",
+      "label": "Exchange for tool token",
+      "style": "peer",
+      "parent": "LANE-C-agent"
+    },
+    {
+      "id": "P-execute",
+      "kind": "process",
+      "label": "3. Reauthorize tool",
+      "style": "peer",
+      "parent": "LANE-C-tools"
+    },
+    {
+      "id": "G-checks",
+      "kind": "gateway",
+      "label": "Checks pass?",
+      "style": "peer",
+      "parent": "LANE-C-tools"
+    },
+    {
+      "id": "P-create",
+      "kind": "process",
+      "label": "Create ticket once",
+      "style": "peer",
+      "parent": "POOL-desk"
+    },
+    {
+      "id": "EV-rejected",
+      "kind": "event",
+      "label": "Rejected, no desk call",
+      "style": "external",
+      "parent": "LANE-C-tools",
+      "event_type": "end"
+    },
+    {
+      "id": "EV-created",
+      "kind": "event",
+      "label": "Ticket created",
+      "style": "external",
+      "parent": "POOL-desk",
+      "event_type": "end"
+    }
+  ],
+  "edges": [
+    {
+      "id": "HO-1",
+      "from": "EV-requested",
+      "to": "P-plan",
+      "kind": "call",
+      "label": "requested action, via BFF"
+    },
+    {
+      "id": "HO-2",
+      "from": "P-plan",
+      "to": "P-show",
+      "kind": "call",
+      "label": "draft + hash + expiry, via BFF"
+    },
+    {
+      "id": "HO-3",
+      "from": "P-show",
+      "to": "P-approve",
+      "kind": "call",
+      "label": "approval of this draft"
+    },
+    {
+      "id": "HO-4",
+      "from": "P-approve",
+      "to": "P-exchange",
+      "kind": "call",
+      "label": "approval ID + tenant + hash"
+    },
+    {
+      "id": "HO-5",
+      "from": "P-exchange",
+      "to": "P-execute",
+      "kind": "call",
+      "label": "tool token + approval ID"
+    },
+    {
+      "id": "HO-6",
+      "from": "P-execute",
+      "to": "G-checks",
+      "kind": "call"
+    },
+    {
+      "id": "HO-7",
+      "from": "G-checks",
+      "to": "EV-rejected",
+      "kind": "call",
+      "label": "no"
+    },
+    {
+      "id": "HO-8",
+      "from": "P-create",
+      "to": "EV-created",
+      "kind": "call",
+      "label": "ticket ID"
+    },
+    {
+      "id": "HO-9",
+      "from": "G-checks",
+      "to": "P-create",
+      "kind": "message",
+      "label": "yes: create + idempotency key",
+      "dashed": true
+    }
+  ],
+  "groups": [
+    {
+      "id": "POOL-assistant",
+      "title": "Enterprise Service Assistant",
+      "kind": "pool",
+      "tint": "neutral"
+    },
+    {
+      "id": "LANE-C-web",
+      "title": "Web Portal",
+      "kind": "lane",
+      "tint": "app",
+      "parent": "POOL-assistant"
+    },
+    {
+      "id": "LANE-C-api",
+      "title": "Application API/BFF",
+      "kind": "lane",
+      "tint": "app",
+      "parent": "POOL-assistant"
+    },
+    {
+      "id": "LANE-C-agent",
+      "title": "Agent Service",
+      "kind": "lane",
+      "tint": "app",
+      "parent": "POOL-assistant"
+    },
+    {
+      "id": "LANE-C-tools",
+      "title": "MCP Tool Gateway",
+      "kind": "lane",
+      "tint": "app",
+      "parent": "POOL-assistant"
+    },
+    {
+      "id": "POOL-desk",
+      "title": "Service Desk",
+      "kind": "pool",
+      "tint": "neutral"
+    }
+  ]
+}

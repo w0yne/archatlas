@@ -16,7 +16,7 @@ scope: system
 formal: {kind: method, ref: 'Jeff Patton, story mapping — https://www.jpattonassociates.com/the-new-backlog/'}
 neighbours: [A4, A6, B1, B3]
 status: draft
-sourceRev: 88db750
+sourceRev: 7002b1114ff60c6a028194c8376c71eee2b9d52d
 translationOf: en/types/B2-user-story-map.md
 reviewed: false
 ---
@@ -120,7 +120,37 @@ reviewed: false
 4. Nielsen Norman Group — *Mapping User Stories in Agile* — https://www.nngroup.com/articles/user-story-mapping/ — 访问于 2026-10-14。
 5. Nielsen Norman Group — *Journey Mapping 101* — https://www.nngroup.com/articles/journey-mapping-101/ — 访问于 2026-10-14。
 
+### A4 · 业务场景矩阵（角色 × 活动） {#variant-a4}
+
+编辑归组保留独立语义；使用本变体的画法与检查项。
+
+1. 确定范围（方案或业务领域，现状/目标态）以及发布版本的命名方式。
+2. 选定一种列来源（价值流阶段、能力或主干活动）；4–8 列，按叙事顺序排列。
+3. 列出 4–8 个角色作为行，按外部/内部分组，主要角色放在最上面。
+4. 每个单元格写 0–3 个场景，采用用户目标级的动词 + 宾语；合并或剔除概要级和子功能级的条目。
+5. 为每个场景指定发布版本；有意不支持的单元格用斜线填充，不适用的单元格留空。
+6. 版式：横向网格，表头行和表头列加粗，可选按阶段划分的细列带，不画箭头。
+7. 颜色：发布版本用一个顺序色阶（最深 = R1）或 3 种区分明显的填充；“不支持”用中性灰色斜线；对架构有重要影响的场景用描边标记；图例放在右下角。
+8. 文字量：每个场景 ≤ 6 个词，每个单元格 ≤ 3 个场景；可选页脚写明每个发布版本的计数。
+
+**自检清单**
+
+- [ ] 所有行都是同一类角色：没有系统，没有具名人员。
+- [ ] 所有列都是同一层级的业务活动，按叙事顺序排列。
+- [ ] 每个场景都是用户目标级的动词 + 宾语；没有点击操作，没有史诗。
+- [ ] 每个场景都有发布标记；图例说明了每种填充、斜线和空白。
+- [ ] 第 1 版端到端覆盖主要角色。
+- [ ] 单元格中没有步骤序列、UI 或技术术语。
+- [ ] 标题写明范围和现状/目标态，且不单独使用“scenario map”这一术语。
+- [ ] 矩阵控制在约 8 × 8 以内，否则按业务领域拆分。
+
+[完整方法与历史样例](/zh/types/a4-scenario-matrix#meaning).
+
 ## 示例 {#sample}
 <!-- skill: path only -->
-![B2 示例：网店购物者的用户故事地图，含发布切片](/samples/B2-user-story-map.svg)
-*网店购物者的用户故事地图：从左到右四项活动（发现商品、比较商品、结账、跟踪配送），每一行是一个发布切片。第 1 切片是原型，覆盖一个完整的购物目标。图以表格形式绘制，没有任务卡片。*
+![B2 · 企业服务助手](/samples/ai-service-assistant/B2/zh/diagram.svg)
+*用户端到端要做哪些事？最小可用的第一个版本是什么？后续如何切片交付？*
+
+[SVG](/samples/ai-service-assistant/B2/zh/diagram.svg) · [模型 JSON](/samples/ai-service-assistant/B2/zh/diagram.json) · [共享事实](/samples/ai-service-assistant/scenario.json)
+
+[历史 shop 回归样例](/samples/B2-user-story-map.svg) · [全部29幅视图](/zh/use/ai-service-assistant) · [示意假设](/zh/use/ai-service-assistant-assumptions).

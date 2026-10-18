@@ -49,7 +49,9 @@
 
 **环境变量**
 - 子进程的环境从零构建，只包含：上面这些变量、hosts 文件中写明的 `env` 值、`pass_env` 里列出名字的变量。
-- 以 `RCC_`、`CYBERWARE_`、`PI_`、`CLAUDE`、`CODEX_` 开头的变量一律不从父进程转发。
+- `pass_env` 还必须属于 `adapters/base.py` 中明确列出的提供方/传输变量；即使请求转发，任意名称也会被拒绝。
+- 字面量 `env` 仅允许同一名单及已列出的提供方开关。HOME、PATH、XDG 根目录不可覆盖；宿主状态/浏览器路径经符号链接解析后仍须位于 sandbox 内，隔离开关不可关闭。
+- 不隐式继承任何变量，也不依赖特定产品前缀过滤。
 
 **清理与泄漏检查**
 - 运行结束后删除沙箱。
@@ -58,3 +60,18 @@
 **Codex 沙箱**
 - 默认使用 `workspace-write`。
 - 如果 bubblewrap 在当前机器上无法创建命名空间，就在 hosts 文件中设置 `sandbox: danger-full-access`。这时只靠临时目录隔离，所以完整评测要放在一次性的机器或容器里做。
+
+## 收敛后的 AI 场景契约
+
+S11/S12 使用未照抄样例的选型问题，覆盖审批/ACL 变化及明确不支持委托的身份前提；S6 保留安全评审基线。
+运行 `python -m pytest -q evals/tests/test_ai_contracts.py` 复测选型路由与跨图契约。
+这些确定性测试不调用智能体、不评分绘图，也不构成质量或性能对比；实时 S11/S12 使用现有 runner。
+历史报告分数仍绑定其记录的 skill/场景修订。
+
+## 外部发布词表审计
+
+使用 `python tools/lint_private.py --names-file /path/outside/checkout/names.txt --strict`
+检查当前树；加 `--history --json` 单独检查已发布新增内容和每次提交的元数据。
+外部词表每行一个词；`prefix:EXAMPLE_PRIVATE_` 匹配私有标识符及其后缀，普通词按完整词匹配。
+结果只标明词表行号并脱敏匹配文本。公开贡献者引用与保留历史中的发现必须如实报告；
+向前修复不等于擦除已发布历史，词表不可提交进仓库。

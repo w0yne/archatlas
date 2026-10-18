@@ -17,7 +17,7 @@ formal: {kind: method, ref: 'No single notation. Related: TOGAF 9.2 Application 
 neighbours: [A1, A7, A8, C2, C3, C5, C6, I2]
 status: draft
 translationOf: en/types/C1-application-landscape.md
-sourceRev: 68c7e31
+sourceRev: 7002b1114ff60c6a028194c8376c71eee2b9d52d
 reviewed: false
 ---
 
@@ -148,5 +148,9 @@ reviewed: false
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-![C1 示例：网店的应用全景图，分四层](/samples/C1-application-landscape.zh.svg)
-*网店的应用全景图，分四层，每层是一个着色分区：渠道（网页商城、移动应用、客服聊天组件）、业务应用（商城、后台、客服机器人）、共享平台（身份认证、通知、搜索）和外部服务（支付服务商、承运商、邮件服务）。标签说明接入类型或归属，深色卡片是本图主体（商城），层间箭头标明流转内容。*
+![C1 · 企业服务助手](/samples/ai-service-assistant/C1/zh/diagram.svg)
+*企业或产品线有哪些应用？各归谁、处于什么状态、如何互相依赖？*
+
+[SVG](/samples/ai-service-assistant/C1/zh/diagram.svg) · [模型 JSON](/samples/ai-service-assistant/C1/zh/diagram.json) · [共享事实](/samples/ai-service-assistant/scenario.json)
+
+[历史 shop 回归样例](/samples/C1-application-landscape.zh.svg) · [全部29幅视图](/zh/use/ai-service-assistant) · [示意假设](/zh/use/ai-service-assistant-assumptions).

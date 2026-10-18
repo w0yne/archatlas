@@ -168,7 +168,35 @@ Model template: `assets/templates/E1.json` · Layout template: `sequence` · lif
 
 Note: the UML 2.5.1 clause text was not read first-hand; element semantics come from sources 9 and 10 and are not verified against the primary text.
 
+### F1 · Authentication and authorization flow {#variant-f1}
+
+Editorial grouping preserves the distinct notation; use this recipe and its checks.
+
+1. Choose one client type and one protected operation; state audience and current or proposed status in the title ("Shop: signed-in order history, current").
+2. From evidence, identify the issuer, caller, receiving API and protected resource.
+3. Trace proof issuance and validation first, then permission enforcement as a separate step.
+4. Layout: participants left to right (person, client, issuer, API, resource), interactions top to bottom; one scenario per figure. Isolate any downstream exchange (API to API) in its own figure or frame.
+5. Draw browser redirects and back-channel calls with different line styles and say so in a one-line key.
+6. Add an `alt` frame with an allow and a refuse outcome; the refuse branch ends before the protected operation.
+7. Labels: short verb plus proof purpose; number the arrows. Colour marks responsibility (issue, verify, enforce), not product; at most 3 colours plus neutral.
+
+**Self-check**
+- [ ] The client type and scenario are explicit.
+- [ ] Human and machine identities are distinct.
+- [ ] Each proof has an issuer and an intended recipient.
+- [ ] Code, ID token, access token and session are not interchangeable in the labels.
+- [ ] Verification and enforcement are both visible.
+- [ ] The refusal branch does not continue into the protected operation.
+- [ ] Browser and back-channel exchanges are drawn consistently; arrows attach to lifelines.
+- [ ] Unverified external configuration is disclosed on the figure or its caption.
+
+[Full method and historical sample](/types/f1-authentication-authorization-flow#meaning).
+
 ## Sample {#sample}
 <!-- skill: path only -->
-![E1 sample: sequence of placing an order with a loop and an alt frame](/samples/E1-sequence-diagram.svg)
-*Sequence of placing an order across five lifelines (customer, web storefront, order API, inventory, payment provider). The customer places an order, the order API reserves each item with the inventory service (loop) and then charges the card at the payment provider. The alt frame has two operands split by a dashed line, each with its own guard: under [card accepted] the payment is confirmed and the order is confirmed; under [else: card declined] the payment is declined and the order is rejected. The order API, the subject, is the dark lifeline. Only one operand runs for a given order.*
+![E1 · Enterprise Service Assistant](/samples/ai-service-assistant/E1/en/diagram.svg)
+*For one scenario, in what order do the participants exchange which messages?*
+
+[SVG](/samples/ai-service-assistant/E1/en/diagram.svg) · [Model JSON](/samples/ai-service-assistant/E1/en/diagram.json) · [Shared facts](/samples/ai-service-assistant/scenario.json)
+
+[Historical shop regression sample](/samples/E1-sequence-diagram.svg) · [All 29 views](/use/ai-service-assistant) · [Illustrative assumptions](/use/ai-service-assistant-assumptions).

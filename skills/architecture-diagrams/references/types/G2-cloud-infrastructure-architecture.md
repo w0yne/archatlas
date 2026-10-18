@@ -2,6 +2,7 @@
 <!-- Generated from content/en/types/G2-cloud-infrastructure-architecture.md by tools/build_skill_refs.py. Do not edit. -->
 > Which cloud capabilities realise the workload, and which trade-offs make that arrangement fit its requirements?
 Scope: One workload on one provider (or a stated multi-provider split), showing selected services, responsibilities, the main request and data path, and real location or failure boundaries Neighbours: C3, C5, G1, G3, G4.
+Named variant of G1; apply this reference's own recipe and checks.
 
 ## Meaning
 - **Question:** which cloud capabilities realise this workload, and what trade-offs make the arrangement fit its reliability, security, operations, performance and cost goals?
@@ -84,4 +85,4 @@ Scope: One workload on one provider (or a stated multi-provider split), showing 
 Model template: `assets/templates/G2.json` · Layout template: `statechart` · provider boundaries (region) become `boundary` groups and tiers or zones (edge, network and security, zone 1, zone 2, managed services) become `frame` groups ranked along the request path, so equal-rank zones sit side by side; services are nodes with a role in a chip, and arrows use `call`, `data` or `async` edge kinds; design status is carried in node `style` and `evidence`.
 
 ## Sample
-Figure: `samples/G2-cloud-infrastructure-architecture.svg` (published with the site)
+Figure: `samples/ai-service-assistant/G1-AWS/en/diagram.svg` (published with the site)

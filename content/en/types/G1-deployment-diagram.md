@@ -3,8 +3,8 @@ code: G1
 slug: deployment-diagram
 family: G
 names:
-  en: Deployment diagram
-  zh: 部署图
+  en: Deployment & cloud architecture
+  zh: 部署与云架构图
   aliases:
     en: [deployment view, software-to-infrastructure mapping, C4 deployment diagram, runtime infrastructure view]
     zh: [部署视图, 部署架构图, 软件与基础设施映射图]
@@ -18,16 +18,20 @@ neighbours: [C3, C8, G2, G3, G4, H2, I1]
 status: draft
 ---
 
-# Deployment Diagram (部署图)
+<span id="deployment-diagram-部署图"></span>
+
+# Deployment & cloud architecture (部署与云架构图)
 
 > A picture of one environment that maps software instances onto the nodes that host them, with only the connections that matter operationally.
+
+The core recipe is vendor-neutral: show environments, hosting, software allocation and failure domains. AWS service composition is the G2 named implementation variant and the first sample below.
 
 ## Meaning {#meaning}
 <!-- skill: condense (4–6 lines) -->
 - **Question:** where does each piece of software run, and what does that placement imply for scaling, failure, ownership and location?
 - **Viewpoint:** a deployment or operations view in the sense of an architecture description (ISO/IEC/IEEE 42010 public scope only [6]). UML 2.5.1 defines the formal elements (nodes, devices, execution environments, artifacts, deployment relationships) [1]. The C4 model offers a pragmatic variant that maps *instances* of software systems and containers to deployment nodes in one environment; it is a supporting diagram, not a fifth zoom level [2]. arc42 keeps deployment (section 7) apart from runtime behaviour (section 6) [3].
 - **Deeper meaning:** it is an allocation view. Logical responsibilities from the static model are realised on execution infrastructure, and the placement carries consequences. A C4 "container" is a deployable software building block; a Docker container is only one way to run it.
-- **Leaves out:** method calls, source files, business journeys, full network rule sets (G3) and cloud service trade-offs (G2).
+- **Leaves out:** method calls, source files, business journeys, full network rule sets (G3) ; cloud service composition belongs to the named G2 implementation variant below.
 - **Definition used here:** a *deployment node* is anything that hosts software: a device, VM, managed platform or nested execution environment [1][2]. It is not necessarily a physical server. "Deployment" is allocation, not behaviour over time.
 
 ## When to use and how to choose {#choose}
@@ -150,7 +154,37 @@ Model template: `assets/templates/G1.json` · Layout template: `statechart` · h
 5. Structurizr, "Deployment view" — https://docs.structurizr.com/dsl/cookbook/deployment-view/ — accessed 2026-10-14
 6. ISO/IEC/IEEE 42010:2022, public scope only; the page returned HTTP 403 and the full text was not reviewed — https://www.iso.org/standard/74393.html — accessed 2026-10-14
 
+### G2 · Cloud infrastructure architecture {#variant-g2}
+
+Editorial grouping preserves the distinct notation; use this recipe and its checks.
+
+1. State workload, constraints, audience, provider and status in the title, for example "Online shop storefront on a managed platform: proposed".
+2. List responsibilities first (serve pages, take orders, run jobs, store data, authenticate); then choose services, one per role.
+3. Layout: left to right along the main request path (clients, edge, compute, data). Put supporting services (identity, secrets, monitoring) on a band below or above, not in the main row.
+4. Group only real boundaries: provider account or project, region, zone, and the network where a service is truly attached. Place managed or global services outside the network box.
+5. Edges: label every arrow with its meaning; use one line style for runtime, another for async events or replication, a third for administration.
+6. Text: service name plus role, about 3–6 words; two or three consequential trade-offs as a short note beside the figure.
+7. Colour: neutral fills with a distinct tint for the data tier and for external or managed services; use provider icons only if they help recognition and reuse terms allow, otherwise plain labelled shapes.
+
+**Self-check**
+- [ ] Status (reference, proposed, declared or observed) is stated near the title.
+- [ ] Every service has a workload role, not just a product name.
+- [ ] Each arrow type is explained in the key.
+- [ ] Region, zone and network boundaries match the provider's semantics.
+- [ ] Managed or global services are not placed inside a subnet they do not belong to.
+- [ ] Availability or resilience claims name a mechanism, or are left out.
+- [ ] Assumptions and two or three trade-offs accompany the image.
+- [ ] Icons or artwork have a stated reuse basis.
+
+[Full method and historical sample](/types/g2-cloud-infrastructure-architecture#meaning).
+
 ## Sample {#sample}
 <!-- skill: path only -->
-![G1 sample: production deployment of an online shop](/samples/G1-deployment-diagram.svg)
-*Production deployment (current) of the online shop: a content delivery network in front of a production cluster whose public subnet holds the load balancer and storefront and whose application subnet holds the order API and the chatbot service (replica counts are illustrative). The order API writes to a primary database and reads from a replica in the managed data services, and calls an external payment provider; the chatbot calls a language model service. Chips carry the protocol or role, and the order API is the subject (the dark card).*
+![G1-AWS · Enterprise Service Assistant](/samples/ai-service-assistant/G1-AWS/en/diagram.svg)
+*The AWS implementation variant is the first G1 illustration. Application services span two AZs; Aurora managed storage spans three; OpenSearch uses two-AZ zone awareness, not Standby. Regional managed services are outside customer subnets, CloudFront is global.*
+
+[SVG](/samples/ai-service-assistant/G1-AWS/en/diagram.svg) · [Model JSON](/samples/ai-service-assistant/G1-AWS/en/diagram.json) · [Shared facts](/samples/ai-service-assistant/scenario.json)
+
+[Historical shop regression sample](/samples/G1-deployment-diagram.svg) · [All 29 views](/use/ai-service-assistant) · [Illustrative assumptions](/use/ai-service-assistant-assumptions).
+
+[See the separate vendor-neutral G1 allocation](/use/ai-service-assistant#view-g1-generic).

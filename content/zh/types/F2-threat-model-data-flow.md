@@ -17,11 +17,13 @@ formal: {kind: method, ref: Classic data-flow-diagram symbols plus security anno
 neighbours: [C3, C6, D2, F1, F3, G3]
 status: draft
 translationOf: en/types/F2-threat-model-data-flow.md
-sourceRev: 88db750
+sourceRev: 7002b1114ff60c6a028194c8376c71eee2b9d52d
 reviewed: false
 ---
 
 # 威胁建模数据流图（Threat-Model Data-Flow Diagram）
+
+**D2 的具名变体。** [进入数据流图（DFD） → F2](/zh/types/d2-data-flow-diagram#variant-f2)。此兼容页保留独立画法、检查项、原锚点和历史下载。
 
 > 一种标出信任假设变化之处的数据流图，让团队能够针对每条数据流、每个存储和每条边界追问：可能出什么问题。
 
@@ -140,5 +142,19 @@ reviewed: false
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-![F2 示例：结账数据流，跨越四个信任边界](/samples/F2-threat-model-data-flow.zh.svg)
-*结账数据流跨越四个信任边界（互联网、公共入口、内部网络、支付服务商）：顾客浏览器把下单请求发给 API 网关，网关把已校验请求交给订单服务；订单服务记录订单，并把卡令牌发给支付接口。数据流带编号，以所携带的数据命名。*
+![F2 · 企业服务助手](/samples/ai-service-assistant/F2/zh/diagram.svg)
+*DF 标识将数据流对应到威胁假设，不是消息顺序。DF-6 抽象经 Agent 传递证明（F1），DF-4 经 BFF 读取当前审批；拟议控制仍需实施验证。*
+
+[SVG](/samples/ai-service-assistant/F2/zh/diagram.svg) · [模型 JSON](/samples/ai-service-assistant/F2/zh/diagram.json) · [共享事实](/samples/ai-service-assistant/scenario.json)
+
+[历史 shop 回归样例](/samples/F2-threat-model-data-flow.zh.svg) · [全部29幅视图](/zh/use/ai-service-assistant) · [示意假设](/zh/use/ai-service-assistant-assumptions).
+
+| 威胁 / 数据流 | 假设及影响 | 拟议应对 | 责任方 / 尚需验证 |
+|---|---|---|---|
+| T1 · DF-1 / DF-10 / TB-1 | 提示注入请求未授权工具 | 模型无授权权力；仅允许三种工具 | Agent 负责人 / 恶意文档测试 |
+| T2 · DF-2–5 / TB-2 | 审批后篡改草稿或重放 | 绑定租户、主体、规范 hash、有效期和幂等键；再次授权 | API 负责人 / hash、过期及租户拒绝测试 |
+| T3 · DF-6 / TB-3 | 混淆代理使用错误 audience 或 actor | 核验 AS 签名、issuer、audience、actor、tenant、scopes；连接器前拒绝 | 身份负责人 / audience 及跨租户测试 |
+| T4 · DF-7–8 | 超时导致重复写入 | 持久意图、连接器幂等及按键查询 | 工具负责人 / 超时对账测试 |
+| T5 · DF-4 / DS-app | 运维或模型直接访问审批记录 | 受限服务身份、BFF 策略检查、审计与脱敏 | 平台负责人 / IAM 及日志审查 |
+
+以上均为假设及拟议应对，**尚无验证证据**。

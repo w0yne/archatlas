@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1170" lang="zh" data-archatlas="0.1">
+  <title>F2 / D2 · 工单写入 — 信任边界</title>
+  <desc>虚构教学设计，场景版本2；补充参数为示意假设。虚构目标设计 · 资产：租户数据、审批完整性、服务权限 · 拟议控制</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#4B5563" />
+    </marker>
+  </defs>
+  <rect data-role="canvas" width="1400" height="1170" fill="#ffffff" />
+  <text x="28" y="40" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="28" font-weight="700" fill="#1F2937">F2 / D2 · 工单写入 — 信任边界</text>
+  <text x="28" y="72" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">虚构目标设计 · 资产：租户数据、审批完整性、服务权限 · 拟议控制</text>
+  <rect x="25" y="130" width="380" height="255" data-role="group" data-id="TB-content" data-kind="boundary" fill="#FFF4F1" stroke="#B34232" stroke-width="1.6" rx="10" stroke-dasharray="8 5" />
+  <text x="43" y="162" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="700" fill="#1F2937" data-owner="TB-content" data-role="group-title">TB-1 · 不可信模型 / 检索内容</text>
+  <rect x="60" y="220" width="305" height="95" data-role="node" data-id="P-plan" data-kind="process" data-parent="TB-content" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="22" />
+  <text x="74" y="249" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="P-plan" data-role="name">1. 起草请求</text>
+  <rect x="490" y="130" width="880" height="330" data-role="group" data-id="TB-policy" data-kind="boundary" fill="#FFF4F1" stroke="#B34232" stroke-width="1.6" rx="10" stroke-dasharray="8 5" />
+  <text x="508" y="162" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="700" fill="#1F2937" data-owner="TB-policy" data-role="group-title">TB-2 · 已验证租户与审批权限</text>
+  <rect x="550" y="235" width="315" height="100" data-role="node" data-id="P-approve" data-kind="process" data-parent="TB-policy" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="22" />
+  <text x="564" y="264" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="P-approve" data-role="name">2. 绑定审批</text>
+  <g data-role="node" data-id="DS-app" data-kind="store" data-parent="TB-policy" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8">
+    <polyline points="1325,235 1020,235 1020,335 1325,335" fill="none" stroke="#3D6FB2" stroke-width="1.8" />
+  </g>
+  <text x="1034" y="264" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DS-app" data-role="name">应用记录</text>
+  <text x="1034" y="289" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DS-app" data-role="sub">DS-app</text>
+  <rect x="60" y="490" width="305" height="100" data-role="node" data-id="R-employee" data-kind="entity" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="0" />
+  <text x="74" y="519" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="R-employee" data-role="name">员工 / 审批人</text>
+  <rect x="490" y="580" width="435" height="350" data-role="group" data-id="TB-tool" data-kind="boundary" fill="#FFF4F1" stroke="#B34232" stroke-width="1.6" rx="10" stroke-dasharray="8 5" />
+  <text x="508" y="612" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="700" fill="#1F2937" data-owner="TB-tool" data-role="group-title">TB-3 · 工具执行权限边界</text>
+  <rect x="550" y="730" width="315" height="100" data-role="node" data-id="P-execute" data-kind="process" data-parent="TB-tool" fill="#1767B5" stroke="#03172E" stroke-width="2.4" rx="22" />
+  <text x="564" y="759" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#ffffff" data-owner="P-execute" data-role="name">3. 工具再授权</text>
+  <rect x="1030" y="730" width="310" height="100" data-role="node" data-id="X-desk" data-kind="entity" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="0" />
+  <text x="1044" y="759" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="X-desk" data-role="name">服务工单系统</text>
+  <rect x="30" y="730" width="335" height="100" data-role="node" data-id="X-idp" data-kind="entity" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="0" />
+  <text x="44" y="759" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="X-idp" data-role="name">企业 IdP / AS</text>
+  <polyline points="365,285 550,285" data-role="edge" data-id="DF-1" data-from="P-plan" data-to="P-approve" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="395.0" y="245.0" width="80.453125" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DF-1" data-parent="DF-1" />
+  <text x="400" y="265" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DF-1" data-role="edge-label">DF-1 草稿</text>
+  <polyline points="365,540 705,540 705,335" data-role="edge" data-id="DF-2" data-from="R-employee" data-to="P-approve" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="385.0" y="502.0" width="80.453125" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DF-2" data-parent="DF-2" />
+  <text x="390" y="522" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DF-2" data-role="edge-label">DF-2 审批</text>
+  <polyline points="865,270 1020,270" data-role="edge" data-id="DF-3" data-from="P-approve" data-to="DS-app" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="867.0" y="230.0" width="80.453125" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DF-3" data-parent="DF-3" />
+  <text x="872" y="250" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DF-3" data-role="edge-label">DF-3 绑定</text>
+  <polyline points="1170,335 1170,655 760,655 760,730" data-role="edge" data-id="DF-4" data-from="DS-app" data-to="P-execute" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="970.0" y="612.0" width="112.453125" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DF-4" data-parent="DF-4" />
+  <text x="975" y="632" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DF-4" data-role="edge-label">DF-4 当前记录</text>
+  <polyline points="830,335 830,730" data-role="edge" data-id="DF-5" data-from="P-approve" data-to="P-execute" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="845.0" y="500.0" width="115.03125" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DF-5" data-parent="DF-5" />
+  <text x="850" y="520" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DF-5" data-role="edge-label">DF-5 草稿 + ID</text>
+  <polyline points="365,770 550,770" data-role="edge" data-id="DF-6" data-from="X-idp" data-to="P-execute" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="480.0" y="680.0" width="112.453125" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DF-6" data-parent="DF-6" />
+  <text x="485" y="700" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DF-6" data-role="edge-label">DF-6 工具证明</text>
+  <polyline points="865,770 1030,770" data-role="edge" data-id="DF-7" data-from="P-execute" data-to="X-desk" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="877.0" y="730.0" width="80.453125" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DF-7" data-parent="DF-7" />
+  <text x="882" y="750" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DF-7" data-role="edge-label">DF-7 请求</text>
+  <polyline points="1030,810 865,810" data-role="edge" data-id="DF-8" data-from="X-desk" data-to="P-execute" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="895.0" y="829.0" width="80.453125" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DF-8" data-parent="DF-8" />
+  <text x="900" y="849" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DF-8" data-role="edge-label">DF-8 结果</text>
+  <polyline points="550,800 440,800 440,635 200,635 200,590" data-role="edge" data-id="DF-9" data-from="P-execute" data-to="R-employee" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="60.0" y="638.0" width="126.71875" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DF-9" data-parent="DF-9" />
+  <text x="65" y="658" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DF-9" data-role="edge-label">DF-9 拒绝 / 结果</text>
+  <polyline points="180,490 180,315" data-role="edge" data-id="DF-10" data-from="R-employee" data-to="P-plan" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="205.0" y="420.0" width="121.609375" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DF-10" data-parent="DF-10" />
+  <text x="210" y="440" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DF-10" data-role="edge-label">DF-10 请求操作</text>
+  <text x="30" y="975" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">DF-6 抽象 AS → Agent → 网关的证明传递；实际传输过程见 F1。</text>
+  <text x="30" y="1005" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">威胁假设与责任方见相邻登记表；本图不代表已完成安全评估。</text>
+  <rect x="28" y="1045" width="42" height="22" data-role="legend-zone" data-id="__legend-swatch-1" fill="#FFF4F1" stroke="#B34232" stroke-width="1.6" rx="10" stroke-dasharray="8 5" />
+  <text x="82" y="1062" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-1">信任边界</text>
+  <rect x="473" y="1045" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-2" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="22" />
+  <text x="527" y="1062" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-2">处理过程</text>
+  <g data-role="legend-swatch" data-id="__legend-swatch-3" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8">
+    <polyline points="960,1045 918,1045 918,1067 960,1067" fill="none" stroke="#3D6FB2" stroke-width="1.8" />
+  </g>
+  <text x="972" y="1062" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-3">数据存储</text>
+  <rect x="28" y="1090" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-4" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="0" />
+  <text x="82" y="1107" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-4">外部角色 / 系统</text>
+  <rect x="473" y="1090" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-5" fill="#1767B5" stroke="#03172E" stroke-width="2.4" rx="22" />
+  <text x="527" y="1107" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-5">处理过程</text>
+  <polyline points="918,1100 960,1100" data-role="edge" data-kind="legend" data-id="legend-line-6" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <text x="972" y="1107" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-6">具名数据流</text>
+</svg>

@@ -106,6 +106,10 @@ def stage(dest: Path) -> Path:
         if not src.is_file():
             raise PackError(f"{name} missing at repository root")
         shutil.copyfile(src, folder / name)
+    # One shared scenario, explicit manifest and author-owned artwork, so an
+    # installed skill can inspect the same facts without an external checkout.
+    shutil.copytree(ROOT / "examples/ai-service-assistant",
+                    folder / "assets/examples/ai-service-assistant", ignore=IGNORE)
     return folder
 
 

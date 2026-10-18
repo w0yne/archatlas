@@ -1,0 +1,158 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "F2",
+    "title": "F2 / D2 · 工单写入 — 信任边界",
+    "lang": "zh",
+    "state": "to-be",
+    "audience": "architects and reviewers",
+    "description": "Fictional teaching design; scenario.json version 2; illustrative assumptions, not a deployed system"
+  },
+  "layout": {
+    "template": "nested"
+  },
+  "nodes": [
+    {
+      "id": "P-plan",
+      "kind": "process",
+      "label": "1. 起草请求",
+      "parent": "TB-content",
+      "style": "peer",
+      "sub": ""
+    },
+    {
+      "id": "P-approve",
+      "kind": "process",
+      "label": "2. 绑定审批",
+      "parent": "TB-policy",
+      "style": "peer",
+      "sub": ""
+    },
+    {
+      "id": "DS-app",
+      "kind": "store",
+      "label": "应用记录",
+      "parent": "TB-policy",
+      "style": "peer",
+      "sub": "DS-app"
+    },
+    {
+      "id": "R-employee",
+      "kind": "entity",
+      "label": "员工 / 审批人",
+      "style": "external",
+      "sub": ""
+    },
+    {
+      "id": "P-execute",
+      "kind": "process",
+      "label": "3. 工具再授权",
+      "parent": "TB-tool",
+      "style": "primary",
+      "sub": ""
+    },
+    {
+      "id": "X-desk",
+      "kind": "entity",
+      "label": "服务工单系统",
+      "style": "external",
+      "sub": ""
+    },
+    {
+      "id": "X-idp",
+      "kind": "entity",
+      "label": "企业 IdP / AS",
+      "style": "external",
+      "sub": ""
+    }
+  ],
+  "edges": [
+    {
+      "id": "DF-1",
+      "from": "P-plan",
+      "to": "P-approve",
+      "label": "DF-1 草稿",
+      "kind": "data"
+    },
+    {
+      "id": "DF-2",
+      "from": "R-employee",
+      "to": "P-approve",
+      "label": "DF-2 审批",
+      "kind": "data"
+    },
+    {
+      "id": "DF-3",
+      "from": "P-approve",
+      "to": "DS-app",
+      "label": "DF-3 绑定",
+      "kind": "data"
+    },
+    {
+      "id": "DF-4",
+      "from": "DS-app",
+      "to": "P-execute",
+      "label": "DF-4 当前记录",
+      "kind": "data"
+    },
+    {
+      "id": "DF-5",
+      "from": "P-approve",
+      "to": "P-execute",
+      "label": "DF-5 草稿 + ID",
+      "kind": "data"
+    },
+    {
+      "id": "DF-6",
+      "from": "X-idp",
+      "to": "P-execute",
+      "label": "DF-6 工具证明",
+      "kind": "data"
+    },
+    {
+      "id": "DF-7",
+      "from": "P-execute",
+      "to": "X-desk",
+      "label": "DF-7 请求",
+      "kind": "data"
+    },
+    {
+      "id": "DF-8",
+      "from": "X-desk",
+      "to": "P-execute",
+      "label": "DF-8 结果",
+      "kind": "data"
+    },
+    {
+      "id": "DF-9",
+      "from": "P-execute",
+      "to": "R-employee",
+      "label": "DF-9 拒绝 / 结果",
+      "kind": "data"
+    },
+    {
+      "id": "DF-10",
+      "from": "R-employee",
+      "to": "P-plan",
+      "label": "DF-10 请求操作",
+      "kind": "data"
+    }
+  ],
+  "groups": [
+    {
+      "id": "TB-content",
+      "title": "TB-1 · 不可信模型 / 检索内容",
+      "kind": "boundary"
+    },
+    {
+      "id": "TB-policy",
+      "title": "TB-2 · 已验证租户与审批权限",
+      "kind": "boundary"
+    },
+    {
+      "id": "TB-tool",
+      "title": "TB-3 · 工具执行权限边界",
+      "kind": "boundary"
+    }
+  ]
+}

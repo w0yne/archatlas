@@ -144,5 +144,9 @@ Model template: `assets/templates/G3.json` · Layout template: `nested` · netwo
 
 ## Sample {#sample}
 <!-- skill: path only -->
-![G3 sample: network zones of an online shop](/samples/G3-network-topology.svg)
-*Network zones of the online shop: a public zone (load balancer, 192.0.2.0/24), an app zone (app servers, 198.51.100.0/24) and a data zone (database, 203.0.113.0/24). The numbered traffic path enters the app zone on port 443 and the data zone on port 5432.*
+![G3 · Enterprise Service Assistant](/samples/ai-service-assistant/G3/en/diagram.svg)
+*A logical reachability view, with transit, DNS, TLS/443, private endpoints, per-AZ NAT and SG/NACL returns specified in AS-network. The fictional address plan and rules are not an observed deployment.*
+
+[SVG](/samples/ai-service-assistant/G3/en/diagram.svg) · [Model JSON](/samples/ai-service-assistant/G3/en/diagram.json) · [Shared facts](/samples/ai-service-assistant/scenario.json)
+
+[Historical shop regression sample](/samples/G3-network-topology.svg) · [All 29 views](/use/ai-service-assistant) · [Illustrative assumptions](/use/ai-service-assistant-assumptions).

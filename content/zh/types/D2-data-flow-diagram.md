@@ -17,7 +17,7 @@ formal: {kind: method, ref: 'Structured Analysis: DeMarco 1978 (Yourdon/DeMarco 
 neighbours: [C2, D1, D3, E2, F2]
 status: draft
 translationOf: en/types/D2-data-flow-diagram.md
-sourceRev: 4aff572
+sourceRev: 7002b1114ff60c6a028194c8376c71eee2b9d52d
 reviewed: false
 ---
 
@@ -151,7 +151,36 @@ reviewed: false
 12. OWASP pytm, "A Pythonic framework for threat modeling" — https://github.com/OWASP/pytm — 访问于 2026-10-14
 13. Microsoft Threat Modeling Tool overview — https://learn.microsoft.com/en-us/azure/security/develop/threat-modeling-tool — 访问于 2026-10-14
 
+### F2 · 威胁建模数据流图（含信任边界） {#variant-f2}
+
+编辑归组保留独立语义；使用本变体的画法与检查项。
+
+1. 说明资产、范围以及纳入范围的攻击者假设；在标题中写明范围和状态（“网店结账：数据流与信任边界，提议”）。
+2. 动笔之前，先盘点入口点和出口点、加工、存储以及权限变化。
+3. 画出能保留这些区分的最小模型；在每条箭头上写明其载荷名称。
+4. 布局：外部实体放在外侧边缘，加工居中，存储在底部；数据流方向从左到右。边界用虚线框表示，并附简短标签说明信任变化。
+5. 检查每一处边界穿越和每条重要的内部数据流；逐一保留或说明理由。
+6. 分配稳定的 ID（EE-1、P-1、DS-1、DF-1 这类形式，避免与目录编号混淆），并另以表格输出威胁/缓解措施登记表。
+7. 颜色：中性填充；边界用一种强调色；仅为“提议 / 未核实”再加一种标记。符号取自同一套 DFD 符号集，并附图例。
+8. 与系统专家一起评审；对缺口加以标注，而不是猜测。
+
+**自检清单**
+- [ ] 已说明范围、资产和假设。
+- [ ] 已画出相关的入口点、出口点和存储。
+- [ ] 每条数据流箭头都写明了数据名称，且只有一个方向。
+- [ ] 每条边界都说明了它所标示的权限或信任变化。
+- [ ] 重要的内部数据流没有被机械地省略。
+- [ ] 威胁 ID 都能对应到负责人、应对措施和验证记录。
+- [ ] 提议的控制和未知项与已观察到的控制在视觉上有区别。
+- [ ] 这张图没有被当作已完成的评估来展示。
+
+[完整方法与历史样例](/zh/types/f2-threat-model-data-flow#meaning).
+
 ## 示例 {#sample}
 <!-- skill: path only -->
-![D2 示例：网店第 1 层数据流图](/samples/D2-data-flow-diagram.svg)
-*网店第 1 层数据流图：顾客的订单详情进入加工 1（校验订单），有效订单存入 D1 订单库，加工 2（请求支付）读取应付金额并向外部支付服务商发出支付请求。存储只能通过加工访问。图中没有画信任边界。*
+![D2 · 企业服务助手](/samples/ai-service-assistant/D2/zh/diagram.svg)
+*检索前明确执行 tenant/ACL 过滤，打开引用时再次核对当前权限。此逻辑 DFD 聚焦知识回答，工单写入与评测另图表达。*
+
+[SVG](/samples/ai-service-assistant/D2/zh/diagram.svg) · [模型 JSON](/samples/ai-service-assistant/D2/zh/diagram.json) · [共享事实](/samples/ai-service-assistant/scenario.json)
+
+[历史 shop 回归样例](/samples/D2-data-flow-diagram.svg) · [全部29幅视图](/zh/use/ai-service-assistant) · [示意假设](/zh/use/ai-service-assistant-assumptions).

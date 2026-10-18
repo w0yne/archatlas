@@ -1,0 +1,18 @@
+{
+  "scenarioVersion": 2,
+  "entities": {
+    "C-agent": "C-agent",
+    "X-idp": "X-idp",
+    "C-tools": "C-tools",
+    "X-desk": "X-desk"
+  },
+  "invariants": [
+    "I-delegation",
+    "I-tokens",
+    "I-approval",
+    "I-authority"
+  ],
+  "projection": "focused view; omissions described in caption; not a deployed system",
+  "missingFacts": [],
+  "assumptions": []
+}

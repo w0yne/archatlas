@@ -155,5 +155,9 @@ Model template: `assets/templates/D3.json` · Layout template: `layered` · data
 
 ## Sample {#sample}
 <!-- skill: path only -->
-![D3 sample: lineage and ownership of daily sales](/samples/D3-data-lineage-ownership.svg)
-*Lineage and ownership of daily sales: the Orders dataset (owner Ordering, steward Data office) feeds the job Aggregate daily sales, which writes the Daily sales dataset (owner Reporting, steward Data office); that dataset feeds the Sales dashboard, the consumer. Owning domains are drawn as bands.*
+![D3 · Enterprise Service Assistant](/samples/ai-service-assistant/D3/en/diagram.svg)
+*Steward accountability, technical custody and tenant-confidential versus deidentified classification are specified in AS-data. Ownership is not a read grant, and derived chunks retain source ACL restrictions.*
+
+[SVG](/samples/ai-service-assistant/D3/en/diagram.svg) · [Model JSON](/samples/ai-service-assistant/D3/en/diagram.json) · [Shared facts](/samples/ai-service-assistant/scenario.json)
+
+[Historical shop regression sample](/samples/D3-data-lineage-ownership.svg) · [All 29 views](/use/ai-service-assistant) · [Illustrative assumptions](/use/ai-service-assistant-assumptions).

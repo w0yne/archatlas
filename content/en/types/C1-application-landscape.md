@@ -145,5 +145,9 @@ Model template: `assets/templates/C1.json` · Layout template: `statechart` (lef
 
 ## Sample {#sample}
 <!-- skill: path only -->
-![C1 sample: application landscape of an online shop in four layers](/samples/C1-application-landscape.svg)
-*Application landscape of the online shop in four layers, each a tinted zone: channels (web storefront, mobile app, support chat widget), business applications (shop, back office, support chatbot), shared platform (identity, notifications, search) and external services (payment provider, carrier, email service). Chips name the access type or ownership, the dark card is the subject (the shop), and arrows between layers say what flows.*
+![C1 · Enterprise Service Assistant](/samples/ai-service-assistant/C1/en/diagram.svg)
+*Which applications exist in the estate, who owns them, what state are they in, and how do they depend on each other?*
+
+[SVG](/samples/ai-service-assistant/C1/en/diagram.svg) · [Model JSON](/samples/ai-service-assistant/C1/en/diagram.json) · [Shared facts](/samples/ai-service-assistant/scenario.json)
+
+[Historical shop regression sample](/samples/C1-application-landscape.svg) · [All 29 views](/use/ai-service-assistant) · [Illustrative assumptions](/use/ai-service-assistant-assumptions).

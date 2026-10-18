@@ -1,0 +1,100 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "A8",
+    "title": "A8 · 企业服务助手 — 演进路线图：先只读",
+    "lang": "zh",
+    "state": "to-be",
+    "audience": "architects and business reviewers",
+    "description": "Fictional teaching design; scenario.json version 2; illustrative assumptions, not a deployed system"
+  },
+  "layout": {
+    "template": "tree"
+  },
+  "nodes": [
+    {
+      "id": "ST-baseline",
+      "kind": "state",
+      "label": "基线：搜索 + 人工提单",
+      "style": "peer",
+      "sub": "价值：现有工作方式"
+    },
+    {
+      "id": "ST-answers",
+      "kind": "state",
+      "label": "T1：带来源回答",
+      "style": "peer",
+      "sub": "价值：员工可信赖的回答"
+    },
+    {
+      "id": "ST-tickets",
+      "kind": "state",
+      "label": "T2：经审批的工单",
+      "style": "peer",
+      "sub": "价值：无需重新填写的工单"
+    },
+    {
+      "id": "ST-target",
+      "kind": "state",
+      "label": "目标：门禁变更",
+      "style": "peer",
+      "sub": "价值：按质量与成本门禁变更"
+    },
+    {
+      "id": "WP-retrieval",
+      "kind": "task",
+      "label": "租户安全检索",
+      "style": "planned"
+    },
+    {
+      "id": "WP-approval",
+      "kind": "task",
+      "label": "审批绑定",
+      "style": "planned"
+    },
+    {
+      "id": "WP-eval",
+      "kind": "task",
+      "label": "评测门禁",
+      "style": "planned"
+    }
+  ],
+  "edges": [
+    {
+      "id": "DEP-1",
+      "from": "ST-baseline",
+      "to": "WP-retrieval",
+      "kind": "call"
+    },
+    {
+      "id": "DEP-2",
+      "from": "WP-retrieval",
+      "to": "ST-answers",
+      "kind": "call"
+    },
+    {
+      "id": "DEP-3",
+      "from": "ST-answers",
+      "to": "WP-approval",
+      "kind": "call"
+    },
+    {
+      "id": "DEP-4",
+      "from": "WP-approval",
+      "to": "ST-tickets",
+      "kind": "call"
+    },
+    {
+      "id": "DEP-5",
+      "from": "ST-tickets",
+      "to": "WP-eval",
+      "kind": "call"
+    },
+    {
+      "id": "DEP-6",
+      "from": "WP-eval",
+      "to": "ST-target",
+      "kind": "call"
+    }
+  ]
+}

@@ -9,9 +9,23 @@ import time
 from dataclasses import dataclass, field
 from pathlib import Path
 
-# Variables never forwarded from the parent process, even when a host config
-# names them in pass_env: team/orchestrator control state and host session state.
-BLOCKED_PREFIXES = ("RCC_", "CYBERWARE_", "PI_", "CLAUDE", "CODEX_")
+# Exact provider/transport names, never wildcard prefixes. A configured pass_env
+# entry is a second opt-in, not permission to inherit arbitrary host state.
+PROVIDER_ENV = frozenset({
+    "OPENAI_API_KEY", "OPENAI_BASE_URL", "ANTHROPIC_API_KEY", "ANTHROPIC_BASE_URL",
+    "AZURE_OPENAI_API_KEY", "AZURE_OPENAI_ENDPOINT", "GEMINI_API_KEY", "GOOGLE_API_KEY",
+    "AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY", "AWS_SESSION_TOKEN", "AWS_PROFILE",
+    "AWS_REGION", "AWS_DEFAULT_REGION", "AWS_CONFIG_FILE", "AWS_SHARED_CREDENTIALS_FILE",
+    "AWS_EC2_METADATA_DISABLED", "HTTPS_PROXY", "HTTP_PROXY", "NO_PROXY",
+    "https_proxy", "http_proxy", "no_proxy", "SSL_CERT_FILE", "REQUESTS_CA_BUNDLE",
+    "NODE_EXTRA_CA_CERTS",
+})
+LITERAL_SETTINGS = frozenset({"CLAUDE_CODE_USE_BEDROCK", "CLAUDE_CODE_USE_VERTEX"})
+SANDBOX_PATHS = frozenset({"CODEX_HOME", "PI_CODING_AGENT_DIR", "PLAYWRIGHT_BROWSERS_PATH"})
+ISOLATION_SETTINGS = {
+    "DISABLE_AUTOUPDATER": "1", "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
+    "PI_SKIP_VERSION_CHECK": "1", "PI_TELEMETRY": "0",
+}
 SYSTEM_PATH = ("/usr/local/bin", "/usr/bin", "/bin")
 
 
@@ -69,14 +83,22 @@ def isolated_env(sb: Sandbox, binary: str, host_env: dict, pass_env: list[str]) 
         "NO_COLOR": "1",
     }
     for name in pass_env:
-        if name.startswith(BLOCKED_PREFIXES):
+        if name not in PROVIDER_ENV:
             raise ValueError(f"pass_env may not forward {name}")
         if name in os.environ:
             env[name] = os.environ[name]
-    env.update({k: str(v) for k, v in host_env.items()})
-    leaked = [k for k in env if k.startswith(("RCC_", "CYBERWARE_"))]
-    if leaked:
-        raise ValueError(f"control variables in child env: {leaked}")
+    for name, value in host_env.items():
+        value = str(value)
+        if name in SANDBOX_PATHS:
+            # resolve() also rejects a symlink that escapes the isolated root.
+            if not Path(value).is_absolute() or not Path(value).resolve().is_relative_to(sb.root.resolve()):
+                raise ValueError(f"{name} must remain inside the sandbox")
+        elif name in ISOLATION_SETTINGS:
+            if value != ISOLATION_SETTINGS[name]:
+                raise ValueError(f"protected isolation setting: {name}")
+        elif name not in PROVIDER_ENV | LITERAL_SETTINGS:
+            raise ValueError(f"host env may not set {name}")
+        env[name] = value
     return env
 
 

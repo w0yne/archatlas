@@ -17,7 +17,7 @@ formal: {kind: convention, ref: 'none (de-facto reference: Nielsen Norman Group 
 neighbours: [A2, A4, A5, B2, E4]
 status: draft
 translationOf: en/types/A6-journey-map.md
-sourceRev: 88db750
+sourceRev: 7002b1114ff60c6a028194c8376c71eee2b9d52d
 reviewed: false
 ---
 
@@ -139,5 +139,9 @@ reviewed: false
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-![A6 示例：首次购物者的旅程图，含行为、想法、情绪、痛点、触点和机会点](/samples/A6-journey-map.svg)
-*一个用户画像——首次购物者——经历四个阶段（发现、比较、下单、收货）的旅程，标注为假设和现状。各行依次是行为、想法、情绪（每个阶段一个词，不画情绪曲线）、痛点、触点，以及带负责方的机会点。*
+![A6 · 企业服务助手](/samples/ai-service-assistant/A6/zh/diagram.svg)
+*人物画像、情绪与改进机会是示意假设，不是用户调研。现有管理员/运维角色负责建议改进，不因此获得额外内容权限。*
+
+[SVG](/samples/ai-service-assistant/A6/zh/diagram.svg) · [模型 JSON](/samples/ai-service-assistant/A6/zh/diagram.json) · [共享事实](/samples/ai-service-assistant/scenario.json)
+
+[历史 shop 回归样例](/samples/A6-journey-map.svg) · [全部29幅视图](/zh/use/ai-service-assistant) · [示意假设](/zh/use/ai-service-assistant-assumptions).

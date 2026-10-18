@@ -17,7 +17,7 @@ formal: {kind: method, ref: 'C4 model (Simon Brown), Level 3 Component diagram; 
 neighbours: [C3, C5, C8, E1]
 status: draft
 translationOf: en/types/C4-component-diagram.md
-sourceRev: 5137fae
+sourceRev: 7002b1114ff60c6a028194c8376c71eee2b9d52d
 reviewed: false
 ---
 
@@ -152,7 +152,35 @@ reviewed: false
 23. C4 model — Container diagram — https://c4model.com/diagrams/container — 访问于 2026-10-14
 24. S. Brown — Reverse-engineering architecture diagrams (talk) — https://www.youtube.com/watch?v=2Cz9ZDIlBeM — 访问于 2026-10-14
 
+### C8 · 分层架构图 {#variant-c8}
+
+编辑归组保留独立语义；使用本变体的画法与检查项。
+
+1. 把范围限定为一个应用或服务（例如网店后端）。如果是整个系统群，先提供 C2/C3/C7。
+2. 列出顶层包及其相互之间的导入关系图。根据*实际*名称提出分层建议；不要硬套模板。
+3. 选择变体：如果基础设施实现的是领域所拥有的接口，用向内依赖；否则用堆栈，并在严格和宽松之间选择。
+4. 每层：名称 + 5–10 个词的职责说明 + 2–5 个真实模块标签（总计不超过约 25 个标签）。
+5. 堆栈布局：纵向，入口（web/API）在顶部，持久化和外部客户端在底部。向内布局：核心居中，驱动方适配器在左，被驱动方适配器在右。条带等高，外部系统放在框外。
+6. 箭头：每个允许的依赖一条，从使用方指向被使用方（或指向核心）。禁止的捷径最多三条，用红色虚线加“×”。
+7. 横切关注点只以侧栏形式出现一次，不要从每个元素都拉箭头过去。
+8. 图注：一句话规则 + 变体名称 + 箭头图例。颜色：每类层用一种中性色调，领域层突出，红色只用于违规；不用技术徽标。
+
+**自检清单**
+- [ ] 只有一个应用或服务；没有服务器、副本或子网。
+- [ ] 已写明变体；已陈述依赖规则；箭头含义写在图例中。
+- [ ] 每层都有职责说明和至少一个真实模块名。
+- [ ] 箭头与实际导入关系图一致，或标为“预期”。
+- [ ] 没有透传层；3–5 层。
+- [ ] “层级（物理分层）”（tier）只用于物理部署；未与 ArchiMate 分层视点混淆。
+- [ ] 名称与仓库包名一致，以便生成一致性规则。
+
+[完整方法与历史样例](/zh/types/c8-layered-architecture#meaning).
+
 ## 示例图 {#sample}
 <!-- skill: path only -->
-![C4 示例：订单 API 的组件图](/samples/C4-component-diagram.svg)
-*订单 API 的组件：边界内有控制器、服务和仓储。控制器调用服务，服务通过仓储保存订单，仓储读写商城数据库，服务向外部的支付服务商扣款。*
+![C4 · 企业服务助手](/samples/ai-service-assistant/C4/zh/diagram.svg)
+*P-plan、P-retrieve、P-compose 投影为 C-agent 内无序号的逻辑模块，不新增运行服务。模块名与职责是示意假设，不是源码观测。*
+
+[SVG](/samples/ai-service-assistant/C4/zh/diagram.svg) · [模型 JSON](/samples/ai-service-assistant/C4/zh/diagram.json) · [共享事实](/samples/ai-service-assistant/scenario.json)
+
+[历史 shop 回归样例](/samples/C4-component-diagram.svg) · [全部29幅视图](/zh/use/ai-service-assistant) · [示意假设](/zh/use/ai-service-assistant-assumptions).

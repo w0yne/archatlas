@@ -17,11 +17,13 @@ formal: {kind: convention, ref: 'A concern-based diagram family, not a notation.
 neighbours: [E1, F2, F3]
 status: draft
 translationOf: en/types/F1-authentication-authorization-flow.md
-sourceRev: 9065169
+sourceRev: 7002b1114ff60c6a028194c8376c71eee2b9d52d
 reviewed: false
 ---
 
 # 认证与授权流程图（Authentication and Authorization Flow）
+
+**E1 的具名变体。** [进入时序图 → F1](/zh/types/e1-sequence-diagram#variant-f1)。此兼容页保留独立画法、检查项、原锚点和历史下载。
 
 > 针对单一场景的图：谁向谁证明身份，哪份凭证交给了哪个接收方，以及请求在哪一点被允许或拒绝。
 
@@ -140,5 +142,9 @@ reviewed: false
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-![F1 示例：已登录购物者的授权码流程，含拒绝分支](/samples/F1-authentication-authorization-flow.zh.svg)
-*购物者查看订单历史的授权码流程（示意，未对照真实部署验证）：网页应用通过重定向把购物者带到身份提供方，经后端通道用授权码换取访问令牌，再带令牌调用订单接口。接口取得签名密钥后，在一个备选分支框内校验令牌，框内有两个以虚线分隔的操作数：[令牌有效] 时返回订单列表，网页应用显示订单；[否则：令牌无效或已过期] 时回答 401 未授权，在受保护操作之前停止，网页应用重新发起登录。同一请求只会走其中一个操作数。购物者始终拿不到访问令牌。持有令牌的网页应用是深色生命线。*
+![F1 · 企业服务助手](/samples/ai-service-assistant/F1/zh/diagram.svg)
+*交换请求为允许/拒绝分支共有的前提；Agent 是认证后的交换客户端。工具证明绑定 issuer、audience、subject、actor、tenant、scopes；核验不能代替当前授权，AS 委托支持是实施前提。*
+
+[SVG](/samples/ai-service-assistant/F1/zh/diagram.svg) · [模型 JSON](/samples/ai-service-assistant/F1/zh/diagram.json) · [共享事实](/samples/ai-service-assistant/scenario.json)
+
+[历史 shop 回归样例](/samples/F1-authentication-authorization-flow.zh.svg) · [全部29幅视图](/zh/use/ai-service-assistant) · [示意假设](/zh/use/ai-service-assistant-assumptions).

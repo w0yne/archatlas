@@ -45,6 +45,25 @@ class ContentModelTest(unittest.TestCase):
         reached = {c for leaves in self.tree["root"].values() for leaf in leaves for c in leaf["types"]}
         self.assertEqual(reached, self.codes)
 
+    def test_consolidation_keeps_identity_separate_from_review_status(self):
+        counts = {role: sum(t["catalogRole"] == role for t in self.cat["types"])
+                  for role in ("core", "variant", "reference")}
+        self.assertEqual(counts, {"core": 25, "variant": 10, "reference": 5})
+        rows = {t["code"]: t for t in self.cat["types"]}
+        for t in rows.values():
+            self.assertIn(t["status"], {"draft", "reviewed"})
+            for lang in ("en", "zh"):
+                path = ROOT / f"content/{lang}/types/{t['code']}-{t['slug']}.md"
+                self.assertTrue(path.exists())
+                if t["catalogRole"] == "variant":
+                    parent = rows[t["target"]["code"]]
+                    text = (ROOT / f"content/{lang}/types/{parent['code']}-{parent['slug']}.md").read_text()
+                    self.assertIn("{#" + t["target"]["anchor"] + "}", text)
+        broken = copy.deepcopy(self.cat)
+        next(t for t in broken["types"] if t["code"] == "F1")["target"]["code"] = "F2"
+        with self.assertRaisesRegex(bs.ModelError, "invalid catalogue target"):
+            bs.validate(broken, self.tree)
+
     def test_generated_outputs_are_current_and_idempotent(self):
         texts = {lang: p.read_text(encoding="utf-8") for lang, p in bs.CHOOSE_MD.items() if p.exists()}
         first = bs.build(self.cat, self.tree, texts)

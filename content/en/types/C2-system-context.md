@@ -140,7 +140,59 @@ Model template: `assets/templates/C2.json` · Layout template: `statechart` · t
 18. Visual Paradigm — C4 context diagram guide — https://www.visual-paradigm.com/guide/c4-context-diagram-the-best-way-for-beginners-to-visualize-software-architecture — accessed 2026-10-14
 19. IEEE SA — ISO/IEC/IEEE 42010:2022 — https://standards.ieee.org/ieee/42010/6846 — accessed 2026-10-14
 
+### A3 · Business context diagram {#variant-a3}
+
+Editorial grouping preserves the distinct notation; use this recipe and its checks.
+
+1. Confirm the subject (one system, initiative or business unit) and as-is vs to-be. Write the title as a message ("The online shop and the seven parties it trades with").
+2. List external parties, merge duplicates, keep one kind per group (roles, organisations, external systems), 5–15 in total.
+3. List exchanges as *party → subject: noun* and *subject → party: noun*. Drop anything that is a protocol.
+4. Layout: subject centred and visually dominant; customers and channels left, partners and providers right, authorities top, internal-but-out-of-scope bottom; short straight arrows, no crossings.
+5. Text budget: party names ≤ 3 words, flow labels ≤ 3 words, no sentences on the canvas.
+6. Colour: one neutral fill for the subject, at most 3 fills for party groups; line style (not colour) for flow kinds, always with a legend.
+7. Optional: number the flows and add a *partner | input | output* table in the notes.
+
+**Self-check**
+
+- [ ] The centre is a black box; nothing is drawn inside it.
+- [ ] Every external party in a group is the same kind of thing.
+- [ ] Every arrow has a business-noun label and a clear direction; no protocol names.
+- [ ] Regulators, finance, logistics and support were considered (included or deliberately left out).
+- [ ] No external-to-external flows.
+- [ ] Title states scope and as-is / to-be; no subtitle restating the type.
+- [ ] Stakeholder power or interest is not encoded here (that is H3).
+- [ ] A legend explains every line style and fill.
+
+[Full method and historical sample](/types/a3-business-context#meaning).
+
+### B4 · Scope diagram {#variant-b4}
+
+Editorial grouping preserves the distinct notation; use this recipe and its checks.
+
+1. Select delivery scope or a named context variant; state the audience and baseline.
+2. Identify the initiative/subject and explain what its boundary means.
+3. Gather agreed inclusions, exclusions, dependencies, and unresolved decisions.
+4. Keep external system ownership separate from integration work in scope.
+5. Lay out labeled scope regions; for a context companion, center the subject and group relevant neighbors.
+6. Use short labels, restrained colour, and explicit edge meanings; keep contracts in a table.
+7. Check evidence and companion views; record disagreements without inventing agreement.
+
+**Self-check**
+- [ ] Variant, subject/initiative, and baseline are named.
+- [ ] Delivery, system, ownership, and trust boundaries are distinct.
+- [ ] Inclusions/exclusions have decision evidence or are marked unresolved.
+- [ ] External dependencies are not mistaken for excluded integration work.
+- [ ] Arrow direction and labels match the selected convention.
+- [ ] Context detail and DFD numbering are appropriate and explicit.
+- [ ] Relevant exchanges, assumptions, labels, and endpoints remain readable.
+
+[Full method and historical sample](/types/b4-scope-diagram#meaning).
+
 ## Sample {#sample}
 <!-- skill: path only -->
-![C2 sample: system context of an online shop with people and external systems](/samples/C2-system-context.svg)
-*System context of the online shop. Inside the dashed platform boundary are the online shop (the subject, the dark card), the support chatbot and the back office; outside are three people (customer, support agent, shop admin) on the left and four external systems on the right (payment provider, carrier, email service, language model service). Each element has a one-line description, and arrows are labelled with the exchange; the email arrow is asynchronous.*
+![C2 · Enterprise Service Assistant](/samples/ai-service-assistant/C2/en/diagram.svg)
+*What is the software system, who uses it, and which other systems does it depend on?*
+
+[SVG](/samples/ai-service-assistant/C2/en/diagram.svg) · [Model JSON](/samples/ai-service-assistant/C2/en/diagram.json) · [Shared facts](/samples/ai-service-assistant/scenario.json)
+
+[Historical shop regression sample](/samples/C2-system-context.svg) · [All 29 views](/use/ai-service-assistant) · [Illustrative assumptions](/use/ai-service-assistant-assumptions).

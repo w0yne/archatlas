@@ -1,0 +1,124 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "C2",
+    "title": "C2 · 企业服务助手 — 系统上下文",
+    "lang": "zh",
+    "state": "to-be",
+    "audience": "architects and reviewers",
+    "description": "Fictional teaching design; scenario.json version 2; illustrative assumptions, not a deployed system"
+  },
+  "layout": {
+    "template": "nested"
+  },
+  "nodes": [
+    {
+      "id": "S-assistant",
+      "kind": "system",
+      "label": "企业服务助手",
+      "style": "primary",
+      "sub": "范围内系统 · 带来源的回答 · 经审批的服务操作"
+    },
+    {
+      "id": "R-employee",
+      "kind": "person",
+      "label": "员工 / 审批人",
+      "style": "external",
+      "sub": "人员 · 提问；审批本人权限内的请求"
+    },
+    {
+      "id": "R-steward",
+      "kind": "person",
+      "label": "知识管理员",
+      "style": "external",
+      "sub": "人员 · 维护本租户知识与访问规则"
+    },
+    {
+      "id": "R-operator",
+      "kind": "person",
+      "label": "平台运维员",
+      "style": "external",
+      "sub": "人员 · 运维；无默认数据权限"
+    },
+    {
+      "id": "X-idp",
+      "kind": "external",
+      "label": "企业身份服务",
+      "style": "external",
+      "sub": "外部系统 · 身份与受限委托"
+    },
+    {
+      "id": "X-doc",
+      "kind": "external",
+      "label": "文档源系统",
+      "style": "external",
+      "sub": "外部系统 · 原始文档与访问策略"
+    },
+    {
+      "id": "X-desk",
+      "kind": "external",
+      "label": "服务工单系统",
+      "style": "external",
+      "sub": "外部系统 · 服务目录、工单读取与创建"
+    },
+    {
+      "id": "X-model",
+      "kind": "external",
+      "label": "托管模型服务",
+      "style": "external",
+      "sub": "外部系统 · 生成文本与向量"
+    }
+  ],
+  "edges": [
+    {
+      "id": "CTX-1",
+      "from": "R-employee",
+      "to": "S-assistant",
+      "label": "提问与审批",
+      "kind": "call"
+    },
+    {
+      "id": "CTX-2",
+      "from": "R-steward",
+      "to": "S-assistant",
+      "label": "维护知识",
+      "kind": "call"
+    },
+    {
+      "id": "CTX-3",
+      "from": "R-operator",
+      "to": "S-assistant",
+      "label": "运维服务",
+      "kind": "call"
+    },
+    {
+      "id": "CTX-4",
+      "from": "S-assistant",
+      "to": "X-idp",
+      "label": "验证身份",
+      "kind": "call"
+    },
+    {
+      "id": "CTX-5",
+      "from": "S-assistant",
+      "to": "X-doc",
+      "label": "导入知识",
+      "kind": "call"
+    },
+    {
+      "id": "CTX-6",
+      "from": "S-assistant",
+      "to": "X-desk",
+      "label": "请求工单操作",
+      "kind": "call"
+    },
+    {
+      "id": "CTX-7",
+      "from": "S-assistant",
+      "to": "X-model",
+      "label": "请求生成草稿",
+      "kind": "call"
+    }
+  ],
+  "groups": []
+}

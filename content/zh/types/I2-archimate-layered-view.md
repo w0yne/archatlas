@@ -16,12 +16,14 @@ scope: enterprise
 formal: {kind: standard, ref: 'The Open Group，ArchiMate 3.2（2022），附录 C.1.5 中的资料性分层视点；https://pubs.opengroup.org/architecture/archimate3-doc/ch-Example-Viewpoints.html'}
 neighbours: [A7, C1, C8, I1]
 status: draft
-sourceRev: 88db750
+sourceRev: 4e718f136c12c2c4c1d5f2226ea103f63e35b600
 translationOf: en/types/I2-archimate-layered-view.md
 reviewed: false
 ---
 
 # ArchiMate 分层视图（ArchiMate layered view）
+
+**方法参考。** 明确需要时仍可使用；不在默认25项核心目录中。此页与历史链接继续保留。
 
 > 业务、应用、技术元素分层排布，用 ArchiMate 关系说明谁服务谁、谁实现谁。
 

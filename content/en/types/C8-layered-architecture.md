@@ -20,6 +20,8 @@ status: draft
 
 # Layered Architecture Diagram (分层架构图)
 
+**Named variant of C4.** [Open Component diagram (C4 model level 3) → C8](/types/c4-component-diagram#variant-c8). This compatibility page retains its recipe, checks, anchors and historical downloads.
+
 > The layers (or rings) of one application's code and the rule that says which layer may depend on which.
 
 ## Meaning {#meaning}

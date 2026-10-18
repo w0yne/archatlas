@@ -17,7 +17,7 @@ formal: {kind: method, ref: 'Domain-Driven Design: Evans, DDD (2003) and DDD Ref
 neighbours: [C5, C6, C8]
 status: draft
 translationOf: en/types/C7-bounded-context-map.md
-sourceRev: 88db750
+sourceRev: 7002b1114ff60c6a028194c8376c71eee2b9d52d
 reviewed: false
 ---
 
@@ -156,5 +156,9 @@ reviewed: false
 
 ## 示例 {#sample}
 <!-- skill: path only -->
-![C7 示例：含三个限界上下文的上下文映射](/samples/C7-bounded-context-map.svg)
-*含三个限界上下文的上下文映射：订单（订单模型，开放主机服务）、商品目录（商品模型）和客服（案例模型，防腐层）。商品目录是订单的供应方，订单向客服发布通用语言。*
+![C7 · 企业服务助手](/samples/ai-service-assistant/C7/zh/diagram.svg)
+*各具名系统被视为不透明限界上下文，配有示意团队/模型契约。DDD ACL 指防腐层，文档 ACL 指访问控制列表；CF 仅指协议遵循，不接受模型输出授予权限。*
+
+[SVG](/samples/ai-service-assistant/C7/zh/diagram.svg) · [模型 JSON](/samples/ai-service-assistant/C7/zh/diagram.json) · [共享事实](/samples/ai-service-assistant/scenario.json)
+
+[历史 shop 回归样例](/samples/C7-bounded-context-map.svg) · [全部29幅视图](/zh/use/ai-service-assistant) · [示意假设](/zh/use/ai-service-assistant-assumptions).

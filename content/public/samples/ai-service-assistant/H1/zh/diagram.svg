@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1120" lang="zh" data-archatlas="0.1">
+  <title>H1 · 服务运营 — RACI 责任梳理矩阵</title>
+  <desc>虚构教学设计，场景版本2；补充参数为示意假设。示意假设 · 三个既有角色；每项活动设一个最终负责角色。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#4B5563" />
+    </marker>
+  </defs>
+  <rect data-role="canvas" width="1400" height="1120" fill="#ffffff" />
+  <text x="28" y="40" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="28" font-weight="700" fill="#1F2937">H1 · 服务运营 — RACI 责任梳理矩阵</text>
+  <text x="28" y="72" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">示意假设 · 三个既有角色；每项活动设一个最终负责角色。</text>
+  <rect x="28" y="130" width="410" height="108" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1" data-role="cell" data-id="raci-0-0" />
+  <text x="42" y="160" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="700" fill="#1F2937" data-owner="raci-0-0" data-role="name">活动</text>
+  <rect x="438" y="130" width="320" height="108" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1" data-role="cell" data-id="raci-0-1" />
+  <text x="452" y="160" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="700" fill="#1F2937" data-owner="raci-0-1" data-role="name">员工 / 审批人</text>
+  <rect x="758" y="130" width="320" height="108" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1" data-role="cell" data-id="raci-0-2" />
+  <text x="772" y="160" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="700" fill="#1F2937" data-owner="raci-0-2" data-role="name">知识管理员</text>
+  <rect x="1078" y="130" width="320" height="108" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1" data-role="cell" data-id="raci-0-3" />
+  <text x="1092" y="160" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="700" fill="#1F2937" data-owner="raci-0-3" data-role="name">平台运维员</text>
+  <rect x="28" y="238" width="410" height="108" fill="#F3F8FF" stroke="#3D6FB2" stroke-width="1" data-role="cell" data-id="raci-1-0" />
+  <text x="42" y="268" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="700" fill="#1F2937" data-owner="raci-1-0" data-role="sub">审批准确请求</text>
+  <rect x="438" y="238" width="320" height="108" fill="#ffffff" stroke="#3D6FB2" stroke-width="1" data-role="cell" data-id="raci-1-1" />
+  <text x="452" y="268" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937" data-owner="raci-1-1" data-role="sub">A/R</text>
+  <rect x="758" y="238" width="320" height="108" fill="#ffffff" stroke="#3D6FB2" stroke-width="1" data-role="cell" data-id="raci-1-2" />
+  <text x="772" y="268" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937" data-owner="raci-1-2" data-role="sub">C</text>
+  <rect x="1078" y="238" width="320" height="108" fill="#ffffff" stroke="#3D6FB2" stroke-width="1" data-role="cell" data-id="raci-1-3" />
+  <text x="1092" y="268" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937" data-owner="raci-1-3" data-role="sub">I</text>
+  <rect x="28" y="346" width="410" height="108" fill="#F3F8FF" stroke="#3D6FB2" stroke-width="1" data-role="cell" data-id="raci-2-0" />
+  <text x="42" y="376" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="700" fill="#1F2937" data-owner="raci-2-0" data-role="sub">维护租户知识 / ACL</text>
+  <rect x="438" y="346" width="320" height="108" fill="#ffffff" stroke="#3D6FB2" stroke-width="1" data-role="cell" data-id="raci-2-1" />
+  <text x="452" y="376" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937" data-owner="raci-2-1" data-role="sub">C</text>
+  <rect x="758" y="346" width="320" height="108" fill="#ffffff" stroke="#3D6FB2" stroke-width="1" data-role="cell" data-id="raci-2-2" />
+  <text x="772" y="376" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937" data-owner="raci-2-2" data-role="sub">A/R</text>
+  <rect x="1078" y="346" width="320" height="108" fill="#ffffff" stroke="#3D6FB2" stroke-width="1" data-role="cell" data-id="raci-2-3" />
+  <text x="1092" y="376" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937" data-owner="raci-2-3" data-role="sub">I</text>
+  <rect x="28" y="454" width="410" height="108" fill="#F3F8FF" stroke="#3D6FB2" stroke-width="1" data-role="cell" data-id="raci-3-0" />
+  <text x="42" y="484" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="700" fill="#1F2937" data-owner="raci-3-0" data-role="sub">批准去标识评测导出</text>
+  <rect x="438" y="454" width="320" height="108" fill="#ffffff" stroke="#3D6FB2" stroke-width="1" data-role="cell" data-id="raci-3-1" />
+  <text x="452" y="484" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937" data-owner="raci-3-1" data-role="sub">C</text>
+  <rect x="758" y="454" width="320" height="108" fill="#ffffff" stroke="#3D6FB2" stroke-width="1" data-role="cell" data-id="raci-3-2" />
+  <text x="772" y="484" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937" data-owner="raci-3-2" data-role="sub">A/R</text>
+  <rect x="1078" y="454" width="320" height="108" fill="#ffffff" stroke="#3D6FB2" stroke-width="1" data-role="cell" data-id="raci-3-3" />
+  <text x="1092" y="484" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937" data-owner="raci-3-3" data-role="sub">C</text>
+  <rect x="28" y="562" width="410" height="108" fill="#F3F8FF" stroke="#3D6FB2" stroke-width="1" data-role="cell" data-id="raci-4-0" />
+  <text x="42" y="592" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="700" fill="#1F2937" data-owner="raci-4-0" data-role="sub">运维服务健康</text>
+  <rect x="438" y="562" width="320" height="108" fill="#ffffff" stroke="#3D6FB2" stroke-width="1" data-role="cell" data-id="raci-4-1" />
+  <text x="452" y="592" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937" data-owner="raci-4-1" data-role="sub">I</text>
+  <rect x="758" y="562" width="320" height="108" fill="#ffffff" stroke="#3D6FB2" stroke-width="1" data-role="cell" data-id="raci-4-2" />
+  <text x="772" y="592" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937" data-owner="raci-4-2" data-role="sub">C</text>
+  <rect x="1078" y="562" width="320" height="108" fill="#ffffff" stroke="#3D6FB2" stroke-width="1" data-role="cell" data-id="raci-4-3" />
+  <text x="1092" y="592" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937" data-owner="raci-4-3" data-role="sub">A/R</text>
+  <rect x="28" y="670" width="410" height="108" fill="#F3F8FF" stroke="#3D6FB2" stroke-width="1" data-role="cell" data-id="raci-5-0" />
+  <text x="42" y="700" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="700" fill="#1F2937" data-owner="raci-5-0" data-role="sub">负责发布 / 恢复决策</text>
+  <rect x="438" y="670" width="320" height="108" fill="#ffffff" stroke="#3D6FB2" stroke-width="1" data-role="cell" data-id="raci-5-1" />
+  <text x="452" y="700" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937" data-owner="raci-5-1" data-role="sub">I</text>
+  <rect x="758" y="670" width="320" height="108" fill="#ffffff" stroke="#3D6FB2" stroke-width="1" data-role="cell" data-id="raci-5-2" />
+  <text x="772" y="700" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937" data-owner="raci-5-2" data-role="sub">A</text>
+  <rect x="1078" y="670" width="320" height="108" fill="#ffffff" stroke="#3D6FB2" stroke-width="1" data-role="cell" data-id="raci-5-3" />
+  <text x="1092" y="700" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937" data-owner="raci-5-3" data-role="sub">R</text>
+  <text x="28" y="845" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937">R = 共享事实明确的执行角色。A = 最终负责；C = 提供意见；I = 接收通知。</text>
+  <text x="28" y="885" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937">A/R 可为同一角色；C 在重要变更前提供意见；I 仅接收脱敏结果。</text>
+  <text x="28" y="925" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937">AS-raci 定义示意职责；A 不授予数据面权限，也不替代逐请求工具审批。</text>
+  <text x="28" y="965" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#1F2937">发布/恢复：知识管理员 A，平台运维员 R；只晋级已批准且通过门禁的配置。</text>
+</svg>

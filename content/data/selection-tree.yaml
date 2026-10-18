@@ -64,8 +64,8 @@ matrix_overrides:
     note: {en: "Include migration alongside deployment and connectivity choices.", zh: "在部署与连通方案之外，也提供迁移视图。"}
 
 phase_picks:
-  initiate: [A1, A7, C1]
-  requirements: [B1, B4, C2]
+  initiate: [A1, C5, C1]
+  requirements: [B2, C2, D1]
   design: [C3, D1, E1]
   build: [C4, E1, G4]
   operate: [G1, G4, H2]

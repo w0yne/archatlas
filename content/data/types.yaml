@@ -151,6 +151,8 @@ types:
 
 # ---------------------------------------------------------------- A business
 - code: A1
+  catalogRole: core
+  target: {code: A1, anchor: meaning}
   slug: capability-map
   family: A
   names: {en: Business capability map, zh: 业务能力图}
@@ -178,6 +180,8 @@ types:
     - {kind: fact, note: "2-3 levels applies to the one-page map; the model often has 3-6 levels. Added BIZBOK rules (definition per capability, non-redundant, object-based names)."}
 
 - code: A2
+  catalogRole: core
+  target: {code: A2, anchor: meaning}
   slug: value-stream
   family: A
   names: {en: Value stream (business architecture), zh: 价值流（业务架构）}
@@ -204,6 +208,8 @@ types:
     - {kind: rename, note: "Renamed from 'Value Stream Map' to 'Value stream (business architecture)'."}
 
 - code: A3
+  catalogRole: variant
+  target: {code: C2, anchor: variant-a3}
   slug: business-context
   family: A
   names: {en: Business context diagram, zh: 业务上下文图}
@@ -230,6 +236,8 @@ types:
     - {kind: fact, note: "Choose C2 once the subject is a software system, B4 for in/out of scope, A3 for business exchanges."}
 
 - code: A4
+  catalogRole: variant
+  target: {code: B2, anchor: variant-a4}
   slug: scenario-matrix
   family: A
   names: {en: "Business scenario matrix (role × activity)", zh: 业务场景矩阵（角色 × 活动）}
@@ -256,6 +264,8 @@ types:
     - {kind: fact, note: "Overlap with B1 was overstated; A4 adds phasing and deliberate gaps across roles."}
 
 - code: A5
+  catalogRole: core
+  target: {code: A5, anchor: meaning}
   slug: bpmn-process
   family: A
   names: {en: Business process diagram (BPMN), zh: 业务流程图（BPMN）}
@@ -283,6 +293,8 @@ types:
     - {kind: fact, note: "Not 'the same drawing' as E4: A5 for BPMN semantics, E4 for lightweight hand-offs."}
 
 - code: A6
+  catalogRole: core
+  target: {code: A6, anchor: meaning}
   slug: journey-map
   family: A
   names: {en: Customer or user journey map, zh: 用户旅程图}
@@ -308,6 +320,8 @@ types:
     - {kind: fact, note: "Experience map and service blueprint are neighbours, not synonyms. Decide current vs future state and research-based vs hypothesis first."}
 
 - code: A7
+  catalogRole: variant
+  target: {code: C5, anchor: variant-a7}
   slug: conceptual-architecture
   family: A
   names: {en: Conceptual architecture (solution overview), zh: 概念架构图（方案概览）}
@@ -333,6 +347,8 @@ types:
     - {kind: fact, note: "Not 'no standard': TOGAF defines the Solution Concept artifact. 5-9 blocks is a heuristic. C4 has no conceptual level; A7 sits between C2 and C3."}
 
 - code: A8
+  catalogRole: core
+  target: {code: A8, anchor: meaning}
   slug: target-roadmap
   family: A
   names: {en: Target architecture and transition roadmap, zh: 目标架构与演进路线图}
@@ -358,6 +374,8 @@ types:
     - {kind: fact, note: "The roadmap (work packages, transition states, value) is separate from the implementation and migration plan (schedule). TOGAF says 'one or more' transition states, not 2-3."}
 
 - code: A9
+  catalogRole: variant
+  target: {code: A2, anchor: variant-a9}
   slug: lean-value-stream-map
   family: A
   names: {en: Lean value-stream map (VSM), zh: 精益价值流图（VSM）}
@@ -384,6 +402,8 @@ types:
 
 # ---------------------------------------------------------------- B requirements
 - code: B1
+  catalogRole: reference
+  target: {code: B1, anchor: meaning}
   slug: use-case-diagram
   family: B
   names: {en: Use case diagram, zh: 用例图}
@@ -408,6 +428,8 @@ types:
     - {kind: fact, note: "The v4 synonym line 'same question as A4' is reworded: A4 adds phasing and gaps across roles (batch A finding)."}
 
 - code: B2
+  catalogRole: core
+  target: {code: B2, anchor: meaning}
   slug: user-story-map
   family: B
   names: {en: User story map, zh: 用户故事地图}
@@ -431,6 +453,8 @@ types:
   status: draft
 
 - code: B3
+  catalogRole: reference
+  target: {code: B3, anchor: meaning}
   slug: feature-tree
   family: B
   names: {en: Feature tree (functional decomposition), zh: 功能树（功能分解）}
@@ -453,6 +477,8 @@ types:
   status: draft
 
 - code: B4
+  catalogRole: variant
+  target: {code: C2, anchor: variant-b4}
   slug: scope-diagram
   family: B
   names: {en: Scope diagram, zh: 范围图}
@@ -478,6 +504,8 @@ types:
 
 # ---------------------------------------------------------------- C application
 - code: C1
+  catalogRole: core
+  target: {code: C1, anchor: meaning}
   slug: application-landscape
   family: C
   names: {en: Application landscape, zh: 应用全景图}
@@ -505,6 +533,8 @@ types:
     - {kind: scope, note: "C4's System Landscape diagram is folded in here. Interfaces may appear; their attributes (protocol, auth, SLA) belong to C6."}
 
 - code: C2
+  catalogRole: core
+  target: {code: C2, anchor: meaning}
   slug: system-context
   family: C
   names: {en: System context diagram (C4 model level 1), zh: 系统上下文图（C4 模型第 1 层）}
@@ -530,6 +560,8 @@ types:
     - {kind: fact, note: "Relationship lines carry intent (verb phrase); protocols belong on C3 or a technical-context table, not on level 1."}
 
 - code: C3
+  catalogRole: core
+  target: {code: C3, anchor: meaning}
   slug: container-diagram
   family: C
   names: {en: Container diagram (C4 model level 2), zh: 容器图（C4 模型第 2 层）}
@@ -555,6 +587,8 @@ types:
     - {kind: fact, note: "Container = application or data store that must be running (JARs, packages, shared libraries are not containers)."}
 
 - code: C4
+  catalogRole: core
+  target: {code: C4, anchor: meaning}
   slug: component-diagram
   family: C
   names: {en: Component diagram (C4 model level 3), zh: 组件图（C4 模型第 3 层）}
@@ -580,6 +614,8 @@ types:
     - {kind: fact, note: "Notation is plain C4 boxes, not UML provided/required interfaces. The code 'C4' clashes with 'C4 model': prose always writes 'C4 model' in full."}
 
 - code: C5
+  catalogRole: core
+  target: {code: C5, anchor: meaning}
   slug: logical-architecture
   family: C
   names: {en: Logical architecture diagram, zh: 逻辑架构图}
@@ -605,6 +641,8 @@ types:
     - {kind: fact, note: "'Functional architecture' and 'module view' are related but different (moved to terms). Contrast with C4 too: C3/C4 carry technology labels."}
 
 - code: C6
+  catalogRole: core
+  target: {code: C6, anchor: meaning}
   slug: integration-interface
   family: C
   names: {en: Integration and interface diagram, zh: 集成与接口图}
@@ -632,6 +670,8 @@ types:
     - {kind: fact, note: "Table gains integration style, owners on both sides, lifecycle/version, failure semantics and data classification."}
 
 - code: C7
+  catalogRole: core
+  target: {code: C7, anchor: meaning}
   slug: bounded-context-map
   family: C
   names: {en: Bounded context map (DDD), zh: 限界上下文映射（DDD）}
@@ -658,6 +698,8 @@ types:
     - {kind: fact, note: "Partnership is from the 2015 DDD Reference, not the 2003 book. Patterns are roles on box edges (upstream/downstream/symmetric), not flat line labels."}
 
 - code: C8
+  catalogRole: variant
+  target: {code: C4, anchor: variant-c8}
   slug: layered-architecture
   family: C
   names: {en: Layered architecture diagram, zh: 分层架构图}
@@ -685,6 +727,8 @@ types:
 
 # ---------------------------------------------------------------- D data
 - code: D1
+  catalogRole: core
+  target: {code: D1, anchor: meaning}
   slug: entity-relationship
   family: D
   names: {en: Entity-relationship diagram, zh: 实体关系图}
@@ -710,6 +754,8 @@ types:
     - {kind: fact, note: "Keys and foreign keys belong to the logical/physical level; N:M is valid at the conceptual level. Added Barker and IDEF1X."}
 
 - code: D2
+  catalogRole: core
+  target: {code: D2, anchor: meaning}
   slug: data-flow-diagram
   family: D
   names: {en: Data flow diagram (DFD), zh: 数据流图（DFD）}
@@ -735,6 +781,8 @@ types:
     - {kind: fact, note: "Yourdon/DeMarco and Gane-Sarson symbols listed separately. 'Level 0 = context' is one of two numbering conventions. Added balancing rule and the 'miracle' error."}
 
 - code: D3
+  catalogRole: core
+  target: {code: D3, anchor: meaning}
   slug: data-lineage-ownership
   family: D
   names: {en: Data lineage and ownership map, zh: 数据血缘与归属图}
@@ -761,6 +809,8 @@ types:
 
 # ---------------------------------------------------------------- E behaviour
 - code: E1
+  catalogRole: core
+  target: {code: E1, anchor: meaning}
   slug: sequence-diagram
   family: E
   names: {en: Sequence diagram, zh: 时序图}
@@ -788,6 +838,8 @@ types:
     - {kind: fact, note: "'Interaction diagram' is the UML family name (moved to terms). Added arrowhead semantics and break/critical/ref fragments."}
 
 - code: E2
+  catalogRole: core
+  target: {code: E2, anchor: meaning}
   slug: activity-flowchart
   family: E
   names: {en: Activity diagram or flowchart, zh: 活动图 / 流程图}
@@ -813,6 +865,8 @@ types:
     - {kind: fact, note: "UML activity diagrams have partitions natively; E4 is E2 with partitions. Added token-flow semantics and flow final vs activity final."}
 
 - code: E3
+  catalogRole: core
+  target: {code: E3, anchor: meaning}
   slug: state-machine
   family: E
   names: {en: State machine diagram, zh: 状态机图}
@@ -839,6 +893,8 @@ types:
     - {kind: fact, note: "Added Harel 1987 origin, behavioural vs protocol machines, orthogonal regions, history and the transition label 'event [guard] / effect'."}
 
 - code: E4
+  catalogRole: variant
+  target: {code: E2, anchor: variant-e4}
   slug: swimlane-cross-functional
   family: E
   names: {en: Swimlane or cross-functional flowchart, zh: 泳道流程图（跨职能流程图）}
@@ -865,6 +921,8 @@ types:
 
 # ---------------------------------------------------------------- F security
 - code: F1
+  catalogRole: variant
+  target: {code: E1, anchor: variant-f1}
   slug: authentication-authorization-flow
   family: F
   names: {en: Authentication and authorization flow, zh: 认证与授权流程图}
@@ -892,6 +950,8 @@ types:
     - {kind: scope, note: "No longer tied to OIDC authorization code + PKCE; covers sign-in, delegated and machine-only flows. Token lifetime and refresh are conditional."}
 
 - code: F2
+  catalogRole: variant
+  target: {code: D2, anchor: variant-f2}
   slug: threat-model-data-flow
   family: F
   names: {en: Threat-model data-flow diagram with trust boundaries, zh: 威胁建模数据流图（含信任边界）}
@@ -918,6 +978,8 @@ types:
     - {kind: fact, note: "Important internal flows are not dropped automatically; a boundary marks a change of trust, not only a network edge."}
 
 - code: F3
+  catalogRole: core
+  target: {code: F3, anchor: meaning}
   slug: access-control-model
   family: F
   names: {en: Access-control model, zh: 访问控制模型}
@@ -946,9 +1008,11 @@ types:
 
 # ---------------------------------------------------------------- G technology
 - code: G1
+  catalogRole: core
+  target: {code: G1, anchor: meaning}
   slug: deployment-diagram
   family: G
-  names: {en: Deployment diagram, zh: 部署图}
+  names: {en: Deployment & cloud architecture, zh: 部署与云架构图}
   aliases:
     en: [deployment view, software-to-infrastructure mapping, C4 deployment diagram, runtime infrastructure view]
     zh: [部署视图, 部署架构图, 软件与基础设施映射图]
@@ -972,6 +1036,8 @@ types:
     - {kind: fact, note: "'Runtime view' is not an alias (that is arc42 section 6, i.e. E1). Replica counts and DR are concern-dependent, not mandatory."}
 
 - code: G2
+  catalogRole: variant
+  target: {code: G1, anchor: variant-g2}
   slug: cloud-infrastructure-architecture
   family: G
   names: {en: Cloud infrastructure architecture, zh: 云基础设施架构图}
@@ -998,6 +1064,8 @@ types:
     - {kind: rename, note: "Renamed from 'Cloud Infrastructure / Reference Architecture': 'reference architecture' is a status (reference, proposed, implemented, observed), moved to terms."}
 
 - code: G3
+  catalogRole: core
+  target: {code: G3, anchor: meaning}
   slug: network-topology
   family: G
   names: {en: Network topology and connectivity view, zh: 网络拓扑与连通视图}
@@ -1024,6 +1092,8 @@ types:
     - {kind: scope, note: "Not only cloud VPC subnets: covers physical topology, logical adjacency and traffic paths. Public subnet placement alone does not prove reachability."}
 
 - code: G4
+  catalogRole: core
+  target: {code: G4, anchor: meaning}
   slug: delivery-pipeline
   family: G
   names: {en: CI/CD and deployment pipeline, zh: CI/CD 与部署流水线图}
@@ -1052,6 +1122,8 @@ types:
 
 # ---------------------------------------------------------------- H operations
 - code: H1
+  catalogRole: core
+  target: {code: H1, anchor: meaning}
   slug: raci-matrix
   family: H
   names: {en: RACI matrix, zh: RACI 责任矩阵}
@@ -1077,6 +1149,8 @@ types:
     - {kind: fact, note: "'One A per row' is a default convention, not a universal rule; state the policy. DACI is a decision framework, not an alias."}
 
 - code: H2
+  catalogRole: core
+  target: {code: H2, anchor: meaning}
   slug: observability-view
   family: H
   names: {en: Observability view, zh: 可观测性视图}
@@ -1102,6 +1176,8 @@ types:
     - {kind: fact, note: "Metrics, logs and traces are common signal types, not a closed set of three pillars; a collector is not a storage or paging backend."}
 
 - code: H3
+  catalogRole: reference
+  target: {code: H3, anchor: meaning}
   slug: stakeholder-map
   family: H
   names: {en: Stakeholder map (power-interest grid), zh: 干系人地图（权力-利益矩阵）}
@@ -1130,6 +1206,8 @@ types:
 
 # ---------------------------------------------------------------- I frameworks
 - code: I1
+  catalogRole: reference
+  target: {code: I1, anchor: meaning}
   slug: four-plus-one
   family: I
   names: {en: 4+1 view model, zh: 4+1 视图模型}
@@ -1155,6 +1233,8 @@ types:
     - {kind: fact, note: "A model for organising views, not a single diagram; views need explicit correspondences. 'Process view' means runtime concurrency, not business workflow."}
 
 - code: I2
+  catalogRole: reference
+  target: {code: I2, anchor: meaning}
   slug: archimate-layered-view
   family: I
   names: {en: ArchiMate layered view, zh: ArchiMate 分层视图}

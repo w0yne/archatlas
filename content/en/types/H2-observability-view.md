@@ -134,5 +134,9 @@ Use `nested` with `boundary` groups for deployment boundaries instead.
 
 ## Sample {#sample}
 <!-- skill: path only -->
-![H2 sample: observability of an online shop's checkout](/samples/H2-observability-view.svg)
-*Observability of checkout: the storefront and the order API emit telemetry to a collector, which stores it in a metrics store and a trace store that feed a checkout dashboard. A proposed alert on order failures notifies the on-call team; the alert is marked as proposed, not as measured behaviour.*
+![H2 · Enterprise Service Assistant](/samples/ai-service-assistant/H2/en/diagram.svg)
+*Redact before export. Illustrative SLO, cost targets, bounded delivery, sampling/retention and CloudWatch→SNS→operator response are specified in AS-observe; none are measured guarantees.*
+
+[SVG](/samples/ai-service-assistant/H2/en/diagram.svg) · [Model JSON](/samples/ai-service-assistant/H2/en/diagram.json) · [Shared facts](/samples/ai-service-assistant/scenario.json)
+
+[Historical shop regression sample](/samples/H2-observability-view.svg) · [All 29 views](/use/ai-service-assistant) · [Illustrative assumptions](/use/ai-service-assistant-assumptions).

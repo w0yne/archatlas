@@ -2,6 +2,7 @@
 <!-- Generated from content/en/types/C8-layered-architecture.md by tools/build_skill_refs.py. Do not edit. -->
 > Into which responsibility layers is one application's code divided, and which dependency directions are allowed and which forbidden?
 Scope: One application, service or bounded context: its code layers (or rings) and the dependency rule between them. Neighbours: C4, C5, C7, G1, I2.
+Named variant of C4; apply this reference's own recipe and checks.
 
 ## Meaning
 - **Question:** how is this application's code divided into responsibility layers, and which dependencies are allowed? It states a rule ("allowed-to-use"), not just a grouping; exceptions (skipping a layer, upward use) must be shown.

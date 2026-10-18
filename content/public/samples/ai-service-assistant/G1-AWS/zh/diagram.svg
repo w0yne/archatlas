@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1530" lang="zh" data-archatlas="0.1">
+  <title>G1 / G2 · 企业服务助手的 AWS 部署</title>
+  <desc>虚构教学设计，场景版本2；补充参数为示意假设。虚构目标设计 · 单个支持所需服务的区域；应用服务跨 AZ-A + AZ-B</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#4B5563" />
+    </marker>
+  </defs>
+  <rect data-role="canvas" width="1400" height="1530" fill="#ffffff" />
+  <text x="28" y="40" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="28" font-weight="700" fill="#1F2937">G1 / G2 · 企业服务助手的 AWS 部署</text>
+  <text x="28" y="72" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">虚构目标设计 · 单个支持所需服务的区域；应用服务跨 AZ-A + AZ-B</text>
+  <rect x="490" y="115" width="365" height="105" data-role="node" data-id="AWS-edge" data-kind="component" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="8" />
+  <text x="504" y="144" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="AWS-edge" data-role="name">CloudFront + S3</text>
+  <text x="504" y="169" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="AWS-edge" data-role="sub">C-web 静态资源；全球边缘</text>
+  <rect x="955" y="115" width="400" height="105" data-role="node" data-id="X-idp" data-kind="external" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="0" />
+  <text x="969" y="144" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="X-idp" data-role="name">企业 IdP / AS</text>
+  <text x="969" y="169" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-idp" data-role="sub">外部身份；委托能力为前提</text>
+  <rect x="25" y="260" width="1350" height="1080" data-role="group" data-id="REGION" data-kind="boundary" fill="#F3F8FF" stroke="#3D6FB2" stroke-width="1.6" rx="10" />
+  <text x="43" y="292" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="700" fill="#1F2937" data-owner="REGION" data-role="group-title">AWS 区域 · 实施前核对服务可用性</text>
+  <rect x="50" y="330" width="800" height="930" data-role="group" data-id="VPC" data-kind="boundary" data-parent="REGION" fill="#F3F8FF" stroke="#3D6FB2" stroke-width="1.6" rx="10" />
+  <text x="68" y="362" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="700" fill="#1F2937" data-owner="VPC" data-role="group-title">客户 VPC · 应用部署于两个 AZ</text>
+  <rect x="480" y="410" width="340" height="95" data-role="node" data-id="AWS-alb" data-kind="component" data-parent="VPC" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="494" y="439" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="AWS-alb" data-role="name">应用负载均衡器</text>
+  <text x="494" y="464" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="AWS-alb" data-role="sub">公有子网 · AZ-A + AZ-B</text>
+  <rect x="85" y="640" width="650" height="120" data-role="node" data-id="AWS-tasks" data-kind="component" data-parent="VPC" fill="#1767B5" stroke="#03172E" stroke-width="2.4" rx="8" />
+  <text x="99" y="669" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#ffffff" data-owner="AWS-tasks" data-role="name">ECS Fargate 服务</text>
+  <text x="99" y="694" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#ffffff" data-owner="AWS-tasks" data-role="sub">C-api · C-agent · C-tools / 独立 ECS 服务</text>
+  <text x="99" y="717" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#ffffff" data-owner="AWS-tasks" data-role="sub">每服务至少 2 个任务 · 私有子网跨 AZ-A + AZ-B</text>
+  <text x="99" y="740" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#ffffff" data-owner="AWS-tasks" data-role="sub">已认证 HTTPS；逐服务 IAM 角色</text>
+  <rect x="85" y="1130" width="650" height="100" data-role="node" data-id="AWS-batch" data-kind="component" data-parent="VPC" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="99" y="1159" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="AWS-batch" data-role="name">ECS Fargate 任务</text>
+  <text x="99" y="1184" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="AWS-batch" data-role="sub">C-ingest · C-eval / 独立任务身份</text>
+  <text x="99" y="1207" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="AWS-batch" data-role="sub">调度至任一 AZ；不代表并发重复任务</text>
+  <rect x="85" y="900" width="350" height="110" data-role="node" data-id="AWS-aurora" data-kind="store" data-parent="VPC" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="99" y="929" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="AWS-aurora" data-role="name">Aurora PostgreSQL</text>
+  <text x="99" y="954" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="AWS-aurora" data-role="sub">DS-app 写节点与读节点分属两个 AZ</text>
+  <text x="99" y="977" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="AWS-aurora" data-role="sub">服务管理的存储跨 3 个 AZ</text>
+  <rect x="490" y="900" width="315" height="110" data-role="node" data-id="AWS-search" data-kind="store" data-parent="VPC" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="504" y="929" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="AWS-search" data-role="name">OpenSearch Service</text>
+  <text x="504" y="954" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="AWS-search" data-role="sub">DS-index · 双 AZ 副本</text>
+  <text x="504" y="977" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="AWS-search" data-role="sub">区域感知；非 Standby 模式</text>
+  <rect x="945" y="410" width="400" height="105" data-role="node" data-id="AWS-s3" data-kind="store" data-parent="REGION" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="959" y="439" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="AWS-s3" data-role="name">Amazon S3</text>
+  <text x="959" y="464" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="AWS-s3" data-role="sub">DS-doc · DS-eval；区域桶</text>
+  <rect x="945" y="1130" width="400" height="105" data-role="node" data-id="AWS-sqs" data-kind="queue" data-parent="REGION" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="959" y="1159" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="AWS-sqs" data-role="name">SQS + DLQ</text>
+  <text x="959" y="1184" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="AWS-sqs" data-role="sub">Q-ingest；区域队列 / DLQ</text>
+  <rect x="945" y="640" width="400" height="105" data-role="node" data-id="X-model" data-kind="external" data-parent="REGION" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="0" />
+  <text x="959" y="669" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="X-model" data-role="name">托管模型服务</text>
+  <text x="959" y="694" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="X-model" data-role="sub">Bedrock 区域模型端点</text>
+  <rect x="945" y="900" width="400" height="105" data-role="node" data-id="AWS-ops" data-kind="component" data-parent="REGION" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="959" y="929" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="AWS-ops" data-role="name">CloudWatch · KMS · Secrets</text>
+  <text x="959" y="954" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="AWS-ops" data-role="sub">区域服务；受限 IAM 访问</text>
+  <polyline points="650,220 650,410" data-role="edge" data-id="DEP-1" data-from="AWS-edge" data-to="AWS-alb" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="665.0" y="370.0" width="124.0625" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DEP-1" data-parent="DEP-1" />
+  <text x="670" y="390" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DEP-1" data-role="edge-label">HTTPS API 源站</text>
+  <polyline points="650,505 650,640" data-role="edge" data-id="DEP-2" data-from="AWS-alb" data-to="AWS-tasks" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="665.0" y="560.0" width="110.578125" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DEP-2" data-parent="DEP-2" />
+  <text x="670" y="580" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DEP-2" data-role="edge-label">HTTPS 目标组</text>
+  <polyline points="260,760 260,900" data-role="edge" data-id="DEP-3" data-from="AWS-tasks" data-to="AWS-aurora" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="275.0" y="810.0" width="80.0" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DEP-3" data-parent="DEP-3" />
+  <text x="280" y="830" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DEP-3" data-role="edge-label">SQL / TLS</text>
+  <polyline points="650,760 650,900" data-role="edge" data-id="DEP-4" data-from="AWS-tasks" data-to="AWS-search" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="665.0" y="810.0" width="94.578125" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DEP-4" data-parent="DEP-4" />
+  <text x="670" y="830" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DEP-4" data-role="edge-label">HTTPS 检索</text>
+  <polyline points="735,1180 945,1180" data-role="edge" data-id="DEP-5" data-from="AWS-batch" data-to="AWS-sqs" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="970.0" y="1080.0" width="120.265625" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DEP-5" data-parent="DEP-5" />
+  <text x="975" y="1100" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DEP-5" data-role="edge-label">领取 / 确认任务</text>
+  <polyline points="735,690 945,690" data-role="edge" data-id="DEP-6" data-from="AWS-tasks" data-to="X-model" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="975.0" y="585.0" width="126.578125" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DEP-6" data-parent="DEP-6" />
+  <text x="980" y="605" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DEP-6" data-role="edge-label">HTTPS 模型推理</text>
+  <polyline points="735,1210 895,1210 895,465 945,465" data-role="edge" data-id="DEP-7" data-from="AWS-batch" data-to="AWS-s3" data-kind="call" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <rect x="975.0" y="530.0" width="96.09375" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DEP-7" data-parent="DEP-7" />
+  <text x="980" y="550" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DEP-7" data-role="edge-label">S3 版本对象</text>
+  <text x="55" y="1310" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937">右侧区域托管服务不在客户子网内。</text>
+  <rect x="28" y="1370" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-1" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="8" />
+  <text x="82" y="1387" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-1">外部角色 / 系统</text>
+  <rect x="473" y="1370" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-2" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="0" />
+  <text x="527" y="1387" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-2">外部角色 / 系统</text>
+  <rect x="918" y="1370" width="42" height="22" data-role="legend-zone" data-id="__legend-swatch-3" fill="#F3F8FF" stroke="#3D6FB2" stroke-width="1.6" rx="10" />
+  <text x="972" y="1387" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-3">系统 / 部署边界</text>
+  <rect x="28" y="1415" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-4" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="8" />
+  <text x="82" y="1432" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-4">范围内元素</text>
+  <rect x="473" y="1415" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-5" fill="#1767B5" stroke="#03172E" stroke-width="2.4" rx="8" />
+  <text x="527" y="1432" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-5">本图主体</text>
+  <rect x="918" y="1415" width="42" height="22" data-role="legend-swatch" data-id="__legend-swatch-6" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8" rx="0" />
+  <text x="972" y="1432" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-6">范围内元素</text>
+  <polyline points="28,1470 70,1470" data-role="edge" data-kind="legend" data-id="legend-line-7" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)" />
+  <text x="82" y="1477" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="14" font-weight="400" fill="#1F2937" data-role="legend" data-id="legend-7">发起方 → 依赖方</text>
+</svg>

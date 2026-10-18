@@ -1,0 +1,19 @@
+{
+  "scenarioVersion": 2,
+  "entities": {
+    "R-employee": "R-employee",
+    "VS-ask": "VS-ask",
+    "VS-answer": "VS-answer",
+    "VS-draft": "VS-draft",
+    "VS-approve": "VS-approve",
+    "VS-ticket": "VS-ticket"
+  },
+  "invariants": [
+    "I-tenant",
+    "I-approval",
+    "I-idempotency"
+  ],
+  "projection": "focused view; omissions described in caption; not a deployed system",
+  "missingFacts": [],
+  "assumptions": []
+}

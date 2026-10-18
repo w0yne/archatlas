@@ -83,4 +83,4 @@ It answers: *which applications do we have here, grouped how, and which depend o
 Model template: `assets/templates/C1.json` · Layout template: `statechart` (left to right; the `layered` template stacks the same layers top to bottom) · groups of kind `layer` become zones ranked by the edges between them; `system` and `external` nodes are placed in their band; edges route between bands (variant c uses `tables[]` rendered with `grid_table`).
 
 ## Sample
-Figure: `samples/C1-application-landscape.svg` (published with the site)
+Figure: `samples/ai-service-assistant/C1/en/diagram.svg` (published with the site)

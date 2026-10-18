@@ -1,0 +1,129 @@
+{
+  "scenarioVersion": 2,
+  "entities": {},
+  "invariants": [
+    "I-approval",
+    "I-idempotency",
+    "I-bounds"
+  ],
+  "projection": "focused view; omissions described in caption; not a deployed system",
+  "viewElements": {
+    "E3-start": {
+      "kind": "initial",
+      "labels": {
+        "en": "Start",
+        "zh": "开始"
+      },
+      "contextEntity": "DS-app",
+      "sourceRefs": [
+        "I-approval"
+      ],
+      "status": "illustrative assumption / notation projection"
+    },
+    "E3-unapproved": {
+      "kind": "state",
+      "labels": {
+        "en": "Unapproved",
+        "zh": "未获审批"
+      },
+      "contextEntity": "DS-app",
+      "sourceRefs": [
+        "I-approval",
+        "I-idempotency"
+      ],
+      "status": "illustrative assumption / notation projection"
+    },
+    "E3-approved": {
+      "kind": "state",
+      "labels": {
+        "en": "Approved",
+        "zh": "已审批"
+      },
+      "contextEntity": "DS-app",
+      "sourceRefs": [
+        "I-approval",
+        "I-idempotency"
+      ],
+      "status": "illustrative assumption / notation projection"
+    },
+    "E3-executing": {
+      "kind": "state",
+      "labels": {
+        "en": "Executing",
+        "zh": "执行中"
+      },
+      "contextEntity": "DS-app",
+      "sourceRefs": [
+        "I-approval",
+        "I-idempotency"
+      ],
+      "status": "illustrative assumption / notation projection"
+    },
+    "E3-unknown": {
+      "kind": "state",
+      "labels": {
+        "en": "Outcome unknown",
+        "zh": "结果未知"
+      },
+      "contextEntity": "DS-app",
+      "sourceRefs": [
+        "I-approval",
+        "I-idempotency"
+      ],
+      "status": "illustrative assumption / notation projection"
+    },
+    "E3-resolved": {
+      "kind": "state",
+      "labels": {
+        "en": "Outcome recorded",
+        "zh": "结果已记录"
+      },
+      "contextEntity": "DS-app",
+      "sourceRefs": [
+        "I-approval",
+        "I-idempotency"
+      ],
+      "status": "illustrative assumption / notation projection"
+    },
+    "E3-refused": {
+      "kind": "state",
+      "labels": {
+        "en": "Refused",
+        "zh": "已拒绝"
+      },
+      "contextEntity": "DS-app",
+      "sourceRefs": [
+        "I-approval",
+        "I-idempotency"
+      ],
+      "status": "illustrative assumption / notation projection"
+    },
+    "E3-final": {
+      "kind": "final",
+      "labels": {
+        "en": "End",
+        "zh": "结束"
+      },
+      "contextEntity": "DS-app",
+      "sourceRefs": [
+        "I-approval"
+      ],
+      "status": "illustrative assumption / notation projection"
+    }
+  },
+  "missingFacts": [],
+  "assumptions": [
+    "AS-ingest",
+    "AS-request",
+    "AS-policy",
+    "AS-raci",
+    "AS-network",
+    "AS-release",
+    "AS-observe",
+    "AS-domains",
+    "AS-data",
+    "AS-roadmap",
+    "AS-components",
+    "AS-interfaces"
+  ]
+}

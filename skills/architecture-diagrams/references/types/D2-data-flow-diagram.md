@@ -2,6 +2,7 @@
 <!-- Generated from content/en/types/D2-data-flow-diagram.md by tools/build_skill_refs.py. Do not edit. -->
 > Where does data come from, which processing transforms it, where is it kept, and where does it go?
 Scope: One system, one level per diagram: a context diagram, or one decomposition of a single process (3-9 processes) Neighbours: C2, D1, D3, E2, F2.
+Named variants (read their own recipes): F2 — `references/types/F2-threat-model-data-flow.md`.
 
 ## Meaning
 - **Question:** where does data come from, what transforms it, where is it stored, where does it go?
@@ -87,4 +88,4 @@ Scope: One system, one level per diagram: a context diagram, or one decompositio
 Model template: `assets/templates/D2.json` · Layout template: `nested` · external entities are `external` nodes, processes are `component` nodes, stores are `store` nodes (the store id such as D1 in `sub`), trust boundaries are `boundary` groups around zones, data flows are `data` edges whose `label` is the data noun and whose `dir` is `->`.
 
 ## Sample
-Figure: `samples/D2-data-flow-diagram.svg` (published with the site)
+Figure: `samples/ai-service-assistant/D2/en/diagram.svg` (published with the site)

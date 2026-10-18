@@ -199,6 +199,11 @@
       ],
       "scope": "enterprise",
       "research": "done",
+      "catalogRole": "core",
+      "target": {
+        "code": "A1",
+        "anchor": "meaning"
+      },
       "page": "a1-capability-map"
     },
     {
@@ -229,6 +234,11 @@
       ],
       "scope": "enterprise",
       "research": "done",
+      "catalogRole": "core",
+      "target": {
+        "code": "A2",
+        "anchor": "meaning"
+      },
       "page": "a2-value-stream"
     },
     {
@@ -261,6 +271,11 @@
       ],
       "scope": "system",
       "research": "done",
+      "catalogRole": "variant",
+      "target": {
+        "code": "C2",
+        "anchor": "variant-a3"
+      },
       "page": "a3-business-context"
     },
     {
@@ -290,6 +305,11 @@
       ],
       "scope": "system",
       "research": "done",
+      "catalogRole": "variant",
+      "target": {
+        "code": "B2",
+        "anchor": "variant-a4"
+      },
       "page": "a4-scenario-matrix"
     },
     {
@@ -323,6 +343,11 @@
       ],
       "scope": "system",
       "research": "done",
+      "catalogRole": "core",
+      "target": {
+        "code": "A5",
+        "anchor": "meaning"
+      },
       "page": "a5-bpmn-process"
     },
     {
@@ -356,6 +381,11 @@
       ],
       "scope": "system",
       "research": "done",
+      "catalogRole": "core",
+      "target": {
+        "code": "A6",
+        "anchor": "meaning"
+      },
       "page": "a6-journey-map"
     },
     {
@@ -388,6 +418,11 @@
       ],
       "scope": "system",
       "research": "done",
+      "catalogRole": "variant",
+      "target": {
+        "code": "C5",
+        "anchor": "variant-a7"
+      },
       "page": "a7-conceptual-architecture"
     },
     {
@@ -418,6 +453,11 @@
       ],
       "scope": "enterprise",
       "research": "done",
+      "catalogRole": "core",
+      "target": {
+        "code": "A8",
+        "anchor": "meaning"
+      },
       "page": "a8-target-roadmap"
     },
     {
@@ -451,6 +491,11 @@
       ],
       "scope": "system",
       "research": "done",
+      "catalogRole": "variant",
+      "target": {
+        "code": "A2",
+        "anchor": "variant-a9"
+      },
       "page": "a9-lean-value-stream-map"
     },
     {
@@ -481,6 +526,11 @@
       ],
       "scope": "system",
       "research": "pending",
+      "catalogRole": "reference",
+      "target": {
+        "code": "B1",
+        "anchor": "meaning"
+      },
       "page": "b1-use-case-diagram"
     },
     {
@@ -511,6 +561,11 @@
       ],
       "scope": "system",
       "research": "pending",
+      "catalogRole": "core",
+      "target": {
+        "code": "B2",
+        "anchor": "meaning"
+      },
       "page": "b2-user-story-map"
     },
     {
@@ -540,6 +595,11 @@
       ],
       "scope": "system",
       "research": "pending",
+      "catalogRole": "reference",
+      "target": {
+        "code": "B3",
+        "anchor": "meaning"
+      },
       "page": "b3-feature-tree"
     },
     {
@@ -571,6 +631,11 @@
       ],
       "scope": "system",
       "research": "pending",
+      "catalogRole": "variant",
+      "target": {
+        "code": "C2",
+        "anchor": "variant-b4"
+      },
       "page": "b4-scope-diagram"
     },
     {
@@ -603,6 +668,11 @@
       ],
       "scope": "enterprise",
       "research": "done",
+      "catalogRole": "core",
+      "target": {
+        "code": "C1",
+        "anchor": "meaning"
+      },
       "page": "c1-application-landscape"
     },
     {
@@ -638,6 +708,11 @@
       ],
       "scope": "system",
       "research": "done",
+      "catalogRole": "core",
+      "target": {
+        "code": "C2",
+        "anchor": "meaning"
+      },
       "page": "c2-system-context"
     },
     {
@@ -671,6 +746,11 @@
       ],
       "scope": "system",
       "research": "done",
+      "catalogRole": "core",
+      "target": {
+        "code": "C3",
+        "anchor": "meaning"
+      },
       "page": "c3-container-diagram"
     },
     {
@@ -701,6 +781,11 @@
       ],
       "scope": "component",
       "research": "done",
+      "catalogRole": "core",
+      "target": {
+        "code": "C4",
+        "anchor": "meaning"
+      },
       "page": "c4-component-diagram"
     },
     {
@@ -731,6 +816,11 @@
       ],
       "scope": "system",
       "research": "done",
+      "catalogRole": "core",
+      "target": {
+        "code": "C5",
+        "anchor": "meaning"
+      },
       "page": "c5-logical-architecture"
     },
     {
@@ -763,6 +853,11 @@
       ],
       "scope": "enterprise",
       "research": "done",
+      "catalogRole": "core",
+      "target": {
+        "code": "C6",
+        "anchor": "meaning"
+      },
       "page": "c6-integration-interface"
     },
     {
@@ -795,6 +890,11 @@
       ],
       "scope": "system",
       "research": "done",
+      "catalogRole": "core",
+      "target": {
+        "code": "C7",
+        "anchor": "meaning"
+      },
       "page": "c7-bounded-context-map"
     },
     {
@@ -825,6 +925,11 @@
       ],
       "scope": "component",
       "research": "done",
+      "catalogRole": "variant",
+      "target": {
+        "code": "C4",
+        "anchor": "variant-c8"
+      },
       "page": "c8-layered-architecture"
     },
     {
@@ -857,6 +962,11 @@
       ],
       "scope": "system",
       "research": "done",
+      "catalogRole": "core",
+      "target": {
+        "code": "D1",
+        "anchor": "meaning"
+      },
       "page": "d1-entity-relationship"
     },
     {
@@ -888,6 +998,11 @@
       ],
       "scope": "system",
       "research": "done",
+      "catalogRole": "core",
+      "target": {
+        "code": "D2",
+        "anchor": "meaning"
+      },
       "page": "d2-data-flow-diagram"
     },
     {
@@ -920,6 +1035,11 @@
       ],
       "scope": "enterprise",
       "research": "done",
+      "catalogRole": "core",
+      "target": {
+        "code": "D3",
+        "anchor": "meaning"
+      },
       "page": "d3-data-lineage-ownership"
     },
     {
@@ -951,6 +1071,11 @@
       ],
       "scope": "system",
       "research": "done",
+      "catalogRole": "core",
+      "target": {
+        "code": "E1",
+        "anchor": "meaning"
+      },
       "page": "e1-sequence-diagram"
     },
     {
@@ -981,6 +1106,11 @@
       ],
       "scope": "component",
       "research": "done",
+      "catalogRole": "core",
+      "target": {
+        "code": "E2",
+        "anchor": "meaning"
+      },
       "page": "e2-activity-flowchart"
     },
     {
@@ -1011,6 +1141,11 @@
       ],
       "scope": "component",
       "research": "done",
+      "catalogRole": "core",
+      "target": {
+        "code": "E3",
+        "anchor": "meaning"
+      },
       "page": "e3-state-machine"
     },
     {
@@ -1043,6 +1178,11 @@
       ],
       "scope": "system",
       "research": "done",
+      "catalogRole": "variant",
+      "target": {
+        "code": "E2",
+        "anchor": "variant-e4"
+      },
       "page": "e4-swimlane-cross-functional"
     },
     {
@@ -1075,6 +1215,11 @@
       ],
       "scope": "system",
       "research": "done",
+      "catalogRole": "variant",
+      "target": {
+        "code": "E1",
+        "anchor": "variant-f1"
+      },
       "page": "f1-authentication-authorization-flow"
     },
     {
@@ -1105,6 +1250,11 @@
       ],
       "scope": "system",
       "research": "done",
+      "catalogRole": "variant",
+      "target": {
+        "code": "D2",
+        "anchor": "variant-f2"
+      },
       "page": "f2-threat-model-data-flow"
     },
     {
@@ -1136,6 +1286,11 @@
       ],
       "scope": "system",
       "research": "done",
+      "catalogRole": "core",
+      "target": {
+        "code": "F3",
+        "anchor": "meaning"
+      },
       "page": "f3-access-control-model"
     },
     {
@@ -1143,8 +1298,8 @@
       "slug": "deployment-diagram",
       "family": "G",
       "names": {
-        "en": "Deployment diagram",
-        "zh": "部署图"
+        "en": "Deployment & cloud architecture",
+        "zh": "部署与云架构图"
       },
       "question": {
         "en": "Where do the software instances run, in which environment, and how does their placement support operational needs?",
@@ -1167,6 +1322,11 @@
       ],
       "scope": "system",
       "research": "done",
+      "catalogRole": "core",
+      "target": {
+        "code": "G1",
+        "anchor": "meaning"
+      },
       "page": "g1-deployment-diagram"
     },
     {
@@ -1198,6 +1358,11 @@
       ],
       "scope": "system",
       "research": "done",
+      "catalogRole": "variant",
+      "target": {
+        "code": "G1",
+        "anchor": "variant-g2"
+      },
       "page": "g2-cloud-infrastructure-architecture"
     },
     {
@@ -1230,6 +1395,11 @@
       ],
       "scope": "system",
       "research": "done",
+      "catalogRole": "core",
+      "target": {
+        "code": "G3",
+        "anchor": "meaning"
+      },
       "page": "g3-network-topology"
     },
     {
@@ -1262,6 +1432,11 @@
       ],
       "scope": "system",
       "research": "done",
+      "catalogRole": "core",
+      "target": {
+        "code": "G4",
+        "anchor": "meaning"
+      },
       "page": "g4-delivery-pipeline"
     },
     {
@@ -1294,6 +1469,11 @@
       ],
       "scope": "system",
       "research": "done",
+      "catalogRole": "core",
+      "target": {
+        "code": "H1",
+        "anchor": "meaning"
+      },
       "page": "h1-raci-matrix"
     },
     {
@@ -1325,6 +1505,11 @@
       ],
       "scope": "system",
       "research": "done",
+      "catalogRole": "core",
+      "target": {
+        "code": "H2",
+        "anchor": "meaning"
+      },
       "page": "h2-observability-view"
     },
     {
@@ -1355,6 +1540,11 @@
       ],
       "scope": "system",
       "research": "done",
+      "catalogRole": "reference",
+      "target": {
+        "code": "H3",
+        "anchor": "meaning"
+      },
       "page": "h3-stakeholder-map"
     },
     {
@@ -1386,6 +1576,11 @@
       ],
       "scope": "system",
       "research": "done",
+      "catalogRole": "reference",
+      "target": {
+        "code": "I1",
+        "anchor": "meaning"
+      },
       "page": "i1-four-plus-one"
     },
     {
@@ -1419,6 +1614,11 @@
       ],
       "scope": "enterprise",
       "research": "done",
+      "catalogRole": "reference",
+      "target": {
+        "code": "I2",
+        "anchor": "meaning"
+      },
       "page": "i2-archimate-layered-view"
     }
   ],
@@ -1612,13 +1812,13 @@
   "phase_picks": {
     "initiate": [
       "A1",
-      "A7",
+      "C5",
       "C1"
     ],
     "requirements": [
-      "B1",
-      "B4",
-      "C2"
+      "B2",
+      "C2",
+      "D1"
     ],
     "design": [
       "C3",
@@ -1687,15 +1887,6 @@
         "types": [
           "A6"
         ]
-      },
-      {
-        "when": {
-          "en": "Who has influence over the initiative and how to engage them",
-          "zh": "谁能影响项目、如何沟通"
-        },
-        "types": [
-          "H3"
-        ]
       }
     ],
     "scope": [
@@ -1735,24 +1926,6 @@
           "en": "A4 shows coverage across several roles; B2 tells one end-to-end story with release slices.",
           "zh": "A4 展示多角色覆盖；B2 讲一个端到端故事并按版本切片。"
         }
-      },
-      {
-        "when": {
-          "en": "Which user goals the system supports, and for whom",
-          "zh": "系统支持哪些用户目标、给谁"
-        },
-        "types": [
-          "B1"
-        ]
-      },
-      {
-        "when": {
-          "en": "Which functions, how deep, with which priority",
-          "zh": "有哪些功能、拆多细、优先级如何"
-        },
-        "types": [
-          "B3"
-        ]
       },
       {
         "when": {
@@ -1844,15 +2017,6 @@
         },
         "types": [
           "C8"
-        ]
-      },
-      {
-        "when": {
-          "en": "How business, applications and technology support each other",
-          "zh": "业务、应用、技术如何互相支撑"
-        },
-        "types": [
-          "I2"
         ]
       }
     ],
@@ -2112,15 +2276,6 @@
       },
       {
         "when": {
-          "en": "Who must be engaged, and how",
-          "zh": "需要与谁沟通、如何沟通"
-        },
-        "types": [
-          "H3"
-        ]
-      },
-      {
-        "when": {
           "en": "How problems are detected and answered",
           "zh": "问题如何被发现与响应"
         },
@@ -2164,26 +2319,6 @@
           "G4"
         ]
       }
-    ],
-    "views": [
-      {
-        "when": {
-          "en": "Several views for different readers, kept consistent",
-          "zh": "面向不同读者的多张视图并保持一致"
-        },
-        "types": [
-          "I1"
-        ]
-      },
-      {
-        "when": {
-          "en": "One enterprise view across business, application and technology",
-          "zh": "跨业务、应用、技术的企业视图"
-        },
-        "types": [
-          "I2"
-        ]
-      }
     ]
   },
   "matrix": {
@@ -2192,31 +2327,22 @@
         "A1",
         "A2",
         "A6",
-        "A7",
-        "A8",
-        "A9",
-        "H3"
+        "A8"
       ],
       "scope": [
-        "A3",
         "A6",
-        "B4",
         "C2"
       ],
       "structure": [
         "A1",
-        "A7",
         "C1",
-        "C2",
-        "I2"
+        "C2"
       ],
       "integration": [
         "C1"
       ],
       "data": [],
-      "behaviour": [
-        "A9"
-      ],
+      "behaviour": [],
       "security": [],
       "runtime": [
         "G2",
@@ -2226,34 +2352,24 @@
       "operations": [
         "C1",
         "H1",
-        "H2",
-        "H3"
+        "H2"
       ],
-      "views": [
-        "I2"
-      ]
+      "views": []
     },
     "business": {
       "value": [
         "A1",
         "A2",
-        "A6",
-        "A7",
-        "A9",
-        "H3"
+        "A6"
       ],
       "scope": [
-        "A3",
-        "A4",
         "A5",
         "A6",
-        "B1",
         "B2",
         "C2"
       ],
       "structure": [
         "A1",
-        "A7",
         "C2",
         "C7"
       ],
@@ -2267,9 +2383,7 @@
       ],
       "behaviour": [
         "A5",
-        "A9",
-        "E2",
-        "E4"
+        "E2"
       ],
       "security": [
         "F3"
@@ -2277,9 +2391,7 @@
       "runtime": [],
       "operations": [
         "D3",
-        "E4",
-        "H1",
-        "H3"
+        "H1"
       ],
       "views": []
     },
@@ -2288,13 +2400,9 @@
         "A6"
       ],
       "scope": [
-        "A4",
         "A5",
         "A6",
-        "B1",
-        "B2",
-        "B3",
-        "B4"
+        "B2"
       ],
       "structure": [
         "C5"
@@ -2314,25 +2422,19 @@
       "value": [
         "A1",
         "A2",
-        "A7",
         "A8"
       ],
       "scope": [
-        "A3",
-        "B4",
         "C2"
       ],
       "structure": [
         "A1",
-        "A7",
         "C1",
         "C2",
         "C3",
         "C4",
         "C5",
-        "C7",
-        "C8",
-        "I2"
+        "C7"
       ],
       "integration": [
         "C1",
@@ -2344,40 +2446,30 @@
       "data": [
         "D1",
         "D2",
-        "D3",
-        "F2"
+        "D3"
       ],
       "behaviour": [
-        "E1",
-        "F1"
+        "E1"
       ],
       "security": [
-        "F1",
-        "F2",
         "F3",
         "G3"
       ],
       "runtime": [
         "G1",
-        "G2",
         "G3"
       ],
       "operations": [
         "C1",
         "D3"
       ],
-      "views": [
-        "I1",
-        "I2"
-      ]
+      "views": []
     },
     "developers": {
       "value": [],
       "scope": [
         "A5",
-        "B1",
         "B2",
-        "B3",
         "C2"
       ],
       "structure": [
@@ -2385,8 +2477,7 @@
         "C3",
         "C4",
         "C5",
-        "C7",
-        "C8"
+        "C7"
       ],
       "integration": [
         "C3",
@@ -2401,12 +2492,9 @@
         "A5",
         "E1",
         "E2",
-        "E3",
-        "E4",
-        "F1"
+        "E3"
       ],
       "security": [
-        "F1",
         "F3"
       ],
       "runtime": [
@@ -2415,18 +2503,13 @@
         "A8"
       ],
       "operations": [
-        "E4",
         "G4",
         "H2"
       ],
-      "views": [
-        "I1"
-      ]
+      "views": []
     },
     "operations": {
-      "value": [
-        "A9"
-      ],
+      "value": [],
       "scope": [],
       "structure": [
         "C3"
@@ -2436,10 +2519,7 @@
         "C6"
       ],
       "data": [],
-      "behaviour": [
-        "A9",
-        "E4"
-      ],
+      "behaviour": [],
       "security": [
         "G3"
       ],
@@ -2450,7 +2530,6 @@
         "A8"
       ],
       "operations": [
-        "E4",
         "G4",
         "H1",
         "H2"
@@ -2471,21 +2550,15 @@
       ],
       "data": [
         "D2",
-        "D3",
-        "F2"
+        "D3"
       ],
-      "behaviour": [
-        "F1"
-      ],
+      "behaviour": [],
       "security": [
-        "F1",
-        "F2",
         "F3",
         "G3"
       ],
       "runtime": [
         "G1",
-        "G2",
         "G3",
         "G4"
       ],
@@ -2500,33 +2573,21 @@
     "initiate": [
       "A1",
       "A2",
-      "A3",
       "A6",
-      "A7",
       "A8",
-      "A9",
-      "B4",
       "C1",
       "C2",
-      "H1",
-      "H3",
-      "I2"
+      "H1"
     ],
     "requirements": [
-      "A3",
-      "A4",
       "A5",
       "A6",
-      "B1",
       "B2",
-      "B3",
-      "B4",
       "C2",
       "D2"
     ],
     "design": [
       "A5",
-      "A7",
       "A8",
       "C1",
       "C2",
@@ -2535,42 +2596,30 @@
       "C5",
       "C6",
       "C7",
-      "C8",
       "D1",
       "D2",
       "D3",
       "E1",
       "E2",
       "E3",
-      "E4",
-      "F1",
-      "F2",
       "F3",
       "G1",
-      "G2",
-      "G3",
-      "I1",
-      "I2"
+      "G3"
     ],
     "build": [
       "C3",
       "C4",
       "C6",
-      "C8",
       "D1",
       "E1",
       "E2",
       "E3",
-      "F1",
       "F3",
       "G4"
     ],
     "operate": [
-      "A9",
       "D3",
-      "E4",
       "G1",
-      "G2",
       "G3",
       "G4",
       "H1",
