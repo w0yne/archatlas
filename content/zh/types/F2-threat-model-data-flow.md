@@ -17,7 +17,7 @@ formal: {kind: method, ref: Classic data-flow-diagram symbols plus security anno
 neighbours: [C3, C6, D2, F1, F3, G3]
 status: draft
 translationOf: en/types/F2-threat-model-data-flow.md
-sourceRev: f87df5422241ad019ffdc339ce4e09087abe2c53
+sourceRev: 7002b1114ff60c6a028194c8376c71eee2b9d52d
 reviewed: false
 ---
 

@@ -17,7 +17,7 @@ formal: {kind: standard, ref: 'ArchiMate 3.2 Capability element and Capability M
 neighbours: [A2, A5, A7, A8, C1]
 status: draft
 translationOf: en/types/A1-capability-map.md
-sourceRev: 61fe367
+sourceRev: 7002b1114ff60c6a028194c8376c71eee2b9d52d
 reviewed: false
 ---
 

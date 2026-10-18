@@ -17,7 +17,7 @@ formal: {kind: convention, ref: 'RBAC: ANSI/INCITS 359-2004 and its 2012 revisio
 neighbours: [D1, F1, F2, H1]
 status: draft
 translationOf: en/types/F3-access-control-model.md
-sourceRev: 61fe367
+sourceRev: 7002b1114ff60c6a028194c8376c71eee2b9d52d
 reviewed: false
 ---
 

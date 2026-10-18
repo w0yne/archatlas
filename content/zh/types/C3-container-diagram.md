@@ -17,7 +17,7 @@ formal: {kind: method, ref: 'C4 model (Simon Brown), Level 2 Container diagram; 
 neighbours: [A7, C1, C2, C4, C5, C6, E1, F2, G1, G2]
 status: draft
 translationOf: en/types/C3-container-diagram.md
-sourceRev: 4e718f136c12c2c4c1d5f2226ea103f63e35b600
+sourceRev: 7002b1114ff60c6a028194c8376c71eee2b9d52d
 reviewed: false
 ---
 

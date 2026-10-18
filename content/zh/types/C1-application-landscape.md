@@ -17,7 +17,7 @@ formal: {kind: method, ref: 'No single notation. Related: TOGAF 9.2 Application 
 neighbours: [A1, A7, A8, C2, C3, C5, C6, I2]
 status: draft
 translationOf: en/types/C1-application-landscape.md
-sourceRev: 68c7e31
+sourceRev: 7002b1114ff60c6a028194c8376c71eee2b9d52d
 reviewed: false
 ---
 

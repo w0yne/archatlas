@@ -3,7 +3,7 @@ title: 企业服务助手：29幅架构视图
 sidebar: false
 aside: false
 translationOf: en/use/ai-service-assistant.md
-sourceRev: 8b2426d
+sourceRev: 7002b1114ff60c6a028194c8376c71eee2b9d52d
 reviewed: false
 ---
 

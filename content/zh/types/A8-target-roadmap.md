@@ -17,7 +17,7 @@ formal: {kind: standard, ref: 'TOGAF ADM Architecture Roadmap and Transition Arc
 neighbours: [A1, A7, C1]
 status: draft
 translationOf: en/types/A8-target-roadmap.md
-sourceRev: 88db750
+sourceRev: 7002b1114ff60c6a028194c8376c71eee2b9d52d
 reviewed: false
 ---
 

@@ -17,7 +17,7 @@ formal: {kind: method, ref: 'Domain-Driven Design: Evans, DDD (2003) and DDD Ref
 neighbours: [C5, C6, C8]
 status: draft
 translationOf: en/types/C7-bounded-context-map.md
-sourceRev: 88db750
+sourceRev: 7002b1114ff60c6a028194c8376c71eee2b9d52d
 reviewed: false
 ---
 
