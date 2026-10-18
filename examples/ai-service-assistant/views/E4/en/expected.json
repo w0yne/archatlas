@@ -1,0 +1,22 @@
+{
+  "scenarioVersion": 1,
+  "entities": {
+    "EV-requested": "EV-requested",
+    "P-plan": "P-plan",
+    "P-show": "P-show",
+    "P-approve": "P-approve",
+    "P-exchange": "P-exchange",
+    "P-execute": "P-execute",
+    "G-checks": "G-checks",
+    "P-create": "P-create",
+    "EV-rejected": "EV-rejected",
+    "EV-created": "EV-created"
+  },
+  "invariants": [
+    "I-approval",
+    "I-delegation",
+    "I-tokens",
+    "I-idempotency"
+  ],
+  "projection": "focused view; omissions described in caption; not a deployed system"
+}

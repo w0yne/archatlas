@@ -1,0 +1,10 @@
+{
+  "scenarioVersion": 1,
+  "entities": {},
+  "invariants": [
+    "I-tenant",
+    "I-ingest",
+    "I-idempotency"
+  ],
+  "projection": "focused view; omissions described in caption; not a deployed system"
+}

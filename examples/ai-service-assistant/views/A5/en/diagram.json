@@ -1,0 +1,220 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "A5",
+    "title": "A5 · Request a service ticket — approval before execution (to-be)",
+    "lang": "en",
+    "state": "to-be",
+    "audience": "architects and business reviewers",
+    "description": "Fictional teaching design; scenario.json version 1"
+  },
+  "layout": {
+    "template": "lanes"
+  },
+  "nodes": [
+    {
+      "id": "EV-need",
+      "kind": "event",
+      "label": "Ticket needed",
+      "style": "peer",
+      "parent": "POOL-employee",
+      "event_type": "start"
+    },
+    {
+      "id": "P-ask",
+      "kind": "task",
+      "label": "Ask for a ticket",
+      "style": "peer",
+      "parent": "POOL-employee"
+    },
+    {
+      "id": "P-review",
+      "kind": "task",
+      "label": "Review draft",
+      "style": "peer",
+      "parent": "POOL-employee"
+    },
+    {
+      "id": "G-approve",
+      "kind": "gateway",
+      "label": "Approve draft?",
+      "style": "peer",
+      "parent": "POOL-employee"
+    },
+    {
+      "id": "P-confirm",
+      "kind": "task",
+      "label": "Approve draft",
+      "style": "peer",
+      "parent": "POOL-employee"
+    },
+    {
+      "id": "EV-approved",
+      "kind": "event",
+      "label": "Draft approved",
+      "style": "peer",
+      "parent": "POOL-employee",
+      "event_type": "end"
+    },
+    {
+      "id": "EV-declined",
+      "kind": "event",
+      "label": "Request declined",
+      "style": "peer",
+      "parent": "POOL-employee",
+      "event_type": "end"
+    },
+    {
+      "id": "EV-received",
+      "kind": "event",
+      "label": "Request received",
+      "style": "peer",
+      "parent": "POOL-assistant",
+      "event_type": "start"
+    },
+    {
+      "id": "P-plan",
+      "kind": "task",
+      "label": "1. Draft request",
+      "style": "peer",
+      "parent": "POOL-assistant"
+    },
+    {
+      "id": "P-approve",
+      "kind": "task",
+      "label": "2. Bind approval",
+      "style": "peer",
+      "parent": "POOL-assistant"
+    },
+    {
+      "id": "P-execute",
+      "kind": "task",
+      "label": "3. Reauthorize tool",
+      "style": "peer",
+      "parent": "POOL-assistant"
+    },
+    {
+      "id": "EV-created",
+      "kind": "event",
+      "label": "Ticket created",
+      "style": "peer",
+      "parent": "POOL-assistant",
+      "event_type": "end"
+    }
+  ],
+  "edges": [
+    {
+      "id": "SF-1",
+      "from": "EV-need",
+      "to": "P-ask",
+      "kind": "call"
+    },
+    {
+      "id": "SF-2",
+      "from": "P-ask",
+      "to": "P-review",
+      "kind": "call"
+    },
+    {
+      "id": "SF-3",
+      "from": "P-review",
+      "to": "G-approve",
+      "kind": "call"
+    },
+    {
+      "id": "SF-4",
+      "from": "G-approve",
+      "to": "P-confirm",
+      "kind": "call"
+    },
+    {
+      "id": "SF-5",
+      "from": "P-confirm",
+      "to": "EV-approved",
+      "kind": "call"
+    },
+    {
+      "id": "SF-6",
+      "from": "G-approve",
+      "to": "EV-declined",
+      "kind": "call",
+      "label": "No"
+    },
+    {
+      "id": "SF-7",
+      "from": "EV-received",
+      "to": "P-plan",
+      "kind": "call"
+    },
+    {
+      "id": "SF-8",
+      "from": "P-plan",
+      "to": "P-approve",
+      "kind": "call"
+    },
+    {
+      "id": "SF-9",
+      "from": "P-approve",
+      "to": "P-execute",
+      "kind": "call"
+    },
+    {
+      "id": "SF-10",
+      "from": "P-execute",
+      "to": "EV-created",
+      "kind": "call"
+    },
+    {
+      "id": "MF-1",
+      "from": "P-ask",
+      "to": "EV-received",
+      "kind": "message",
+      "label": "Request",
+      "dashed": true
+    },
+    {
+      "id": "MF-2",
+      "from": "P-plan",
+      "to": "P-review",
+      "kind": "message",
+      "label": "Draft + expiry",
+      "dashed": true
+    },
+    {
+      "id": "MF-3",
+      "from": "P-confirm",
+      "to": "P-approve",
+      "kind": "message",
+      "label": "Approval of this draft",
+      "dashed": true
+    },
+    {
+      "id": "MF-4",
+      "from": "P-execute",
+      "to": "POOL-desk",
+      "kind": "message",
+      "label": "Create ticket + idempotency key",
+      "dashed": true
+    }
+  ],
+  "groups": [
+    {
+      "id": "POOL-employee",
+      "title": "Employee / approver",
+      "kind": "pool",
+      "tint": "biz"
+    },
+    {
+      "id": "POOL-assistant",
+      "title": "Enterprise Service Assistant",
+      "kind": "pool",
+      "tint": "biz"
+    },
+    {
+      "id": "POOL-desk",
+      "title": "Service Desk",
+      "kind": "pool",
+      "tint": "neutral"
+    }
+  ]
+}

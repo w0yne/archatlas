@@ -1,0 +1,90 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "A2",
+    "title": "A2 · Resolve a service need — cited answer or approved ticket",
+    "lang": "en",
+    "state": "to-be",
+    "audience": "architects and business reviewers",
+    "description": "Fictional teaching design; scenario.json version 1"
+  },
+  "layout": {
+    "template": "tree"
+  },
+  "nodes": [
+    {
+      "id": "R-employee",
+      "kind": "person",
+      "label": "Employee / approver",
+      "style": "external",
+      "sub": "Triggering stakeholder"
+    },
+    {
+      "id": "VS-ask",
+      "kind": "task",
+      "label": "Ask question",
+      "style": "peer",
+      "sub": "Entrance: Service need raised · Exit: Question accepted for own tenant · Value item: Need stated once, in chat"
+    },
+    {
+      "id": "VS-answer",
+      "kind": "task",
+      "label": "Get cited answer",
+      "style": "peer",
+      "sub": "Entrance: Question accepted for own tenant · Exit: Cited answer received · Value item: Answer from permitted sources"
+    },
+    {
+      "id": "VS-draft",
+      "kind": "task",
+      "label": "Draft request",
+      "style": "peer",
+      "sub": "Entrance: Cited answer received · Exit: Exact draft shown · Value item: No retyping into a form"
+    },
+    {
+      "id": "VS-approve",
+      "kind": "task",
+      "label": "Approve request",
+      "style": "peer",
+      "sub": "Entrance: Exact draft shown · Exit: Approval bound to the draft · Value item: Employee controls the action"
+    },
+    {
+      "id": "VS-ticket",
+      "kind": "task",
+      "label": "Receive ticket",
+      "style": "peer",
+      "sub": "Entrance: Approval bound to the draft · Exit: Ticket created once · Value item: A ticket number to track"
+    }
+  ],
+  "edges": [
+    {
+      "id": "VS-1",
+      "from": "R-employee",
+      "to": "VS-ask",
+      "kind": "call"
+    },
+    {
+      "id": "VS-2",
+      "from": "VS-ask",
+      "to": "VS-answer",
+      "kind": "call"
+    },
+    {
+      "id": "VS-3",
+      "from": "VS-answer",
+      "to": "VS-draft",
+      "kind": "call"
+    },
+    {
+      "id": "VS-4",
+      "from": "VS-draft",
+      "to": "VS-approve",
+      "kind": "call"
+    },
+    {
+      "id": "VS-5",
+      "from": "VS-approve",
+      "to": "VS-ticket",
+      "kind": "call"
+    }
+  ]
+}

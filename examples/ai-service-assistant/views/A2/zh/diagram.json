@@ -1,0 +1,90 @@
+{
+  "archatlas": "0.1",
+  "meta": {
+    "type": "A2",
+    "title": "A2 · 解决服务需求 — 带来源回答或经审批的工单",
+    "lang": "zh",
+    "state": "to-be",
+    "audience": "architects and business reviewers",
+    "description": "Fictional teaching design; scenario.json version 1"
+  },
+  "layout": {
+    "template": "tree"
+  },
+  "nodes": [
+    {
+      "id": "R-employee",
+      "kind": "person",
+      "label": "员工 / 审批人",
+      "style": "external",
+      "sub": "触发方"
+    },
+    {
+      "id": "VS-ask",
+      "kind": "task",
+      "label": "提出问题",
+      "style": "peer",
+      "sub": "进入条件: 提出服务需求 · 退出条件: 问题在本租户内受理 · 价值项: 在对话中一次说明需求"
+    },
+    {
+      "id": "VS-answer",
+      "kind": "task",
+      "label": "获得带来源回答",
+      "style": "peer",
+      "sub": "进入条件: 问题在本租户内受理 · 退出条件: 收到带来源的回答 · 价值项: 答案来自许可来源"
+    },
+    {
+      "id": "VS-draft",
+      "kind": "task",
+      "label": "起草请求",
+      "style": "peer",
+      "sub": "进入条件: 收到带来源的回答 · 退出条件: 展示确定的草稿 · 价值项: 无需重新填写表单"
+    },
+    {
+      "id": "VS-approve",
+      "kind": "task",
+      "label": "审批请求",
+      "style": "peer",
+      "sub": "进入条件: 展示确定的草稿 · 退出条件: 审批已绑定草稿 · 价值项: 员工掌控该操作"
+    },
+    {
+      "id": "VS-ticket",
+      "kind": "task",
+      "label": "获得工单",
+      "style": "peer",
+      "sub": "进入条件: 审批已绑定草稿 · 退出条件: 工单只创建一次 · 价值项: 可追踪的工单号"
+    }
+  ],
+  "edges": [
+    {
+      "id": "VS-1",
+      "from": "R-employee",
+      "to": "VS-ask",
+      "kind": "call"
+    },
+    {
+      "id": "VS-2",
+      "from": "VS-ask",
+      "to": "VS-answer",
+      "kind": "call"
+    },
+    {
+      "id": "VS-3",
+      "from": "VS-answer",
+      "to": "VS-draft",
+      "kind": "call"
+    },
+    {
+      "id": "VS-4",
+      "from": "VS-draft",
+      "to": "VS-approve",
+      "kind": "call"
+    },
+    {
+      "id": "VS-5",
+      "from": "VS-approve",
+      "to": "VS-ticket",
+      "kind": "call"
+    }
+  ]
+}
