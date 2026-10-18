@@ -66,21 +66,21 @@
       "kind": "store",
       "label": "Document versions",
       "style": "peer",
-      "sub": ""
+      "sub": "DS-doc"
     },
     {
       "id": "DS-index",
       "kind": "store",
       "label": "Retrieval index",
       "style": "peer",
-      "sub": ""
+      "sub": "DS-index"
     },
     {
       "id": "DS-app",
       "kind": "store",
       "label": "Application records",
       "style": "peer",
-      "sub": ""
+      "sub": "DS-app"
     }
   ],
   "edges": [

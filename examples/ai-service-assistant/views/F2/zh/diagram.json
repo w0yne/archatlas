@@ -34,7 +34,7 @@
       "label": "应用记录",
       "parent": "TB-policy",
       "style": "peer",
-      "sub": ""
+      "sub": "DS-app"
     },
     {
       "id": "R-employee",

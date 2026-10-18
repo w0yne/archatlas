@@ -66,21 +66,21 @@
       "kind": "store",
       "label": "文档版本",
       "style": "peer",
-      "sub": ""
+      "sub": "DS-doc"
     },
     {
       "id": "DS-index",
       "kind": "store",
       "label": "检索索引",
       "style": "peer",
-      "sub": ""
+      "sub": "DS-index"
     },
     {
       "id": "DS-app",
       "kind": "store",
       "label": "应用记录",
       "style": "peer",
-      "sub": ""
+      "sub": "DS-app"
     }
   ],
   "edges": [

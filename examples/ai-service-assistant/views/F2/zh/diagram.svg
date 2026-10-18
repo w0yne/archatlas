@@ -15,6 +15,7 @@
 <text x="564" y="264" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="P-approve" data-role="name">2. 绑定审批</text>
 <g data-role="node" data-id="DS-app" data-kind="store" data-parent="TB-policy" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8"><polyline points="1325,235 1020,235 1020,335 1325,335" fill="none" stroke="#3D6FB2" stroke-width="1.8"/></g>
 <text x="1034" y="264" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DS-app" data-role="name">应用记录</text>
+<text x="1034" y="289" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DS-app" data-role="sub">DS-app</text>
 <rect x="60" y="490" width="305" height="100" data-role="node" data-id="R-employee" data-kind="entity" fill="#EDEDED" stroke="#666A73" stroke-width="1.8" rx="0"/>
 <text x="74" y="519" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="R-employee" data-role="name">员工 / 审批人</text>
 <rect x="490" y="580" width="435" height="350" data-role="group" data-id="TB-tool" data-kind="boundary" fill="#FFF4F1" stroke="#B34232" stroke-width="1.6" rx="10" stroke-dasharray="8 5"/>

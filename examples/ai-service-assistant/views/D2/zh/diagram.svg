@@ -21,10 +21,13 @@
 <text x="464" y="829" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="P-cite" data-role="name">4. 授权引用</text>
 <g data-role="node" data-id="DS-doc" data-kind="store" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8"><polyline points="1235,150 950,150 950,240 1235,240" fill="none" stroke="#3D6FB2" stroke-width="1.8"/></g>
 <text x="964" y="179" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DS-doc" data-role="name">文档版本</text>
+<text x="964" y="204" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DS-doc" data-role="sub">DS-doc</text>
 <g data-role="node" data-id="DS-index" data-kind="store" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8"><polyline points="735,340 450,340 450,430 735,430" fill="none" stroke="#3D6FB2" stroke-width="1.8"/></g>
 <text x="464" y="369" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DS-index" data-role="name">检索索引</text>
+<text x="464" y="394" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DS-index" data-role="sub">DS-index</text>
 <g data-role="node" data-id="DS-app" data-kind="store" fill="#D8E8FF" stroke="#3D6FB2" stroke-width="1.8"><polyline points="315,950 30,950 30,1040 315,1040" fill="none" stroke="#3D6FB2" stroke-width="1.8"/></g>
 <text x="44" y="979" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#1F2937" data-owner="DS-app" data-role="name">应用记录</text>
+<text x="44" y="1004" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#1F2937" data-owner="DS-app" data-role="sub">DS-app</text>
 <polyline points="310,190 450,190" data-role="edge" data-id="DATA-1" data-from="X-doc" data-to="P-ingest" data-kind="data" fill="none" stroke="#4B5563" stroke-width="1.8" marker-end="url(#arrow)"/>
 <rect x="310" y="155" width="87.875" height="30.4" fill="#ffffff" data-role="label-bg" data-id="label-DATA-1" data-parent="DATA-1"/>
 <text x="315" y="175" font-family="Noto Sans, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#1F2937" data-owner="DATA-1" data-role="edge-label">原文 + ACL</text>

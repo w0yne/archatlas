@@ -108,12 +108,12 @@
     {
       "id": "exchange",
       "operator": "alt",
-      "from_step": 1,
+      "from_step": 2,
       "to_step": 7,
       "operands": [
         {
           "guard": "AS permits delegation",
-          "from_step": 1,
+          "from_step": 2,
           "to_step": 6
         },
         {
